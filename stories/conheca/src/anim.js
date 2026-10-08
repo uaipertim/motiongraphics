@@ -753,7 +753,7 @@
     // área do adesivo de link (fica livre): só uma chamada acima dela
     const lk = p(t, S4.link, S4.link + 0.4);
     if (lk > 0) {
-      typeText(ctx, 'TOQUE NO LINK', 540, LINK.y0 - 8, lk, { size: 30, weight: 800, color: C.white, ls: 6, align: 'center' });
+      typeText(ctx, 'ACESSE O SITE', 540, LINK.y0 - 8, lk, { size: 30, weight: 800, color: C.white, ls: 6, align: 'center' });
       radial(ctx, 540, (LINK.y0 + LINK.y1) / 2 + 20, 380, C.lime, 0.08 * lk * (0.8 + 0.2 * Math.sin(t * 4)));
     }
   }

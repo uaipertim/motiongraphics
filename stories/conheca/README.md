@@ -91,10 +91,10 @@ Só funções que existem no produto, conferidas nas capturas do app (incluindo 
 | 0,5 s | **A logo**, com raios e a sineta da série. |
 | 1,0–2,0 s | **"CONHEÇA O / FAZLO Hospeda"** · "Gestão para pousadas e / pequenos meios de hospedagem." |
 | 2,0 s | **fazlohospeda.com.br** se escreve numa pílula limão. |
-| 2,75 s | **"TOQUE NO LINK"** e, logo abaixo, a **área livre para o adesivo de link** (y 1360–1530, sem nenhum texto ou elemento por cima). |
+| 2,75 s | **"ACESSE O SITE"** e, logo abaixo, a **área livre para o adesivo de link** (y 1360–1530, sem nenhum texto ou elemento por cima). |
 | 3–8 s | Tudo fica de pé para o toque, mas vivo: a fita corre, a seta pulsa no tempo, um brilho atravessa o domínio a cada 2 compassos e a música resolve em Mi. |
 
-**Adesivo de link:** no Instagram, adicione o adesivo **Link** com `https://fazlohospeda.com.br` e posicione-o centralizado na faixa entre "TOQUE NO LINK" e a base da moldura (y ≈ 1360–1530 de 1920, logo acima do campo de resposta). A seta da fita aponta para lá.
+**Adesivo de link:** no Instagram, adicione o adesivo **Link** com `https://fazlohospeda.com.br` e posicione-o centralizado na faixa entre "ACESSE O SITE" e a base da moldura (y ≈ 1360–1530 de 1920, logo acima do campo de resposta). A seta da fita aponta para lá.
 
 ## Capa do Destaque
 
