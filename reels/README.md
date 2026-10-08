@@ -5,8 +5,10 @@ Nova fase de produção dos Reels do Instagram do FAZLO Hospeda. O **Motion Grap
 | Reel | Conceito | Duração | Pasta |
 |---|---|---|---|
 | **00** | **"Sob o mesmo teto."** Apresentação do produto: a pousada inteira (reservas, hospedagens, check-in/out, comandas, pagamentos e caixa) num só sistema | 28,2 s | [`reel-00/`](reel-00) |
+| **01** | **"Toda estadia é um ciclo."** O caminho de uma hospedagem, da reserva ao caixa (o Motion Graphics V2, referência de qualidade da série) | 29 s | [`../v2/`](../v2) |
+| **02** | **"Cada reserva no seu lugar."** Gestão de reservas: o calendário de ocupação vira um tabuleiro 3D (disponibilidade, dia/semana/mês, filtros por status, voucher) | 27,8 s | [`reel-02/`](reel-02) |
 
-Os vídeos anteriores continuam intactos: o v1 na raiz do repositório e o v2 em [`../v2`](../v2).
+O v1 continua intacto na raiz do repositório.
 
 ## Padrões da série
 
@@ -14,4 +16,5 @@ Os vídeos anteriores continuam intactos: o v1 na raiz do repositório e o v2 em
 - **Identidade:** preto, verde-limão `#AFFA27` (amostrado da logo) e branco; cores de status do próprio app; Inter Display nos títulos e JetBrains Mono nos dados.
 - **Logo:** sempre o arquivo oficial, sem redesenho. Só o branco *fora* do círculo é tornado transparente (`scripts/logo_alpha.py`).
 - **Conteúdo:** nada de telas, celulares ou computadores; só funções que existem no produto; valores e nomes são os dados de demonstração das próprias telas.
+- **Assinatura sonora:** a sineta de recepção (parciais inarmônicos sintetizados), afinada no tom de cada peça, acompanha a entrada da marca.
 - **Motor:** animação determinística em Canvas 2D (`renderAt(ctx, t)`), render quadro a quadro no Chromium headless, trilha e efeitos sintetizados em Python.
