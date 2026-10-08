@@ -1,0 +1,39 @@
+REEL 03 — sincronização som x imagem
+
+OK     áudio do MP4 = trilha, sem deslocamento (+0.0, +0.0, +0.0 ms)
+OK     25 efeitos-chave com ataque no instante do evento (desvio médio 5.1 ms, máximo 6.8 ms; 1 quadro = 16,7 ms)
+OK     a imagem reage nos 7 golpes principais (pico de movimento a ≤ 8 quadros do som)
+
+Evento a evento (instante do evento visual, desvio medido):
+           2.500 s  unlock    áudio   -6.8 ms
+           2.625 s  unlock    áudio   -6.8 ms
+           2.750 s  unlock    áudio   -6.8 ms
+           2.875 s  unlock    áudio   -6.8 ms
+           3.000 s  unlock    áudio   -6.8 ms
+           3.125 s  unlock    áudio   -6.8 ms
+           3.250 s  unlock    áudio   -6.8 ms
+           3.375 s  unlock    áudio   -6.8 ms
+           4.000 s  drop      áudio   -4.3 ms
+           6.450 s  drawer    áudio   -4.3 ms
+           9.000 s  arrive    áudio   -1.8 ms
+          10.500 s  arrive    áudio   -4.3 ms
+          12.000 s  arrive    áudio   -6.8 ms
+          18.750 s  key       áudio   -4.3 ms
+          19.000 s  key       áudio   -6.8 ms
+          19.250 s  key       áudio   -4.3 ms
+          19.500 s  key       áudio   -4.3 ms
+          19.750 s  key       áudio   -1.8 ms
+          20.000 s  zero      áudio   -4.3 ms
+          21.000 s  boom      áudio   -4.3 ms
+          21.000 s  lock      áudio   -4.3 ms
+          21.125 s  lock      áudio   -4.3 ms
+          21.250 s  lock      áudio   -4.3 ms
+          21.375 s  lock      áudio   -4.3 ms
+          26.000 s  logo      áudio   -4.3 ms
+           4.000 s  drop      imagem: movimento   6.8 (antes  0.8), pico a +3 quadro(s)
+           9.000 s  arrive    imagem: movimento   2.1 (antes  0.5), pico a +8 quadro(s)
+          10.500 s  arrive    imagem: movimento   3.7 (antes  0.1), pico a +8 quadro(s)
+          12.000 s  arrive    imagem: movimento   4.1 (antes  0.1), pico a +8 quadro(s)
+          20.000 s  zero      imagem: movimento   4.3 (antes  0.1), pico a +1 quadro(s)
+          21.000 s  boom      imagem: movimento   4.5 (antes  1.1), pico a -3 quadro(s)
+          26.000 s  logo      imagem: movimento   3.8 (antes  0.2), pico a +4 quadro(s)
