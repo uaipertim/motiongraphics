@@ -10,6 +10,8 @@ Nova fase de produção dos Reels do Instagram do FAZLO Hospeda. O **Motion Grap
 
 O v1 continua intacto na raiz do repositório.
 
+Fora da série de Reels, com a mesma identidade: os **Stories do Destaque "Conheça"** (4 × 8 s + capa do Destaque) em [`../stories/conheca/`](../stories/conheca).
+
 ## Padrões da série
 
 - **Formato:** 9:16, 1080×1920, 60 fps, H.264 (yuv420p) + AAC 48 kHz estéreo, áudio em −14 LUFS e pico real ≤ −1 dBTP.

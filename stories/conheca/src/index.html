@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>FAZLO Hospeda — Stories · Conheça</title>
+<style>
+  @font-face { font-family: 'ST Display'; src: url('fonts/InterDisplay-SemiBold.otf') format('opentype'); font-weight: 600; }
+  @font-face { font-family: 'ST Display'; src: url('fonts/InterDisplay-Bold.otf') format('opentype'); font-weight: 700; }
+  @font-face { font-family: 'ST Display'; src: url('fonts/InterDisplay-ExtraBold.otf') format('opentype'); font-weight: 800; }
+  @font-face { font-family: 'ST Display'; src: url('fonts/InterDisplay-Black.otf') format('opentype'); font-weight: 900; }
+  @font-face { font-family: 'ST Mono'; src: url('fonts/JetBrainsMonoNL-Medium.ttf') format('truetype'); font-weight: 500; }
+  @font-face { font-family: 'ST Mono'; src: url('fonts/JetBrainsMonoNL-Bold.ttf') format('truetype'); font-weight: 700; }
+  @font-face { font-family: 'ST Mono'; src: url('fonts/JetBrainsMonoNL-ExtraBold.ttf') format('truetype'); font-weight: 800; }
+  html, body { margin: 0; background: #050505; color: #F2F2EC; font-family: 'ST Mono', monospace; }
+  body { display: flex; flex-direction: column; align-items: center; gap: 12px; padding: 16px; box-sizing: border-box; min-height: 100vh; }
+  canvas { height: calc(100vh - 110px); aspect-ratio: 9 / 16; max-width: 100%; border-radius: 14px; box-shadow: 0 20px 60px rgba(0,0,0,.6); background: #0A0A0A; }
+  .ui { display: flex; gap: 10px; align-items: center; width: min(620px, 100%); }
+  button { font: 800 14px 'ST Mono', monospace; letter-spacing: 1px; background: #AFFA27; color: #0A0A0A; border: 0; border-radius: 999px; padding: 10px 14px; cursor: pointer; }
+  button.off { background: #222; color: #ccc; }
+  input[type=range] { flex: 1; accent-color: #AFFA27; }
+  .time { font-variant-numeric: tabular-nums; width: 64px; text-align: right; }
+  body.render { padding: 0; display: block; }
+  body.render canvas { height: auto; width: 1080px; border-radius: 0; box-shadow: none; }
+  body.render .ui { display: none; }
+</style>
+</head>
+<body>
+<canvas id="c" width="1080" height="1920"></canvas>
+<div class="ui">
+  <button id="play">▶</button>
+  <button class="st" data-n="1">1</button><button class="st off" data-n="2">2</button><button class="st off" data-n="3">3</button><button class="st off" data-n="4">4</button>
+  <input id="seek" type="range" min="0" max="8" step="0.01" value="0">
+  <span class="time" id="time">0.00s</span>
+</div>
+<audio id="audio" preload="auto"></audio>
+<script src="anim.js"></script>
+<script>
+  const canvas = document.getElementById('c');
+  const ctx = canvas.getContext('2d');
+  const params = new URLSearchParams(location.search);
+  const loadImg = (src) => new Promise((ok, fail) => { const i = new Image(); i.onload = () => ok(i); i.onerror = fail; i.src = src; });
+  window.ready = (async () => {
+    const fonts = [600, 700, 800, 900].map(w => document.fonts.load(`${w} 100px 'ST Display'`))
+      .concat([500, 700, 800].map(w => document.fonts.load(`${w} 100px 'ST Mono'`)));
+    const [img] = await Promise.all([loadImg('assets/fazlo-hospeda-logo-alpha.png'), ...fonts]);
+    await img.decode();
+    await document.fonts.ready;
+    STORIES.init(img);
+  })();
+
+  if (params.has('render')) {
+    document.body.classList.add('render');
+    // usados por scripts/render.cjs
+    window.frameAt = (n, t, noBlur) => { STORIES.renderAt(ctx, n, t, { noBlur }); return canvas.toDataURL('image/png'); };
+    window.coverFrame = (kind) => { STORIES.renderCover(ctx, kind); return canvas.toDataURL('image/png'); };
+    window.cues = () => STORIES.cues();
+  } else {
+    const audio = document.getElementById('audio');
+    const seek = document.getElementById('seek'), timeEl = document.getElementById('time'), btn = document.getElementById('play');
+    let story = +(params.get('story') || 1), playing = false, t0 = 0, base = 0;
+    const setStory = (n) => {
+      story = n; audio.src = `../audio/story-0${n}.wav`; seek.max = STORIES.DURATION[n - 1];
+      document.querySelectorAll('.st').forEach((b) => b.classList.toggle('off', +b.dataset.n !== n));
+    };
+    const draw = (t) => { STORIES.renderAt(ctx, story, t); seek.value = t; timeEl.textContent = t.toFixed(2) + 's'; };
+    const loop = (now) => {
+      if (!playing) return;
+      let t = audio.readyState >= 2 && !audio.paused ? audio.currentTime : base + (now - t0) / 1000;
+      if (t >= STORIES.DURATION[story - 1]) { setStory(story % 4 + 1); t = 0; base = 0; t0 = now; audio.currentTime = 0; audio.play().catch(() => {}); }
+      draw(t); requestAnimationFrame(loop);
+    };
+    btn.onclick = () => {
+      playing = !playing; btn.textContent = playing ? '❚❚' : '▶';
+      if (playing) { base = +seek.value; t0 = performance.now(); audio.currentTime = base; audio.play().catch(() => {}); requestAnimationFrame(loop); }
+      else audio.pause();
+    };
+    document.querySelectorAll('.st').forEach((b) => (b.onclick = () => { setStory(+b.dataset.n); base = 0; draw(0); }));
+    seek.oninput = () => { base = +seek.value; t0 = performance.now(); audio.currentTime = base; draw(base); };
+    window.ready.then(() => { setStory(story); params.has('cover') ? STORIES.renderCover(ctx, params.get('cover') || 'story') : draw(+(params.get('t') || 0)); });
+  }
+</script>
+</body>
+</html>

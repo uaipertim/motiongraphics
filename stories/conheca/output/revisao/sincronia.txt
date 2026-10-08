@@ -1,0 +1,56 @@
+STORIES "CONHEÇA" — sincronização som x imagem
+
+SINCRONIZAÇÃO
+OK     Story 1: áudio do MP4 = trilha do Story, sem deslocamento (+0.0, +0.0, +0.0 ms)
+OK     Story 1: 6 efeitos-chave com ataque no instante do evento (desvio médio 6.4 ms, máximo 6.8 ms; 1 quadro = 16,7 ms)
+OK     Story 1: a imagem reage nos 1 golpes principais
+OK     Story 2: áudio do MP4 = trilha do Story, sem deslocamento (+0.0, +0.0, +0.0 ms)
+OK     Story 2: 10 efeitos-chave com ataque no instante do evento (desvio médio 5.3 ms, máximo 6.8 ms; 1 quadro = 16,7 ms)
+OK     Story 2: a imagem reage nos 4 golpes principais
+OK     Story 3: áudio do MP4 = trilha do Story, sem deslocamento (+0.0, +0.0, +0.0 ms)
+OK     Story 3: 9 efeitos-chave com ataque no instante do evento (desvio médio 6.8 ms, máximo 6.8 ms; 1 quadro = 16,7 ms)
+OK     Story 3: a imagem reage nos 2 golpes principais
+OK     Story 4: áudio do MP4 = trilha do Story, sem deslocamento (+0.0, +0.0, +0.0 ms)
+OK     Story 4: 2 efeitos-chave com ataque no instante do evento (desvio médio 4.3 ms, máximo 6.8 ms; 1 quadro = 16,7 ms)
+OK     Story 4: a imagem reage nos 1 golpes principais
+
+Evento a evento (instante do evento visual, desvio medido):
+  Story 1 · marca
+      1.000 s  logo    áudio   -6.8 ms
+      4.500 s  chip    áudio   -6.8 ms
+      4.750 s  chip    áudio   -4.3 ms
+      5.000 s  chip    áudio   -6.8 ms
+      5.250 s  chip    áudio   -6.8 ms
+      5.500 s  chip    áudio   -6.8 ms
+      1.000 s  logo    imagem: movimento   6.2 (referência  0.6), pico a +5 quadro(s)
+  Story 2 · reservas
+      1.000 s  tag     áudio   -6.8 ms
+      1.250 s  tag     áudio   -6.8 ms
+      1.500 s  tag     áudio   -6.8 ms
+      1.750 s  tag     áudio   -6.8 ms
+      3.000 s  flip    áudio   -4.3 ms
+      3.250 s  flip    áudio   -1.8 ms
+      3.500 s  flip    áudio   -4.3 ms
+      3.750 s  flip    áudio   -1.8 ms
+      6.250 s  hop     áudio   -6.8 ms
+      6.750 s  hop     áudio   -6.8 ms
+      3.000 s  flip    imagem: movimento   2.0 (referência  0.6), pico a -16 quadro(s)
+      3.250 s  flip    imagem: movimento   1.9 (referência  0.6), pico a -16 quadro(s)
+      3.500 s  flip    imagem: movimento   1.9 (referência  0.6), pico a -16 quadro(s)
+      3.750 s  flip    imagem: movimento   1.8 (referência  1.0), pico a -16 quadro(s)
+  Story 3 · financeiro
+      1.000 s  stop    áudio   -6.8 ms
+      1.500 s  coin    áudio   -6.8 ms
+      1.500 s  stop    áudio   -6.8 ms
+      2.000 s  coin    áudio   -6.8 ms
+      2.000 s  stop    áudio   -6.8 ms
+      2.500 s  coin    áudio   -6.8 ms
+      2.500 s  stop    áudio   -6.8 ms
+      3.000 s  coin    áudio   -6.8 ms
+      3.750 s  paid    áudio   -6.8 ms
+      3.750 s  paid    imagem: movimento   1.5 (referência  0.5), pico a +1 quadro(s)
+      4.250 s  drop    imagem: movimento   3.1 (referência  0.3), pico a +1 quadro(s)
+  Story 4 · convite
+      0.500 s  logo    áudio   -6.8 ms
+      2.750 s  link    áudio   -1.8 ms
+      0.500 s  logo    imagem: movimento   4.3 (referência  0.5), pico a +5 quadro(s)

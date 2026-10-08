@@ -1,0 +1,65 @@
+STORIES "CONHEÇA" — revisão técnica, visual e de sincronização
+
+TÉCNICA
+  Story 1 · marca  (output/conheca-01-marca.mp4, 4.4 MB)
+OK          h264 High yuv420p, 1080x1920, 60 fps, 480 quadros
+OK          áudio aac 48000 Hz, 2 canais, 268 kb/s
+OK          duração 8.000 s (vídeo) / 8.000 s (áudio), alvo 6–9 s
+OK          loudness -13.8 LUFS (alvo -14), pico real -2.1 dBTP (limite -1)
+OK          sem quadros pretos (≥ 0,1 s) nem imagem congelada (≥ 0,75 s)
+  Story 2 · reservas  (output/conheca-02-reservas.mp4, 5.5 MB)
+OK          h264 High yuv420p, 1080x1920, 60 fps, 480 quadros
+OK          áudio aac 48000 Hz, 2 canais, 269 kb/s
+OK          duração 8.000 s (vídeo) / 8.000 s (áudio), alvo 6–9 s
+OK          loudness -13.8 LUFS (alvo -14), pico real -2.7 dBTP (limite -1)
+OK          sem quadros pretos (≥ 0,1 s) nem imagem congelada (≥ 0,75 s)
+  Story 3 · financeiro  (output/conheca-03-financeiro.mp4, 3.8 MB)
+OK          h264 High yuv420p, 1080x1920, 60 fps, 480 quadros
+OK          áudio aac 48000 Hz, 2 canais, 273 kb/s
+OK          duração 8.000 s (vídeo) / 8.000 s (áudio), alvo 6–9 s
+OK          loudness -13.9 LUFS (alvo -14), pico real -3.2 dBTP (limite -1)
+OK          sem quadros pretos (≥ 0,1 s) nem imagem congelada (≥ 0,75 s)
+  Story 4 · convite  (output/conheca-04-convite.mp4, 4.7 MB)
+OK          h264 High yuv420p, 1080x1920, 60 fps, 480 quadros
+OK          áudio aac 48000 Hz, 2 canais, 265 kb/s
+OK          duração 8.000 s (vídeo) / 8.000 s (áudio), alvo 6–9 s
+OK          loudness -13.8 LUFS (alvo -14), pico real -2.6 dBTP (limite -1)
+OK          sem quadros pretos (≥ 0,1 s) nem imagem congelada (≥ 0,75 s)
+  Vídeo de revisão (sequência contínua)  (output/conheca-sequencia-revisao.mp4, 16.1 MB)
+OK          h264 High yuv420p, 1080x1920, 60 fps, 1920 quadros
+OK          áudio aac 48000 Hz, 2 canais, 266 kb/s
+OK          duração 32.000 s (vídeo) / 32.000 s (áudio), alvo 30–34 s
+OK          loudness -13.9 LUFS (alvo -14), pico real -2.2 dBTP (limite -1)
+OK          sem quadros pretos (≥ 0,1 s) nem imagem congelada (≥ 0,75 s)
+
+VISUAL
+       zonas-seguras.jpg: vermelho = interface do Instagram; amarelo = limite do texto (270–1650 px); azul = adesivo de link
+OK     Story 4: área do adesivo de link (200–840 x 1370–1525 px) livre de 3,2 s ao fim (99,9% dos pixels ≤ 34/255: só fundo, halo e partículas; pico isolado 75)
+       Story 4: interface do topo (0–250 px) — brilho máximo 132/255 (só fundo e partículas)
+OK     Story 1: fita entra pela pista da esquerda (19% da pista com a fita em 0.35 s)
+OK     Story 1: fita sai pela pista da direita (23% da pista com a fita em 7.75 s)
+OK     Story 2: fita entra pela pista da esquerda (17% da pista com a fita em 0.35 s)
+OK     Story 2: fita sai pela pista da direita (19% da pista com a fita em 7.75 s)
+OK     Story 3: fita entra pela pista da esquerda (11% da pista com a fita em 0.35 s)
+OK     Story 3: fita sai pela pista da direita (19% da pista com a fita em 7.75 s)
+OK     Story 4: fita entra pela pista da esquerda (11% da pista com a fita em 0.35 s)
+OK     Story 4: no fim a fita continua na tela e aponta para a área do link (47% da ponta da seta em 7.75 s)
+OK     capa do Destaque 1080x1080 (quadrada, recorte circular central)
+OK     capa: tudo dentro do círculo com folga (faixa de 45 px junto à borda só com fundo, brilho máximo 13)
+       capa-destaque-preview.jpg: recorte circular em 300, 160, 96 e 64 px, fundo claro e escuro
+
+SINCRONIZAÇÃO
+OK     Story 1: áudio do MP4 = trilha do Story, sem deslocamento (+0.0, +0.0, +0.0 ms)
+OK     Story 1: 6 efeitos-chave com ataque no instante do evento (desvio médio 6.4 ms, máximo 6.8 ms; 1 quadro = 16,7 ms)
+OK     Story 1: a imagem reage nos 1 golpes principais
+OK     Story 2: áudio do MP4 = trilha do Story, sem deslocamento (+0.0, +0.0, +0.0 ms)
+OK     Story 2: 10 efeitos-chave com ataque no instante do evento (desvio médio 5.3 ms, máximo 6.8 ms; 1 quadro = 16,7 ms)
+OK     Story 2: a imagem reage nos 4 golpes principais
+OK     Story 3: áudio do MP4 = trilha do Story, sem deslocamento (+0.0, +0.0, +0.0 ms)
+OK     Story 3: 9 efeitos-chave com ataque no instante do evento (desvio médio 6.8 ms, máximo 6.8 ms; 1 quadro = 16,7 ms)
+OK     Story 3: a imagem reage nos 2 golpes principais
+OK     Story 4: áudio do MP4 = trilha do Story, sem deslocamento (+0.0, +0.0, +0.0 ms)
+OK     Story 4: 2 efeitos-chave com ataque no instante do evento (desvio médio 4.3 ms, máximo 6.8 ms; 1 quadro = 16,7 ms)
+OK     Story 4: a imagem reage nos 1 golpes principais
+
+RESULTADO: aprovado
