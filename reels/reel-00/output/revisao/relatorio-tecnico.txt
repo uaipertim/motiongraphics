@@ -1,0 +1,20 @@
+REEL 00 — revisão técnica
+output/fazlo-hospeda-reel-00.mp4
+
+OK     vídeo h264 High yuv420p
+OK     resolução 1080x1920 (9:16)
+OK     60 fps, 1692 quadros
+OK     duração do vídeo 28.200 s (alvo 20–30 s)
+OK     áudio aac 48000 Hz, 2 canais, 263 kb/s
+OK     vídeo e áudio com a mesma duração (Δ 0 ms)
+OK     arquivo 20.4 MB, 5.8 Mb/s
+OK     loudness integrado -14.0 LUFS (alvo -14)
+OK     pico real -3.2 dBTP (limite -1)
+       faixa de loudness (LRA) 2.1 LU
+OK     áudio do MP4 alinhado com a trilha (desvio +0.0, +0.0, +0.0 ms no gancho, drop e assinatura)
+OK     sem trechos pretos ≥ 0,1 s
+OK     sem imagem congelada ≥ 0,75 s
+OK     o 1º quadro já tem imagem (luminância média 19.7), sem abertura preta
+OK     capa 1080x1920
+
+RESULTADO: aprovado
