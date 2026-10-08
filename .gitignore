@@ -1,0 +1,3 @@
+node_modules/
+output/.video-only.mp4
+__pycache__/
