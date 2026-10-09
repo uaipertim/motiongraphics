@@ -1,0 +1,295 @@
+{
+ "bpm": 100,
+ "duration": 28.799999999999997,
+ "sections": {
+  "hook": 0,
+  "ready": 2.4,
+  "checkin": 4.8,
+  "stay": 7.199999999999999,
+  "night": 9.6,
+  "ficha": 12,
+  "morning": 14.399999999999999,
+  "pay": 16.8,
+  "checkout": 19.2,
+  "final": 21.599999999999998,
+  "finale": 24
+ },
+ "cues": [
+  {
+   "t": 0,
+   "type": "dawn",
+   "d": 1.2
+  },
+  {
+   "t": 0.15,
+   "type": "rise"
+  },
+  {
+   "t": 0.4,
+   "type": "car",
+   "d": 4.05,
+   "dir": -1
+  },
+  {
+   "t": 0.45,
+   "type": "rise"
+  },
+  {
+   "t": 1.2,
+   "type": "sunrise"
+  },
+  {
+   "t": 2.45,
+   "type": "rise"
+  },
+  {
+   "t": 2.55,
+   "type": "card",
+   "k": 0
+  },
+  {
+   "t": 2.75,
+   "type": "rise"
+  },
+  {
+   "t": 3,
+   "type": "tag"
+  },
+  {
+   "t": 4.8,
+   "type": "checkin"
+  },
+  {
+   "t": 5,
+   "type": "card",
+   "k": 1
+  },
+  {
+   "t": 5.1,
+   "type": "light",
+   "on": 1
+  },
+  {
+   "t": 5.4,
+   "type": "flip",
+   "k": 0
+  },
+  {
+   "t": 5.4,
+   "type": "word",
+   "k": 0
+  },
+  {
+   "t": 7.25,
+   "type": "rise"
+  },
+  {
+   "t": 7.35,
+   "type": "card",
+   "k": 2
+  },
+  {
+   "t": 7.55,
+   "type": "rise"
+  },
+  {
+   "t": 7.8,
+   "type": "timelapse",
+   "d": 2.6
+  },
+  {
+   "t": 9.65,
+   "type": "rise"
+  },
+  {
+   "t": 9.9,
+   "type": "lantern",
+   "k": 0,
+   "d": 0.9
+  },
+  {
+   "t": 9.95,
+   "type": "rise"
+  },
+  {
+   "t": 10.5,
+   "type": "lantern",
+   "k": 1,
+   "d": 0.9
+  },
+  {
+   "t": 10.8,
+   "type": "star",
+   "k": 0
+  },
+  {
+   "t": 11.1,
+   "type": "lantern",
+   "k": 2,
+   "d": 0.9
+  },
+  {
+   "t": 11.4,
+   "type": "star",
+   "k": 1
+  },
+  {
+   "t": 12,
+   "type": "star",
+   "k": 2
+  },
+  {
+   "t": 12,
+   "type": "total"
+  },
+  {
+   "t": 12.05,
+   "type": "rise"
+  },
+  {
+   "t": 12.25,
+   "type": "shooting",
+   "d": 0.55
+  },
+  {
+   "t": 12.35,
+   "type": "rise"
+  },
+  {
+   "t": 12.45,
+   "type": "card",
+   "k": 3
+  },
+  {
+   "t": 12.7,
+   "type": "fly",
+   "d": 0.5
+  },
+  {
+   "t": 13.2,
+   "type": "merge"
+  },
+  {
+   "t": 13.2,
+   "type": "timelapse",
+   "d": 2.4
+  },
+  {
+   "t": 14.45,
+   "type": "rise"
+  },
+  {
+   "t": 14.55,
+   "type": "card",
+   "k": 4
+  },
+  {
+   "t": 14.7,
+   "type": "birds",
+   "d": 3
+  },
+  {
+   "t": 14.75,
+   "type": "rise"
+  },
+  {
+   "t": 16.85,
+   "type": "rise"
+  },
+  {
+   "t": 17.15,
+   "type": "rise"
+  },
+  {
+   "t": 17.2,
+   "type": "pix"
+  },
+  {
+   "t": 17.4,
+   "type": "zero"
+  },
+  {
+   "t": 18,
+   "type": "receipt"
+  },
+  {
+   "t": 19.2,
+   "type": "checkout"
+  },
+  {
+   "t": 19.3,
+   "type": "car",
+   "d": 1.15,
+   "dir": 1
+  },
+  {
+   "t": 19.45,
+   "type": "card",
+   "k": 5
+  },
+  {
+   "t": 19.5,
+   "type": "light",
+   "on": 0
+  },
+  {
+   "t": 19.8,
+   "type": "flip",
+   "k": 1
+  },
+  {
+   "t": 20.25,
+   "type": "flare"
+  },
+  {
+   "t": 20.4,
+   "type": "sink",
+   "d": 1.1
+  },
+  {
+   "t": 21.65,
+   "type": "rise"
+  },
+  {
+   "t": 21.75,
+   "type": "card",
+   "k": 6
+  },
+  {
+   "t": 21.95,
+   "type": "rise"
+  },
+  {
+   "t": 23.4,
+   "type": "logorise",
+   "d": 0.6
+  },
+  {
+   "t": 24,
+   "type": "logo"
+  },
+  {
+   "t": 24.25,
+   "type": "rise"
+  },
+  {
+   "t": 24.7,
+   "type": "rise"
+  },
+  {
+   "t": 25,
+   "type": "type",
+   "d": 0.35,
+   "n": 20
+  },
+  {
+   "t": 25.4,
+   "type": "domain"
+  },
+  {
+   "t": 26.6,
+   "type": "glint",
+   "d": 0.6
+  }
+ ]
+}

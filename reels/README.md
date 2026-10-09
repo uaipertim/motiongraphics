@@ -8,8 +8,9 @@ Nova fase de produção dos Reels do Instagram do FAZLO Hospeda. O **Motion Grap
 | **01** | **"Toda estadia é um ciclo."** O caminho de uma hospedagem, da reserva ao caixa (o Motion Graphics V2, referência de qualidade da série) | 29 s | [`../v2/`](../v2) |
 | **02** | **"Cada reserva no seu lugar."** Gestão de reservas: o calendário de ocupação vira um tabuleiro 3D (disponibilidade, dia/semana/mês, filtros por status, voucher) | 27,8 s | [`reel-02/`](reel-02) |
 | **03** | **"O caixa bateu?"** Controle de caixa: um cofre-forte 3D guarda a sessão — abertura com saldo inicial, lançamentos por tubos pneumáticos até o diário, saldo esperado em dinheiro, conferência com diferença zero, fechamento e histórico de sessões | 30 s | [`reel-03/`](reel-03) |
+| **05** | **"Da chegada à saída."** Check-in e check-out: um dia inteiro na pousada em time-lapse — CHECK-IN nasce atrás da serra como um sol, os consumos sobem como lanternas e viram a constelação da comanda, o acerto só dos extras com recibo final, CHECK-OUT se põe enquanto o carro parte | 28,8 s | [`reel-05/`](reel-05) |
 
-O v1 continua intacto na raiz do repositório.
+O v1 continua intacto na raiz do repositório. Não há Reel 04 neste repositório; a numeração segue a dos pedidos.
 
 Fora da série de Reels, com a mesma identidade: os **Stories do Destaque "Conheça"** (4 × 8 s + capa do Destaque) em [`../stories/conheca/`](../stories/conheca).
 
