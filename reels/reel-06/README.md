@@ -75,7 +75,30 @@ Trilha e efeitos **sintetizados do zero** em Python (numpy/scipy), sem samples, 
 
 `python3 scripts/qa.py` gera [`relatorio-tecnico.txt`](output/revisao/relatorio-tecnico.txt), [`sincronia.txt`](output/revisao/sincronia.txt), [`zonas-seguras.jpg`](output/revisao/zonas-seguras.jpg) e [`capa-no-feed.jpg`](output/revisao/capa-no-feed.jpg).
 
-_Resultados da revisão: em produção (o vídeo final está sendo renderizado)._
+**Técnica:** 1080×1920, 60 fps (1.455 quadros), H.264 High yuv420p, AAC 48 kHz estéreo, 24,250 s de vídeo e de áudio (Δ 0 ms), **−14,1 LUFS**, pico real **−2,9 dBTP** no MP4, 14,5 MB, sem trechos pretos nem imagem congelada, 1º quadro já com imagem (o bloco do total no alto, sem abertura preta).
+
+**Sincronização, em três camadas:**
+
+1. o áudio dentro do MP4 é a trilha, sem deslocamento (0,0 ms no gancho, no equilíbrio e na assinatura);
+2. o ataque de 14 golpes-chave, medido no áudio final (o total desabando, as duas formas de pagamento escolhidas no prisma, as duas confirmações, os dois pousos na balança, o "QUITADA", os 5 registros do histórico e a logo pousando), cai no instante do evento visual: **desvio médio de 5,6 ms e máximo de 8,7 ms**, menos de um quadro (16,7 ms). Os demais efeitos (títulos, dígitos, prisma girando, tiques do ponteiro, linha de nível) vêm do mesmo `cues.json`;
+3. a imagem reage nos 4 golpes principais (o total, os dois pousos e a logo): pico de movimento no próprio quadro do som; no primeiro pouso, mais leve, o pico vem 3 quadros antes, na queda do bloco.
+
+**Visual e áreas seguras:** revisão quadro a quadro (com e sem motion blur) durante a produção; nenhum texto nas áreas cobertas pela interface do Reels (topo, legenda embaixo e coluna de ações à direita). Ajustes feitos a partir dela:
+
+- as faces dos blocos estavam com a luz invertida (a face iluminada aparecia escura); normais corrigidas;
+- o prisma das formas de pagamento mostrava o texto espelhado e de cabeça para baixo; foi reconstruído para que cada face pare de frente e legível;
+- a balança ocupava pouco do quadro; cresceu e ganhou câmeras em 3/4, com reflexo no piso;
+- o histórico e a visão geral colidiam com a balança e com o título; viraram trilhas no chão, à direita da balança, com câmeras próprias;
+- o bloco branco do total mostrava uma emenda no meio da etiqueta; agora a textura é aplicada em uma peça só;
+- no resumo da base, PENDENTE e QUITADA se sobrepunham; agora um se dissolve no outro, e as contagens ficaram mais rápidas;
+- o bloco do total caía através do título de abertura; o título entra depois do pouso;
+- a logo atravessava o título final na queda; o título sai antes e a queda ficou mais curta;
+- os clarões dos impactos lavavam o quadro; ficaram mais contidos;
+- o endereço do site encostava na faixa da legenda; o bloco final foi compactado;
+- na visão geral, o rótulo FHZ-000132 · RESERVA invadia a coluna de botões e os nomes BICA D'ÁGUA 02 e 04 se encostavam; as trilhas ficaram mais próximas, a câmera recuou e os rótulos se ajustam à largura entre as trilhas;
+- no histórico, o rótulo FHZ-000138 · IPÊ 09 caía na faixa da legenda; a câmera inclinou para subir a cena.
+
+**Som:** o "QUITADA" chegava 42 ms depois do chip e os registros do histórico (±30 ms) ficavam mascarados pela bateria; os dois foram para a grade de semicolcheias e o "QUITADA" ganhou um ataque mais definido; a trilha tem exatamente a duração do vídeo (o mux não corta quadros).
 
 ## Arquivos-fonte
 
