@@ -168,8 +168,8 @@
     key(T.equilibrio - 0.3, [7.8, 10.2, -9.0], [4.8, 10.6, 0], 1120, 'inOutSine');
     key(T.equilibrio + 0.3, [0, 6.8, -14.4], [0, 6.4, 0], 1110, 'outCubic');      // nivelada, de frente
     key(T.historico - 0.1, [0, 7.0, -13.8], [0, 6.4, 0], 1110, 'inOutSine');
-    key(T.historico + 0.5, [15.8, 8.9, -11.2], [12.7, 0.4, -0.9], 1120);         // o histórico no chão, à direita
-    key(T.geral - 0.1, [15.5, 9.2, -11.7], [12.7, 0.4, -0.9], 1120, 'inOutSine');
+    key(T.historico + 0.5, [15.8, 8.9, -11.2], [12.7, 0.4, -3.2], 1120);         // o histórico no chão, à direita
+    key(T.geral - 0.1, [15.5, 9.2, -11.7], [12.7, 0.4, -3.2], 1120, 'inOutSine');
     key(T.geral + 0.55, [18.0, 14.8, -10.9], [18.0, 0, -1.5], 1000);             // de cima: a visão geral
     key(T.ordem - 0.1, [17.95, 14.5, -10.6], [17.95, 0, -1.5], 960, 'inOutSine');
     key(T.ordem + 0.6, [0, 7.0, -13.4], [0, 6.3, 0], 1110);                      // de volta à balança
