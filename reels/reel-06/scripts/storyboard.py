@@ -12,9 +12,9 @@ from PIL import Image, ImageDraw, ImageFont
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 VIDEO = os.path.join(ROOT, 'output', 'fazlo-hospeda-reel-06.mp4')
 FONT = os.path.join(ROOT, 'src', 'fonts', 'JetBrainsMonoNL-Bold.ttf')
-SHOTS = [(0.3, 'O TOTAL CAI'), (1.4, 'TODA ESTADIA TEM UM SALDO'), (2.62, 'O VALOR SE MONTA'), (3.5, 'FORMA DE PAGAMENTO'),
-         (4.1, 'RECEBIMENTO CONFIRMADO'), (5.6, 'PARCIAL · PENDENTE'), (7.95, 'RECEBER DIÁRIAS'), (8.7, 'CARTÃO'),
-         (10.4, 'EQUILÍBRIO · QUITADA'), (12.5, 'HISTÓRICO'), (13.8, 'HISTÓRICO'), (15.4, 'VISÃO GERAL'),
+SHOTS = [(0.3, 'O TOTAL CAI'), (1.4, 'TODA ESTADIA'), (2.62, 'O VALOR SE MONTA'), (3.5, 'FORMA DE PAGAMENTO'),
+         (4.1, 'CONFIRMADO'), (5.6, 'PENDENTE'), (7.95, 'RECEBER DIÁRIAS'), (8.7, 'CARTÃO'),
+         (10.4, 'QUITADA'), (12.5, 'HISTÓRICO'), (13.4, 'HISTÓRICO'), (15.4, 'VISÃO GERAL'),
          (17.3, 'EM ORDEM'), (18.8, 'A LOGO POUSA'), (21.6, 'ACESSE O SITE'), (24.1, 'FIM')]
 COLS, TW, TH, PAD, LAB = 8, 270, 480, 14, 40
 

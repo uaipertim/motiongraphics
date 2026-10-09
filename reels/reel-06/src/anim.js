@@ -526,9 +526,10 @@
     { x: 22.3, code: 'FHZ-000132', place: 'RESERVA', items: [{ z: -2.2, v: 930, m: 'PIX', note: '', tag: 'RESERVA' }] },
   ];
   const Z_FAR = 4.2, Z_NEAR = -7.6;
-  const laneOn = (k, t) => (k === 0 ? E.inOutCubic(p(t, T.historico - 0.05, T.historico + 0.55)) : E.inOutCubic(p(t, T.geral + 0.15 + k * 0.2, T.geral + 0.65 + k * 0.2)));
+  const laneOn = (k, t) => (k === 0 ? E.inOutCubic(p(t, T.historico - 0.05, T.historico + 0.55)) : E.inOutCubic(p(t, T.geral + (2 * k - 1) * S16, T.geral + (2 * k + 3) * S16)));
   const laneOff = (t) => 1 - p(t, T.ordem + 0.05, T.ordem + 0.55);
-  const itemTime = (k, j) => (k === 0 ? T.historico + 0.45 + j * 2 * BT : T.geral + 0.45 + k * 0.2);
+  // os registros pousam na grade de semicolcheias (o som cai junto com a percussão)
+  const itemTime = (k, j) => (k === 0 ? T.historico + 6 * S16 + j * 2 * BT : T.geral + (4 + 2 * k) * S16) - 0.38;
   const recH = (v) => Math.max(0.3, v * 0.0013);
   function drawLevelAndHistory(ctx, cam, t, faces, lines = true) {
     // a linha de nível (laser) quando a balança fica quitada
@@ -610,7 +611,7 @@
     };
     row(0, 'TOTAL DA HOSPEDAGEM', brl(1350), C.white);
     row(1, 'TOTAL RECEBIDO', brl(rec, '+ '), C.lime);
-    const q = p(t, PAY[1].land + 0.25, PAY[1].land + 0.45);
+    const q = p(t, PAY[1].land + 2 * S16, PAY[1].land + 2 * S16 + 0.2);
     if (q < 1) row(2, 'DIÁRIAS · PENDENTE', brl(pend), C.pend, 52, 1 - q);
     if (q > 0) {
       const y = y0 + 2 * lh, s = E.outBack(q, 2);
@@ -852,7 +853,7 @@
       cue(P0.land, 'land', { k: i, final: i === PAY.length - 1 ? 1 : 0 });
       cue(P0.land + 0.02, 'swing', { d: 1.4, amp: i === 0 ? 0.5 : 0.8 });
     });
-    cue(PAY[1].land + 0.25, 'quitada', {});
+    cue(PAY[1].land + 2 * S16, 'quitada', {});
     cue(T.equilibrio + 0.25, 'laser', { d: 0.45 });
     cue(T.historico - 0.25, 'travel', { d: 0.8, dir: -1 });
     LANES[0].items.forEach((_, j) => cue(itemTime(0, j) + 0.38, 'record', { k: j }));

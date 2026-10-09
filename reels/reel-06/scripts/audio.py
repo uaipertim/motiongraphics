@@ -581,7 +581,8 @@ def fx(c):
         for i, nt in enumerate([75, 79, 82, 87]):           # Mi bemol maior: a conta fechou
             place(sfx, chime(midi(nt), 2.0), t + i * 0.045, 0.09, -0.4 + 0.27 * i)
             place(send, chime(midi(nt), 2.0), t + i * 0.045, 0.07)
-        place(sfx, pop(760), t, 0.14)
+        place(sfx, pop(760), t, 0.18)
+        place(sfx, click(0.02, 3400), t, 0.22)
     elif ty == 'laser':
         place_pan(sfx, whoosh(d + 0.3, 2000, 9000, 0.3, 2.0), t, 0.12, -0.9, 0.9)
         place(sfx, glide(1800, 3600, d + 0.2, 0.3) * 0.3, t, 0.05)
