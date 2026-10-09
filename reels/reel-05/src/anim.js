@@ -827,8 +827,9 @@
       // clarão anamórfico: os faróis passam pela câmera
       ctx.save(); ctx.globalCompositeOperation = 'lighter';
       const fx = 150, fy = 1690;
-      radial(ctx, fx, fy, 520, C.limeL, 0.42 * fl, 0.25);
-      radial(ctx, fx, fy, 160, '#FFFFFF', 0.8 * fl);
+      ctx.fillStyle = rgba(C.limeL, 0.09 * fl); ctx.fillRect(0, 0, W, H);          // a luz dos faróis invade o quadro
+      radial(ctx, fx, fy, 900, C.limeL, 0.5 * fl, 0.25);
+      radial(ctx, fx, fy, 260, '#FFFFFF', 0.85 * fl);
       const sg = ctx.createLinearGradient(0, 0, W, 0);
       sg.addColorStop(0, rgba('#FFFFFF', 0.9 * fl)); sg.addColorStop(0.35, rgba(C.limeL, 0.45 * fl)); sg.addColorStop(1, rgba(C.limeL, 0));
       ctx.fillStyle = sg; ctx.fillRect(0, fy - 3, W, 6);

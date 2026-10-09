@@ -13,7 +13,7 @@ faróis e a sineta da série, afinada em Si (a terça de Sol), anuncia a marca.
 A sincronia vem da animação: `node scripts/render.cjs cues` exporta
 audio/cues.json e este script coloca cada som exatamente nesses instantes.
 
-    python3 scripts/audio.py   -> audio/trilha.wav (48 kHz, estéreo, -14 LUFS, pico real ≤ -2,2 dBTP antes do AAC)
+    python3 scripts/audio.py   -> audio/trilha.wav (48 kHz, estéreo, -14 LUFS, pico real ≤ -3,6 dBTP antes do AAC)
 """
 import json
 import os
@@ -727,7 +727,7 @@ subprocess.run(['ffmpeg', '-y', '-loglevel', 'error', '-i', raw, '-af', af, '-ar
 os.remove(raw)
 
 
-def true_peak_limit(x, ceiling_db=-3.2, os_=4):
+def true_peak_limit(x, ceiling_db=-3.6, os_=4):
     """Limitador de pico real: o ganho é calculado no sinal sobreamostrado (os_ x) com
     antecipação de 2 ms e suavização de 1 ms, e aplicado ao sinal original."""
     c = 10 ** (ceiling_db / 20)

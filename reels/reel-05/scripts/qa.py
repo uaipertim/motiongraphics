@@ -43,7 +43,7 @@ CHECK_T = [0.6, 3.5, 5.6, 8.4, 11.0, 13.4, 15.6, 18.2, 20.0, 22.6, 25.6, 28.4]
 KEY = ('sunrise', 'checkin', 'light', 'star', 'merge', 'pix', 'checkout', 'flare', 'logo')
 # reação visual: (região em 135x240 ou None = quadro inteiro, janela de referência antes/depois)
 VIS = {'checkin': (None, 'antes'), 'merge': ((160, 190, 15, 120), 'depois'), 'checkout': (None, 'antes'),
-       'flare': (None, 'antes'), 'logo': ((70, 130, 35, 100), 'depois')}
+       'flare': ((150, 240, 0, 135), 'antes'), 'logo': ((70, 130, 35, 100), 'depois')}
 
 report, fails = [], []
 
