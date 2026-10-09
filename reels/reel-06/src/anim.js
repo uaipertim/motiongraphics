@@ -168,10 +168,10 @@
     key(T.equilibrio - 0.3, [7.8, 10.2, -9.0], [4.8, 10.6, 0], 1120, 'inOutSine');
     key(T.equilibrio + 0.3, [0, 6.8, -14.4], [0, 6.4, 0], 1110, 'outCubic');      // nivelada, de frente
     key(T.historico - 0.1, [0, 7.0, -13.8], [0, 6.4, 0], 1110, 'inOutSine');
-    key(T.historico + 0.5, [15.4, 8.9, -11.2], [12.3, 0.4, -0.9], 1120);         // o histórico no chão, à direita
-    key(T.geral - 0.1, [15.1, 9.2, -11.7], [12.3, 0.4, -0.9], 1120, 'inOutSine');
-    key(T.geral + 0.55, [17.4, 14.8, -10.9], [17.4, 0, -1.5], 1100);             // de cima: a visão geral
-    key(T.ordem - 0.1, [17.3, 14.4, -10.5], [17.35, 0, -1.5], 1100, 'inOutSine');
+    key(T.historico + 0.5, [15.8, 8.9, -11.2], [12.7, 0.4, -0.9], 1120);         // o histórico no chão, à direita
+    key(T.geral - 0.1, [15.5, 9.2, -11.7], [12.7, 0.4, -0.9], 1120, 'inOutSine');
+    key(T.geral + 0.55, [18.0, 14.8, -10.9], [18.0, 0, -1.5], 1000);             // de cima: a visão geral
+    key(T.ordem - 0.1, [17.95, 14.5, -10.6], [17.95, 0, -1.5], 960, 'inOutSine');
     key(T.ordem + 0.6, [0, 7.0, -13.4], [0, 6.3, 0], 1110);                      // de volta à balança
     key(T.marca - 0.05, [0, 6.8, -12.4], [0, 6.3, 0], 1120, 'inOutSine');
     key(T.marca + 0.6, [0, 6.9, -9.9], [0, 6.2, 0], 1150, 'outCubic');
@@ -520,10 +520,10 @@
   const LEVEL_Y = PIV[1] + POST + PLAT[1] + HV(1350) + 0.02;   // topo das pilhas quando nivelada
   // histórico e visão geral: uma trilha de luz por reserva/hospedagem, no chão à frente da balança
   const LANES = [
-    { x: 12.4, code: 'FHZ-000138', place: 'IPÊ 09', items: [{ z: 2.6, v: 450, m: 'PIX', note: '08/10', tag: 'CHECK-IN / DIÁRIAS' }, { z: -4.0, v: 900, m: 'CARTÃO', note: '', tag: 'CHECK-IN / DIÁRIAS' }] },
+    { x: 12.8, code: 'FHZ-000138', place: 'IPÊ 09', items: [{ z: 2.6, v: 450, m: 'PIX', note: '08/10', tag: 'CHECK-IN / DIÁRIAS' }, { z: -4.0, v: 900, m: 'CARTÃO', note: '', tag: 'CHECK-IN / DIÁRIAS' }] },
     { x: 15.7, code: 'FHZ-000129', place: 'BICA D’ÁGUA 02', items: [{ z: -0.9, v: 85, m: 'PIX', note: '10:15', tag: 'CHECK-OUT / CONSUMOS' }] },
-    { x: 19.0, code: 'FHZ-000131', place: 'BICA D’ÁGUA 04', items: [{ z: 2.3, v: 1440, m: '', note: '', tag: 'HOSPEDAGEM' }] },
-    { x: 22.3, code: 'FHZ-000132', place: 'RESERVA', items: [{ z: -2.2, v: 930, m: 'PIX', note: '', tag: 'RESERVA' }] },
+    { x: 18.6, code: 'FHZ-000131', place: 'BICA D’ÁGUA 04', items: [{ z: 2.3, v: 1440, m: '', note: '', tag: 'HOSPEDAGEM' }] },
+    { x: 21.5, code: 'FHZ-000132', place: 'RESERVA', items: [{ z: -2.2, v: 930, m: 'PIX', note: '', tag: 'RESERVA' }] },
   ];
   const Z_FAR = 4.2, Z_NEAR = -7.6;
   const laneOn = (k, t) => (k === 0 ? E.inOutCubic(p(t, T.historico - 0.05, T.historico + 0.55)) : E.inOutCubic(p(t, T.geral + (2 * k - 1) * S16, T.geral + (2 * k + 3) * S16)));
@@ -574,8 +574,12 @@
       const q = cam.P([L.x, 0.02, Z_NEAR - 0.6]);
       if (q) {
         const sc = clamp(q[3] / 75, 0.75, 1.25);
-        txt(ctx, L.code, q[0], q[1] + 36 * sc, { size: 30 * sc, weight: 800, color: C.white, align: 'center', alpha: r, shadow: 'rgba(0,0,0,0.9)', blur: 12, ls: 1 });
-        txt(ctx, L.place, q[0], q[1] + 70 * sc, { size: 24 * sc, weight: 800, color: C.grayL, align: 'center', alpha: r, ls: 2 });
+        // largura disponível = distância até a trilha vizinha na tela (os nomes longos não se tocam)
+        const nb = cam.P([L.x + (k < LANES.length - 1 ? 1 : -1) * (LANES[1].x - LANES[0].x), 0.02, Z_NEAR - 0.6]);
+        const room = nb ? Math.abs(nb[0] - q[0]) * 0.84 : 999;
+        const fit = (s, size, ls) => Math.min(size, size * room / tw(ctx, s, MONO, size, 800, ls));
+        txt(ctx, L.code, q[0], q[1] + 36 * sc, { size: fit(L.code, 30 * sc, 1), weight: 800, color: C.white, align: 'center', alpha: r, shadow: 'rgba(0,0,0,0.9)', blur: 12, ls: 1 });
+        txt(ctx, L.place, q[0], q[1] + 70 * sc, { size: fit(L.place, 24 * sc, 1), weight: 800, color: C.grayL, align: 'center', alpha: r, ls: 1 });
       }
       L.items.forEach((it, j) => {
         const ti = itemTime(k, j), a = p(t, ti + 0.3, ti + 0.55) * r;
