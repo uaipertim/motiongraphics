@@ -33,7 +33,7 @@ DUR = float(DATA['duration'])
 SEC = DATA['sections']
 CUES = DATA['cues']
 SR = 48000
-N = int(SR * DUR)
+N = int(round(SR * DUR))                         # 28,8 s exatos: o mux não corta quadros do vídeo
 rng = np.random.default_rng(5005)
 
 

@@ -41,7 +41,9 @@ CHECK_T = [0.6, 3.5, 5.6, 8.4, 11.0, 13.4, 15.6, 18.2, 20.0, 22.6, 25.6, 28.4]
 # golpes que se destacam na mixagem (os demais efeitos dividem a grade com a percussão;
 # a posição deles vem do mesmo cues.json)
 KEY = ('sunrise', 'checkin', 'light', 'star', 'merge', 'pix', 'checkout', 'flare', 'logo')
-VIS = ('checkin', 'merge', 'checkout', 'flare', 'logo')
+# reação visual: (região em 135x240 ou None = quadro inteiro, janela de referência antes/depois)
+VIS = {'checkin': (None, 'antes'), 'merge': ((160, 190, 15, 120), 'depois'), 'checkout': (None, 'antes'),
+       'flare': (None, 'antes'), 'logo': ((70, 130, 35, 100), 'depois')}
 
 report, fails = [], []
 
@@ -127,15 +129,15 @@ with tempfile.TemporaryDirectory() as tmp:
     vf = np.frombuffer(raw, np.uint8).reshape(-1, 240, 135).astype(float)
     diff = np.abs(np.diff(vf, axis=0)).mean(axis=(1, 2))          # diff[i] = quadro i+1 - quadro i
     vis = []
-    # a logo nasce no centro do céu: mede-se a região dela
-    dc = np.abs(np.diff(vf[:, 70:130, 35:100], axis=0)).mean(axis=(1, 2))
+    # a logo nasce no centro do céu e a comanda pousa na ficha: mede-se a região de cada uma
     for cu in CUES['cues']:
         if cu['type'] not in VIS:
             continue
         i0 = int(round(cu['t'] * 60))
-        dd = dc if cu['type'] == 'logo' else diff
+        roi, ref = VIS[cu['type']]
+        dd = diff if roi is None else np.abs(np.diff(vf[:, roi[0]:roi[1], roi[2]:roi[3]], axis=0)).mean(axis=(1, 2))
         win = dd[max(0, i0 - 4): i0 + 8]
-        base = np.median(dd[max(0, i0 - 60): max(1, i0 - 10)]) if cu['type'] != 'logo' else np.median(dd[i0 + 40: i0 + 100])
+        base = np.median(dd[max(0, i0 - 60): max(1, i0 - 10)]) if ref == 'antes' else np.median(dd[i0 + 30: i0 + 54])
         vis.append((cu['type'], cu['t'], float(win.max()), float(base), (np.argmax(win) + max(0, i0 - 4) + 1 - i0)))
     good = [r for r in vis if r[2] > 1.5 * r[3] + 0.5]
     ok(len(good) == len(vis), f'a imagem reage nos {len(vis)} golpes principais (pico de movimento a ≤ 8 quadros do som)', sync)

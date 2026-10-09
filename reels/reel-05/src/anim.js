@@ -658,6 +658,15 @@
       chip(ctx, 0, 0, 'COMANDA · R$ 85,00', { size: 30, bg: C.lime, color: C.ink, ls: 2 });
       ctx.restore();
     }
+    // pouso na ficha: clarão e anel no valor da comanda
+    const hit = kick(t, COMANDA.land, 0.5);
+    if (hit > 0.01) {
+      const tx = CARD.x + CARD.w - 40 - 95, ty = CARD.y + 166 - 11, u = p(t, COMANDA.land, COMANDA.land + 0.5);
+      ctx.save(); ctx.globalCompositeOperation = 'lighter';
+      radial(ctx, tx, ty, 240, C.lime, 0.55 * hit);
+      ctx.restore();
+      ctx.beginPath(); ctx.arc(tx, ty, lerp(30, 170, E.outCubic(u)), 0, TAU); stroke(ctx, rgba(C.limeL, 0.8 * hit), 4);
+    }
   }
 
   // =====================================================================
@@ -812,7 +821,8 @@
     lanterns(ctx, t, V);
     chaletTag(ctx, t, V, st);
     // clarão dos faróis quando o carro passa pela câmera
-    const fl = E.inQuad(p(t, T.checkout + 0.75, FLARE)) * (1 - E.outCubic(p(t, FLARE, FLARE + 0.55)));
+    // os faróis crescem e, no tempo do golpe, estouram num clarão que decai
+    const fl = Math.max(0.35 * E.inQuad(p(t, T.checkout + 0.75, FLARE)) * (t < FLARE ? 1 : 0), kick(t, FLARE, 0.5));
     if (fl > 0.01) {
       // clarão anamórfico: os faróis passam pela câmera
       ctx.save(); ctx.globalCompositeOperation = 'lighter';
