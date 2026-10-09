@@ -1,0 +1,23 @@
+REEL 05 — sincronização som x imagem
+
+OK     áudio do MP4 = trilha, sem deslocamento (+0.0, +0.0, +0.0 ms)
+OK     11 efeitos-chave com ataque no instante do evento (desvio médio 5.0 ms, máximo 9.3 ms; 1 quadro = 16,7 ms)
+OK     a imagem reage nos 5 golpes principais (pico de movimento a ≤ 8 quadros do som)
+
+Evento a evento (instante do evento visual, desvio medido):
+           1.200 s  sunrise   áudio   -6.8 ms
+           4.800 s  checkin   áudio   -1.8 ms
+           5.100 s  light     áudio   -1.8 ms
+          10.800 s  star      áudio   -6.8 ms
+          11.400 s  star      áudio   -9.3 ms
+          12.000 s  star      áudio   -6.8 ms
+          13.200 s  merge     áudio   -6.8 ms
+          17.200 s  pix       áudio   -4.3 ms
+          19.200 s  checkout  áudio   -4.3 ms
+          20.250 s  flare     áudio   -1.8 ms
+          24.000 s  logo      áudio   -4.3 ms
+           4.800 s  checkin   imagem: movimento   3.8 (antes  0.3), pico a +1 quadro(s)
+          13.200 s  merge     imagem: movimento   4.0 (antes  0.0), pico a +0 quadro(s)
+          19.200 s  checkout  imagem: movimento   4.9 (antes  0.2), pico a +1 quadro(s)
+          20.250 s  flare     imagem: movimento   9.7 (antes  0.5), pico a +0 quadro(s)
+          24.000 s  logo      imagem: movimento   9.9 (antes  0.2), pico a +0 quadro(s)

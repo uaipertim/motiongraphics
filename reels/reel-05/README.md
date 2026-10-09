@@ -85,7 +85,29 @@ Trilha e efeitos **sintetizados do zero** em Python (numpy/scipy), sem samples, 
 
 `python3 scripts/qa.py` gera [`relatorio-tecnico.txt`](output/revisao/relatorio-tecnico.txt), [`sincronia.txt`](output/revisao/sincronia.txt), [`zonas-seguras.jpg`](output/revisao/zonas-seguras.jpg) e [`capa-no-feed.jpg`](output/revisao/capa-no-feed.jpg).
 
-_Resultados da revisão: em produção (o vídeo final está sendo renderizado)._
+**Técnica:** 1080×1920, 60 fps (1.728 quadros), H.264 High yuv420p, AAC 48 kHz estéreo, 28,800 s de vídeo e de áudio, **−14,0 LUFS**, pico real **−3,0 dBTP** no MP4, sem trechos pretos nem imagem congelada, 1º quadro já com imagem (a madrugada, sem abertura preta).
+
+**Sincronização, em três camadas:**
+
+1. o áudio dentro do MP4 é a trilha, sem deslocamento (0,0 ms no gancho, no check-in e na assinatura);
+2. o ataque de 11 golpes-chave, medido no áudio final (o sol nascendo, o check-in com a sineta, a luz do chalé acendendo, as 3 estrelas da comanda, o pouso da comanda na ficha, o Pix, o check-out, o clarão dos faróis e a logo), cai no instante do evento visual: **desvio médio de 5,0 ms e máximo de 9,3 ms**, menos de meio quadro (16,7 ms). Os demais efeitos (títulos, cartões, lanternas, pássaros, a luz que apaga sob o prato do check-out) dividem a grade com a percussão; a posição deles vem do mesmo `cues.json`;
+3. a imagem reage nos 5 golpes principais (check-in, pouso da comanda, check-out, clarão e logo): pico de movimento no próprio quadro do som ou no seguinte.
+
+**Visual e áreas seguras:** revisão quadro a quadro (com e sem motion blur) durante a produção; nenhum texto nas áreas cobertas pela interface do Reels (topo, legenda embaixo e coluna de ações à direita). Ajustes feitos a partir dela:
+
+- CHECK-IN e CHECK-OUT passavam das bordas da tela; agora cabem com margem;
+- raios de sol apareciam na madrugada e na noite (vinham da palavra ainda escondida atrás da serra); agora só há raios com o sol acima da serra, mais fortes no nascer do sol e no check-in;
+- os pinheiros de primeiro plano eram triângulos lisos; viraram silhuetas com camadas de galhos, que balançam;
+- o clarão dos faróis deixava uma faixa cinza na base; agora é luz aditiva (brilho, faixa anamórfica e a luz invadindo o quadro no tempo do golpe);
+- a lua passava por trás do título da noite; agora fica à esquerda, longe do texto e da constelação;
+- a etiqueta BICA D'ÁGUA 02 ficava sob a palavra CHECK-IN; agora sai antes de a palavra nascer;
+- o rótulo "2 refrigerantes" era cortado pela linha da constelação; foi para baixo da estrela;
+- a lua crescente era um disco escuro sobre o halo; agora é recortada;
+- o vídeo abria com 0,35 s de tela preta; agora o 1º quadro já é a madrugada;
+- o cartão do resumo usa o rótulo do app, **RESUMO FINANCEIRO**, e os textos secundários dos cartões cresceram para leitura no celular;
+- na capa, o sol encostava no título; ali a palavra CHECK-IN faz o papel do sol.
+
+**Som:** os pratos invertidos terminam 40 ms antes de cada golpe (o nascer do sol estava mascarado); o bumbo desceu cerca de 4 dB para a música respirar; grilos e pássaros subiram para serem ouvidos; o sub-grave da assinatura não soma mais duas vezes; a trilha tem exatamente a duração do vídeo (o mux cortava os 2 últimos quadros).
 
 ## Arquivos-fonte
 
