@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>FAZLO Hospeda — Carrossel 01 · Sinal</title>
+<style>
+  @font-face { font-family: 'C1 Display'; src: url('fonts/InterDisplay-SemiBold.otf') format('opentype'); font-weight: 600; }
+  @font-face { font-family: 'C1 Display'; src: url('fonts/InterDisplay-Bold.otf') format('opentype'); font-weight: 700; }
+  @font-face { font-family: 'C1 Display'; src: url('fonts/InterDisplay-Black.otf') format('opentype'); font-weight: 900; }
+  @font-face { font-family: 'C1 Mono'; src: url('fonts/JetBrainsMonoNL-Bold.ttf') format('truetype'); font-weight: 700; }
+  @font-face { font-family: 'C1 Mono'; src: url('fonts/JetBrainsMonoNL-ExtraBold.ttf') format('truetype'); font-weight: 800; }
+  html, body { margin: 0; background: #050505; color: #B9B9B1; font: 700 14px 'C1 Mono', monospace; }
+  .wrap { display: flex; gap: 16px; padding: 16px; overflow-x: auto; }
+  canvas { height: calc(100vh - 32px); aspect-ratio: 4 / 5; border-radius: 10px; flex: none; }
+  body.render .wrap { display: block; padding: 0; }
+  body.render canvas { height: auto; width: 1080px; border-radius: 0; }
+</style>
+</head>
+<body>
+<div class="wrap" id="wrap"></div>
+<script src="notinha.js"></script>
+<script src="slides.js"></script>
+<script>
+  const render = new URLSearchParams(location.search).has('render');
+  if (render) document.body.classList.add('render');
+  const loadImg = (src) => new Promise((ok, fail) => { const i = new Image(); i.onload = () => ok(i); i.onerror = fail; i.src = src; });
+  window.ready = (async () => {
+    const fonts = [600, 700, 900].map((w) => document.fonts.load(`${w} 100px 'C1 Display'`))
+      .concat([700, 800].map((w) => document.fonts.load(`${w} 100px 'C1 Mono'`)));
+    const [img] = await Promise.all([loadImg('assets/fazlo-hospeda-logo-alpha.png'), ...fonts]);
+    await img.decode(); await document.fonts.ready;
+    CARROSSEL.init(img);
+    const wrap = document.getElementById('wrap');
+    for (let n = 1; n <= (render ? 1 : CARROSSEL.N); n++) {
+      const c = document.createElement('canvas'); c.width = CARROSSEL.W; c.height = CARROSSEL.H; c.id = 's' + n;
+      wrap.appendChild(c); CARROSSEL.render(c.getContext('2d'), n);
+    }
+  })();
+  // usado por scripts/render.cjs
+  window.slideAt = (n) => { const c = document.getElementById('s1'); CARROSSEL.render(c.getContext('2d'), n); return c.toDataURL('image/png'); };
+</script>
+</body>
+</html>

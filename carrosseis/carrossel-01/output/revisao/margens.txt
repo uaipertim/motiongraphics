@@ -1,0 +1,12 @@
+CARROSSEL 01 — margens (80 px nas laterais)
+
+OK     slide 01: conteúdo em x 80–998, y 317–1260
+OK     slide 02: conteúdo em x 79–995, y 163–1251
+OK     slide 03: conteúdo em x 80–999, y 94–1251
+OK     slide 04: conteúdo em x 81–999, y 94–1251
+OK     slide 05: conteúdo em x 81–932, y 94–1250
+OK     slide 06: conteúdo em x 80–999, y 94–1243
+OK     slide 07: conteúdo em x 80–978, y 94–1243
+OK     slide 08: conteúdo em x 80–982, y 203–1243
+
+RESULTADO: tudo dentro da margem de 80 px

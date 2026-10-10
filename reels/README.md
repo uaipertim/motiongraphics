@@ -14,7 +14,7 @@ Nova fase de produção dos Reels do Instagram do FAZLO Hospeda. O **Motion Grap
 
 O v1 continua intacto na raiz do repositório. Não há Reel 04 neste repositório; a numeração segue a dos pedidos.
 
-Fora da série de Reels, com a mesma identidade: os **Stories do Destaque "Conheça"** (4 × 8 s + capa do Destaque) em [`../stories/conheca/`](../stories/conheca).
+Fora da série de Reels, com a mesma identidade: os **Stories do Destaque "Conheça"** (4 × 8 s + capa do Destaque) em [`../stories/conheca/`](../stories/conheca) e os **carrosséis** do pilar DICA em [`../carrosseis/`](../carrosseis) (Carrossel 01: "Como cobrar o sinal sem constrangimento").
 
 ## Padrões da série
 
