@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>FAZLO Hospeda — Reel 07 · Capa</title>
+<style>
+  @font-face { font-family: 'R7 Display'; src: url('fonts/InterDisplay-Black.otf') format('opentype'); font-weight: 900; }
+  @font-face { font-family: 'R7 Mono'; src: url('fonts/JetBrainsMonoNL-Bold.ttf') format('truetype'); font-weight: 700; }
+  @font-face { font-family: 'R7 Mono'; src: url('fonts/JetBrainsMonoNL-ExtraBold.ttf') format('truetype'); font-weight: 800; }
+  html, body { margin: 0; background: #050505; }
+  canvas { display: block; height: 100vh; aspect-ratio: 9 / 16; margin: 0 auto; }
+  body.render canvas { height: auto; width: 1080px; }
+</style>
+</head>
+<body>
+<canvas id="c" width="1080" height="1920"></canvas>
+<script src="capa.js"></script>
+<script>
+  // capa do Reel 07, em página própria: o motor do vídeo (anim.js) não é carregado nem alterado
+  const canvas = document.getElementById('c'), ctx = canvas.getContext('2d');
+  if (new URLSearchParams(location.search).has('render')) document.body.classList.add('render');
+  const loadImg = (src) => new Promise((ok, fail) => { const i = new Image(); i.onload = () => ok(i); i.onerror = fail; i.src = src; });
+  window.ready = (async () => {
+    const fonts = [document.fonts.load("900 100px 'R7 Display'"), document.fonts.load("700 100px 'R7 Mono'"), document.fonts.load("800 100px 'R7 Mono'")];
+    const [img] = await Promise.all([loadImg('assets/fazlo-hospeda-logo-alpha.png'), ...fonts]);
+    await img.decode(); await document.fonts.ready;
+    REEL07CAPA.init(img);
+    REEL07CAPA.render(ctx);
+  })();
+  window.coverFrame = () => { REEL07CAPA.render(ctx); return canvas.toDataURL('image/png'); };
+  window.coverBoxes = () => REEL07CAPA.boxes();
+</script>
+</body>
+</html>

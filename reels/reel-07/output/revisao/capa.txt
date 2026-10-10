@@ -1,0 +1,9 @@
+REEL 07 — capa: área segura da grade (3:4)
+
+OK     título: y 372–553
+OK     notinha: x 125–938, y 730–1406
+OK     logo: x 386–694, y 1494–1566
+OK     tudo o que não é fundo: x 71–1008, y 370–1547
+       limite (3:4 com folga de 60 px): x 60–1020, y 300–1620
+       título em 90 px (Inter Display Black 900)
+RESULTADO: dentro do recorte 3:4 com folga de 60 px

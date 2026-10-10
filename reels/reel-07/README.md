@@ -7,7 +7,8 @@ Peça independente: nada aqui altera os Reels anteriores nem os Stories.
 **Formato:** 9:16 (1080×1920), **14,0 s**, 60 fps, H.264 + AAC 48 kHz. **Só efeitos sonoros**, sem trilha musical: a música pode ser escolhida na biblioteca do Instagram na publicação, e o vídeo funciona sem ela.
 
 ▶ **Vídeo:** [`output/fazlo-hospeda-reel-07.mp4`](output/fazlo-hospeda-reel-07.mp4)
-Storyboard: [`output/storyboard.jpg`](output/storyboard.jpg) · Revisão: [`output/revisao/`](output/revisao) · A capa será produzida depois da aprovação do vídeo.
+🖼 **Capa:** [`output/capa.jpg`](output/capa.jpg) · [`output/capa.png`](output/capa.png) · prévia na grade: [`output/revisao/capa-no-feed.jpg`](output/revisao/capa-no-feed.jpg)
+Storyboard: [`output/storyboard.jpg`](output/storyboard.jpg) · Revisão: [`output/revisao/`](output/revisao)
 
 ![storyboard](output/storyboard.jpg)
 
@@ -97,12 +98,24 @@ Efeitos **sintetizados do zero** em Python (numpy/scipy), sem samples e **sem m�
 
 **Som:** a impressão térmica desceu cerca de 4 dB para as teclas e o carimbo se destacarem; o rasgo do papel subiu; a batida do gancho ficou mais curta.
 
+## Capa
+
+Composta em página própria (`src/capa.html` + `src/capa.js`), com os mesmos elementos do vídeo e sem tocar no motor do Reel: título em duas linhas — "O feriado acabou." (branco) e "Agora começa a conta." (limão) — em Inter Display Black 900, tracking −0,03 em, no maior corpo que cabe na largura útil (90 px); abaixo, a notinha completa saindo da fenda acesa (papel `#F2F2EC`, perguntas em limão nos blocos pretos, TOTAL carimbado com "???"), levemente inclinada (−1,5°) e a 88% do tamanho do vídeo para o título comandar; a logo pequena embaixo. Sem CTA.
+
+**Área segura da grade:** o perfil mostra só o recorte central 3:4 (y 240–1680). Título, notinha e logo ficam inteiros dentro dele com folga de 60 px (x 60–1020, y 300–1620); `scripts/capa_revisao.py` confere pelas caixas de cada elemento e pelos pixels — tudo o que não é fundo ocupa x 71–1008, y 370–1547 — e gera a prévia com o recorte marcado e a capa na grade ao lado das capas dos Reels 06 e 05 ([`capa-no-feed.jpg`](output/revisao/capa-no-feed.jpg), [`capa.txt`](output/revisao/capa.txt)).
+
+```bash
+node scripts/capa.cjs              # output/capa.png
+python3 scripts/capa_revisao.py    # output/capa.jpg + prévia e verificação do recorte 3:4
+```
+
 ## Arquivos-fonte
 
 ```
 reels/reel-07/
   src/
     index.html                 # preview (play/scrub com áudio) e página usada no render
+    capa.html, capa.js         # a capa (página própria; não altera o motor do vídeo)
     anim.js                    # TODO o motion: gancho, impressora, notinha, carimbo, saída, mensagem, logo, cues
     assets/                    # logo oficial + a mesma logo sem o fundo branco externo
     fonts/                     # Inter Display + JetBrains Mono (licença OFL)
@@ -111,12 +124,14 @@ reels/reel-07/
     audio.py                   # efeitos a partir de audio/cues.json, master
     logo_alpha.py              # recorte do fundo da logo (não altera a arte)
     storyboard.py              # storyboard a partir do MP4
+    capa.cjs, capa_revisao.py  # render da capa (PNG) + JPG, prévia na grade e verificação do recorte 3:4
     qa.py                      # revisão técnica + sincronização + zonas seguras + recorte 3:4
   audio/
     cues.json                  # eventos de som exportados da animação
     efeitos.wav
   output/
     fazlo-hospeda-reel-07.mp4  # vídeo final
+    capa.png, capa.jpg         # capa do Instagram (1080x1920)
     storyboard.jpg
     revisao/
 ```
