@@ -10,6 +10,7 @@ Nova fase de produção dos Reels do Instagram do FAZLO Hospeda. O **Motion Grap
 | **03** | **"O caixa bateu?"** Controle de caixa: um cofre-forte 3D guarda a sessão — abertura com saldo inicial, lançamentos por tubos pneumáticos até o diário, saldo esperado em dinheiro, conferência com diferença zero, fechamento e histórico de sessões | 30 s | [`reel-03/`](reel-03) |
 | **05** | **"Da chegada à saída."** Check-in e check-out: um dia inteiro na pousada em time-lapse — CHECK-IN nasce atrás da serra como um sol, os consumos sobem como lanternas e viram a constelação da comanda, o acerto só dos extras com recibo final, CHECK-OUT se põe enquanto o carro parte | 28,8 s | [`reel-05/`](reel-05) |
 | **06** | **"Em equilíbrio."** Gestão de pagamentos: uma balança de precisão em 3D — o total da hospedagem de um lado, cada pagamento registrado (valor, forma, confirmação) do outro, o pendente no ponteiro até ficar quitada; a linha de nível vira o histórico e a visão geral de tudo que entrou | 24,25 s | [`reel-06/`](reel-06) |
+| **07** | **"O feriado acabou. Agora começa a conta."** Pilar ROTINA (identificação, sem apresentar funcionalidades): a conferência do pós-feriado vira uma notinha de caixa impressa — quatro dúvidas da rotina digitadas em verde-limão, o TOTAL carimbado com "???" e o convite para mandar a quem fecha a conta | 14 s | [`reel-07/`](reel-07) |
 
 O v1 continua intacto na raiz do repositório. Não há Reel 04 neste repositório; a numeração segue a dos pedidos.
 
@@ -18,6 +19,7 @@ Fora da série de Reels, com a mesma identidade: os **Stories do Destaque "Conhe
 ## Padrões da série
 
 - **Formato:** 9:16, 1080×1920, 60 fps, H.264 (yuv420p) + AAC 48 kHz estéreo, áudio em −14 LUFS e pico real ≤ −1 dBTP.
+- **Pilar ROTINA** (a partir do Reel 07): vídeos curtos de identificação com a rotina do gestor, sem apresentar funcionalidades nem CTA comercial; só efeitos sonoros (−16 LUFS), para a música ser escolhida no Instagram; textos importantes dentro do recorte central 3:4 da grade do perfil.
 - **Identidade:** preto, verde-limão `#AFFA27` (amostrado da logo) e branco; cores de status do próprio app; Inter Display nos títulos e JetBrains Mono nos dados.
 - **Logo:** sempre o arquivo oficial, sem redesenho. Só o branco *fora* do círculo é tornado transparente (`scripts/logo_alpha.py`).
 - **Conteúdo:** nada de telas, celulares ou computadores; só funções que existem no produto; valores e nomes são os dados de demonstração das próprias telas.

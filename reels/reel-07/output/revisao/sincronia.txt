@@ -1,0 +1,47 @@
+REEL 07 — sincronização som x imagem
+
+OK     áudio do MP4 = efeitos.wav, sem deslocamento (+0.0, +0.0, +0.0 ms)
+OK     37 efeitos-chave com ataque no instante do evento (desvio médio 6.8 ms, máximo 7.6 ms; 1 quadro = 16,7 ms)
+OK     a imagem reage nos 3 golpes principais (pico de movimento a ≤ 8 quadros do som)
+
+Evento a evento (instante do evento visual, desvio medido):
+           0.800 s  cut       áudio   -6.8 ms
+           2.300 s  feed      áudio   -4.3 ms
+           2.600 s  feed      áudio   -4.3 ms
+           3.200 s  key       áudio   -6.8 ms
+           3.283 s  key       áudio   -7.6 ms
+           3.350 s  key       áudio   -6.8 ms
+           3.417 s  key       áudio   -6.0 ms
+           3.500 s  key       áudio   -6.8 ms
+           4.400 s  feed      áudio   -6.8 ms
+           5.000 s  key       áudio   -6.8 ms
+           5.083 s  key       áudio   -7.6 ms
+           5.150 s  key       áudio   -6.8 ms
+           5.217 s  key       áudio   -6.0 ms
+           5.300 s  key       áudio   -6.8 ms
+           5.383 s  key       áudio   -7.6 ms
+           5.450 s  key       áudio   -6.8 ms
+           5.533 s  key       áudio   -7.6 ms
+           6.200 s  feed      áudio   -6.8 ms
+           6.800 s  key       áudio   -6.8 ms
+           6.883 s  key       áudio   -7.6 ms
+           6.950 s  key       áudio   -6.8 ms
+           7.017 s  key       áudio   -6.0 ms
+           7.100 s  key       áudio   -6.8 ms
+           7.183 s  key       áudio   -7.6 ms
+           7.250 s  key       áudio   -6.8 ms
+           8.000 s  feed      áudio   -6.8 ms
+           8.600 s  key       áudio   -6.8 ms
+           8.683 s  key       áudio   -7.6 ms
+           8.750 s  key       áudio   -6.8 ms
+           8.817 s  key       áudio   -6.0 ms
+           8.900 s  key       áudio   -6.8 ms
+           8.983 s  key       áudio   -7.6 ms
+           9.050 s  key       áudio   -6.8 ms
+           9.800 s  feed      áudio   -6.8 ms
+          10.400 s  stamp     áudio   -6.8 ms
+          11.500 s  tear      áudio   -6.8 ms
+          12.600 s  logo      áudio   -6.8 ms
+           0.800 s  cut       imagem: movimento   5.3 (antes  0.7), pico a +0 quadro(s)
+          10.400 s  stamp     imagem: movimento  14.0 (antes  0.2), pico a +3 quadro(s)
+          12.600 s  logo      imagem: movimento   3.8 (antes  0.1), pico a +6 quadro(s)
