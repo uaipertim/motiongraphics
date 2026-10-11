@@ -111,9 +111,17 @@ Trilha e efeitos **sintetizados do zero** em Python (numpy/scipy), sem samples, 
 
 ## Capa
 
-A **capa atual** (outubro de 2026) é a mesma cena da capa que está no perfil — a abertura do vídeo (~2,0 s): o sol que acabou de nascer sobre a serra, os pinheiros, a pousada e o carro do hóspede subindo a estrada, com **"Seu hóspede / está chegando."** no corpo do vídeo (100 px). A paisagem é desenhada pelo próprio motor no mesmo instante, sem o desfoque de movimento. Correção: o título desceu de y 340 para 548, no céu entre o topo e o sol — antes, "chegando." ficava embaixo do ícone de play; a logo entra pequena no alto, no mesmo lugar das capas dos Reels 06 e 02. O carro fica em y ≈ 1416–1442, acima da faixa do contador.
+A **capa atual** (outubro de 2026) é a cena da abertura do vídeo (~2,0 s): o sol nascendo sobre a serra, os pinheiros, a pousada com os chalés, o lago e o carro do hóspede subindo a estrada, com a logo e **"Seu hóspede / está chegando."** (título com o corpo do vídeo, 100 px; logo de 52 px).
 
-Segue a **regra fixa das capas** ([`../README.md`](../README.md)). Como a paisagem vai de ponta a ponta, a conferência usa as caixas de cada elemento (`--cena`): título e logo dentro do recorte 3:4 com folga de 60 px, fora do canto do play e da faixa do contador (y 1560–1680); o sol e a pousada inteiros dentro do recorte. `src/capa.html` lê o `anim.js` como texto e o avalia com uma linha a mais, que expõe as peças de desenho para `src/capa.js`; o arquivo do motor e o vídeo não mudam. A capa que estava no repositório ("Da chegada à saída." com CHECK-IN) ficou em [`output/capa-anterior.png`](output/capa-anterior.png).
+**Ajuste de posição (aprovado):** o bloco de texto — do alto da logo ao pé do "g" de "chegando" (y 791,5–1128,5) — fica **centralizado em y = 960**, o centro da capa e do recorte 3:4, e em x = 540, com os mesmos tamanhos e espaços. No lugar novo, o título cobriria o sol, a serra e os telhados dos chalés, e "está chegando." ficaria sobre o brilho do sol; por isso foi ajustada a paisagem, não o texto:
+
+- a câmera do motor se afasta (zoom 0,6, o mesmo mecanismo das aproximações do vídeo): a serra, a pousada, o lago e a estrada ficam inteiros abaixo do título, e o carro sobe um pouco a estrada para ficar acima da faixa do contador (y 1517–1532);
+- o sol **nasce logo abaixo do título** (disco em y 1146–1278, meio escondido pela serra), com os raios do vídeo e um halo mais baixo — "está chegando." não fica sobre o brilho;
+- o céu clareia só perto do horizonte, e um **escurecimento suave e elíptico** atrás do bloco (sem borda, não aparece como caixa nem faixa) mantém o contraste.
+
+**Contraste** (letra × fundo atrás dela, medido sem o texto): "Seu hóspede" 17,4:1 (antes, no alto da capa: 14,5:1), "está chegando." 12,2:1 (antes: 9,3:1), nome da logo 18,2:1 (antes: 18,0:1) — igual ou maior em tudo.
+
+Segue a **regra fixa das capas** ([`../README.md`](../README.md)). Como a paisagem vai de ponta a ponta, a conferência usa as caixas de cada elemento (`--cena`): logo e título dentro do recorte 3:4 com folga de 60 px, fora do canto do play e da faixa do contador (y 1560–1680); o sol e a pousada inteiros dentro do recorte. `src/capa.html` lê o `anim.js` como texto e o avalia com uma linha a mais, que expõe as peças de desenho para `src/capa.js` (a câmera, o céu e o sol repetem o desenho de `view()` e `drawSky()`, com o horizonte mais baixo); o arquivo do motor e o vídeo não mudam. A capa que estava no repositório antes desta série ("Da chegada à saída." com CHECK-IN) ficou em [`output/capa-anterior.png`](output/capa-anterior.png).
 
 ```bash
 node scripts/capa.cjs                                                        # output/capa.png

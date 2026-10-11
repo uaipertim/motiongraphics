@@ -31,7 +31,7 @@
     const anchor = 'window.REEL05 = {';
     if (!src.includes(anchor)) throw new Error('anim.js: ponto de leitura não encontrado');
     (0, eval)(src.replace(anchor, anchor + `
-    _capa: { skyAt, view, stateAt, drawSky, drawRidge, RIDGES, giantWord, drawHills, drawLake, drawGround, drawFireflies, drawForeground, drawBirds, lanterns, roadAt, roadW, keyed2, SUN, GROUND_K, HOUSES, PLATEAU, txt, tw, C, DISPLAY, MONO },`));
+    _capa: { skyAt, view, ridgeY, hillY, SUNBURST, cloudOff, CLOUDS, radial, circle, fill, stroke, mix, rgba, stateAt, drawSky, drawRidge, RIDGES, giantWord, drawHills, drawLake, drawGround, drawFireflies, drawForeground, drawBirds, lanterns, roadAt, roadW, keyed2, SUN, GROUND_K, HOUSES, PLATEAU, txt, tw, C, DISPLAY, MONO },`));
     await loadScript('capa.js');
     const fonts = [600, 700, 800, 900].map((w) => document.fonts.load(`${w} 100px 'R5 Display'`))
       .concat([500, 700, 800].map((w) => document.fonts.load(`${w} 100px 'R5 Mono'`)));
