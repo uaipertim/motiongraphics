@@ -1,0 +1,23 @@
+REEL 08 — revisão técnica
+output/fazlo-hospeda-reel-08.mp4
+
+OK     vídeo h264 High yuv420p
+OK     resolução 1080x1920 (9:16)
+OK     60 fps, 960 quadros
+OK     duração do vídeo 16.000 s (alvo 16 s)
+OK     áudio aac 48000 Hz, 2 canais, 250 kb/s
+OK     vídeo e áudio com a mesma duração (Δ 0 ms)
+OK     arquivo 5.3 MB, 2.6 Mb/s
+OK     loudness integrado -16.1 LUFS (alvo -16: só efeitos, espaço para a música do Instagram)
+OK     pico real -2.4 dBTP (limite -1)
+       faixa de loudness (LRA) 6.5 LU
+OK     sem trechos pretos ≥ 0,1 s antes do fade final
+OK     sem imagem congelada ≥ 0,75 s
+OK     o 1º quadro já tem imagem (luminância média 21.2), sem abertura preta
+
+Sincronização (detalhes em sincronia.txt):
+OK     áudio do MP4 = efeitos.wav, sem deslocamento (+0.0, +0.0, +0.0 ms)
+OK     9 efeitos-chave com ataque no instante do evento (desvio médio 5.4 ms, máximo 6.8 ms; 1 quadro = 16,7 ms)
+OK     a imagem reage nos 9 golpes principais (pico de movimento a ≤ 8 quadros do som)
+
+RESULTADO: aprovado

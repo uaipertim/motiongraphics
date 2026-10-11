@@ -1,0 +1,113 @@
+{
+ "duration": 16,
+ "sections": {
+  "hook": 0,
+  "buzz": 0.8,
+  "rise": 1.6,
+  "clock": 2,
+  "stamp": 11,
+  "exit": 12.6,
+  "msg": 12.9,
+  "logo": 13.5,
+  "fade": 15.6,
+  "msgs": [
+   2.6,
+   3.8,
+   5,
+   6.2,
+   7.4,
+   8.6,
+   9.8
+  ]
+ },
+ "cues": [
+  {
+   "t": 0,
+   "type": "hook"
+  },
+  {
+   "t": 0.8,
+   "type": "buzz",
+   "d": 0.32
+  },
+  {
+   "t": 1.6,
+   "type": "rise",
+   "d": 0.5
+  },
+  {
+   "t": 2,
+   "type": "clock",
+   "d": 0.42
+  },
+  {
+   "t": 2.6,
+   "type": "ping",
+   "k": 0,
+   "double": 0
+  },
+  {
+   "t": 3.8,
+   "type": "ping",
+   "k": 1,
+   "double": 0
+  },
+  {
+   "t": 5,
+   "type": "ping",
+   "k": 2,
+   "double": 0
+  },
+  {
+   "t": 6.2,
+   "type": "ping",
+   "k": 3,
+   "double": 0
+  },
+  {
+   "t": 7.4,
+   "type": "ping",
+   "k": 4,
+   "double": 0
+  },
+  {
+   "t": 8.6,
+   "type": "ping",
+   "k": 5,
+   "double": 0
+  },
+  {
+   "t": 9.8,
+   "type": "ping",
+   "k": 6,
+   "double": 1
+  },
+  {
+   "t": 10.85,
+   "type": "stampfall",
+   "d": 0.15
+  },
+  {
+   "t": 11,
+   "type": "stamp"
+  },
+  {
+   "t": 12.6,
+   "type": "exit",
+   "d": 0.5
+  },
+  {
+   "t": 12.9,
+   "type": "msg"
+  },
+  {
+   "t": 13.5,
+   "type": "logo"
+  },
+  {
+   "t": 15.6,
+   "type": "fade",
+   "d": 0.40000000000000036
+  }
+ ]
+}
