@@ -26,3 +26,14 @@ Fora da série de Reels, com a mesma identidade: os **Stories do Destaque "Conhe
 - **Conteúdo:** nada de telas, celulares ou computadores; só funções que existem no produto; valores e nomes são os dados de demonstração das próprias telas.
 - **Assinatura sonora:** a sineta de recepção (parciais inarmônicos sintetizados), afinada no tom de cada peça, acompanha a entrada da marca.
 - **Motor:** animação determinística em Canvas 2D (`renderAt(ctx, t)`), render quadro a quadro no Chromium headless, trilha e efeitos sintetizados em Python.
+
+## Capas — regra fixa (a partir de outubro de 2026, inclusive o Reel 08)
+
+A grade do perfil mostra só o centro 3:4 da capa e põe o ícone de play no canto superior direito. Toda capa nova segue:
+
+1. **Recorte 3:4:** título, visual principal e logo dentro da faixa central 1080×1440 (y 240–1680), com **folga de 60 px** nas bordas — ou seja, em x 60–1020, y 300–1620.
+2. **Canto do ícone de play livre:** nada de texto ou elemento importante em **x ≥ 860, y 240–440**. O título vai mais à esquerda ou mais abaixo (ou com a linha curta no alto).
+3. **Nenhum elemento cortado:** chips, rodapés e textos inteiros dentro do recorte (no vídeo, cortes de propósito funcionam; na capa, parecem erro).
+4. **Hierarquia:** título > visual > logo (pequena e discreta), sem CTA.
+
+Conferência: `python3 reels/tools/revisao_capa.py reels/reel-NN --vizinhos reels/reel-07 reels/reel-06` gera `capa.jpg`, a prévia `revisao/capa-no-feed.jpg` (recorte 3:4, folga e canto do play marcados, a capa na grade ao lado das vizinhas) e `revisao/capa.txt`. A checagem pelos pixels trata como conteúdo tudo o que se destaca do fundo; para capas com cena de fundo de ponta a ponta, valem as caixas de cada elemento (`revisao/capa-caixas.json`, exportadas pela página da capa).

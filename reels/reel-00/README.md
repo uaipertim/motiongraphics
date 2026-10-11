@@ -5,7 +5,7 @@ Primeiro vídeo da nova série de Reels: a apresentação do FAZLO Hospeda. Conc
 **Formato:** 9:16 (1080×1920), **28,2 s**, 60 fps, H.264 + AAC 48 kHz, áudio em −14 LUFS.
 
 ▶ **Vídeo:** [`output/fazlo-hospeda-reel-00.mp4`](output/fazlo-hospeda-reel-00.mp4)
-🖼 **Capa:** [`output/capa.png`](output/capa.png) · Storyboard: [`output/storyboard.jpg`](output/storyboard.jpg) · Revisão: [`output/revisao/`](output/revisao)
+🖼 **Capa:** [`output/capa.jpg`](output/capa.jpg) · [`output/capa.png`](output/capa.png) · prévia na grade: [`output/revisao/capa-no-feed.jpg`](output/revisao/capa-no-feed.jpg) · Storyboard: [`output/storyboard.jpg`](output/storyboard.jpg) · Revisão: [`output/revisao/`](output/revisao)
 
 ![storyboard](output/storyboard.jpg)
 
@@ -77,13 +77,25 @@ Trilha e efeitos **sintetizados do zero** em Python (numpy/scipy), sem samples. 
 - amostragem do motion blur ampliada nas passagens mais rápidas (sem "degraus" no mergulho e nos pans);
 - trilha reequilibrada por seção (o respiro é o ponto mais baixo e o drop, o mais alto).
 
+## Capa
+
+A **capa atual** (outubro de 2026) substitui a primeira, que era só a logo: título **"Sob o / mesmo teto."** (Inter Display 900, 150 px, branco), **"A pousada inteira num só sistema."** (limão, 56 px) e, abaixo, **a casa inteira do próprio Reel** — os seis cômodos sob o telhado, o quadro de 22,35 s renderizado pelo motor do vídeo sem o título que aparece por cima dele no filme —, com a logo pequena embaixo. Hierarquia: título > casa > logo.
+
+Ela segue a **regra fixa das capas** (ver [`../README.md`](../README.md)): título, casa e logo dentro do recorte 3:4 com folga de 60 px; o canto do ícone de play (x ≥ 860, y 240–440) livre — por isso a quebra "Sob o / mesmo teto.", com a linha curta no alto; nada cortado. Composta em página própria (`src/capa.html` + `src/capa.js`); o motor e o vídeo não mudam. A primeira capa continua em [`output/capa-anterior.png`](output/capa-anterior.png).
+
+```bash
+node scripts/capa.cjs                                              # output/capa.png
+python3 ../tools/revisao_capa.py . --vizinhos ../reel-07 ../reel-06   # capa.jpg + prévia na grade + conferência da regra
+```
+
 ## Arquivos-fonte
 
 ```
 reels/reel-00/
   src/
     index.html                 # preview (play/scrub com áudio) e página usada no render
-    anim.js                    # TODO o motion: cenas, cômodos, câmera, motion blur, capa, cues de som
+    anim.js                    # TODO o motion: cenas, cômodos, câmera, motion blur, 1ª capa, cues de som
+    capa.html, capa.js         # a capa atual (página própria; lê o motor para desenhar a casa)
     assets/fazlo-hospeda-logo.png        # logo original, como foi enviada
     assets/fazlo-hospeda-logo-alpha.png  # mesma logo, só sem o fundo branco externo
     fonts/                     # Inter Display + JetBrains Mono (licença OFL)
@@ -98,7 +110,8 @@ reels/reel-00/
     trilha.wav
   output/
     fazlo-hospeda-reel-00.mp4  # vídeo final
-    capa.png                   # capa do Instagram (1080x1920)
+    capa.png, capa.jpg         # capa do Instagram (1080x1920)
+    capa-anterior.png          # a 1ª capa (só a logo)
     storyboard.jpg
     revisao/                   # relatório técnico, zonas seguras, capa no feed
 ```
@@ -114,7 +127,7 @@ cd reels/reel-00
 node scripts/render.cjs cues                   # 1) eventos de som tirados da animação
 python3 scripts/audio.py                       # 2) trilha sonora
 node scripts/render.cjs video --fps 60         # 3) vídeo final em output/
-node scripts/render.cjs cover                  # 4) capa
+node scripts/capa.cjs                          # 4) capa (e: python3 ../tools/revisao_capa.py .)
 python3 scripts/storyboard.py                  # 5) storyboard
 python3 scripts/qa.py                          # 6) revisão técnica
 node scripts/render.cjs stills 5.3,21.9        # (opcional) quadros avulsos em PNG
@@ -133,5 +146,5 @@ npx serve reels/reel-00        # ou qualquer servidor estático
 - **Cores e status:** objetos `C` e `ST`.
 - **Palavras da casa:** lista `WORDS` (o layout se ajusta sozinho ao telhado).
 - **Cômodos:** funções `roomReservas`, `roomCheck`, `roomHosp`, `roomComandas`, `roomPag` e `roomCaixa`; a ordem e a posição na casa ficam em `ROOMS`.
-- **Textos finais:** `PILLARS` e `signature()`; capa em `renderCover()`.
+- **Textos finais:** `PILLARS` e `signature()`; capa atual em `src/capa.js` (a 1ª em `renderCover()`).
 - **Som:** como os cues saem da animação, mudar um tempo em `anim.js` e rodar `render.cjs cues` + `audio.py` já ressincroniza os efeitos. A harmonia e o arranjo ficam em `scripts/audio.py` (`CH`, `PROG`, `groove`, `bar_music`).

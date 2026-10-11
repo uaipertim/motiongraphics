@@ -4,7 +4,7 @@
  *   node scripts/render.cjs cues                    -> audio/cues.json (eventos de som tirados da animação)
  *   node scripts/render.cjs video  [--fps 60] [--workers 4] [--out output/fazlo-hospeda-reel-00.mp4]
  *   node scripts/render.cjs stills 0.5,2,5.2 [--dir output/stills] [--noblur]
- *   node scripts/render.cjs cover                   -> output/capa.png
+ *   node scripts/render.cjs cover                   -> output/capa-anterior.png (a 1ª capa; a capa atual sai de scripts/capa.cjs)
  *
  * Sobe um servidor estático local, abre src/index.html?render no Chromium
  * (Playwright), captura cada quadro do canvas e envia direto ao ffmpeg.
@@ -66,7 +66,7 @@ const grab = async (page, t) => decode(await page.evaluate((t) => window.frameAt
       console.log(`cues: ${data.cues.length} eventos -> ${out}`);
     } else if (mode === 'cover') {
       const page = await openPage(browser, port);
-      const out = path.resolve(ROOT, opt('out', 'output/capa.png'));
+      const out = path.resolve(ROOT, opt('out', 'output/capa-anterior.png'));
       fs.mkdirSync(path.dirname(out), { recursive: true });
       fs.writeFileSync(out, decode(await page.evaluate(() => window.coverFrame())));
       console.log('capa', out);
