@@ -6,7 +6,7 @@ Desta vez o ponto de partida foram **capturas reais do produto e a logo oficial*
 **Formato:** 9:16 (1080×1920), **29 s**, 60 fps, H.264 + AAC, áudio em −14 LUFS.
 
 ▶ **Vídeo:** [`output/fazlo-hospeda-reels-v2.mp4`](output/fazlo-hospeda-reels-v2.mp4)
-🖼 Capa: [`output/capa.png`](output/capa.png) · Storyboard: [`output/storyboard.jpg`](output/storyboard.jpg)
+🖼 Capa: [`output/capa.jpg`](output/capa.jpg) · [`output/capa.png`](output/capa.png) · prévia na grade: [`output/revisao/capa-no-feed.jpg`](output/revisao/capa-no-feed.jpg) · Storyboard: [`output/storyboard.jpg`](output/storyboard.jpg)
 
 ![storyboard](output/storyboard.jpg)
 
@@ -30,6 +30,19 @@ Toda hospedagem percorre o mesmo caminho: o quarto está **livre**, recebe uma *
 O vídeo transforma esse caminho num **anel de 6 etapas** com a logo do FAZLO Hospeda no centro, como o eixo que acompanha todas elas. A câmera mergulha em cada etapa e, no fim, sai de volta ao anel, que se fecha (*"E o ciclo recomeça."*) e se contrai em torno da logo. O círculo do ciclo rima com o círculo da marca.
 
 Assinatura: **"Da reserva ao caixa, tudo conectado."**, que resume a integração real entre reservas, comandas e caixa.
+
+## Capa
+
+A **capa atual** (outubro de 2026) mantém a composição de abertura do vídeo — **"Toda estadia / é um ciclo."** no topo (Inter Display 900, 116 px, "ciclo." em limão) e o **anel do ciclo** com as seis etapas (RESERVA, SINAL, CHECK-IN, COMANDA, CHECK-OUT, CAIXA) e o brilho limão logo abaixo —, com o título mais baixo para liberar o canto do ícone de play da grade e a **logo pequena no centro do anel**, o eixo do ciclo, como no próprio vídeo.
+
+O anel vem do próprio motor (quadro de 3,98 s, com o traço já fechado); a faixa do título do filme é repintada com o mesmo fundo (idêntico, pixel a pixel) e o título é desenhado de novo, mais abaixo. Página própria (`src/capa.html` + `src/capa.js`); o motor e o vídeo não mudam. A capa anterior (a logo sobre o limão) está em [`output/capa-anterior.png`](output/capa-anterior.png).
+
+Segue a **regra fixa das capas** ([`../reels/README.md`](../reels/README.md)): título, anel e logo dentro do recorte 3:4 com folga de 60 px (conteúdo em x 78–979, y 450–1525), canto do play livre (x ≥ 860, y 240–440), nada cortado.
+
+```bash
+node scripts/capa.cjs                                                      # output/capa.png
+python3 ../reels/tools/revisao_capa.py . --vizinhos ../reels/reel-00 ../reels/reel-02   # capa.jpg + prévia + conferência
+```
 
 ## Direção de arte
 
@@ -79,7 +92,8 @@ v2/
   scripts/
     audio.py                   # gera audio/trilha.wav (trilha + efeitos + loudness)
     logo_alpha.py              # recorte do fundo da logo (não altera a arte)
-    storyboard.py              # storyboard e capa a partir do MP4
+    storyboard.py              # storyboard (e a 1ª capa) a partir do MP4
+    capa.cjs                   # a capa atual (src/capa.html + src/capa.js)
     render.cjs                 # renderiza quadro a quadro (Chromium headless) -> ffmpeg -> MP4
   audio/trilha.wav
   output/                      # vídeo final, capa e storyboard

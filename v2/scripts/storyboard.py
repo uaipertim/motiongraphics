@@ -2,7 +2,7 @@
 """
 Storyboard e capa a partir do vídeo final.
 
-    python3 scripts/storyboard.py   ->  output/storyboard.jpg, output/capa.png
+    python3 scripts/storyboard.py   ->  output/storyboard.jpg, output/capa-anterior.png (a 1ª capa; a atual sai de scripts/capa.cjs)
 """
 import os
 import subprocess
@@ -34,5 +34,5 @@ with tempfile.TemporaryDirectory() as tmp:
         sheet.paste(im, (x, y))
         draw.text((x, y + TH + 10), f'{t:05.2f}s  {label}', font=font, fill=(175, 250, 39))
     sheet.save(os.path.join(ROOT, 'output', 'storyboard.jpg'), quality=90)
-    frame(27.5, os.path.join(ROOT, 'output', 'capa.png'))
-print('ok -> output/storyboard.jpg, output/capa.png')
+    frame(27.5, os.path.join(ROOT, 'output', 'capa-anterior.png'))
+print('ok -> output/storyboard.jpg, output/capa-anterior.png')
