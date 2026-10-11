@@ -5,7 +5,7 @@ Peça independente da série, dedicada aos **pagamentos** de reservas e hospedag
 **Formato:** 9:16 (1080×1920), **24,25 s**, 60 fps, H.264 + AAC 48 kHz, áudio em −14 LUFS.
 
 ▶ **Vídeo:** [`output/fazlo-hospeda-reel-06.mp4`](output/fazlo-hospeda-reel-06.mp4)
-🖼 **Capa:** [`output/capa.png`](output/capa.png) · Storyboard: [`output/storyboard.jpg`](output/storyboard.jpg) · Revisão: [`output/revisao/`](output/revisao)
+🖼 **Capa:** [`output/capa.jpg`](output/capa.jpg) · [`output/capa.png`](output/capa.png) · prévia na grade: [`output/revisao/capa-no-feed.jpg`](output/revisao/capa-no-feed.jpg) · linha da grade: [`../grade/linha-2-reels-06-05-02.jpg`](../grade/linha-2-reels-06-05-02.jpg) · Storyboard: [`output/storyboard.jpg`](output/storyboard.jpg) · Revisão: [`output/revisao/`](output/revisao)
 
 ![storyboard](output/storyboard.jpg)
 
@@ -100,17 +100,30 @@ Trilha e efeitos **sintetizados do zero** em Python (numpy/scipy), sem samples, 
 
 **Som:** o "QUITADA" chegava 42 ms depois do chip e os registros do histórico (±30 ms) ficavam mascarados pela bateria; os dois foram para a grade de semicolcheias e o "QUITADA" ganhou um ataque mais definido; a trilha tem exatamente a duração do vídeo (o mux não corta quadros).
 
+## Capa
+
+A **capa atual** (outubro de 2026) é a mesma cena da capa que está no perfil — o registro do pagamento (~3,4 s do vídeo): **"Registre cada / pagamento."**, o cartão da forma de pagamento (**PIX**), o bloco **+ R$ 450,00** (PAGAMENTO PARCIAL), o rótulo **VALOR A RECEBER** e o resumo **TOTAL DA HOSPEDAGEM R$ 1.350,00 · TOTAL RECEBIDO + R$ 0,00 · DIÁRIAS · PENDENTE R$ 1.350,00**, com os mesmos valores do vídeo, desenhados pelo próprio motor (mesma luz, piso e blocos). Correções: o título desceu para a área segura (estava colado no alto do recorte, com "cada" encostando no ícone de play) e passou de 92 para 100 px; o cartão, o bloco e o resumo ficaram inteiros e um pouco mais altos (o resumo termina em y ≈ 1500, longe do contador de visualizações); saíram os pedaços da balança que apareciam cortados no canto inferior esquerdo; a logo entra pequena no alto, no mesmo lugar das capas dos Reels 05 e 02. No tamanho da capa, o rótulo do cartão PIX é projetado em perspectiva exata (o vídeo usa 2 tiras afins, que aqui deixariam uma emenda no meio do "PIX").
+
+Segue a **regra fixa das capas** ([`../README.md`](../README.md)): conteúdo em x 111–929, y 341–1488, dentro do recorte 3:4 com folga de 60 px; canto do play e faixa do contador (y 1560–1680) livres; nada cortado nem sobreposto. `src/capa.html` lê o `anim.js` como texto e o avalia com uma linha a mais, que expõe as peças de desenho para `src/capa.js`; o arquivo do motor e o vídeo não mudam. A capa que estava no repositório ("Pagamentos em equilíbrio.") ficou em [`output/capa-anterior.png`](output/capa-anterior.png).
+
+```bash
+node scripts/capa.cjs                                                 # output/capa.png
+python3 ../tools/revisao_capa.py . --vizinhos ../reel-05 ../reel-02   # capa.jpg + prévia + conferência
+```
+
 ## Arquivos-fonte
 
 ```
 reels/reel-06/
   src/
     index.html                 # preview (play/scrub com áudio) e página usada no render
+    capa.html + capa.js        # a capa (página própria; lê o anim.js sem alterá-lo)
     anim.js                    # TODO o motion: câmera 3D, balança, blocos, prisma, trilhas, textos, capa, cues
     assets/                    # logo oficial + a mesma logo sem o fundo branco externo
     fonts/                     # Inter Display + JetBrains Mono (licença OFL)
   scripts/
-    render.cjs                 # cues | video | stills | cover (Chromium headless -> ffmpeg)
+    render.cjs                 # cues | video | stills | cover (Chromium headless -> ffmpeg; cover = capa anterior)
+    capa.cjs                   # a capa -> output/capa.png + revisao/capa-caixas.json
     audio.py                   # trilha + efeitos a partir de audio/cues.json, master
     logo_alpha.py              # recorte do fundo da logo (não altera a arte)
     storyboard.py              # storyboard a partir do MP4
@@ -120,7 +133,8 @@ reels/reel-06/
     trilha.wav
   output/
     fazlo-hospeda-reel-06.mp4  # vídeo final
-    capa.png                   # capa do Instagram (1080x1920)
+    capa.png / capa.jpg        # capa do Instagram (1080x1920)
+    capa-anterior.png          # a capa que estava aqui antes
     storyboard.jpg
     revisao/
 ```
@@ -136,7 +150,7 @@ cd reels/reel-06
 node scripts/render.cjs cues                   # 1) eventos de som tirados da animação
 python3 scripts/audio.py                       # 2) trilha sonora
 node scripts/render.cjs video --fps 60         # 3) vídeo final em output/
-node scripts/render.cjs cover                  # 4) capa
+node scripts/capa.cjs                          # 4) capa (e: python3 ../tools/revisao_capa.py .)
 python3 scripts/storyboard.py                  # 5) storyboard
 python3 scripts/qa.py                          # 6) revisão técnica e de sincronização
 node scripts/render.cjs stills 4.6,9.4         # (opcional) quadros avulsos em PNG

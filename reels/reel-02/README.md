@@ -5,7 +5,7 @@ Peça independente da série, dedicada ao módulo de reservas. Conceito, narrati
 **Formato:** 9:16 (1080×1920), **27,8 s**, 60 fps, H.264 + AAC 48 kHz, áudio em −14 LUFS.
 
 ▶ **Vídeo:** [`output/fazlo-hospeda-reel-02.mp4`](output/fazlo-hospeda-reel-02.mp4)
-🖼 **Capa:** [`output/capa.png`](output/capa.png) · Storyboard: [`output/storyboard.jpg`](output/storyboard.jpg) · Revisão: [`output/revisao/`](output/revisao)
+🖼 **Capa:** [`output/capa.jpg`](output/capa.jpg) · [`output/capa.png`](output/capa.png) · prévia na grade: [`output/revisao/capa-no-feed.jpg`](output/revisao/capa-no-feed.jpg) · linha da grade: [`../grade/linha-2-reels-06-05-02.jpg`](../grade/linha-2-reels-06-05-02.jpg) · Storyboard: [`output/storyboard.jpg`](output/storyboard.jpg) · Revisão: [`output/revisao/`](output/revisao)
 
 ![storyboard](output/storyboard.jpg)
 
@@ -88,17 +88,30 @@ Trilha e efeitos **sintetizados do zero** em Python (numpy/scipy), sem samples, 
 - os títulos só entram depois que a pergunta do gancho sai; a laje do tabuleiro surge junto com as células;
 - botões do voucher afastados; etiqueta "fim de semana" ancorada sobre a faixa destacada.
 
+## Capa
+
+A **capa atual** (outubro de 2026) é a mesma cena da capa que está no perfil — o gancho do vídeo (~3,0 s): **"Tem vaga" / "pro fim de semana?"** no corpo do vídeo, cercado pelas perguntas dos hóspedes em chips, com o mesmo desenho de `bgSpace()` e `sceneHook()`. Correções: **6 chips** (eram 8) — DIA 12 AINDA TEM?, 2 ADULTOS E 1 CRIANÇA?, QUARTO PARA 4 PESSOAS?, TEM NO FERIADO?, CHEGO SEXTA, PODE SER? e DÁ PRA FICAR MAIS 1 DIÁRIA? —, todos inteiros e sem um cobrir o outro ("QUARTO PARA 4 PESSOAS?" ficava atrás de "TEM NO FERIADO?"); nenhum sai pelo alto do recorte, entra no canto do play ("2 ADULTOS E 1 CRIANÇA?" fazia as duas coisas) ou na faixa do contador; saíram "O CHALÉ ESTÁ LIVRE?" e "AINDA TEM O IPÊ 08?"; a logo entra pequena no alto, no mesmo lugar das capas dos Reels 06 e 05.
+
+Segue a **regra fixa das capas** ([`../README.md`](../README.md)): conteúdo em x 84–998, y 341–1498, dentro do recorte 3:4 com folga de 60 px; canto do play e faixa do contador (y 1560–1680) livres; nada cortado nem sobreposto (as caixas dos chips girados não se tocam). `src/capa.html` lê o `anim.js` como texto e o avalia com uma linha a mais, que expõe as peças de desenho para `src/capa.js`; o arquivo do motor e o vídeo não mudam. A capa que estava no repositório ("Cada reserva no seu lugar.") ficou em [`output/capa-anterior.png`](output/capa-anterior.png).
+
+```bash
+node scripts/capa.cjs                                                 # output/capa.png
+python3 ../tools/revisao_capa.py . --vizinhos ../reel-06 ../reel-05   # capa.jpg + prévia + conferência
+```
+
 ## Arquivos-fonte
 
 ```
 reels/reel-02/
   src/
     index.html                 # preview (play/scrub com áudio) e página usada no render
+    capa.html + capa.js        # a capa (página própria; lê o anim.js sem alterá-lo)
     anim.js                    # TODO o motion: câmera axonométrica, tabuleiro, blocos, cenas, capa, cues
     assets/                    # logo oficial + a mesma logo sem o fundo branco externo
     fonts/                     # Inter Display + JetBrains Mono (licença OFL)
   scripts/
-    render.cjs                 # cues | video | stills | cover (Chromium headless -> ffmpeg)
+    render.cjs                 # cues | video | stills | cover (Chromium headless -> ffmpeg; cover = capa anterior)
+    capa.cjs                   # a capa -> output/capa.png + revisao/capa-caixas.json
     audio.py                   # trilha + efeitos a partir de audio/cues.json, master
     logo_alpha.py              # recorte do fundo da logo (não altera a arte)
     storyboard.py              # storyboard a partir do MP4
@@ -108,7 +121,8 @@ reels/reel-02/
     trilha.wav
   output/
     fazlo-hospeda-reel-02.mp4  # vídeo final
-    capa.png                   # capa do Instagram (1080x1920)
+    capa.png / capa.jpg        # capa do Instagram (1080x1920)
+    capa-anterior.png          # a capa que estava aqui antes
     storyboard.jpg
     revisao/
 ```
@@ -124,7 +138,7 @@ cd reels/reel-02
 node scripts/render.cjs cues                   # 1) eventos de som tirados da animação
 python3 scripts/audio.py                       # 2) trilha sonora
 node scripts/render.cjs video --fps 60         # 3) vídeo final em output/
-node scripts/render.cjs cover                  # 4) capa
+node scripts/capa.cjs                          # 4) capa (e: python3 ../tools/revisao_capa.py .)
 python3 scripts/storyboard.py                  # 5) storyboard
 python3 scripts/qa.py                          # 6) revisão técnica e de sincronização
 node scripts/render.cjs stills 8.2,21.0        # (opcional) quadros avulsos em PNG

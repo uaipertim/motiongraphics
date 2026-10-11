@@ -1,0 +1,12 @@
+Capa — regra fixa da série (recorte 3:4, canto do play, faixa do contador, nada cortado ou escondido)
+
+       cena de fundo de ponta a ponta: a, c e d conferidos pelas caixas dos elementos
+       (pixels da cena no canto do play: 0; na faixa do contador: 0)
+OK     a, c, d) caixas: dentro do recorte, fora do canto do play e da faixa do contador, sem sobreposição
+OK     logo: x 395–685, y 330–382
+OK     título, linha 1: x 241–839, y 475–569
+OK     título, linha 2: x 187–893, y 573–667
+OK     sol (cena): x 279–411, y 784–916
+OK     pousada (cena): x 340–886, y 1054–1182
+OK     carro: x 389–489, y 1416–1442
+RESULTADO: dentro da regra das capas

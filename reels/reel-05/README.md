@@ -5,7 +5,7 @@ Peça independente da série, dedicada ao módulo de **Hospedagens**: reservas f
 **Formato:** 9:16 (1080×1920), **28,8 s**, 60 fps, H.264 + AAC 48 kHz, áudio em −14 LUFS.
 
 ▶ **Vídeo:** [`output/fazlo-hospeda-reel-05.mp4`](output/fazlo-hospeda-reel-05.mp4)
-🖼 **Capa:** [`output/capa.png`](output/capa.png) · Storyboard: [`output/storyboard.jpg`](output/storyboard.jpg) · Revisão: [`output/revisao/`](output/revisao)
+🖼 **Capa:** [`output/capa.jpg`](output/capa.jpg) · [`output/capa.png`](output/capa.png) · prévia na grade: [`output/revisao/capa-no-feed.jpg`](output/revisao/capa-no-feed.jpg) · linha da grade: [`../grade/linha-2-reels-06-05-02.jpg`](../grade/linha-2-reels-06-05-02.jpg) · Storyboard: [`output/storyboard.jpg`](output/storyboard.jpg) · Revisão: [`output/revisao/`](output/revisao)
 
 ![storyboard](output/storyboard.jpg)
 
@@ -109,17 +109,30 @@ Trilha e efeitos **sintetizados do zero** em Python (numpy/scipy), sem samples, 
 
 **Som:** os pratos invertidos terminam 40 ms antes de cada golpe (o nascer do sol estava mascarado); o bumbo desceu cerca de 4 dB para a música respirar; grilos e pássaros subiram para serem ouvidos; o sub-grave da assinatura não soma mais duas vezes; a trilha tem exatamente a duração do vídeo (o mux cortava os 2 últimos quadros).
 
+## Capa
+
+A **capa atual** (outubro de 2026) é a mesma cena da capa que está no perfil — a abertura do vídeo (~2,0 s): o sol que acabou de nascer sobre a serra, os pinheiros, a pousada e o carro do hóspede subindo a estrada, com **"Seu hóspede / está chegando."** no corpo do vídeo (100 px). A paisagem é desenhada pelo próprio motor no mesmo instante, sem o desfoque de movimento. Correção: o título desceu de y 340 para 548, no céu entre o topo e o sol — antes, "chegando." ficava embaixo do ícone de play; a logo entra pequena no alto, no mesmo lugar das capas dos Reels 06 e 02. O carro fica em y ≈ 1416–1442, acima da faixa do contador.
+
+Segue a **regra fixa das capas** ([`../README.md`](../README.md)). Como a paisagem vai de ponta a ponta, a conferência usa as caixas de cada elemento (`--cena`): título e logo dentro do recorte 3:4 com folga de 60 px, fora do canto do play e da faixa do contador (y 1560–1680); o sol e a pousada inteiros dentro do recorte. `src/capa.html` lê o `anim.js` como texto e o avalia com uma linha a mais, que expõe as peças de desenho para `src/capa.js`; o arquivo do motor e o vídeo não mudam. A capa que estava no repositório ("Da chegada à saída." com CHECK-IN) ficou em [`output/capa-anterior.png`](output/capa-anterior.png).
+
+```bash
+node scripts/capa.cjs                                                        # output/capa.png
+python3 ../tools/revisao_capa.py . --cena --vizinhos ../reel-06 ../reel-02   # capa.jpg + prévia + conferência
+```
+
 ## Arquivos-fonte
 
 ```
 reels/reel-05/
   src/
     index.html                 # preview (play/scrub com áudio) e página usada no render
+    capa.html + capa.js        # a capa (página própria; lê o anim.js sem alterá-lo)
     anim.js                    # TODO o motion: céu, paisagem, câmera, cartões, lanternas, cenas, capa, cues
     assets/                    # logo oficial + a mesma logo sem o fundo branco externo
     fonts/                     # Inter Display + JetBrains Mono (licença OFL)
   scripts/
-    render.cjs                 # cues | video | stills | cover (Chromium headless -> ffmpeg)
+    render.cjs                 # cues | video | stills | cover (Chromium headless -> ffmpeg; cover = capa anterior)
+    capa.cjs                   # a capa -> output/capa.png + revisao/capa-caixas.json
     audio.py                   # trilha + efeitos a partir de audio/cues.json, master
     logo_alpha.py              # recorte do fundo da logo (não altera a arte)
     storyboard.py              # storyboard a partir do MP4
@@ -129,7 +142,8 @@ reels/reel-05/
     trilha.wav
   output/
     fazlo-hospeda-reel-05.mp4  # vídeo final
-    capa.png                   # capa do Instagram (1080x1920)
+    capa.png / capa.jpg        # capa do Instagram (1080x1920)
+    capa-anterior.png          # a capa que estava aqui antes
     storyboard.jpg
     revisao/
 ```
@@ -145,7 +159,7 @@ cd reels/reel-05
 node scripts/render.cjs cues                   # 1) eventos de som tirados da animação
 python3 scripts/audio.py                       # 2) trilha sonora
 node scripts/render.cjs video --fps 60         # 3) vídeo final em output/
-node scripts/render.cjs cover                  # 4) capa
+node scripts/capa.cjs                          # 4) capa (e: python3 ../tools/revisao_capa.py . --cena)
 python3 scripts/storyboard.py                  # 5) storyboard
 python3 scripts/qa.py                          # 6) revisão técnica e de sincronização
 node scripts/render.cjs stills 5.2,12.9        # (opcional) quadros avulsos em PNG

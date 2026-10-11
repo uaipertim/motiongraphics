@@ -1,0 +1,17 @@
+Capa — regra fixa da série (recorte 3:4, canto do play, faixa do contador, nada cortado ou escondido)
+
+OK     a) recorte 3:4 + folga 60 px: conteúdo em x 84–998, y 341–1498
+       (limite: x 60–1020, y 300–1620)
+OK     b) canto do play (x ≥ 860, y 240–440): 0 px de conteúdo
+OK     c) faixa do contador (y 1560–1680): 0 px de conteúdo
+OK     d) caixas: dentro do recorte, fora do canto do play e da faixa do contador, sem sobreposição
+OK     chip “DIA 12 AINDA TEM?”: x 66–570, y 421–539
+OK     chip “2 ADULTOS E 1 CRIANÇA?”: x 389–1008, y 550–674
+OK     chip “QUARTO PARA 4 PESSOAS?”: x 67–685, y 1056–1168
+OK     chip “TEM NO FERIADO?”: x 524–982, y 1179–1293
+OK     chip “CHEGO SEXTA, PODE SER?”: x 283–901, y 1304–1416
+OK     chip “DÁ PRA FICAR MAIS 1 DIÁRIA?”: x 68–800, y 1428–1532
+OK     título, linha 1: x 77–1003, y 723–876
+OK     título, linha 2: x 79–1001, y 929–1025
+OK     logo: x 395–685, y 330–382
+RESULTADO: dentro da regra das capas
