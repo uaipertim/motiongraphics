@@ -5,7 +5,7 @@ Peça independente da série, dedicada ao módulo de **Caixa**. Conceito, narrat
 **Formato:** 9:16 (1080×1920), **30 s**, 60 fps, H.264 + AAC 48 kHz, áudio em −14 LUFS.
 
 ▶ **Vídeo:** [`output/fazlo-hospeda-reel-03.mp4`](output/fazlo-hospeda-reel-03.mp4)
-🖼 **Capa:** [`output/capa.png`](output/capa.png) · Storyboard: [`output/storyboard.jpg`](output/storyboard.jpg) · Revisão: [`output/revisao/`](output/revisao)
+🖼 **Capa:** [`output/capa.jpg`](output/capa.jpg) · [`output/capa.png`](output/capa.png) · prévia na grade: [`output/revisao/capa-no-feed.jpg`](output/revisao/capa-no-feed.jpg) · Storyboard: [`output/storyboard.jpg`](output/storyboard.jpg) · Revisão: [`output/revisao/`](output/revisao)
 
 ![storyboard](output/storyboard.jpg)
 
@@ -97,6 +97,17 @@ Trilha e efeitos **sintetizados do zero** em Python (numpy/scipy), sem samples, 
 
 **Som:** a catraca do volante deixou de pisar nas travas; o estrondo da porta ganhou corpo curto para as travas seguintes aparecerem; a mixagem perdeu o excesso de agudos perto de Nyquist, que fazia o AAC estourar o pico (−0,4 → −2,2 dBTP).
 
+## Capa
+
+A **capa atual** (outubro de 2026) é o **cartão de título do próprio Reel** (cena 2, 4,5–6 s), o respiro de cor da grade: fundo verde-limão com a escala de segredo gravada ao fundo, **FAZLO HOSPEDA** em mono no topo, **"CONTROLE / DE CAIXA."** em Inter Display 900 preto, a linha e o rodapé em mono. Em relação ao quadro usado antes, o título passou de 180 para 150 px (folga lateral de 90 px ou mais), o rodapé está completo — **ABERTURA · LANÇAMENTOS · CONFERÊNCIA · FECHAMENTO**, as etapas do vídeo; no quadro antigo ele ainda estava sendo digitado ("…COMN") — e a logo entra pequena embaixo.
+
+Segue a **regra fixa das capas** ([`../README.md`](../README.md)): tudo dentro do recorte 3:4 com folga de 60 px (conteúdo em x 128–951, y 585–1382), canto do play livre, nada cortado. Página própria (`src/capa.html` + `src/capa.js`, com o mesmo desenho de `sceneTitle`); o motor e o vídeo não mudam. A capa anterior (o cofre, "O caixa bateu?") está em [`output/capa-anterior.png`](output/capa-anterior.png).
+
+```bash
+node scripts/capa.cjs                                              # output/capa.png
+python3 ../tools/revisao_capa.py . --vizinhos ../reel-02 ../reel-05   # capa.jpg + prévia + conferência
+```
+
 ## Arquivos-fonte
 
 ```
@@ -133,7 +144,7 @@ cd reels/reel-03
 node scripts/render.cjs cues                   # 1) eventos de som tirados da animação
 python3 scripts/audio.py                       # 2) trilha sonora
 node scripts/render.cjs video --fps 60         # 3) vídeo final em output/
-node scripts/render.cjs cover                  # 4) capa
+node scripts/capa.cjs                          # 4) capa (e: python3 ../tools/revisao_capa.py .)
 python3 scripts/storyboard.py                  # 5) storyboard
 python3 scripts/qa.py                          # 6) revisão técnica e de sincronização
 node scripts/render.cjs stills 4.2,19.9        # (opcional) quadros avulsos em PNG

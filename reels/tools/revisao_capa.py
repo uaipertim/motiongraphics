@@ -12,7 +12,8 @@ Lê <reel>/output/capa.png (1080x1920) e, se existir, <reel>/output/revisao/capa
                                                 ícone de play marcados + o recorte 3:4 + a capa na grade
     <reel>/output/revisao/capa.txt              o resultado de cada regra
 
-Regras (conferidas pelos pixels: tudo o que se destaca do fundo):
+Regras (conferidas pelos pixels: tudo o que se destaca do fundo — a cor dominante do recorte, escura ou clara —
+mais de 110 em distância de cor; gravações e brilhos sutis do fundo não contam):
   a) recorte 3:4 — título, visual e logo dentro da faixa central 1080x1440 (y 240–1680) com folga de
      60 px: x 60–1020, y 300–1620;
   b) canto do ícone de play livre — nada em x ≥ 860, y 240–440;
@@ -27,7 +28,8 @@ from PIL import Image, ImageDraw, ImageFont
 BAND = (0, 240, 1080, 1680)
 SAFE = (60, 300, 1020, 1620)
 PLAY = (860, 240, 1080, 440)
-LUM = 60                                   # acima disso o pixel é conteúdo (texto, visual, logo); brilhos de fundo ficam abaixo
+DIST = 110                                 # distância de cor ao fundo acima da qual o pixel é conteúdo (texto, visual, logo);
+                                           # brilhos, gravações e texturas sutis do fundo ficam abaixo (vale p/ fundo escuro ou claro)
 
 ap = argparse.ArgumentParser()
 ap.add_argument('reel')
@@ -45,7 +47,10 @@ assert cover.size == (1080, 1920), cover.size
 cover.save(os.path.join(OUT, 'capa.jpg'), quality=95, subsampling=0, optimize=True)
 
 lines, ok_all = [], True
-lum = np.asarray(cover).astype(float) @ [0.2126, 0.7152, 0.0722]
+rgb = np.asarray(cover).astype(float)
+bg = np.median(rgb[BAND[1]:BAND[3]].reshape(-1, 3), axis=0)          # a cor de fundo dominante do recorte
+lum = np.sqrt(((rgb - bg) ** 2).sum(axis=2))                          # distância de cor ao fundo
+LUM = DIST
 ys, xs = np.nonzero(lum > LUM)
 x0, y0, x1, y1 = xs.min(), ys.min(), xs.max(), ys.max()
 ra = x0 >= SAFE[0] and y0 >= SAFE[1] and x1 <= SAFE[2] and y1 <= SAFE[3]
@@ -76,6 +81,7 @@ d = ImageDraw.Draw(ov)
 d.rectangle((0, 0, 1080, BAND[1]), fill=(0, 0, 0, 150)); d.rectangle((0, BAND[3], 1080, 1920), fill=(0, 0, 0, 150))
 d.rectangle((PLAY[0], PLAY[1], PLAY[2] - 1, PLAY[3]), fill=(255, 40, 80, 90), outline=(255, 40, 80, 255), width=4)
 d.rectangle((BAND[0], BAND[1], BAND[2] - 1, BAND[3] - 1), outline=(175, 250, 39, 255), width=6)
+d.rectangle((BAND[0] + 6, BAND[1] + 6, BAND[2] - 7, BAND[3] - 7), outline=(10, 10, 10, 255), width=3)   # contorno escuro: aparece também em capa limão
 for y in range(SAFE[1], SAFE[3], 24):
     d.line((SAFE[0], y, SAFE[0], y + 12), fill=(255, 255, 255, 150), width=2); d.line((SAFE[2], y, SAFE[2], y + 12), fill=(255, 255, 255, 150), width=2)
 for x in range(SAFE[0], SAFE[2], 24):
