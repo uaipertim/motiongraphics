@@ -3,6 +3,7 @@
  * Carrossel 01 — render dos slides em PNG (1080x1350).
  *   node scripts/render.cjs          -> output/01.png … output/08.png
  *   node scripts/render.cjs 1,7      -> só os slides pedidos
+ *   (a capa alternativa, em verde-limão, sai junto com o slide 1: output/01-limao.png)
  * Depois: python3 scripts/previa.py  -> output/previa.jpg (+ revisão de margens)
  */
 const http = require('http');
@@ -42,6 +43,12 @@ const only = (process.argv[2] || '').split(',').filter(Boolean).map(Number);
       const out = path.join(ROOT, 'output', String(n).padStart(2, '0') + '.png');
       fs.writeFileSync(out, Buffer.from(url.split(',')[1], 'base64'));
       console.log('slide', out);
+    }
+    if (!only.length || only.includes(1)) {
+      const url = await page.evaluate(() => window.slideAt('1L'));
+      const out = path.join(ROOT, 'output', '01-limao.png');
+      fs.writeFileSync(out, Buffer.from(url.split(',')[1], 'base64'));
+      console.log('capa limão', out);
     }
   } finally {
     await browser.close(); srv.close();

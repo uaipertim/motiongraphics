@@ -1,12 +1,12 @@
 # FAZLO Hospeda — Carrossel 01 · Pilar DICA · "Como cobrar o sinal sem constrangimento"
 
-Carrossel estático para o Instagram, para ser salvo e compartilhado por donos de pousada. Não mostra telas do sistema e não tem CTA de venda. Postagem prevista: quinta-feira, 15/10.
+Carrossel estático para o Instagram, para ser salvo e compartilhado por donos de pousada. Não mostra telas do sistema e não tem CTA de venda. Postagem prevista: quinta-feira, 15/10, às 19h.
 
-**Status:** prévia para aprovação.
+**Status:** final — prévia aprovada, com dois ajustes (slides 1 e 2, ver abaixo). Capa: a preta (aprovada) ou a opção em verde-limão, à escolha.
 
 **Formato:** 8 slides 1080×1350 (4:5), PNG · margem de 80 px nas laterais (a grade do perfil mostra o centro 3:4 do post, cortando ~34 px de cada lado).
 
-▶ **Slides:** [`output/01.png`](output/01.png) … [`output/08.png`](output/08.png) · **Prévia:** [`output/previa.jpg`](output/previa.jpg) · Revisão: [`output/revisao/`](output/revisao)
+▶ **Slides:** [`output/01.png`](output/01.png) … [`output/08.png`](output/08.png) · **Prévia:** [`output/previa.jpg`](output/previa.jpg) · **Capa limão (opção):** [`output/01-limao.png`](output/01-limao.png) · as duas capas: [`output/previa-capas.jpg`](output/previa-capas.jpg) · Revisão: [`output/revisao/`](output/revisao)
 
 ![prévia](output/previa.jpg)
 
@@ -16,6 +16,12 @@ Carrossel estático para o Instagram, para ser salvo e compartilhado por donos d
 - **Inter Display 900** nos títulos (tracking −0,03 em); Inter Display 600/700 no apoio e nas bolhas; **JetBrains Mono NL** nos chips, rótulos e dados.
 - Cards `#161616` com borda `#3A3A3A`.
 - **Hierarquia fixa:** título grande no terço superior, conteúdo centrado na faixa do meio, apoio embaixo. O título usa o maior corpo que cabe na caixa.
+
+## Ajustes da aprovação (13/10)
+
+1. **Slide 1 · "ARRASTA →":** inteiro, alinhado à margem lateral de 80 px — a ponta da seta termina em x = 1000, como os outros elementos. As letras são posicionadas uma a uma, com espaçamento fixo, e a seta tem uma folga de 26 px depois do texto: o desenho não depende de como cada navegador ou visualizador aplica o espaçamento entre letras.
+2. **Slide 2 · o cartão da reserva:** a data **14 a 16/11** e os textos do cartão ficam 100% nítidos — são desenhados por cima, depois do efeito. O "sumir" vale para o cartão como um todo: o cartão inteiro fica translúcido (78%) e a borda direita se desfaz em fragmentos só nos últimos 20% da largura, a mais de 200 px dos números.
+3. **Capa alternativa em verde-limão** ([`output/01-limao.png`](output/01-limao.png)): os mesmos textos e o mesmo layout da capa aprovada, em preto sobre `#AFFA27`, com a escala gravada ao fundo do cartão "Controle de caixa" (Reel 03). Os slides 3 a 8 não mudaram.
 
 ## Mecânicas
 
@@ -27,8 +33,8 @@ Carrossel estático para o Instagram, para ser salvo e compartilhado por donos d
 
 | # | Título | Meio | Apoio |
 |---|---|---|---|
-| 01 | "Como cobrar o sinal" / "sem ficar sem graça." (limão) | chip "GUIA RÁPIDO · SALVA ESSE" | "ARRASTA →" |
-| 02 | "O hóspede pede a vaga. Você segura a data." / "Ele some." (limão) | card tracejado da reserva (CHALÉ 2 · SEM SINAL · 14 a 16/11) que se desfaz na ponta | "Sem sinal, a reserva é só uma promessa." |
+| 01 | "Como cobrar o sinal" / "sem ficar sem graça." (limão) | chip "GUIA RÁPIDO · SALVA ESSE" | "ARRASTA →" (opção: a mesma capa em verde-limão, texto preto) |
+| 02 | "O hóspede pede a vaga. Você segura a data." / "Ele some." (limão) | card tracejado da reserva (CHALÉ 2 · SEM SINAL · 14 a 16/11), translúcido e se desfazendo pela borda direita; a data fica inteira | "Sem sinal, a reserva é só uma promessa." |
 | 03 | "Peça **logo depois** que ele confirmar as datas." | chips "✓ DATAS OK" → "PEDE O SINAL" | "Nem antes de passar o valor, nem dias depois. Data confirmada → sinal pedido." |
 | 04 | "Tenha a mensagem **pronta.**" | bolha com a mensagem do sinal | "Tom de quem está garantindo a vaga dele, não de quem está cobrando." |
 | 05 | "Diga a regra" / "**antes, não depois.**" | 3 cards: SINAL · PRAZO · CANCELAMENTO | nota: "Os valores são exemplos. Use a regra da sua pousada." |
@@ -40,7 +46,7 @@ Carrossel estático para o Instagram, para ser salvo e compartilhado por donos d
 
 ## Revisão
 
-`python3 scripts/previa.py` gera a prévia e confere, pelos pixels, que nada além do fundo passa da margem de 80 px ([`margens.txt`](output/revisao/margens.txt), [`margens.jpg`](output/revisao/margens.jpg) com a margem em azul e o corte da grade em vermelho) e mostra o slide 1 na grade do perfil, em miniatura, ao lado das capas dos Reels 07 e 06 ([`capa-na-grade.jpg`](output/revisao/capa-na-grade.jpg)).
+`python3 scripts/previa.py` gera a prévia (e [`previa-capas.jpg`](output/previa-capas.jpg), as duas capas lado a lado e na grade) e confere, pelos pixels, que nada além do fundo passa da margem de 80 px ([`margens.txt`](output/revisao/margens.txt), [`margens.jpg`](output/revisao/margens.jpg) com a margem em azul e o corte da grade em vermelho) e mostra o slide 1 na grade do perfil, em miniatura, ao lado das capas dos Reels 07 e 06 ([`capa-na-grade.jpg`](output/revisao/capa-na-grade.jpg)).
 
 ## Arquivos-fonte
 
@@ -57,13 +63,15 @@ carrosseis/carrossel-01/
     previa.py       # prévia lado a lado + revisão de margens e da capa na grade
   output/
     01.png … 08.png
+    01-limao.png    # a capa alternativa, em verde-limão
     previa.jpg
+    previa-capas.jpg
     revisao/
 ```
 
 ```bash
 cd carrosseis/carrossel-01
-node scripts/render.cjs          # os 8 slides (ou: node scripts/render.cjs 3,7)
+node scripts/render.cjs          # os 8 slides + a capa limão (ou: node scripts/render.cjs 3,7)
 python3 scripts/previa.py        # prévia e revisão
 ```
 

@@ -6,8 +6,10 @@ Prévia e revisão do carrossel (roda depois de `node scripts/render.cjs`).
                                    output/revisao/margens.jpg      (margem de 80 px e recorte 3:4 da grade)
                                    output/revisao/capa-na-grade.jpg (o slide 1 na grade do perfil, em miniatura)
                                    output/revisao/margens.txt
+                                   output/previa-capas.jpg         (as duas capas, preta e limão, e cada uma na grade)
 
-Confere, pelos pixels, que nada além do fundo passa da margem de 80 px nas laterais.
+Confere, pelos pixels, que nada além do fundo passa da margem de 80 px nas laterais (na capa limão, o que
+conta é o que se destaca do limão — a escala gravada ao fundo não conta).
 """
 import os
 import numpy as np
@@ -63,6 +65,34 @@ grid = Image.new('RGB', (3 * tw_ + 8, th_), (255, 255, 255))
 for i, t in enumerate(tiles[:3]):
     grid.paste(t.resize((tw_, th_), Image.LANCZOS), (i * (tw_ + 4), 0))
 grid.save(os.path.join(REV, 'capa-na-grade.jpg'), quality=90)
+
+# a capa alternativa, em verde-limão (output/01-limao.png)
+fl = os.path.join(OUT, '01-limao.png')
+if os.path.exists(fl):
+    lim = Image.open(fl).convert('RGB')
+    a = np.asarray(lim).astype(float)
+    dist = np.sqrt(((a - np.array([175, 250, 39])) ** 2).sum(axis=2))
+    ys, xs = np.nonzero(dist > 150)
+    ok = xs.min() >= M - TOL and xs.max() <= W - M + TOL
+    lines.append(f"{'OK   ' if ok else 'FALHA'}  capa limão: conteúdo em x {xs.min()}–{xs.max()}, y {ys.min()}–{ys.max()}")
+    # as duas capas lado a lado e, embaixo, cada uma na grade do perfil (ao lado das capas dos Reels 07 e 06)
+    CWs, CHs = 540, 675
+    sh = Image.new('RGB', (2 * CWs + 3 * G + 40, CHs + 60 + 2 * (th_ + 50) + G), (28, 28, 28))
+    dd = ImageDraw.Draw(sh)
+    for k, (im, nome) in enumerate([(slides[0], 'CAPA PRETA (aprovada)'), (lim, 'CAPA LIMÃO (opção)')]):
+        x = G + k * (CWs + G + 40)
+        dd.text((x, G), nome, font=font, fill=(175, 250, 39))
+        sh.paste(im.resize((CWs, CHs), Image.LANCZOS), (x, G + 40))
+    gy = G + 40 + CHs + 30
+    for k, im in enumerate([slides[0], lim]):
+        row = Image.new('RGB', (3 * tw_ + 8, th_), (255, 255, 255))
+        for i, t in enumerate([im.crop((crop_x, 0, W - crop_x, H))] + tiles[1:3]):
+            row.paste(t.resize((tw_, th_), Image.LANCZOS), (i * (tw_ + 4), 0))
+        row = row.resize((row.width * 2 // 3, row.height * 2 // 3), Image.LANCZOS)
+        dd.text((G, gy - 4), ('preta' if k == 0 else 'limão') + ' na grade (ao lado dos Reels 07 e 06)', font=font, fill=(200, 200, 194))
+        sh.paste(row, (G, gy + 30)); gy += row.height + 50
+    sh = sh.crop((0, 0, sh.width, gy))
+    sh.save(os.path.join(OUT, 'previa-capas.jpg'), quality=92)
 
 res = 'RESULTADO: ' + ('tudo dentro da margem de 80 px' if all(l.startswith('OK') for l in lines) else 'ajustar')
 open(os.path.join(REV, 'margens.txt'), 'w').write('CARROSSEL 01 — margens (80 px nas laterais)\n\n' + '\n'.join(lines + ['', res]) + '\n')

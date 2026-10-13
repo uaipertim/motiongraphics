@@ -12,7 +12,7 @@
    do dono da pousada (genéricas, sem imitar app de mensagens) e a notinha
    do Reel 07 (src/notinha.js) no slide 7.
 
-   CARROSSEL.render(ctx, n)  desenha o slide n (1–8)
+   CARROSSEL.render(ctx, n)  desenha o slide n (1–8; '1L' = a capa na versão limão)
    ===================================================================== */
 (function () {
   'use strict';
@@ -22,7 +22,7 @@
   const MONO = "'C1 Mono', 'JetBrains Mono', monospace";
   const C = {
     bg: '#0A0A0A', bg0: '#050505', card: '#161616', border: '#3A3A3A',
-    lime: '#AFFA27', limeD: '#8CD10C', white: '#FFFFFF', gray: '#B9B9B1', grayM: '#8E8E88', grayD: '#5E5E59', ink: '#0A0A0A',
+    lime: '#AFFA27', limeD: '#8CD10C', limeDeep: '#5A8A0E', white: '#FFFFFF', gray: '#B9B9B1', grayM: '#8E8E88', grayD: '#5E5E59', ink: '#0A0A0A',
   };
   const L = { trackY: 120, titleTop: 196, titleTop0: 164, titleMaxH: 360, supportBottom: 1252 };
   const TRACK = 34;                      // trilha de passos (mono)
@@ -186,6 +186,21 @@
     return { x0, x1: x1 + 18, y0, y1: y0 + bh + 14 };
   }
 
+  // "ARRASTA →" alinhado à margem direita (x 1000): letras posicionadas uma a uma (espaçamento fixo de 4 px,
+  // sem depender do letter-spacing do navegador) e a seta com folga de 26 px depois do texto
+  function swipe(ctx, textColor, arrowColor) {
+    const right = M + CW, aw = 64, gap = 26, y = 1252, size = 34, sp = 4;
+    setFont(ctx, MONO, size, 800, 0);
+    const chars = [...'ARRASTA'], ws = chars.map((ch) => ctx.measureText(ch).width);
+    const textW = ws.reduce((a, b) => a + b, 0) + sp * (chars.length - 1);
+    let x = right - 3 - aw - gap - textW;               // a ponta da seta (com a espessura do traço) em x = 1000
+    ctx.fillStyle = textColor;
+    chars.forEach((ch, i) => { ctx.fillText(ch, x, y); x += ws[i] + sp; });
+    const ax = right - 3;
+    ctx.strokeStyle = arrowColor; ctx.lineWidth = 6; ctx.lineCap = 'round'; ctx.lineJoin = 'round';
+    ctx.beginPath(); ctx.moveTo(ax - aw, 1240); ctx.lineTo(ax, 1240); ctx.moveTo(ax - 20, 1222); ctx.lineTo(ax, 1240); ctx.lineTo(ax - 20, 1258); ctx.stroke();
+  }
+
   // ---------------------------------------------------------------- logo
   let LOGO = null;
   function brand(ctx, cx, cy, d = 72, fs = 30) {
@@ -206,36 +221,46 @@
     1(ctx) {
       const t = title(ctx, [{ t: 'Como cobrar o sinal', c: W_ }, { t: 'sem ficar sem graça.', c: Li, br: true }], 0, { max: 170, maxH: 720, lh: 1.0, vcenter: [330, 1120], maxW: CW - 8, x: M + 2 });
       chip(ctx, M + 2, t.top - 74, 'GUIA RÁPIDO · SALVA ESSE', { size: 32, stroke: C.lime, color: C.lime, fill: rgba(C.lime, 0.08), lw: 3 });
-      const fw = tw(ctx, 'ARRASTA', MONO, 34, 800, 4), aw = 64, ax = 996;
-      setFont(ctx, MONO, 34, 800, 4); ctx.fillStyle = C.gray; ctx.fillText('ARRASTA', ax - aw - 18 - fw, 1252);
-      ctx.strokeStyle = C.lime; ctx.lineWidth = 6; ctx.lineCap = 'round'; ctx.lineJoin = 'round';
-      ctx.beginPath(); ctx.moveTo(ax - aw, 1240); ctx.lineTo(ax, 1240); ctx.moveTo(ax - 20, 1222); ctx.lineTo(ax, 1240); ctx.lineTo(ax - 20, 1258); ctx.stroke();
+      swipe(ctx, C.gray, C.lime);
+    },
+    // 1 · capa, versão limão: os mesmos textos e o mesmo layout, em preto sobre #AFFA27,
+    // com a escala gravada ao fundo do cartão "Controle de caixa" (Reel 03)
+    '1L'(ctx) {
+      ctx.fillStyle = C.lime; ctx.fillRect(0, 0, W, H);
+      ctx.save(); ctx.translate(1180, 1280); ctx.rotate(0.385); ctx.lineCap = 'round';
+      for (let j = 0; j < 180; j++) {
+        const a = (j / 180) * TAU, r1 = 1180, r0 = j % 10 === 0 ? 1080 : j % 5 === 0 ? 1120 : 1150;
+        ctx.beginPath(); ctx.moveTo(r0 * Math.cos(a), r0 * Math.sin(a)); ctx.lineTo(r1 * Math.cos(a), r1 * Math.sin(a));
+        ctx.strokeStyle = rgba(C.limeDeep, j % 10 === 0 ? 0.55 : 0.3); ctx.lineWidth = j % 10 === 0 ? 5 : 3; ctx.stroke();
+      }
+      for (const r of [1000, 1010, 760]) { ctx.beginPath(); ctx.arc(0, 0, r, 0, TAU); ctx.strokeStyle = rgba(C.limeDeep, 0.3); ctx.lineWidth = 3; ctx.stroke(); }
+      ctx.restore();
+      const t = title(ctx, [{ t: 'Como cobrar o sinal', c: C.ink }, { t: 'sem ficar sem graça.', c: C.ink, br: true }], 0, { max: 170, maxH: 720, lh: 1.0, vcenter: [330, 1120], maxW: CW - 8, x: M + 2 });
+      chip(ctx, M + 2, t.top - 74, 'GUIA RÁPIDO · SALVA ESSE', { size: 32, stroke: C.ink, color: C.ink, lw: 3 });
+      swipe(ctx, C.ink, C.ink);
     },
     // 2 · o problema
     2(ctx) {
       const sp = support(ctx, 'Sem sinal, a reserva é só uma promessa.');
       const t = title(ctx, [{ t: 'O hóspede pede a vaga.', c: W_ }, { t: 'Você segura a data.', c: W_, br: true }, { t: 'Ele some.', c: Li, br: true }], L.titleTop0, { max: 96 });
-      // a reserva sem sinal: um card tracejado que se desfaz
+      // a reserva sem sinal: o cartão tracejado some como um todo — fica translúcido e a borda direita se
+      // desfaz em fragmentos; os textos vêm depois, por cima e inteiros (o efeito nunca passa sobre os números)
       const w = CW, h = 360, x = M, y = mid(t, sp) - h / 2;
       const off = document.createElement('canvas'); off.width = W; off.height = H;
       const o = off.getContext('2d');
       card(o, x, y, w, h, { dash: [16, 12], stroke: '#4A4A4A', lw: 3 });
-      setFont(o, MONO, 30, 800, 3); o.fillStyle = C.grayM; o.fillText('CHALÉ 2', x + 48, y + 84);
-      const cl = tw(o, 'CHALÉ 2', MONO, 30, 800, 3);
-      chip(o, x + 48 + cl + 18, y + 74, 'SEM SINAL', { size: 26, stroke: C.grayD, color: C.gray });
-      setFont(o, DISPLAY, 132, 900, -4); o.fillStyle = C.white; o.fillText('14 a 16/11', x + 44, y + 262);
-      // só a ponta direita do card se desfaz: a reserva "some" (o texto fica inteiro)
       o.globalCompositeOperation = 'destination-out';
-      const d0 = 0.74;
-      for (let k = 0; k < 2600; k++) {
-        const u = hash(k, 41), px = x + w * (d0 + (1.04 - d0) * Math.pow(u, 0.8)), py = y - 6 + (h + 12) * hash(k, 42);
-        const pr = ((px - x) / w - d0) / (1 - d0);
-        if (hash(k, 43) < pr * 1.15) { const s = 6 + 12 * hash(k, 44); o.fillRect(px, py, s, s); }
+      const d0 = x + w * 0.8;                                // os fragmentos ficam nos últimos 20% (longe da data)
+      for (let k = 0; k < 2200; k++) {
+        const u = Math.pow(hash(k, 41), 0.7), px = d0 + (x + w + 8 - d0) * u, py = y - 8 + (h + 16) * hash(k, 42);
+        if (hash(k, 43) < u * u * 1.1) { const sz = 6 + 12 * hash(k, 44); o.fillRect(px - sz / 2, py - sz / 2, sz, sz); }
       }
-      const fade = o.createLinearGradient(x + w * d0, 0, x + w, 0);
-      fade.addColorStop(0, 'rgba(0,0,0,0)'); fade.addColorStop(1, 'rgba(0,0,0,0.75)');
-      o.fillStyle = fade; o.fillRect(x, y - 10, w + 20, h + 20);
-      ctx.drawImage(off, 0, 0);
+      o.globalCompositeOperation = 'source-over';
+      ctx.save(); ctx.globalAlpha = 0.78; ctx.drawImage(off, 0, 0); ctx.restore();
+      setFont(ctx, MONO, 30, 800, 3); ctx.fillStyle = C.grayM; ctx.fillText('CHALÉ 2', x + 48, y + 84);
+      const cl = tw(ctx, 'CHALÉ 2', MONO, 30, 800, 3);
+      chip(ctx, x + 48 + cl + 18, y + 74, 'SEM SINAL', { size: 26, stroke: C.grayD, color: C.gray });
+      setFont(ctx, DISPLAY, 132, 900, -4); ctx.fillStyle = C.white; ctx.fillText('14 a 16/11', x + 44, y + 262);
     },
     // 3 · passo 01
     3(ctx) {
@@ -306,7 +331,7 @@
   function render(ctx, n) {
     if (ctx.canvas.width !== W || ctx.canvas.height !== H) { ctx.canvas.width = W; ctx.canvas.height = H; }
     ctx.setTransform(1, 0, 0, 1, 0, 0); ctx.globalAlpha = 1; ctx.globalCompositeOperation = 'source-over';
-    background(ctx);
+    background(ctx);                                   // (a capa limão pinta o próprio fundo por cima)
     SLIDES[n](ctx);
   }
   window.CARROSSEL = { init, render, W, H, N: 8 };
