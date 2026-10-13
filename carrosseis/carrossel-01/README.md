@@ -2,11 +2,12 @@
 
 Carrossel estático para o Instagram, para ser salvo e compartilhado por donos de pousada. Não mostra telas do sistema e não tem CTA de venda. Postagem prevista: quinta-feira, 15/10, às 19h.
 
-**Status:** final — prévia aprovada, com dois ajustes (slides 1 e 2, ver abaixo). Capa: a preta (aprovada) ou a opção em verde-limão, à escolha.
+**Status:** final. **Capa escolhida: a limão** ([`output/01-limao.png`](output/01-limao.png)) — vira a regra dos carrosséis do pilar DICA ([`../README.md`](../README.md)). A capa preta ([`output/01.png`](output/01.png)) fica só como arquivo de reserva.
 
 **Formato:** 8 slides 1080×1350 (4:5), PNG · margem de 80 px nas laterais (a grade do perfil mostra o centro 3:4 do post, cortando ~34 px de cada lado).
 
-▶ **Slides:** [`output/01.png`](output/01.png) … [`output/08.png`](output/08.png) · **Prévia:** [`output/previa.jpg`](output/previa.jpg) · **Capa limão (opção):** [`output/01-limao.png`](output/01-limao.png) · as duas capas: [`output/previa-capas.jpg`](output/previa-capas.jpg) · Revisão: [`output/revisao/`](output/revisao)
+▶ **Para postar, nesta ordem:** [`output/01-limao.png`](output/01-limao.png) (capa) · [`02.png`](output/02.png) · [`03.png`](output/03.png) · [`04.png`](output/04.png) · [`05.png`](output/05.png) · [`06.png`](output/06.png) · [`07.png`](output/07.png) · [`08.png`](output/08.png)
+**Prévia:** [`output/previa.jpg`](output/previa.jpg) · as duas capas: [`output/previa-capas.jpg`](output/previa-capas.jpg) · reserva: [`output/01.png`](output/01.png) (capa preta) · Revisão: [`output/revisao/`](output/revisao)
 
 ![prévia](output/previa.jpg)
 
@@ -21,7 +22,7 @@ Carrossel estático para o Instagram, para ser salvo e compartilhado por donos d
 
 1. **Slide 1 · "ARRASTA →":** inteiro, alinhado à margem lateral de 80 px — a ponta da seta termina em x = 1000, como os outros elementos. As letras são posicionadas uma a uma, com espaçamento fixo, e a seta tem uma folga de 26 px depois do texto: o desenho não depende de como cada navegador ou visualizador aplica o espaçamento entre letras.
 2. **Slide 2 · o cartão da reserva:** a data **14 a 16/11** e os textos do cartão ficam 100% nítidos — são desenhados por cima, depois do efeito. O "sumir" vale para o cartão como um todo: o cartão inteiro fica translúcido (78%) e a borda direita se desfaz em fragmentos só nos últimos 20% da largura, a mais de 200 px dos números.
-3. **Capa alternativa em verde-limão** ([`output/01-limao.png`](output/01-limao.png)): os mesmos textos e o mesmo layout da capa aprovada, em preto sobre `#AFFA27`, com a escala gravada ao fundo do cartão "Controle de caixa" (Reel 03). Os slides 3 a 8 não mudaram.
+3. **Capa em verde-limão** ([`output/01-limao.png`](output/01-limao.png)): os mesmos textos e o mesmo layout da capa preta, em preto sobre `#AFFA27`, com a escala gravada ao fundo do cartão "Controle de caixa" (Reel 03). **Escolhida** como a capa do post (a preta fica de reserva) e transformada em regra para os carrosséis do pilar DICA. Os slides 3 a 8 não mudaram.
 
 ## Mecânicas
 
@@ -33,7 +34,7 @@ Carrossel estático para o Instagram, para ser salvo e compartilhado por donos d
 
 | # | Título | Meio | Apoio |
 |---|---|---|---|
-| 01 | "Como cobrar o sinal" / "sem ficar sem graça." (limão) | chip "GUIA RÁPIDO · SALVA ESSE" | "ARRASTA →" (opção: a mesma capa em verde-limão, texto preto) |
+| 01 | "Como cobrar o sinal" / "sem ficar sem graça." — capa limão, texto preto (reserva: a mesma capa no preto, com a 2ª linha em limão) | chip "GUIA RÁPIDO · SALVA ESSE" | "ARRASTA →" |
 | 02 | "O hóspede pede a vaga. Você segura a data." / "Ele some." (limão) | card tracejado da reserva (CHALÉ 2 · SEM SINAL · 14 a 16/11), translúcido e se desfazendo pela borda direita; a data fica inteira | "Sem sinal, a reserva é só uma promessa." |
 | 03 | "Peça **logo depois** que ele confirmar as datas." | chips "✓ DATAS OK" → "PEDE O SINAL" | "Nem antes de passar o valor, nem dias depois. Data confirmada → sinal pedido." |
 | 04 | "Tenha a mensagem **pronta.**" | bolha com a mensagem do sinal | "Tom de quem está garantindo a vaga dele, não de quem está cobrando." |
@@ -42,7 +43,7 @@ Carrossel estático para o Instagram, para ser salvo e compartilhado por donos d
 | 07 | "Anote" / "**no mesmo dia.**" | a notinha: SINAL PAGO … R$ 450 · PIX / FALTA … R$ 450 · CHECK-IN | "Sinal que não foi anotado vira dúvida no fim do mês." |
 | 08 | "Sinal cobrado com clareza não afasta hóspede." / "**Afasta quem ia sumir.**" | — | "Salva pra usar no próximo ‘tem vaga?’ e manda pra quem cuida das reservas aí." + logo pequena |
 
-(Em negrito: o trecho em limão.)
+(Em negrito: o trecho em limão nos slides escuros.)
 
 ## Revisão
 
@@ -62,8 +63,8 @@ carrosseis/carrossel-01/
     render.cjs      # Chromium headless -> output/01.png … 08.png
     previa.py       # prévia lado a lado + revisão de margens e da capa na grade
   output/
-    01.png … 08.png
-    01-limao.png    # a capa alternativa, em verde-limão
+    01.png … 08.png # 01.png = a capa preta, de reserva
+    01-limao.png    # a capa do post (verde-limão, texto preto)
     previa.jpg
     previa-capas.jpg
     revisao/

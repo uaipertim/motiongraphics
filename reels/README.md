@@ -36,6 +36,7 @@ A grade do perfil mostra só o centro 3:4 da capa e põe o ícone de play no can
 3. **Faixa do contador livre:** nada importante em **y 1560–1680** — o contador de visualizações cobre o canto inferior esquerdo da miniatura (regra de outubro de 2026, a partir das capas dos Reels 06, 05 e 02). Na prática, o conteúdo termina em y ≈ 1540.
 4. **Nada cortado nem escondido:** chips, rodapés, placas 3D e textos inteiros dentro do recorte, sem um cobrindo o outro (no vídeo, cortes de propósito funcionam; na capa, parecem erro).
 5. **Hierarquia:** título > visual > logo (pequena e discreta, só se couber sem competir), sem CTA.
+6. **Fundo preto:** capa de Reel é sempre no preto da série. O fundo verde-limão com texto preto é a capa dos carrosséis do pilar DICA ([`../carrosseis/README.md`](../carrosseis/README.md)).
 
 Conferência: `python3 reels/tools/revisao_capa.py reels/reel-NN --vizinhos reels/reel-07 reels/reel-06` gera `capa.jpg`, a prévia `revisao/capa-no-feed.jpg` (recorte 3:4, folga, canto do play e faixa do contador marcados, a capa na grade ao lado das vizinhas) e `revisao/capa.txt`. A checagem pelos pixels trata como conteúdo tudo o que se destaca da cor de fundo dominante (escura ou clara, como o limão do Reel 03) — gravações e brilhos sutis do fundo não contam; para capas com cena de fundo de ponta a ponta (a paisagem do Reel 05), o `--cena` faz valer as caixas de cada elemento (`revisao/capa-caixas.json`, exportadas pela página da capa), que também conferem se um elemento cobre outro.
 
