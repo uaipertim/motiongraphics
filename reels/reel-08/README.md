@@ -6,7 +6,7 @@ Peça independente: nada aqui altera os Reels anteriores, os Stories ou o carros
 
 **Formato:** 9:16 (1080×1920), **16,0 s**, 60 fps, H.264 + AAC 48 kHz. **Só efeitos sonoros** (a música entra pelo Instagram); o vídeo funciona sem ela.
 
-▶ **Vídeo:** [`output/fazlo-hospeda-reel-08.mp4`](output/fazlo-hospeda-reel-08.mp4)
+▶ **Vídeo:** [`output/fazlo-hospeda-reel-08.mp4`](output/fazlo-hospeda-reel-08.mp4) · **com voz (teste de narração):** [`output/fazlo-hospeda-reel-08-voz.mp4`](output/fazlo-hospeda-reel-08-voz.mp4)
 Storyboard: [`output/storyboard.jpg`](output/storyboard.jpg) · Revisão: [`output/revisao/`](output/revisao) · A capa será produzida depois, separadamente.
 
 ![storyboard](output/storyboard.jpg)
@@ -77,6 +77,34 @@ Efeitos **sintetizados do zero** (numpy/scipy), sem samples e sem música:
 
 **Visual:** revisão quadro a quadro durante a produção. Ajuste feito a partir dela: o título de abertura, em 136 px, fazia "não." invadir a coluna de botões do Reels; foi para 124 px e centrado em x = 530.
 
+## Versão com voz (teste de narração, ElevenLabs)
+
+Primeiro teste de narração na @fazlohospeda: um arquivo **novo**, [`output/fazlo-hospeda-reel-08-voz.mp4`](output/fazlo-hospeda-reel-08-voz.mp4). A versão sem voz continua igual, e a imagem do MP4 com voz é uma cópia exata da dela (mesmo fluxo de vídeo, sem recodificar); os textos na tela continuam.
+
+- **Voz:** Raquel - For Conversational (`GDzHdQOi6jjf8zaXhCYD`), a voz oficial da FAZLO (a mesma da @fazlodigital) — português do Brasil, tom de conversa, não de locutor.
+- **Modelo:** `eleven_multilingual_v2`. **Ajustes:** estabilidade 0,40 · semelhança 0,80 · estilo 0,35 · *speaker boost* ligado · velocidade 1,0 (a voz não é acelerada) · seed 808.
+- **Geração:** uma chamada por cena, com as falas vizinhas como contexto (`previous_text` / `next_text`) e os tempos de cada caractere (`with-timestamps`). Formato: MP3 44,1 kHz 128 kb/s (o único que o plano libera; PCM e MP3 192 kb/s são recusados).
+- **Chave:** não fica no repositório nem é impressa. Nesta nuvem, a rede põe a chave no cabeçalho `xi-api-key` (Segredos de rede); fora dela, `scripts/voz.py` lê a variável de ambiente `ELEVENLABS_API_KEY`.
+
+**Roteiro A (aprovado), em velocidade 1,0:**
+
+| Cena | Na tela | Fala | Entra |
+|---|---|---|---|
+| Título | "Você fechou a recepção. O celular, não." | "Você fechou a recepção… O celular, não." | 0,05–2,76 s |
+| Mensagens | relógio + as 7 mensagens (2,6–9,8 s) | "Onze da noite: tem vaga pra amanhã? Aceita cachorro? Faz por duzentos no Pix? E chega um áudio de quatro minutos." | 2,88–10,65 s |
+| +37 NÃO LIDAS | o carimbo (11,0 s) | "Trinta e sete não lidas." | 11,05–12,39 s |
+| Convite + logo | "Manda pra quem responde hóspede às 23h." + logo (13,5 s) | "Manda pra quem responde hóspede às onze. FAZLO Hospeda." | 12,52–15,52 s |
+
+- **Para caber sem acelerar:** a fala das mensagens, inteira, dava 9,4 s para 7,8 s; entrou a versão sem "E ainda" (8,5 s), como combinado. Depois, só as pausas entre as frases ficaram um pouco mais curtas (cortes no meio do silêncio, com transição de 20 ms): "recepção…" 0,49 → 0,40 s; "noite:" 0,81 → 0,50; "amanhã?" 0,33 → 0,26; "cachorro?" 0,40 → 0,30; "Pix?" 0,69 → 0,42; "onze." 0,36 → 0,32 (com uma pausa de 0,25 s marcada antes da marca, `<break>`, só no texto enviado).
+- **Pronúncia:** FAZLO e Hospeda foram enviados como estão escritos. Medição no áudio (Praat), comparando com versões de controle da mesma voz ("Ospéda" e "hóspeda", "Fázlo" e "Fazlô"): em **Hospeda**, a sílaba "pe" é a mais longa (162 ms × 151 ms de "os"), com a queda de tom da sílaba tônica e um "e" pleno e aberto (F1 563 Hz, F2 1860 Hz) — o mesmo desenho de "Ospéda" e o oposto de "hóspeda" (que reduz o "e": F1 411, F2 1694) → **os-PÉ-da**; em **FAZLO**, "FAZ" dura 232 ms e "lo" 93 ms, a proporção de "Fázlo" (e não a de "Fazlô") → **FÁZ-lo**. Nenhuma grafia trocada.
+
+**Mixagem:** não há música no Reel 08; quem abaixa sob a voz são os efeitos (`audio/efeitos.wav`): **−9,5 dB** enquanto a voz fala (ataque 60 ms, retorno 300 ms; voltam ao nível do vídeo nas pausas). O carimbo do +37 bate antes da fala entrar. Master **−14 LUFS** integrado, pico real **−1,9 dBTP** no MP4 (limitador a −2 dBTP antes do AAC). Conferência em [`voz-mix.txt`](output/revisao/voz-mix.txt) e [`voz-linha-do-tempo.png`](output/revisao/voz-linha-do-tempo.png) (efeitos antes e depois, a voz por cena e os eventos da imagem).
+
+```bash
+python3 scripts/voz.py        # as 4 falas -> audio/voz/ (cena-1..4.wav + falas.json com os tempos de cada caractere)
+python3 scripts/mix_voz.py    # mixagem + master + output/fazlo-hospeda-reel-08-voz.mp4 + conferência
+```
+
 ## Arquivos-fonte
 
 ```
@@ -92,11 +120,16 @@ reels/reel-08/
     logo_alpha.py              # recorte do fundo da logo (não altera a arte)
     storyboard.py              # storyboard a partir do MP4
     qa.py                      # revisão técnica + sincronização + zonas seguras + recorte 3:4
+    voz.py                     # narração (ElevenLabs): uma chamada por cena -> audio/voz/
+    mix_voz.py                 # versão com voz: mixagem, master -14 LUFS e o MP4 novo
   audio/
     cues.json                  # eventos de som exportados da animação
     efeitos.wav
+    voz/                       # as 4 falas geradas + falas.json (texto enviado, tempos de cada caractere)
+    trilha-voz.wav             # voz + efeitos, master da versão com voz
   output/
     fazlo-hospeda-reel-08.mp4  # vídeo final
+    fazlo-hospeda-reel-08-voz.mp4  # o mesmo vídeo com a narração (teste)
     storyboard.jpg
     revisao/
 ```

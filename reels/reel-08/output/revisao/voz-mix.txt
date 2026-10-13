@@ -1,0 +1,16 @@
+Reel 08 com voz — mixagem e conferência
+
+OK     imagem idêntica à do MP4 sem voz (cópia do fluxo de vídeo, MD5=f0e9a7425f311936a6c0e1a9d63040a5)
+OK     1080x1920 h264 60/1 · áudio aac 48000 Hz 2 canais · vídeo 16.000 s / áudio 16.000 s
+OK     loudness integrado do MP4 -14.1 LUFS (alvo -14)
+OK     pico real do MP4 -1.9 dBTP (limite -1)
+OK     efeitos sob a voz: 9.5 dB mais baixos com a voz falando (8.2 dB na média da fala, contando as subidas e descidas); nas pausas, voltam ao nível do vídeo
+OK     a última fala termina em 15.52 s (o fade final começa em 15.6 s)
+
+Onde cada fala entra (velocidade 1,0; só as pausas entre frases foram encurtadas):
+  cena 1 · título           0.05– 2.76 s · pausas encurtadas em 0.09 s · "Você fechou a recepção… O celular, não."
+  cena 2 · mensagens        2.88–10.65 s · pausas encurtadas em 0.74 s · "Onze da noite: tem vaga pra amanhã? Aceita cachorro? Faz por duzentos no Pix? E chega um áudio de quatro minutos."
+  cena 3 · +37 NÃO LIDAS   11.05–12.39 s · pausas encurtadas em 0.00 s · "Trinta e sete não lidas."
+  cena 4 · convite + logo  12.52–15.52 s · pausas encurtadas em 0.04 s · "Manda pra quem responde hóspede às onze. FAZLO Hospeda."
+
+Na imagem: título 0 s ("O celular, não." vibra em 0.8 s) · relógio 2 s · mensagens em 2.6, 3.8, 5, 6.2, 7.4, 8.6, 9.8 s · +37 NÃO LIDAS 11 s · convite 12.9 s · logo 13.5 s · fade 15.6 s
