@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>FAZLO Hospeda — Reel 08 · Capa</title>
+<style>
+  @font-face { font-family: 'R8 Display'; src: url('fonts/InterDisplay-SemiBold.otf') format('opentype'); font-weight: 600; }
+  @font-face { font-family: 'R8 Display'; src: url('fonts/InterDisplay-Bold.otf') format('opentype'); font-weight: 700; }
+  @font-face { font-family: 'R8 Display'; src: url('fonts/InterDisplay-ExtraBold.otf') format('opentype'); font-weight: 800; }
+  @font-face { font-family: 'R8 Display'; src: url('fonts/InterDisplay-Black.otf') format('opentype'); font-weight: 900; }
+  @font-face { font-family: 'R8 Mono'; src: url('fonts/JetBrainsMonoNL-Medium.ttf') format('truetype'); font-weight: 500; }
+  @font-face { font-family: 'R8 Mono'; src: url('fonts/JetBrainsMonoNL-Bold.ttf') format('truetype'); font-weight: 700; }
+  @font-face { font-family: 'R8 Mono'; src: url('fonts/JetBrainsMonoNL-ExtraBold.ttf') format('truetype'); font-weight: 800; }
+  html, body { margin: 0; background: #050505; }
+  canvas { display: block; height: 100vh; aspect-ratio: 9 / 16; margin: 0 auto; }
+  body.render canvas { height: auto; width: 1080px; }
+</style>
+</head>
+<body>
+<canvas id="c" width="1080" height="1920"></canvas>
+<script>
+  // a capa, em página própria. O motor do vídeo (anim.js) é lido como texto e avaliado aqui com
+  // uma linha a mais que expõe as peças de desenho para a capa — o arquivo anim.js não é alterado.
+  const canvas = document.getElementById('c'), ctx = canvas.getContext('2d');
+  if (new URLSearchParams(location.search).has('render')) document.body.classList.add('render');
+  const loadImg = (src) => new Promise((ok, fail) => { const i = new Image(); i.onload = () => ok(i); i.onerror = fail; i.src = src; });
+  const loadScript = (src) => new Promise((ok, fail) => { const s = document.createElement('script'); s.src = src; s.onload = ok; s.onerror = fail; document.body.appendChild(s); });
+  window.ready = (async () => {
+    const src = await (await fetch('anim.js')).text();
+    const anchor = 'window.REEL08 = {';
+    if (!src.includes(anchor)) throw new Error('anim.js: ponto de leitura não encontrado');
+    (0, eval)(src.replace(anchor, anchor + `
+    _capa: { clock, cardBody, CARD, MSGS, C, DISPLAY, MONO, txt, tw, rr, glow, css, get chipW() { return CHIP_W; } },`));
+    await loadScript('capa.js');
+    const fonts = [600, 700, 800, 900].map((w) => document.fonts.load(`${w} 100px 'R8 Display'`))
+      .concat([500, 700, 800].map((w) => document.fonts.load(`${w} 100px 'R8 Mono'`)));
+    const [img] = await Promise.all([loadImg('assets/fazlo-hospeda-logo-alpha.png'), ...fonts]);
+    await img.decode(); await document.fonts.ready;
+    REEL08.init(img);
+    REEL08CAPA.init(img);
+    REEL08CAPA.render(ctx);
+  })();
+  window.coverFrame = () => { REEL08CAPA.render(ctx); return canvas.toDataURL('image/png'); };
+  window.coverBoxes = () => REEL08CAPA.boxes();
+</script>
+</body>
+</html>

@@ -7,7 +7,8 @@ Peça independente: nada aqui altera os Reels anteriores, os Stories ou o carros
 **Formato:** 9:16 (1080×1920), **16,0 s**, 60 fps, H.264 + AAC 48 kHz. **Só efeitos sonoros** (a música entra pelo Instagram); o vídeo funciona sem ela.
 
 ▶ **Vídeo:** [`output/fazlo-hospeda-reel-08.mp4`](output/fazlo-hospeda-reel-08.mp4) · **com voz (teste de narração):** [`output/fazlo-hospeda-reel-08-voz.mp4`](output/fazlo-hospeda-reel-08-voz.mp4)
-Storyboard: [`output/storyboard.jpg`](output/storyboard.jpg) · Revisão: [`output/revisao/`](output/revisao) · A capa será produzida depois, separadamente.
+🖼 **Capa:** [`output/capa.jpg`](output/capa.jpg) · [`output/capa.png`](output/capa.png) · prévia na grade: [`output/revisao/capa-no-feed.jpg`](output/revisao/capa-no-feed.jpg)
+Storyboard: [`output/storyboard.jpg`](output/storyboard.jpg) · Revisão: [`output/revisao/`](output/revisao)
 
 ![storyboard](output/storyboard.jpg)
 
@@ -105,17 +106,36 @@ python3 scripts/voz.py        # as 4 falas -> audio/voz/ (cena-1..4.wav + falas.
 python3 scripts/mix_voz.py    # mixagem + master + output/fazlo-hospeda-reel-08-voz.mp4 + conferência
 ```
 
+## Capa
+
+A cena do carimbo (11 s), compacta, no fundo preto da série (`#0A0A0A`) com o brilho limão discreto das outras capas:
+
+1. **Logo** no alto, ao centro: o símbolo oficial + "FAZLO Hospeda" (como nas capas novas dos Reels 06, 05 e 02).
+2. **Título** em Inter Display Black, 128 px, centralizado: "Você fechou / a recepção." em branco e "O celular, não." em limão.
+3. **O relógio** marcando **23:59** em 252 px (no vídeo, 270), com a **pilha de mensagens** comprimida atrás dele — 3 cards, os de trás quase apagados, só a ideia do acúmulo — e o chip limão **"+37 NÃO LIDAS"** carimbado por cima, inclinado −4°, como no vídeo.
+
+O relógio e os cards são desenhados pelo próprio motor (`clock()` no instante 11,25 s e `cardBody()`); `src/capa.html` lê o `anim.js` como texto e o avalia com uma linha a mais que expõe essas peças — o arquivo do motor e os vídeos (com e sem voz) não mudam. Sem celular, tela, balão, tique de lido ou emoji.
+
+Segue a **regra fixa das capas** ([`../README.md`](../README.md)): o bloco título + relógio + pilha + chip (y 558–1362) fica **centralizado na vertical do recorte 3:4** (centro em y = 960); tudo dentro do recorte com folga de 60 px; canto do play e faixa do contador livres; nada cortado nem sobreposto (a pilha é fundo: fica atrás do relógio e do chip de propósito). Conferência em [`capa.txt`](output/revisao/capa.txt) e [`capa-no-feed.jpg`](output/revisao/capa-no-feed.jpg), com a capa na grade ao lado do Carrossel 01 e do Reel 07.
+
+```bash
+node scripts/capa.cjs                                                               # output/capa.png + revisao/capa-caixas.json
+python3 ../tools/revisao_capa.py . --vizinhos ../../carrosseis/carrossel-01 ../reel-07   # capa.jpg + prévia + conferência
+```
+
 ## Arquivos-fonte
 
 ```
 reels/reel-08/
   src/
     index.html                 # preview (play/scrub com áudio) e página usada no render
+    capa.html + capa.js        # a capa (página própria; lê o anim.js sem alterá-lo)
     anim.js                    # TODO o motion: título, relógio, cards e pilha, carimbo, saída, mensagem, logo, cues
     assets/                    # logo oficial + a mesma logo sem o fundo branco externo
     fonts/                     # Inter Display + JetBrains Mono (licença OFL)
   scripts/
     render.cjs                 # cues | video | stills (Chromium headless -> ffmpeg)
+    capa.cjs                   # a capa -> output/capa.png + revisao/capa-caixas.json
     audio.py                   # efeitos a partir de audio/cues.json, master
     logo_alpha.py              # recorte do fundo da logo (não altera a arte)
     storyboard.py              # storyboard a partir do MP4
@@ -130,6 +150,7 @@ reels/reel-08/
   output/
     fazlo-hospeda-reel-08.mp4  # vídeo final
     fazlo-hospeda-reel-08-voz.mp4  # o mesmo vídeo com a narração (teste)
+    capa.png / capa.jpg        # capa do Instagram (1080x1920)
     storyboard.jpg
     revisao/
 ```

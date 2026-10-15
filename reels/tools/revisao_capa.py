@@ -107,6 +107,12 @@ for name in names:
     ok_all &= ok
 if boxes:
     lines.insert(len(lines) - len(names), f"{'OK   ' if all(not l.startswith('FALHA') for l in lines[-len(names):]) else 'FALHA'}  {'a, c, d' if a.cena else 'd'}) caixas: dentro do recorte, fora do canto do play e da faixa do contador, sem sobreposição")
+raw = json.load(open(cx)) if os.path.exists(cx) else {}
+if isinstance(raw.get('_bloco'), dict):
+    bl = raw['_bloco']; mid = (BAND[1] + BAND[3]) / 2
+    okc = abs(bl['centro'] - mid) <= 2
+    ok_all &= okc
+    lines.append(f"{'OK   ' if okc else 'FALHA'}  bloco centralizado na vertical do recorte 3:4: y {bl['topo']:.0f}–{bl['base']:.0f}, centro em {bl['centro']:.1f} (centro do recorte: {mid:.0f})")
 lines.append('RESULTADO: ' + ('dentro da regra das capas' if ok_all else 'ajustar'))
 
 # ---------------------------------------------------------------- prévia
@@ -130,11 +136,27 @@ cd = ImageDraw.Draw(crop)
 cd.polygon([(985, 35), (985, 95), (1035, 65)], fill=(255, 255, 255))
 crop = crop.resize((540, 720), Image.LANCZOS)
 TW, TH = 356, 475
-tiles = [cover] + [Image.open(os.path.join(os.path.abspath(v), 'output', 'capa.png')).convert('RGB') for v in a.vizinhos
-                   if os.path.exists(os.path.join(os.path.abspath(v), 'output', 'capa.png'))]
+def neighbor(v):
+    """a capa de um vizinho na grade: Reel (9:16, output/capa.png) ou carrossel (4:5, a capa do post)"""
+    o = os.path.join(os.path.abspath(v), 'output')
+    for f in ('01-limao.png', 'capa.png', '01.png'):
+        if os.path.exists(os.path.join(o, f)):
+            return Image.open(os.path.join(o, f)).convert('RGB')
+    return None
+
+
+def crop34(im):
+    w, h = im.size
+    if (w, h) == (1080, 1920):
+        return im.crop(BAND)
+    cw = h * 3 / 4                                   # post 4:5: a grade mostra o centro 3:4
+    return im.crop((round((w - cw) / 2), 0, round((w + cw) / 2), h))
+
+
+tiles = [cover] + [n for n in (neighbor(v) for v in a.vizinhos) if n is not None]
 grid = Image.new('RGB', (3 * TW + 8, TH), (255, 255, 255))
 for i, im in enumerate(tiles[:3]):
-    t = im.crop(BAND).resize((TW, TH), Image.LANCZOS)
+    t = crop34(im).resize((TW, TH), Image.LANCZOS)
     td = ImageDraw.Draw(t); td.polygon([(TW - 34, 12), (TW - 34, 34), (TW - 16, 23)], fill=(255, 255, 255))
     grid.paste(t, (i * (TW + 4), 0))
 gx = 40 + 540 + 40 + 540 + 40
