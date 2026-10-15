@@ -7,7 +7,7 @@ Carrossel estático para o Instagram, para ser salvo e compartilhado por donos d
 **Formato:** 8 slides 1080×1350 (4:5), PNG · margem de 80 px nas laterais (a grade do perfil mostra o centro 3:4 do post, cortando ~34 px de cada lado).
 
 ▶ **Para postar, nesta ordem:** [`output/01-limao.png`](output/01-limao.png) (capa) · [`02.png`](output/02.png) · [`03.png`](output/03.png) · [`04.png`](output/04.png) · [`05.png`](output/05.png) · [`06.png`](output/06.png) · [`07.png`](output/07.png) · [`08.png`](output/08.png)
-**Prévia:** [`output/previa.jpg`](output/previa.jpg) · as duas capas: [`output/previa-capas.jpg`](output/previa-capas.jpg) · reserva: [`output/01.png`](output/01.png) (capa preta) · Revisão: [`output/revisao/`](output/revisao)
+**Legenda:** [`legenda.txt`](legenda.txt) (pronta para copiar e colar; sem CTA de venda, como pede o pilar DICA) · **Prévia:** [`output/previa.jpg`](output/previa.jpg) · as duas capas: [`output/previa-capas.jpg`](output/previa-capas.jpg) · reserva: [`output/01.png`](output/01.png) (capa preta) · Revisão: [`output/revisao/`](output/revisao)
 
 ![prévia](output/previa.jpg)
 
@@ -62,6 +62,7 @@ carrosseis/carrossel-01/
   scripts/
     render.cjs      # Chromium headless -> output/01.png … 08.png
     previa.py       # prévia lado a lado + revisão de margens e da capa na grade
+  legenda.txt       # a legenda do post
   output/
     01.png … 08.png # 01.png = a capa preta, de reserva
     01-limao.png    # a capa do post (verde-limão, texto preto)
