@@ -1,0 +1,329 @@
+{
+ "duration": 60,
+ "cenas": {
+  "dor": 0,
+  "virada": 5.8,
+  "reservas": 11,
+  "checkin": 21,
+  "comandas": 27,
+  "caixa": 35,
+  "checkout": 43,
+  "relatorios": 46.3,
+  "fechamento": 52,
+  "demo": 55.5
+ },
+ "cues": [
+  {
+   "t": 0.9,
+   "type": "bump"
+  },
+  {
+   "t": 1.2,
+   "type": "bump"
+  },
+  {
+   "t": 1.65,
+   "type": "bump"
+  },
+  {
+   "t": 2.36,
+   "type": "bump"
+  },
+  {
+   "t": 2.8,
+   "type": "bump"
+  },
+  {
+   "t": 3.7,
+   "type": "shake"
+  },
+  {
+   "t": 4,
+   "type": "bump"
+  },
+  {
+   "t": 4.4,
+   "type": "bump"
+  },
+  {
+   "t": 5.8,
+   "type": "suck"
+  },
+  {
+   "t": 6.4,
+   "type": "pop"
+  },
+  {
+   "t": 9.6,
+   "type": "rise"
+  },
+  {
+   "t": 10.85,
+   "type": "on"
+  },
+  {
+   "t": 11,
+   "type": "chip"
+  },
+  {
+   "t": 11.85,
+   "type": "lift"
+  },
+  {
+   "t": 12.85,
+   "type": "drop"
+  },
+  {
+   "t": 13.05,
+   "type": "tap"
+  },
+  {
+   "t": 13.25,
+   "type": "swipe"
+  },
+  {
+   "t": 13.7,
+   "type": "lift"
+  },
+  {
+   "t": 14.75,
+   "type": "drop"
+  },
+  {
+   "t": 14.8,
+   "type": "tap"
+  },
+  {
+   "t": 15,
+   "type": "swipe"
+  },
+  {
+   "t": 15.3,
+   "type": "lift"
+  },
+  {
+   "t": 16.05,
+   "type": "drop"
+  },
+  {
+   "t": 16.1,
+   "type": "tap"
+  },
+  {
+   "t": 16.25,
+   "type": "swipe"
+  },
+  {
+   "t": 16.55,
+   "type": "lift"
+  },
+  {
+   "t": 17.2,
+   "type": "lift"
+  },
+  {
+   "t": 20.4,
+   "type": "drop"
+  },
+  {
+   "t": 20.4,
+   "type": "drop"
+  },
+  {
+   "t": 20.75,
+   "type": "flip"
+  },
+  {
+   "t": 21,
+   "type": "chip"
+  },
+  {
+   "t": 21.6,
+   "type": "lift"
+  },
+  {
+   "t": 23.2,
+   "type": "drop"
+  },
+  {
+   "t": 23.4,
+   "type": "tap"
+  },
+  {
+   "t": 23.65,
+   "type": "swipe"
+  },
+  {
+   "t": 24,
+   "type": "lift"
+  },
+  {
+   "t": 26.45,
+   "type": "drop"
+  },
+  {
+   "t": 26.75,
+   "type": "flip"
+  },
+  {
+   "t": 27,
+   "type": "chip"
+  },
+  {
+   "t": 27.55,
+   "type": "lift"
+  },
+  {
+   "t": 29.35,
+   "type": "drop"
+  },
+  {
+   "t": 29.4,
+   "type": "tap"
+  },
+  {
+   "t": 29.6,
+   "type": "swipe"
+  },
+  {
+   "t": 29.8,
+   "type": "lift"
+  },
+  {
+   "t": 31.15,
+   "type": "drop"
+  },
+  {
+   "t": 31.2,
+   "type": "tap"
+  },
+  {
+   "t": 31.35,
+   "type": "swipe"
+  },
+  {
+   "t": 31.55,
+   "type": "lift"
+  },
+  {
+   "t": 34.45,
+   "type": "drop"
+  },
+  {
+   "t": 34.75,
+   "type": "flip"
+  },
+  {
+   "t": 35,
+   "type": "chip"
+  },
+  {
+   "t": 35.55,
+   "type": "lift"
+  },
+  {
+   "t": 37.35,
+   "type": "drop"
+  },
+  {
+   "t": 37.45,
+   "type": "tap"
+  },
+  {
+   "t": 37.7,
+   "type": "swipe"
+  },
+  {
+   "t": 37.95,
+   "type": "lift"
+  },
+  {
+   "t": 39.25,
+   "type": "drop"
+  },
+  {
+   "t": 39.45,
+   "type": "lift"
+  },
+  {
+   "t": 42.45,
+   "type": "drop"
+  },
+  {
+   "t": 42.75,
+   "type": "flip"
+  },
+  {
+   "t": 43,
+   "type": "chip"
+  },
+  {
+   "t": 43.55,
+   "type": "lift"
+  },
+  {
+   "t": 44.95,
+   "type": "drop"
+  },
+  {
+   "t": 45.05,
+   "type": "tap"
+  },
+  {
+   "t": 45.25,
+   "type": "swipe"
+  },
+  {
+   "t": 45.45,
+   "type": "lift"
+  },
+  {
+   "t": 46,
+   "type": "drop"
+  },
+  {
+   "t": 46.1,
+   "type": "flip"
+  },
+  {
+   "t": 46.3,
+   "type": "chip"
+  },
+  {
+   "t": 46.75,
+   "type": "lift"
+  },
+  {
+   "t": 48.55,
+   "type": "drop"
+  },
+  {
+   "t": 48.75,
+   "type": "lift"
+  },
+  {
+   "t": 51.6,
+   "type": "drop"
+  },
+  {
+   "t": 52,
+   "type": "whoosh"
+  },
+  {
+   "t": 52.1,
+   "type": "swipe"
+  },
+  {
+   "t": 55.45,
+   "type": "flip"
+  },
+  {
+   "t": 55.5,
+   "type": "flip"
+  },
+  {
+   "t": 56.35,
+   "type": "pop"
+  }
+ ]
+}

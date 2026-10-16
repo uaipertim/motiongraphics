@@ -1,0 +1,14 @@
+Narração do institucional — as falas geradas
+
+voz: Raquel - For Conversational (GDzHdQOi6jjf8zaXhCYD) · modelo: eleven_multilingual_v2 · ajustes: {"stability": 0.4, "similarity_boost": 0.8, "style": 0.35, "use_speaker_boost": true, "speed": 1.0} · seed 808
+grafia enviada à API: a do roteiro (nenhuma troca)
+
+Duração de cada fala (velocidade 1,0, sem aceleração):
+  cena 1 · a dor                  4.66 s de fala · janela 5.2 s · formato mp3_44100_128 · "Reserva anotada no caderno, consumo no papel e um caixa que nunca bate?"
+  cena 2 · a virada               4.25 s de fala · janela 3.7 s · formato mp3_44100_128 · "Conheça o FAZLO Hospeda: a gestão da sua pousada em um só lugar."
+  cena 3 · reservas               6.12 s de fala · janela 10.0 s · formato mp3_44100_128 · "Veja a ocupação no calendário, lance uma reserva em poucos passos e envie o voucher ao hóspede."
+  cena 4 · check-in               3.66 s de fala · janela 5.3 s · formato mp3_44100_128 · "No check-in, registre o pagamento e gere o recibo na hora."
+  cena 5 · comandas               4.47 s de fala · janela 7.0 s · formato mp3_44100_128 · "Durante a estadia, tudo o que o hóspede consome vai para a conta dele."
+  cena 6 · caixa                  4.89 s de fala · janela 7.2 s · formato mp3_44100_128 · "Cada recebimento entra no caixa, que você abre e fecha sabendo exatamente quanto entrou."
+  cena 7 · check-out e relatórios 5.49 s de fala · janela 8.1 s · formato mp3_44100_128 · "No check-out, tudo fecha com recibo. <break time="0.3s" /> E os relatórios mostram como a pousada está indo."
+  cena 8 · fechamento             4.64 s de fala · janela 6.4 s · formato mp3_44100_128 · "FAZLO Hospeda. <break time="0.3s" /> No celular ou no computador. <break time="0.25s" /> Teste agora na demonstração."
