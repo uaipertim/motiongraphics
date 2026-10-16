@@ -354,6 +354,7 @@
   }
   // a pilha sobe devagar (50 px, em velocidade constante) do primeiro card até a saída: a cena nunca fica parada
   const DRIFT = 50;
+  const VDRIFT = 18;
   const groupDrift = (t) => -DRIFT * p(t, T.cards[0], T.exit);
   const arrive = (j, t) => E.outBack(p(t, T.cards[j], T.cards[j] + 0.45), 1.3);
   function pileJolt(t) {
@@ -426,8 +427,9 @@
     const { virada, vb, fin, fRows } = L;
     const up = E.inOutCubic(p(t, T.fecho, T.fecho + 0.5));
     const vTop = lerp(fin.vTop0, fin.vTop, up);
-    const drift = 1 + 0.025 * E.inOutSine(p(t, T.virada + 0.3, DURATION));
-    ctx.save(); ctx.translate(CX, 960); ctx.scale(drift, drift); ctx.translate(-CX, -960);
+    // a cena final nunca fica parada: aproximação lenta (2,5%) e uma subida de 18 px, em velocidade constante
+    const drift = 1 + 0.025 * E.inOutSine(p(t, T.virada + 0.3, DURATION)), rise = -VDRIFT * p(t, T.virada + 0.3, DURATION);
+    ctx.save(); ctx.translate(CX, 960 + rise); ctx.scale(drift, drift); ctx.translate(-CX, -960);
     virada.rows.forEach((row, i) => riseRow(ctx, row, CX, vTop + vb.base[i], virada.size, p(t, T.virada + i * 0.08, T.virada + i * 0.08 + 0.36)));
     if (t >= T.fecho) {
       const s = L.fs, ls = -0.02 * s;
@@ -556,7 +558,7 @@
     out.push({ el: 'carimbo', t: T.stamp + 0.5, ...G(T.stamp + 0.5, STAMP.cx - ex, STAMP.cx + ex, L.CY + 10 - ey, L.CY + 10 + ey) });
     // virada, fecho e logo com o leve avanço da cena (escala em torno de (525, 960)) do instante
     const dr = (t) => 1 + 0.025 * E.inOutSine(p(t, T.virada + 0.3, DURATION));
-    const Dz = (t, x0, x1, y0, y1) => { const g = dr(t); return { t, x0: CX + (x0 - CX) * g, x1: CX + (x1 - CX) * g, y0: 960 + (y0 - 960) * g, y1: 960 + (y1 - 960) * g }; };
+    const Dz = (t, x0, x1, y0, y1) => { const g = dr(t), r = -VDRIFT * p(t, T.virada + 0.3, DURATION); return { t, x0: CX + (x0 - CX) * g, x1: CX + (x1 - CX) * g, y0: 960 + r + (y0 - 960) * g, y1: 960 + r + (y1 - 960) * g }; };
     const tv = T.fecho - 0.1, tf = DURATION - 0.35, vs = L.virada.size;
     L.virada.rows.forEach((r, i) => {
       const w = rowW100(m, r) * vs / 100;

@@ -16,4 +16,4 @@ Evento a evento (instante do evento visual, desvio medido):
            4.798 s  ping      imagem: movimento   1.6 (antes  0.1), pico a +6 quadro(s)
            5.766 s  ping      imagem: movimento   2.1 (antes  0.1), pico a +4 quadro(s)
            7.100 s  stamp     imagem: movimento   3.9 (antes  0.0), pico a +3 quadro(s)
-          12.238 s  logo      imagem: movimento   4.9 (antes  0.1), pico a +6 quadro(s)
+          12.238 s  logo      imagem: movimento   5.0 (antes  0.1), pico a +6 quadro(s)
