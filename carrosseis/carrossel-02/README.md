@@ -30,6 +30,13 @@ Carrossel estático para o Instagram, para ser salvo e copiado por donos de pous
 
 Os títulos dos slides 3 a 7 vêm do roteiro em caixa alta ("1 · QUANDO TEM VAGA"). O número vai para a trilha de passos, "QUANDO"/"PARA" fica em branco e a situação em limão. Os cinco usam o mesmo corpo (88 px), para a sequência ter o mesmo peso ao arrastar.
 
+## Ajustes da aprovação (17/10)
+
+1. **Pontuação colada nos campos** (slides 3, 6 e 7): "`[nome]`!", "`[datas]`:", "`[chalé]`,", "`[X]`%", "`[chave]`." e "`[condição]`.", sem espaço. Quando a pontuação vem logo depois do campo, a caixa do campo fecha 3 px depois do fim desenhado do "]" (sem a folga lateral da fonte mono) e a pontuação entra em seguida. Campos sem pontuação (slides 4 e 5) não mudaram: os PNGs deles saem idênticos, pixel a pixel.
+2. **Slide 2, o apoio:** quebra definida em duas linhas equilibradas, "Resposta pronta é resposta rápida." / "E rápida fecha mais.", sem "mais." sozinho.
+
+Re-renderizados só os slides 02, 03, 06 e 07.
+
 ## Do modelo do Carrossel 01
 
 - **O mesmo código:** fundo, trilha de passos, título que se ajusta à caixa, apoio, chip, "ARRASTA →", bolha do "VOCÊ" e logo vêm do `slides.js` do Carrossel 01.

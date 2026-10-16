@@ -1,7 +1,7 @@
 CARROSSEL 02 — margens (80 px nas laterais)
 
 OK     slide 01 (capa limão): conteúdo em x 81–999, y 370–1260
-OK     slide 02: conteúdo em x 81–999, y 164–1243
+OK     slide 02: conteúdo em x 81–999, y 164–1251
 OK     slide 03: conteúdo em x 80–999, y 94–1251
 OK     slide 04: conteúdo em x 81–999, y 94–1251
 OK     slide 05: conteúdo em x 80–999, y 94–1243

@@ -75,10 +75,12 @@
     drawLines(ctx, wr, font, o.x || M, base, size * lh, o.align);
     return { size, top, bottom: base + (wr.lines.length - 1) * size * lh + size * 0.24, lines: wr.lines.length };
   }
+  // text: uma frase (quebra automática) ou uma lista de linhas (quebra definida, para não deixar palavra sozinha)
   function support(ctx, text, o = {}) {
     const size = o.size || SUPPORT, lh = size * 1.32;
     const font = { fam: DISPLAY, size, weight: 600, ls: -0.005 * size };
-    const wr = wrap(ctx, [{ t: text, c: o.color || C.gray }], font, o.maxW || CW);
+    const segs = (Array.isArray(text) ? text : [text]).map((t, i) => ({ t, c: o.color || C.gray, br: i > 0 }));
+    const wr = wrap(ctx, segs, font, o.maxW || CW);
     const first = (o.bottom || L.supportBottom) - (wr.lines.length - 1) * lh - size * 0.22;
     drawLines(ctx, wr, font, o.x || M, first, lh, o.align);
     return { top: first - size * 0.75 };
@@ -142,10 +144,17 @@
     const sp = tw(ctx, ' ', font.fam, size, 700, font.ls);
     const NB = '\u00A0';                                  // [campos com espaços] não quebram no meio
     const words = text.replace(/\[[^\]]+\]/g, (m) => m.replace(/ /g, NB)).split(' ').filter(Boolean).map((wd) => {
-      const runs = wd.replace(new RegExp(NB, 'g'), ' ').split(/(\[[^\]]+\])/).filter(Boolean).map((r) => {
+      const parts = wd.replace(new RegExp(NB, 'g'), ' ').split(/(\[[^\]]+\])/).filter(Boolean);
+      const runs = parts.map((r, i) => {
         const ph = /^\[.*\]$/.test(r);
-        const w = ph ? tw(ctx, r, MONO, phSize, 800) + 16 : tw(ctx, r, font.fam, size, 700, font.ls);
-        return { t: r, ph, w };
+        if (!ph) return { t: r, ph, w: tw(ctx, r, font.fam, size, 700, font.ls) };
+        // pontuação colada no campo ("[nome]!", "[X]%", "[chave]."): a caixa do campo fecha 3 px depois do
+        // fim desenhado do "]" (sem a folga lateral da fonte mono) e a pontuação vem logo em seguida
+        const glued = i + 1 < parts.length;
+        setFont(ctx, MONO, phSize, 800);
+        const ink = ctx.measureText(r).actualBoundingBoxRight;
+        const w = glued ? 8 + ink + 3 : tw(ctx, r, MONO, phSize, 800) + 16;
+        return { t: r, ph, w, box: w };
       });
       return { runs, w: runs.reduce((a, r) => a + r.w, 0) };
     });
@@ -174,7 +183,7 @@
       ln.words.forEach((w) => {
         w.runs.forEach((r) => {
           if (r.ph) {
-            rr(ctx, x, y - phSize * 0.98, r.w, phSize * 1.32, 10); ctx.fillStyle = 'rgba(10,10,10,0.13)'; ctx.fill();
+            rr(ctx, x, y - phSize * 0.98, r.box, phSize * 1.32, 10); ctx.fillStyle = 'rgba(10,10,10,0.13)'; ctx.fill();
             setFont(ctx, MONO, phSize, 800); ctx.fillStyle = C.ink; ctx.fillText(r.t, x + 8, y - 1);
           } else {
             setFont(ctx, font.fam, size, 700, font.ls); ctx.fillStyle = C.ink; ctx.fillText(r.t, x, y);
@@ -252,7 +261,7 @@
     },
     // 2 · o problema: a mesma pergunta, dezenas de vezes
     2(ctx) {
-      const sp = support(ctx, 'Resposta pronta é resposta rápida. E rápida fecha mais.');
+      const sp = support(ctx, ['Resposta pronta é resposta rápida.', 'E rápida fecha mais.']);
       const t = title(ctx, [{ t: 'Toda pousada recebe a mesma pergunta.', c: W_ }, { t: 'Dezenas de vezes por semana.', c: Li, br: true }], L.titleTop0, { max: 96 });
       // uma parede de cards "tem vaga?" (o desenho dos cards da série: #161616, borda, ponto limão), 4 fileiras de 3,
       // mais apagados no fundo e acendendo para a frente; o último, inteiro e com borda limão: a pergunta de agora
