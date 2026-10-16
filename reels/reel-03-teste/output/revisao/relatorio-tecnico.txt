@@ -1,0 +1,31 @@
+REEL 03-TESTE (Trial Reel, 12 s) — revisão técnica
+output/fazlo-hospeda-reel-03-teste.mp4
+
+OK     vídeo h264 High yuv420p
+OK     resolução 1080x1920 (9:16)
+OK     60 fps, 720 quadros
+OK     duração do vídeo 12.000 s (alvo 12,0 s)
+OK     áudio aac 48000 Hz, 2 canais, 270 kb/s
+OK     vídeo e áudio com a mesma duração (Δ 0 ms)
+OK     arquivo 8.6 MB, 5.7 Mb/s
+OK     loudness integrado -14.1 LUFS (alvo -14)
+OK     pico real -3.6 dBTP (limite -1)
+       faixa de loudness (LRA) 4.3 LU
+OK     sem trechos pretos ≥ 0,1 s antes do fade final (11,7–12 s)
+OK     sem imagem congelada ≥ 0,75 s
+OK     o 1º quadro já tem imagem (luminância média 38.0), sem abertura preta
+        0.0– 4.5 s  ←  original  0.0– 4.5 s  (gancho + o cofre abre)
+        4.5– 6.0 s  ←  original  8.0– 9.5 s  (o fluxo · 1ª cápsula)
+        6.0– 8.0 s  ←  original 11.5–13.5 s  (o fluxo · 3ª cápsula e totais)
+        8.0–10.0 s  ←  original 18.5–20.5 s  (a conferência)
+       10.0–12.0 s  ←  original 26.0–28.0 s  (fechamento)
+OK     4 cortes, todos em múltiplos de 0,5 s (120 BPM) nos dois relógios; crossfade de 30 ms no som
+OK     sem o título "CONTROLE DE CAIXA" do drop (original 4,5–6 s fora do corte); "CONTROLE DE CAIXA" e "Acesse fazlohospeda.com.br" tirados da assinatura (src/teste.js)
+OK     título do gancho (103 px) fora da coluna de botões e da faixa de baixo: "Fechou o mês" x 215–865, y 397–477; "e o caixa não bateu?" x 67–1013, y 506–586
+
+Sincronização (detalhes em sincronia.txt):
+OK     áudio do MP4 = trilha, sem deslocamento (+0.0, +0.0, +0.0 ms)
+OK     18 efeitos-chave com ataque no instante do evento (desvio médio 4.9 ms, máximo 6.8 ms; 1 quadro = 16,7 ms)
+OK     a imagem reage nos 5 golpes principais (pico de movimento a ≤ 8 quadros do som)
+
+RESULTADO: aprovado

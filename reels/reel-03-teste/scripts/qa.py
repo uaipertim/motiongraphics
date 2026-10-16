@@ -1,0 +1,205 @@
+#!/usr/bin/env python3
+"""
+Revisão técnica e de sincronização do Reel 03-teste (roda depois do render).
+
+    python3 scripts/qa.py   ->  output/revisao/relatorio-tecnico.txt
+                                output/revisao/sincronia.txt
+                                output/revisao/zonas-seguras.jpg
+
+Técnica: formato (1080x1920, 60 fps, H.264 yuv420p, AAC 48 kHz estéreo), duração de 12,0 s (vídeo e
+áudio), loudness (−14 LUFS ±1), pico real (≤ −1 dBTP), quadros pretos (fora o fade final) e congelados.
+
+Cortes: todos em múltiplos de 0,5 s (um tempo a 120 BPM) no vídeo novo e no original, com crossfade
+de 30 ms no som; nenhum nome de funcionalidade nem CTA (os textos tirados não aparecem).
+
+Áreas seguras: o título do gancho fora da coluna de botões (x ≥ 950, y 1060–1560) e da faixa de baixo
+(y ≥ 1560); folha com as zonas da interface do Reels marcadas.
+
+Sincronização, em três camadas:
+  1. o áudio do MP4 é o mesmo de audio/trilha.wav, sem deslocamento (correlação cruzada);
+  2. o ataque de cada efeito-chave, medido no áudio final, cai no instante do evento visual
+     que o gerou (audio/cues.json, remontado para o tempo novo por scripts/trilha.py);
+  3. a imagem muda de fato nesses instantes (pico de diferença entre quadros).
+"""
+import json
+import os
+import re
+import subprocess
+import tempfile
+import numpy as np
+from PIL import Image, ImageDraw, ImageFont, ImageStat
+from scipy.io import wavfile
+from scipy.signal import correlate
+
+ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+VIDEO = os.path.join(ROOT, 'output', 'fazlo-hospeda-reel-03-teste.mp4')
+MAPA = json.load(open(os.path.join(ROOT, 'src', 'mapa.json')))
+TRACK = os.path.join(ROOT, 'audio', 'trilha.wav')
+CUES = json.load(open(os.path.join(ROOT, 'audio', 'cues.json')))
+OUT = os.path.join(ROOT, 'output', 'revisao')
+FONT = os.path.join(ROOT, 'src', 'fonts', 'JetBrainsMonoNL-Bold.ttf')
+os.makedirs(OUT, exist_ok=True)
+
+UI_ZONES = [(0, 0, 1080, 220), (0, 1560, 1080, 1920), (950, 1060, 1080, 1560)]
+CHECK_T = [0.0, 1.2, 2.4, 3.5, 4.3, 5.4, 6.5, 7.6, 8.6, 9.6, 10.6, 11.5]
+# golpes que se destacam na mixagem (as palhetas e os tiques dividem a grade com o chimbal;
+# a posição deles vem do mesmo cues.json)
+KEY = ('unlock', 'drop', 'arrive', 'key', 'zero', 'logo')
+
+report, fails = [], []
+
+
+def ok(cond, msg, rep=report):
+    rep.append(('OK   ' if cond else 'FALHA') + '  ' + msg)
+    if not cond:
+        fails.append(msg)
+
+
+def run(cmd):
+    return subprocess.run(cmd, capture_output=True, text=True)
+
+
+# ---------------------------------------------------------------- formato
+info = json.loads(run(['ffprobe', '-v', 'error', '-show_streams', '-show_format', '-of', 'json', VIDEO]).stdout)
+v = next(s for s in info['streams'] if s['codec_type'] == 'video')
+a = next(s for s in info['streams'] if s['codec_type'] == 'audio')
+fps = eval(v['r_frame_rate'])
+vd, ad = float(v['duration']), float(a['duration'])
+size_mb = int(info['format']['size']) / 1e6
+ok(v['codec_name'] == 'h264' and v['pix_fmt'] == 'yuv420p', f"vídeo {v['codec_name']} {v.get('profile', '')} {v['pix_fmt']}")
+ok((int(v['width']), int(v['height'])) == (1080, 1920), f"resolução {v['width']}x{v['height']} (9:16)")
+ok(abs(fps - 60) < 0.01, f'{fps:.0f} fps, {v.get("nb_frames", "?")} quadros')
+ok(abs(vd - 12.0) <= 0.02, f'duração do vídeo {vd:.3f} s (alvo 12,0 s)')
+ok(a['codec_name'] == 'aac' and int(a['sample_rate']) == 48000 and int(a['channels']) == 2, f"áudio {a['codec_name']} {a['sample_rate']} Hz, {a['channels']} canais, {int(a.get('bit_rate', 0)) // 1000} kb/s")
+ok(abs(vd - ad) < 0.05, f'vídeo e áudio com a mesma duração (Δ {abs(vd - ad) * 1000:.0f} ms)')
+ok(size_mb < 100, f'arquivo {size_mb:.1f} MB, {int(info["format"]["bit_rate"]) / 1e6:.1f} Mb/s')
+
+e = run(['ffmpeg', '-hide_banner', '-nostats', '-i', VIDEO, '-map', '0:a', '-af', 'ebur128=peak=true', '-f', 'null', '-']).stderr
+summ = e[e.rindex('Summary:'):]
+I = float(re.search(r'I:\s+(-?[\d.]+) LUFS', summ).group(1))
+TP = float(re.search(r'Peak:\s+(-?[\d.]+) dBFS', summ).group(1))
+LRA = float(re.search(r'LRA:\s+(-?[\d.]+) LU', summ).group(1))
+ok(-15 <= I <= -13, f'loudness integrado {I:.1f} LUFS (alvo -14)')
+ok(TP <= -1.0, f'pico real {TP:.1f} dBTP (limite -1)')
+report.append(f'       faixa de loudness (LRA) {LRA:.1f} LU')
+
+bd = run(['ffmpeg', '-hide_banner', '-nostats', '-i', VIDEO, '-vf', 'blackdetect=d=0.1:pix_th=0.06', '-an', '-f', 'null', '-']).stderr
+blacks = [(s, e) for s, e in re.findall(r'black_start:([\d.]+) black_end:([\d.]+)', bd) if float(s) < MAPA['fade'][0] - 0.05]
+ok(not blacks, 'sem trechos pretos ≥ 0,1 s antes do fade final (11,7–12 s)' + ('' if not blacks else ': ' + ', '.join(f'{float(s):.2f}–{float(t):.2f}s' for s, t in blacks)))
+fz = run(['ffmpeg', '-hide_banner', '-nostats', '-i', VIDEO, '-vf', 'freezedetect=n=-60dB:d=0.75', '-an', '-f', 'null', '-']).stderr
+freezes = re.findall(r'freeze_start: ([\d.]+)', fz)
+ok(not freezes, 'sem imagem congelada ≥ 0,75 s' + ('' if not freezes else ': a partir de ' + ', '.join(f'{float(s):.2f}s' for s in freezes)))
+
+# ---------------------------------------------------------------- sincronização
+sync, sync_det = [], []
+with tempfile.TemporaryDirectory() as tmp:
+    m = os.path.join(tmp, 'm.wav')
+    run(['ffmpeg', '-y', '-loglevel', 'error', '-i', VIDEO, '-vn', '-ac', '1', '-ar', '48000', m])
+    x = wavfile.read(m)[1].astype(float)
+    PAD = 4800                                      # 0,1 s de silêncio antes: o detector precisa de um "antes"
+    y = wavfile.read(TRACK)[1].astype(float).mean(axis=1)
+    # 1) o MP4 carrega a trilha sem deslocamento
+    lags = []
+    for t0 in (1.0, 5.0, 9.0):
+        i = int(t0 * 48000)
+        a_, b_ = x[max(0, i - 2400): i + 48000], y[max(0, i - 2400): i + 48000]
+        c = correlate(a_, b_, mode='full', method='fft')
+        lags.append((c.argmax() - (len(b_) - 1)) / 48.0)
+    ok(max(abs(l) for l in lags) <= 2, 'áudio do MP4 = trilha, sem deslocamento (' + ', '.join(f'{l:+.1f}' for l in lags) + ' ms)', sync)
+
+    # 2) ataque medido no áudio x instante do evento visual
+    hop = 120                                       # 2,5 ms
+    frames = np.lib.stride_tricks.sliding_window_view(np.concatenate([np.zeros(PAD), x]), 1024)[::hop]
+    spec = np.abs(np.fft.rfft(frames * np.hanning(1024), axis=1))
+    flux = np.maximum(0, np.diff(np.log1p(spec), axis=0)).sum(axis=1)
+    ft = ((np.arange(len(flux)) + 1) * hop - PAD) / 48000 + 1024 / 48000 / 2
+    offs = []
+    for cu in CUES['cues']:
+        if cu['type'] not in KEY:
+            continue
+        w = (ft > cu['t'] - 0.05) & (ft < cu['t'] + 0.05)
+        k = np.argmax(np.where(w, flux, -1))
+        offs.append((cu['type'], cu['t'], (ft[k] - cu['t']) * 1000))
+    worst = max(abs(o) for _, _, o in offs)
+    ok(worst <= 17, f'{len(offs)} efeitos-chave com ataque no instante do evento (desvio médio {np.mean([abs(o) for *_, o in offs]):.1f} ms, máximo {worst:.1f} ms; 1 quadro = 16,7 ms)', sync)
+    for ty, t0, o in offs:
+        sync_det.append(f'         {t0:7.3f} s  {ty:8s}  áudio {o:+6.1f} ms')
+
+    # 3) a imagem muda nesses instantes: pico de diferença entre quadros
+    raw = subprocess.run(['ffmpeg', '-loglevel', 'error', '-i', VIDEO, '-vf', 'scale=135:240,format=gray', '-f', 'rawvideo', '-'], capture_output=True).stdout
+    vf = np.frombuffer(raw, np.uint8).reshape(-1, 240, 135).astype(float)
+    diff = np.abs(np.diff(vf, axis=0)).mean(axis=(1, 2))          # diff[i] = quadro i+1 - quadro i
+    vis = []
+    # a logo surge no centro: mede-se o miolo do quadro (a câmera acabou de mergulhar)
+    dc = np.abs(np.diff(vf[:, 72:168, 40:95], axis=0)).mean(axis=(1, 2))
+    for cu in CUES['cues']:
+        if cu['type'] not in ('drop', 'arrive', 'zero', 'logo'):
+            continue
+        i0 = int(round(cu['t'] * 60))
+        dd = dc if cu['type'] == 'logo' else diff
+        win = dd[max(0, i0 - 4): i0 + 8]
+        base = np.median(dd[max(0, i0 - 60): max(1, i0 - 10)]) if cu['type'] != 'logo' else np.median(dd[i0 + 40: i0 + 100])
+        vis.append((cu['type'], cu['t'], float(win.max()), float(base), (np.argmax(win) + max(0, i0 - 4) + 1 - i0)))
+    good = [r for r in vis if r[2] > 1.5 * r[3] + 0.5]
+    ok(len(good) == len(vis), f'a imagem reage nos {len(vis)} golpes principais (pico de movimento a ≤ 8 quadros do som)', sync)
+    for ty, t0, pk, base, df in vis:
+        sync_det.append(f'         {t0:7.3f} s  {ty:8s}  imagem: movimento {pk:5.1f} (antes {base:4.1f}), pico a {df:+d} quadro(s)')
+
+# ---------------------------------------------------------------- zonas seguras + capa
+font = ImageFont.truetype(FONT, 26)
+
+
+def grab(t, path):
+    subprocess.run(['ffmpeg', '-y', '-loglevel', 'error', '-ss', str(t), '-i', VIDEO, '-frames:v', '1', path], check=True)
+    return Image.open(path).convert('RGB')
+
+
+with tempfile.TemporaryDirectory() as tmp:
+    lum = ImageStat.Stat(grab(0, os.path.join(tmp, 'f0.png')).convert('L')).mean[0]
+    ok(lum > 3, f'o 1º quadro já tem imagem (luminância média {lum:.1f}), sem abertura preta')
+    TW, TH, COLS = 360, 640, 6
+    rows = (len(CHECK_T) + COLS - 1) // COLS
+    sheet = Image.new('RGB', (COLS * (TW + 10) + 10, rows * (TH + 44) + 10), (40, 40, 40))
+    dr = ImageDraw.Draw(sheet)
+    for i, t in enumerate(CHECK_T):
+        im = grab(t, os.path.join(tmp, f'{i}.png')).convert('RGBA')
+        ov = Image.new('RGBA', im.size, (0, 0, 0, 0))
+        d = ImageDraw.Draw(ov)
+        for z in UI_ZONES:
+            d.rectangle(z, fill=(255, 40, 80, 70), outline=(255, 40, 80, 255), width=4)
+        im = Image.alpha_composite(im, ov).convert('RGB').resize((TW, TH), Image.LANCZOS)
+        x0, y0 = 10 + (i % COLS) * (TW + 10), 10 + (i // COLS) * (TH + 44)
+        sheet.paste(im, (x0, y0))
+        dr.text((x0, y0 + TH + 8), f'{t:05.2f}s', font=font, fill=(175, 250, 39))
+    sheet.save(os.path.join(OUT, 'zonas-seguras.jpg'), quality=88)
+
+# ---------------------------------------------------------------- cortes, textos e o título do gancho
+cortes = []
+for tr in MAPA['trechos']:
+    a_, b_, o_ = tr['novo'][0], tr['novo'][1], tr['original']
+    cortes.append(all(abs(v * 2 - round(v * 2)) < 1e-9 for v in (a_, b_, o_)))
+    report.append(f"       {a_:4.1f}–{b_:4.1f} s  ←  original {o_:4.1f}–{o_ + b_ - a_:4.1f} s  ({tr['nome']})")
+ok(all(cortes), f"{len(MAPA['trechos']) - 1} cortes, todos em múltiplos de 0,5 s (120 BPM) nos dois relógios; crossfade de {MAPA['crossfade'] * 1000:.0f} ms no som")
+# os trechos do original que ficaram de fora: o drop "CONTROLE DE CAIXA" (4,5–6 s) e o CTA (27,5 s em diante)
+usados = [(tr['original'], tr['original'] + tr['novo'][1] - tr['novo'][0]) for tr in MAPA['trechos']]
+sem_drop = all(b <= 4.5 or a >= 6.0 for a, b in usados)
+ok(sem_drop, 'sem o título "CONTROLE DE CAIXA" do drop (original 4,5–6 s fora do corte); "CONTROLE DE CAIXA" e "Acesse fazlohospeda.com.br" tirados da assinatura (src/teste.js)')
+# o título do gancho: Inter Display 900 no maior corpo em que "e o caixa não bateu?" cabe em 950 px (até 178 px),
+# centrado em x = 540, bases em y = 492 − 0,19·s e + 1,06·s (src/teste.js)
+fi = ImageFont.truetype(os.path.join(ROOT, 'src', 'fonts', 'InterDisplay-Black.otf'), 178)
+L2 = 'e o caixa não bateu?'
+sz = min(178, int(178 * 950 / (fi.getlength(L2) - 0.03 * 178 * (len(L2) - 1))))
+fs_ = ImageFont.truetype(os.path.join(ROOT, 'src', 'fonts', 'InterDisplay-Black.otf'), sz)
+b1 = round(492 - 0.19 * sz); b2 = b1 + round(sz * 1.06)
+caixas = []
+for s_, b in (('Fechou o mês', b1), (L2, b2)):
+    w = fs_.getlength(s_) - 0.03 * sz * (len(s_) - 1)
+    caixas.append((s_, 540 - w / 2, 540 + w / 2, b - 0.727 * sz, b + 0.05 * sz))
+fora = all(not (x1 > 950 and y1 > 1060 and y0 < 1560) and y1 < 1560 for _, x0, x1, y0, y1 in caixas)
+ok(fora, f'título do gancho ({sz} px) fora da coluna de botões e da faixa de baixo: ' + '; '.join(f'"{s_}" x {x0:.0f}–{x1:.0f}, y {y0:.0f}–{y1:.0f}' for s_, x0, x1, y0, y1 in caixas))
+
+res = 'RESULTADO: ' + ('aprovado' if not fails else f'{len(fails)} falha(s)')
+txt = ['REEL 03-TESTE (Trial Reel, 12 s) — revisão técnica', os.path.relpath(VIDEO, ROOT), ''] + report + ['', 'Sincronização (detalhes em sincronia.txt):'] + sync + ['', res]
+open(os.path.join(OUT, 'relatorio-tecnico.txt'), 'w').write('\n'.join(txt) + '\n')
+open(os.path.join(OUT, 'sincronia.txt'), 'w').write('\n'.join(['REEL 03-TESTE — sincronização som x imagem', ''] + sync + ['', 'Evento a evento (instante do evento visual, desvio medido):'] + sync_det) + '\n')
+print('\n'.join(txt))

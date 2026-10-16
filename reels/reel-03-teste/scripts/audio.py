@@ -18,13 +18,18 @@ este script coloca o som exatamente nesses instantes.
 import json
 import os
 import subprocess
+import sys
 import numpy as np
 from scipy.ndimage import minimum_filter1d, uniform_filter1d
 from scipy.signal import butter, sosfilt, fftconvolve, resample_poly
 from scipy.io import wavfile
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-DATA = json.load(open(os.path.join(ROOT, 'audio', 'cues.json')))
+# Reel 03-teste: os cues e a saída podem vir por argumento (scripts/trilha.py chama com os cues do original
+# sem os sons do que o teste tirou); sem argumentos, é exatamente o script do Reel 03.
+CUES_IN = sys.argv[1] if len(sys.argv) > 1 else os.path.join(ROOT, 'audio', 'cues.json')
+OUT_WAV = sys.argv[2] if len(sys.argv) > 2 else os.path.join(ROOT, 'audio', 'trilha.wav')
+DATA = json.load(open(CUES_IN))
 BPM = DATA['bpm']
 BT = 60.0 / BPM
 BAR = 4 * BT
@@ -672,7 +677,7 @@ body = np.percentile(np.abs(mix), 99.7)
 mix = np.tanh(mix / body * 0.85) * 0.8
 
 raw = os.path.join(ROOT, 'audio', '.trilha-raw.wav')
-out = os.path.join(ROOT, 'audio', 'trilha.wav')
+out = OUT_WAV
 wavfile.write(raw, SR, (mix.T * 32767).astype(np.int16))
 meas = subprocess.run(['ffmpeg', '-hide_banner', '-nostats', '-i', raw, '-af', 'loudnorm=I=-14:TP=-1.5:LRA=11:print_format=json', '-f', 'null', '-'],
                       capture_output=True, text=True).stderr

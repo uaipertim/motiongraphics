@@ -1,0 +1,587 @@
+{
+ "bpm": 120,
+ "duration": 12.0,
+ "mapa": [
+  {
+   "nome": "gancho + o cofre abre",
+   "novo": [
+    0.0,
+    4.5
+   ],
+   "original": 0.0
+  },
+  {
+   "nome": "o fluxo · 1ª cápsula",
+   "novo": [
+    4.5,
+    6.0
+   ],
+   "original": 8.0
+  },
+  {
+   "nome": "o fluxo · 3ª cápsula e totais",
+   "novo": [
+    6.0,
+    8.0
+   ],
+   "original": 11.5
+  },
+  {
+   "nome": "a conferência",
+   "novo": [
+    8.0,
+    10.0
+   ],
+   "original": 18.5
+  },
+  {
+   "nome": "fechamento",
+   "novo": [
+    10.0,
+    12.0
+   ],
+   "original": 26.0
+  }
+ ],
+ "cortes": [
+  4.5,
+  6.0,
+  8.0,
+  10.0
+ ],
+ "cues": [
+  {
+   "t": 0.0,
+   "type": "tick",
+   "k": 0,
+   "original": 0,
+   "trecho": "gancho + o cofre abre"
+  },
+  {
+   "t": 0.125,
+   "type": "tick",
+   "k": 1,
+   "original": 0.125,
+   "trecho": "gancho + o cofre abre"
+  },
+  {
+   "t": 0.25,
+   "type": "tick",
+   "k": 2,
+   "original": 0.25,
+   "trecho": "gancho + o cofre abre"
+  },
+  {
+   "t": 0.375,
+   "type": "tick",
+   "k": 3,
+   "original": 0.375,
+   "trecho": "gancho + o cofre abre"
+  },
+  {
+   "t": 0.5,
+   "type": "tick",
+   "k": 4,
+   "original": 0.5,
+   "trecho": "gancho + o cofre abre"
+  },
+  {
+   "t": 0.625,
+   "type": "tick",
+   "k": 5,
+   "original": 0.625,
+   "trecho": "gancho + o cofre abre"
+  },
+  {
+   "t": 0.75,
+   "type": "tick",
+   "k": 6,
+   "original": 0.75,
+   "trecho": "gancho + o cofre abre"
+  },
+  {
+   "t": 0.875,
+   "type": "tick",
+   "k": 7,
+   "original": 0.875,
+   "trecho": "gancho + o cofre abre"
+  },
+  {
+   "t": 1.0,
+   "type": "tick",
+   "k": 8,
+   "original": 1,
+   "trecho": "gancho + o cofre abre"
+  },
+  {
+   "t": 1.125,
+   "type": "tick",
+   "k": 9,
+   "original": 1.125,
+   "trecho": "gancho + o cofre abre"
+  },
+  {
+   "t": 1.25,
+   "type": "tick",
+   "k": 10,
+   "original": 1.25,
+   "trecho": "gancho + o cofre abre"
+  },
+  {
+   "t": 1.375,
+   "type": "tick",
+   "k": 11,
+   "original": 1.375,
+   "trecho": "gancho + o cofre abre"
+  },
+  {
+   "t": 1.5,
+   "type": "tick",
+   "k": 12,
+   "original": 1.5,
+   "trecho": "gancho + o cofre abre"
+  },
+  {
+   "t": 1.625,
+   "type": "tick",
+   "k": 13,
+   "original": 1.625,
+   "trecho": "gancho + o cofre abre"
+  },
+  {
+   "t": 1.75,
+   "type": "tick",
+   "k": 14,
+   "original": 1.75,
+   "trecho": "gancho + o cofre abre"
+  },
+  {
+   "t": 1.875,
+   "type": "tick",
+   "k": 15,
+   "original": 1.875,
+   "trecho": "gancho + o cofre abre"
+  },
+  {
+   "t": 2.0,
+   "type": "tick",
+   "k": 16,
+   "original": 2,
+   "trecho": "gancho + o cofre abre"
+  },
+  {
+   "t": 2.125,
+   "type": "tick",
+   "k": 17,
+   "original": 2.125,
+   "trecho": "gancho + o cofre abre"
+  },
+  {
+   "t": 2.25,
+   "type": "tick",
+   "k": 18,
+   "original": 2.25,
+   "trecho": "gancho + o cofre abre"
+  },
+  {
+   "t": 2.35,
+   "type": "wheel",
+   "d": 1.1,
+   "original": 2.35,
+   "trecho": "gancho + o cofre abre"
+  },
+  {
+   "t": 2.375,
+   "type": "tick",
+   "k": 19,
+   "original": 2.375,
+   "trecho": "gancho + o cofre abre"
+  },
+  {
+   "t": 2.5,
+   "type": "unlock",
+   "k": 0,
+   "pan": 0.6467156727579007,
+   "original": 2.5,
+   "trecho": "gancho + o cofre abre"
+  },
+  {
+   "t": 2.625,
+   "type": "unlock",
+   "k": 1,
+   "pan": 0.26787840265556284,
+   "original": 2.625,
+   "trecho": "gancho + o cofre abre"
+  },
+  {
+   "t": 2.75,
+   "type": "unlock",
+   "k": 2,
+   "pan": -0.2678784026555628,
+   "original": 2.75,
+   "trecho": "gancho + o cofre abre"
+  },
+  {
+   "t": 2.875,
+   "type": "unlock",
+   "k": 3,
+   "pan": -0.6467156727579007,
+   "original": 2.875,
+   "trecho": "gancho + o cofre abre"
+  },
+  {
+   "t": 3.0,
+   "type": "unlock",
+   "k": 4,
+   "pan": -0.6467156727579008,
+   "original": 3,
+   "trecho": "gancho + o cofre abre"
+  },
+  {
+   "t": 3.125,
+   "type": "unlock",
+   "k": 5,
+   "pan": -0.26787840265556323,
+   "original": 3.125,
+   "trecho": "gancho + o cofre abre"
+  },
+  {
+   "t": 3.25,
+   "type": "unlock",
+   "k": 6,
+   "pan": 0.267878402655563,
+   "original": 3.25,
+   "trecho": "gancho + o cofre abre"
+  },
+  {
+   "t": 3.375,
+   "type": "unlock",
+   "k": 7,
+   "pan": 0.6467156727579005,
+   "original": 3.375,
+   "trecho": "gancho + o cofre abre"
+  },
+  {
+   "t": 3.5,
+   "type": "crack",
+   "d": 0.45,
+   "original": 3.5,
+   "trecho": "gancho + o cofre abre"
+  },
+  {
+   "t": 4.0,
+   "type": "drop",
+   "original": 4,
+   "trecho": "gancho + o cofre abre"
+  },
+  {
+   "t": 4.65,
+   "type": "rise",
+   "original": 8.15,
+   "trecho": "o fluxo · 1ª cápsula"
+  },
+  {
+   "t": 4.95,
+   "type": "tube",
+   "d": 0.55,
+   "k": 0,
+   "p0": -0.6944444444444444,
+   "original": 8.45,
+   "trecho": "o fluxo · 1ª cápsula"
+  },
+  {
+   "t": 5.5,
+   "type": "arrive",
+   "k": 0,
+   "v": -45,
+   "original": 9,
+   "trecho": "o fluxo · 1ª cápsula"
+  },
+  {
+   "t": 6.5,
+   "type": "arrive",
+   "k": 2,
+   "v": 1440,
+   "original": 12,
+   "trecho": "o fluxo · 3ª cápsula e totais"
+  },
+  {
+   "t": 6.5,
+   "type": "row",
+   "k": 1,
+   "original": 12,
+   "trecho": "o fluxo · 3ª cápsula e totais"
+  },
+  {
+   "t": 7.05,
+   "type": "row",
+   "k": 2,
+   "original": 12.55,
+   "trecho": "o fluxo · 3ª cápsula e totais"
+  },
+  {
+   "t": 7.05,
+   "type": "rise",
+   "original": 12.55,
+   "trecho": "o fluxo · 3ª cápsula e totais"
+  },
+  {
+   "t": 7.2,
+   "type": "flaps",
+   "times": [
+    12.74,
+    12.768,
+    12.824,
+    12.852,
+    12.864,
+    12.88,
+    12.908,
+    12.92,
+    12.936,
+    12.948,
+    12.96,
+    12.964,
+    12.976,
+    12.988,
+    12.992,
+    13,
+    13.016,
+    13.02,
+    13.04,
+    13.056,
+    13.08,
+    13.096,
+    13.136
+   ],
+   "original": 12.7,
+   "trecho": "o fluxo · 3ª cápsula e totais"
+  },
+  {
+   "t": 7.45,
+   "type": "flaps",
+   "times": [
+    12.99,
+    13.018,
+    13.074,
+    13.102,
+    13.114,
+    13.13,
+    13.142,
+    13.154,
+    13.158,
+    13.182,
+    13.186,
+    13.194,
+    13.222,
+    13.234,
+    13.262,
+    13.302
+   ],
+   "out": 1,
+   "original": 12.95,
+   "trecho": "o fluxo · 3ª cápsula e totais"
+  },
+  {
+   "t": 8.1,
+   "type": "flaps",
+   "times": [
+    18.622,
+    18.637,
+    18.652,
+    18.682,
+    18.697,
+    18.704,
+    18.712,
+    18.719,
+    18.726,
+    18.727,
+    18.734,
+    18.741,
+    18.742,
+    18.756,
+    18.757,
+    18.763,
+    18.778,
+    18.785,
+    18.8,
+    18.807,
+    18.816,
+    18.822,
+    18.824,
+    18.828,
+    18.828,
+    18.836,
+    18.84,
+    18.84,
+    18.848,
+    18.852,
+    18.852,
+    18.86,
+    18.864,
+    18.864,
+    18.872,
+    18.876,
+    18.876,
+    18.884,
+    18.888,
+    18.888,
+    18.896,
+    18.9,
+    18.9,
+    18.908,
+    18.912,
+    18.912,
+    18.92,
+    18.924,
+    19.074,
+    19.078,
+    19.086,
+    19.09,
+    19.098,
+    19.102,
+    19.11,
+    19.114,
+    19.122,
+    19.126,
+    19.134,
+    19.138,
+    19.146,
+    19.15,
+    19.158,
+    19.162,
+    19.17,
+    19.316,
+    19.324,
+    19.328,
+    19.336,
+    19.34,
+    19.348,
+    19.352,
+    19.36,
+    19.364,
+    19.372,
+    19.376,
+    19.384,
+    19.388,
+    19.396,
+    19.4,
+    19.408,
+    19.412,
+    19.562,
+    19.566,
+    19.574,
+    19.574,
+    19.578,
+    19.578,
+    19.586,
+    19.59,
+    19.59,
+    19.598,
+    19.602,
+    19.602,
+    19.61,
+    19.614,
+    19.614,
+    19.622,
+    19.626,
+    19.626,
+    19.634,
+    19.638,
+    19.638,
+    19.646
+   ],
+   "out": 1,
+   "original": 18.6,
+   "trecho": "a conferência"
+  },
+  {
+   "t": 8.25,
+   "type": "key",
+   "k": 0,
+   "original": 18.75,
+   "trecho": "a conferência"
+  },
+  {
+   "t": 8.5,
+   "type": "key",
+   "k": 1,
+   "original": 19,
+   "trecho": "a conferência"
+  },
+  {
+   "t": 8.75,
+   "type": "key",
+   "k": 2,
+   "original": 19.25,
+   "trecho": "a conferência"
+  },
+  {
+   "t": 9.0,
+   "type": "key",
+   "k": 3,
+   "original": 19.5,
+   "trecho": "a conferência"
+  },
+  {
+   "t": 9.25,
+   "type": "key",
+   "k": 4,
+   "original": 19.75,
+   "trecho": "a conferência"
+  },
+  {
+   "t": 9.3,
+   "type": "spin",
+   "times": [
+    19.818,
+    19.821,
+    19.824,
+    19.827,
+    19.83,
+    19.833,
+    19.836,
+    19.842,
+    19.851,
+    19.854,
+    19.86,
+    19.869,
+    19.878,
+    19.887,
+    19.896,
+    19.905,
+    19.914,
+    19.923,
+    19.932,
+    19.941,
+    19.959
+   ],
+   "original": 19.8,
+   "trecho": "a conferência"
+  },
+  {
+   "t": 9.5,
+   "type": "zero",
+   "original": 20,
+   "trecho": "a conferência"
+  },
+  {
+   "t": 9.85,
+   "type": "zoomout",
+   "d": 0.4,
+   "original": 20.35,
+   "trecho": "a conferência"
+  },
+  {
+   "t": 10.0,
+   "type": "logo",
+   "original": 26,
+   "trecho": "fechamento"
+  },
+  {
+   "t": 10.6,
+   "type": "rise",
+   "original": 26.6,
+   "trecho": "fechamento"
+  }
+ ]
+}
