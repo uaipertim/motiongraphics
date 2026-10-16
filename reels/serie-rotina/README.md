@@ -11,8 +11,8 @@ Peça independente: nada aqui altera os Reels anteriores (o DNA é o do Reel 08,
 
 | Episódio | Título | Duração | Vídeo | Capa | Revisão |
 |---|---|---|---|---|---|
-| **ep-01** | "O hóspede chegou. / A reserva, não." | 14,00 s | [`mp4`](output/ep-01/fazlo-hospeda-rotina-ep-01.mp4) | [`capa.jpg`](output/ep-01/capa.jpg) | [`revisao/`](output/ep-01/revisao) |
-| **ep-02** | "Caiu um Pix às 14h. / De quem era?" | 13,92 s | [`mp4`](output/ep-02/fazlo-hospeda-rotina-ep-02.mp4) | [`capa.jpg`](output/ep-02/capa.jpg) | [`revisao/`](output/ep-02/revisao) |
+| **ep-01** · publicado | "O hóspede chegou. / A reserva, não." | 14,00 s | [`mp4`](output/ep-01/fazlo-hospeda-rotina-ep-01.mp4) | [`capa.jpg`](output/ep-01/capa.jpg) | [`revisao/`](output/ep-01/revisao) |
+| **ep-02** | "Caiu um Pix às 14h. / De quem era?" | 14,00 s | [`mp4`](output/ep-02/fazlo-hospeda-rotina-ep-02.mp4) | [`capa.jpg`](output/ep-02/capa.jpg) | [`revisao/`](output/ep-02/revisao) |
 | **ep-03** | "Domingo, 11h. / Check-out de todo mundo." | 14,00 s | [`mp4`](output/ep-03/fazlo-hospeda-rotina-ep-03.mp4) | [`capa.jpg`](output/ep-03/capa.jpg) | [`revisao/`](output/ep-03/revisao) |
 | ep-04 | "'Vou ver e te falo.' / (e sumiu)" | ~13,85 s | roteiro pronto ([`ep-04.json`](episodios/ep-04.json)) | | |
 | ep-05 | "A comanda da piscina / que ninguém fechou." | ~13,23 s | roteiro pronto ([`ep-05.json`](episodios/ep-05.json)) | | |
@@ -77,13 +77,16 @@ Tudo vai para `output/ep-07/`. Para ver no navegador, sirva a pasta e abra `src/
 | depois do último card | **Carimbo** | O chip limão cai de 1,6× e −9° para −4°, com tranco na pilha, tremor de tela e brilho. A pilha escurece e o carimbo fica 2,1 s, com um brilho que respira. |
 | +2,1 s | **Saída** | Os cards e o carimbo caem em cascata pela parte de baixo; o cabeçalho sai pelo topo. |
 | +0,35 s | **A virada** | A frase branca com a parte limão sobe linha a linha (até 104 px, no maior tamanho que cabe) e fica **parada ≥ 1,8 s** (2,3–2,7 s, pelo tamanho do texto). Parada para a leitura, mas não congelada: até o fim, a cena se aproxima 2,5% e sobe 18 px, devagar. |
-| últimos 2,0 s | **Fecho** | A virada sobe e abre espaço. Entram "Manda pra quem…" (Inter Display 800, 58 px, duas linhas) e, 0,32 s depois, a **logo oficial** (100 px) + "FAZLO Hospeda", com a **sineta da série**. Nos últimos 0,3 s, um fade curto para o preto. |
+| +0,4 s | **A virada sobe** | A virada sobe (0,4 s) para abrir espaço ao fecho. **O fecho só entra quando ela termina de subir**, sem nenhum quadro de sobreposição; o `qa.py` confere isso em cada episódio. |
+| últimos 2,0 s | **Fecho** | Entram "Manda pra quem…" (Inter Display 800, 58 px, duas linhas) e, 0,32 s depois, a **logo oficial** (100 px) + "FAZLO Hospeda", com a **sineta da série**. Nos últimos 0,3 s, um fade curto para o preto. |
 
 **A duração** é a soma desses tempos e fica entre 10 e 14 s. Se o roteiro passar disso, os intervalos entre os cards encolhem (ou crescem) para caber.
 - ep-01: 3 cards, 14,00 s (o roteiro pedia 14,13 s, então os intervalos entre os cards encolheram 4%).
-- ep-02: 4 cards, 13,92 s.
+- ep-02: 4 cards, 14,00 s (o roteiro pedia 14,32 s; os intervalos encolheram 7%).
 
 O fecho tem **2,0 s em todos os episódios** (ajuste de 16/10, na aprovação do modelo; antes, 1,5 s). Fica na constante `FECHO_DUR` do `src/anim.js`.
+
+**Ajuste de 17/10:** antes, a virada subia ao mesmo tempo em que o fecho entrava, e "Manda pra quem…" ficava ~0,2 s sobreposto à última linha da virada. Agora há o passo próprio "a virada sobe" (`VUP`, 0,4 s) antes do fecho. O ep-02 e o ep-03 foram re-renderizados com isso. O **ep-01 já estava publicado** e ficou como foi ao ar, na versão anterior do modelo; os arquivos dele nesta pasta são os publicados.
 
 **Movimento:** motion blur por subamostragem nas passagens rápidas (o título virando cabeçalho, a entrada de cada card, o carimbo, a saída, as frases finais e a logo), como no Reel 08.
 
@@ -132,14 +135,15 @@ O master fica em **−16 LUFS**, com limitador de pico real. A animação export
 - `recorte-3x4.jpg`.
 
 | | ep-01 | ep-02 | ep-03 |
-|---|---|---|
-| Formato | 1080×1920, 60 fps (840 quadros), H.264 High yuv420p, AAC 48 kHz | 835 quadros, idem | 840 quadros, idem |
-| Duração (vídeo = áudio) | 14,000 s | 13,917 s | 14,000 s (o roteiro pedia 14,25 s; os intervalos dos cards encolheram 6%) |
+|---|---|---|---|
+| Formato | 1080×1920, 60 fps (840 quadros), H.264 High yuv420p, AAC 48 kHz | 840 quadros, idem | 840 quadros, idem |
+| Duração (vídeo = áudio) | 14,000 s | 14,000 s | 14,000 s (o roteiro pedia 14,65 s; os intervalos dos cards encolheram 13%) |
 | Loudness / pico real | −16,0 LUFS / −2,4 dBTP | −16,0 LUFS / −2,5 dBTP | −16,0 LUFS / −2,5 dBTP |
-| Arquivo | 3,9 MB | 3,6 MB | 4,0 MB |
+| Arquivo | 3,9 MB | 3,6 MB | 4,1 MB |
 | Pretos / congelados | nenhum (fora o fade final) / nenhum ≥ 0,75 s | nenhum / nenhum | nenhum / nenhum |
 | Áreas seguras | 17 elementos OK | 18 elementos OK | 17 elementos OK |
-| Sincronia | 5 golpes (3 pings, carimbo, sineta): ataque a ≤ 8,3 ms do evento; a imagem reage em todos | 6 golpes: ≤ 7,3 ms; a imagem reage em todos | 6 golpes: ≤ 6,8 ms; a imagem reage em todos |
+| Virada → fecho | (versão publicada, anterior ao ajuste) | sem sobreposição: sobe 11,60–12,00 s, fecho em 12,00 s | sem sobreposição: sobe 11,60–12,00 s, fecho em 12,00 s |
+| Sincronia | 5 golpes (3 pings, carimbo, sineta): ataque a ≤ 8,3 ms do evento; a imagem reage em todos | 6 golpes: ≤ 6,8 ms; a imagem reage em todos | 6 golpes: ≤ 6,8 ms; a imagem reage em todos |
 | Capa | dentro da regra (bloco centrado em y = 960,0) | dentro da regra (centro em 960,0) | dentro da regra (3 linhas; centro em 960,0) |
 
 ## Arquivos

@@ -7,19 +7,20 @@ OK     60 fps, 840 quadros
 OK     duração do vídeo 14.000 s (alvo 10–14 s; pelo roteiro: 14.000 s)
 OK     áudio aac 48000 Hz, 2 canais, 251 kb/s
 OK     vídeo e áudio com a mesma duração (Δ 0 ms)
-OK     arquivo 4.0 MB, 2.3 Mb/s
+OK     arquivo 4.1 MB, 2.3 Mb/s
 OK     loudness integrado -16.0 LUFS (alvo -16: só efeitos, espaço para a música do Instagram)
 OK     pico real -2.5 dBTP (limite -1)
        faixa de loudness (LRA) 16.8 LU
 OK     sem trechos pretos ≥ 0,1 s antes do fade final
 OK     sem imagem congelada ≥ 0,75 s
+OK     o fecho entra só depois de a virada terminar de subir (virada sobe 11.60–12.00 s, fecho entra em 12.00 s): nenhum quadro de sobreposição
 OK     áreas seguras: 17 elementos em y 265–1456, fora da coluna de botões (x ≥ 950, y 1060–1560), título no recorte 3:4
 OK     o 1º quadro já tem imagem (luminância média 26.7), sem abertura preta
 OK     capa 1080x1920
 
 Sincronização (detalhes em sincronia.txt):
 OK     áudio do MP4 = efeitos.wav, sem deslocamento (+0.0, +0.0, +0.0 ms)
-OK     6 efeitos-chave com ataque no instante do evento (desvio médio 6.1 ms, máximo 6.8 ms; 1 quadro = 16,7 ms)
+OK     6 efeitos-chave com ataque no instante do evento (desvio médio 5.4 ms, máximo 6.8 ms; 1 quadro = 16,7 ms)
 OK     a imagem reage nos 6 golpes principais (pico de movimento a ≤ 8 quadros do som)
 
 Áreas seguras, elemento a elemento (caixas do motor, no instante de leitura de cada um):
@@ -27,16 +28,16 @@ OK     chip da série  x  323– 727  y  660– 716  (em 0.00 s)
 OK     título 1       x  109– 941  y  760– 888  (em 0.00 s)
 OK     título 2       x  107– 943  y  898–1025  (em 0.00 s)
 OK     título 3       x  134– 916  y 1035–1163  (em 0.00 s)
-OK     cabeçalho      x  353– 727  y  285– 455  (em 7.25 s)
-OK     card 1         x   80– 940  y  601– 757  (em 7.05 s)
-OK     card 2         x   80– 940  y  779– 935  (em 7.05 s)
-OK     card 3         x   80– 940  y  957–1113  (em 7.05 s)
-OK     card 4         x   80– 940  y 1135–1291  (em 7.05 s)
-OK     carimbo        x   90– 940  y  865–1036  (em 7.75 s)
-OK     virada 1       x  155– 895  y  766– 866  (em 11.90 s)
+OK     cabeçalho      x  353– 727  y  285– 455  (em 6.85 s)
+OK     card 1         x   80– 940  y  602– 758  (em 6.65 s)
+OK     card 2         x   80– 940  y  780– 936  (em 6.65 s)
+OK     card 3         x   80– 940  y  958–1114  (em 6.65 s)
+OK     card 4         x   80– 940  y 1136–1292  (em 6.65 s)
+OK     carimbo        x   90– 940  y  866–1037  (em 7.35 s)
+OK     virada 1       x  156– 894  y  767– 867  (em 11.50 s)
 OK     virada 1*      x  150– 900  y  574– 675  (em 13.65 s)
-OK     virada 2       x  170– 880  y  875– 975  (em 11.90 s)
-OK     virada 2*      x  166– 884  y  685– 786  (em 13.65 s)
+OK     virada 2       x  171– 879  y  876– 976  (em 11.50 s)
+OK     virada 2*      x  166– 884  y  684– 785  (em 13.65 s)
 OK     fecho 1        x  120– 930  y  859– 914  (em 13.65 s)
 OK     fecho 2        x  256– 794  y  927– 981  (em 13.65 s)
 OK     logo           x  313– 737  y 1047–1149  (em 13.65 s)

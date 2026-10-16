@@ -35,6 +35,7 @@
   const SAFE = { top: 265, bottom: 1456 };
   const STAMP_FALL = 0.15;
   const FECHO_DUR = 2.0;                                      // o fecho ("Manda pra quem…" + logo), em todos os episódios
+  const VUP = 0.4;                                            // a virada sobe para abrir espaço; o fecho só entra depois
 
   // ---------------------------------------------------------------- utilitários
   const TAU = Math.PI * 2, DEG = Math.PI / 180;
@@ -268,7 +269,9 @@
     let x = 2.25;
     cards.forEach((k, i) => { t.cards.push(x); x += gapOf(k); });
     const vChars = ep.virada.join(' ').replace(/\*/g, '').length;
-    const tail = 0.15 + 2.1 + 0.35 + clamp(1.9 + 0.012 * vChars, 2.3, 2.7) + FECHO_DUR;
+    // a virada fica parada ≥ 1,8 s depois de a última linha terminar de subir
+    const vHold = Math.max(clamp(1.9 + 0.012 * vChars, 2.3, 2.7), 0.08 * (virada.rows.length - 1) + 0.36 + 1.8);
+    const tail = 0.15 + 2.1 + 0.35 + vHold + VUP + FECHO_DUR;
     // a duração fica entre 10 e 14 s: os intervalos dos cards encolhem ou crescem para caber
     let end = x + tail;
     if (end > 14 || end < 10) {
@@ -278,7 +281,8 @@
     t.stamp = x + 0.15;
     t.exit = t.stamp + 2.1;
     t.virada = t.exit + 0.35;
-    t.fecho = t.virada + clamp(1.9 + 0.012 * vChars, 2.3, 2.7);
+    t.vup = t.virada + vHold;                                // a virada sobe (VUP)…
+    t.fecho = t.vup + VUP;                                   // …e só então o fecho entra: nenhum quadro de sobreposição
     t.logo = t.fecho + 0.32;
     DURATION = Math.round((t.fecho + FECHO_DUR) * 60) / 60;    // quadro inteiro
     t.fade = DURATION - 0.3;
@@ -425,7 +429,7 @@
   function closing(ctx, t) {
     if (t < T.virada) return;
     const { virada, vb, fin, fRows } = L;
-    const up = E.inOutCubic(p(t, T.fecho, T.fecho + 0.5));
+    const up = E.inOutCubic(p(t, T.vup, T.vup + VUP));
     const vTop = lerp(fin.vTop0, fin.vTop, up);
     // a cena final nunca fica parada: aproximação lenta (2,5%) e uma subida de 18 px, em velocidade constante
     const drift = 1 + 0.025 * E.inOutSine(p(t, T.virada + 0.3, DURATION)), rise = -VDRIFT * p(t, T.virada + 0.3, DURATION);
@@ -434,7 +438,7 @@
     if (t >= T.fecho) {
       const s = L.fs, ls = -0.02 * s;
       fRows.forEach((r, i) => {
-        const pin = p(t, T.fecho + 0.08 + i * 0.07, T.fecho + 0.08 + i * 0.07 + 0.32);
+        const pin = p(t, T.fecho + i * 0.07, T.fecho + i * 0.07 + 0.32);
         if (pin <= 0) return;
         const y = fin.fTop + 0.727 * s + i * s * FECHO.lead, off = (1 - E.outExpo(pin)) * s * 1.3;
         const w = tw(ctx, r, DISPLAY, s, FECHO.weight, ls);
@@ -496,7 +500,7 @@
     FAST = [[T.rise, T.rise + 0.5, 8, 1 / 60]]
       .concat(T.cards.map((m) => [m, m + 0.4, 4, 1 / 120]))
       .concat([[T.stamp - STAMP_FALL, T.stamp + 0.3, 8, 1 / 60], [T.exit, T.exit + 0.7, 10, 1 / 50],
-        [T.virada, T.virada + 0.5, 4, 1 / 120], [T.fecho, T.fecho + 0.5, 4, 1 / 120], [T.logo, T.logo + 0.32, 6, 1 / 60]]);
+        [T.virada, T.virada + 0.5, 4, 1 / 120], [T.vup, T.vup + VUP, 4, 1 / 120], [T.fecho, T.fecho + 0.5, 4, 1 / 120], [T.logo, T.logo + 0.32, 6, 1 / 60]]);
   }
   function shutterSpec(t) {
     for (const [a, b, k, dt] of FAST) if (t >= a && t < b) return { k, dt };
@@ -559,7 +563,7 @@
     // virada, fecho e logo com o leve avanço da cena (escala em torno de (525, 960)) do instante
     const dr = (t) => 1 + 0.025 * E.inOutSine(p(t, T.virada + 0.3, DURATION));
     const Dz = (t, x0, x1, y0, y1) => { const g = dr(t), r = -VDRIFT * p(t, T.virada + 0.3, DURATION); return { t, x0: CX + (x0 - CX) * g, x1: CX + (x1 - CX) * g, y0: 960 + r + (y0 - 960) * g, y1: 960 + r + (y1 - 960) * g }; };
-    const tv = T.fecho - 0.1, tf = DURATION - 0.35, vs = L.virada.size;
+    const tv = T.vup - 0.1, tf = DURATION - 0.35, vs = L.virada.size;
     L.virada.rows.forEach((r, i) => {
       const w = rowW100(m, r) * vs / 100;
       out.push({ el: `virada ${i + 1}`, ...Dz(tv, CX - w / 2, CX + w / 2, L.fin.vTop0 + L.vb.base[i] - 0.727 * vs, L.fin.vTop0 + L.vb.base[i] + 0.22 * vs) });

@@ -155,6 +155,10 @@ with tempfile.TemporaryDirectory() as tmp:
     for ty, t0, pk, base, df in vis:
         sync_det.append(f'         {t0:7.3f} s  {ty:8s}  imagem: movimento {pk:5.1f} (antes {base:4.1f}), pico a {df:+d} quadro(s)')
 
+# ---------------------------------------------------------------- virada -> fecho: sem sobreposição
+vfim = S['vup'] + 0.4
+ok(S['fecho'] >= vfim - 1e-6, f"o fecho entra só depois de a virada terminar de subir (virada sobe {S['vup']:.2f}–{vfim:.2f} s, fecho entra em {S['fecho']:.2f} s): nenhum quadro de sobreposição")
+
 # ---------------------------------------------------------------- áreas seguras pelas caixas
 zonas = []
 for b in BOXES:
