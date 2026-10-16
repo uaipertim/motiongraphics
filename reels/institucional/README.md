@@ -10,6 +10,27 @@ Vídeo de apresentação do sistema, feito para ser enviado no WhatsApp:
 
 Usa **somente telas reais** do sistema: capturas da demonstração (`demo.fazlohospeda.com.br`), levantadas no inventário do repositório `uaipertim/fazlo-hospeda`, branch `docs-mapeamento` (`INVENTARIO-FAZLO-HOSPEDA.md`, pasta `capturas/`). Nenhuma tela foi inventada ou retocada. As capturas usadas estão copiadas em [`src/capturas/`](src/capturas), com o nome `módulo--arquivo.png`.
 
+## Em revisão: o motion novo (cenas 1 a 4)
+
+`output/revisao/institucional-motion-cenas-1-4.mp4` (53,2 s) mostra a direção de motion pedida depois da v3. As cenas 5 a 8 ainda estão como na v3 e entram depois da aprovação.
+
+- **Motion sobre as capturas** (`runOps` em `src/anim.js`): cada efeito cobre um trecho da captura com a cor de fundo medida ali e redesenha em movimento os **pixels reais da própria captura**. Termina sempre na captura original, sem tela, valor ou função inventados.
+  - **Números vivos:** "R$ 800,00", "- R$ 300,00" e "R$ 500,00" contam em reais inteiros e desaceleram no fim. O "5 livres • 5 ocupadas" sobe rolando como placar.
+  - **Digitação com cursor piscando:** a captura aparece letra a letra no "R$ 500,00" do campo "Valor (R$)" do check-in (com a câmera aproximando) e nos códigos FHZ-VB2MZ2 e FHZ-000132.
+  - **Toques:** dedo com onda no "+", em "Avançar", "Ver voucher", "Enviar por e-mail", no campo de valor e em "Confirmar recebimento e realizar Check-in".
+  - **Destaques:**
+    - entrada do recorte em mola, com leve overshoot;
+    - brilho limão que dá uma volta no contorno;
+    - selos que estalam ("HOSPEDADA", "CHECK-OUT HOJE", "DISPONÍVEL", "CONFIRMADA", "Quitação 100%", "Saldo: R$ 0,00");
+    - o círculo e o check de "Reserva Criada!" que se desenham.
+  - **Movimento que conta a história:**
+    - os quartos do dia entram um a um, cada um com o seu selo;
+    - o recibo de check-in sai "impresso", subindo aos trancos;
+    - as linhas do recibo saem da esquerda para a direita;
+    - câmera com parallax e aproximação suave em cada recorte.
+- **Leitura:** a animação acontece na entrada. Depois dela, cada recorte fica parado no mínimo 3 s. Por isso o vídeo inteiro passa a ter cerca de 109 s.
+- **Ritmo:** trilha a 105 BPM (F · C/E · Dm · B♭), e cada troca de tela cai num tempo da música. Efeitos discretos para tecla, contagem, check, selo, impressão, toque e brilho.
+
 ## Arquivos para revisão
 
 | Arquivo | O que é |

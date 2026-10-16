@@ -70,6 +70,11 @@
     ctx.fillStyle = o.color; ctx.fillText(s, x, y); ctx.restore();
   }
   function canvas(w, h) { const c = document.createElement('canvas'); c.width = Math.max(1, Math.ceil(w)); c.height = Math.max(1, Math.ceil(h)); return c; }
+  // mola com leve overshoot (≈ 7%), assentada em x = 1
+  const springE = (x) => (x <= 0 ? 0 : x >= 1 ? 1 : 1 - Math.exp(-6 * x) * Math.cos(7 * x) * (1 - x * x * x) - x * x * x * Math.exp(-6));
+  // valor em reais no formato da tela ("R$ 1.525,00", "- R$ 300,00")
+  const brl = (v) => { const a = Math.abs(v).toFixed(2).split('.'); return (v < -0.004 ? '- ' : '') + 'R$ ' + a[0].replace(/\B(?=(\d{3})+(?!\d))/g, '.') + ',' + a[1]; };
+  const luma = (c) => { const v = hex(c); return 0.299 * v[0] + 0.587 * v[1] + 0.114 * v[2]; };
 
   // ---------------------------------------------------------------- perspectiva (giro no eixo vertical)
   // Um retângulo w x h centrado em (cx, cy), girado de `ang` em torno do eixo vertical e visto por uma câmera
@@ -126,25 +131,58 @@
   // 960 x 1180); cy = centro do recorte na tela; tap = o botão tocado na tela anterior.
   const Wc = C.white, Lc = C.lime;
   const PLAN = [
+    // ops: o motion de entrada, sempre sobre os pixels da própria captura e terminando neles (ver runOps):
+    // roll = placar, count = valor contando, stamp = selo que estala, reveal = bloco que entra, check = traço que se
+    // desenha, type = texto digitado (revela a captura letra a letra, com cursor), wipe = linha impressa, tap = toque.
+    // t = início em s depois que o recorte pousa. Cores e posições medidas nas capturas.
     { mod: 'RESERVAS', screen: 'calendario', mode: 'liga', voz: '3a',
-      lifts: [{ crop: [24, 212, 756, 640], hl: [450, 224, 742, 268], s: 1.27, cy: 1160 }],
+      // "as células de ocupação se preenchem uma a uma": os quartos do dia entram um a um, com o selo de cada um
+      lifts: [{ crop: [24, 212, 756, 1005], hl: [450, 224, 742, 268], hlT: 0.95, s: 1.27, cy: 1170, ops: [
+        { type: 'roll', r: [466, 234, 482, 258], bg: '#ECFDF5', color: '#006045', to: 5, t: 0.0, dur: 0.75 },
+        { type: 'roll', r: [599, 234, 615, 258], bg: '#ECFDF5', color: '#006045', to: 5, t: 0.1, dur: 0.75 },
+        { type: 'reveal', r: [32, 290, 750, 634], bg: '#FBFBFB', t: 0.1 },
+        { type: 'stamp', r: [570, 334, 716, 388], bg: '#FFFFFF', t: 0.45, after: 0.1 },
+        { type: 'reveal', r: [32, 654, 750, 1000], bg: '#FBFBFB', t: 0.35 },
+        { type: 'stamp', r: [514, 700, 716, 752], bg: '#FFFFFF', t: 0.7, after: 0.35 }] }],
       cap: [[['Veja a ', Wc], ['ocupação', Lc]], [['no calendário', Wc]]] },
     { screen: 'acomodacao', mode: 'toque', tap: [390, 1600], voz: '3b',                    // o "+" (nova reserva)
-      lifts: [{ crop: [78, 788, 702, 1258], hl: [118, 1062, 664, 1220], s: 1.45, cy: 1180 }],
+      lifts: [{ crop: [78, 788, 702, 1258], hl: [118, 1062, 664, 1220], hlT: 0.85, s: 1.45, cy: 1180, ops: [
+        { type: 'stamp', r: [500, 824, 666, 870], bg: '#FDFFFA', t: 0.05 },
+        { type: 'count', r: [488, 1098, 639, 1128], bg: '#FFFFFF', color: '#171717', to: 800, t: 0.1, dur: 0.7, weight: 800 }] }],
       cap: [[['Lance a ', Wc], ['reserva', Lc]], [['em poucos passos', Wc]]] },
     { screen: 'criada', mode: 'toque', tap: [594, 1388],                                   // Avançar
-      lifts: [{ crop: [130, 318, 650, 652], hl: [412, 586, 614, 644], s: 1.7, cy: 1160 }], cap: 'mesma' },
+      lifts: [{ crop: [130, 318, 650, 652], hl: [412, 586, 614, 644], hlT: 0.95, s: 1.7, cy: 1160, ops: [
+        { type: 'check', r: [350, 362, 430, 442], bg: '#F7FEE7', color: '#5EA500', c: [390, 402], rad: 33, lw: 7,
+          pts: [[-10, -1], [-3.5, 7], [10, -7.5]], plw: 6, t: 0.0, dur: 0.75 },
+        { type: 'reveal', r: [214, 524, 566, 574], bg: '#FFFFFF', t: 0.25 },
+        { type: 'type', r: [436, 602, 592, 628], bg: '#F5F5F5', t: 0.45, cps: 26 }] }],
+      cap: 'mesma' },
     { screen: 'voucher', mode: 'toque', tap: [390, 1276], veil: true, voz: '3c',          // Ver voucher
-      lifts: [{ crop: [24, 32, 756, 172], pad: [0, 0, 18, 0], bg: '#171717', s: 1.27, cy: 930 },                              // só o código, o status e os botões:
-        { crop: [52, 1462, 730, 1630], hl: [396, 1466, 728, 1532], s: 1.36, cy: 1430, hlT: 1.0 }],  // o nome nunca aparece
+      lifts: [{ crop: [24, 32, 756, 172], pad: [0, 0, 18, 0], bg: '#171717', s: 1.27, cy: 930, ops: [   // só código, status e botões:
+        { type: 'type', r: [488, 110, 644, 132], bg: '#171717', t: 0.05, cps: 24 },                     // o nome nunca aparece
+        { type: 'stamp', r: [450, 146, 646, 168], bg: '#171717', t: 0.45 }] },
+        { crop: [52, 1462, 730, 1630], hl: [396, 1466, 728, 1532], hlT: 0.9, s: 1.36, cy: 1430, ops: [
+          { type: 'tap', x: 560, y: 1500, t: 0.55 }] }],
       cap: [[['Envie o ', Wc], ['voucher', Lc]], [['ao hóspede', Wc]]] },
-    { mod: 'CHECK-IN', screen: 'checkin', mode: 'giro', voz: '4a',
-      lifts: [{ crop: [66, 522, 714, 830], hl: [92, 742, 690, 804], s: 1.45, cy: 1150 }],
+    // check-in: antes do recorte, a câmera se aproxima do campo real "Valor (R$)" e o "R$ 500,00" é digitado;
+    // o selo "Quitação 100%" estala. Depois o resumo sobe com os valores contando.
+    { mod: 'CHECK-IN', screen: 'checkin', mode: 'giro', voz: '4a', vozPre: true,
+      pre: { dur: 2.1, zoom: { x: 470, y: 1180, z: 1.5, ty: 1300 }, ops: [
+        { type: 'tap', x: 515, y: 1150, t: 0.35 },
+        { type: 'type', r: [516, 1138, 638, 1164], bg: '#FFFFFF', t: 0.5, cps: 13, align: 'right' },
+        { type: 'stamp', r: [450, 1248, 660, 1290], bg: '#FFFFFF', t: 1.35 }] },
+      lifts: [{ crop: [66, 522, 714, 830], hl: [92, 742, 690, 804], hlT: 1.05, s: 1.45, cy: 1150, ops: [
+        { type: 'count', r: [562, 636, 680, 658], bg: '#FFFFFF', color: '#171717', to: 800, t: 0.0, dur: 0.55, weight: 700 },
+        { type: 'count', r: [537, 684, 680, 706], bg: '#FFFFFF', color: '#009966', to: -300, t: 0.2, dur: 0.5, weight: 700 },
+        { type: 'count', r: [523, 758, 680, 788], bg: '#FFFFFF', color: '#0A0A0A', to: 500, t: 0.4, dur: 0.6, weight: 800 }] }],
       cap: [[['No check-in,', Wc]], [['registre o ', Wc], ['pagamento', Lc]]] },
-    { screen: 'reciboIn', mode: 'toque', tap: [483, 1534], voz: '4b',                      // Confirmar recebimento e realizar Check-in
+    { screen: 'reciboIn', mode: 'imprime', tap: [483, 1534], voz: '4b',                    // Confirmar recebimento e realizar Check-in
       // só a frase e o saldo: o título "HOSPEDAGEM QUITADA NO CHECK-IN" quebra em "CHECK-" / "IN" no celular
       // (defeito do sistema) e fica fora do recorte (o "IN" termina em y 914; a frase começa em y 917)
-      lifts: [{ crop: [112, 915, 668, 1046], pad: [26, 0, 0, 0], bg: '#ECFDF5', hl: [130, 990, 348, 1034], s: 1.7, cy: 1170 }],
+      lifts: [{ crop: [112, 915, 668, 1046], pad: [26, 0, 0, 0], bg: '#ECFDF5', hl: [130, 990, 348, 1034], hlT: 0.95, s: 1.7, cy: 1170, ops: [
+        { type: 'wipe', r: [184, 914, 588, 942], bg: '#ECFDF5', t: 0.05, dur: 0.45 },
+        { type: 'wipe', r: [184, 948, 354, 976], bg: '#ECFDF5', t: 0.4, dur: 0.3 },
+        { type: 'stamp', r: [128, 990, 350, 1036], bg: '#ECFDF5', t: 0.65 }] }],
       cap: [[['E gere o ', Wc], ['recibo', Lc]], [['na hora', Wc]]] },
     { mod: 'COMANDA', screen: 'ficha', mode: 'giro', pause: 1.3 },                          // a ficha da hospedagem, inteira
     { screen: 'quantidade', mode: 'toque', tap: [390, 882], voz: '5a',                       // Lançar consumo
@@ -174,10 +212,17 @@
       lifts: [{ crop: [66, 172, 714, 640], s: 1.45, cy: 1160 }],
       cap: [[['Os relatórios mostram', Wc]], [['como a pousada ', Wc], ['está indo', Lc]]] },
   ];
-  const NAV = { liga: 0.55, giro: 0.8, toque: 0.85, rola: 0.45, fica: 0.15 };   // da batida até o recorte começar a subir
-  const RISE = 0.5, DROP = 0.38, GAP = 0.12, HOLD = 3.0, READ = 0.7, VOZ_IN = 0.25;
-  const GIRO = 0.5, TOQUE = 0.32;
-  let SCREENS = [], LIFTS = [], TAPS = [], CAPS = [], TRILHO = [], VOZ = [], TRECHOS = {};
+  const NAV = { liga: 0.5, giro: 0.75, toque: 0.7, imprime: 1.15, rola: 0.45, fica: 0.15 };   // da batida até o recorte subir
+  const RISE = 0.6, DROP = 0.38, GAP = 0.12, HOLD = 3.0, READ = 0.7, VOZ_IN = 0.25;
+  const GIRO = 0.5, TOQUE = 0.32, IMPRIME = 0.8;
+  // a música (scripts/trilha.py) tem 105 BPM e o 1º tempo quando a logo cresce; cada batida começa num tempo dela
+  const BPM = 105, BT = 60 / BPM, M0 = T.virada + 0.75;
+  const onBeat = (t) => M0 + Math.ceil((t - M0 - 1e-6) / BT) * BT;
+  let SCREENS = [], LIFTS = [], TAPS = [], CAPS = [], TRILHO = [], VOZ = [], TRECHOS = {}, PHONE_OPS = [], ZOOMS = [];
+  // quanto dura a animação de entrada de um recorte (depois de pousar)
+  const OP_DUR = { roll: (o) => o.dur, count: (o) => o.dur + 0.2, stamp: () => 0.35, reveal: () => 0.45, check: (o) => o.dur + 0.2,
+    type: (o) => (o.n || 10) / o.cps + 0.15, wipe: (o) => o.dur, tap: () => 0.5 };
+  const animEnd = (ops) => Math.max(0, ...(ops || []).map((o) => o.t + OP_DUR[o.type](o)));
 
   function build(trechos) {
     TRECHOS = {}; trechos.forEach((x) => (TRECHOS[x.id] = x));
@@ -189,24 +234,36 @@
     // cenas 3 a 7
     let t = T.reservas, prev = null;
     for (const b of PLAN) {
+      t = onBeat(t);                                   // a troca de tela cai no tempo da batida
       if (b.mod) TRILHO.push([b.mod, t]);
       if (b.tap && prev) TAPS.push({ t: t + 0.08, key: prev, x: b.tap[0], y: b.tap[1] });
       if (b.mode === 'liga' || b.mode === 'giro') SCREENS.push({ t, key: b.screen, mode: b.mode, veil: b.veil });
       if (b.mode === 'toque') SCREENS.push({ t: t + 0.32, key: b.screen, mode: 'toque', veil: b.veil });
+      if (b.mode === 'imprime') SCREENS.push({ t: t + 0.32, key: b.screen, mode: 'imprime' });
       if (b.mode === 'rola') SCREENS.push({ t, key: b.screen, mode: 'toque', dir: 'v' });
       prev = b.screen;
       if (b.pause) { t += NAV[b.mode] + b.pause; continue; }
-      const r = t + NAV[b.mode];
+      let r = t + NAV[b.mode];
       const vd = b.voz ? TRECHOS[b.voz].dur : 0;
-      if (b.voz) VOZ.push({ id: b.voz, t: r + VOZ_IN });
-      const hold = Math.max(HOLD + 0.6 * (b.lifts.length - 1), b.voz ? VOZ_IN + vd - RISE + READ : 0);
-      const t1 = r + RISE + hold;
+      if (b.pre) {                                     // antes do recorte: a câmera se aproxima e algo acontece na tela
+        const z = b.pre.zoom;
+        ZOOMS.push({ t0: r, t1: r + b.pre.dur, key: b.screen, x: z.x, y: z.y, z: z.z, ty: z.ty });
+        b.pre.ops.forEach((o) => PHONE_OPS.push(Object.assign({}, o, { key: b.screen, t: r + o.t })));
+        if (b.voz && b.vozPre) VOZ.push({ id: b.voz, t: r + 0.3 });
+        r += b.pre.dur;
+      } else if (b.voz) VOZ.push({ id: b.voz, t: r + VOZ_IN });
+      const vozFim = b.voz ? VOZ[VOZ.length - 1].t + vd : 0;
+      // segura: a animação de entrada inteira e, depois dela, no mínimo HOLD s parado (e READ s depois da voz)
+      // (o destaque limão não conta: ele marca o dado com o recorte já legível)
+      const an = Math.max(...b.lifts.map((L, i) => 0.45 * i + animEnd(L.ops)));
+      const t1 = Math.max(r + RISE + an + HOLD + 0.6 * (b.lifts.length - 1), vozFim + READ);
       b.lifts.forEach((L, i) => {
-        const t0 = r + 0.45 * i;
-        LIFTS.push(Object.assign({}, L, { key: b.screen, t0, t1, hlT: L.hlT !== undefined ? t0 + L.hlT : undefined }));
+        const t0 = r + 0.45 * i, land = t0 + RISE;
+        LIFTS.push(Object.assign({}, L, { key: b.screen, t0, t1, land, hlT: L.hlT !== undefined ? land + L.hlT : undefined,
+          ops: (L.ops || []).map((o) => Object.assign({}, o, { t: land + o.t }, o.after !== undefined ? { from: land + o.after } : {})) }));
       });
       if (b.cap === 'mesma') CAPS[CAPS.length - 1].t1 = t1;
-      else if (b.cap) CAPS.push({ t0: r, t1, lines: b.cap });
+      else if (b.cap) CAPS.push({ t0: b.pre ? r - b.pre.dur : r, t1, lines: b.cap });
       t = t1 + DROP + GAP;
     }
     // cena 8: celular e computador; depois a demonstração
@@ -276,6 +333,14 @@
     return size;
   }
   const CAP_OUT = 0.22;
+  function scrim(ctx) {
+    if (ZOOM_A > 0.01) {
+      const A = Math.sqrt(ZOOM_A);                    // some mais devagar que o zoom: o celular ainda grande não passa sobre as frases                               // o celular aproximado passa por trás da logo e das frases: faixa escura
+      const g = ctx.createLinearGradient(0, 0, 0, 540);
+      g.addColorStop(0, css('#0A0A0A', 0.95 * A)); g.addColorStop(0.8, css('#0A0A0A', 0.92 * A)); g.addColorStop(1, css('#0A0A0A', 0));
+      ctx.fillStyle = g; ctx.fillRect(0, 0, W, 540);
+    }
+  }
   function captions(ctx, t) {
     CAPS.forEach((c, i) => {
       // a frase sai antes de a seguinte entrar no mesmo lugar (nunca duas frases sobrepostas)
@@ -449,6 +514,146 @@
   }
 
   // =====================================================================
+  // MOTION SOBRE AS CAPTURAS
+  // Cada op age num retângulo da captura: cobre o conteúdo com a cor de fundo medida ali e redesenha em
+  // movimento os PIXELS REAIS da própria captura (ou, em "count"/"roll", o número contando até o valor real).
+  // Quando a op termina, sobra só a captura original: nada de tela, valor ou função inventados.
+  // =====================================================================
+  const PIX = new Map();
+  function pixels(img) {
+    if (!PIX.has(img)) { const c = canvas(img.width, img.height), g = c.getContext('2d'); g.drawImage(img, 0, 0); PIX.set(img, g.getImageData(0, 0, img.width, img.height)); }
+    return PIX.get(img);
+  }
+  // as colunas com tinta (≈ as letras) dentro do retângulo: a digitação revela a captura letra a letra
+  function glyphs(img, r, bg) {
+    const d = pixels(img), b = hex(bg), out = [];
+    let st = -1;
+    for (let x = r[0]; x < r[2]; x++) {
+      let ink = false;
+      for (let y = r[1]; y < r[3] && !ink; y++) {
+        const i = (y * d.width + x) * 4;
+        ink = Math.abs(d.data[i] - b[0]) + Math.abs(d.data[i + 1] - b[1]) + Math.abs(d.data[i + 2] - b[2]) > 90;
+      }
+      if (ink && st < 0) st = x;
+      if (!ink && st >= 0) { out.push([st, x]); st = -1; }
+    }
+    if (st >= 0) out.push([st, r[2]]);
+    return out;
+  }
+  function runOps(g, img, ops, t, s, ox, oy) {
+    for (const o of ops || []) {
+      if (o.type !== 'tap' && t >= o.t + OP_DUR[o.type](o) + 0.03) continue;    // terminou: fica a captura
+      if (o.type !== 'tap' && t < o.t - 2) continue;
+      const r = o.r || [0, 0, 0, 0];
+      const X = ox + r[0] * s, Y = oy + r[1] * s, Wd = (r[2] - r[0]) * s, Hd = (r[3] - r[1]) * s;
+      const hide = () => { g.fillStyle = o.bg; g.fillRect(X - 1.5 * s, Y - 1.5 * s, Wd + 3 * s, Hd + 3 * s); };
+      const real = (a = 1, dx = 0, dy = 0, k = 1) => {
+        if (a <= 0.002) return;
+        g.save(); g.globalAlpha *= clamp(a);
+        g.drawImage(img, r[0], r[1], r[2] - r[0], r[3] - r[1], X + Wd / 2 + dx - Wd * k / 2, Y + Hd / 2 + dy - Hd * k / 2, Wd * k, Hd * k);
+        g.restore();
+      };
+      switch (o.type) {
+        case 'reveal': {                              // o bloco entra subindo
+          const q = E.outCubic(p(t, o.t, o.t + 0.45));
+          hide(); real(q, 0, (1 - q) * 30 * s, 1 - 0.03 * (1 - q));
+          break;
+        }
+        case 'stamp': {                               // o selo estala: chega grande e assenta
+          const q = p(t, o.t, o.t + 0.35);
+          if (o.from !== undefined && t < o.from) break; // dentro de um bloco que ainda vai entrar: ele já o esconde
+          hide(); if (q > 0) real(q * 3, 0, 0, lerp(1.32, 1, E.outBack(q, 2.4)));
+          break;
+        }
+        case 'wipe': {                                // a linha sai "impressa", da esquerda para a direita
+          const q = E.inOutSine(p(t, o.t, o.t + o.dur));
+          hide();
+          if (q > 0) { g.save(); g.beginPath(); g.rect(X - 2 * s, Y - 2 * s, (Wd + 4 * s) * q, Hd + 4 * s); g.clip(); real(1); g.restore(); }
+          break;
+        }
+        case 'count': {                               // o valor conta até o número da tela e desacelera no fim
+          const q = p(t, o.t, o.t + o.dur), f = p(t, o.t + o.dur, o.t + o.dur + 0.2);
+          const fin = brl(o.to), size = Wd / (fin.length * 0.6);
+          hide();
+          if (t >= o.t) {
+            // conta em reais inteiros (os centavos já são os da tela) e desacelera no fim
+            const v0 = (o.from || 0) + (o.to - (o.from || 0)) * E.outExpo(q);
+            const v = q >= 1 ? o.to : Math.sign(v0) * Math.floor(Math.abs(v0)) + (o.to - Math.trunc(o.to));
+            g.save(); g.globalAlpha *= 1 - f;
+            setFont(g, MONO, size, o.weight || 700, 'right', 0); g.fillStyle = o.color;
+            g.fillText(brl(Math.abs(v) < 0.005 ? (o.to < 0 ? -0.001 : 0) : v), X + Wd, Y + Hd - 0.13 * size);
+            g.restore();
+            real(f);
+          }
+          break;
+        }
+        case 'roll': {                                // placar: o algarismo sobe rolando até o número da tela
+          const q = E.outCubic(p(t, o.t, o.t + o.dur)), f = p(t, o.t + o.dur - 0.1, o.t + o.dur);
+          const pos = q * o.to, k = Math.floor(pos), fr = pos - k, size = Hd * 0.98;
+          hide();
+          g.save(); g.beginPath(); g.rect(X - 1.5 * s, Y - 1.5 * s, Wd + 3 * s, Hd + 3 * s); g.clip();
+          g.globalAlpha *= 1 - f;
+          setFont(g, MONO, size, 700, 'center', 0); g.fillStyle = o.color;
+          const base = Y + Hd * 0.86;
+          g.fillText(String(k % 10), X + Wd / 2, base - fr * Hd);
+          g.fillText(String((k + 1) % 10), X + Wd / 2, base + (1 - fr) * Hd);
+          g.restore();
+          real(f);
+          break;
+        }
+        case 'check': {                               // o círculo e o check se desenham
+          const q1 = E.inOutCubic(p(t, o.t, o.t + o.dur * 0.55)), q2 = E.outCubic(p(t, o.t + o.dur * 0.45, o.t + o.dur));
+          const f = p(t, o.t + o.dur, o.t + o.dur + 0.2);
+          hide();
+          const cx = ox + o.c[0] * s, cy = oy + o.c[1] * s;
+          g.save(); g.globalAlpha *= 1 - f; g.strokeStyle = o.color; g.lineCap = 'round'; g.lineJoin = 'round';
+          if (q1 > 0) { g.lineWidth = o.lw * s; g.beginPath(); g.arc(cx, cy, o.rad * s, -Math.PI / 2, -Math.PI / 2 + TAU * q1); g.stroke(); }
+          if (q2 > 0) {
+            const P = o.pts.map(([a, b]) => [cx + a * s, cy + b * s]);
+            const l1 = Math.hypot(P[1][0] - P[0][0], P[1][1] - P[0][1]), l2 = Math.hypot(P[2][0] - P[1][0], P[2][1] - P[1][1]);
+            const L = (l1 + l2) * q2;
+            g.lineWidth = o.plw * s; g.beginPath(); g.moveTo(P[0][0], P[0][1]);
+            if (L <= l1) g.lineTo(lerp(P[0][0], P[1][0], L / l1), lerp(P[0][1], P[1][1], L / l1));
+            else { g.lineTo(P[1][0], P[1][1]); g.lineTo(lerp(P[1][0], P[2][0], (L - l1) / l2), lerp(P[1][1], P[2][1], (L - l1) / l2)); }
+            g.stroke();
+          }
+          g.restore();
+          real(f);
+          break;
+        }
+        case 'type': {                                // digitação: a captura aparece letra a letra, com cursor piscando
+          const G = o.glyphs, n = G.length, dur = n / o.cps;
+          const k = Math.min(n, Math.floor(p(t, o.t, o.t + dur) * n + 1e-6));
+          hide();
+          const right = G[n - 1][1];
+          let caretX;
+          if (k > 0) {
+            const a = G[0][0], b = G[k - 1][1], shift = o.align === 'right' ? right - b : 0;
+            g.drawImage(img, a, r[1], b - a, r[3] - r[1], ox + (a + shift) * s, Y, (b - a) * s, Hd);
+            caretX = ox + (b + shift + 3) * s;
+          } else caretX = ox + ((o.align === 'right' ? right : G[0][0]) + 1) * s;
+          if (Math.floor((t - o.t) / 0.26) % 2 === 0 || k < n) {
+            g.fillStyle = luma(o.bg) > 128 ? '#171717' : C.lime;
+            g.fillRect(caretX, Y - 2 * s, 2.5 * s, Hd + 4 * s);
+          }
+          break;
+        }
+        case 'tap': {                                 // o dedo: aperta e solta uma onda
+          const q = p(t, o.t - 0.15, o.t + 0.5);
+          if (q <= 0 || q >= 1) break;
+          const x = ox + o.x * s, y = oy + o.y * s, press = Math.sin(Math.PI * clamp(q / 0.45));
+          g.save();
+          g.fillStyle = css('#FFFFFF', 0.42 * Math.sin(Math.PI * q)); g.beginPath(); g.arc(x, y, (34 - 6 * press) * s, 0, TAU); g.fill();
+          g.strokeStyle = css('#FFFFFF', 0.85 * (1 - q)); g.lineWidth = 3 * s;
+          g.beginPath(); g.arc(x, y, (34 + 60 * E.outCubic(p(q, 0.3, 1))) * s, 0, TAU); g.stroke();
+          g.restore();
+          break;
+        }
+      }
+    }
+  }
+
+  // =====================================================================
   // CELULAR
   // =====================================================================
   let PHONE = null, EDGE = null;
@@ -464,6 +669,7 @@
       return { cur: q < 0.5 && prev ? prev : s, prev: q < 0.5 ? null : prev, giro: giroAng(q), q };
     }
     if (s.mode === 'toque') return { cur: s, prev, swap: p(t, s.t, s.t + TOQUE) };
+    if (s.mode === 'imprime') return { cur: s, prev, print: p(t, s.t, s.t + IMPRIME) };
     return { cur: s, on: p(t, s.t, s.t + 0.45) };
   }
   // quanto a tela fica escurecida e desfocada (enquanto há um recorte fora dela)
@@ -507,8 +713,15 @@
           drawShot(g, st.cur.key, SCR.x + (1 - q) * SCR.w, SCR.y, SCR.w, SCR.h, 1, blur);
           g.fillStyle = css('#000', 0.35 * Math.sin(Math.PI * q)); g.fillRect(SCR.x - q * SCR.w, SCR.y, SCR.w, SCR.h);
         }
+      } else if (st.print !== undefined && st.print < 1 && st.prev) {
+        // o recibo sai "impresso": sobe do pé da tela aos trancos, como papel saindo da impressora
+        const q = st.print, feed = E.inOutSine(q) + Math.sin(q * Math.PI * 9) * 0.012 * (1 - q);
+        drawShot(g, st.prev.key, SCR.x, SCR.y, SCR.w, SCR.h, 1, blur);
+        g.fillStyle = css('#000', 0.45 * Math.sin(Math.PI * Math.min(1, q * 1.4))); g.fillRect(SCR.x, SCR.y, SCR.w, SCR.h);
+        drawShot(g, st.cur.key, SCR.x, SCR.y + (1 - feed) * SCR.h, SCR.w, SCR.h, 1, blur);
       } else {
         drawShot(g, st.cur.key, SCR.x, SCR.y, SCR.w, SCR.h, st.on !== undefined ? E.outCubic(st.on) : 1, blur);
+        if (blur < 0.2) runOps(g, IMG[st.cur.key], PHONE_OPS.filter((o) => o.key === st.cur.key), t, KS, SCR.x, SCR.y);
       }
     }
     if (veil > 0.002) { g.fillStyle = css('#000', 0.6 * veil); g.fillRect(SCR.x, SCR.y, SCR.w, SCR.h); }
@@ -517,9 +730,9 @@
       const q = p(t, tp.t - 0.12, tp.t + 0.45);
       if (q <= 0 || q >= 1 || tp.hidden) continue;
       const x = SCR.x + tp.x * KS, y = SCR.y + tp.y * KS;
-      const a = Math.sin(Math.PI * q);
-      g.fillStyle = css('#FFFFFF', 0.35 * a); g.beginPath(); g.arc(x, y, 30 * (0.7 + 0.3 * q), 0, TAU); g.fill();
-      g.strokeStyle = css('#FFFFFF', 0.7 * (1 - q)); g.lineWidth = 4; g.beginPath(); g.arc(x, y, 30 + 50 * E.outCubic(q), 0, TAU); g.stroke();
+      const a = Math.sin(Math.PI * q), press = Math.sin(Math.PI * clamp(q / 0.45));
+      g.fillStyle = css('#FFFFFF', 0.45 * a); g.beginPath(); g.arc(x, y, 30 - 6 * press, 0, TAU); g.fill();
+      g.strokeStyle = css('#FFFFFF', 0.85 * (1 - q)); g.lineWidth = 3; g.beginPath(); g.arc(x, y, 30 + 54 * E.outCubic(p(q, 0.3, 1)), 0, TAU); g.stroke();
     }
     // reflexo do vidro
     const rf = g.createLinearGradient(0, 0, PH.w, PH.h * 0.6);
@@ -531,13 +744,30 @@
   }
   // a pose do celular: posição, escala e giro (eixo vertical)
   function phonePose(t) {
-    const enter = E.outCubic(p(t, T.celular, T.celular + 1.2));
+    const enter = springE(p(t, T.celular, T.celular + 1.2));
     let cx = PH.cx, cy = lerp(H + PH.h * 0.62, PH.cy, enter), k = 1;
     let ang = (-11 + 3.2 * Math.sin(t * 0.55)) * DEG;
     const fin = E.inOutCubic(p(t, T.fechamento - 0.2, T.fechamento + 0.8));
     cx = lerp(cx, 806, fin); cy = lerp(cy, 1268, fin); k = lerp(1, 0.66, fin);
     ang = lerp(ang, (-16 + 2 * Math.sin(t * 0.55)) * DEG, fin);
     return { cx, cy, k, ang, alpha: t < T.celular ? 0 : 1 };
+  }
+  // câmera do celular: na fase "pre" ela se aproxima do campo real; durante cada recorte o celular recua de leve
+  // (parallax) enquanto o recorte se aproxima
+  let ZOOM_A = 0;
+  function cameraPhone(t, pose, ang) {
+    let z = 1, ax = 0, ay = 0, bx = 0, by = 0;
+    ZOOM_A = 0;
+    for (const Z of ZOOMS) {
+      const a = Math.min(E.inOutCubic(p(t, Z.t0, Z.t0 + 0.6)), 1 - E.inOutCubic(p(t, Z.t1 - 0.5, Z.t1)));
+      if (a <= 0) continue;
+      const P = shotToScreen(pose, ang, Z.x, Z.y);
+      z = lerp(1, Z.z, a); ax = P.x; ay = P.y; bx = lerp(P.x, 540, a); by = lerp(P.y, Z.ty, a); ZOOM_A = a;
+      return { z, ax, ay, bx, by };
+    }
+    let q = 0;
+    for (const L of LIFTS) q = Math.max(q, env(t, L.t0, L.t1, 0.6, 0.4));
+    return { z: 1 - 0.02 * q, ax: pose.cx, ay: pose.cy, bx: pose.cx - 14 * q, by: pose.cy + 10 * q };
   }
   function phone(ctx, t) {
     if (t < T.celular - 0.05) return null;
@@ -546,12 +776,15 @@
     let ang = pose.ang;
     if (st.giro) ang += st.giro;
     const w = PH.w * pose.k, h = PH.h * pose.k;
+    const cam = cameraPhone(t, pose, pose.ang);
+    ctx.save(); ctx.translate(cam.bx, cam.by); ctx.scale(cam.z, cam.z); ctx.translate(-cam.ax, -cam.ay);
     // sombra no chão e brilho limão discreto atrás
     ctx.save(); ctx.globalCompositeOperation = 'lighter'; glow(ctx, pose.cx, pose.cy - 80 * pose.k, 760 * pose.k, C.lime, 0.05); ctx.restore();
     // a espessura (a lateral aparece do lado de onde o celular gira)
     const side = Math.sin(ang) * 22 * pose.k;
     drawRotY(ctx, EDGE, 0, 0, PH.w, PH.h, pose.cx - side, pose.cy, w, h, ang);
     drawRotY(ctx, PHONE, 0, 0, PH.w, PH.h, pose.cx, pose.cy, w, h, ang);
+    ctx.restore();
     return { st, pose, ang };
   }
   // um ponto da captura (px, py) -> tela, com a pose atual do celular
@@ -576,6 +809,7 @@
     g.fillStyle = L.bg || '#FFFFFF'; g.fillRect(20, 20, w, h);
     g.imageSmoothingEnabled = true; g.imageSmoothingQuality = 'high';
     g.drawImage(IMG[L.key], x0, y0, x1 - x0, y1 - y0, 20 + pl * s, 20 + pt * s, (x1 - x0) * s, (y1 - y0) * s);
+    runOps(g, IMG[L.key], L.ops, t, s, 20 + (pl - x0) * s, 20 + (pt - y0) * s);
     g.restore();
     // o destaque limão dentro do recorte
     if (L.hl) {
@@ -590,22 +824,36 @@
         g.restore();
       }
     }
-    // contorno limão da placa
+    // contorno limão da placa e o brilho que dá uma volta nele, uma vez, quando ela pousa
     g.lineWidth = 5; g.strokeStyle = C.lime; rr(g, 20 - 1, 20 - 1, w + 2, h + 2, 23); g.stroke();
+    const gq = p(t, L.land + 0.05, L.land + 0.95);
+    if (gq > 0 && gq < 1) {
+      const per = 2 * (w + h), head = E.inOutSine(gq) * per, len = per * 0.16;
+      const at = (u) => { u = ((u % per) + per) % per;
+        if (u < w) return [19 + u, 19]; u -= w; if (u < h) return [21 + w, 19 + u]; u -= h; if (u < w) return [21 + w - u, 21 + h]; u -= w; return [19, 21 + h - u]; };
+      g.save(); g.lineCap = 'round'; g.shadowColor = css('#E8FFB8', 0.9); g.shadowBlur = 16;
+      for (let i = 0; i < 18; i++) {
+        const a = at(head - len * (i / 18)), b = at(head - len * ((i + 1) / 18));
+        g.strokeStyle = css('#F4FFDC', (1 - i / 18) * Math.sin(Math.PI * gq)); g.lineWidth = 7 - 4 * (i / 18);
+        g.beginPath(); g.moveTo(a[0], a[1]); g.lineTo(b[0], b[1]); g.stroke();
+      }
+      g.restore();
+    }
     return { c, w, h, s };
   }
   function lifts(ctx, t, ph) {
     if (!ph) return;
     LIFTS.forEach((L, i) => {
-      const up = p(t, L.t0, L.t0 + 0.5), down = p(t, L.t1, L.t1 + 0.38);
+      const up = p(t, L.t0, L.t0 + RISE), down = p(t, L.t1, L.t1 + 0.38);
       if (up <= 0 || down >= 1) return;
-      const e = down > 0 ? 1 - E.inCubic(down) : E.outBack(up, 1.25);
+      const e = down > 0 ? 1 - E.inCubic(down) : springE(up);           // entrada em mola, com leve overshoot
       const card = cardCanvas(L, i, t);
       const [x0, y0, x1, y1] = L.crop;
       const a = shotToScreen(ph.pose, ph.ang, (x0 + x1) / 2, (y0 + y1) / 2);
       const fw = (x1 - x0) * KS * ph.pose.k * a.s, fh = (y1 - y0) * KS * ph.pose.k * a.s;
       const cx = lerp(a.x, 540, e), cy = lerp(a.y, L.cy, e);
-      const w = lerp(fw, card.w, e), h = lerp(fh, card.h, e);
+      const near = 1 + 0.025 * E.inOutSine(p(t, L.land + 0.3, L.t1)) * (down > 0 ? 1 - down : 1);   // aproximação suave
+      const w = lerp(fw, card.w, e) * near, h = lerp(fh, card.h, e) * near;
       const ang = lerp(ph.ang, 0, clamp(e)) + Math.sin(t * 1.3 + i) * 1.2 * DEG * clamp(e);
       const lift = clamp(e);
       // sombra e "espessura" da placa
@@ -633,6 +881,12 @@
     y = lerp(y, 196, fin); d = lerp(d, 96, fin); size = lerp(size, 60, fin);
     const halo = clamp(p(t, T.virada + 0.7, T.virada + 1.1)) * (1 - up);
     if (halo > 0) { ctx.save(); ctx.globalCompositeOperation = 'lighter'; glow(ctx, 540, y, 560, C.lime, 0.12 * halo); ctx.restore(); }
+    // a onda limão que sai da logo quando ela cresce (no 1º tempo da música)
+    const wq = p(t, T.virada + 0.75, T.virada + 1.75);
+    if (wq > 0 && wq < 1) {
+      ctx.save(); ctx.strokeStyle = css(C.lime, 0.55 * (1 - wq)); ctx.lineWidth = 3 + 5 * (1 - wq);
+      ctx.beginPath(); ctx.arc(540, y, 90 + 560 * E.outCubic(wq), 0, TAU); ctx.stroke(); ctx.restore();
+    }
     lockup(ctx, 540, y, d, size, 1);
   }
 
@@ -706,6 +960,7 @@
     monitor(ctx, t);
     const ph = phone(ctx, t);
     lifts(ctx, t, ph);
+    scrim(ctx);
     brand(ctx, t);
     rail(ctx, t);
     captions(ctx, t);
@@ -717,9 +972,23 @@
     const c = [];
     MESS.forEach((m) => c.push({ t: m.beat, type: m.shake ? 'shake' : 'bump' }));
     c.push({ t: T.virada, type: 'suck' }, { t: T.virada + 0.75, type: 'pop' }, { t: T.celular, type: 'rise' }, { t: T.reservas, type: 'on' });
-    SCREENS.forEach((s) => s.t > T.reservas + 0.1 && c.push({ t: s.t, type: s.mode === 'giro' ? 'flip' : 'swipe' }));
-    LIFTS.forEach((L) => { c.push({ t: L.t0, type: 'lift' }); c.push({ t: L.t1, type: 'drop' }); });
+    SCREENS.forEach((s) => s.t > T.reservas + 0.1 && s.mode !== 'imprime' && c.push({ t: s.t, type: s.mode === 'giro' ? 'flip' : 'swipe' }));
+    LIFTS.forEach((L) => { c.push({ t: L.t0, type: 'lift' }); c.push({ t: L.t1, type: 'drop' }); c.push({ t: L.land + 0.05, type: 'glint' }); });
     TAPS.forEach((tp) => !tp.hidden && c.push({ t: tp.t, type: 'tap' }));
+    // o motion sobre as capturas: cada letra digitada, a contagem, o check, o selo, a impressão, o toque
+    const opCues = (o) => {
+      if (o.type === 'type') for (let k = 0; k < o.n; k++) c.push({ t: o.t + k / o.cps, type: 'key' });
+      else if (o.type === 'count' || o.type === 'roll') c.push({ t: o.t, type: 'count', dur: o.dur });
+      else if (o.type === 'check') c.push({ t: o.t + o.dur * 0.5, type: 'check' });
+      else if (o.type === 'stamp') c.push({ t: o.t + 0.08, type: 'stamp' });
+      else if (o.type === 'reveal') c.push({ t: o.t, type: 'reveal' });
+      else if (o.type === 'wipe') c.push({ t: o.t, type: 'print', dur: o.dur });
+      else if (o.type === 'tap') c.push({ t: o.t, type: 'tap' });
+    };
+    LIFTS.forEach((L) => (L.ops || []).forEach(opCues));
+    PHONE_OPS.forEach(opCues);
+    ZOOMS.forEach((Z) => { c.push({ t: Z.t0, type: 'zoom' }); c.push({ t: Z.t1 - 0.5, type: 'unzoom' }); });
+    SCREENS.forEach((s) => s.mode === 'imprime' && c.push({ t: s.t, type: 'print', dur: IMPRIME }));
     TRILHO.forEach(([, t0]) => c.push({ t: t0, type: 'chip' }));
     c.push({ t: T.fechamento, type: 'whoosh' }, { t: T.url, type: 'pop' });
     return c.sort((a, b) => a.t - b.t);
@@ -727,6 +996,11 @@
 
   function init(logo, shots, trechos) {
     LOGO = logo; IMG = shots;
+    for (const b of PLAN) {
+      const key = b.screen;
+      const ops = [...(b.lifts || []).flatMap((L) => L.ops || []), ...(b.pre ? b.pre.ops : [])];
+      for (const o of ops) if (o.type === 'type') { o.glyphs = glyphs(IMG[key], o.r, o.bg); o.n = o.glyphs.length; }
+    }
     build(trechos.trechos);
     PHONE = canvas(PH.w, PH.h);
     EDGE = canvas(PH.w, PH.h);
@@ -738,7 +1012,7 @@
   window.INST = {
     init, renderAt, SHOT_FILES, T,
     get DURATION() { return DURATION; },
-    cues: () => ({ duration: DURATION, cenas: T, voz: VOZ, trilho: TRILHO, recortes: LIFTS.map((L) => ({ tela: L.key, t0: L.t0, t1: L.t1 })),
+    cues: () => ({ duration: DURATION, bpm: BPM, m0: M0, cenas: T, voz: VOZ, trilho: TRILHO, recortes: LIFTS.map((L) => ({ tela: L.key, t0: L.t0, t1: L.t1 })),
       cues: buildCues() }),
   };
 })();

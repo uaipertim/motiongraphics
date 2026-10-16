@@ -4,13 +4,16 @@ Trilha, efeitos e mixagem do vídeo institucional, 100% sintetizados (numpy/scip
 
     node scripts/render.cjs cues      # antes: audio/cues.json (tempos da animação e de cada trecho de voz)
     python3 scripts/trilha.py         # -> audio/mix.wav (48 kHz, estéreo) + output/revisao/mix.txt
+    python3 scripts/trilha.py --ate 53.5   # prévia de um trecho: audio/mix-previa.wav (fade de 0,8 s no fim)
 
 - Cena 1 (a bagunça): um zumbido grave e tenso, papel e a fita do caixa sacudindo; a bagunça é sugada.
-- Da virada em diante: uma trilha leve e otimista em Fá maior a 100 BPM (Fmaj7 · Dm7 · B♭maj7 · C),
-  pad, baixo e uma kalimba em arpejo; a partir das telas entra uma batida discreta (bumbo, shaker, aro).
-  No fim, o acorde de Fá fica soando com a sineta de recepção da série no endereço da demonstração.
-- Efeitos nos instantes da animação (audio/cues.json): recorte subindo e voltando, toque, troca de tela,
-  giro do celular, chip do trilho.
+- Da virada em diante: trilha positiva em Fá maior a 105 BPM (F · C/E · Dm · B♭, I–V–vi–IV), com pad,
+  baixo pulsado, kalimba em arpejo e, a partir das telas, batida leve (bumbo, palmas, shaker, chimbal aberto
+  no contratempo) com uma virada a cada 4 compassos. O 1º tempo cai quando a logo cresce, e o motor põe cada
+  troca de tela num tempo da música (audio/cues.json: bpm, m0). No fim, o Fá fica soando com a sineta.
+- Efeitos discretos nos instantes da animação (audio/cues.json): recorte subindo e voltando, brilho no
+  contorno, toque, cada tecla digitada, contagem dos valores, check, selo, impressão do recibo, troca de tela,
+  giro do celular, câmera aproximando, chip do trilho.
 - Voz: os trechos de audio/voz/trechos/ (scripts/trechos.py) nos instantes do motor, sem aceleração.
   A trilha e os efeitos abaixam 9,5 dB enquanto a voz fala (ataque 60 ms, retorno 300 ms).
 - Master: −14 LUFS integrado, limitador de pico real em −2 dBTP (no MP4, depois do AAC: ≤ −1 dBTP).
@@ -19,6 +22,7 @@ import json
 import os
 import re
 import subprocess
+import sys
 from fractions import Fraction
 import numpy as np
 from scipy.io import wavfile
@@ -33,10 +37,10 @@ CUES = DATA['cues']
 SR = 48000
 N = int(round(SR * DUR))
 rng = np.random.default_rng(9090)
-BPM = 100
+BPM = DATA.get('bpm', 105)
 BT = 60.0 / BPM
 BAR = 4 * BT
-M0 = SEC['virada'] + 0.75                  # o 1º tempo da trilha: a logo cresce ("Conheça o FAZLO Hospeda")
+M0 = DATA.get('m0', SEC['virada'] + 0.75)  # o 1º tempo da trilha: a logo cresce ("Conheça o FAZLO Hospeda")
 DUCK_DB = 9.5
 TARGET = -14.0
 CEIL = -2.0
@@ -197,6 +201,51 @@ def thud(d=0.25, f=90):
     return np.sin(2 * np.pi * np.cumsum(f * (1 + 0.6 * np.exp(-t / 0.02))) / SR) * np.exp(-t / 0.07)
 
 
+def shimmer(d=0.5):
+    t = tt(d)
+    s = sum(np.sin(2 * np.pi * f * t + rng.uniform(0, 6)) * np.exp(-t / dec) for f, dec in [(2637, 0.25), (3520, 0.18), (4699, 0.12), (5274, 0.1)])
+    return s * np.minimum(1, t / 0.02) / 4
+
+
+def keyclick():
+    d = 0.035
+    t = tt(d)
+    return (filt(noise(d), [1800, 7000], 'band') * np.exp(-t / 0.004) + 0.4 * np.sin(2 * np.pi * rng.uniform(900, 1300) * t) * np.exp(-t / 0.006))
+
+
+def ticks(d, n0=26, n1=6):
+    """a contagem: tiques que começam rápidos e desaceleram junto com o número"""
+    out = np.zeros(int((d + 0.05) * SR))
+    k, tt0 = 0, 0.0
+    while tt0 < d:
+        c = click(3400 + 400 * (k % 2), 0.012)
+        i = int(tt0 * SR)
+        out[i:i + len(c)] += c[: len(out) - i] * (0.9 - 0.4 * tt0 / d)
+        rate = n0 + (n1 - n0) * (tt0 / d) ** 0.6
+        tt0 += 1.0 / rate
+        k += 1
+    return out
+
+
+def ding(d=1.2):
+    t = tt(d)
+    a = np.sin(2 * np.pi * midi(81) * t) * np.exp(-t / 0.35) * (t < 0.12)
+    b = np.sin(2 * np.pi * midi(88) * np.clip(t - 0.09, 0, None)) * np.exp(-np.clip(t - 0.09, 0, None) / 0.5) * (t >= 0.09)
+    return (a + b + 0.25 * np.sin(2 * np.pi * midi(100) * t) * np.exp(-t / 0.08)) * np.minimum(1, t / 0.003)
+
+
+def stamp_hit():
+    d = 0.25
+    t = tt(d)
+    return thud(d, 120) * 0.8 + filt(noise(d), [800, 4000], 'band') * np.exp(-t / 0.01) * 0.5
+
+
+def printer(d=0.8):
+    t = tt(d)
+    motor = filt(noise(d), [600, 3500], 'band') * (0.55 + 0.45 * (np.sin(2 * np.pi * 22 * t) > 0))
+    return motor * np.minimum(1, t / 0.03) * np.clip((d - t) / 0.08, 0, 1)
+
+
 def fx(c, buf):
     t, k = c['t'], c['type']
     if k == 'bump':
@@ -227,29 +276,68 @@ def fx(c, buf):
         place(buf, click(), t, 0.22, 0.2)
     elif k == 'chip':
         place(buf, blip(1800, 2400, 0.09), t + 0.05, 0.08, -0.3)
+    elif k == 'glint':
+        place(buf, shimmer(), t, 0.05, 0.3)
+    elif k == 'key':
+        place(buf, keyclick(), t, 0.16, rng.uniform(-0.2, 0.2))
+    elif k == 'count':
+        place(buf, ticks(c.get('dur', 0.6)), t, 0.06, 0.15)
+    elif k == 'check':
+        place(buf, ding(), t, 0.11, 0.1)
+    elif k == 'stamp':
+        place(buf, stamp_hit(), t, 0.2)
+    elif k == 'reveal':
+        place(buf, whoosh(0.3, 800, 3500, 0.5), t, 0.06, -0.2)
+    elif k == 'print':
+        place(buf, printer(c.get('dur', 0.8)), t, 0.07, 0.2)
+    elif k == 'zoom':
+        place(buf, whoosh(0.6, 200, 1800, 0.7), t, 0.14)
+    elif k == 'unzoom':
+        place(buf, whoosh(0.5, 1800, 250, 0.3), t, 0.1)
     elif k == 'whoosh':
         place(buf, whoosh(0.9, 250, 3000, 0.6), t - 0.2, 0.32)
 
 
 # ------------------------------------------------------------------ música
-CHORDS = [  # (fundamental do baixo, notas do pad, arpejo da kalimba)
-    (41, [57, 60, 64, 65], [65, 69, 72, 76, 72, 69, 77, 72]),        # Fmaj7
-    (38, [57, 60, 62, 65], [62, 65, 69, 72, 69, 65, 74, 69]),        # Dm7
-    (46, [57, 58, 62, 65], [58, 62, 65, 69, 65, 62, 70, 65]),        # B♭maj7
-    (36, [55, 60, 64, 67], [60, 64, 67, 72, 67, 64, 72, 67]),        # C
+CHORDS = [  # I–V–vi–IV em Fá: (baixo, pad, arpejo de 8 colcheias)
+    (41, [57, 60, 65, 67], [65, 69, 72, 77, 72, 69, 72, 76]),        # F (add9)
+    (40, [55, 60, 64, 67], [64, 67, 72, 76, 72, 67, 72, 74]),        # C/E
+    (38, [57, 60, 62, 65], [62, 65, 69, 74, 69, 65, 69, 72]),        # Dm7
+    (46, [58, 62, 65, 69], [65, 70, 74, 77, 74, 70, 74, 72]),        # B♭maj7
 ]
+
+
+def clap(d=0.3):
+    t = tt(d)
+    n = filt(noise(d), [900, 7000], 'band')
+    env = sum((t >= o) * np.exp(-np.clip(t - o, 0, None) / (0.004 if k < 3 else 0.1)) for k, o in enumerate([0, 0.008, 0.017, 0.026]))
+    return n * env
+
+
+def hat_open(d=0.2):
+    t = tt(d)
+    return filt(noise(d), 7000, 'high') * np.exp(-t / 0.06) * np.minimum(1, t / 0.001)
+
+
+def pluck(f, d=0.3):
+    t = tt(d)
+    s = np.sin(2 * np.pi * f * t) + 0.35 * saw_bl(f, t, 900) * np.exp(-t / 0.06)
+    return np.tanh(1.3 * s) * np.exp(-t / 0.2) * np.minimum(1, t / 0.004) * np.clip((d - t) / 0.03, 0, 1)
 
 
 def music():
     buf = np.zeros((2, N))
-    # cena 1: zumbido tenso (Ré menor sem terça) + tiques de relógio, entra devagar
+    # cena 1: tensão (zumbido grave sem terça) e tique de relógio no tempo da música que vai entrar
     d1 = M0 + 0.4
-    dr = pad([38, 45, 50], d1, bright=500, att=1.2, rel=0.6)
-    place(buf, dr, 0.0, 0.55)
-    for i in range(int(SEC['virada'] / 0.5)):
-        place(buf, click(3200, 0.02), 0.25 + i * 0.5, 0.05 + 0.03 * (i % 2), 0.3 if i % 2 else -0.3)
-    place(buf, whoosh(1.4, 150, 2500, 0.95), SEC['virada'] - 1.25, 0.18)          # sobe até a virada
-    # da virada ao fim: Fá maior
+    place(buf, pad([38, 45, 50], d1, bright=500, att=1.2, rel=0.6), 0.0, 0.5)
+    k = 1
+    while M0 - k * BT / 2 > 0.1:
+        tk = M0 - k * BT / 2
+        if tk < SEC['virada']:
+            place(buf, click(3200 if k % 2 else 2600, 0.02), tk, 0.05, 0.3 if k % 2 else -0.3)
+        k += 1
+    place(buf, whoosh(1.4, 150, 2500, 0.95), SEC['virada'] - 1.25, 0.18)
+    # da virada ao fim
     end = DUR - 0.2
     nbars = int(np.ceil((end - M0) / BAR))
     drums_on, drums_off = SEC['reservas'], SEC['fechamento']
@@ -259,36 +347,43 @@ def music():
             break
         root, notes, arp = CHORDS[b % 4]
         last = t0 + BAR >= SEC['url']
-        if last:                                                       # o acorde final fica soando até o fim
+        if last:
             root, notes, arp = CHORDS[0]
             dd = end - t0
         else:
             dd = BAR + 0.5
-        place(buf, pad(notes, dd, bright=900 if t0 < drums_on else 1150), t0, 0.5)
-        place(buf, sub(midi(root), min(dd, BAR) - 0.05), t0, 0.32)
+        drums = drums_on - 0.01 <= t0 < drums_off
+        place(buf, pad(notes, dd, bright=1000 if not drums else 1300), t0, 0.45)
         if last:
-            place(buf, sub(midi(root), dd), t0, 0.28)
+            place(buf, sub(midi(root), dd), t0, 0.3)
             for i, n in enumerate([65, 69, 72, 76, 79]):
                 place(buf, kalimba(midi(n), 3.0), t0 + i * BT / 2, 0.16, (i - 2) * 0.3)
             break
+        # baixo: semínima pontuada + colcheia (pulsa sem pesar)
+        for q, dur, oct_ in [(0, 0.75, 0), (1.5, 0.45, 0), (2, 0.75, 0), (3.5, 0.4, 12)]:
+            place(buf, pluck(midi(root + oct_), dur * BT * 2), t0 + q * BT, 0.3 if drums else 0.22)
         for i, n in enumerate(arp):
-            tn = t0 + i * BT / 2
-            v = 0.16 if i % 2 == 0 else 0.11
-            place(buf, kalimba(midi(n)), tn, v, np.sin(i * 1.3) * 0.5)
-        if drums_on - 0.01 <= t0 < drums_off:
+            place(buf, kalimba(midi(n)), t0 + i * BT / 2, 0.15 if i % 2 == 0 else 0.1, np.sin(i * 1.3) * 0.5)
+        if drums:
+            fill = (b % 4) == 3
             for q in range(4):
                 tb = t0 + q * BT
-                if q in (0, 2):
-                    place(buf, kick(), tb, 0.42)
+                place(buf, kick(), tb, 0.45 if q in (0, 2) else 0.0)
                 if q in (1, 3):
-                    place(buf, rim(), tb, 0.11, 0.25)
-            for e in range(8):
-                place(buf, shaker(0.7 if e % 2 else 0.45), t0 + e * BT / 2 + 0.012, 0.13, 0.45)
-    # um pouco de sala
+                    place(buf, clap(), tb, 0.13, 0.15)
+                place(buf, hat_open(), tb + BT / 2, 0.05, 0.4)
+            for e in range(16):
+                place(buf, shaker(0.75 if e % 4 == 2 else 0.45), t0 + e * BT / 4 + 0.01, 0.1, 0.45)
+            if fill:                                   # virada: dois bumbos no fim do 4º compasso
+                place(buf, kick(), t0 + 3.5 * BT, 0.3)
+                place(buf, kick(), t0 + 3.75 * BT, 0.25)
+        elif t0 + BAR > drums_on - 0.01 and t0 < drums_on:
+            place(buf, whoosh(BAR, 200, 4000, 0.95), t0, 0.12)          # sobe para a entrada da batida
+        else:
+            place(buf, kick(), t0, 0.25)                                  # cena 2: só o 1º tempo
     r = ir()
     wet = np.stack([fftconvolve(buf[0], r)[:N], fftconvolve(buf[1], ir(seed=1))[:N]])
-    buf = buf + 0.18 * wet
-    # fim: some nos últimos 1,4 s
+    buf = buf + 0.16 * wet
     fade = np.clip((DUR - 0.05 - np.arange(N) / SR) / 1.4, 0, 1)
     return buf * fade
 
@@ -360,6 +455,11 @@ def main():
         x = true_peak_limit(x * 10 ** ((TARGET - lufs(x)) / 20))
     I = lufs(x)
     wavfile.write(os.path.join(ROOT, 'audio', 'mix.wav'), SR, np.round(np.clip(x, -1, 1) * 32767).astype(np.int16))
+    if '--ate' in sys.argv:                            # prévia de um trecho, com fade de 0,8 s no fim
+        te = float(sys.argv[sys.argv.index('--ate') + 1])
+        y = x[: int(te * SR)].copy()
+        y[-int(0.8 * SR):] *= np.linspace(1, 0, int(0.8 * SR))[:, None]
+        wavfile.write(os.path.join(ROOT, 'audio', 'mix-previa.wav'), SR, np.round(np.clip(y, -1, 1) * 32767).astype(np.int16))
     # conferência
     on = active & (np.abs(bed).max(axis=1) > 1e-4)
     g = np.abs(ducked).max(axis=1)[on] / np.maximum(np.abs(bed).max(axis=1)[on], 1e-9)
