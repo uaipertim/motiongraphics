@@ -1,0 +1,14 @@
+{
+  "id": "ep-06",
+  "titulo": ["Feriado lotado.", "Caixa conferido?"],
+  "cards": [
+    { "chip": "PIX" },
+    { "chip": "CARTÃO" },
+    { "chip": "DINHEIRO" },
+    { "chip": "SINAIS" },
+    { "chip": "COMANDAS" }
+  ],
+  "carimbo": "CONFERIR",
+  "virada": ["Lotar é metade do trabalho.", "*Conferir é a outra metade.*"],
+  "fecho": "Manda pra quem ainda não fechou o caixa do feriado."
+}

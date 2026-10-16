@@ -3,6 +3,7 @@
 Revisão de capa de Reel — a regra fixa da série (reels/README.md, "Capas").
 
     python3 reels/tools/revisao_capa.py reels/reel-NN [--vizinhos reels/reel-07 reels/reel-06]
+    python3 reels/tools/revisao_capa.py reels/serie-rotina --saida reels/serie-rotina/output/ep-01   (série com episódios)
 
 Lê <reel>/output/capa.png (1080x1920) e, se existir, <reel>/output/revisao/capa-caixas.json
 (caixas de cada elemento, exportadas pela página da capa). Gera:
@@ -45,9 +46,10 @@ ap = argparse.ArgumentParser()
 ap.add_argument('reel')
 ap.add_argument('--vizinhos', nargs='*', default=[])
 ap.add_argument('--cena', action='store_true', help='cena de fundo de ponta a ponta: a, c e d pelas caixas')
+ap.add_argument('--saida', help='pasta com capa.png (padrão: <reel>/output); útil para séries com uma pasta por episódio')
 a = ap.parse_args()
 REEL = os.path.abspath(a.reel)
-OUT = os.path.join(REEL, 'output')
+OUT = os.path.abspath(a.saida) if a.saida else os.path.join(REEL, 'output')
 REV = os.path.join(OUT, 'revisao')
 os.makedirs(REV, exist_ok=True)
 FONT = next((os.path.join(REEL, 'src', 'fonts', f) for f in ('JetBrainsMonoNL-Bold.ttf',) if os.path.exists(os.path.join(REEL, 'src', 'fonts', f))), None)
@@ -138,10 +140,10 @@ crop = crop.resize((540, 720), Image.LANCZOS)
 TW, TH = 356, 475
 def neighbor(v):
     """a capa de um vizinho na grade: Reel (9:16, output/capa.png) ou carrossel (4:5, a capa do post)"""
-    o = os.path.join(os.path.abspath(v), 'output')
-    for f in ('01-limao.png', 'capa.png', '01.png'):
-        if os.path.exists(os.path.join(o, f)):
-            return Image.open(os.path.join(o, f)).convert('RGB')
+    for o in (os.path.join(os.path.abspath(v), 'output'), os.path.abspath(v)):   # a pasta do Reel ou a do episódio
+        for f in ('01-limao.png', 'capa.png', '01.png'):
+            if os.path.exists(os.path.join(o, f)):
+                return Image.open(os.path.join(o, f)).convert('RGB')
     return None
 
 

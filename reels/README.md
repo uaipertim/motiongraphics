@@ -13,6 +13,8 @@ Nova fase de produção dos Reels do Instagram do FAZLO Hospeda. O **Motion Grap
 | **07** | **"O feriado acabou. Agora começa a conta."** Pilar ROTINA (identificação, sem apresentar funcionalidades): a conferência do pós-feriado vira uma notinha de caixa impressa — quatro dúvidas da rotina digitadas em verde-limão, o TOTAL carimbado com "???" e o convite para mandar a quem fecha a conta | 14 s | [`reel-07/`](reel-07) |
 | **08** | **"Você fechou a recepção. O celular, não."** Pilar ROTINA: o relógio de plantão — um relógio gigante avança de 23:00 a 23:59 e, a cada salto de minuto, chega a mensagem de um hóspede; os cards se empilham e se comprimem até o "+37 NÃO LIDAS" carimbado; tem também uma versão com voz (teste de narração com a voz oficial da FAZLO, ElevenLabs) | 16 s | [`reel-08/`](reel-08) |
 
+A **série ROTINA** ([`serie-rotina/`](serie-rotina)) é um modelo reutilizável com o DNA do Reel 08: um motion só, em que cada episódio troca apenas o roteiro (`episodios/<id>.json`). O título da dor aparece já no quadro 0; os cards da situação entram um a um com ping, e um chip limão é carimbado sobre a pilha. Depois vêm a virada e "Manda pra quem…", com a logo e a sineta. Cada episódio tem 10–14 s. Prontos: ep-01 ("O hóspede chegou. A reserva, não.") e ep-02 ("Caiu um Pix às 14h. De quem era?"). Os roteiros dos ep-03 a ep-06 estão na pasta.
+
 O v1 continua intacto na raiz do repositório. Não há Reel 04 neste repositório; a numeração segue a dos pedidos.
 
 Fora da série de Reels, com a mesma identidade: os **Stories do Destaque "Conheça"** (4 × 8 s + capa do Destaque) em [`../stories/conheca/`](../stories/conheca) e os **carrosséis** do pilar DICA em [`../carrosseis/`](../carrosseis) (Carrossel 01: "Como cobrar o sinal sem constrangimento").

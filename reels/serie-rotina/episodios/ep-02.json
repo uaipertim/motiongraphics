@@ -1,0 +1,13 @@
+{
+  "id": "ep-02",
+  "titulo": ["Caiu um Pix às 14h.", "De quem era?"],
+  "cards": [
+    { "rotulo": "PIX RECEBIDO", "texto": "R$ 380,00", "hora": "14:02" },
+    { "texto": "Sinal do chalé 3?" },
+    { "texto": "Diária extra?" },
+    { "texto": "Comanda da piscina?" }
+  ],
+  "carimbo": "NINGUÉM ANOTOU",
+  "virada": ["Pix sem nome vira dúvida", "*no fim do mês.*"],
+  "fecho": "Manda pra quem confere Pix pelo extrato."
+}

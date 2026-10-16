@@ -1,0 +1,13 @@
+{
+  "id": "ep-05",
+  "titulo": ["A comanda da piscina", "que ninguém fechou."],
+  "cards": [
+    { "chip": "2 CAIPIRINHAS" },
+    { "chip": "1 PORÇÃO DE MANDIOCA" },
+    { "chip": "3 ÁGUAS COM GÁS" },
+    { "chip": "QUARTO: ?" }
+  ],
+  "carimbo": "HÓSPEDE JÁ FOI EMBORA",
+  "virada": ["O hóspede foi.", "*A conta ficou.*"],
+  "fecho": "Manda pra quem cuida do bar da piscina."
+}

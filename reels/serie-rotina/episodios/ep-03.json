@@ -1,0 +1,13 @@
+{
+  "id": "ep-03",
+  "titulo": ["Domingo, 11h.", "Check-out de todo mundo."],
+  "cards": [
+    { "rotulo": "CHALÉ 1", "texto": "Cadê a chave?" },
+    { "rotulo": "QUARTO 4", "texto": "Comanda aberta" },
+    { "rotulo": "CHALÉ 2", "texto": "Pix ou cartão?" },
+    { "rotulo": "QUARTO 6", "texto": "Manda o recibo?" }
+  ],
+  "carimbo": "PRÓXIMO CHECK-IN · 14H",
+  "virada": ["E a faxina ainda *nem começou.*"],
+  "fecho": "Manda pra quem faz check-out sozinho no domingo."
+}

@@ -1,0 +1,12 @@
+{
+  "id": "ep-01",
+  "titulo": ["O hóspede chegou.", "A reserva, não."],
+  "cards": [
+    { "rotulo": "SÁB 14:10", "texto": "Hóspede na recepção" },
+    { "texto": "'Reservei pelo WhatsApp, semana passada.'" },
+    { "texto": "Caderno? Direct? Áudio de ontem?" }
+  ],
+  "carimbo": "NÃO ENCONTRADA",
+  "virada": ["Reserva que fica na conversa", "*não é reserva.*"],
+  "fecho": "Manda pra quem ainda anota reserva no WhatsApp."
+}
