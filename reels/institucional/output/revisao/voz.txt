@@ -5,7 +5,7 @@ grafia enviada à API: a do roteiro (nenhuma troca)
 
 Duração de cada fala (velocidade 1,0, sem aceleração):
   cena 1 · a dor                  4.66 s de fala · janela 5.2 s · formato mp3_44100_128 · "Reserva anotada no caderno, consumo no papel e um caixa que nunca bate?"
-  cena 2 · a virada               4.25 s de fala · janela 3.7 s · formato mp3_44100_128 · "Conheça o FAZLO Hospeda: a gestão da sua pousada em um só lugar."
+  cena 2 · a virada               3.42 s de fala · janela 4.6 s · formato mp3_44100_128 · "Conheça o FAZLO Ospéda: a gestão da sua pousada em um só lugar."
   cena 3 · reservas               6.12 s de fala · janela 10.0 s · formato mp3_44100_128 · "Veja a ocupação no calendário, lance uma reserva em poucos passos e envie o voucher ao hóspede."
   cena 4 · check-in               3.66 s de fala · janela 5.3 s · formato mp3_44100_128 · "No check-in, registre o pagamento e gere o recibo na hora."
   cena 5 · comandas               4.47 s de fala · janela 7.0 s · formato mp3_44100_128 · "Durante a estadia, tudo o que o hóspede consome vai para a conta dele."

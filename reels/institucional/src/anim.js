@@ -23,7 +23,6 @@
   'use strict';
 
   const W = 1080, H = 1920;
-  const DURATION = 60.0;
   const DISPLAY = "'FH Display', 'Inter Display', 'Inter', sans-serif";
   const MONO = "'FH Mono', 'JetBrains Mono', monospace";
   const C = {
@@ -31,11 +30,10 @@
     grayD: '#2E2E2C', ink: '#0A0A0A', red: '#E5484D', body: '#1C1C1C', edge: '#3B3B3B',
   };
 
-  // as cenas (s)
-  const T = {
-    dor: 0, virada: 5.8, reservas: 11.0, checkin: 21.0, comandas: 27.0, caixa: 35.0, checkout: 43.0, relatorios: 46.3,
-    fechamento: 52.0, demo: 55.5,
-  };
+  // as cenas (s): 1 e 2 têm tempos fixos; 3 a 7 saem da lista de batidas (PLAN, montada em build());
+  // a 8 começa quando a 7 termina
+  const T = { dor: 0, virada: 6.2, celular: 11.0, reservas: 12.5, fechamento: 0, demo: 0 };
+  let DURATION = 90;
 
   // ---------------------------------------------------------------- utilitários
   const TAU = Math.PI * 2, DEG = Math.PI / 180;
@@ -107,6 +105,7 @@
     quantidade: 'celular/06-comandas--modal-quantidade.png',
     lancado: 'celular/06-comandas--consumo-lancado.png',
     caixa: 'celular/07-caixa--caixa.png',
+    caixaRolagem: 'celular/07-caixa--caixa-rolagem.png',
     fecharCaixa: 'celular/07-caixa--form-fechar-caixa.png',
     checkout: 'celular/04-hospedagens--modal-check-out.png',
     reciboOut: 'celular/04-hospedagens--recibo-check-out.png',
@@ -118,80 +117,110 @@
   };
   let IMG = {}, LOGO = null;
 
-  // a tela do celular ao longo do tempo: [instante, captura, transição ('giro' troca de módulo; 'toque' navegação)]
-  // veil: a tela fica escurecida e desfocada o tempo todo (o voucher: o nome do hóspede nunca aparece legível)
-  const SCREENS = [
-    { t: 10.85, key: 'calendario', mode: 'liga' },
-    { t: 13.25, key: 'acomodacao', mode: 'toque' },
-    { t: 15.0, key: 'criada', mode: 'toque' },
-    { t: 16.25, key: 'voucher', mode: 'toque', veil: true },
-    { t: 20.75, key: 'checkin', mode: 'giro' },
-    { t: 23.65, key: 'reciboIn', mode: 'toque' },
-    { t: 26.75, key: 'ficha', mode: 'giro' },
-    { t: 29.6, key: 'quantidade', mode: 'toque' },
-    { t: 31.35, key: 'lancado', mode: 'toque' },
-    { t: 34.75, key: 'caixa', mode: 'giro' },
-    { t: 37.7, key: 'fecharCaixa', mode: 'toque' },
-    { t: 42.75, key: 'checkout', mode: 'giro' },
-    { t: 45.25, key: 'reciboOut', mode: 'toque' },
-    { t: 46.1, key: 'relatorios', mode: 'giro' },
-    { t: 52.1, key: 'visaoGeral', mode: 'toque' },
-    { t: 55.45, key: 'demoCel', mode: 'giro' },
+  // ---------------------------------------------------------------- a linha do tempo (cenas 3 a 7)
+  // Cada batida: a navegação até a tela (liga / giro = troca de módulo / toque = botão real da tela anterior /
+  // fica = mesma tela), o recorte em relevo que sobe, fica PARADO e LEGÍVEL e volta, a frase escrita e o
+  // trecho de voz (src/voz-trechos.json). Regra de ritmo: cada recorte fica parado no mínimo HOLD s, e no
+  // mínimo até READ s depois do fim do seu trecho de voz; a frase só sai quando o recorte começa a voltar.
+  // Recortes: [x0, y0, x1, y1] em pixels da captura; hl = destaque limão; s = escala máxima (cabe em
+  // 960 x 1180); cy = centro do recorte na tela; tap = o botão tocado na tela anterior.
+  const Wc = C.white, Lc = C.lime;
+  const PLAN = [
+    { mod: 'RESERVAS', screen: 'calendario', mode: 'liga', voz: '3a',
+      lifts: [{ crop: [24, 212, 756, 640], hl: [450, 224, 742, 268], s: 1.27, cy: 1160 }],
+      cap: [[['Veja a ', Wc], ['ocupação', Lc]], [['no calendário', Wc]]] },
+    { screen: 'acomodacao', mode: 'toque', tap: [390, 1600], voz: '3b',                    // o "+" (nova reserva)
+      lifts: [{ crop: [78, 788, 702, 1258], hl: [118, 1062, 664, 1220], s: 1.45, cy: 1180 }],
+      cap: [[['Lance a ', Wc], ['reserva', Lc]], [['em poucos passos', Wc]]] },
+    { screen: 'criada', mode: 'toque', tap: [594, 1388],                                   // Avançar
+      lifts: [{ crop: [130, 318, 650, 652], hl: [412, 586, 614, 644], s: 1.7, cy: 1160 }], cap: 'mesma' },
+    { screen: 'voucher', mode: 'toque', tap: [390, 1276], veil: true, voz: '3c',          // Ver voucher
+      lifts: [{ crop: [24, 32, 756, 172], pad: [0, 0, 18, 0], bg: '#171717', s: 1.27, cy: 930 },                              // só o código, o status e os botões:
+        { crop: [52, 1462, 730, 1630], hl: [396, 1466, 728, 1532], s: 1.36, cy: 1430, hlT: 1.0 }],  // o nome nunca aparece
+      cap: [[['Envie o ', Wc], ['voucher', Lc]], [['ao hóspede', Wc]]] },
+    { mod: 'CHECK-IN', screen: 'checkin', mode: 'giro', voz: '4a',
+      lifts: [{ crop: [66, 522, 714, 830], hl: [92, 742, 690, 804], s: 1.45, cy: 1150 }],
+      cap: [[['No check-in,', Wc]], [['registre o ', Wc], ['pagamento', Lc]]] },
+    { screen: 'reciboIn', mode: 'toque', tap: [483, 1534], voz: '4b',                      // Confirmar recebimento e realizar Check-in
+      // só a frase e o saldo: o título "HOSPEDAGEM QUITADA NO CHECK-IN" quebra em "CHECK-" / "IN" no celular
+      // (defeito do sistema) e fica fora do recorte (o "IN" termina em y 914; a frase começa em y 917)
+      lifts: [{ crop: [112, 915, 668, 1046], pad: [26, 0, 0, 0], bg: '#ECFDF5', hl: [130, 990, 348, 1034], s: 1.7, cy: 1170 }],
+      cap: [[['E gere o ', Wc], ['recibo', Lc]], [['na hora', Wc]]] },
+    { mod: 'COMANDA', screen: 'ficha', mode: 'giro', pause: 1.3 },                          // a ficha da hospedagem, inteira
+    { screen: 'quantidade', mode: 'toque', tap: [390, 882], voz: '5a',                       // Lançar consumo
+      lifts: [{ crop: [32, 546, 748, 1144], hl: [74, 1012, 706, 1102], s: 1.3, cy: 1160 }],
+      cap: [[['Durante a estadia, tudo', Wc]], [['o que o hóspede ', Wc], ['consome', Lc]]] },
+    { screen: 'lancado', mode: 'toque', tap: [390, 1058], voz: '5b',                        // Adicionar à comanda
+      lifts: [{ crop: [64, 476, 716, 606], s: 1.45, cy: 1150 }],
+      cap: [[['vai para a ', Wc], ['conta dele', Lc]]] },
+    // o lançamento da Ana Julia (a hóspede da comanda): "Pagamento de hospedagem —" quebra no travessão; o do
+    // Carlos, na 1ª tela do caixa, partia o nome ("Carlos" / "Henrique Silva") e ficou de fora
+    { mod: 'CAIXA', screen: 'caixaRolagem', mode: 'giro', voz: '6a',
+      lifts: [{ crop: [74, 992, 706, 1246], hl: [500, 1016, 684, 1058], s: 1.45, cy: 1150 }],
+      cap: [[['Cada recebimento', Wc]], [['entra no ', Wc], ['caixa', Lc]]] },
+    { screen: 'caixa', mode: 'rola', pause: 0.7 },                                         // a tela volta ao topo
+    { screen: 'fecharCaixa', mode: 'toque', tap: [390, 408], voz: '6b',                     // Fechar Caixa
+      lifts: [{ crop: [30, 526, 750, 1546], hl: [404, 1248, 748, 1372], s: 1.3, cy: 1190 }],
+      cap: [[['Abra e feche sabendo', Wc]], [['quanto ', Wc], ['entrou', Lc]]] },
+    { mod: 'CHECK-OUT', screen: 'checkout', mode: 'giro', voz: '7a',
+      lifts: [{ crop: [74, 772, 706, 1194], hl: [100, 962, 680, 1036], s: 1.45, cy: 1160 }],
+      cap: [[['No check-out, tudo', Wc]], [['fecha com ', Wc], ['recibo', Lc]]] },
+    { screen: 'reciboOut', mode: 'toque', tap: [390, 1302],                                 // Confirmar Check-out
+      lifts: [{ crop: [52, 216, 730, 890], hl: [92, 816, 342, 870], s: 1.3, cy: 1170 }], cap: 'mesma' },
+    { mod: 'RELATÓRIOS', screen: 'relatorios', mode: 'giro', voz: '7b',
+      lifts: [{ crop: [66, 172, 714, 640], s: 1.45, cy: 1160 }],
+      cap: [[['Os relatórios mostram', Wc]], [['como a pousada ', Wc], ['está indo', Lc]]] },
   ];
+  const NAV = { liga: 0.55, giro: 0.8, toque: 0.85, rola: 0.45, fica: 0.15 };   // da batida até o recorte começar a subir
+  const RISE = 0.5, DROP = 0.38, GAP = 0.12, HOLD = 3.0, READ = 0.7, VOZ_IN = 0.25;
   const GIRO = 0.5, TOQUE = 0.32;
+  let SCREENS = [], LIFTS = [], TAPS = [], CAPS = [], TRILHO = [], VOZ = [], TRECHOS = {};
 
-  // os recortes em relevo: [x0, y0, x1, y1] em pixels da captura; hl = o destaque limão dentro do recorte
-  // s = escala máxima (o recorte cresce até caber em 960 x 1180); cy = centro do recorte na tela
-  const LIFTS = [
-    { t0: 11.85, t1: 12.85, key: 'calendario', crop: [24, 212, 756, 640], hl: [450, 224, 742, 268], s: 1.27, cy: 1160 },
-    { t0: 13.7, t1: 14.75, key: 'acomodacao', crop: [78, 788, 702, 1258], hl: [118, 1062, 664, 1220], s: 1.45, cy: 1180 },
-    { t0: 15.3, t1: 16.05, key: 'criada', crop: [130, 318, 650, 652], hl: [412, 586, 614, 644], s: 1.7, cy: 1160 },
-    { t0: 16.55, t1: 20.4, key: 'voucher', crop: [24, 32, 756, 322], s: 1.27, cy: 900, hlT: 99 },
-    { t0: 17.2, t1: 20.4, key: 'voucher', crop: [52, 1462, 730, 1630], hl: [396, 1466, 728, 1532], s: 1.36, cy: 1430, hlT: 18.3 },
-    { t0: 21.6, t1: 23.2, key: 'checkin', crop: [66, 522, 714, 830], hl: [92, 742, 690, 804], s: 1.45, cy: 1150 },
-    { t0: 24.0, t1: 26.45, key: 'reciboIn', crop: [100, 522, 680, 1062], hl: [126, 988, 350, 1036], s: 1.55, cy: 1170 },
-    { t0: 27.55, t1: 29.35, key: 'ficha', crop: [34, 736, 746, 1340], hl: [72, 836, 708, 928], s: 1.3, cy: 1170 },
-    { t0: 29.8, t1: 31.15, key: 'quantidade', crop: [32, 546, 748, 1144], hl: [74, 1012, 706, 1102], s: 1.3, cy: 1160 },
-    { t0: 31.55, t1: 34.45, key: 'lancado', crop: [64, 476, 716, 606], s: 1.45, cy: 1150, hlT: 99 },
-    { t0: 35.55, t1: 37.35, key: 'caixa', crop: [74, 1090, 706, 1346], hl: [536, 1118, 684, 1158], s: 1.45, cy: 1150 },
-    { t0: 37.95, t1: 39.25, key: 'fecharCaixa', crop: [32, 526, 748, 1198], hl: [72, 1094, 708, 1160], s: 1.3, cy: 1170 },
-    { t0: 39.45, t1: 42.45, key: 'fecharCaixa', crop: [30, 1244, 750, 1546], hl: [404, 1248, 748, 1372], s: 1.3, cy: 1150 },
-    { t0: 43.55, t1: 44.95, key: 'checkout', crop: [74, 772, 706, 1194], hl: [100, 962, 680, 1036], s: 1.45, cy: 1160 },
-    { t0: 45.45, t1: 46.0, key: 'reciboOut', crop: [52, 216, 730, 890], hl: [92, 816, 342, 870], s: 1.3, cy: 1170 },
-    { t0: 46.75, t1: 48.55, key: 'relatorios', crop: [66, 172, 714, 640], s: 1.45, cy: 1160, hlT: 99 },
-    { t0: 48.75, t1: 51.6, key: 'relatorios', crop: [56, 680, 724, 1390], hl: [66, 1146, 714, 1388], s: 1.3, cy: 1190 },
-  ];
-  // toques no celular (pixels da captura): o botão que leva à tela seguinte
-  const TAPS = [
-    { t: 13.05, key: 'calendario', x: 390, y: 1600 },          // o "+" (nova reserva)
-    { t: 14.8, key: 'acomodacao', x: 594, y: 1388 },           // Avançar
-    { t: 16.1, key: 'criada', x: 390, y: 1276 },               // Ver voucher
-    { t: 18.55, key: 'voucher', x: 560, y: 1500, hidden: true },
-    { t: 23.4, key: 'checkin', x: 483, y: 1534 },              // Confirmar recebimento e realizar Check-in
-    { t: 29.4, key: 'ficha', x: 390, y: 882 },                 // Lançar consumo
-    { t: 31.2, key: 'quantidade', x: 390, y: 1058 },           // Adicionar à comanda
-    { t: 37.45, key: 'caixa', x: 390, y: 408 },                // Fechar Caixa
-    { t: 45.05, key: 'checkout', x: 390, y: 1302 },            // Confirmar Check-out
-  ];
-
-  // as frases da narração escritas na tela: linhas de segmentos [texto, cor]
-  const CAPS = [
-    { t0: 7.85, t1: 10.35, size: 82, lines: [[['A gestão da sua pousada', C.white]], [['em um só lugar.', C.lime]]], y: 1150, stag: 0.5 },
-    { t0: 11.4, t1: 13.15, lines: [[['Veja a ', C.white], ['ocupação', C.lime]], [['no calendário', C.white]]] },
-    { t0: 13.35, t1: 15.7, lines: [[['Lance a ', C.white], ['reserva', C.lime]], [['em poucos passos', C.white]]] },
-    { t0: 15.9, t1: 20.6, lines: [[['Envie o ', C.white], ['voucher', C.lime]], [['ao hóspede', C.white]]] },
-    { t0: 21.4, t1: 23.6, lines: [[['No check-in,', C.white]], [['registre o ', C.white], ['pagamento', C.lime]]] },
-    { t0: 23.8, t1: 26.6, lines: [[['E gere o ', C.white], ['recibo', C.lime]], [['na hora', C.white]]] },
-    { t0: 27.4, t1: 34.6, lines: [[['Tudo o que o hóspede consome', C.white]], [['vai para a ', C.white], ['conta dele', C.lime]]], stag: 3.3 },
-    { t0: 35.4, t1: 37.55, lines: [[['Cada recebimento', C.white]], [['entra no ', C.white], ['caixa', C.lime]]] },
-    { t0: 37.7, t1: 42.6, lines: [[['Abra e feche sabendo', C.white]], [['quanto ', C.white], ['entrou', C.lime]]] },
-    { t0: 43.4, t1: 46.05, lines: [[['No check-out, tudo', C.white]], [['fecha com ', C.white], ['recibo', C.lime]]] },
-    { t0: 46.3, t1: 51.65, lines: [[['Relatórios: como a', C.white]], [['pousada ', C.white], ['está indo', C.lime]]] },
-    { t0: 53.8, t1: 99, size: 66, lines: [[['No celular ou no ', C.white], ['computador', C.lime]]], y: 368 },
-  ];
-
-  const TRILHO = [['RESERVAS', T.reservas], ['CHECK-IN', T.checkin], ['COMANDA', T.comandas], ['CAIXA', T.caixa],
-    ['CHECK-OUT', T.checkout], ['RELATÓRIOS', T.relatorios]];
+  function build(trechos) {
+    TRECHOS = {}; trechos.forEach((x) => (TRECHOS[x.id] = x));
+    SCREENS = []; LIFTS = []; TAPS = []; CAPS = []; TRILHO = []; VOZ = [];
+    // cenas 1 e 2
+    VOZ.push({ id: '1', t: 0.5 }, { id: '2', t: T.virada + 0.35 });
+    CAPS.push({ t0: T.virada + 2.05, t1: T.celular + 0.25, size: 82, y: 1150, stag: 0.5,
+      lines: [[['A gestão da sua pousada', C.white]], [['em um só lugar.', C.lime]]] });
+    // cenas 3 a 7
+    let t = T.reservas, prev = null;
+    for (const b of PLAN) {
+      if (b.mod) TRILHO.push([b.mod, t]);
+      if (b.tap && prev) TAPS.push({ t: t + 0.08, key: prev, x: b.tap[0], y: b.tap[1] });
+      if (b.mode === 'liga' || b.mode === 'giro') SCREENS.push({ t, key: b.screen, mode: b.mode, veil: b.veil });
+      if (b.mode === 'toque') SCREENS.push({ t: t + 0.32, key: b.screen, mode: 'toque', veil: b.veil });
+      if (b.mode === 'rola') SCREENS.push({ t, key: b.screen, mode: 'toque', dir: 'v' });
+      prev = b.screen;
+      if (b.pause) { t += NAV[b.mode] + b.pause; continue; }
+      const r = t + NAV[b.mode];
+      const vd = b.voz ? TRECHOS[b.voz].dur : 0;
+      if (b.voz) VOZ.push({ id: b.voz, t: r + VOZ_IN });
+      const hold = Math.max(HOLD + 0.6 * (b.lifts.length - 1), b.voz ? VOZ_IN + vd - RISE + READ : 0);
+      const t1 = r + RISE + hold;
+      b.lifts.forEach((L, i) => {
+        const t0 = r + 0.45 * i;
+        LIFTS.push(Object.assign({}, L, { key: b.screen, t0, t1, hlT: L.hlT !== undefined ? t0 + L.hlT : undefined }));
+      });
+      if (b.cap === 'mesma') CAPS[CAPS.length - 1].t1 = t1;
+      else if (b.cap) CAPS.push({ t0: r, t1, lines: b.cap });
+      t = t1 + DROP + GAP;
+    }
+    // cena 8: celular e computador; depois a demonstração
+    T.fechamento = t + 0.15;
+    const F = T.fechamento;
+    SCREENS.push({ t: F + 0.1, key: 'visaoGeral', mode: 'toque' });
+    VOZ.push({ id: '8a', t: F + 0.4 });
+    const c8 = F + 0.4 + TRECHOS['8a'].dur + 0.35;
+    VOZ.push({ id: '8b', t: c8 + 0.1 });
+    CAPS.push({ t0: c8, t1: 999, size: 66, y: 368, lines: [[['No celular ou no ', C.white], ['computador', C.lime]]] });
+    T.demo = c8 + 0.5 + HOLD + 0.3;                        // a frase fica pelo menos 3 s legível antes de a tela virar
+    SCREENS.push({ t: T.demo, key: 'demoCel', mode: 'giro' });
+    VOZ.push({ id: '8c', t: T.demo + 0.25 });
+    T.url = T.demo + 0.75;
+    DURATION = Math.round((T.demo + 0.25 + TRECHOS['8c'].dur + 3.6) * 10) / 10;   // o endereço fica na tela até o fim
+    T.relatorios = (TRILHO.find((x) => x[0] === 'RELATÓRIOS') || [0, 0])[1];
+  }
 
   // =====================================================================
   // LAYOUT
@@ -260,13 +289,13 @@
 
   // ---------------------------------------------------------------- trilho de módulos
   function rail(ctx, t) {
-    const a = env(t, 10.75, 51.75, 0.45, 0.4);
+    const a = env(t, T.reservas - 0.15, T.fechamento - 0.3, 0.45, 0.4);
     if (a <= 0.002) return;
     const size = 21, ls = 0.6, pad = 15, gap = 9;
     const ws = TRILHO.map(([s]) => tw(ctx, s, MONO, size, 800, ls) + 2 * pad);
     const total = ws.reduce((x, y) => x + y, 0) + gap * (TRILHO.length - 1);
     let x = 540 - total / 2;
-    const y = RAIL.y - RAIL.h / 2 + (1 - E.outCubic(p(t, 10.75, 11.2))) * -24;
+    const y = RAIL.y - RAIL.h / 2 + (1 - E.outCubic(p(t, T.reservas - 0.15, T.reservas + 0.3))) * -24;
     ctx.save(); ctx.globalAlpha *= a;
     TRILHO.forEach(([s, t0], i) => {
       const next = i + 1 < TRILHO.length ? TRILHO[i + 1][1] : 1e9;
@@ -467,9 +496,14 @@
       if (st.swap !== undefined && st.swap < 1 && st.prev) {
         // navegação: a tela nova empurra a anterior para a esquerda
         const q = E.inOutCubic(st.swap);
-        drawShot(g, st.prev.key, SCR.x - q * SCR.w, SCR.y, SCR.w, SCR.h, 1, st.prev.veil ? 7 : blur);
-        drawShot(g, st.cur.key, SCR.x + (1 - q) * SCR.w, SCR.y, SCR.w, SCR.h, 1, blur);
-        g.fillStyle = css('#000', 0.35 * Math.sin(Math.PI * q)); g.fillRect(SCR.x - q * SCR.w, SCR.y, SCR.w, SCR.h);
+        if (st.cur.dir === 'v') {                         // rolagem de volta ao topo: a página desce
+          drawShot(g, st.prev.key, SCR.x, SCR.y + q * SCR.h, SCR.w, SCR.h, 1, blur);
+          drawShot(g, st.cur.key, SCR.x, SCR.y - (1 - q) * SCR.h, SCR.w, SCR.h, 1, blur);
+        } else {
+          drawShot(g, st.prev.key, SCR.x - q * SCR.w, SCR.y, SCR.w, SCR.h, 1, st.prev.veil ? 7 : blur);
+          drawShot(g, st.cur.key, SCR.x + (1 - q) * SCR.w, SCR.y, SCR.w, SCR.h, 1, blur);
+          g.fillStyle = css('#000', 0.35 * Math.sin(Math.PI * q)); g.fillRect(SCR.x - q * SCR.w, SCR.y, SCR.w, SCR.h);
+        }
       } else {
         drawShot(g, st.cur.key, SCR.x, SCR.y, SCR.w, SCR.h, st.on !== undefined ? E.outCubic(st.on) : 1, blur);
       }
@@ -494,16 +528,16 @@
   }
   // a pose do celular: posição, escala e giro (eixo vertical)
   function phonePose(t) {
-    const enter = E.outCubic(p(t, 9.55, 10.75));
+    const enter = E.outCubic(p(t, T.celular, T.celular + 1.2));
     let cx = PH.cx, cy = lerp(H + PH.h * 0.62, PH.cy, enter), k = 1;
     let ang = (-11 + 3.2 * Math.sin(t * 0.55)) * DEG;
     const fin = E.inOutCubic(p(t, T.fechamento - 0.2, T.fechamento + 0.8));
     cx = lerp(cx, 806, fin); cy = lerp(cy, 1268, fin); k = lerp(1, 0.66, fin);
     ang = lerp(ang, (-16 + 2 * Math.sin(t * 0.55)) * DEG, fin);
-    return { cx, cy, k, ang, alpha: t < 9.55 ? 0 : 1 };
+    return { cx, cy, k, ang, alpha: t < T.celular ? 0 : 1 };
   }
   function phone(ctx, t) {
-    if (t < 9.5) return null;
+    if (t < T.celular - 0.05) return null;
     const st = screenState(t), pose = phonePose(t);
     composePhone(t, st);
     let ang = pose.ang;
@@ -525,8 +559,10 @@
 
   // ---------------------------------------------------------------- recortes em relevo
   const CARD_CACHE = new Map();
+  // pad: margem extra (pixels da captura: cima, direita, baixo, esquerda) preenchida com a cor bg do próprio cartão
   function cardCanvas(L, i, t) {
-    const [x0, y0, x1, y1] = L.crop, cw = x1 - x0, ch = y1 - y0;
+    const [x0, y0, x1, y1] = L.crop, [pt, pr, pb, pl] = L.pad || [0, 0, 0, 0];
+    const cw = x1 - x0 + pl + pr, ch = y1 - y0 + pt + pb;
     const s = Math.min(L.s, 960 / cw, 1180 / ch);
     const w = Math.round(cw * s), h = Math.round(ch * s);
     let c = CARD_CACHE.get(i);
@@ -534,16 +570,16 @@
     const g = c.getContext('2d');
     g.setTransform(1, 0, 0, 1, 0, 0); g.clearRect(0, 0, c.width, c.height);
     g.save(); rr(g, 20, 20, w, h, 22); g.clip();
-    g.fillStyle = '#FFFFFF'; g.fillRect(20, 20, w, h);
+    g.fillStyle = L.bg || '#FFFFFF'; g.fillRect(20, 20, w, h);
     g.imageSmoothingEnabled = true; g.imageSmoothingQuality = 'high';
-    g.drawImage(IMG[L.key], x0, y0, cw, ch, 20, 20, w, h);
+    g.drawImage(IMG[L.key], x0, y0, x1 - x0, y1 - y0, 20 + pl * s, 20 + pt * s, (x1 - x0) * s, (y1 - y0) * s);
     g.restore();
     // o destaque limão dentro do recorte
     if (L.hl) {
       const th = L.hlT ?? L.t0 + 0.55, q = E.outCubic(p(t, th, th + 0.4));
       if (q > 0) {
         const [a, b, c2, d] = L.hl, pad = 8;
-        const hx = 20 + (a - x0) * s - pad, hy = 20 + (b - y0) * s - pad, hw = (c2 - a) * s + 2 * pad, hh = (d - b) * s + 2 * pad;
+        const hx = 20 + (a - x0 + pl) * s - pad, hy = 20 + (b - y0 + pt) * s - pad, hw = (c2 - a) * s + 2 * pad, hh = (d - b) * s + 2 * pad;
         g.save(); g.globalCompositeOperation = 'source-over';
         g.shadowColor = css(C.lime, 0.8); g.shadowBlur = 18 * q;
         g.lineWidth = 6; g.strokeStyle = css(C.lime, q);
@@ -587,12 +623,12 @@
   function brand(ctx, t) {
     // do quadro 0 (miniatura) até a virada: a mesma logo; na virada ela cresce ("Conheça o FAZLO Hospeda")
     // e, quando o celular chega, sobe e vira o cabeçalho das cenas 3–7; no fim, cresce de novo
-    const grow = E.outBack(p(t, 6.45, 7.05), 1.5), up = E.inOutCubic(p(t, 10.2, 11.0));
+    const grow = E.outBack(p(t, T.virada + 0.75, T.virada + 1.35), 1.5), up = E.inOutCubic(p(t, T.celular + 0.45, T.celular + 1.25));
     const fin = E.inOutCubic(p(t, T.fechamento, T.fechamento + 0.7));
     let y = lerp(LOGO0.y, LOGO1.y, grow), d = lerp(LOGO0.d, LOGO1.d, grow), size = lerp(LOGO0.name, LOGO1.name, grow);
     y = lerp(y, HEAD.y, up); d = lerp(d, HEAD.d, up); size = lerp(size, HEAD.name, up);
     y = lerp(y, 196, fin); d = lerp(d, 96, fin); size = lerp(size, 60, fin);
-    const halo = clamp(p(t, 6.4, 6.8)) * (1 - up);
+    const halo = clamp(p(t, T.virada + 0.7, T.virada + 1.1)) * (1 - up);
     if (halo > 0) { ctx.save(); ctx.globalCompositeOperation = 'lighter'; glow(ctx, 540, y, 560, C.lime, 0.12 * halo); ctx.restore(); }
     lockup(ctx, 540, y, d, size, 1);
   }
@@ -631,15 +667,15 @@
     ctx.restore();
   }
   function demoCall(ctx, t) {
-    const a = p(t, 55.65, 56.2);
+    const a = p(t, T.demo + 0.2, T.demo + 0.7);
     if (a <= 0) return;
     // "Teste agora na / demonstração" à esquerda do celular (x 60–560)
     let size = 74;
     for (const s of ['Teste agora na', 'demonstração']) { const w = tw(ctx, s, DISPLAY, size, 900, -0.025 * size); if (w > 480) size = Math.floor(size * 480 / w); }
-    capLine(ctx, [['Teste agora na', C.white]], 310, 1330, size, p(t, 55.65, 56.15), 1);
-    capLine(ctx, [['demonstração', C.lime]], 310, 1330 + size * 1.1, size, p(t, 55.85, 56.35), 1);
+    capLine(ctx, [['Teste agora na', C.white]], 310, 1330, size, p(t, T.demo + 0.2, T.demo + 0.7), 1);
+    capLine(ctx, [['demonstração', C.lime]], 310, 1330 + size * 1.1, size, p(t, T.demo + 0.4, T.demo + 0.9), 1);
     // o endereço
-    const q = E.outBack(p(t, 56.35, 56.85), 1.4), s = 'demo.fazlohospeda.com.br';
+    const q = E.outBack(p(t, T.url, T.url + 0.5), 1.4), s = 'demo.fazlohospeda.com.br';
     if (q <= 0) return;
     const fs = 44, w = tw(ctx, s, MONO, fs, 800, 0) + 80, h = 92, cy = 1792;
     ctx.save(); ctx.translate(540, cy); ctx.scale(q, q);
@@ -677,17 +713,18 @@
   function buildCues() {
     const c = [];
     MESS.forEach((m) => c.push({ t: m.beat, type: m.shake ? 'shake' : 'bump' }));
-    c.push({ t: T.virada, type: 'suck' }, { t: 6.4, type: 'pop' }, { t: 9.6, type: 'rise' }, { t: 10.85, type: 'on' });
-    SCREENS.forEach((s) => s.t > 11 && c.push({ t: s.t, type: s.mode === 'giro' ? 'flip' : 'swipe' }));
+    c.push({ t: T.virada, type: 'suck' }, { t: T.virada + 0.75, type: 'pop' }, { t: T.celular, type: 'rise' }, { t: T.reservas, type: 'on' });
+    SCREENS.forEach((s) => s.t > T.reservas + 0.1 && c.push({ t: s.t, type: s.mode === 'giro' ? 'flip' : 'swipe' }));
     LIFTS.forEach((L) => { c.push({ t: L.t0, type: 'lift' }); c.push({ t: L.t1, type: 'drop' }); });
     TAPS.forEach((tp) => !tp.hidden && c.push({ t: tp.t, type: 'tap' }));
     TRILHO.forEach(([, t0]) => c.push({ t: t0, type: 'chip' }));
-    c.push({ t: T.fechamento, type: 'whoosh' }, { t: T.demo, type: 'flip' }, { t: 56.35, type: 'pop' });
+    c.push({ t: T.fechamento, type: 'whoosh' }, { t: T.url, type: 'pop' });
     return c.sort((a, b) => a.t - b.t);
   }
 
-  function init(logo, shots) {
+  function init(logo, shots, trechos) {
     LOGO = logo; IMG = shots;
+    build(trechos.trechos);
     PHONE = canvas(PH.w, PH.h);
     EDGE = canvas(PH.w, PH.h);
     const e = EDGE.getContext('2d'); rr(e, 0, 0, PH.w, PH.h, PH.r); e.fillStyle = '#0E0E0E'; e.fill(); e.lineWidth = 3; e.strokeStyle = '#2C2C2A'; e.stroke();
@@ -696,7 +733,9 @@
   }
 
   window.INST = {
-    init, renderAt, DURATION, SHOT_FILES, T,
-    cues: () => ({ duration: DURATION, cenas: T, cues: buildCues() }),
+    init, renderAt, SHOT_FILES, T,
+    get DURATION() { return DURATION; },
+    cues: () => ({ duration: DURATION, cenas: T, voz: VOZ, trilho: TRILHO, recortes: LIFTS.map((L) => ({ tela: L.key, t0: L.t0, t1: L.t1 })),
+      cues: buildCues() }),
   };
 })();

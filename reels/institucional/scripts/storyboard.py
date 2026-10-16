@@ -4,6 +4,7 @@ Storyboard do institucional a partir do motor (quadros renderizados direto do ca
 
     python3 scripts/storyboard.py   ->  output/storyboard.jpg
 """
+import json
 import os
 import subprocess
 import tempfile
@@ -11,14 +12,23 @@ from PIL import Image, ImageDraw, ImageFont
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 FONT = os.path.join(ROOT, 'src', 'fonts', 'JetBrainsMonoNL-Bold.ttf')
-SHOTS = [
-    (0.0, '1 · MINIATURA'), (3.8, '1 · A DOR'), (6.15, '2 · BAGUNÇA SOME'), (8.9, '2 · A VIRADA'),
-    (10.4, '2 · O CELULAR CHEGA'), (12.5, '3 · OCUPAÇÃO'), (14.4, '3 · TOTAL R$ 800,00'), (15.8, '3 · RESERVA CRIADA'),
-    (18.9, '3 · VOUCHER S/ NOME'), (22.6, '4 · SALDO R$ 500,00'), (25.6, '4 · RECIBO QUITADO'), (28.7, '5 · COMANDA ABERTA'),
-    (30.7, '5 · LANÇAR CONSUMO'), (33.2, '5 · NA CONTA DELE'), (36.6, '6 · ENTRA NO CAIXA'), (38.8, '6 · FECHAR O CAIXA'),
-    (41.2, '6 · QUANTO ENTROU'), (44.4, '7 · CHECK-OUT'), (45.9, '7 · RECIBO'), (48.0, '7 · RELATÓRIOS'),
-    (50.6, '7 · PAGAMENTOS'), (54.6, '8 · CELULAR + PC'), (57.2, '8 · TESTE NA DEMO'), (59.9, '8 · ÚLTIMO QUADRO'),
-]
+# os quadros saem da linha do tempo do motor (audio/cues.json): as cenas 1, 2 e 8 e o meio da pausa de cada recorte
+D = json.load(open(os.path.join(ROOT, 'audio', 'cues.json')))
+T, REC = D['cenas'], D['recortes']
+NOME = {'calendario': '3 · OCUPAÇÃO', 'acomodacao': '3 · TOTAL R$ 800', 'criada': '3 · RESERVA CRIADA', 'voucher': '3 · VOUCHER',
+        'checkin': '4 · SALDO R$ 500', 'reciboIn': '4 · RECIBO QUITADO', 'quantidade': '5 · LANÇAR CONSUMO',
+        'lancado': '5 · NA CONTA DELE', 'caixaRolagem': '6 · ENTRA NO CAIXA', 'fecharCaixa': '6 · FECHAR O CAIXA',
+        'checkout': '7 · CHECK-OUT', 'reciboOut': '7 · RECIBO', 'relatorios': '7 · RELATÓRIOS'}
+SHOTS = [(0.0, '1 · MINIATURA'), (3.8, '1 · A DOR'), (T['virada'] + 0.1, '2 · BAGUNÇA SOME'), (9.6, '2 · A VIRADA'),
+         (T['celular'] + 0.8, '2 · O CELULAR')]
+vistos = set()
+for r in REC:
+    if r['tela'] in vistos:
+        continue
+    vistos.add(r['tela'])
+    SHOTS.append((round((r['t0'] + 0.5 + r['t1']) / 2, 2), NOME[r['tela']]))
+SHOTS += [(round(T['fechamento'] + 3.0, 2), '8 · CELULAR + PC'), (round(T['demo'] + 2.0, 2), '8 · TESTE NA DEMO'),
+          (round(D['duration'] - 0.1, 2), '8 · ÚLTIMO QUADRO')]
 COLS, TW, TH, PAD, LAB = 8, 270, 480, 14, 40
 DIR = tempfile.mkdtemp()
 subprocess.run(['node', os.path.join(ROOT, 'scripts', 'render.cjs'), 'stills', ','.join(str(t) for t, _ in SHOTS), '--dir', DIR],

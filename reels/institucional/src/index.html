@@ -28,7 +28,7 @@
 <canvas id="c" width="1080" height="1920"></canvas>
 <div class="ui">
   <button id="play">▶ PLAY</button>
-  <input id="seek" type="range" min="0" max="59.99" step="0.01" value="0">
+  <input id="seek" type="range" min="0" max="89.99" step="0.01" value="0">
   <span class="time" id="time">0.00s</span>
 </div>
 <audio id="audio" src="../audio/mix.wav" preload="auto"></audio>
@@ -42,12 +42,14 @@
     const fonts = [600, 700, 800, 900].map(w => document.fonts.load(`${w} 100px 'FH Display'`))
       .concat([500, 700, 800].map(w => document.fonts.load(`${w} 100px 'FH Mono'`)));
     const names = Object.keys(INST.SHOT_FILES);
+    const trechos = await (await fetch('voz-trechos.json')).json();   // a duração de cada trecho de voz (scripts/trechos.py)
     const [logo, ...imgs] = await Promise.all([loadImg('assets/fazlo-hospeda-logo-alpha.png'),
       ...names.map(k => loadImg('capturas/' + INST.SHOT_FILES[k])), ...fonts]);
     const shots = {}; names.forEach((k, i) => shots[k] = imgs[i]);
     await Promise.all([logo, ...Object.values(shots)].map(i => i.decode()));
     await document.fonts.ready;
-    INST.init(logo, shots);
+    INST.init(logo, shots, trechos);
+    document.getElementById('seek').max = (INST.DURATION - 0.01).toFixed(2);
   })();
 
   if (params.has('render')) {

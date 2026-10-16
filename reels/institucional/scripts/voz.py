@@ -47,7 +47,10 @@ CENAS = [
      'fala': 'Reserva anotada no caderno, consumo no papel e um caixa que nunca bate?'},
     {'id': 2, 'cena': 'a virada', 'janela': [6.2, 10.8],
      'fala': 'Conheça o FAZLO Hospeda: a gestão da sua pousada em um só lugar.',
-     'seed': 809},     # com a 808, a voz parava 0,7 s entre "FAZLO" e "Hospeda"; a 809 sai contínua (pausa só nos dois-pontos)
+     # "Hospeda" saía "Hóspeda" nesta frase (na cena 8 sai certo, "Hospéda"): a API recebe "Ospéda" (regra
+     # da pronúncia) e a seed 810, a tomada mais parecida com o "Hospeda" da cena 8 (ver README)
+     'api': 'Conheça o FAZLO Ospéda: a gestão da sua pousada em um só lugar.',
+     'seed': 810},
     {'id': 3, 'cena': 'reservas', 'janela': [11.4, 20.6],
      'fala': 'Veja a ocupação no calendário, lance uma reserva em poucos passos e envie o voucher ao hóspede.'},
     {'id': 4, 'cena': 'check-in', 'janela': [21.4, 26.6],

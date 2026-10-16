@@ -1,0 +1,22 @@
+Institucional — mixagem
+
+duração 91.80 s · 48 kHz estéreo · loudness integrado do WAV -14.0 LUFS (alvo −14) · limitador −2 dBTP
+trilha e efeitos sob a voz: 9.5 dB mais baixos com a voz falando (alvo 8–10 dB)
+
+Onde cada trecho de voz entra (velocidade 1,0, sem aceleração):
+  1     0.50–  5.34 s  "Reserva anotada no caderno, consumo no papel e um caixa que nunca bate?"
+  2     6.55– 10.15 s  "Conheça o FAZLO Hospeda: a gestão da sua pousada em um só lugar."
+  3a   13.30– 14.96 s  "Veja a ocupação no calendário,"
+  3b   18.15– 20.38 s  "lance uma reserva em poucos passos"
+  3c   27.85– 30.00 s  "e envie o voucher ao hóspede."
+  4a   33.25– 35.61 s  "No check-in, registre o pagamento"
+  4b   38.10– 39.46 s  "e gere o recibo na hora."
+  5a   45.05– 48.42 s  "Durante a estadia, tudo o que o hóspede consome"
+  5b   50.72– 52.00 s  "vai para a conta dele."
+  6a   55.52– 57.62 s  "Cada recebimento entra no caixa,"
+  6b   61.52– 64.49 s  "que você abre e fecha sabendo exatamente quanto entrou."
+  7a   66.74– 69.42 s  "No check-out, tudo fecha com recibo."
+  7b   76.52– 79.32 s  "E os relatórios mostram como a pousada está indo."
+  8a   81.07– 82.23 s  "FAZLO Hospeda."
+  8b   82.68– 84.18 s  "No celular ou no computador."
+  8c   86.63– 88.25 s  "Teste agora na demonstração."
