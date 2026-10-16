@@ -11,12 +11,12 @@ Peça independente: nada aqui altera os Reels anteriores (o DNA é o do Reel 08,
 
 | Episódio | Título | Duração | Vídeo | Capa | Revisão |
 |---|---|---|---|---|---|
-| **ep-01** | "O hóspede chegou. / A reserva, não." | 13,63 s | [`mp4`](output/ep-01/fazlo-hospeda-rotina-ep-01.mp4) | [`capa.jpg`](output/ep-01/capa.jpg) | [`revisao/`](output/ep-01/revisao) |
-| **ep-02** | "Caiu um Pix às 14h. / De quem era?" | 13,42 s | [`mp4`](output/ep-02/fazlo-hospeda-rotina-ep-02.mp4) | [`capa.jpg`](output/ep-02/capa.jpg) | [`revisao/`](output/ep-02/revisao) |
-| ep-03 | "Domingo, 11h. / Check-out de todo mundo." | ~13,75 s | roteiro pronto ([`ep-03.json`](episodios/ep-03.json)) | | |
-| ep-04 | "'Vou ver e te falo.' / (e sumiu)" | ~13,35 s | roteiro pronto ([`ep-04.json`](episodios/ep-04.json)) | | |
-| ep-05 | "A comanda da piscina / que ninguém fechou." | ~12,73 s | roteiro pronto ([`ep-05.json`](episodios/ep-05.json)) | | |
-| ep-06 | "Feriado lotado. / Caixa conferido?" | ~13,15 s | roteiro pronto ([`ep-06.json`](episodios/ep-06.json)) | | |
+| **ep-01** | "O hóspede chegou. / A reserva, não." | 14,00 s | [`mp4`](output/ep-01/fazlo-hospeda-rotina-ep-01.mp4) | [`capa.jpg`](output/ep-01/capa.jpg) | [`revisao/`](output/ep-01/revisao) |
+| **ep-02** | "Caiu um Pix às 14h. / De quem era?" | 13,92 s | [`mp4`](output/ep-02/fazlo-hospeda-rotina-ep-02.mp4) | [`capa.jpg`](output/ep-02/capa.jpg) | [`revisao/`](output/ep-02/revisao) |
+| ep-03 | "Domingo, 11h. / Check-out de todo mundo." | ~14,0 s | roteiro pronto ([`ep-03.json`](episodios/ep-03.json)) | | |
+| ep-04 | "'Vou ver e te falo.' / (e sumiu)" | ~13,85 s | roteiro pronto ([`ep-04.json`](episodios/ep-04.json)) | | |
+| ep-05 | "A comanda da piscina / que ninguém fechou." | ~13,23 s | roteiro pronto ([`ep-05.json`](episodios/ep-05.json)) | | |
+| ep-06 | "Feriado lotado. / Caixa conferido?" | ~13,65 s | roteiro pronto ([`ep-06.json`](episodios/ep-06.json)) | | |
 
 Os episódios 03 a 06 saem um por dia, depois da aprovação do modelo. As áreas seguras dos quatro já foram conferidas pelo motor; falta renderizar.
 
@@ -77,11 +77,13 @@ Tudo vai para `output/ep-07/`. Para ver no navegador, sirva a pasta e abra `src/
 | depois do último card | **Carimbo** | O chip limão cai de 1,6× e −9° para −4°, com tranco na pilha, tremor de tela e brilho. A pilha escurece e o carimbo fica 2,1 s, com um brilho que respira. |
 | +2,1 s | **Saída** | Os cards e o carimbo caem em cascata pela parte de baixo; o cabeçalho sai pelo topo. |
 | +0,35 s | **A virada** | A frase branca com a parte limão sobe linha a linha (até 104 px, no maior tamanho que cabe) e fica **parada ≥ 1,8 s** (2,3–2,7 s, pelo tamanho do texto). |
-| últimos 1,5 s | **Fecho** | A virada sobe e abre espaço. Entram "Manda pra quem…" (Inter Display 800, 58 px, duas linhas) e, 0,32 s depois, a **logo oficial** (100 px) + "FAZLO Hospeda", com a **sineta da série**. Nos últimos 0,3 s, um fade curto para o preto. |
+| últimos 2,0 s | **Fecho** | A virada sobe e abre espaço. Entram "Manda pra quem…" (Inter Display 800, 58 px, duas linhas) e, 0,32 s depois, a **logo oficial** (100 px) + "FAZLO Hospeda", com a **sineta da série**. Nos últimos 0,3 s, um fade curto para o preto. |
 
 **A duração** é a soma desses tempos e fica entre 10 e 14 s. Se o roteiro passar disso, os intervalos entre os cards encolhem (ou crescem) para caber.
-- ep-01: 3 cards, 13,63 s.
-- ep-02: 4 cards, 13,42 s.
+- ep-01: 3 cards, 14,00 s (o roteiro pedia 14,13 s, então os intervalos entre os cards encolheram 4%).
+- ep-02: 4 cards, 13,92 s.
+
+O fecho tem **2,0 s em todos os episódios** (ajuste de 16/10, na aprovação do modelo; antes, 1,5 s). Fica na constante `FECHO_DUR` do `src/anim.js`.
 
 **Movimento:** motion blur por subamostragem nas passagens rápidas (o título virando cabeçalho, a entrada de cada card, o carimbo, a saída, as frases finais e a logo), como no Reel 08.
 
@@ -131,13 +133,13 @@ O master fica em **−16 LUFS**, com limitador de pico real. A animação export
 
 | | ep-01 | ep-02 |
 |---|---|---|
-| Formato | 1080×1920, 60 fps (818 quadros), H.264 High yuv420p, AAC 48 kHz | 1080×1920, 60 fps (805 quadros), idem |
-| Duração (vídeo = áudio) | 13,633 s | 13,417 s |
-| Loudness / pico real | −16,1 LUFS / −2,5 dBTP | −16,0 LUFS / −2,4 dBTP |
-| Arquivo | 3,7 MB | 3,5 MB |
+| Formato | 1080×1920, 60 fps (840 quadros), H.264 High yuv420p, AAC 48 kHz | 1080×1920, 60 fps (835 quadros), idem |
+| Duração (vídeo = áudio) | 14,000 s | 13,917 s |
+| Loudness / pico real | −16,0 LUFS / −2,4 dBTP | −16,0 LUFS / −2,5 dBTP |
+| Arquivo | 3,9 MB | 3,6 MB |
 | Pretos / congelados | nenhum (fora o fade final) / nenhum ≥ 0,75 s | nenhum / nenhum |
 | Áreas seguras | 17 elementos OK | 18 elementos OK |
-| Sincronia | 5 golpes (3 pings, carimbo, sineta): ataque a ≤ 6,8 ms do evento; a imagem reage em todos | 6 golpes: ≤ 7,3 ms; a imagem reage em todos |
+| Sincronia | 5 golpes (3 pings, carimbo, sineta): ataque a ≤ 8,3 ms do evento; a imagem reage em todos | 6 golpes: ≤ 7,3 ms; a imagem reage em todos |
 | Capa | dentro da regra (bloco centrado em y = 960,0) | dentro da regra (centro em 960,0) |
 
 ## Arquivos

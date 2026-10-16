@@ -13,7 +13,7 @@
         empilham (os anteriores sobem, o grupo fica centrado);
      3. o chip limão carimbado em cima da pilha, com tranco;
      4. a virada: frase branca com uma parte em limão, parada ≥ 1,8 s;
-     5. últimos 1,5 s: "Manda pra quem…" + logo oficial + sineta; fade curto.
+     5. últimos 2,0 s: "Manda pra quem…" + logo oficial + sineta; fade curto.
 
    Áreas seguras: conteúdo em y 265–1456; nada em x ≥ 950 entre y 1060 e
    1560 (coluna de botões); título dentro do recorte 3:4 (y 240–1680).
@@ -34,6 +34,7 @@
   const CX = 525;
   const SAFE = { top: 265, bottom: 1456 };
   const STAMP_FALL = 0.15;
+  const FECHO_DUR = 2.0;                                      // o fecho ("Manda pra quem…" + logo), em todos os episódios
 
   // ---------------------------------------------------------------- utilitários
   const TAU = Math.PI * 2, DEG = Math.PI / 180;
@@ -267,7 +268,7 @@
     let x = 2.25;
     cards.forEach((k, i) => { t.cards.push(x); x += gapOf(k); });
     const vChars = ep.virada.join(' ').replace(/\*/g, '').length;
-    const tail = 0.15 + 2.1 + 0.35 + clamp(1.9 + 0.012 * vChars, 2.3, 2.7) + 1.5;
+    const tail = 0.15 + 2.1 + 0.35 + clamp(1.9 + 0.012 * vChars, 2.3, 2.7) + FECHO_DUR;
     // a duração fica entre 10 e 14 s: os intervalos dos cards encolhem ou crescem para caber
     let end = x + tail;
     if (end > 14 || end < 10) {
@@ -279,7 +280,7 @@
     t.virada = t.exit + 0.35;
     t.fecho = t.virada + clamp(1.9 + 0.012 * vChars, 2.3, 2.7);
     t.logo = t.fecho + 0.32;
-    DURATION = Math.round((t.fecho + 1.5) * 60) / 60;          // quadro inteiro
+    DURATION = Math.round((t.fecho + FECHO_DUR) * 60) / 60;    // quadro inteiro
     t.fade = DURATION - 0.3;
     T = t;
     buildFast();
