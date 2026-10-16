@@ -1,6 +1,6 @@
 # FAZLO Hospeda — vídeo institucional (102,4 s, 9:16, para WhatsApp)
 
-**Status:** vídeo completo com o motion novo, para a revisão final: `output/fazlo-hospeda-institucional.mp4`.
+**Status:** pronto, mas **não será usado agora**. O institucional oficial vai ser refeito com as telas do **Hospeda V2** (novo layout), mantendo roteiro, narração, trilha e motion. Ver [Como refazer com as telas do V2](#como-refazer-com-as-telas-do-v2). Este vídeo não tem capa: não precisa.
 
 Vídeo de apresentação do sistema, feito para ser enviado no WhatsApp:
 
@@ -19,6 +19,86 @@ Usa **somente telas reais** do sistema: capturas da demonstração (`demo.fazloh
 | `output/revisao/institucional-motion-cenas-1-4.mp4` | a prévia da direção de motion (cenas 1 a 4), aprovada |
 | `output/revisao/mix.txt` | onde entra cada trecho de voz e a conferência da mixagem |
 | `output/revisao/voz.txt` · `output/revisao/trechos.txt` | as falas geradas e os trechos (frases inteiras) |
+
+## Como refazer com as telas do V2
+
+A ideia é trocar **só as telas**. Roteiro, narração (`audio/voz/`), trilha (`scripts/trilha.py`) e motion (`src/anim.js`) ficam como estão. Toda posição, cor e valor medidos numa captura estão no `src/anim.js`, e cada captura nova pede remedir os itens dela.
+
+### 1. Capturas novas
+
+- **Onde:** `src/capturas/celular/` e `src/capturas/computador/`, com o nome `módulo--arquivo.png`. Os arquivos são listados em `SHOT_FILES` (`src/anim.js`); se o nome mudar, mude ali.
+- **Mesmo cenário da demo:** as mesmas reservas, hóspedes e valores, ou valores equivalentes. Os valores das contagens precisam bater com a tela nova (ver o passo 3).
+- **Tamanhos:**
+  - **Celular:** 780 × 1688 px (390 css a 2×). O celular do vídeo foi calculado para essa proporção: `PH`/`SCR` e `KS = SCR.w / 780`.
+  - **Computador:** 1280 px de largura.
+  - **Se mudar:** ajuste `KS` e a altura da tela em `PH` (tela = 582 × 1260 para 780 × 1688).
+- **Antes de escolher cada tela, repita os cuidados desta versão:**
+  - nada de textos técnicos ou errados da demo dentro dos recortes;
+  - nada de linha quebrando palavra ou nome ("CHECK-" / "IN", "Carlos" / "Henrique Silva", "DOCUMENTO NÃO" / "FISCAL");
+  - nome de hóspede fora do voucher;
+  - a lista "não usar" desta versão;
+  - Day Use só se já estiver publicado.
+
+### 2. Ferramentas de medição
+
+```bash
+python3 scripts/grade.py output/grade src/capturas/celular/*.png    # grade de 50 px sobre as capturas, para achar os recortes
+python3 scripts/medir.py <captura> x0,y0,x1,y1 [...]                # fundo, caixa da tinta, cor do texto e colunas de letras
+node scripts/render.cjs stills 15.6,22.9 --dir output/stills       # conferir um quadro depois de mudar
+```
+
+- **`bg` da op:** o `bg` que o `medir.py` imprime.
+- **`r`:** a caixa da tinta, com 1 a 2 px de folga.
+- **`color`:** a cor do texto.
+- **Digitação (`type`):** as colunas de letras são medidas sozinhas na captura, ao abrir o vídeo (`glyphs()`). Basta o `r` e o `bg` certos.
+
+### 3. O que cada cena usa e o que remedir
+
+Tudo fica em `PLAN` (`src/anim.js`), salvo onde está indicado. Coordenadas em pixels da captura.
+
+| Cena | Capturas (`SHOT_FILES`) | O que remedir |
+|---|---|---|
+| 1 · dor | — (ilustração, não é tela do sistema) | só a **miniatura do quadro 0** (ver o passo 4) |
+| 2 · virada | logo oficial (`src/assets/fazlo-hospeda-logo-alpha.png`) | nada |
+| 3 · reservas | `calendario` (calendário do dia), `acomodacao` (etapa 2, só passa na tela), `criada` (Reserva Criada!), `voucher` | **calendário:** `crop` dos quartos do dia; `roll` nos dois algarismos do "5 livres • 5 ocupadas" (`to` = os números da tela); `reveal` de cada cartão de quarto e `stamp` de cada selo (HOSPEDADA, CHECK-OUT HOJE); `hl` no chip. **Reserva criada:** `check` (centro `c`, raio `rad`, espessura `lw`, pontos `pts` do traço, cor); `reveal` do título; `type` do código. **Voucher:** dois recortes sem o nome do hóspede (código/status e botões); `type` do código; `stamp` do status; `tap` em "Enviar por e-mail". **Toques de navegação (`tap` de cada batida):** "+" no calendário, "Avançar" na etapa 2, "Ver voucher" |
+| 4 · check-in | `checkin` (modal de check-in), `reciboIn` (recibo de check-in) | **Antes do recorte (`pre`):** o ponto do zoom (`zoom.x/y` no campo de valor); `tap` no campo; `type` do valor (`align: 'right'` se o campo alinha à direita); `stamp` do selo de quitação. **Resumo:** três `count` (total, sinal negativo, saldo: `to` = valores da tela). **Toque:** "Confirmar recebimento e realizar Check-in" (`tap` da batida seguinte). **Recibo:** recorte sem o título quebrado; `wipe` em cada linha da frase; `stamp` do saldo; `pad` e `bg` da margem |
+| 5 · comandas | `ficha` (ficha da hospedagem, só na tela), `quantidade` (modal de quantidade), `lancado` (confirmação), `comandasPC` (comandas ativas no computador, depois do lançamento) | **Toques:** "Lançar consumo" na ficha; o "+" da quantidade; "Adicionar à comanda". **Modal:** `roll` 1 → 2 da quantidade; `count` do subtotal (`from` = preço unitário, `to` = subtotal). **A conta:** linha da conta do quarto: `roll` das unidades e `count` do total (`from` = valores da captura **antes** do lançamento, `to` = **depois**); precisa das duas capturas reais, antes e depois. **Voo:** `fly` da confirmação até a conta |
+| 6 · caixa | `caixaRolagem` (diário de caixa rolado), `caixa` (topo do caixa, só na tela), `fecharCaixa` (fechar sessão) | **Diário:** `crop` dos dois lançamentos; `reveal` (com `dx`) de cada um e `stamp` de cada valor. **Toque:** "Fechar Caixa" no topo do caixa. **Fechamento:** `count` dos quatro cartões (abertura, entradas com `prefix: '+ '`, saídas negativas, saldo esperado); `tap` em "Confirmar fechamento"; `hl` em "Total de entradas" |
+| 7 · check-out | `checkout` (modal de check-out), `reciboOut` (recibo de hospedagem), `relatorios` | **Check-out:** `count` dos totais e do saldo final (`from` = total, `to` = 0); `stamp` e `check` do selo "Quitado" (ícone pequeno: `c`, `rad`, `pts`). **Toque:** "Confirmar Check-out". **Recibo:** cabeçalho (sem o título que quebra); selo "SALDO QUITADO" com `stamp` e `check`. **Relatórios:** dois `count` das receitas |
+| 8 · fechamento | `calendarioPC` (calendário semanal no computador), `visaoGeral` (celular), `demoPC` e `demoCel` (entrada da demonstração) | **Monitor:** `CAL` (enquadramento da grade da semana: x, y, largura, altura) e `MON_BARS` (as barras de reserva que se preenchem; o fundo vazio vem da linha de pixels 6 px acima de cada barra, então confira que ali só há células vazias). **Celular:** a Visão geral não tem recorte; confira que não mostra textos técnicos ("checked_out_at"). **Demo:** só trocar as capturas |
+
+**Ainda dentro de cada recorte:**
+- **Destaque:** o `hl` (contorno limão sobre o dado principal) é medido também.
+- **Tamanho:** o `s` (escala máxima) e o `cy` (altura na tela) só mudam se o recorte novo tiver outro tamanho. Ele cresce até caber em 960 × 1180.
+
+**Contagens (`count`):**
+- **Fonte:** o número é desenhado em JetBrains Mono, ajustado à largura da caixa `r`.
+- **Fim:** no fim, a captura real entra por cima.
+- **Formato:** "R$ 1.525,00", "- R$ 45,00"; use `prefix` para "+ ".
+- **Se o V2 mudar o formato do valor** (outro símbolo, sem centavos, outra fonte), ajuste `brl()`.
+
+**Frases na tela e narração:** não mudam. Se o V2 mudar o nome de algum botão ou módulo (ex.: "Comandas"), confira se as frases (`cap` em `PLAN`) e o trilho (`mod`) continuam verdadeiros.
+
+### 4. Miniatura do quadro 0: deixar o centro livre
+
+No WhatsApp, o botão de play fica sobre o meio da miniatura. Nesta versão, a frase "Caderno, papel e um caixa que nunca bate?" está no centro (`HOOKY = 962`) e fica coberta. **Na próxima versão:**
+
+- **Área livre:** nenhum texto nem a logo num círculo de cerca de **240 px de raio em torno de (540, 960)**, ou seja, a faixa de y ≈ 720 a 1200 livre no meio.
+- **Onde mudar:** em `HOOK`, `HOOKY`, `LOGO0` e `LOGO1` (`src/anim.js`) e no véu escuro atrás da frase, em `mess()`.
+  - **Sugestão:** a frase em cima (y ≈ 300 a 700) e a logo embaixo (y ≈ 1250 a 1350). A bagunça ilustrada pode ficar no centro, atrás do play.
+  - **A virada (cena 2)** sai da posição da logo do quadro 0 (`LOGO0`). Se a logo descer, confira a sucção da bagunça (que vai para `LOGO0.y`) e o crescimento da logo.
+- **Conferência:** `node scripts/render.cjs stills 0` e um círculo de ~240 px sobre o centro para ver o que fica coberto.
+
+### 5. Gerar de novo
+
+A linha do tempo, a trilha e os efeitos se recalculam sozinhos a partir das medidas novas e da duração das falas:
+
+```bash
+node scripts/render.cjs cues && python3 scripts/trilha.py && python3 scripts/storyboard.py && node scripts/render.cjs video
+```
+
+- **Storyboard:** se o nome de alguma tela mudar, ajuste o dicionário `NOME` em `scripts/storyboard.py`.
+- **Voz:** só gere de novo (`scripts/voz.py` e `scripts/trechos.py`) se o texto mudar. As regras de pronúncia e de frases inteiras estão em Narração.
 
 ## Mecânica: "recorte em relevo + trilho de módulos", com motion sobre as telas reais
 
@@ -138,6 +218,8 @@ node scripts/render.cjs cues        # a linha do tempo do motor: audio/cues.json
 python3 scripts/trilha.py           # trilha + efeitos + voz: audio/mix.wav e output/revisao/mix.txt (--ate T: prévia de um trecho)
 python3 scripts/storyboard.py       # output/storyboard.jpg
 node scripts/render.cjs video       # output/fazlo-hospeda-institucional.mp4
+python3 scripts/grade.py output/grade src/capturas/celular/*.png    # grade para medir recortes (não entra no vídeo)
+python3 scripts/medir.py <captura> x0,y0,x1,y1                      # fundo, tinta, cor e letras de um retângulo
 node scripts/render.cjs stills 0,15,59.5            # quadros soltos em output/stills/
 ```
 
