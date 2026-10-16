@@ -5,98 +5,98 @@
    "id": "1",
    "fala": 1,
    "texto": "Reserva anotada no caderno, consumo no papel e um caixa que nunca bate?",
-   "dur": 4.836,
+   "dur": 4.956,
    "voz": 4.656
   },
   {
    "id": "2",
    "fala": 2,
    "texto": "Conheça o FAZLO Hospeda: a gestão da sua pousada em um só lugar.",
-   "dur": 3.605,
+   "dur": 3.725,
    "voz": 3.425
   },
   {
    "id": "3a",
    "fala": 3,
-   "texto": "Veja a ocupação no calendário,",
-   "dur": 1.662,
-   "voz": 1.66
+   "texto": "Veja a ocupação no calendário.",
+   "dur": 1.856,
+   "voz": 1.556
   },
   {
    "id": "3b",
    "fala": 3,
-   "texto": "lance uma reserva em poucos passos",
-   "dur": 2.227,
-   "voz": 2.043
+   "texto": "Lance uma reserva em poucos passos.",
+   "dur": 2.053,
+   "voz": 1.753
   },
   {
    "id": "3c",
    "fala": 3,
-   "texto": "e envie o voucher ao hóspede.",
-   "dur": 2.149,
-   "voz": 1.938
+   "texto": "E envie o voucher ao hóspede.",
+   "dur": 2.367,
+   "voz": 2.067
   },
   {
    "id": "4a",
    "fala": 4,
-   "texto": "No check-in, registre o pagamento",
-   "dur": 2.358,
-   "voz": 2.357
+   "texto": "No check-in, registre o pagamento.",
+   "dur": 2.529,
+   "voz": 2.229
   },
   {
    "id": "4b",
    "fala": 4,
-   "texto": "e gere o recibo na hora.",
-   "dur": 1.357,
-   "voz": 1.277
+   "texto": "E gere o recibo na hora.",
+   "dur": 2.181,
+   "voz": 1.881
   },
   {
    "id": "5a",
    "fala": 5,
-   "texto": "Durante a estadia, tudo o que o hóspede consome",
-   "dur": 3.371,
-   "voz": 3.332
+   "texto": "Durante a estadia, cada consumo do hóspede é lançado.",
+   "dur": 4.155,
+   "voz": 3.855
   },
   {
    "id": "5b",
    "fala": 5,
-   "texto": "vai para a conta dele.",
-   "dur": 1.279,
-   "voz": 1.091
+   "texto": "E vai direto para a conta dele.",
+   "dur": 1.728,
+   "voz": 1.428
   },
   {
    "id": "6a",
    "fala": 6,
-   "texto": "Cada recebimento entra no caixa,",
-   "dur": 2.1,
-   "voz": 1.95
+   "texto": "Cada recebimento entra no caixa.",
+   "dur": 1.995,
+   "voz": 1.695
   },
   {
    "id": "6b",
    "fala": 6,
-   "texto": "que você abre e fecha sabendo exatamente quanto entrou.",
-   "dur": 2.968,
-   "voz": 2.787
+   "texto": "Você abre e fecha o caixa sabendo exatamente quanto entrou.",
+   "dur": 4.004,
+   "voz": 3.704
   },
   {
    "id": "7a",
    "fala": 7,
    "texto": "No check-out, tudo fecha com recibo.",
-   "dur": 2.676,
+   "dur": 2.796,
    "voz": 2.496
   },
   {
    "id": "7b",
    "fala": 7,
    "texto": "E os relatórios mostram como a pousada está indo.",
-   "dur": 2.802,
+   "dur": 2.922,
    "voz": 2.601
   },
   {
    "id": "8a",
    "fala": 8,
    "texto": "FAZLO Hospeda.",
-   "dur": 1.167,
+   "dur": 1.287,
    "voz": 0.987
   },
   {
@@ -110,7 +110,7 @@
    "id": "8c",
    "fala": 8,
    "texto": "Teste agora na demonstração.",
-   "dur": 1.613,
+   "dur": 1.722,
    "voz": 1.393
   }
  ]

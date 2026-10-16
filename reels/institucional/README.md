@@ -1,6 +1,6 @@
-# FAZLO Hospeda — vídeo institucional (≈ 92 s, 9:16, para WhatsApp)
+# FAZLO Hospeda — vídeo institucional (≈ 95 s, 9:16, para WhatsApp)
 
-**Status:** prévia v2 para aprovação. Já tem o ritmo novo, a pronúncia corrigida e trilha com efeitos. Depois do aval sai o MP4 final.
+**Status:** prévia v3 para aprovação. Nenhuma fala é cortada no meio da frase e saiu o "DOCUMENTO NÃO / FISCAL" do recibo. Depois do aval sai o MP4 final.
 
 Vídeo de apresentação do sistema, feito para ser enviado no WhatsApp:
 
@@ -14,19 +14,24 @@ Usa **somente telas reais** do sistema: capturas da demonstração (`demo.fazloh
 
 | Arquivo | O que é |
 |---|---|
-| `output/revisao/institucional-previa-v2.mp4` | prévia v2 completa: imagem, narração, trilha e efeitos (91,8 s · 13,9 MB · −14,0 LUFS · pico real −1,8 dBTP) |
+| `output/revisao/institucional-previa-v3.mp4` | prévia v3 completa: imagem, narração, trilha e efeitos (94,7 s · 14,2 MB · −14,0 LUFS · pico real −1,4 dBTP) |
 | `output/storyboard.jpg` | as cenas 1, 2 e 8 e o meio da pausa de cada recorte, tirados direto do motor |
 | `output/revisao/mix.txt` | onde entra cada trecho de voz e a conferência da mixagem |
-| `output/revisao/voz.txt` | as 8 falas geradas |
+| `output/revisao/voz.txt` | as falas e frases geradas |
+| `output/revisao/trechos.txt` | os trechos de voz e, nas cenas 7 e 8, onde caiu o corte entre frases (sempre no silêncio) |
 
-## Ritmo (regras desde a prévia v2)
+## Ritmo e voz (regras desde as prévias v2 e v3)
 
 A linha do tempo das cenas 3 a 7 não tem mais horários fixos. O motor monta a lista de batidas (`PLAN` em `src/anim.js`) a partir da duração real de cada trecho de voz (`src/voz-trechos.json`):
 
 - **Recorte parado:** cada recorte em relevo fica parado e legível por **no mínimo 3,0 s**, depois de 0,5 s de subida. Se o trecho de voz que fala dele for mais longo, o recorte fica até 0,7 s depois do fim da fala.
 - **Frase:** a frase escrita entra com o recorte e **só sai quando o recorte começa a voltar** para a tela.
 - **Menos recortes em vez de pressa:** saíram as etapas do assistente de reserva, a "comanda aberta" da ficha, o 2º recorte de relatórios e o formulário de fechamento separado dos cartões. O fechamento agora é um recorte só, com o formulário e os cartões juntos.
-- **Voz:** a voz nunca é acelerada. Cada fala é cortada nas pausas naturais entre palavras (`scripts/trechos.py`). O tempo a mais fica nas pausas entre os trechos.
+- **Voz:** a voz nunca é acelerada, e **nenhuma fala é cortada no meio de uma frase**.
+  - **Cenas 3 a 6:** cada frase é gerada numa chamada própria e entra inteira, com o final natural de frase.
+  - **Cenas 7 e 8:** as frases vêm separadas por pausas na própria gravação, e o corte cai no silêncio da pausa (−75 a −92 dB do pico, conferido em `scripts/trechos.py`).
+  - **Emendas:** toda emenda tem fade de 30 ms na entrada e na saída.
+  - **Pausas:** o tempo a mais fica nas pausas entre as frases.
 
 ## Mecânica: "recorte em relevo + trilho de módulos"
 
@@ -44,19 +49,20 @@ Os tempos de cada cena estão em `audio/cues.json` (`cenas`, `voz`, `recortes`),
 |---|---|---|---|---|
 | 1 | 0–6,2 s | "Reserva anotada no caderno, consumo no papel e um caixa que nunca bate?" | — (bagunça ilustrada; logo + **"Caderno, papel e um caixa que nunca bate?"** inteiros no quadro 0) | — |
 | 2 | 6,2–12,5 s | "Conheça o FAZLO Hospeda: a gestão da sua pousada em um só lugar." | — (a logo cresce; **"A gestão da sua pousada em um só lugar."**; o celular sobe) | logo oficial |
-| 3 | 12,5–32,2 s | "Veja a ocupação no calendário," · "lance uma reserva em poucos passos" · "e envie o voucher ao hóspede." | "5 livres • 5 ocupadas" · "Total do período R$ 800,00" · "Reserva Criada!" · voucher (só código, status e botões) | `02-calendario/calendario-rolagem` · `13-nova-reserva/etapa2-acomodacao-escolhida` · `13-nova-reserva/reserva-criada` · `03-reservas/voucher` |
-| 4 | 32,2–41,9 s | "No check-in, registre o pagamento" · "e gere o recibo na hora." | "Saldo das diárias no Check-in: R$ 500,00" · "O valor integral das diárias foi recebido e lançado no caixa. Saldo: R$ 0,00" | `14-check-in/modal-check-in` · `14-check-in/recibo-check-in` |
-| 5 | 41,9–54,6 s | "Durante a estadia, tudo o que o hóspede consome" · "vai para a conta dele." | "Café Especial Expresso ×2 · R$ 14,00 · Adicionar à comanda" · "lançado com sucesso na comanda do Bica D'Água 01!" | `04-hospedagens/ficha-hospedagem-ana` (só na tela) · `06-comandas/modal-quantidade` · `06-comandas/consumo-lancado` |
-| 6 | 54,6–65,7 s | "Cada recebimento entra no caixa," · "que você abre e fecha sabendo exatamente quanto entrou." | "Pagamento de hospedagem — Ana Julia Costa + R$ 1.920,00" · "Fechar sessão de caixa" + os 4 cartões (Total de entradas + R$ 1.525,00) | `07-caixa/caixa-rolagem` · `07-caixa/caixa` (só na tela) · `07-caixa/form-fechar-caixa` |
-| 7 | 65,7–81,0 s | "No check-out, tudo fecha com recibo." · "E os relatórios mostram como a pousada está indo." | "Saldo final R$ 0,00 · Quitado" · recibo de hospedagem "Saldo quitado" · receita de diárias e de consumo | `04-hospedagens/modal-check-out` · `04-hospedagens/recibo-check-out` · `08-relatorios/relatorios-rolagem` |
-| 8 | 81,0–91,8 s | "FAZLO Hospeda." · "No celular ou no computador." · "Teste agora na demonstração." | — (computador com o calendário e celular com a visão geral; as duas telas viram a entrada da demo; chip `demo.fazlohospeda.com.br` até o fim) | `computador/02-calendario--calendario` (só o topo) · `01-visao-geral/visao-geral` · `00-acesso/login-demo` (celular e computador) |
+| 3 | 12,5–32,2 s | "Veja a ocupação no calendário." · "Lance uma reserva em poucos passos." · "E envie o voucher ao hóspede." | "5 livres • 5 ocupadas" · "Total do período R$ 800,00" · "Reserva Criada!" · voucher (só código, status e botões) | `02-calendario/calendario-rolagem` · `13-nova-reserva/etapa2-acomodacao-escolhida` · `13-nova-reserva/reserva-criada` · `03-reservas/voucher` |
+| 4 | 32,2–41,9 s | "No check-in, registre o pagamento." · "E gere o recibo na hora." | "Saldo das diárias no Check-in: R$ 500,00" · "O valor integral das diárias foi recebido e lançado no caixa. Saldo: R$ 0,00" | `14-check-in/modal-check-in` · `14-check-in/recibo-check-in` |
+| 5 | 41,9–55,3 s | "Durante a estadia, cada consumo do hóspede é lançado." · "E vai direto para a conta dele." | "Café Especial Expresso ×2 · R$ 14,00 · Adicionar à comanda" · "lançado com sucesso na comanda do Bica D'Água 01!" | `04-hospedagens/ficha-hospedagem-ana` (só na tela) · `06-comandas/modal-quantidade` · `06-comandas/consumo-lancado` |
+| 6 | 55,3–67,5 s | "Cada recebimento entra no caixa." · "Você abre e fecha o caixa sabendo exatamente quanto entrou." | "Pagamento de hospedagem — Ana Julia Costa + R$ 1.920,00" · "Fechar sessão de caixa" + os 4 cartões (Total de entradas + R$ 1.525,00) | `07-caixa/caixa-rolagem` · `07-caixa/caixa` (só na tela) · `07-caixa/form-fechar-caixa` |
+| 7 | 67,5–83,3 s | "No check-out, tudo fecha com recibo." · "E os relatórios mostram como a pousada está indo." | "Saldo final R$ 0,00 · Quitado" · cabeçalho do recibo de hospedagem (código da reserva) + selo "Saldo quitado" · receita de diárias e de consumo | `04-hospedagens/modal-check-out` · `04-hospedagens/recibo-check-out` · `08-relatorios/relatorios-rolagem` |
+| 8 | 83,3–94,7 s | "FAZLO Hospeda." · "No celular ou no computador." · "Teste agora na demonstração." | — (computador com o calendário e celular com a visão geral; as duas telas viram a entrada da demo; chip `demo.fazlohospeda.com.br` até o fim) | `computador/02-calendario--calendario` (só o topo) · `01-visao-geral/visao-geral` · `00-acesso/login-demo` (celular e computador) |
 
 **Cuidados com as capturas:**
 - **Quebras de linha defeituosas fora dos recortes.**
   - Recibo de check-in: o título "HOSPEDAGEM QUITADA NO CHECK-IN" quebra em "CHECK-" / "IN" no celular (defeito do sistema). O recorte começa em y 915: o "IN" termina em y 914 e a frase começa em y 917. A margem de cima é preenchida com o verde do próprio cartão (`#ECFDF5`).
   - Voucher: o nome da pousada quebrava em "Pousada Demonstração" / "FAZLO". O recorte mostra só o código, o status e os botões.
   - Caixa: o lançamento do Carlos partia o nome ("Carlos" / "Henrique Silva"). Entrou o da Ana Julia, que quebra no travessão.
-  - Ficaram as quebras normais de texto longo, como "DOCUMENTO NÃO / FISCAL" e "feche o / caixa."
+  - Recibo de check-out: o título "RECIBO DE HOSPEDAGEM — DOCUMENTO NÃO / FISCAL" quebra a linha. Sobem só o cabeçalho do recibo (com o código da reserva) e, separado, o selo "SALDO QUITADO".
+  - Ficaram só as quebras normais de texto longo, como "feche o / caixa."
 - **Voucher:** a tela do voucher fica escurecida e desfocada o tempo todo, então o nome do hóspede nunca aparece legível.
 - **Textos errados da demo fora dos recortes:** "PRODUCT" e nomes cortados em Comandas, "isolamento do tenant" no recibo e "created_at" em Relatórios.
 - **Não usados:**
@@ -71,7 +77,11 @@ Os tempos de cada cena estão em `audio/cues.json` (`cenas`, `voz`, `recortes`),
 ## Narração (ElevenLabs)
 
 - **Voz e ajustes:** Raquel - For Conversational (`GDzHdQOi6jjf8zaXhCYD`), `eleven_multilingual_v2`, estabilidade 0,40 · semelhança 0,80 · estilo 0,35 · speaker boost · velocidade 1,0, sem aceleração.
-- **Geração:** uma chamada por cena, com as falas vizinhas como contexto, seed 808.
+- **Geração:** seed 808, com as falas vizinhas como contexto.
+  - **Cenas 1, 2, 7 e 8:** uma chamada por fala.
+  - **Cenas 3 a 6:** uma chamada por frase. Cada frase vai com uma pausa de 0,4 s depois do ponto final (`<break>`): sem ela, a API devolvia algumas frases cortadas na última sílaba.
+  - **Conferência:** o `voz.py` só aceita uma tomada que termina em silêncio (≤ −45 dB nos últimos 40 ms). Se não terminar, tenta a semente seguinte. A frase 6a ficou com a seed 809.
+- **Mudanças de texto:** para que cada frase tenha final próprio, a cena 5 virou "Durante a estadia, cada consumo do hóspede é lançado." / "E vai direto para a conta dele." (pedido). A 2ª frase da cena 6 virou "Você abre e fecha o caixa sabendo exatamente quanto entrou." (antes "que você abre e fecha…", que não fica de pé sozinha).
 - **Cena 2 ("Hospeda" saía "Hóspeda"):** a API recebe **"Ospéda"** com a seed 810. A cena 8 sai certa ("Hospéda") e serviu de referência.
   - Comparação: 6 tomadas ("Hospéda" e "Ospéda" × seeds 808/809/810) contra a cena 8 (certa) e a cena 2 antiga (errada), por análise acústica no Praat. Medidas: sílaba tônica (duração, intensidade e F0 da 1ª e da 2ª sílaba) e distância MFCC/DTW da palavra.
   - **Certa (cena 8):** 1ª sílaba curta (45 ms) e 2ª mais forte (+4 dB).
@@ -94,13 +104,13 @@ Os tempos de cada cena estão em `audio/cues.json` (`cenas`, `voz`, `recortes`),
 ## Como gerar
 
 ```bash
-python3 scripts/voz.py              # as 8 falas (audio/voz/cena-N.wav + falas.json) e output/revisao/voz.txt
-python3 scripts/voz.py --so 2       # refaz só a cena 2
-python3 scripts/trechos.py          # corta as falas em trechos: audio/voz/trechos/*.wav + src/voz-trechos.json
+python3 scripts/voz.py              # as falas e frases (audio/voz/cena-<id>.wav + falas.json) e output/revisao/voz.txt
+python3 scripts/voz.py --so 2       # refaz só a cena 2 (aceita frases: --so 3b)
+python3 scripts/trechos.py          # os trechos (frases inteiras): audio/voz/trechos/*.wav + src/voz-trechos.json
 node scripts/render.cjs cues        # a linha do tempo do motor: audio/cues.json (cenas, voz, recortes, efeitos)
 python3 scripts/trilha.py           # trilha + efeitos + voz: audio/mix.wav e output/revisao/mix.txt
 python3 scripts/storyboard.py       # output/storyboard.jpg
-node scripts/render.cjs video --out output/revisao/institucional-previa-v2.mp4
+node scripts/render.cjs video --out output/revisao/institucional-previa-v3.mp4
 node scripts/render.cjs stills 0,15,59.5            # quadros soltos em output/stills/
 ```
 

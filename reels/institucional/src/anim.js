@@ -149,10 +149,10 @@
     { mod: 'COMANDA', screen: 'ficha', mode: 'giro', pause: 1.3 },                          // a ficha da hospedagem, inteira
     { screen: 'quantidade', mode: 'toque', tap: [390, 882], voz: '5a',                       // Lançar consumo
       lifts: [{ crop: [32, 546, 748, 1144], hl: [74, 1012, 706, 1102], s: 1.3, cy: 1160 }],
-      cap: [[['Durante a estadia, tudo', Wc]], [['o que o hóspede ', Wc], ['consome', Lc]]] },
+      cap: [[['Durante a estadia, cada', Wc]], [['consumo é ', Wc], ['lançado', Lc]]] },
     { screen: 'lancado', mode: 'toque', tap: [390, 1058], voz: '5b',                        // Adicionar à comanda
       lifts: [{ crop: [64, 476, 716, 606], s: 1.45, cy: 1150 }],
-      cap: [[['vai para a ', Wc], ['conta dele', Lc]]] },
+      cap: [[['E vai direto para a', Wc]], [['conta dele', Lc]]] },
     // o lançamento da Ana Julia (a hóspede da comanda): "Pagamento de hospedagem —" quebra no travessão; o do
     // Carlos, na 1ª tela do caixa, partia o nome ("Carlos" / "Henrique Silva") e ficou de fora
     { mod: 'CAIXA', screen: 'caixaRolagem', mode: 'giro', voz: '6a',
@@ -166,7 +166,10 @@
       lifts: [{ crop: [74, 772, 706, 1194], hl: [100, 962, 680, 1036], s: 1.45, cy: 1160 }],
       cap: [[['No check-out, tudo', Wc]], [['fecha com ', Wc], ['recibo', Lc]]] },
     { screen: 'reciboOut', mode: 'toque', tap: [390, 1302],                                 // Confirmar Check-out
-      lifts: [{ crop: [52, 216, 730, 890], hl: [92, 816, 342, 870], s: 1.3, cy: 1170 }], cap: 'mesma' },
+      // o título "RECIBO DE HOSPEDAGEM — DOCUMENTO NÃO / FISCAL" quebra a linha: fica fora; sobem o cabeçalho
+      // do recibo (com o código da reserva) e, separado, o selo "SALDO QUITADO"
+      lifts: [{ crop: [26, 74, 754, 648], s: 1.3, cy: 1010 },
+        { crop: [80, 806, 356, 878], hl: [90, 814, 344, 870], s: 1.6, cy: 1520, hlT: 0.9 }], cap: 'mesma' },
     { mod: 'RELATÓRIOS', screen: 'relatorios', mode: 'giro', voz: '7b',
       lifts: [{ crop: [66, 172, 714, 640], s: 1.45, cy: 1160 }],
       cap: [[['Os relatórios mostram', Wc]], [['como a pousada ', Wc], ['está indo', Lc]]] },
