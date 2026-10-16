@@ -15,7 +15,7 @@ FONT = os.path.join(ROOT, 'src', 'fonts', 'JetBrainsMonoNL-Bold.ttf')
 # os quadros saem da linha do tempo do motor (audio/cues.json): as cenas 1, 2 e 8 e o meio da pausa de cada recorte
 D = json.load(open(os.path.join(ROOT, 'audio', 'cues.json')))
 T, REC = D['cenas'], D['recortes']
-NOME = {'calendario': '3 · OCUPAÇÃO', 'acomodacao': '3 · TOTAL R$ 800', 'criada': '3 · RESERVA CRIADA', 'voucher': '3 · VOUCHER',
+NOME = {'calendario': '3 · OCUPAÇÃO', 'criada': '3 · RESERVA CRIADA', 'voucher': '3 · VOUCHER', 'comandasPC': '5 · A CONTA SOMA',
         'checkin': '4 · SALDO R$ 500', 'reciboIn': '4 · RECIBO QUITADO', 'quantidade': '5 · LANÇAR CONSUMO',
         'lancado': '5 · NA CONTA DELE', 'caixaRolagem': '6 · ENTRA NO CAIXA', 'fecharCaixa': '6 · FECHAR O CAIXA',
         'checkout': '7 · CHECK-OUT', 'reciboOut': '7 · RECIBO', 'relatorios': '7 · RELATÓRIOS'}

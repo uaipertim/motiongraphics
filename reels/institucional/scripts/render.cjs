@@ -7,7 +7,7 @@
  *
  * Sobe um servidor estático local, abre src/index.html?render no Chromium (Playwright), captura cada
  * quadro do canvas e envia direto ao ffmpeg. O MP4 é "leve" para o WhatsApp: H.264 High 4.1, 30 fps,
- * CRF 23 com teto de 3,5 Mb/s, AAC 128 kb/s, faststart (fica bem abaixo de 16 MB em 60 s).
+ * CRF 24 com teto de 3 Mb/s, AAC 128 kb/s, faststart (abaixo de 16 MB nos ≈ 102 s).
  */
 const http = require('http');
 const fs = require('fs');
@@ -86,7 +86,7 @@ const grab = async (page, t) => decode(await page.evaluate((t) => window.frameAt
       fs.mkdirSync(path.dirname(out), { recursive: true });
 
       const ff = spawn('ffmpeg', ['-y', '-loglevel', 'error', '-f', 'image2pipe', '-framerate', String(fps), '-c:v', 'png', '-i', '-',
-        '-c:v', 'libx264', '-preset', 'slow', '-crf', '23', '-maxrate', '3500k', '-bufsize', '7000k', '-g', String(fps * 2),
+        '-c:v', 'libx264', '-preset', 'slow', '-crf', '24', '-maxrate', '3000k', '-bufsize', '6000k', '-g', String(fps * 2),
         '-pix_fmt', 'yuv420p', '-profile:v', 'high', '-level', '4.1', '-tune', 'animation',
         '-color_primaries', 'bt709', '-color_trc', 'bt709', '-colorspace', 'bt709', '-movflags', '+faststart', silent], { stdio: ['pipe', 'inherit', 'inherit'] });
       const ffDone = new Promise((r, j) => ff.on('close', (c) => (c === 0 ? r() : j(new Error('ffmpeg ' + c)))));

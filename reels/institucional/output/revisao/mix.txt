@@ -1,22 +1,22 @@
 Institucional — mixagem
 
-duração 108.80 s · 48 kHz estéreo · loudness integrado do WAV -14.0 LUFS (alvo −14) · limitador −2 dBTP
+duração 102.40 s · 48 kHz estéreo · loudness integrado do WAV -14.0 LUFS (alvo −14) · limitador −2 dBTP
 trilha e efeitos sob a voz: 9.5 dB mais baixos com a voz falando (alvo 8–10 dB)
 
 Onde cada trecho de voz entra (velocidade 1,0, sem aceleração):
   1     0.50–  5.46 s  "Reserva anotada no caderno, consumo no papel e um caixa que nunca bate?"
   2     6.55– 10.28 s  "Conheça o FAZLO Hospeda: a gestão da sua pousada em um só lugar."
   3a   13.41– 15.27 s  "Veja a ocupação no calendário."
-  3b   19.33– 21.38 s  "Lance uma reserva em poucos passos."
-  3c   31.90– 34.27 s  "E envie o voucher ao hóspede."
-  4a   39.43– 41.96 s  "No check-in, registre o pagamento."
-  4b   48.35– 50.53 s  "E gere o recibo na hora."
-  5a   56.47– 60.63 s  "Durante a estadia, cada consumo do hóspede é lançado."
-  5b   63.33– 65.06 s  "E vai direto para a conta dele."
-  6a   68.52– 70.52 s  "Cada recebimento entra no caixa."
-  6b   75.33– 79.33 s  "Você abre e fecha o caixa sabendo exatamente quanto entrou."
-  7a   81.66– 84.46 s  "No check-out, tudo fecha com recibo."
-  7b   93.09– 96.01 s  "E os relatórios mostram como a pousada está indo."
-  8a   97.76– 99.05 s  "FAZLO Hospeda."
-  8b   99.50–100.99 s  "No celular ou no computador."
-  8c  103.45–105.17 s  "Teste agora na demonstração."
+  3b   20.76– 22.81 s  "Lance uma reserva em poucos passos."
+  3c   26.19– 28.55 s  "E envie o voucher ao hóspede."
+  4a   32.76– 35.29 s  "No check-in, registre o pagamento."
+  4b   40.92– 43.10 s  "E gere o recibo na hora."
+  5a   48.19– 52.34 s  "Durante a estadia, cada consumo do hóspede é lançado."
+  5b   54.47– 56.20 s  "E vai direto para a conta dele."
+  6a   60.99– 62.99 s  "Cada recebimento entra no caixa."
+  6b   68.19– 72.19 s  "Você abre e fecha o caixa sabendo exatamente quanto entrou."
+  7a   74.42– 77.22 s  "No check-out, tudo fecha com recibo."
+  7b   86.99– 89.91 s  "E os relatórios mostram como a pousada está indo."
+  8a   92.02– 93.31 s  "FAZLO Hospeda."
+  8b   93.76– 95.25 s  "No celular ou no computador."
+  8c   97.71– 99.43 s  "Teste agora na demonstração."

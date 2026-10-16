@@ -118,6 +118,7 @@
     visaoGeral: 'celular/01-visao-geral--visao-geral.png',
     demoCel: 'celular/00-acesso--login-demo.png',
     calendarioPC: 'computador/02-calendario--calendario.png',
+    comandasPC: 'computador/06-comandas--consumo-lancado.png',
     demoPC: 'computador/00-acesso--login-demo.png',
   };
   let IMG = {}, LOGO = null;
@@ -145,18 +146,14 @@
         { type: 'reveal', r: [32, 654, 750, 1000], bg: '#FBFBFB', t: 0.35 },
         { type: 'stamp', r: [514, 700, 716, 752], bg: '#FFFFFF', t: 0.7, after: 0.35 }] }],
       cap: [[['Veja a ', Wc], ['ocupação', Lc]], [['no calendário', Wc]]] },
-    { screen: 'acomodacao', mode: 'toque', tap: [390, 1600], voz: '3b',                    // o "+" (nova reserva)
-      lifts: [{ crop: [78, 788, 702, 1258], hl: [118, 1062, 664, 1220], hlT: 0.85, s: 1.45, cy: 1180, ops: [
-        { type: 'stamp', r: [500, 824, 666, 870], bg: '#FDFFFA', t: 0.05 },
-        { type: 'count', r: [488, 1098, 639, 1128], bg: '#FFFFFF', color: '#171717', to: 800, t: 0.1, dur: 0.7, weight: 800 }] }],
-      cap: [[['Lance a ', Wc], ['reserva', Lc]], [['em poucos passos', Wc]]] },
-    { screen: 'criada', mode: 'toque', tap: [594, 1388],                                   // Avançar
+    { screen: 'acomodacao', mode: 'toque', tap: [390, 1600], pause: 0.9 },              // o "+": a etapa 2 passa na tela
+    { screen: 'criada', mode: 'toque', tap: [594, 1388], voz: '3b',                        // Avançar
       lifts: [{ crop: [130, 318, 650, 652], hl: [412, 586, 614, 644], hlT: 0.95, s: 1.7, cy: 1160, ops: [
         { type: 'check', r: [350, 362, 430, 442], bg: '#F7FEE7', color: '#5EA500', c: [390, 402], rad: 33, lw: 7,
-          pts: [[-10, -1], [-3.5, 7], [10, -7.5]], plw: 6, t: 0.0, dur: 0.75 },
-        { type: 'reveal', r: [214, 524, 566, 574], bg: '#FFFFFF', t: 0.25 },
-        { type: 'type', r: [436, 602, 592, 628], bg: '#F5F5F5', t: 0.45, cps: 26 }] }],
-      cap: 'mesma' },
+          pts: [[-10, -1], [-3.5, 7], [10, -7.5]], plw: 6, t: 0.0, dur: 0.6 },
+        { type: 'reveal', r: [214, 524, 566, 574], bg: '#FFFFFF', t: 0.2 },
+        { type: 'type', r: [436, 602, 592, 628], bg: '#F5F5F5', t: 0.35, cps: 30 }] }],
+      cap: [[['Lance a ', Wc], ['reserva', Lc]], [['em poucos passos', Wc]]] },
     { screen: 'voucher', mode: 'toque', tap: [390, 1276], veil: true, voz: '3c',          // Ver voucher
       lifts: [{ crop: [24, 32, 756, 172], pad: [0, 0, 18, 0], bg: '#171717', s: 1.27, cy: 930, ops: [   // só código, status e botões:
         { type: 'type', r: [488, 110, 644, 132], bg: '#171717', t: 0.05, cps: 24 },                     // o nome nunca aparece
@@ -167,7 +164,7 @@
     // check-in: antes do recorte, a câmera se aproxima do campo real "Valor (R$)" e o "R$ 500,00" é digitado;
     // o selo "Quitação 100%" estala. Depois o resumo sobe com os valores contando.
     { mod: 'CHECK-IN', screen: 'checkin', mode: 'giro', voz: '4a', vozPre: true,
-      pre: { dur: 2.1, zoom: { x: 470, y: 1180, z: 1.5, ty: 1300 }, ops: [
+      pre: { dur: 1.85, zoom: { x: 470, y: 1180, z: 1.5, ty: 1300 }, ops: [
         { type: 'tap', x: 515, y: 1150, t: 0.35 },
         { type: 'type', r: [516, 1138, 638, 1164], bg: '#FFFFFF', t: 0.5, cps: 13, align: 'right' },
         { type: 'stamp', r: [450, 1248, 660, 1290], bg: '#FFFFFF', t: 1.35 }] },
@@ -184,44 +181,74 @@
         { type: 'wipe', r: [184, 948, 354, 976], bg: '#ECFDF5', t: 0.4, dur: 0.3 },
         { type: 'stamp', r: [128, 990, 350, 1036], bg: '#ECFDF5', t: 0.65 }] }],
       cap: [[['E gere o ', Wc], ['recibo', Lc]], [['na hora', Wc]]] },
-    { mod: 'COMANDA', screen: 'ficha', mode: 'giro', pause: 1.3 },                          // a ficha da hospedagem, inteira
+    { mod: 'COMANDA', screen: 'ficha', mode: 'giro', pause: 0.8 },                          // a ficha da hospedagem, inteira
     { screen: 'quantidade', mode: 'toque', tap: [390, 882], voz: '5a',                       // Lançar consumo
-      lifts: [{ crop: [32, 546, 748, 1144], hl: [74, 1012, 706, 1102], s: 1.3, cy: 1160 }],
+      lifts: [{ crop: [32, 546, 748, 1144], s: 1.3, cy: 1160, ops: [
+        { type: 'tap', x: 661, y: 824, t: 0.0 },                                               // o "+" da quantidade
+        { type: 'roll', r: [380, 811, 400, 838], bg: '#FFFFFF', color: '#171717', from: 1, to: 2, t: 0.12, dur: 0.4 },
+        { type: 'count', r: [594, 941, 706, 967], bg: '#FFFFFF', color: '#171717', from: 7, to: 14, t: 0.15, dur: 0.45, weight: 800 },
+        { type: 'tap', x: 390, y: 1058, t: 0.85 }] }],                                         // Adicionar à comanda
       cap: [[['Durante a estadia, cada', Wc]], [['consumo é ', Wc], ['lançado', Lc]]] },
+    // a confirmação real sobe e "voa" até a conta do quarto: a linha "Bica D'Água 01" das comandas ativas (tela do
+    // computador, mesma demo): 4 → 6 unidades e R$ 38,00 → R$ 52,00 (antes e depois do lançamento, capturas reais)
     { screen: 'lancado', mode: 'toque', tap: [390, 1058], voz: '5b',                        // Adicionar à comanda
-      lifts: [{ crop: [64, 476, 716, 606], s: 1.45, cy: 1150 }],
+      lifts: [{ crop: [64, 476, 716, 606], s: 1.45, cy: 980, fly: { to: 1, t: 0.3, dur: 0.6 } },
+        { key: 'comandasPC', crop: [942, 322, 1232, 392], s: 2.4, cy: 1360, ops: [
+          { type: 'roll', r: [957, 350, 968, 366], bg: '#FFFFFF', color: '#171717', from: 4, to: 6, t: 0.4, dur: 0.45 },
+          { type: 'count', r: [1150, 352, 1204, 366], bg: '#FFFFFF', color: '#171717', from: 38, to: 52, t: 0.4, dur: 0.6, weight: 700 }] }],
       cap: [[['E vai direto para a', Wc]], [['conta dele', Lc]]] },
     // o lançamento da Ana Julia (a hóspede da comanda): "Pagamento de hospedagem —" quebra no travessão; o do
     // Carlos, na 1ª tela do caixa, partia o nome ("Carlos" / "Henrique Silva") e ficou de fora
     { mod: 'CAIXA', screen: 'caixaRolagem', mode: 'giro', voz: '6a',
-      lifts: [{ crop: [74, 992, 706, 1246], hl: [500, 1016, 684, 1058], s: 1.45, cy: 1150 }],
+      lifts: [{ crop: [74, 992, 706, 1526], s: 1.45, cy: 1170, ops: [
+        { type: 'reveal', r: [74, 992, 706, 1250], bg: '#FFFFFF', dx: 60, t: 0.0 },
+        { type: 'stamp', r: [500, 1020, 682, 1054], bg: '#FBFBFB', t: 0.3, after: 0.0 },
+        { type: 'reveal', r: [74, 1268, 706, 1526], bg: '#FFFFFF', dx: 60, t: 0.35 },
+        { type: 'stamp', r: [526, 1300, 682, 1334], bg: '#FBFBFB', t: 0.65, after: 0.35 }] }],
       cap: [[['Cada recebimento', Wc]], [['entra no ', Wc], ['caixa', Lc]]] },
     { screen: 'caixa', mode: 'rola', pause: 0.7 },                                         // a tela volta ao topo
     { screen: 'fecharCaixa', mode: 'toque', tap: [390, 408], voz: '6b',                     // Fechar Caixa
-      lifts: [{ crop: [30, 526, 750, 1546], hl: [404, 1248, 748, 1372], s: 1.3, cy: 1190 }],
+      lifts: [{ crop: [30, 526, 750, 1546], hl: [404, 1248, 748, 1372], hlT: 1.1, s: 1.3, cy: 1190, ops: [
+        { type: 'count', r: [59, 1313, 197, 1339], bg: '#FFFFFF', color: '#171717', to: 300, t: 0.0, dur: 0.5, weight: 700 },
+        { type: 'count', r: [465, 1313, 664, 1339], bg: '#FFFFFF', color: '#009966', to: 1525, prefix: '+ ', t: 0.1, dur: 0.6, weight: 700 },
+        { type: 'count', r: [97, 1465, 248, 1491], bg: '#FFFFFF', color: '#EC003F', to: -45, t: 0.2, dur: 0.45, weight: 700 },
+        { type: 'count', r: [429, 1483, 567, 1509], bg: '#FFFFFF', color: '#9AE600', to: 255, t: 0.3, dur: 0.6, weight: 700 },
+        { type: 'tap', x: 390, y: 1126, t: 1.05 }] }],                                        // Confirmar fechamento de caixa
       cap: [[['Abra e feche sabendo', Wc]], [['quanto ', Wc], ['entrou', Lc]]] },
     { mod: 'CHECK-OUT', screen: 'checkout', mode: 'giro', voz: '7a',
-      lifts: [{ crop: [74, 772, 706, 1194], hl: [100, 962, 680, 1036], s: 1.45, cy: 1160 }],
+      lifts: [{ crop: [74, 772, 706, 1194], hl: [100, 962, 680, 1036], hlT: 1.25, s: 1.45, cy: 1160, ops: [
+        { type: 'count', r: [554, 850, 672, 872], bg: '#FFFFFF', color: '#404040', to: 960, t: 0.0, dur: 0.5, weight: 700 },
+        { type: 'count', r: [554, 912, 672, 934], bg: '#FFFFFF', color: '#007A55', to: 960, t: 0.1, dur: 0.5, weight: 700 },
+        { type: 'count', r: [405, 983, 512, 1009], bg: '#FFFFFF', color: '#007A55', from: 960, to: 0, t: 0.25, dur: 0.6, weight: 800 },
+        { type: 'stamp', r: [524, 970, 678, 1020], bg: '#FFFFFF', t: 0.7 },
+        { type: 'check', r: [545, 983, 571, 1009], bg: '#D0FAE5', color: '#009966', c: [558, 996], rad: 9, lw: 2.2,
+          pts: [[-4, 0], [-1.2, 3], [4, -3]], plw: 2.2, t: 0.85, dur: 0.45 }] }],
       cap: [[['No check-out, tudo', Wc]], [['fecha com ', Wc], ['recibo', Lc]]] },
-    { screen: 'reciboOut', mode: 'toque', tap: [390, 1302],                                 // Confirmar Check-out
+    { screen: 'reciboOut', mode: 'imprime', tap: [390, 1302],                               // Confirmar Check-out
       // o título "RECIBO DE HOSPEDAGEM — DOCUMENTO NÃO / FISCAL" quebra a linha: fica fora; sobem o cabeçalho
       // do recibo (com o código da reserva) e, separado, o selo "SALDO QUITADO"
       lifts: [{ crop: [26, 74, 754, 648], s: 1.3, cy: 1010 },
-        { crop: [80, 806, 356, 878], hl: [90, 814, 344, 870], s: 1.6, cy: 1520, hlT: 0.9 }], cap: 'mesma' },
+        { crop: [80, 806, 356, 878], hl: [90, 814, 344, 870], s: 1.6, cy: 1520, hlT: 0.75, ops: [
+          { type: 'stamp', r: [84, 812, 350, 874], bg: '#FAFAFA', t: 0.0 },
+          { type: 'check', r: [113, 829, 139, 855], bg: '#D0FAE5', color: '#009966', c: [126, 842], rad: 9, lw: 2.2,
+            pts: [[-4, 0], [-1.2, 3], [4, -3]], plw: 2.2, t: 0.2, dur: 0.45 }] }], cap: 'mesma' },
     { mod: 'RELATÓRIOS', screen: 'relatorios', mode: 'giro', voz: '7b',
-      lifts: [{ crop: [66, 172, 714, 640], s: 1.45, cy: 1160 }],
+      lifts: [{ crop: [66, 172, 714, 640], s: 1.45, cy: 1160, ops: [
+        { type: 'count', r: [131, 284, 324, 314], bg: '#FFFFFF', color: '#171717', to: 8940, t: 0.0, dur: 0.7, weight: 700 },
+        { type: 'count', r: [131, 500, 288, 530], bg: '#FFFFFF', color: '#171717', to: 151, t: 0.15, dur: 0.6, weight: 700 }] }],
       cap: [[['Os relatórios mostram', Wc]], [['como a pousada ', Wc], ['está indo', Lc]]] },
   ];
-  const NAV = { liga: 0.5, giro: 0.75, toque: 0.7, imprime: 1.15, rola: 0.45, fica: 0.15 };   // da batida até o recorte subir
-  const RISE = 0.6, DROP = 0.38, GAP = 0.12, HOLD = 3.0, READ = 0.7, VOZ_IN = 0.25;
+  const NAV = { liga: 0.5, giro: 0.65, toque: 0.7, imprime: 1.15, rola: 0.45, fica: 0.15 };   // da batida até o recorte subir
+  const RISE = 0.55, DROP = 0.38, GAP = 0.05, HOLD = 3.0, READ = 0.7, VOZ_IN = 0.25;
+  const AS = 0.8;                                      // as entradas animadas a 80% do tempo (meta: vídeo perto de 100 s)
   const GIRO = 0.5, TOQUE = 0.32, IMPRIME = 0.8;
   // a música (scripts/trilha.py) tem 105 BPM e o 1º tempo quando a logo cresce; cada batida começa num tempo dela
   const BPM = 105, BT = 60 / BPM, M0 = T.virada + 0.75;
-  const onBeat = (t) => M0 + Math.ceil((t - M0 - 1e-6) / BT) * BT;
+  const onBeat = (t) => M0 + Math.ceil((t - M0 - 1e-6) / (BT / 2)) * (BT / 2);   // no tempo (ou no meio tempo)
   let SCREENS = [], LIFTS = [], TAPS = [], CAPS = [], TRILHO = [], VOZ = [], TRECHOS = {}, PHONE_OPS = [], ZOOMS = [];
   // quanto dura a animação de entrada de um recorte (depois de pousar)
-  const OP_DUR = { roll: (o) => o.dur, count: (o) => o.dur + 0.2, stamp: () => 0.35, reveal: () => 0.45, check: (o) => o.dur + 0.2,
-    type: (o) => (o.n || 10) / o.cps + 0.15, wipe: (o) => o.dur, tap: () => 0.5 };
+  const OP_DUR = { roll: (o) => o.dur, count: (o) => o.dur + 0.15, stamp: () => 0.3, reveal: () => 0.35, check: (o) => o.dur + 0.15,
+    type: (o) => (o.n || 10) / o.cps + 0.1, wipe: (o) => o.dur, tap: () => 0.45, grow: (o) => o.dur || 0.45 };
   const animEnd = (ops) => Math.max(0, ...(ops || []).map((o) => o.t + OP_DUR[o.type](o)));
 
   function build(trechos) {
@@ -253,14 +280,17 @@
         r += b.pre.dur;
       } else if (b.voz) VOZ.push({ id: b.voz, t: r + VOZ_IN });
       const vozFim = b.voz ? VOZ[VOZ.length - 1].t + vd : 0;
-      // segura: a animação de entrada inteira e, depois dela, no mínimo HOLD s parado (e READ s depois da voz)
-      // (o destaque limão não conta: ele marca o dado com o recorte já legível)
-      const an = Math.max(...b.lifts.map((L, i) => 0.45 * i + animEnd(L.ops)));
-      const t1 = Math.max(r + RISE + an + HOLD + 0.6 * (b.lifts.length - 1), vozFim + READ);
+      // as entradas a AS do tempo; segura: a animação de entrada inteira e, depois dela, no mínimo HOLD s parado
+      // (e READ s depois da voz). O destaque limão não conta: ele marca o dado com o recorte já legível.
+      const scaled = b.lifts.map((L) => (L.ops || []).map((o) => Object.assign({}, o, { t: o.t * AS },
+        o.dur ? { dur: o.dur * AS } : {}, o.after !== undefined ? { after: o.after * AS } : {})));
+      const an = Math.max(...b.lifts.map((L, i) => 0.45 * i + animEnd(scaled[i])));
+      const t1 = Math.max(r + RISE + an + HOLD + 0.3 * (b.lifts.length - 1), vozFim + READ);
       b.lifts.forEach((L, i) => {
         const t0 = r + 0.45 * i, land = t0 + RISE;
-        LIFTS.push(Object.assign({}, L, { key: b.screen, t0, t1, land, hlT: L.hlT !== undefined ? land + L.hlT : undefined,
-          ops: (L.ops || []).map((o) => Object.assign({}, o, { t: land + o.t }, o.after !== undefined ? { from: land + o.after } : {})) }));
+        LIFTS.push(Object.assign({}, L, { key: L.key || b.screen, own: !!L.key, t0, t1, land, hlT: L.hlT !== undefined ? land + L.hlT * AS : undefined,
+          fly: L.fly ? Object.assign({}, L.fly, { t: L.fly.t * AS, dur: L.fly.dur * AS }) : undefined,
+          ops: scaled[i].map((o) => Object.assign({}, o, { t: land + o.t }, o.after !== undefined ? { from: land + o.after } : {})) }));
       });
       if (b.cap === 'mesma') CAPS[CAPS.length - 1].t1 = t1;
       else if (b.cap) CAPS.push({ t0: b.pre ? r - b.pre.dur : r, t1, lines: b.cap });
@@ -269,6 +299,7 @@
     // cena 8: celular e computador; depois a demonstração
     T.fechamento = t + 0.15;
     const F = T.fechamento;
+    MON_OPS = MON_BARS.map((r, i) => ({ type: 'grow', r, t: F + 1.1 + 0.28 * i, dur: 0.45 }));
     SCREENS.push({ t: F + 0.1, key: 'visaoGeral', mode: 'toque' });
     VOZ.push({ id: '8a', t: F + 0.4 });
     const c8 = F + 0.4 + TRECHOS['8a'].dur + 0.35;
@@ -278,7 +309,7 @@
     SCREENS.push({ t: T.demo, key: 'demoCel', mode: 'giro' });
     VOZ.push({ id: '8c', t: T.demo + 0.25 });
     T.url = T.demo + 0.75;
-    DURATION = Math.round((T.demo + 0.25 + TRECHOS['8c'].dur + 3.6) * 10) / 10;   // o endereço fica na tela até o fim
+    DURATION = Math.round((T.demo + 0.25 + TRECHOS['8c'].dur + 3.0) * 10) / 10;   // o endereço fica na tela até o fim
     T.relatorios = (TRILHO.find((x) => x[0] === 'RELATÓRIOS') || [0, 0])[1];
   }
 
@@ -554,13 +585,13 @@
         g.restore();
       };
       switch (o.type) {
-        case 'reveal': {                              // o bloco entra subindo
-          const q = E.outCubic(p(t, o.t, o.t + 0.45));
-          hide(); real(q, 0, (1 - q) * 30 * s, 1 - 0.03 * (1 - q));
+        case 'reveal': {                              // o bloco entra subindo (ou, com dx, chegando da direita)
+          const q = E.outCubic(p(t, o.t, o.t + 0.35));
+          hide(); real(q, (1 - q) * (o.dx || 0) * s, o.dx ? 0 : (1 - q) * 30 * s, 1 - 0.03 * (1 - q));
           break;
         }
         case 'stamp': {                               // o selo estala: chega grande e assenta
-          const q = p(t, o.t, o.t + 0.35);
+          const q = p(t, o.t, o.t + 0.3);
           if (o.from !== undefined && t < o.from) break; // dentro de um bloco que ainda vai entrar: ele já o esconde
           hide(); if (q > 0) real(q * 3, 0, 0, lerp(1.32, 1, E.outBack(q, 2.4)));
           break;
@@ -572,8 +603,8 @@
           break;
         }
         case 'count': {                               // o valor conta até o número da tela e desacelera no fim
-          const q = p(t, o.t, o.t + o.dur), f = p(t, o.t + o.dur, o.t + o.dur + 0.2);
-          const fin = brl(o.to), size = Wd / (fin.length * 0.6);
+          const q = p(t, o.t, o.t + o.dur), f = p(t, o.t + o.dur, o.t + o.dur + 0.15);
+          const pre = o.prefix || '', fin = pre + brl(o.to), size = Wd / (fin.length * 0.6);
           hide();
           if (t >= o.t) {
             // conta em reais inteiros (os centavos já são os da tela) e desacelera no fim
@@ -581,7 +612,7 @@
             const v = q >= 1 ? o.to : Math.sign(v0) * Math.floor(Math.abs(v0)) + (o.to - Math.trunc(o.to));
             g.save(); g.globalAlpha *= 1 - f;
             setFont(g, MONO, size, o.weight || 700, 'right', 0); g.fillStyle = o.color;
-            g.fillText(brl(Math.abs(v) < 0.005 ? (o.to < 0 ? -0.001 : 0) : v), X + Wd, Y + Hd - 0.13 * size);
+            g.fillText(pre + brl(Math.abs(v) < 0.005 ? (o.to < 0 ? -0.001 : 0) : v), X + Wd, Y + Hd - 0.13 * size);
             g.restore();
             real(f);
           }
@@ -589,7 +620,7 @@
         }
         case 'roll': {                                // placar: o algarismo sobe rolando até o número da tela
           const q = E.outCubic(p(t, o.t, o.t + o.dur)), f = p(t, o.t + o.dur - 0.1, o.t + o.dur);
-          const pos = q * o.to, k = Math.floor(pos), fr = pos - k, size = Hd * 0.98;
+          const pos = (o.from || 0) + q * (o.to - (o.from || 0)), k = Math.floor(pos + 1e-6), fr = pos - k, size = Hd * 0.98;
           hide();
           g.save(); g.beginPath(); g.rect(X - 1.5 * s, Y - 1.5 * s, Wd + 3 * s, Hd + 3 * s); g.clip();
           g.globalAlpha *= 1 - f;
@@ -603,7 +634,7 @@
         }
         case 'check': {                               // o círculo e o check se desenham
           const q1 = E.inOutCubic(p(t, o.t, o.t + o.dur * 0.55)), q2 = E.outCubic(p(t, o.t + o.dur * 0.45, o.t + o.dur));
-          const f = p(t, o.t + o.dur, o.t + o.dur + 0.2);
+          const f = p(t, o.t + o.dur, o.t + o.dur + 0.15);
           hide();
           const cx = ox + o.c[0] * s, cy = oy + o.c[1] * s;
           g.save(); g.globalAlpha *= 1 - f; g.strokeStyle = o.color; g.lineCap = 'round'; g.lineJoin = 'round';
@@ -636,6 +667,12 @@
             g.fillStyle = luma(o.bg) > 128 ? '#171717' : C.lime;
             g.fillRect(caretX, Y - 2 * s, 2.5 * s, Hd + 4 * s);
           }
+          break;
+        }
+        case 'grow': {                                // a barra de ocupação se preenche, sobre as células da linha acima
+          const q = E.inOutCubic(p(t, o.t, o.t + (o.dur || 0.45)));
+          g.drawImage(img, r[0] - 4, r[1] - 6, r[2] - r[0] + 8, 1, X - 4 * s, Y - 2 * s, Wd + 8 * s, Hd + 4 * s);
+          if (q > 0) { g.save(); g.beginPath(); g.rect(X - 2 * s, Y - 2 * s, (Wd + 4 * s) * q, Hd + 4 * s); g.clip(); real(1); g.restore(); }
           break;
         }
         case 'tap': {                                 // o dedo: aperta e solta uma onda
@@ -748,7 +785,7 @@
     let cx = PH.cx, cy = lerp(H + PH.h * 0.62, PH.cy, enter), k = 1;
     let ang = (-11 + 3.2 * Math.sin(t * 0.55)) * DEG;
     const fin = E.inOutCubic(p(t, T.fechamento - 0.2, T.fechamento + 0.8));
-    cx = lerp(cx, 806, fin); cy = lerp(cy, 1268, fin); k = lerp(1, 0.66, fin);
+    cx = lerp(cx, 820, fin); cy = lerp(cy, 1370, fin); k = lerp(1, 0.56, fin);
     ang = lerp(ang, (-16 + 2 * Math.sin(t * 0.55)) * DEG, fin);
     return { cx, cy, k, ang, alpha: t < T.celular ? 0 : 1 };
   }
@@ -826,7 +863,7 @@
     }
     // contorno limão da placa e o brilho que dá uma volta nele, uma vez, quando ela pousa
     g.lineWidth = 5; g.strokeStyle = C.lime; rr(g, 20 - 1, 20 - 1, w + 2, h + 2, 23); g.stroke();
-    const gq = p(t, L.land + 0.05, L.land + 0.95);
+    const gq = p(t, L.land + 0.05, L.land + 0.75);
     if (gq > 0 && gq < 1) {
       const per = 2 * (w + h), head = E.inOutSine(gq) * per, len = per * 0.16;
       const at = (u) => { u = ((u % per) + per) % per;
@@ -849,8 +886,9 @@
       const e = down > 0 ? 1 - E.inCubic(down) : springE(up);           // entrada em mola, com leve overshoot
       const card = cardCanvas(L, i, t);
       const [x0, y0, x1, y1] = L.crop;
-      const a = shotToScreen(ph.pose, ph.ang, (x0 + x1) / 2, (y0 + y1) / 2);
-      const fw = (x1 - x0) * KS * ph.pose.k * a.s, fh = (y1 - y0) * KS * ph.pose.k * a.s;
+      // um recorte de outra captura (a conta no computador) não sai do celular: nasce no próprio lugar
+      const a = L.own ? { x: 540, y: L.cy, s: 1 } : shotToScreen(ph.pose, ph.ang, (x0 + x1) / 2, (y0 + y1) / 2);
+      const fw = L.own ? card.w * 0.7 : (x1 - x0) * KS * ph.pose.k * a.s, fh = L.own ? card.h * 0.7 : (y1 - y0) * KS * ph.pose.k * a.s;
       const cx = lerp(a.x, 540, e), cy = lerp(a.y, L.cy, e);
       const near = 1 + 0.025 * E.inOutSine(p(t, L.land + 0.3, L.t1)) * (down > 0 ? 1 - down : 1);   // aproximação suave
       const w = lerp(fw, card.w, e) * near, h = lerp(fh, card.h, e) * near;
@@ -865,6 +903,19 @@
       ctx.fillStyle = C.limeDeep; rr(ctx, cx - w / 2, cy - h / 2 + 9 * lift, w, h, 22); ctx.fill();
       drawRotY(ctx, card.c, 0, 0, card.c.width, card.c.height, cx, cy, w * (card.w + 40) / card.w, h * (card.h + 40) / card.h, ang);
       ctx.restore();
+      if (L.fly) {                                     // o item lançado voa até a conta do hóspede
+        const T2 = LIFTS[i + L.fly.to - (L.flyBase || 0)];
+        const fq = p(t, L.land + L.fly.t, L.land + L.fly.t + L.fly.dur);
+        if (T2 && fq > 0 && fq < 1) {
+          const e2 = E.inOutCubic(fq), sx = 540, sy = L.cy, tx = 540, ty = T2.cy;
+          const fx = lerp(sx, tx, e2) + Math.sin(Math.PI * e2) * 150, fy = lerp(sy, ty, e2);
+          const k = lerp(0.5, 0.16, e2);
+          ctx.save(); ctx.globalAlpha *= Math.sin(Math.PI * Math.min(1, fq * 1.15)) * 0.95 + 0.05;
+          ctx.globalCompositeOperation = 'lighter'; glow(ctx, fx, fy, 160 * (1 - e2 * 0.5), C.lime, 0.25); ctx.globalCompositeOperation = 'source-over';
+          ctx.drawImage(card.c, fx - card.c.width * k / 2, fy - card.c.height * k / 2, card.c.width * k, card.c.height * k);
+          ctx.restore();
+        }
+      }
     });
   }
 
@@ -894,6 +945,10 @@
   // CENA 8 — CELULAR E COMPUTADOR LADO A LADO + DEMONSTRAÇÃO
   // =====================================================================
   const MON = { w: 920, h: 600, bezel: 18, x: 60, y: 470 };
+  // as barras de reserva do calendário semanal (Ana Julia, Carlos, Beatriz, Thiago), medidas na captura
+  const MON_BARS = [[808, 482, 1244, 544], [808, 562, 1133, 624], [808, 642, 1244, 704], [1029, 722, 1244, 784], [587, 882, 1244, 944]];
+  const CAL = { x: 370, y: 404, w: 910, h: 560 };     // da linha dos dias até o Chalé de Pedra 06 (Lucas)
+  let MON_OPS = [];
   let MONC = null;
   function monitor(ctx, t) {
     const a = E.outCubic(p(t, T.fechamento + 0.1, T.fechamento + 0.95));
@@ -909,7 +964,15 @@
     // o calendário: o topo da página (1280 x 830) inteiro; a demo: a página inteira (1280 x 800), centrada
     const scale = sw / 1280;
     g.imageSmoothingEnabled = true; g.imageSmoothingQuality = 'high';
-    g.drawImage(im, 0, 0, 1280, Math.min(im.height, showDemo ? 800 : 830), sx, sy + (showDemo ? (sh - 800 * scale) / 2 : 0), sw, Math.min(im.height, showDemo ? 800 : 830) * scale);
+    if (showDemo) {
+      g.drawImage(im, 0, 0, 1280, 800, sx, sy + (sh - 800 * scale) / 2, sw, 800 * scale);
+    } else {
+      // o calendário: enquadrado na grade da semana (x 370–1280, y 404–964 da captura), onde as reservas se
+      // preenchem uma a uma
+      const k = sw / CAL.w;
+      g.drawImage(im, CAL.x, CAL.y, CAL.w, CAL.h, sx, sy, sw, CAL.h * k);
+      runOps(g, im, MON_OPS, t, k, sx - CAL.x * k, sy - CAL.y * k);
+    }
     const rf = g.createLinearGradient(0, 0, MON.w, MON.h); rf.addColorStop(0, 'rgba(255,255,255,0.06)'); rf.addColorStop(0.4, 'rgba(255,255,255,0)');
     g.fillStyle = rf; g.fillRect(sx, sy, sw, sh);
     g.restore();
@@ -987,6 +1050,8 @@
     };
     LIFTS.forEach((L) => (L.ops || []).forEach(opCues));
     PHONE_OPS.forEach(opCues);
+    MON_OPS.forEach((o) => c.push({ t: o.t, type: 'reveal' }));
+    LIFTS.forEach((L) => L.fly && c.push({ t: L.land + L.fly.t, type: 'fly', dur: L.fly.dur }));
     ZOOMS.forEach((Z) => { c.push({ t: Z.t0, type: 'zoom' }); c.push({ t: Z.t1 - 0.5, type: 'unzoom' }); });
     SCREENS.forEach((s) => s.mode === 'imprime' && c.push({ t: s.t, type: 'print', dur: IMPRIME }));
     TRILHO.forEach(([, t0]) => c.push({ t: t0, type: 'chip' }));
@@ -997,9 +1062,8 @@
   function init(logo, shots, trechos) {
     LOGO = logo; IMG = shots;
     for (const b of PLAN) {
-      const key = b.screen;
-      const ops = [...(b.lifts || []).flatMap((L) => L.ops || []), ...(b.pre ? b.pre.ops : [])];
-      for (const o of ops) if (o.type === 'type') { o.glyphs = glyphs(IMG[key], o.r, o.bg); o.n = o.glyphs.length; }
+      const opsK = [...(b.lifts || []).flatMap((L) => (L.ops || []).map((o) => [o, L.key || b.screen])), ...(b.pre ? b.pre.ops.map((o) => [o, b.screen]) : [])];
+      for (const [o, key] of opsK) if (o.type === 'type') { o.glyphs = glyphs(IMG[key], o.r, o.bg); o.n = o.glyphs.length; }
     }
     build(trechos.trechos);
     PHONE = canvas(PH.w, PH.h);
