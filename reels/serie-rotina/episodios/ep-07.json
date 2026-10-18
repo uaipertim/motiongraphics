@@ -1,0 +1,13 @@
+{
+  "id": "ep-07",
+  "titulo": ["Check-out com", "a conta errada?"],
+  "cards": [
+    { "rotulo": "CHALÉ 2 · 3 DIÁRIAS", "texto": "R$ 1.260,00" },
+    { "rotulo": "SINAL", "texto": "Já foi descontado?" },
+    { "texto": "E a comanda do bar?" },
+    { "chip": "HÓSPEDE ESPERANDO" }
+  ],
+  "carimbo": "REFAZENDO A CONTA",
+  "virada": ["A conta refeita no balcão", "*é a última impressão.*"],
+  "fecho": "Manda pra quem fecha a conta na calculadora."
+}

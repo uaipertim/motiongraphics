@@ -1,0 +1,13 @@
+{
+  "id": "ep-08",
+  "titulo": ["Dois hóspedes,", "o mesmo chalé."],
+  "cards": [
+    { "rotulo": "WHATSAPP", "texto": "Chalé 3, sábado. Fechado!", "hora": "10:12" },
+    { "rotulo": "SITE DE RESERVAS", "texto": "Chalé 3, sábado. Confirmada.", "hora": "10:47" },
+    { "texto": "Os dois chegaram às 15h." },
+    { "chip": "UM CHALÉ SÓ" }
+  ],
+  "carimbo": "RESERVA DUPLA",
+  "virada": ["Agenda em dois lugares", "*vende o mesmo chalé duas vezes.*"],
+  "fecho": "Manda pra quem anota reserva em mais de um lugar."
+}
