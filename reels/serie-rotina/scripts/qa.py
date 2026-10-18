@@ -150,7 +150,9 @@ with tempfile.TemporaryDirectory() as tmp:
         win = dd[max(0, i0 - 4): i0 + 8]
         base = np.median(dd[max(0, i0 - 60): max(1, i0 - 10)]) if ref == 'antes' else np.median(dd[i0 + 24: i0 + 44])
         vis.append((cu['type'], cu['t'], float(win.max()), float(base), (np.argmax(win) + max(0, i0 - 4) + 1 - i0)))
-    good = [r for r in vis if r[2] > 1.5 * r[3] + 0.5]
+    # o movimento é a média da diferença no quadro inteiro (135x240): um chip pequeno ("CARTÃO", "PIX") entrando
+    # pesa pouco nessa média; vale reagir com ≥ 3x o movimento de antes e ≥ 0,3 (a base sem reação fica em ~0,1)
+    good = [r for r in vis if r[2] > 3 * r[3] and r[2] >= 0.3]
     ok(len(good) == len(vis), f'a imagem reage nos {len(vis)} golpes principais (pico de movimento a ≤ 8 quadros do som)', sync)
     for ty, t0, pk, base, df in vis:
         sync_det.append(f'         {t0:7.3f} s  {ty:8s}  imagem: movimento {pk:5.1f} (antes {base:4.1f}), pico a {df:+d} quadro(s)')
