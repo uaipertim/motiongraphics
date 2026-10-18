@@ -1,0 +1,17 @@
+SÉRIE ROTINA · ep-04 — sincronização som x imagem
+
+OK     áudio do MP4 = efeitos.wav, sem deslocamento (+0.0, +0.0, +0.0 ms)
+OK     5 efeitos-chave com ataque no instante do evento (desvio médio 5.8 ms, máximo 6.8 ms; 1 quadro = 16,7 ms)
+OK     a imagem reage nos 5 golpes principais (pico de movimento a ≤ 8 quadros do som)
+
+Evento a evento (instante do evento visual, desvio medido):
+           2.250 s  ping      áudio   -6.8 ms
+           3.745 s  ping      áudio   -4.0 ms
+           5.308 s  ping      áudio   -4.3 ms
+           6.850 s  stamp     áudio   -6.8 ms
+          12.320 s  logo      áudio   -6.8 ms
+           2.250 s  ping      imagem: movimento   1.1 (antes  0.0), pico a -3 quadro(s)
+           3.745 s  ping      imagem: movimento   1.9 (antes  0.0), pico a +6 quadro(s)
+           5.308 s  ping      imagem: movimento   2.5 (antes  0.0), pico a +3 quadro(s)
+           6.850 s  stamp     imagem: movimento   4.2 (antes  0.0), pico a +0 quadro(s)
+          12.320 s  logo      imagem: movimento   5.1 (antes  0.1), pico a +7 quadro(s)

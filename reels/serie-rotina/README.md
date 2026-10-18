@@ -14,11 +14,11 @@ Peça independente: nada aqui altera os Reels anteriores (o DNA é o do Reel 08,
 | **ep-01** · publicado | "O hóspede chegou. / A reserva, não." | 14,00 s | [`mp4`](output/ep-01/fazlo-hospeda-rotina-ep-01.mp4) | [`capa.jpg`](output/ep-01/capa.jpg) | [`revisao/`](output/ep-01/revisao) |
 | **ep-02** | "Caiu um Pix às 14h. / De quem era?" | 14,00 s | [`mp4`](output/ep-02/fazlo-hospeda-rotina-ep-02.mp4) | [`capa.jpg`](output/ep-02/capa.jpg) | [`revisao/`](output/ep-02/revisao) |
 | **ep-03** | "Domingo, 11h. / Check-out de todo mundo." | 14,00 s | [`mp4`](output/ep-03/fazlo-hospeda-rotina-ep-03.mp4) | [`capa.jpg`](output/ep-03/capa.jpg) | [`revisao/`](output/ep-03/revisao) |
-| ep-04 | "'Vou ver e te falo.' / (e sumiu)" | ~13,85 s | roteiro pronto ([`ep-04.json`](episodios/ep-04.json)) | | |
-| ep-05 | "A comanda da piscina / que ninguém fechou." | ~13,23 s | roteiro pronto ([`ep-05.json`](episodios/ep-05.json)) | | |
+| **ep-04** | "'Vou ver e te falo.' / (e sumiu)" | 14,00 s | [`mp4`](output/ep-04/fazlo-hospeda-rotina-ep-04.mp4) | [`capa.jpg`](output/ep-04/capa.jpg) | [`revisao/`](output/ep-04/revisao) |
+| **ep-05** | "A comanda da piscina / que ninguém fechou." | 13,63 s | [`mp4`](output/ep-05/fazlo-hospeda-rotina-ep-05.mp4) | [`capa.jpg`](output/ep-05/capa.jpg) | [`revisao/`](output/ep-05/revisao) |
 | ep-06 | "Feriado lotado. / Caixa conferido?" | ~13,65 s | roteiro pronto ([`ep-06.json`](episodios/ep-06.json)) | | |
 
-O modelo foi aprovado em 16/10; os episódios saem um por dia (ep-03 para segunda, 19h). As áreas seguras dos ep-04 a 06 já foram conferidas pelo motor; falta renderizar.
+O modelo foi aprovado em 16/10; os episódios saem um por dia (ep-03 para segunda, 19h). Prontos: ep-01 a ep-05; o ep-06 tem o roteiro e as áreas seguras já conferidas pelo motor, falta renderizar.
 
 ---
 
@@ -126,7 +126,7 @@ Efeitos **sintetizados do zero** (numpy/scipy), com os timbres do Reel 08:
 
 O master fica em **−16 LUFS**, com limitador de pico real. A animação exporta `audio/<id>/cues.json`, e `scripts/audio.py <id>` coloca cada som nesses instantes.
 
-## Revisão (ep-01 a ep-03)
+## Revisão (ep-01 a ep-05)
 
 `python3 scripts/qa.py <id>` gera, em `output/<id>/revisao/`:
 - `relatorio-tecnico.txt`;
@@ -134,17 +134,17 @@ O master fica em **−16 LUFS**, com limitador de pico real. A animação export
 - `zonas-seguras.jpg` (as zonas da interface do Reels e as linhas y 265/1456 marcadas);
 - `recorte-3x4.jpg`.
 
-| | ep-01 | ep-02 | ep-03 |
+|---|---|---|---|---|---|
 |---|---|---|---|
-| Formato | 1080×1920, 60 fps (840 quadros), H.264 High yuv420p, AAC 48 kHz | 840 quadros, idem | 840 quadros, idem |
-| Duração (vídeo = áudio) | 14,000 s | 14,000 s | 14,000 s (o roteiro pedia 14,65 s; os intervalos dos cards encolheram 13%) |
-| Loudness / pico real | −16,0 LUFS / −2,4 dBTP | −16,0 LUFS / −2,5 dBTP | −16,0 LUFS / −2,5 dBTP |
-| Arquivo | 3,9 MB | 3,6 MB | 4,1 MB |
-| Pretos / congelados | nenhum (fora o fade final) / nenhum ≥ 0,75 s | nenhum / nenhum | nenhum / nenhum |
-| Áreas seguras | 17 elementos OK | 18 elementos OK | 17 elementos OK |
-| Virada → fecho | (versão publicada, anterior ao ajuste) | sem sobreposição: sobe 11,60–12,00 s, fecho em 12,00 s | sem sobreposição: sobe 11,60–12,00 s, fecho em 12,00 s |
-| Sincronia | 5 golpes (3 pings, carimbo, sineta): ataque a ≤ 8,3 ms do evento; a imagem reage em todos | 6 golpes: ≤ 6,8 ms; a imagem reage em todos | 6 golpes: ≤ 6,8 ms; a imagem reage em todos |
-| Capa | dentro da regra (bloco centrado em y = 960,0) | dentro da regra (centro em 960,0) | dentro da regra (3 linhas; centro em 960,0) |
+| Formato | 1080×1920, 60 fps (840 quadros), H.264 High yuv420p, AAC 48 kHz | 840 quadros, idem | 840 quadros, idem | 840 quadros, idem | 818 quadros, idem |
+| Duração (vídeo = áudio) | 14,000 s | 14,000 s | 14,000 s (o roteiro pedia 14,65 s; os intervalos dos cards encolheram 13%) | 14,000 s | 13,633 s |
+| Loudness / pico real | −16,0 LUFS / −2,4 dBTP | −16,0 LUFS / −2,5 dBTP | −16,0 LUFS / −2,5 dBTP | −16,0 LUFS / −2,5 dBTP | −16,0 LUFS / −2,4 dBTP |
+| Arquivo | 3,9 MB | 3,6 MB | 4,1 MB | 3,3 MB | 3,8 MB |
+| Pretos / congelados | nenhum (fora o fade final) / nenhum ≥ 0,75 s | nenhum / nenhum | nenhum / nenhum | nenhum / nenhum | nenhum / nenhum |
+| Áreas seguras | 17 elementos OK | 18 elementos OK | 17 elementos OK | 15 elementos OK | 18 elementos OK |
+| Virada → fecho | (versão publicada, anterior ao ajuste) | sem sobreposição: sobe 11,60–12,00 s, fecho em 12,00 s | sem sobreposição: sobe 11,60–12,00 s, fecho em 12,00 s | sem sobreposição: sobe 11,60–12,00 s, fecho em 12,00 s | sem sobreposição: sobe 11,23–11,63 s, fecho em 11,63 s |
+| Sincronia | 5 golpes (3 pings, carimbo, sineta): ataque a ≤ 8,3 ms do evento; a imagem reage em todos | 6 golpes: ≤ 6,8 ms; a imagem reage em todos | 6 golpes: ≤ 6,8 ms; a imagem reage em todos | 5 golpes: ≤ 6,8 ms; a imagem reage em todos | 6 golpes: ≤ 7,3 ms; a imagem reage em todos |
+| Capa | dentro da regra (bloco centrado em y = 960,0) | dentro da regra (centro em 960,0) | dentro da regra (3 linhas; centro em 960,0) | dentro da regra | dentro da regra (4 linhas; centro em 960,0) |
 
 ## Arquivos
 
