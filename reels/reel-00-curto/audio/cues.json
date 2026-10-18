@@ -1,0 +1,543 @@
+{
+ "bpm": 128,
+ "duration": 15.0,
+ "mapa": [
+  {
+   "nome": "gancho: a sineta e o título novo",
+   "novo": [
+    0.0,
+    1.875
+   ],
+   "original": 0.0
+  },
+  {
+   "nome": "a casa de palavras (o telhado fecha)",
+   "novo": [
+    1.875,
+    3.75
+   ],
+   "original": 3.75
+  },
+  {
+   "nome": "o drop: a logo explode + o mergulho + 01 Reservas",
+   "novo": [
+    3.75,
+    7.03125
+   ],
+   "original": 7.5
+  },
+  {
+   "nome": "04 Comandas",
+   "novo": [
+    7.03125,
+    8.90625
+   ],
+   "original": 15.0
+  },
+  {
+   "nome": "06 Caixa",
+   "novo": [
+    8.90625,
+    10.78125
+   ],
+   "original": 18.75
+  },
+  {
+   "nome": "a casa inteira: todos os cômodos sob o mesmo teto",
+   "novo": [
+    10.78125,
+    12.1875
+   ],
+   "original": 20.625
+  },
+  {
+   "nome": "fecho: Sob o mesmo teto. + logo",
+   "novo": [
+    12.1875,
+    15.0
+   ],
+   "original": 24.375
+  }
+ ],
+ "cortes": [
+  1.875,
+  3.75,
+  7.03125,
+  8.90625,
+  10.78125,
+  12.1875
+ ],
+ "cues": [
+  {
+   "t": 0.04,
+   "type": "ding",
+   "v": 1,
+   "original": 0.04,
+   "trecho": "gancho: a sineta e o título novo"
+  },
+  {
+   "t": 0.27,
+   "type": "ding",
+   "v": 0.62,
+   "original": 0.27,
+   "trecho": "gancho: a sineta e o título novo"
+  },
+  {
+   "t": 0.4688,
+   "type": "slam",
+   "v": 1,
+   "original": 0.4688,
+   "trecho": "gancho: a sineta e o título novo"
+  },
+  {
+   "t": 0.9375,
+   "type": "swish",
+   "v": 0.6,
+   "pan": 0,
+   "original": 0.9375,
+   "trecho": "gancho: a sineta e o título novo"
+  },
+  {
+   "t": 1.15,
+   "type": "fall",
+   "d": 0.45,
+   "v": 0.4,
+   "original": 1.15,
+   "trecho": "gancho: a sineta e o título novo"
+  },
+  {
+   "t": 1.875,
+   "type": "land",
+   "k": 8,
+   "n": 12,
+   "v": 0.8,
+   "pan": 0.08037319640172419,
+   "original": 3.75,
+   "trecho": "a casa de palavras (o telhado fecha)"
+  },
+  {
+   "t": 1.8894,
+   "type": "drop",
+   "d": 0.22,
+   "v": 0.25,
+   "original": 3.7644,
+   "trecho": "a casa de palavras (o telhado fecha)"
+  },
+  {
+   "t": 2.1094,
+   "type": "land",
+   "k": 9,
+   "n": 12,
+   "v": 0.8,
+   "pan": -0.006213031476130692,
+   "original": 3.9844,
+   "trecho": "a casa de palavras (o telhado fecha)"
+  },
+  {
+   "t": 2.1238,
+   "type": "drop",
+   "d": 0.22,
+   "v": 0.25,
+   "original": 3.9988,
+   "trecho": "a casa de palavras (o telhado fecha)"
+  },
+  {
+   "t": 2.3438,
+   "type": "land",
+   "k": 10,
+   "n": 12,
+   "v": 0.8,
+   "pan": -0.0019852800732244893,
+   "original": 4.2188,
+   "trecho": "a casa de palavras (o telhado fecha)"
+  },
+  {
+   "t": 2.3581,
+   "type": "drop",
+   "d": 0.22,
+   "v": 0.25,
+   "original": 4.2331,
+   "trecho": "a casa de palavras (o telhado fecha)"
+  },
+  {
+   "t": 2.5525,
+   "type": "fall",
+   "d": 0.26,
+   "v": 0.8,
+   "original": 4.4275,
+   "trecho": "a casa de palavras (o telhado fecha)"
+  },
+  {
+   "t": 2.5781,
+   "type": "land",
+   "k": 11,
+   "n": 12,
+   "v": 0.8,
+   "pan": 0.0011058957523160913,
+   "original": 4.4531,
+   "trecho": "a casa de palavras (o telhado fecha)"
+  },
+  {
+   "t": 2.8125,
+   "type": "roof",
+   "v": 1,
+   "original": 4.6875,
+   "trecho": "a casa de palavras (o telhado fecha)"
+  },
+  {
+   "t": 3.75,
+   "type": "boom",
+   "v": 1,
+   "original": 7.5,
+   "trecho": "o drop: a logo explode + o mergulho + 01 Reservas"
+  },
+  {
+   "t": 3.75,
+   "type": "ding",
+   "v": 1,
+   "big": true,
+   "original": 7.5,
+   "trecho": "o drop: a logo explode + o mergulho + 01 Reservas"
+  },
+  {
+   "t": 3.87,
+   "type": "rise",
+   "v": 0.5,
+   "original": 7.62,
+   "trecho": "o drop: a logo explode + o mergulho + 01 Reservas"
+  },
+  {
+   "t": 4.2,
+   "type": "type",
+   "d": 0.5,
+   "n": 31,
+   "original": 7.95,
+   "trecho": "o drop: a logo explode + o mergulho + 01 Reservas"
+  },
+  {
+   "t": 5.19,
+   "type": "dive",
+   "d": 0.43500000000000005,
+   "original": 8.94,
+   "trecho": "o drop: a logo explode + o mergulho + 01 Reservas"
+  },
+  {
+   "t": 5.625,
+   "type": "grid",
+   "d": 0.5,
+   "original": 9.375,
+   "trecho": "o drop: a logo explode + o mergulho + 01 Reservas"
+  },
+  {
+   "t": 5.859,
+   "type": "paint",
+   "j": 0,
+   "original": 9.609,
+   "trecho": "o drop: a logo explode + o mergulho + 01 Reservas"
+  },
+  {
+   "t": 5.9762,
+   "type": "paint",
+   "j": 1,
+   "original": 9.7262,
+   "trecho": "o drop: a logo explode + o mergulho + 01 Reservas"
+  },
+  {
+   "t": 6.0934,
+   "type": "paint",
+   "j": 2,
+   "original": 9.8434,
+   "trecho": "o drop: a logo explode + o mergulho + 01 Reservas"
+  },
+  {
+   "t": 6.175,
+   "type": "type",
+   "d": 0.5,
+   "n": 22,
+   "original": 9.925,
+   "trecho": "o drop: a logo explode + o mergulho + 01 Reservas"
+  },
+  {
+   "t": 6.2106,
+   "type": "paint",
+   "j": 3,
+   "original": 9.9606,
+   "trecho": "o drop: a logo explode + o mergulho + 01 Reservas"
+  },
+  {
+   "t": 6.3278,
+   "type": "paint",
+   "j": 4,
+   "original": 10.0778,
+   "trecho": "o drop: a logo explode + o mergulho + 01 Reservas"
+  },
+  {
+   "t": 6.4449,
+   "type": "paint",
+   "j": 5,
+   "original": 10.1949,
+   "trecho": "o drop: a logo explode + o mergulho + 01 Reservas"
+  },
+  {
+   "t": 6.445,
+   "type": "click",
+   "v": 0.6,
+   "original": 10.195,
+   "trecho": "o drop: a logo explode + o mergulho + 01 Reservas"
+  },
+  {
+   "t": 6.5621,
+   "type": "paint",
+   "j": 6,
+   "original": 10.3121,
+   "trecho": "o drop: a logo explode + o mergulho + 01 Reservas"
+  },
+  {
+   "t": 6.795,
+   "type": "confirm",
+   "v": 1,
+   "original": 10.545,
+   "trecho": "o drop: a logo explode + o mergulho + 01 Reservas"
+  },
+  {
+   "t": 7.5012,
+   "type": "press",
+   "i": 0,
+   "original": 15.47,
+   "trecho": "04 Comandas"
+  },
+  {
+   "t": 7.7013,
+   "type": "coin",
+   "i": 0,
+   "v": 0.7,
+   "original": 15.67,
+   "trecho": "04 Comandas"
+  },
+  {
+   "t": 7.7312,
+   "type": "type",
+   "d": 0.5,
+   "n": 34,
+   "original": 15.7,
+   "trecho": "04 Comandas"
+  },
+  {
+   "t": 7.7356,
+   "type": "press",
+   "i": 1,
+   "original": 15.7044,
+   "trecho": "04 Comandas"
+  },
+  {
+   "t": 7.9357,
+   "type": "coin",
+   "i": 1,
+   "v": 0.7,
+   "original": 15.9044,
+   "trecho": "04 Comandas"
+  },
+  {
+   "t": 7.9701,
+   "type": "press",
+   "i": 2,
+   "original": 15.9388,
+   "trecho": "04 Comandas"
+  },
+  {
+   "t": 8.17,
+   "type": "coin",
+   "i": 2,
+   "v": 0.7,
+   "original": 16.1388,
+   "trecho": "04 Comandas"
+  },
+  {
+   "t": 8.2044,
+   "type": "press",
+   "i": 3,
+   "original": 16.1731,
+   "trecho": "04 Comandas"
+  },
+  {
+   "t": 8.4044,
+   "type": "coin",
+   "i": 3,
+   "v": 0.7,
+   "original": 16.3731,
+   "trecho": "04 Comandas"
+  },
+  {
+   "t": 8.6663,
+   "type": "pan",
+   "d": 0.44,
+   "dx": -1,
+   "dy": 0,
+   "original": 16.635,
+   "trecho": "04 Comandas"
+  },
+  {
+   "t": 8.6863,
+   "type": "whoosh",
+   "d": 0.24,
+   "pan": 0.8,
+   "original": 16.655,
+   "trecho": "04 Comandas"
+  },
+  {
+   "t": 8.9563,
+   "type": "whoosh",
+   "d": 0.25,
+   "pan": -0.6,
+   "v": 0.5,
+   "original": 18.8,
+   "trecho": "06 Caixa"
+  },
+  {
+   "t": 9.0063,
+   "type": "roll",
+   "d": 0.55,
+   "v": 0.6,
+   "original": 18.85,
+   "trecho": "06 Caixa"
+  },
+  {
+   "t": 9.1562,
+   "type": "pop",
+   "f": 600,
+   "original": 19,
+   "trecho": "06 Caixa"
+  },
+  {
+   "t": 9.1907,
+   "type": "whoosh",
+   "d": 0.25,
+   "pan": -0.6,
+   "v": 0.5,
+   "original": 19.0344,
+   "trecho": "06 Caixa"
+  },
+  {
+   "t": 9.2406,
+   "type": "roll",
+   "d": 0.55,
+   "v": 0.6,
+   "original": 19.0844,
+   "trecho": "06 Caixa"
+  },
+  {
+   "t": 9.425,
+   "type": "whoosh",
+   "d": 0.25,
+   "pan": -0.6,
+   "v": 0.5,
+   "original": 19.2688,
+   "trecho": "06 Caixa"
+  },
+  {
+   "t": 9.4563,
+   "type": "type",
+   "d": 0.6,
+   "n": 40,
+   "original": 19.3,
+   "trecho": "06 Caixa"
+  },
+  {
+   "t": 9.475,
+   "type": "roll",
+   "d": 0.55,
+   "v": 0.6,
+   "original": 19.3188,
+   "trecho": "06 Caixa"
+  },
+  {
+   "t": 9.7063,
+   "type": "swish",
+   "v": 0.6,
+   "pan": 0.3,
+   "original": 19.55,
+   "trecho": "06 Caixa"
+  },
+  {
+   "t": 9.8062,
+   "type": "register",
+   "v": 1,
+   "original": 19.65,
+   "trecho": "06 Caixa"
+  },
+  {
+   "t": 10.3062,
+   "type": "confirm",
+   "v": 0.8,
+   "original": 20.15,
+   "trecho": "06 Caixa"
+  },
+  {
+   "t": 10.6812,
+   "type": "pull",
+   "d": 1.0500000000000007,
+   "original": 20.525,
+   "trecho": "06 Caixa"
+  },
+  {
+   "t": 11.3313,
+   "type": "rise",
+   "v": 0.5,
+   "original": 21.175,
+   "trecho": "a casa inteira: todos os cômodos sob o mesmo teto"
+  },
+  {
+   "t": 11.4788,
+   "type": "fall",
+   "d": 0.24,
+   "v": 0.8,
+   "original": 21.3225,
+   "trecho": "a casa inteira: todos os cômodos sob o mesmo teto"
+  },
+  {
+   "t": 11.7188,
+   "type": "roof",
+   "v": 0.9,
+   "original": 21.5625,
+   "trecho": "a casa inteira: todos os cômodos sob o mesmo teto"
+  },
+  {
+   "t": 12.1875,
+   "type": "ding",
+   "v": 1,
+   "big": true,
+   "original": 24.375,
+   "trecho": "fecho: Sob o mesmo teto. + logo"
+  },
+  {
+   "t": 12.1875,
+   "type": "boom",
+   "v": 0.8,
+   "soft": true,
+   "original": 24.375,
+   "trecho": "fecho: Sob o mesmo teto. + logo"
+  },
+  {
+   "t": 12.2075,
+   "type": "swish",
+   "v": 0.6,
+   "pan": 0,
+   "original": 24.395,
+   "trecho": "fecho: Sob o mesmo teto. + logo"
+  },
+  {
+   "t": 12.4075,
+   "type": "rise",
+   "v": 0.5,
+   "original": 24.595,
+   "trecho": "fecho: Sob o mesmo teto. + logo"
+  },
+  {
+   "t": 14.0625,
+   "type": "glint",
+   "d": 0.75,
+   "original": 26.25,
+   "trecho": "fecho: Sob o mesmo teto. + logo"
+  }
+ ]
+}

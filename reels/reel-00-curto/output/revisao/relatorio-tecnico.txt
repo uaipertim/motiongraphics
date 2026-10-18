@@ -1,0 +1,34 @@
+REEL 00 · CORTE CURTO (15 s) — revisão técnica
+output/fazlo-hospeda-reel-00-curto.mp4
+
+OK     vídeo h264 High yuv420p
+OK     resolução 1080x1920 (9:16)
+OK     60 fps, 900 quadros
+OK     duração do vídeo 15.000 s (alvo 15,0 s)
+OK     áudio aac 48000 Hz, 2 canais, 262 kb/s
+OK     vídeo e áudio com a mesma duração (Δ 0 ms)
+OK     arquivo 11.3 MB, 6.0 Mb/s
+OK     loudness integrado -14.2 LUFS (alvo -14)
+OK     pico real -3.9 dBTP (limite -1)
+       faixa de loudness (LRA) 1.7 LU
+OK     sem trechos pretos ≥ 0,1 s antes do fade final (11,7–12 s)
+OK     sem imagem congelada ≥ 0,75 s
+OK     o 1º quadro já tem imagem (luminância média 29.3), sem abertura preta
+         0.000–  1.875 s  ←  original  0.000– 1.875 s  (gancho: a sineta e o título novo)
+         1.875–  3.750 s  ←  original  3.750– 5.625 s  (a casa de palavras (o telhado fecha))
+         3.750–  7.031 s  ←  original  7.500–10.781 s  (o drop: a logo explode + o mergulho + 01 Reservas)
+         7.031–  8.906 s  ←  original 15.000–16.875 s  (04 Comandas)
+         8.906– 10.781 s  ←  original 18.750–20.625 s  (06 Caixa)
+        10.781– 12.188 s  ←  original 20.625–22.031 s  (a casa inteira: todos os cômodos sob o mesmo teto)
+        12.188– 15.000 s  ←  original 24.375–27.188 s  (fecho: Sob o mesmo teto. + logo)
+OK     6 cortes, todos num tempo da música (múltiplos de 0.46875 s, 128 BPM) nos dois relógios; crossfade de 30 ms no som
+OK     título do gancho (96 px, 3 linhas) fora da coluna de botões e da faixa de baixo, dentro de y 265–1560: "Reserva no caderno," x 89–991, y 490–581; "caixa na planilha," x 162–918, y 592–683; "comanda no papel?" x 107–973, y 694–785
+OK     fecho: "Sob o mesmo teto." + logo, sem botão "SAIBA MAIS NO LINK DA BIO" (pixels limão em y 1400–1540: 0), sem domínio do site e sem o descritivo (trocas em src/teste.js)
+
+Sincronização (detalhes em sincronia.txt):
+OK     áudio do MP4 = trilha, sem deslocamento (+0.0, +0.0, +0.0 ms)
+OK     11 efeitos-chave: o corte não muda o ataque de nenhum (diferença para o original: média 1.6 ms, máxima 5.0 ms; 1 quadro = 16,7 ms)
+OK     ataque no instante do evento (mediana 6.8 ms, máximo 23.2 ms: o boom do drop e o ding da assinatura já têm ~26 ms no original)
+OK     a imagem reage nos 6 golpes principais (pico de movimento a ≤ 8 quadros do som)
+
+RESULTADO: aprovado

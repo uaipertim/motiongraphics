@@ -1,0 +1,25 @@
+REEL 00 · CORTE CURTO — sincronização som x imagem
+
+OK     áudio do MP4 = trilha, sem deslocamento (+0.0, +0.0, +0.0 ms)
+OK     11 efeitos-chave: o corte não muda o ataque de nenhum (diferença para o original: média 1.6 ms, máxima 5.0 ms; 1 quadro = 16,7 ms)
+OK     ataque no instante do evento (mediana 6.8 ms, máximo 23.2 ms: o boom do drop e o ding da assinatura já têm ~26 ms no original)
+OK     a imagem reage nos 6 golpes principais (pico de movimento a ≤ 8 quadros do som)
+
+Evento a evento (instante do evento visual, desvio medido):
+           0.040 s  ding      áudio   -6.8 ms  (no original:   -6.8 ms)
+           0.270 s  ding      áudio   -6.8 ms  (no original:   -6.8 ms)
+           0.469 s  slam      áudio   -5.6 ms  (no original:   -8.1 ms)
+           1.875 s  land      áudio   -4.3 ms  (no original:   -6.8 ms)
+           2.109 s  land      áudio   -6.2 ms  (no original:   -6.2 ms)
+           2.344 s  land      áudio   -5.6 ms  (no original:   -8.1 ms)
+           2.578 s  land      áudio   -4.9 ms  (no original:   -4.9 ms)
+           3.750 s  boom      áudio  +23.2 ms  (no original:  +23.2 ms)
+           3.750 s  ding      áudio  +23.2 ms  (no original:  +23.2 ms)
+          12.188 s  ding      áudio  +20.7 ms  (no original:  +25.7 ms)
+          12.188 s  boom      áudio  +20.7 ms  (no original:  +25.7 ms)
+           1.875 s  land      imagem: movimento  36.9 (antes  0.2), pico a +1 quadro(s)
+           2.109 s  land      imagem: movimento  11.7 (antes  0.7), pico a +0 quadro(s)
+           2.344 s  land      imagem: movimento   8.8 (antes  2.4), pico a +0 quadro(s)
+           2.578 s  land      imagem: movimento   6.8 (antes  1.7), pico a +0 quadro(s)
+           3.750 s  boom      imagem: movimento  49.6 (antes  0.4), pico a +0 quadro(s)
+          12.188 s  boom      imagem: movimento  43.3 (antes  5.4), pico a +1 quadro(s)

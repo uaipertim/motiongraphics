@@ -1,0 +1,68 @@
+{
+ "duracao": 15.0,
+ "bpm": 128,
+ "nota": "cada trecho do vídeo novo [início, fim] aponta para o instante do original (reels/reel-00) em que ele começa; todos os cortes caem num tempo da música (1 tempo = 60/128 = 0,46875 s) nos dois relógios; 32 tempos = 15,0 s",
+ "trechos": [
+  {
+   "nome": "gancho: a sineta e o título novo",
+   "novo": [
+    0.0,
+    1.875
+   ],
+   "original": 0.0
+  },
+  {
+   "nome": "a casa de palavras (o telhado fecha)",
+   "novo": [
+    1.875,
+    3.75
+   ],
+   "original": 3.75
+  },
+  {
+   "nome": "o drop: a logo explode + o mergulho + 01 Reservas",
+   "novo": [
+    3.75,
+    7.03125
+   ],
+   "original": 7.5
+  },
+  {
+   "nome": "04 Comandas",
+   "novo": [
+    7.03125,
+    8.90625
+   ],
+   "original": 15.0
+  },
+  {
+   "nome": "06 Caixa",
+   "novo": [
+    8.90625,
+    10.78125
+   ],
+   "original": 18.75
+  },
+  {
+   "nome": "a casa inteira: todos os cômodos sob o mesmo teto",
+   "novo": [
+    10.78125,
+    12.1875
+   ],
+   "original": 20.625
+  },
+  {
+   "nome": "fecho: Sob o mesmo teto. + logo",
+   "novo": [
+    12.1875,
+    15.0
+   ],
+   "original": 24.375
+  }
+ ],
+ "fade": [
+  14.7,
+  15.0
+ ],
+ "crossfade": 0.03
+}
