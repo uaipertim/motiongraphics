@@ -1,0 +1,538 @@
+{
+ "bpm": 140,
+ "duration": 15.0,
+ "mapa": [
+  {
+   "nome": "gancho: o título novo e as perguntas pipocando",
+   "novo": [
+    0.0,
+    1.7142857
+   ],
+   "original": 0.0
+  },
+  {
+   "nome": "as perguntas viram o calendário, as reservas se encaixam, o tabuleiro se ergue e o feixe acende as diárias livres",
+   "novo": [
+    1.7142857,
+    9.8571429
+   ],
+   "original": 2.5714286
+  },
+  {
+   "nome": "os filtros: cada status sobe em torres",
+   "novo": [
+    9.8571429,
+    11.5714286
+   ],
+   "original": 15.4285714
+  },
+  {
+   "nome": "fecho: Cada reserva no seu lugar. + logo",
+   "novo": [
+    11.5714286,
+    15.0
+   ],
+   "original": 23.1428571
+  }
+ ],
+ "cortes": [
+  1.7142857,
+  9.8571429,
+  11.5714286
+ ],
+ "cues": [
+  {
+   "t": 0.0,
+   "type": "slam",
+   "v": 1,
+   "original": 0,
+   "trecho": "gancho: o título novo e as perguntas pipocando"
+  },
+  {
+   "t": 0.4286,
+   "type": "rise",
+   "v": 0.6,
+   "original": 0.4286,
+   "trecho": "gancho: o título novo e as perguntas pipocando"
+  },
+  {
+   "t": 0.8571,
+   "type": "ping",
+   "i": 0,
+   "n": 12,
+   "pan": -0.4104628668891059,
+   "original": 0.8571,
+   "trecho": "gancho: o título novo e as perguntas pipocando"
+  },
+  {
+   "t": 1.2857,
+   "type": "ping",
+   "i": 1,
+   "n": 12,
+   "pan": -0.3035183941876447,
+   "original": 1.2857,
+   "trecho": "gancho: o título novo e as perguntas pipocando"
+  },
+  {
+   "t": 1.9286,
+   "type": "ping",
+   "i": 7,
+   "n": 12,
+   "pan": 0.3430556403266059,
+   "original": 2.7857,
+   "trecho": "as perguntas viram o calendário, as reservas se encaixam, o tabuleiro se ergue e o feixe acende as diárias livres"
+  },
+  {
+   "t": 2.1429,
+   "type": "ping",
+   "i": 8,
+   "n": 12,
+   "pan": 0.4129630759910301,
+   "original": 3,
+   "trecho": "as perguntas viram o calendário, as reservas se encaixam, o tabuleiro se ergue e o feixe acende as diárias livres"
+  },
+  {
+   "t": 2.25,
+   "type": "ping",
+   "i": 9,
+   "n": 12,
+   "pan": 0.4442593609845197,
+   "original": 3.1071,
+   "trecho": "as perguntas viram o calendário, as reservas se encaixam, o tabuleiro se ergue e o feixe acende as diárias livres"
+  },
+  {
+   "t": 2.3572,
+   "type": "ping",
+   "i": 10,
+   "n": 12,
+   "pan": 0.2590741757993345,
+   "original": 3.2143,
+   "trecho": "as perguntas viram o calendário, as reservas se encaixam, o tabuleiro se ergue e o feixe acende as diárias livres"
+  },
+  {
+   "t": 2.4643,
+   "type": "ping",
+   "i": 11,
+   "n": 12,
+   "pan": -0.37342582985206885,
+   "original": 3.3214,
+   "trecho": "as perguntas viram o calendário, as reservas se encaixam, o tabuleiro se ergue e o feixe acende as diárias livres"
+  },
+  {
+   "t": 2.5315,
+   "type": "shatter",
+   "v": 1,
+   "original": 3.3886,
+   "trecho": "as perguntas viram o calendário, as reservas se encaixam, o tabuleiro se ergue e o feixe acende as diárias livres"
+  },
+  {
+   "t": 2.6915,
+   "type": "cells",
+   "d": 0.55,
+   "original": 3.5486,
+   "trecho": "as perguntas viram o calendário, as reservas se encaixam, o tabuleiro se ergue e o feixe acende as diárias livres"
+  },
+  {
+   "t": 2.8715,
+   "type": "rise",
+   "v": 0.5,
+   "original": 3.7286,
+   "trecho": "as perguntas viram o calendário, as reservas se encaixam, o tabuleiro se ergue e o feixe acende as diárias livres"
+  },
+  {
+   "t": 2.9215,
+   "type": "type",
+   "d": 0.6,
+   "n": 30,
+   "original": 3.7786,
+   "trecho": "as perguntas viram o calendário, as reservas se encaixam, o tabuleiro se ergue e o feixe acende as diárias livres"
+  },
+  {
+   "t": 3.0,
+   "type": "snap",
+   "i": 0,
+   "st": "FIN",
+   "pan": -0.25555555555555554,
+   "dir": -1,
+   "original": 3.8571,
+   "trecho": "as perguntas viram o calendário, as reservas se encaixam, o tabuleiro se ergue e o feixe acende as diárias livres"
+  },
+  {
+   "t": 3.2143,
+   "type": "snap",
+   "i": 1,
+   "st": "HOSP",
+   "pan": -0.03333333333333331,
+   "dir": -1,
+   "original": 4.0714,
+   "trecho": "as perguntas viram o calendário, as reservas se encaixam, o tabuleiro se ergue e o feixe acende as diárias livres"
+  },
+  {
+   "t": 3.4286,
+   "type": "snap",
+   "i": 2,
+   "st": "HOSP",
+   "pan": 0.24444444444444446,
+   "dir": 1,
+   "original": 4.2857,
+   "trecho": "as perguntas viram o calendário, as reservas se encaixam, o tabuleiro se ergue e o feixe acende as diárias livres"
+  },
+  {
+   "t": 3.6429,
+   "type": "snap",
+   "i": 3,
+   "st": "CHECKOUT",
+   "pan": 0.13333333333333336,
+   "dir": -1,
+   "original": 4.5,
+   "trecho": "as perguntas viram o calendário, as reservas se encaixam, o tabuleiro se ergue e o feixe acende as diárias livres"
+  },
+  {
+   "t": 3.8572,
+   "type": "snap",
+   "i": 4,
+   "st": "CHECKOUT",
+   "pan": 0.13333333333333336,
+   "dir": 1,
+   "original": 4.7143,
+   "trecho": "as perguntas viram o calendário, as reservas se encaixam, o tabuleiro se ergue e o feixe acende as diárias livres"
+  },
+  {
+   "t": 4.0715,
+   "type": "snap",
+   "i": 5,
+   "st": "HOSP",
+   "pan": 0.30000000000000004,
+   "dir": 1,
+   "original": 4.9286,
+   "trecho": "as perguntas viram o calendário, as reservas se encaixam, o tabuleiro se ergue e o feixe acende as diárias livres"
+  },
+  {
+   "t": 4.2858,
+   "type": "rise",
+   "v": 0.5,
+   "original": 5.1429,
+   "trecho": "as perguntas viram o calendário, as reservas se encaixam, o tabuleiro se ergue e o feixe acende as diárias livres"
+  },
+  {
+   "t": 4.2858,
+   "type": "snap",
+   "i": 6,
+   "st": "CHECKIN",
+   "pan": 0.41111111111111115,
+   "dir": -1,
+   "original": 5.1429,
+   "trecho": "as perguntas viram o calendário, as reservas se encaixam, o tabuleiro se ergue e o feixe acende as diárias livres"
+  },
+  {
+   "t": 4.3929,
+   "type": "snap",
+   "i": 7,
+   "st": "BLOQ",
+   "pan": 0.4666666666666667,
+   "dir": 1,
+   "original": 5.25,
+   "trecho": "as perguntas viram o calendário, as reservas se encaixam, o tabuleiro se ergue e o feixe acende as diárias livres"
+  },
+  {
+   "t": 4.5,
+   "type": "snap",
+   "i": 8,
+   "st": "CONF",
+   "pan": 0.8555555555555556,
+   "dir": 1,
+   "original": 5.3571,
+   "trecho": "as perguntas viram o calendário, as reservas se encaixam, o tabuleiro se ergue e o feixe acende as diárias livres"
+  },
+  {
+   "t": 4.6072,
+   "type": "snap",
+   "i": 9,
+   "st": "CONF",
+   "pan": 0.9666666666666666,
+   "dir": 1,
+   "original": 5.4643,
+   "trecho": "as perguntas viram o calendário, as reservas se encaixam, o tabuleiro se ergue e o feixe acende as diárias livres"
+  },
+  {
+   "t": 4.7143,
+   "type": "snap",
+   "i": 10,
+   "st": "PRE",
+   "pan": 1,
+   "dir": 1,
+   "original": 5.5714,
+   "trecho": "as perguntas viram o calendário, as reservas se encaixam, o tabuleiro se ergue e o feixe acende as diárias livres"
+  },
+  {
+   "t": 4.8215,
+   "type": "snap",
+   "i": 11,
+   "st": "CONF",
+   "pan": 1,
+   "dir": -1,
+   "original": 5.6786,
+   "trecho": "as perguntas viram o calendário, as reservas se encaixam, o tabuleiro se ergue e o feixe acende as diárias livres"
+  },
+  {
+   "t": 4.9286,
+   "type": "snap",
+   "i": 12,
+   "st": "CONF",
+   "pan": 1,
+   "dir": -1,
+   "original": 5.7857,
+   "trecho": "as perguntas viram o calendário, as reservas se encaixam, o tabuleiro se ergue e o feixe acende as diárias livres"
+  },
+  {
+   "t": 5.9,
+   "type": "orbit",
+   "d": 0.72,
+   "original": 6.7571,
+   "trecho": "as perguntas viram o calendário, as reservas se encaixam, o tabuleiro se ergue e o feixe acende as diárias livres"
+  },
+  {
+   "t": 6.0,
+   "type": "drop",
+   "v": 1,
+   "original": 6.8571,
+   "trecho": "as perguntas viram o calendário, as reservas se encaixam, o tabuleiro se ergue e o feixe acende as diárias livres"
+  },
+  {
+   "t": 6.02,
+   "type": "extrude",
+   "d": 0.6,
+   "original": 6.8771,
+   "trecho": "as perguntas viram o calendário, as reservas se encaixam, o tabuleiro se ergue e o feixe acende as diárias livres"
+  },
+  {
+   "t": 7.7643,
+   "type": "scan",
+   "d": 1.299999999999999,
+   "original": 8.6214,
+   "trecho": "as perguntas viram o calendário, as reservas se encaixam, o tabuleiro se ergue e o feixe acende as diárias livres"
+  },
+  {
+   "t": 7.7778,
+   "type": "free",
+   "k": 0,
+   "n": 9,
+   "pan": -0.875,
+   "original": 8.6349,
+   "trecho": "as perguntas viram o calendário, as reservas se encaixam, o tabuleiro se ergue e o feixe acende as diárias livres"
+  },
+  {
+   "t": 7.8158,
+   "type": "free",
+   "k": 1,
+   "n": 8,
+   "pan": -0.75,
+   "original": 8.6729,
+   "trecho": "as perguntas viram o calendário, as reservas se encaixam, o tabuleiro se ergue e o feixe acende as diárias livres"
+  },
+  {
+   "t": 7.8767,
+   "type": "free",
+   "k": 2,
+   "n": 6,
+   "pan": -0.625,
+   "original": 8.7338,
+   "trecho": "as perguntas viram o calendário, as reservas se encaixam, o tabuleiro se ergue e o feixe acende as diárias livres"
+  },
+  {
+   "t": 7.9583,
+   "type": "free",
+   "k": 3,
+   "n": 7,
+   "pan": -0.5,
+   "original": 8.8154,
+   "trecho": "as perguntas viram o calendário, as reservas se encaixam, o tabuleiro se ergue e o feixe acende as diárias livres"
+  },
+  {
+   "t": 8.0575,
+   "type": "free",
+   "k": 4,
+   "n": 8,
+   "pan": -0.375,
+   "original": 8.9146,
+   "trecho": "as perguntas viram o calendário, as reservas se encaixam, o tabuleiro se ergue e o feixe acende as diárias livres"
+  },
+  {
+   "t": 8.1429,
+   "type": "rise",
+   "v": 0.5,
+   "original": 9,
+   "trecho": "as perguntas viram o calendário, as reservas se encaixam, o tabuleiro se ergue e o feixe acende as diárias livres"
+  },
+  {
+   "t": 8.1703,
+   "type": "free",
+   "k": 5,
+   "n": 9,
+   "pan": -0.25,
+   "original": 9.0274,
+   "trecho": "as perguntas viram o calendário, as reservas se encaixam, o tabuleiro se ergue e o feixe acende as diárias livres"
+  },
+  {
+   "t": 8.2925,
+   "type": "free",
+   "k": 6,
+   "n": 7,
+   "pan": -0.125,
+   "original": 9.1496,
+   "trecho": "as perguntas viram o calendário, as reservas se encaixam, o tabuleiro se ergue e o feixe acende as diárias livres"
+  },
+  {
+   "t": 8.4194,
+   "type": "free",
+   "k": 7,
+   "n": 9,
+   "pan": 0,
+   "original": 9.2765,
+   "trecho": "as perguntas viram o calendário, as reservas se encaixam, o tabuleiro se ergue e o feixe acende as diárias livres"
+  },
+  {
+   "t": 8.5461,
+   "type": "free",
+   "k": 8,
+   "n": 9,
+   "pan": 0.125,
+   "original": 9.4032,
+   "trecho": "as perguntas viram o calendário, as reservas se encaixam, o tabuleiro se ergue e o feixe acende as diárias livres"
+  },
+  {
+   "t": 8.6678,
+   "type": "free",
+   "k": 9,
+   "n": 9,
+   "pan": 0.25,
+   "original": 9.5249,
+   "trecho": "as perguntas viram o calendário, as reservas se encaixam, o tabuleiro se ergue e o feixe acende as diárias livres"
+  },
+  {
+   "t": 8.7797,
+   "type": "free",
+   "k": 10,
+   "n": 10,
+   "pan": 0.375,
+   "original": 9.6368,
+   "trecho": "as perguntas viram o calendário, as reservas se encaixam, o tabuleiro se ergue e o feixe acende as diárias livres"
+  },
+  {
+   "t": 8.8775,
+   "type": "free",
+   "k": 11,
+   "n": 10,
+   "pan": 0.5,
+   "original": 9.7346,
+   "trecho": "as perguntas viram o calendário, as reservas se encaixam, o tabuleiro se ergue e o feixe acende as diárias livres"
+  },
+  {
+   "t": 8.9576,
+   "type": "free",
+   "k": 12,
+   "n": 10,
+   "pan": 0.625,
+   "original": 9.8147,
+   "trecho": "as perguntas viram o calendário, as reservas se encaixam, o tabuleiro se ergue e o feixe acende as diárias livres"
+  },
+  {
+   "t": 9.0168,
+   "type": "free",
+   "k": 13,
+   "n": 10,
+   "pan": 0.75,
+   "original": 9.8739,
+   "trecho": "as perguntas viram o calendário, as reservas se encaixam, o tabuleiro se ergue e o feixe acende as diárias livres"
+  },
+  {
+   "t": 9.0528,
+   "type": "free",
+   "k": 14,
+   "n": 10,
+   "pan": 0.875,
+   "original": 9.9099,
+   "trecho": "as perguntas viram o calendário, as reservas se encaixam, o tabuleiro se ergue e o feixe acende as diárias livres"
+  },
+  {
+   "t": 9.3286,
+   "type": "orbit",
+   "d": 0.4,
+   "original": 10.1857,
+   "trecho": "as perguntas viram o calendário, as reservas se encaixam, o tabuleiro se ergue e o feixe acende as diárias livres"
+  },
+  {
+   "t": 9.4286,
+   "type": "rise",
+   "v": 0.6,
+   "original": 10.2857,
+   "trecho": "as perguntas viram o calendário, as reservas se encaixam, o tabuleiro se ergue e o feixe acende as diárias livres"
+  },
+  {
+   "t": 9.4286,
+   "type": "weekend",
+   "v": 1,
+   "original": 10.2857,
+   "trecho": "as perguntas viram o calendário, as reservas se encaixam, o tabuleiro se ergue e o feixe acende as diárias livres"
+  },
+  {
+   "t": 9.8572,
+   "type": "filter",
+   "k": 0,
+   "n": 4,
+   "original": 15.4286,
+   "trecho": "os filtros: cada status sobe em torres"
+  },
+  {
+   "t": 9.8572,
+   "type": "type",
+   "d": 0.3,
+   "n": 17,
+   "original": 15.4286,
+   "trecho": "os filtros: cada status sobe em torres"
+  },
+  {
+   "t": 10.7143,
+   "type": "filter",
+   "k": 1,
+   "n": 1,
+   "original": 16.2857,
+   "trecho": "os filtros: cada status sobe em torres"
+  },
+  {
+   "t": 12.4286,
+   "type": "ding",
+   "v": 1,
+   "original": 24,
+   "trecho": "fecho: Cada reserva no seu lugar. + logo"
+  },
+  {
+   "t": 12.4286,
+   "type": "boom",
+   "v": 1,
+   "original": 24,
+   "trecho": "fecho: Cada reserva no seu lugar. + logo"
+  },
+  {
+   "t": 12.6486,
+   "type": "rise",
+   "v": 0.5,
+   "original": 24.22,
+   "trecho": "fecho: Cada reserva no seu lugar. + logo"
+  },
+  {
+   "t": 12.9286,
+   "type": "rise",
+   "v": 0.4,
+   "original": 24.5,
+   "trecho": "fecho: Cada reserva no seu lugar. + logo"
+  },
+  {
+   "t": 13.9286,
+   "type": "glint",
+   "d": 0.7,
+   "original": 25.5,
+   "trecho": "fecho: Cada reserva no seu lugar. + logo"
+  }
+ ]
+}

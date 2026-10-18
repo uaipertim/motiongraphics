@@ -1,0 +1,13 @@
+{
+ "duracao": 15.0,
+ "bpm": 140,
+ "nota": "cada trecho do vídeo novo [início, fim] aponta para o instante do original (reels/reel-02) em que ele começa; todos os cortes caem num tempo da música (1 tempo = 60/140 = 0,428571 s) nos dois relógios; 35 tempos = 15,0 s",
+ "trechos": [
+  { "nome": "gancho: o título novo e as perguntas pipocando", "novo": [0.0, 1.7142857], "original": 0.0 },
+  { "nome": "as perguntas viram o calendário, as reservas se encaixam, o tabuleiro se ergue e o feixe acende as diárias livres", "novo": [1.7142857, 9.8571429], "original": 2.5714286 },
+  { "nome": "os filtros: cada status sobe em torres", "novo": [9.8571429, 11.5714286], "original": 15.4285714 },
+  { "nome": "fecho: Cada reserva no seu lugar. + logo", "novo": [11.5714286, 15.0], "original": 23.1428571 }
+ ],
+ "fade": [14.7, 15.0],
+ "crossfade": 0.03
+}
