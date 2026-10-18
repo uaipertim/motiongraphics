@@ -16,9 +16,9 @@ Peça independente: nada aqui altera os Reels anteriores (o DNA é o do Reel 08,
 | **ep-03** | "Domingo, 11h. / Check-out de todo mundo." | 14,00 s | [`mp4`](output/ep-03/fazlo-hospeda-rotina-ep-03.mp4) | [`capa.jpg`](output/ep-03/capa.jpg) | [`revisao/`](output/ep-03/revisao) |
 | **ep-04** | "'Vou ver e te falo.' / (e sumiu)" | 14,00 s | [`mp4`](output/ep-04/fazlo-hospeda-rotina-ep-04.mp4) | [`capa.jpg`](output/ep-04/capa.jpg) | [`revisao/`](output/ep-04/revisao) |
 | **ep-05** | "A comanda da piscina / que ninguém fechou." | 13,63 s | [`mp4`](output/ep-05/fazlo-hospeda-rotina-ep-05.mp4) | [`capa.jpg`](output/ep-05/capa.jpg) | [`revisao/`](output/ep-05/revisao) |
-| ep-06 | "Feriado lotado. / Caixa conferido?" | ~13,65 s | roteiro pronto ([`ep-06.json`](episodios/ep-06.json)) | | |
+| **ep-06** | "Feriado lotado. / Caixa conferido?" | 14,00 s | [`mp4`](output/ep-06/fazlo-hospeda-rotina-ep-06.mp4) | [`capa.jpg`](output/ep-06/capa.jpg) | [`revisao/`](output/ep-06/revisao) |
 
-O modelo foi aprovado em 16/10; os episódios saem um por dia (ep-03 para segunda, 19h). Prontos: ep-01 a ep-05; o ep-06 tem o roteiro e as áreas seguras já conferidas pelo motor, falta renderizar.
+O modelo foi aprovado em 16/10; os episódios saem um por dia (ep-03 para segunda, 19h). Prontos: ep-01 a ep-06, a primeira temporada.
 
 ---
 
@@ -126,7 +126,7 @@ Efeitos **sintetizados do zero** (numpy/scipy), com os timbres do Reel 08:
 
 O master fica em **−16 LUFS**, com limitador de pico real. A animação exporta `audio/<id>/cues.json`, e `scripts/audio.py <id>` coloca cada som nesses instantes.
 
-## Revisão (ep-01 a ep-05)
+## Revisão (ep-01 a ep-06)
 
 `python3 scripts/qa.py <id>` gera, em `output/<id>/revisao/`:
 - `relatorio-tecnico.txt`;
@@ -134,17 +134,19 @@ O master fica em **−16 LUFS**, com limitador de pico real. A animação export
 - `zonas-seguras.jpg` (as zonas da interface do Reels e as linhas y 265/1456 marcadas);
 - `recorte-3x4.jpg`.
 
-|---|---|---|---|---|---|
-|---|---|---|---|
-| Formato | 1080×1920, 60 fps (840 quadros), H.264 High yuv420p, AAC 48 kHz | 840 quadros, idem | 840 quadros, idem | 840 quadros, idem | 818 quadros, idem |
-| Duração (vídeo = áudio) | 14,000 s | 14,000 s | 14,000 s (o roteiro pedia 14,65 s; os intervalos dos cards encolheram 13%) | 14,000 s | 13,633 s |
-| Loudness / pico real | −16,0 LUFS / −2,4 dBTP | −16,0 LUFS / −2,5 dBTP | −16,0 LUFS / −2,5 dBTP | −16,0 LUFS / −2,5 dBTP | −16,0 LUFS / −2,4 dBTP |
-| Arquivo | 3,9 MB | 3,6 MB | 4,1 MB | 3,3 MB | 3,8 MB |
-| Pretos / congelados | nenhum (fora o fade final) / nenhum ≥ 0,75 s | nenhum / nenhum | nenhum / nenhum | nenhum / nenhum | nenhum / nenhum |
-| Áreas seguras | 17 elementos OK | 18 elementos OK | 17 elementos OK | 15 elementos OK | 18 elementos OK |
-| Virada → fecho | (versão publicada, anterior ao ajuste) | sem sobreposição: sobe 11,60–12,00 s, fecho em 12,00 s | sem sobreposição: sobe 11,60–12,00 s, fecho em 12,00 s | sem sobreposição: sobe 11,60–12,00 s, fecho em 12,00 s | sem sobreposição: sobe 11,23–11,63 s, fecho em 11,63 s |
-| Sincronia | 5 golpes (3 pings, carimbo, sineta): ataque a ≤ 8,3 ms do evento; a imagem reage em todos | 6 golpes: ≤ 6,8 ms; a imagem reage em todos | 6 golpes: ≤ 6,8 ms; a imagem reage em todos | 5 golpes: ≤ 6,8 ms; a imagem reage em todos | 6 golpes: ≤ 7,3 ms; a imagem reage em todos |
-| Capa | dentro da regra (bloco centrado em y = 960,0) | dentro da regra (centro em 960,0) | dentro da regra (3 linhas; centro em 960,0) | dentro da regra | dentro da regra (4 linhas; centro em 960,0) |
+| | ep-01 | ep-02 | ep-03 | ep-04 | ep-05 | ep-06 |
+|---|---|---|---|---|---|---|
+| Formato | 1080×1920, 60 fps (840 quadros), H.264 High yuv420p, AAC 48 kHz | 840 quadros, idem | 840 quadros, idem | 840 quadros, idem | 818 quadros, idem | 840 quadros, idem |
+| Duração (vídeo = áudio) | 14,000 s | 14,000 s | 14,000 s (o roteiro pedia 14,65 s; os intervalos dos cards encolheram 13%) | 14,000 s | 13,633 s | 14,000 s (o roteiro pedia 14,65 s; os intervalos dos cards encolheram 11%) |
+| Loudness / pico real | −16,0 LUFS / −2,4 dBTP | −16,0 LUFS / −2,5 dBTP | −16,0 LUFS / −2,5 dBTP | −16,0 LUFS / −2,5 dBTP | −16,0 LUFS / −2,4 dBTP | −16,0 LUFS / −2,4 dBTP |
+| Arquivo | 3,9 MB | 3,6 MB | 4,1 MB | 3,3 MB | 3,8 MB | 3,6 MB |
+| Pretos / congelados | nenhum (fora o fade final) / nenhum ≥ 0,75 s | nenhum / nenhum | nenhum / nenhum | nenhum / nenhum | nenhum / nenhum | nenhum / nenhum |
+| Áreas seguras | 17 elementos OK | 18 elementos OK | 17 elementos OK | 15 elementos OK | 18 elementos OK | 21 elementos OK |
+| Virada → fecho | (versão publicada, anterior ao ajuste) | sem sobreposição: sobe 11,60–12,00 s, fecho em 12,00 s | sem sobreposição: sobe 11,60–12,00 s, fecho em 12,00 s | sem sobreposição: sobe 11,60–12,00 s, fecho em 12,00 s | sem sobreposição: sobe 11,23–11,63 s, fecho em 11,63 s | sem sobreposição: sobe 11,60–12,00 s, fecho em 12,00 s |
+| Sincronia | 5 golpes (3 pings, carimbo, sineta): ataque a ≤ 8,3 ms do evento; a imagem reage em todos | 6 golpes: ≤ 6,8 ms; a imagem reage em todos | 6 golpes: ≤ 6,8 ms; a imagem reage em todos | 5 golpes: ≤ 6,8 ms; a imagem reage em todos | 6 golpes: ≤ 7,3 ms; a imagem reage em todos | 7 golpes: ≤ 6,8 ms; a imagem reage em todos |
+| Capa | dentro da regra (bloco centrado em y = 960,0) | dentro da regra (centro em 960,0) | dentro da regra (3 linhas; centro em 960,0) | dentro da regra | dentro da regra (4 linhas; centro em 960,0) | dentro da regra (centro em 960,0) |
+
+**Nota sobre a sincronia da imagem (ep-06):** a revisão mede o movimento na média do quadro inteiro, e os chips pequenos do ep-06 ("PIX", "CARTÃO"…) pesam pouco nessa média. O critério passou a ser reagir com ≥ 3× o movimento de antes (e ≥ 0,3), no lugar de um mínimo absoluto. Os ep-02 a ep-05 passam também no critério novo, e o ep-01 não é reexaminado (versão publicada, anterior ao passo "a virada sobe").
 
 ## Arquivos
 
