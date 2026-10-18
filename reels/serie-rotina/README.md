@@ -19,6 +19,7 @@ Peça independente: nada aqui altera os Reels anteriores (o DNA é o do Reel 08,
 | **ep-06** | "Feriado lotado. / Caixa conferido?" | 14,00 s | [`mp4`](output/ep-06/fazlo-hospeda-rotina-ep-06.mp4) | [`capa.jpg`](output/ep-06/capa.jpg) | [`revisao/`](output/ep-06/revisao) |
 | **ep-finados** (especial) | "Faltam 12 dias / pra Finados." | 14,00 s | [`mp4`](output/ep-finados/fazlo-hospeda-rotina-ep-finados.mp4) | [`capa.jpg`](output/ep-finados/capa.jpg) | [`revisao/`](output/ep-finados/revisao) |
 | **ep-07** | "Check-out com / a conta errada?" | 14,00 s | [`mp4`](output/ep-07/fazlo-hospeda-rotina-ep-07.mp4) | [`capa.jpg`](output/ep-07/capa.jpg) | [`revisao/`](output/ep-07/revisao) |
+| **ep-08** | "Dois hóspedes, / o mesmo chalé." | 14,00 s | [`mp4`](output/ep-08/fazlo-hospeda-rotina-ep-08.mp4) | [`capa.jpg`](output/ep-08/capa.jpg) | [`revisao/`](output/ep-08/revisao) |
 
 O modelo foi aprovado em 16/10; os episódios saem um por dia (ep-03 para segunda, 19h). Prontos: ep-01 a ep-06, a primeira temporada.
 
