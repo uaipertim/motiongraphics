@@ -17,6 +17,7 @@ Peça independente: nada aqui altera os Reels anteriores (o DNA é o do Reel 08,
 | **ep-04** | "'Vou ver e te falo.' / (e sumiu)" | 14,00 s | [`mp4`](output/ep-04/fazlo-hospeda-rotina-ep-04.mp4) | [`capa.jpg`](output/ep-04/capa.jpg) | [`revisao/`](output/ep-04/revisao) |
 | **ep-05** | "A comanda da piscina / que ninguém fechou." | 13,63 s | [`mp4`](output/ep-05/fazlo-hospeda-rotina-ep-05.mp4) | [`capa.jpg`](output/ep-05/capa.jpg) | [`revisao/`](output/ep-05/revisao) |
 | **ep-06** | "Feriado lotado. / Caixa conferido?" | 14,00 s | [`mp4`](output/ep-06/fazlo-hospeda-rotina-ep-06.mp4) | [`capa.jpg`](output/ep-06/capa.jpg) | [`revisao/`](output/ep-06/revisao) |
+| **ep-finados** (especial) | "Faltam 12 dias / pra Finados." | 14,00 s | [`mp4`](output/ep-finados/fazlo-hospeda-rotina-ep-finados.mp4) | [`capa.jpg`](output/ep-finados/capa.jpg) | [`revisao/`](output/ep-finados/revisao) |
 
 O modelo foi aprovado em 16/10; os episódios saem um por dia (ep-03 para segunda, 19h). Prontos: ep-01 a ep-06, a primeira temporada.
 
@@ -147,6 +148,8 @@ O master fica em **−16 LUFS**, com limitador de pico real. A animação export
 | Capa | dentro da regra (bloco centrado em y = 960,0) | dentro da regra (centro em 960,0) | dentro da regra (3 linhas; centro em 960,0) | dentro da regra | dentro da regra (4 linhas; centro em 960,0) | dentro da regra (centro em 960,0) |
 
 **Nota sobre a sincronia da imagem (ep-06):** a revisão mede o movimento na média do quadro inteiro, e os chips pequenos do ep-06 ("PIX", "CARTÃO"…) pesam pouco nessa média. O critério passou a ser reagir com ≥ 3× o movimento de antes (e ≥ 0,3), no lugar de um mínimo absoluto. Os ep-02 a ep-05 passam também no critério novo, e o ep-01 não é reexaminado (versão publicada, anterior ao passo "a virada sobe").
+
+**Episódio especial "Finados"** (`episodios/ep-finados.json`, 21/10): 4 cards (três datas do feriadão, com "?" no lugar do hóspede, e "SINAIS RECEBIDOS · ?"), carimbo "FERIADÃO · 3 DIAS". Saiu só do JSON, com o mesmo modelo: 14,00 s, −16,0 LUFS (pico −2,4 dBTP), 18 elementos nas áreas seguras, fecho de 2 s só depois de a virada subir (11,60–12,00 s), 6 golpes com ataque a ≤ 6,8 ms, capa dentro da regra (centro em 960,0).
 
 ## Arquivos
 

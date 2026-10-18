@@ -1,0 +1,46 @@
+SÉRIE ROTINA · ep-finados — revisão técnica
+output/ep-finados/fazlo-hospeda-rotina-ep-finados.mp4
+
+OK     vídeo h264 High yuv420p
+OK     resolução 1080x1920 (9:16)
+OK     60 fps, 840 quadros
+OK     duração do vídeo 14.000 s (alvo 10–14 s; pelo roteiro: 14.000 s)
+OK     áudio aac 48000 Hz, 2 canais, 251 kb/s
+OK     vídeo e áudio com a mesma duração (Δ 0 ms)
+OK     arquivo 3.8 MB, 2.2 Mb/s
+OK     loudness integrado -16.0 LUFS (alvo -16: só efeitos, espaço para a música do Instagram)
+OK     pico real -2.4 dBTP (limite -1)
+       faixa de loudness (LRA) 16.8 LU
+OK     sem trechos pretos ≥ 0,1 s antes do fade final
+OK     sem imagem congelada ≥ 0,75 s
+OK     o fecho entra só depois de a virada terminar de subir (virada sobe 11.60–12.00 s, fecho entra em 12.00 s): nenhum quadro de sobreposição
+OK     áreas seguras: 18 elementos em y 265–1456, fora da coluna de botões (x ≥ 950, y 1060–1560), título no recorte 3:4
+OK     o 1º quadro já tem imagem (luminância média 22.9), sem abertura preta
+OK     capa 1080x1920
+
+Sincronização (detalhes em sincronia.txt):
+OK     áudio do MP4 = efeitos.wav, sem deslocamento (+0.0, +0.0, +0.0 ms)
+OK     6 efeitos-chave com ataque no instante do evento (desvio médio 5.8 ms, máximo 6.8 ms; 1 quadro = 16,7 ms)
+OK     a imagem reage nos 6 golpes principais (pico de movimento a ≤ 8 quadros do som)
+
+Áreas seguras, elemento a elemento (caixas do motor, no instante de leitura de cada um):
+OK     chip da série  x  323– 727  y  722– 778  (em 0.00 s)
+OK     título 1       x  106– 944  y  822– 945  (em 0.00 s)
+OK     título 2       x  160– 890  y  955–1078  (em 0.00 s)
+OK     cabeçalho      x  347– 733  y  285– 403  (em 6.78 s)
+OK     card 1         x   80– 940  y  598– 754  (em 6.58 s)
+OK     card 2         x   80– 940  y  776– 932  (em 6.58 s)
+OK     card 3         x   80– 940  y  954–1110  (em 6.58 s)
+OK     card 4         x   80– 940  y 1132–1244  (em 6.58 s)
+OK     carimbo        x  176– 854  y  846–1005  (em 7.28 s)
+OK     virada 1       x  275– 775  y  712– 812  (em 11.50 s)
+OK     virada 1*      x  271– 779  y  516– 617  (em 13.65 s)
+OK     virada 2       x  217– 833  y  822– 921  (em 11.50 s)
+OK     virada 2*      x  213– 837  y  627– 728  (em 13.65 s)
+OK     virada 3       x  143– 907  y  931–1030  (em 11.50 s)
+OK     virada 3*      x  138– 912  y  738– 839  (em 13.65 s)
+OK     fecho 1        x  162– 888  y  912– 969  (em 13.65 s)
+OK     fecho 2        x  178– 872  y  983–1039  (em 13.65 s)
+OK     logo           x  313– 737  y 1104–1207  (em 13.65 s)
+
+RESULTADO: aprovado

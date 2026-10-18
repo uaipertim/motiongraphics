@@ -1,0 +1,13 @@
+{
+  "id": "ep-finados",
+  "titulo": ["Faltam 12 dias", "pra Finados."],
+  "cards": [
+    { "rotulo": "SÁB 31/10", "texto": "CHALÉ 1 · ?" },
+    { "rotulo": "DOM 01/11", "texto": "CHALÉ 2 · ?" },
+    { "rotulo": "SEG 02/11", "texto": "QUARTO 4 · ?" },
+    { "texto": "SINAIS RECEBIDOS · ?" }
+  ],
+  "carimbo": "FERIADÃO · 3 DIAS",
+  "virada": ["Feriado se vende antes.", "*Não na véspera.*"],
+  "fecho": "Manda pra quem ainda não abriu a agenda do feriado."
+}
