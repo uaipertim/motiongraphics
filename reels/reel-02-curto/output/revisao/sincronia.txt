@@ -12,7 +12,7 @@ Evento a evento (instante do evento visual, desvio medido):
            9.857 s  filter    áudio   -4.0 ms  (no original:   -2.9 ms)
           10.714 s  filter    áudio   -3.6 ms  (no original:   -2.5 ms)
           12.429 s  ding      áudio   -5.4 ms  (no original:   -4.3 ms)
-           2.531 s  shatter   imagem: movimento   8.3 (antes  0.6), pico a +1 quadro(s)
+           2.531 s  shatter   imagem: movimento   7.9 (antes  0.6), pico a +1 quadro(s)
            6.000 s  drop      imagem: movimento   5.4 (antes  0.2), pico a +8 quadro(s)
            9.857 s  filter    imagem: movimento  25.6 (antes  0.8), pico a +1 quadro(s)
           10.714 s  filter    imagem: movimento   5.6 (antes  0.3), pico a +2 quadro(s)

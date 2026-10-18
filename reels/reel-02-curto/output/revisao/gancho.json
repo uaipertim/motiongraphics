@@ -1,14 +1,15 @@
 {
- "size": 120,
- "size3": 73,
+ "size": 100,
  "y": [
-  790,
-  920,
-  1042
+  770,
+  878,
+  986,
+  1094
  ],
  "lines": [
   "Dois hóspedes,",
   "o mesmo chalé,",
-  "o mesmo fim de semana?"
+  "o mesmo",
+  "fim de semana?"
  ]
 }

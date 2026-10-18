@@ -1,7 +1,7 @@
 /* =====================================================================
    FAZLO Hospeda — REEL 02 · CORTE CURTO · CAPA (1080x1920)
-   O gancho do vídeo: "Dois hóspedes," / "o mesmo chalé," (branco) e "o mesmo fim
-   de semana?" (limão), em Inter Display 900, com um pedaço do TABULEIRO do
+   O gancho do vídeo: "Dois hóspedes," / "o mesmo chalé," (branco) e "o mesmo" /
+   "fim de semana?" (limão), as 4 linhas no mesmo corpo, em Inter Display 900, com um pedaço do TABULEIRO do
    próprio vídeo embaixo (as reservas em blocos, o quadro de 7,4 s do motor, sem
    título). Fundo preto da série; a logo pequena no topo, no centro.
 
@@ -18,9 +18,9 @@
   const C = { bg: '#060606', bg2: '#0A0A0A', lime: '#AFFA27', white: '#FFFFFF' };
   const CENTER = 960;                                      // centro do recorte 3:4 (y 240–1680)
   const T_BOARD = 7.4;                                     // o tabuleiro erguido, sem título por cima (tempo do original)
-  const CROP = { x: 60, y: 900, w: 960, h: 330 };          // o pedaço do tabuleiro (reservas em blocos)
-  const L = { logoY: 356, logoD: 52, wordFS: 30, maxW: 900, gap: 48, lead: 1.06, boardH: 330 };
-  const LINES = [['Dois hóspedes,', C.white], ['o mesmo chalé,', C.white], ['o mesmo fim de semana?', C.lime]];
+  const CROP = { x: 60, y: 900, w: 960, h: 290 };          // o pedaço do tabuleiro (reservas em blocos)
+  const L = { logoY: 356, logoD: 52, wordFS: 30, maxW: 900, gap: 44, lead: 1.06, boardH: 290 };
+  const LINES = [['Dois hóspedes,', C.white], ['o mesmo chalé,', C.white], ['o mesmo', C.lime], ['fim de semana?', C.lime]];
   const BOXES = {};
   let LOGO = null, BOARD = null;
 
@@ -63,18 +63,16 @@
       BOXES['logo'] = { x0: x, x1: x + L.logoD + gap + nw, y0: L.logoY - L.logoD / 2, y1: L.logoY + L.logoD / 2 };
     }
 
-    // o título: as duas primeiras linhas no maior corpo que cabe em 900 px; a 3ª (a mais larga) no dela; bloco centrado em y = 960
+    // o título: as 4 linhas no MESMO corpo (o maior que cabe em 900 px, até 112); bloco centrado em y = 960
     const fit = (s) => Math.floor(100 * L.maxW / tw(ctx, s, 100, 900, -2.5));
-    const S1 = Math.min(fit(LINES[0][0]), fit(LINES[1][0]), 150), S3 = fit(LINES[2][0]);
-    const sizes = [S1, S1, S3], lh1 = Math.round(S1 * L.lead), lh2 = Math.round((S1 * 0.5 + S3 * 0.85));
-    const cap = 0.727 * S1, h = cap + lh1 + lh2 + 0.2 * S3, top = CENTER - h / 2;
-    const base = [top + cap, top + cap + lh1, top + cap + lh1 + lh2];
+    const S = Math.min(...LINES.map(([s]) => fit(s)), 112), ls = -0.025 * S, lh = Math.round(S * L.lead);
+    const cap = 0.727 * S, h = cap + 3 * lh + 0.2 * S, top = CENTER - h / 2;
     LINES.forEach(([s, col], i) => {
-      const sz = sizes[i], ls = -0.025 * sz, w = tw(ctx, s, sz, 900, ls);
-      setFont(ctx, sz, 900, ls); ctx.fillStyle = col; ctx.fillText(s, 540 - w / 2, base[i]);
-      BOXES[`título, linha ${i + 1}`] = { x0: 540 - w / 2, x1: 540 + w / 2, y0: base[i] - 0.727 * sz, y1: base[i] + 0.2 * sz };
+      const w = tw(ctx, s, S, 900, ls), b = top + cap + i * lh;
+      setFont(ctx, S, 900, ls); ctx.fillStyle = col; ctx.fillText(s, 540 - w / 2, b);
+      BOXES[`título, linha ${i + 1}`] = { x0: 540 - w / 2, x1: 540 + w / 2, y0: b - 0.727 * S, y1: b + 0.2 * S };
     });
-    BOXES['_bloco'] = { topo: top, base: top + h, centro: top + h / 2, tamanho: S1 };
+    BOXES['_bloco'] = { topo: top, base: top + h, centro: top + h / 2, tamanho: S };
 
     // o pedaço do tabuleiro do vídeo, embaixo
     const by = top + h + L.gap;

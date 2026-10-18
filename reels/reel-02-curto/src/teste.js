@@ -6,9 +6,9 @@
    as trocas de texto abaixo, aplicadas na leitura do anim.js:
 
      1. o gancho: "Tem vaga / pro fim de semana?" vira "Dois hóspedes," (branco) /
-        "o mesmo chalé," (branco) / "o mesmo fim de semana?" (limão), em Inter
-        Display 900, já inteiro no quadro 0, no vão livre entre os grupos de
-        perguntas (y 700–1060); as perguntas continuam pipocando em volta;
+        "o mesmo chalé," (branco) / "o mesmo" / "fim de semana?" (limão, as duas últimas), em Inter
+        Display 900 e no MESMO corpo nas 4 linhas, já inteiro no quadro 0, no vão
+        livre entre os grupos de perguntas (y 700–1120); as perguntas continuam pipocando em volta;
      2. a assinatura: sem a linha "GESTÃO DE RESERVAS" e sem o CTA "CONHEÇA O
         SISTEMA · LINK NA BIO" (corte de teste: só a frase e a logo, sem domínio
         nem CTA);
@@ -30,11 +30,11 @@
     const s2 = fit(ctx, 'pro fim de semana?', 920, 110);
     HOOKT = { s1, s2, y1: 880, y2: 880 + s2 * 1.25 };   // termina acima da coluna de ações do Reels
 `,
-      // as duas primeiras linhas no maior corpo que cabe em 860 px (até 140); a 3ª (a mais larga) no dela
-      para: `    const s1 = Math.floor(Math.min(fit(ctx, 'Dois hóspedes,', 860, 140), fit(ctx, 'o mesmo chalé,', 860, 140)));
-    const s3 = Math.floor(fit(ctx, 'o mesmo fim de semana?', 860, 140));
-    HOOKT = { s1, s3, y1: 790, y2: 790 + Math.round(s1 * 1.08), y3: 790 + Math.round(s1 * 1.08) + Math.round(s1 * 0.5 + s3 * 0.85) };   // 700–1060: o vão livre entre os grupos de perguntas
-    window.__HOOK = { size: s1, size3: s3, y: [HOOKT.y1, HOOKT.y2, HOOKT.y3], lines: ['Dois hóspedes,', 'o mesmo chalé,', 'o mesmo fim de semana?'] };
+      // as 4 linhas no MESMO corpo: o maior que cabe em 860 px (até 100); 700–1120 é o vão livre entre os grupos de perguntas
+      para: `    const s1 = Math.floor(Math.min(...['Dois hóspedes,', 'o mesmo chalé,', 'o mesmo', 'fim de semana?'].map((x) => fit(ctx, x, 860, 100))));
+    const lh = Math.round(s1 * 1.08), yy = 770;
+    HOOKT = { s1, y: [yy, yy + lh, yy + 2 * lh, yy + 3 * lh] };
+    window.__HOOK = { size: s1, y: HOOKT.y, lines: ['Dois hóspedes,', 'o mesmo chalé,', 'o mesmo', 'fim de semana?'] };
 `,
     },
     {
@@ -50,9 +50,10 @@
       ctx.restore();
     }
 `,
-      // todas as linhas já inteiras em t = 0; o golpe do 1º tempo vai nas duas brancas e o da 3ª (limão) no 2º tempo
+      // todas as linhas já inteiras em t = 0; o golpe do 1º tempo vai nas duas brancas e o do 2º tempo nas duas limão
       para: `    if (shat < 1) {
-      [['Dois hóspedes,', C.white, HOOKT.y1, HOOKT.s1, 0.1], ['o mesmo chalé,', C.white, HOOKT.y2, HOOKT.s1, 0.1], ['o mesmo fim de semana?', C.lime, HOOKT.y3, HOOKT.s3, BT + 0.02]].forEach(([s, col, y, size, tk]) => {
+      [['Dois hóspedes,', C.white, 0], ['o mesmo chalé,', C.white, 0], ['o mesmo', C.lime, 1], ['fim de semana?', C.lime, 1]].forEach(([s, col, g], i) => {
+        const y = HOOKT.y[i], size = HOOKT.s1, tk = g ? BT + 0.02 : 0.1;
         const sc = (1 + 0.04 * kick(t, tk, 0.3)) * (1 - shat);
         ctx.save(); ctx.translate(540, y - size * 0.35); ctx.scale(sc, sc); ctx.translate(-540, -(y - size * 0.35));
         txt(ctx, s, 540, y, { fam: DISPLAY, size, weight: 900, color: col, align: 'center', ls: -size * 0.025 });

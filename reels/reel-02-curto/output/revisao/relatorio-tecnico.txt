@@ -13,13 +13,13 @@ OK     pico real -2.8 dBTP (limite -1)
        faixa de loudness (LRA) 1.2 LU
 OK     sem trechos pretos ≥ 0,1 s antes do fade final (11,7–12 s)
 OK     sem imagem congelada ≥ 0,75 s
-OK     o 1º quadro já tem imagem (luminância média 21.0), sem abertura preta
+OK     o 1º quadro já tem imagem (luminância média 19.9), sem abertura preta
          0.000–  1.714 s  ←  original  0.000– 1.714 s  (gancho: o título novo e as perguntas pipocando)
          1.714–  9.857 s  ←  original  2.571–10.714 s  (as perguntas viram o calendário, as reservas se encaixam, o tabuleiro se ergue e o feixe acende as diárias livres)
          9.857– 11.571 s  ←  original 15.429–17.143 s  (os filtros: cada status sobe em torres)
         11.571– 15.000 s  ←  original 23.143–26.571 s  (fecho: Cada reserva no seu lugar. + logo)
 OK     3 cortes, todos num tempo da música (múltiplos de 0.42857 s, 140 BPM) nos dois relógios; crossfade de 30 ms no som
-OK     título do gancho (120 px nas duas primeiras linhas, 73 px na 3ª) fora da coluna de botões e da faixa de baixo, dentro de y 265–1560: "Dois hóspedes," x 118–962, y 703–816; "o mesmo chalé," x 111–969, y 833–946; "o mesmo fim de semana?" x 113–967, y 989–1058
+OK     título do gancho (4 linhas, todas em 100 px) fora da coluna de botões e da faixa de baixo, dentro de y 265–1560: "Dois hóspedes," x 188–892, y 697–792; "o mesmo chalé," x 182–898, y 805–900; "o mesmo" x 328–752, y 913–1008; "fim de semana?" x 174–906, y 1021–1116
 OK     fecho: "Cada reserva no seu lugar." + logo, sem o botão do CTA (pixels limão em y 1120–1260: 0), sem "GESTÃO DE RESERVAS" (y 800–845: 0) e sem domínio do site (trocas em src/teste.js)
 
 Sincronização (detalhes em sincronia.txt):

@@ -17,12 +17,12 @@ Nada é redesenhado:
 
 | Vídeo novo | Original | Trecho |
 |---|---|---|
-| 0–1,714 s | 0–1,714 s | **Gancho** já inteiro no quadro 0: "Dois hóspedes," (branco) / "o mesmo chalé," (branco) / "o mesmo fim de semana?" (limão), no vão livre entre os grupos de perguntas dos hóspedes, que seguem pipocando em volta. |
+| 0–1,714 s | 0–1,714 s | **Gancho** já inteiro no quadro 0: "Dois hóspedes," / "o mesmo chalé," (brancas) / "o mesmo" / "fim de semana?" (limão), **4 linhas no mesmo corpo (100 px)**, no vão livre entre os grupos de perguntas dos hóspedes, que seguem pipocando em volta. |
 | 1,714–9,857 s | 2,571–10,714 s | **As perguntas viram o calendário:** o estilhaço, as 12 reservas se encaixando no tabuleiro ("Cada reserva no seu lugar."), o drop em 3D e o feixe que acende as diárias livres ("Tem vaga? Está à vista."). |
 | 9,857–11,571 s | 15,429–17,143 s | **Os filtros:** cada status sobe em torres ("Confirmadas." e "Pré-reservas."). |
 | 11,571–15,0 s | 23,143–26,571 s | **Fecho:** a logo entra com a sineta, "FAZLO Hospeda" + **"Cada reserva no seu lugar."**; fade nos últimos 0,3 s (14,7–15 s). |
 
-Trocas: o título do gancho; sai a linha "GESTÃO DE RESERVAS" e sai o botão "CONHEÇA O SISTEMA · LINK NA BIO". Ficou de fora também o trecho do voucher (tem nome de hóspede de demonstração). Todos os cortes caem num tempo da música (0,42857 s) nos dois relógios.
+Ajuste de 22/10: as linhas do gancho têm o **mesmo corpo** (antes, a 3ª saía bem menor que as duas primeiras); a frase em limão foi quebrada em "o mesmo" / "fim de semana?". Trocas: o título do gancho; sai a linha "GESTÃO DE RESERVAS" e sai o botão "CONHEÇA O SISTEMA · LINK NA BIO". Ficou de fora também o trecho do voucher (tem nome de hóspede de demonstração). Todos os cortes caem num tempo da música (0,42857 s) nos dois relógios.
 
 ## Som
 
@@ -38,10 +38,10 @@ Ordem: `render.cjs cues` → `trilha.py` → `render.cjs video`.
 
 Preta, como as dos Reels:
 - **logo** pequena no topo, no centro (y 330–382);
-- **gancho** em 3 linhas (as duas primeiras brancas, a 3ª limão), **centralizado na vertical do recorte 3:4** (bloco em y 775–1145, centro em 960,0);
+- **gancho** em 4 linhas **no mesmo corpo (110 px)**, as duas primeiras brancas e as duas últimas ("o mesmo" / "fim de semana?") limão, **centralizado na vertical do recorte 3:4** (bloco em y 730–1190, centro em 960,0);
 - **um pedaço do tabuleiro do próprio vídeo** embaixo, com as reservas em blocos (o quadro de 7,4 s do motor, sem título, com as bordas esmaecidas). O `anim.js` é só lido.
 
-Passa na regra fixa das capas ([`../README.md`](../README.md)): recorte 3:4 com folga de 60 px (conteúdo em x 87–987, y 341–1494), canto do play livre, faixa do contador livre, sem sobreposição.
+Passa na regra fixa das capas ([`../README.md`](../README.md)): recorte 3:4 com folga de 60 px (conteúdo em x 87–969, y 341–1496), canto do play livre, faixa do contador livre, sem sobreposição.
 
 ## Revisão
 
@@ -54,7 +54,7 @@ Passa na regra fixa das capas ([`../README.md`](../README.md)): recorte 3:4 com 
   - sem trechos pretos (fora o fade final) nem imagem congelada; o 1º quadro já tem o título.
 - **Cortes e textos:**
   - os 3 cortes caem no tempo da música, com crossfade de 30 ms;
-  - o título do gancho (y 703–1058; 120 px nas duas primeiras linhas e 73 px na 3ª) fica fora da coluna de botões e da faixa de baixo;
+  - o título do gancho (4 linhas, todas em 100 px, em y 697–1116 e x 174–906) fica fora da coluna de botões e da faixa de baixo;
   - o fecho não tem o botão do CTA (0 pixel limão), nem "GESTÃO DE RESERVAS", nem domínio.
 - **Sincronização:**
   1. o áudio do MP4 é o `trilha.wav`, sem deslocamento;

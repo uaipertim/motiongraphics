@@ -193,13 +193,12 @@ ok(all(cortes), f"{len(MAPA['trechos']) - 1} cortes, todos num tempo da música 
 # o gancho: Inter Display 900, as 3 linhas inteiras no quadro 0 (medido pelo motor: output/revisao/gancho.json)
 G = json.load(open(os.path.join(OUT, 'gancho.json')))
 caixas = []
-for k_, (s_, b_) in enumerate(zip(G['lines'], G['y'])):
-    sz = G['size3'] if k_ == 2 else G['size']
-    fi = ImageFont.truetype(os.path.join(ROOT, 'src', 'fonts', 'InterDisplay-Black.otf'), sz)
-    w = fi.getlength(s_) - 0.025 * sz * (len(s_) - 1)
-    caixas.append((s_, 540 - w / 2, 540 + w / 2, b_ - 0.727 * sz, b_ + 0.22 * sz))
+fi = ImageFont.truetype(os.path.join(ROOT, 'src', 'fonts', 'InterDisplay-Black.otf'), G['size'])
+for s_, b_ in zip(G['lines'], G['y']):
+    w = fi.getlength(s_) - 0.025 * G['size'] * (len(s_) - 1)
+    caixas.append((s_, 540 - w / 2, 540 + w / 2, b_ - 0.727 * G['size'], b_ + 0.22 * G['size']))
 fora = all(not (x1 > 950 and y1 > 1060 and y0 < 1560) and y1 < 1560 and y0 > 265 and x0 > 60 and x1 < 1020 for _, x0, x1, y0, y1 in caixas)
-ok(fora, f"título do gancho ({G['size']} px nas duas primeiras linhas, {G['size3']} px na 3ª) fora da coluna de botões e da faixa de baixo, dentro de y 265–1560: " + '; '.join(f'"{s_}" x {x0:.0f}–{x1:.0f}, y {y0:.0f}–{y1:.0f}' for s_, x0, x1, y0, y1 in caixas))
+ok(fora, f"título do gancho (4 linhas, todas em {G['size']} px) fora da coluna de botões e da faixa de baixo, dentro de y 265–1560: " + '; '.join(f'"{s_}" x {x0:.0f}–{x1:.0f}, y {y0:.0f}–{y1:.0f}' for s_, x0, x1, y0, y1 in caixas))
 # nenhum domínio nem CTA no fecho: no quadro de 14,4 s não há o botão limão "CONHEÇA O SISTEMA · LINK NA BIO"
 # (y 1120–1260) nem a linha "GESTÃO DE RESERVAS" (limão, y 800–845)
 with tempfile.TemporaryDirectory() as tmp0:
