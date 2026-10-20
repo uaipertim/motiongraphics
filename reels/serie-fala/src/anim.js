@@ -417,7 +417,13 @@
         drawRow(ctx, rich(d.valor, C.lime), CX, 640 + 0.36 * sz, sz, clamp(tl * 12));
         ctx.restore();
         txt(ctx, 'A CONTA CERTA', CX, 440, { size: 30, weight: 800, color: C.gray, align: 'center', ls: 6, alpha: clamp(tl * 6) });
-      } else txt(ctx, 'A CONTA CERTA', CX, 440, { size: 30, weight: 800, color: C.gray, align: 'center', ls: 6, alpha: 0.9 });
+      } else {
+        txt(ctx, 'A CONTA CERTA', CX, 440, { size: 30, weight: 800, color: C.gray, align: 'center', ls: 6, alpha: 0.9 });
+        // enquanto o valor não chega, a conta "pensa": um traço limão corre de um lado ao outro (nada fica parado)
+        const k = 0.5 + 0.5 * Math.sin(lt * 3.2), bx = CX - 220 + 440 * k;
+        ctx.fillStyle = css(C.lime, 0.18); rr(ctx, CX - 260, 478, 520, 6, 3); ctx.fill();
+        ctx.fillStyle = css(C.lime, 0.95); rr(ctx, bx - 60, 478, 120, 6, 3); ctx.fill();
+      }
       // o valor que cai: aparece, e depois cai pela parte de baixo, acelerando
       if (sc.ev.cai !== null && t >= sc.ev.cai) {
         const g = Math.max(0, t - sc.ev.queda), sz = 124, pop = E.outBack(p(t, sc.ev.cai, sc.ev.cai + 0.3), 2), fy = 1400 * g * g * 2.2 + 60 * g;

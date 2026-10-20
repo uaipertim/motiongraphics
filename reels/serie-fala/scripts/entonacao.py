@@ -162,6 +162,19 @@ def contorno_final(y, al, janela=0.45):
     return t[m], g[m], fim
 
 
+CUR = {}                                              # cena em medição (para achar a 1ª palavra do trecho trocado)
+
+
+def Q(n):
+    return SCRIPT['perguntas'][[q['cena'] for q in SCRIPT['perguntas']].index(n)]
+
+
+def acha(ws, inicio):
+    """índice da última palavra que começa com `inicio` (sem diferenciar maiúscula)"""
+    c = [i for i, w in enumerate(ws) if w['w'].lower().startswith(inicio.lower())]
+    return c[-1] if c else None
+
+
 def medida(y, al, ultimas=1):
     """subida de F0 no fim da pergunta: nos últimos 450 ms de fala, o F0 final (mediana dos 3 últimos quadros vozeados)
     menos o ponto mais baixo do trecho, em semitons (suavizado em 3 quadros). Positivo e grande = a voz fecha subindo."""
@@ -179,7 +192,9 @@ def medida(y, al, ultimas=1):
     lat = st(fim_f, vale)
     todos = f0_track(y, SR, fmax=330)[1]
     reg = float(fim_f / np.median(todos[todos > 0]))
-    return {'dur_pergunta_s': round(alnum_fim(al) - [w for w in palavras(al) if w['w'].lower().startswith('quanto')][-1]['t0'], 2), 'registro': round(reg, 2), 'mediana_hz': round(float(np.median(v))), 'subida_st': round(lat, 2), 'final_hz': round(fim_f), 'vale_hz': round(vale), 'final_vs_anterior_st': round(st(fim_f, float(np.median(v))), 2),
+    ki = acha(palavras(al), Q(CUR['n']).get('inicio', 'quanto')) if CUR else None
+    dur_cauda = round(alnum_fim(al) - palavras(al)[ki]['t0'], 2) if ki is not None else 0
+    return {'dur_cauda_s': dur_cauda, 'dur_pergunta_s': round(alnum_fim(al) - [w for w in palavras(al) if w['w'].lower().startswith('quanto')][-1]['t0'], 2), 'registro': round(reg, 2), 'mediana_hz': round(float(np.median(v))), 'subida_st': round(lat, 2), 'final_hz': round(fim_f), 'vale_hz': round(vale), 'final_vs_anterior_st': round(st(fim_f, float(np.median(v))), 2),
             'ultima_palavra_s': round(float(len(v)) * 0.01, 2), 'continua_subindo': round(mono, 2), 'contorno_hz': [int(x) for x in v[::3]]}
 
 
@@ -192,7 +207,7 @@ def carrega(nome):
 def medir(verbose=True):
     res = {}
     for q in SCRIPT['perguntas']:
-        n = q['cena']
+        n = q['cena']; CUR['n'] = n
         # referência: a tomada original (a que estava no vídeo)
         orig = os.path.join(ORIG, f'cena-{n}.wav')
         F = {f['n']: f for f in json.load(open(os.path.join(ORIG, 'falas.json')))['falas']}[n]
@@ -208,6 +223,9 @@ def medir(verbose=True):
             nome = f'c{n}-t{k:02d}'
             y, J = carrega(nome)
             m = medida(y, J['alinhamento'])
+            wn_ = palavras(J['alinhamento']); k1_ = acha(wn_, q.get('inicio', 'quanto'))
+            if m and (k1_ is None or len(wn_[k1_:]) != len(q['pergunta'].split())):
+                m = None                                  # a tomada não tem as palavras do roteiro nesse trecho
             v = J['variante']
             lista.append({'nome': nome, 'medida': m, 'variante': v, 'texto': J['texto']})
             if verbose and m:
@@ -227,7 +245,7 @@ def pontua(m, n=None):
     if not m:
         return -99
     s = m['subida_st']
-    return min(s, 4.5) - 1.0 * max(0.0, s - 6.0) + 1.5 * (m['continua_subindo'] - 0.5) - 2.0 * max(0.0, m['registro'] - 1.5) - 5.0 * max(0.0, m['dur_pergunta_s'] - REF_DUR.get(n, 9) - 0.35) - 6.0 * max(0.0, m['mediana_hz'] / REF_HZ.get(n, m['mediana_hz']) - 1.25)
+    return min(s, 4.5) - 1.0 * max(0.0, s - 6.0) + 1.5 * (m['continua_subindo'] - 0.5) - 2.0 * max(0.0, m['registro'] - 1.5) - 4.0 * max(0.0, m.get('dur_cauda_s', 0) - 1.9) - 5.0 * max(0.0, m['dur_pergunta_s'] - REF_DUR.get(n, 9) - 0.35) - 6.0 * max(0.0, m['mediana_hz'] / REF_HZ.get(n, m['mediana_hz']) - 1.25)
 
 
 # ---------------------------------------------------------------- aplicar
@@ -260,8 +278,7 @@ def emenda(n, nome_tomada):
     yn, J = carrega(nome_tomada)
     wo, wn = palavras(F['alinhamento']), palavras(J['alinhamento'])
     # a pergunta é o fim da cena: começa na última palavra "Quanto" (nas duas tomadas)
-    ini = lambda ws: [i for i, w in enumerate(ws) if w['w'].lower().startswith('quanto')][-1]
-    k0, k1 = ini(wo), ini(wn)
+    k0, k1 = acha(wo, Q(n).get('inicio_original', 'quanto')), acha(wn, Q(n).get('inicio', 'quanto'))
     po, pn = wo[k0], wn[k1]
     # janela do corte: do fim da palavra anterior ao início da pergunta (e um pouco para dentro do "qu", onde há o fecho)
     ao, bo = wo[k0 - 1]['t1'], po['t0'] + 0.05
@@ -296,8 +313,25 @@ def emenda(n, nome_tomada):
     # a legenda mostra o texto do roteiro (sem "…", sem MAIÚSCULAS da tomada): os caracteres de cada palavra da pergunta são
     # redistribuídos entre o início e o fim da palavra na tomada nova
     canon = SCRIPT['perguntas'][[q_['cena'] for q_ in SCRIPT['perguntas']].index(n)]['pergunta'].split()
-    novas = [w for w in wn[k1:]]
-    assert len(novas) == len(canon), (n, nome_tomada, [w['w'] for w in novas], canon)
+    novas = [dict(w) for w in wn[k1:]]
+    # a marcação da API chega a atrasar uma palavra depois de uma hesitação ("Peraí…"): o início de cada palavra é refinado pelo áudio,
+    # que sobe a energia logo depois da pausa
+    hop = int(0.005 * sr); env = np.sqrt(np.convolve(yn ** 2, np.ones(hop * 2) / (hop * 2), 'same'))[::hop]; lim = 0.12 * env.max()
+    for i in range(1, len(novas)):
+        a0 = novas[i]['t0']
+        f1 = min(len(env) - 1, int((a0 + 0.05) / 0.005)); f0 = max(0, int((a0 - 0.4) / 0.005))
+        quieto = env[f0:f1 + 1] < lim
+        # o último trecho quieto (≥ 30 ms) dentro da janela termina onde a palavra de fato começa
+        fim_q = None
+        j = len(quieto) - 1
+        while j >= 5:
+            if quieto[j - 5:j + 1].all():
+                while j + 1 < len(quieto) and quieto[j + 1]:
+                    j += 1
+                fim_q = j + 1; break
+            j -= 1
+        if fim_q is not None and (f0 + fim_q) * 0.005 < a0 - 0.03:
+            novas[i]['t0'] = (f0 + fim_q) * 0.005
     cc, cs, ce = [], [], []
     for i, (w, cw) in enumerate(zip(novas, canon)):
         a0 = w['t0'] + desl; b0 = alnum_end_of(B, w) + desl
@@ -340,7 +374,7 @@ def aplicar():
         for t in L[:3]:
             yy, J = carrega(t['nome'])
             ws = palavras(J['alinhamento'])
-            k1 = [i for i, w in enumerate(ws) if w['w'].lower().startswith('quanto')][-1]
+            k1 = acha(ws, Q(n).get('inicio', 'quanto'))
             i0 = max(0, int((ws[k1]['t0'] - 0.15) * SR)); i1 = min(len(yy), int((alnum_fim(J['alinhamento'], ws[-1]) + 0.35) * SR))
             seg = yy[i0:i1].copy(); k = int(0.01 * SR); seg[:k] *= np.linspace(0, 1, k); seg[-k * 4:] *= np.linspace(1, 0, k * 4)
             marca = '-ESCOLHIDA' if t['nome'] == nome else ''
@@ -349,7 +383,7 @@ def aplicar():
         sr0, y0 = wavfile.read(os.path.join(ORIG, f'cena-{n}.wav')); y0 = y0.astype(np.float64) / 32768
         wo = palavras(por[n]['alinhamento'])
         Fo = {ff['n']: ff for ff in json.load(open(os.path.join(ORIG, 'falas.json')))['falas']}[n]
-        w0 = palavras(Fo['alinhamento']); kq = [i for i, w in enumerate(w0) if w['w'].lower().startswith('quanto')][-1]
+        w0 = palavras(Fo['alinhamento']); kq = acha(w0, Q(n).get('inicio_original', 'quanto'))
         i0 = max(0, int((w0[kq]['t0'] - 0.15) * sr0)); i1 = min(len(y0), int((alnum_fim(Fo['alinhamento'], w0[-1]) + 0.35) * sr0))
         seg = y0[i0:i1].copy(); k = int(0.01 * sr0); seg[:k] *= np.linspace(0, 1, k); seg[-k * 4:] *= np.linspace(1, 0, k * 4)
         r0 = res[n]['original']

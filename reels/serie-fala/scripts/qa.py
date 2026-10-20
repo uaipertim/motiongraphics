@@ -144,7 +144,15 @@ for i, w in enumerate(PAL):
     idx = np.nonzero(seg > lim)[0]
     if not len(idx):
         continue
-    t_on = (max(0, a0) + idx[0]) / sr
+    # o início é o fim do último silêncio (≥ 30 ms) antes da palavra; a cauda da palavra anterior ("Peraí…") não conta como início
+    q = seg <= lim; fim_q = None; j = len(seg) - 1 - int(0.10 * sr)
+    while j >= int(0.03 * sr):
+        if q[j - int(0.03 * sr):j + 1].all():
+            while j + 1 < len(q) and q[j + 1]:
+                j += 1
+            fim_q = j + 1; break
+        j -= 1
+    t_on = (max(0, a0) + (fim_q if fim_q is not None and fim_q < len(seg) else idx[0])) / sr
     medidas.append((w, (t_on - w['t0']) * 1000))
 mx = max(abs(m) for _, m in medidas)
 ok(mx <= 80, f'voz × legenda: nas {len(medidas)} palavras que começam depois de uma pausa, o início medido no áudio fica a {np.mean([abs(m) for _, m in medidas]):.0f} ms em média e a {mx:.0f} ms no máximo do instante em que a legenda aparece (limite 80 ms)', sync)

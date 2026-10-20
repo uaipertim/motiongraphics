@@ -79,7 +79,9 @@ Cena nova = um bloco `CENAS.<nome> = { setup(sc), draw(ctx, sc, t, lt, u) }` em 
 3. **Encaixar** só o trecho da pergunta: o começo da cena fica exatamente como estava (`audio/<id>/voz/original/`); a tomada nova entra no silêncio ou no fecho do "qu", com transição de 14 ms em potência igual e o volume ajustado ao do começo. A legenda e as cenas são ressincronizadas pelo novo alinhamento, e a legenda mostra sempre o texto do roteiro (sem "…" nem maiúsculas da tomada).
 4. As 3 melhores tomadas de cada pergunta, mais a original, vão para `output/<id>/revisao/tomadas/` (WAV curto com a subida medida no nome) e a tabela completa para `output/<id>/revisao/entonacao.txt`. Para trocar a escolha, grave `{"1": "c1-t05"}` em `audio/<id>/tomadas/escolha.json` e rode `python3 scripts/entonacao.py <id> aplicar` e depois `scripts/episodio.sh <id>`.
 
-No fala-01: cena 1 ("Quanto falta mesmo?") foi de +1,3 st (original) para +3,6 st (tomada c1-t34); cena 5 ("Quanto falta?") de +0,8 st para +5,5 st (c5-t08).
+Se o trecho trocado começa antes da pergunta (uma hesitação, como "Peraí…"), use `"inicio": "peraí"` (1ª palavra do trecho novo) e `"inicio_original": "quanto"` (onde o trecho da narração antiga começa a ser substituído) na entrada de `perguntas`; `pergunta` traz o trecho inteiro, como na legenda ("Peraí… quanto falta mesmo?"). A marcação de tempo da API chega a atrasar a palavra depois de uma hesitação; o encaixe refina o início de cada palavra pelo áudio, e a revisão mede o início da palavra pelo fim do último silêncio, não pela cauda da palavra anterior.
+
+No fala-01: cena 1 ("Ele pagou metade. Peraí… quanto falta mesmo?") ficou com a tomada c1-t06 (+5,9 st no fim); cena 5 ("Quanto falta?") foi de +0,8 st para +5,5 st (c5-t08).
 
 ## Regras do formato (verificadas pela revisão)
 
