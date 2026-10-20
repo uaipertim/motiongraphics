@@ -1,0 +1,175 @@
+{
+  "id": "fala-01",
+  "titulo": "Ele pagou metade. Quanto falta mesmo?",
+  "destaque_global": [
+    "metade"
+  ],
+  "cenas": [
+    {
+      "fala": "Ele pagou metade. Quanto falta mesmo?",
+      "tipo": "titulo",
+      "dados": {
+        "linhas": [
+          "Ele pagou metade.",
+          "*Quanto falta mesmo?*"
+        ]
+      },
+      "destaque": [
+        "Quanto falta"
+      ],
+      "inicio": 0.08
+    },
+    {
+      "fala": "Sexta, seis da tarde: Pix de quatrocentos e cinquenta. Metade do chalé.",
+      "tipo": "notinha",
+      "dados": {
+        "linhas": [
+          {
+            "t": "SEX 18:00 · PIX",
+            "v": "R$ 450,00",
+            "em": "Pix"
+          }
+        ],
+        "total": {
+          "t": "TOTAL DO CHALÉ",
+          "v": "R$ 900,00",
+          "em": "Metade"
+        }
+      },
+      "destaque": [
+        "seis da tarde",
+        "quatrocentos e cinquenta"
+      ]
+    },
+    {
+      "fala": "Sábado, ele pediu um vinho. Cento e vinte.",
+      "tipo": "notinha",
+      "dados": {
+        "herda": 1,
+        "linhas": [
+          {
+            "t": "SÁB · 1 VINHO",
+            "v": "+ R$ 120,00",
+            "em": "vinho"
+          }
+        ]
+      },
+      "destaque": [
+        "Cento e vinte"
+      ]
+    },
+    {
+      "fala": "Domingo, o chuveiro falhou e você deu cinquenta de desconto.",
+      "tipo": "notinha",
+      "dados": {
+        "herda": 2,
+        "caneta": {
+          "t": "DESCONTO − R$ 50,00",
+          "em": "cinquenta"
+        }
+      },
+      "destaque": [
+        "cinquenta de desconto"
+      ]
+    },
+    {
+      "fala": "Onze da manhã. Mala na mão. Quanto falta?",
+      "tipo": "relogio",
+      "dados": {
+        "antes": "10:58",
+        "hora": "11:00",
+        "pergunta": "Quanto falta?",
+        "em_hora": "Onze",
+        "em_pergunta": "Quanto"
+      },
+      "destaque": [
+        "Onze da manhã",
+        "Quanto falta"
+      ]
+    },
+    {
+      "fala": "Você abre o WhatsApp, o caderno, a calculadora… e cobra os quatrocentos e cinquenta que lembrava.",
+      "tipo": "objetos",
+      "dados": {
+        "objetos": [
+          {
+            "t": "WHATSAPP",
+            "em": "WhatsApp"
+          },
+          {
+            "t": "CADERNO",
+            "em": "caderno"
+          },
+          {
+            "t": "CALCULADORA",
+            "em": "calculadora"
+          }
+        ],
+        "contador": {
+          "marcos": [
+            [
+              15,
+              "WhatsApp"
+            ],
+            [
+              100,
+              "caderno"
+            ],
+            [
+              150,
+              "calculadora"
+            ]
+          ]
+        },
+        "carimbo": {
+          "t": "COBRADO R$ 450,00",
+          "em": "quatrocentos"
+        }
+      },
+      "destaque": [
+        "quatrocentos e cinquenta"
+      ]
+    },
+    {
+      "fala": "A conta certa era quinhentos e vinte. Setenta reais ficaram no balcão.",
+      "tipo": "valor",
+      "dados": {
+        "valor": "R$ 520,00",
+        "em": "quinhentos",
+        "cai": {
+          "t": "− R$ 70,00",
+          "em": "Setenta"
+        },
+        "conta": [
+          "900 − 450 + 120 − 50 = 520",
+          "520 − 450 = 70"
+        ]
+      },
+      "destaque": [
+        "quinhentos e vinte",
+        "Setenta reais"
+      ]
+    },
+    {
+      "fala": "Saldo não se guarda na memória.",
+      "tipo": "virada",
+      "dados": {
+        "linhas": [
+          "Saldo não se guarda",
+          "*na memória.*"
+        ]
+      },
+      "destaque": [],
+      "min": 2.8
+    },
+    {
+      "fala": "Manda pra quem ainda controla sinal de cabeça.",
+      "tipo": "fecho",
+      "dados": {
+        "frase": "Manda pra quem ainda controla sinal de cabeça."
+      },
+      "destaque": [],
+      "min": 3.2
+    }
+  ]
+}

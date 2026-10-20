@@ -15,6 +15,8 @@ Nova fase de produção dos Reels do Instagram do FAZLO Hospeda. O **Motion Grap
 
 A **série ROTINA** ([`serie-rotina/`](serie-rotina)) é um modelo reutilizável com o DNA do Reel 08: um motion só, em que cada episódio troca apenas o roteiro (`episodios/<id>.json`). O título da dor aparece já no quadro 0; os cards da situação entram um a um com ping, e um chip limão é carimbado sobre a pilha. Depois vêm a virada e "Manda pra quem…", com a logo e a sineta. Cada episódio tem 10–14 s. Prontos: ep-01 ("O hóspede chegou. A reserva, não."), ep-02 ("Caiu um Pix às 14h. De quem era?") e ep-03 ("Domingo, 11h. Check-out de todo mundo."). Os roteiros dos ep-04 a ep-06 estão na pasta.
 
+A **série FALA** ([`serie-fala/`](serie-fala)) é o formato narrado: 30–36 s, com a voz oficial da FAZLO contando uma dor, **uma cena diferente para cada frase** (notinha impressa, relógio, valor em destaque, linha riscada, pergunta grande, objetos em órbita, contador, virada e fecho com a marca), legenda palavra a palavra sincronizada com a voz (≤ 80 ms), trilha com ducking e efeitos nas trocas de cena, tudo dentro do vídeo. Cada episódio é só um JSON (`episodios/<id>.json`) e um comando (`scripts/episodio.sh <id>`). Pronto: fala-01 ("Ele pagou metade. Quanto falta mesmo?", 35,8 s).
+
 O **Reel 03-teste** ([`reel-03-teste/`](reel-03-teste)) é um Trial Reel de 12 s, um corte curto do "Controle de caixa" que abre com a dor ("Fechou o mês / e o caixa não bateu?"). Não tem nome de funcionalidade nem CTA. Foi montado por remapeamento de tempo do motor do Reel 03, sem alterar o Reel 03.
 
 O v1 continua intacto na raiz do repositório. Não há Reel 04 neste repositório; a numeração segue a dos pedidos.
