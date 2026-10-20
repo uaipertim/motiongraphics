@@ -116,7 +116,7 @@ with tempfile.TemporaryDirectory() as tmp:
     # o mesmo detector, na trilha do ORIGINAL (reels/reel-00/audio/trilha.wav), no instante de origem de cada cue:
     # o "boom" e o "ding" grande do drop e da assinatura têm o corpo do golpe ~25 ms depois do instante do evento
     # no próprio Reel 00; o corte não pode acrescentar atraso a isso
-    ORIGW = wavfile.read(os.path.join(ROOT, '..', 'reel-00', 'audio', 'trilha.wav'))[1].astype(float).mean(axis=1)
+    ORIGW = wavfile.read(os.path.join(ROOT, '..', '..', 'reel-00', 'audio', 'trilha.wav'))[1].astype(float).mean(axis=1)
     fo = np.lib.stride_tricks.sliding_window_view(np.concatenate([np.zeros(PAD), ORIGW]), 1024)[::hop]
     so = np.abs(np.fft.rfft(fo * np.hanning(1024), axis=1))
     fluxo = np.maximum(0, np.diff(np.log1p(so), axis=0)).sum(axis=1)

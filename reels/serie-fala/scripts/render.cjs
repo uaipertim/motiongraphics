@@ -72,6 +72,7 @@ const grab = async (page, t) => decode(await page.evaluate((t) => window.frameAt
       fs.mkdirSync(dir, { recursive: true });
       fs.writeFileSync(path.join(dir, 'palavras.json'), JSON.stringify(await page.evaluate(() => window.palavras()), null, 1));
       fs.writeFileSync(path.join(dir, 'legenda.json'), JSON.stringify(await page.evaluate(() => window.legenda()), null, 1));
+      fs.writeFileSync(path.join(dir, 'centragem.json'), JSON.stringify(await page.evaluate(() => FALA.medidas()), null, 1));
       console.log('palavras e legenda ->', dir);
     } else if (mode === 'stills') {
       const times = (args[1] || '0').split(',').map(Number);

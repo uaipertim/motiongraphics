@@ -2,7 +2,7 @@
 /*
  * Capa do Reel 00 · corte curto (página própria src/capa.html; o vídeo não é tocado).
  *   node scripts/capa.cjs   -> output/capa.png  (+ output/revisao/capa-caixas.json para a revisão)
- * Depois: python3 ../tools/revisao_capa.py . -> output/capa.jpg, output/revisao/capa-no-feed.jpg e capa.txt
+ * Depois: python3 ../../tools/revisao_capa.py . -> output/capa.jpg, output/revisao/capa-no-feed.jpg e capa.txt
  */
 const http = require('http');
 const fs = require('fs');

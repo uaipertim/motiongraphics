@@ -17,7 +17,7 @@ A **série ROTINA** ([`serie-rotina/`](serie-rotina)) é um modelo reutilizável
 
 A **série FALA** ([`serie-fala/`](serie-fala)) é o formato narrado: 30–36 s, com a voz oficial da FAZLO contando uma dor, **uma cena diferente para cada frase** (notinha impressa, relógio, valor em destaque, linha riscada, pergunta grande, objetos em órbita, contador, virada e fecho com a marca), legenda palavra a palavra sincronizada com a voz (≤ 80 ms), trilha com ducking e efeitos nas trocas de cena, tudo dentro do vídeo. Cada episódio é só um JSON (`episodios/<id>.json`) e um comando (`scripts/episodio.sh <id>`). Pronto: fala-01 ("Ele pagou metade. Quanto falta mesmo?", 35,8 s).
 
-O **Reel 03-teste** ([`reel-03-teste/`](reel-03-teste)) é um Trial Reel de 12 s, um corte curto do "Controle de caixa" que abre com a dor ("Fechou o mês / e o caixa não bateu?"). Não tem nome de funcionalidade nem CTA. Foi montado por remapeamento de tempo do motor do Reel 03, sem alterar o Reel 03.
+Os **cortes curtos** (Reel 00-curto, Reel 02-curto e Reel 03-teste) saíram do calendário e estão guardados, sem alteração, em [`arquivo/`](arquivo): [`reel-00-curto`](arquivo/reel-00-curto), [`reel-02-curto`](arquivo/reel-02-curto) e [`reel-03-teste`](arquivo/reel-03-teste) (Trial Reel de 12 s do "Controle de caixa"). Foram montados por remapeamento de tempo dos motores dos Reels 00, 02 e 03, que não foram alterados.
 
 O v1 continua intacto na raiz do repositório. Não há Reel 04 neste repositório; a numeração segue a dos pedidos.
 

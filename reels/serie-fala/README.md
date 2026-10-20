@@ -67,8 +67,13 @@ Cena nova = um bloco `CENAS.<nome> = { setup(sc), draw(ctx, sc, t, lt, u) }` em 
 
 ## Regras do formato (verificadas pela revisão)
 
+### Layout do modelo (valem para todos os episódios)
+
+1. **Cada cena fica centralizada na faixa livre**: entre y 300 e o topo da legenda (≈ y 1295), com folga de pelo menos 60 px acima dela, ou seja, a faixa vai de y 300 a y 1235 e o centro do conteúdo cai em y ≈ 767. O motor faz isso sozinho para **todo tipo de cena**: ao iniciar, mede onde o conteúdo assentado de cada cena começa e termina e desloca a cena inteira. Cena nova não precisa de ajuste manual. Cenas cujo conteúdo cresce no meio (a pergunta que entra abaixo do relógio) declaram `fases(sc)` e o conjunto desliza suavemente para o novo centro; a nota que continua (`herda`) acompanha o próprio crescimento. As medidas de cada episódio saem em `output/<id>/revisao/centragem.json`.
+2. **Legenda sem fundo**: nada de faixa ou painel atrás do texto, só uma sombra suave para leitura. Fica centralizada no eixo x = 540 e limitada a x 130–950 (820 px). As palavras aparecem uma a uma, e cada linha é centralizada pela própria largura final.
+
 - **Vídeo:** 1080×1920 (9:16), 60 fps, H.264 + AAC 48 kHz, 30–36 s. **Voz:** voz oficial da FAZLO (a do Reel 08 com voz e do institucional), tom de conversa. **Áudio:** −14 LUFS integrados, pico real ≤ −1 dBTP; a música (colchão sintetizado em Am9 → Fmaj9 → Cmaj9 → G6/9, 88 BPM) fica ~22 dB abaixo da voz e abaixa até 9 dB enquanto ela fala; efeitos curtos marcam cada troca de cena. A música **está dentro do vídeo**.
-- **Legenda falada:** palavra a palavra, no instante da voz; Inter Display 900, ~68 px, branca; valores, horas e palavras-chave em limão; no máximo 2 linhas, centralizada numa faixa fixa abaixo da cena (y 1332–1412). Cada página dura até a primeira palavra da próxima.
+- **Legenda falada:** palavra a palavra, no instante da voz; Inter Display 900, ~68 px, branca; valores, horas e palavras-chave em limão; no máximo 2 linhas, sem painel, centralizada em x = 540 (limite x 130–950), nas linhas y 1332 e 1412. Cada página dura até a primeira palavra da próxima.
 - **Áreas seguras:** nada em x ≥ 950 entre y 1060–1560 (coluna de botões do Reels); conteúdo importante entre y 265 e 1456.
 - **Ritmo:** uma cena nova a cada 2–6,5 s e **nada parado por mais de 2 s** (toda cena tem movimento contínuo interno; a revisão mede isso quadro a quadro).
 - **Identidade:** preto, limão `#AFFA27` e branco; Inter Display + JetBrains Mono nos dados. Sem telas de sistema, celulares ou computadores: WhatsApp, caderno e calculadora aparecem só como palavras/chips.
@@ -77,7 +82,7 @@ Cena nova = um bloco `CENAS.<nome> = { setup(sc), draw(ctx, sc, t, lt, u) }` em 
 
 ## Revisão técnica do fala-01 (`scripts/qa.py`)
 
-Resultado: **aprovado**.
+Resultado: **aprovado** (refeita com a cena centralizada na faixa y 300–1235 e a legenda sem painel, centrada em x = 540).
 
 | Item | Medido | Limite |
 |---|---|---|

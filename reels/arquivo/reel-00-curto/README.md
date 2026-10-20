@@ -1,6 +1,6 @@
 # FAZLO Hospeda — Reel 00 · CORTE CURTO · "Reserva no caderno, caixa na planilha, comanda no papel?"
 
-Versão de 15 s de "Sob o mesmo teto." ([`../reel-00/`](../reel-00), que **não é alterado**), para medir o gancho com quem não segue a conta. Abre com a dor, sem nome de funcionalidade, e fecha só com **"Sob o mesmo teto."** + a logo, **sem domínio do site e sem CTA**.
+Versão de 15 s de "Sob o mesmo teto." ([`../reel-00/`](../../reel-00), que **não é alterado**), para medir o gancho com quem não segue a conta. Abre com a dor, sem nome de funcionalidade, e fecha só com **"Sob o mesmo teto."** + a logo, **sem domínio do site e sem CTA**.
 
 **Formato:** 9:16 (1080×1920), **15,0 s** (32 tempos a 128 BPM), 60 fps, H.264 + AAC 48 kHz, **−14 LUFS**, pico real abaixo de −1 dBTP. A trilha e os efeitos são os do original, sem música do Instagram.
 
@@ -44,7 +44,7 @@ Preta, como as dos Reels:
 - **título-gancho** em 3 linhas (96→112 px, Inter Display 900; as duas primeiras brancas, a 3ª limão), **centralizado na vertical do recorte 3:4** (bloco em y 813–1107, centro em 960,0);
 - **a sineta do primeiro quadro do vídeo**, tocando embaixo, desenhada pelo próprio motor (`drawBell`) com as ondas sonoras. O `anim.js` é só lido.
 
-Passa na regra fixa das capas ([`../README.md`](../README.md)): recorte 3:4 com folga de 60 px (conteúdo em x 93–988, y 341–1522), canto do play livre, faixa do contador livre, sem sobreposição. A prévia na grade mostra a capa ao lado da do ep-05 da série Rotina e da do Reel 00.
+Passa na regra fixa das capas ([`../README.md`](../../README.md)): recorte 3:4 com folga de 60 px (conteúdo em x 93–988, y 341–1522), canto do play livre, faixa do contador livre, sem sobreposição. A prévia na grade mostra a capa ao lado da do ep-05 da série Rotina e da do Reel 00.
 
 ## Revisão
 

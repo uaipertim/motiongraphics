@@ -1,6 +1,6 @@
 # FAZLO Hospeda — Reel 02 · CORTE CURTO · "Dois hóspedes, o mesmo chalé, o mesmo fim de semana?"
 
-Versão de 15 s de "Cada reserva no seu lugar." ([`../reel-02/`](../reel-02), que **não é alterado**), para medir o gancho com quem não segue a conta. Abre com a dor, sem nome de funcionalidade, e fecha só com **"Cada reserva no seu lugar."** + a logo, **sem domínio do site e sem CTA**.
+Versão de 15 s de "Cada reserva no seu lugar." ([`../reel-02/`](../../reel-02), que **não é alterado**), para medir o gancho com quem não segue a conta. Abre com a dor, sem nome de funcionalidade, e fecha só com **"Cada reserva no seu lugar."** + a logo, **sem domínio do site e sem CTA**.
 
 **Formato:** 9:16 (1080×1920), **15,0 s** (35 tempos a 140 BPM), 60 fps, H.264 + AAC 48 kHz, **−14 LUFS**, pico real abaixo de −1 dBTP. A trilha e os efeitos são os do original, sem música do Instagram.
 
@@ -41,7 +41,7 @@ Preta, como as dos Reels:
 - **gancho** em 4 linhas **no mesmo corpo (110 px)**, as duas primeiras brancas e as duas últimas ("o mesmo" / "fim de semana?") limão, **centralizado na vertical do recorte 3:4** (bloco em y 730–1190, centro em 960,0);
 - **um pedaço do tabuleiro do próprio vídeo** embaixo, com as reservas em blocos (o quadro de 7,4 s do motor, sem título, com as bordas esmaecidas). O `anim.js` é só lido.
 
-Passa na regra fixa das capas ([`../README.md`](../README.md)): recorte 3:4 com folga de 60 px (conteúdo em x 87–969, y 341–1496), canto do play livre, faixa do contador livre, sem sobreposição.
+Passa na regra fixa das capas ([`../README.md`](../../README.md)): recorte 3:4 com folga de 60 px (conteúdo em x 87–969, y 341–1496), canto do play livre, faixa do contador livre, sem sobreposição.
 
 ## Revisão
 

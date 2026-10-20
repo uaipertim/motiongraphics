@@ -36,7 +36,8 @@
     ink: '#0A0A0A', paper: '#F2F2EC', paperInk: '#141414',
   };
   const CX = 525;                                   // eixo dos textos: com ≤ 840 px vão de x 105 a 945, fora da coluna de botões
-  const CAP = { size: 68, lh: 80, y1: 1332, maxW: 840 };   // a faixa da legenda: linhas em y 1332 e 1412
+  const CAP = { size: 68, lh: 80, y1: 1332, maxW: 820, cx: 540, x0: 130, x1: 950 };   // legenda sem fundo, centrada em x = 540 e limitada a x 130–950: linhas em y 1332 e 1412
+  const FAIXA = { y0: 300, y1: 1235 };            // faixa livre da cena: de y 300 até 60 px acima do topo da legenda (≈ y 1295)
 
   // ---------------------------------------------------------------- utilitários
   const TAU = Math.PI * 2, DEG = Math.PI / 180;
@@ -160,7 +161,7 @@
         const rows = brk >= n ? [[a, b]] : [[a, a + brk], [a + brk, b]];
         const pos = {};
         rows.forEach(([r0, r1], ri) => {
-          const w = wid(r0, r1); let x = CX - w / 2;
+          const w = wid(r0, r1); let x = CAP.cx - w / 2;
           for (let k2 = r0; k2 < r1; k2++) { pos[k2] = { x, row: ri }; x += tw(M, ws[k2].w + ' ', DISPLAY, CAP.size, 900, -0.02 * CAP.size) + 0.02 * CAP.size; }
         });
         const t0 = ws[a].t0, nxt = pages[k + 1] ? ws[pages[k + 1][0]].t0 : sc.t1 + 0.12;
@@ -176,7 +177,7 @@
     const out = 1;                                   // a página seguinte entra no instante da 1ª palavra dela (corte seco)
     const y0 = CAP.y1 + (pg.nrows === 1 ? CAP.lh / 2 : 0);          // uma linha: no meio da faixa
     ctx.save();
-    ctx.shadowColor = 'rgba(0,0,0,0.85)'; ctx.shadowBlur = 18; ctx.shadowOffsetY = 3;
+    ctx.shadowColor = 'rgba(0,0,0,0.7)'; ctx.shadowBlur = 14; ctx.shadowOffsetY = 2;
     for (let k = pg.a; k < pg.b; k++) {
       const w = pg.words[k];
       if (t < w.t0) continue;
@@ -287,6 +288,7 @@
 
   // ---- relogio: o relógio grande que salta para a hora + a pergunta que cresce
   CENAS.relogio = {
+    fases(sc) { return [{ t0: sc.t0, ts: [sc.ev.ask - 0.1] }, { t0: sc.ev.ask, ts: [sc.t1 - 0.1] }]; },   // o relógio sozinho; depois a pergunta entra embaixo
     setup(sc) {
       sc.ev.jump = at(sc, sc.dados.em_hora, sc.t0 + 0.2);
       sc.ev.ask = at(sc, sc.dados.em_pergunta, sc.t0 + 1.2);
@@ -392,6 +394,7 @@
 
   // ---- valor: o valor enorme em limão, a conta que fecha e o valor que cai
   CENAS.valor = {
+    fases(sc) { const q = sc.ev.queda !== null ? sc.ev.queda - 0.1 : sc.t1 - 0.1; return [{ t0: sc.t0, ts: [q - 0.4, q] }]; },   // a medida é antes da queda
     setup(sc) {
       const d = sc.dados;
       sc.ev.v = at(sc, d.em, sc.t0 + 0.8);
@@ -531,6 +534,7 @@
     // a entrada da cena: um golpe curto (zoom de 3%), exceto quando a nota continua
     const pun = cont || sc.n === 1 ? 0 : 0.03 * (1 - E.outCubic(p(lt, 0, 0.22)));
     if (pun) { ctx.translate(CX, 760); ctx.scale(1 + pun, 1 + pun); ctx.translate(-CX, -760); }
+    ctx.translate(0, offsetAt(sc, t));
     CENAS[sc.tipo].draw(ctx, sc, t, lt, u);
     ctx.restore();
     // a troca de cena: uma barra limão varre o quadro (só em x < 945), exceto quando a nota continua
@@ -539,9 +543,7 @@
       if (sw > 0 && sw < 1) { const x = lerp(-60, 945, E.outCubic(sw)); ctx.fillStyle = css(C.lime, 0.9 * (1 - sw)); ctx.fillRect(Math.max(0, x - 38), 300, Math.min(x, 945) - Math.max(0, x - 38) + 0.1, 940); }
     }
     ctx.restore();
-    // a faixa da legenda (um degradê escuro por trás) e a legenda
-    const gr = ctx.createLinearGradient(0, 1230, 0, 1470); gr.addColorStop(0, 'rgba(10,10,10,0)'); gr.addColorStop(0.35, 'rgba(10,10,10,0.82)'); gr.addColorStop(1, 'rgba(10,10,10,0.9)');
-    ctx.fillStyle = gr; ctx.fillRect(0, 1230, W, 240);
+    // a legenda: sem painel, só sombra suave
     caption(ctx, t);
     ctx.restore();
     // o fade para o preto no fim
@@ -566,6 +568,41 @@
     actx.globalAlpha = 1; ctx.setTransform(1, 0, 0, 1, 0, 0); ctx.globalAlpha = 1; ctx.globalCompositeOperation = 'source-over'; ctx.drawImage(bufA, 0, 0);
   }
 
+  // centraliza cada cena na faixa livre: mede, no estado assentado, onde o conteúdo começa e termina (em y)
+  // e desloca a cena (e as que continuam a mesma nota) para o centro da faixa
+  function medeCenas() {
+    const cv = document.createElement('canvas'); cv.width = W / 2; cv.height = H / 2;
+    const c = cv.getContext('2d', { willReadFrequently: true });
+    const mede = (sc, tempos) => {
+      let lo = 1e9, hi = -1;
+      tempos.forEach((t) => {
+        c.setTransform(1, 0, 0, 1, 0, 0); c.clearRect(0, 0, cv.width, cv.height); c.globalAlpha = 1; c.globalCompositeOperation = 'source-over'; c.scale(0.5, 0.5);
+        CENAS[sc.tipo].draw(c, sc, t, t - sc.t0, (t - sc.t0) / (sc.t1 - sc.t0));
+        c.setTransform(1, 0, 0, 1, 0, 0);
+        const d = c.getImageData(0, 0, cv.width, cv.height).data;
+        for (let y = 0; y < cv.height; y++) { let on = false; for (let x = 0; x < cv.width; x += 2) if (d[(y * cv.width + x) * 4 + 3] > 200) { on = true; break; } if (on) { lo = Math.min(lo, y * 2); hi = Math.max(hi, y * 2 + 2); } }
+      });
+      return [lo, hi];
+    };
+    // cada cena é centrada pelo próprio conteúdo assentado. Uma cena pode ter fases (CENAS.x.fases): o conteúdo muda de
+    // tamanho no meio dela (ex.: a pergunta que entra embaixo do relógio) e o conjunto desliza para o novo centro.
+    SC.forEach((sc, i) => {
+      const fases = CENAS[sc.tipo].fases ? CENAS[sc.tipo].fases(sc) : [{ t0: sc.t0, ts: [0.6, 0.8, 0.98].map((f) => sc.t0 + f * (sc.t1 - sc.t0)) }];
+      const cont = sc.dados.herda !== undefined && sc.dados.herda !== null && i;
+      let prev = cont ? SC[i - 1].off : null;
+      sc.fases = fases.map((f) => {
+        const bb = mede(sc, f.ts), off = Math.round((FAIXA.y0 + FAIXA.y1) / 2 - (bb[0] + bb[1]) / 2);
+        const r = { t0: f.t0, off, prev: prev === null ? off : prev, bbox: bb }; prev = off; return r;
+      });
+      sc.off = sc.fases[sc.fases.length - 1].off; sc.bboxGrupo = sc.fases[sc.fases.length - 1].bbox;
+    });
+  }
+  function offsetAt(sc, t) {
+    let v = sc.fases[0].prev;
+    for (const f of sc.fases) { if (t < f.t0) break; v = lerp(f.prev, f.off, E.outCubic(p(t, f.t0, f.t0 + 0.6))); }
+    return v;
+  }
+
   function init(img, linha) {
     LOGO = img; LN = linha; DUR = linha.duracao; CUES = []; FAST = [];
     SC = linha.cenas.map((c) => ({ ...c, ev: {} }));
@@ -583,6 +620,7 @@
     });
     CUES.push({ t: DUR - LN.fade_final, type: 'fade', d: LN.fade_final });
     CUES.sort((a, b) => a.t - b.t);
+    medeCenas();
   }
 
   window.FALA = {
@@ -592,6 +630,7 @@
     palavras: () => SC.flatMap((s) => s.palavras.map((w) => ({ cena: s.n, w: w.w, t0: w.t0, t1: w.t1, chave: w.chave }))),
     legenda: () => PAGES.map((q) => ({ cena: q.sc, t0: q.t0, t1: q.t1, linhas: q.rows.map(([a, b]) => q.words.slice(a, b).map((x) => x.w).join(' ')),
       palavras: Array.from({ length: q.b - q.a }, (_, i) => { const k = q.a + i, ps = q.pos[k]; return { w: q.words[k].w, t0: q.words[k].t0, x: ps.x, w_px: tw(M, q.words[k].w, DISPLAY, CAP.size, 900, -0.02 * CAP.size), y: CAP.y1 + (q.nrows === 1 ? CAP.lh / 2 : 0) + ps.row * CAP.lh }; }) })),
+    medidas: () => SC.map((s) => ({ n: s.n, tipo: s.tipo, fases: s.fases.map((f) => ({ t0: f.t0, bbox: f.bbox, off: f.off, topo: f.bbox[0] + f.off, base: f.bbox[1] + f.off })) })),
     CAP, C, DISPLAY, MONO, fitSize, rich, drawRow, rowW100, tw, txt, glow, smart, M,
   };
 })();

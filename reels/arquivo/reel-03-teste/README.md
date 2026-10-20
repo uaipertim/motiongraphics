@@ -1,6 +1,6 @@
 # FAZLO Hospeda — Reel 03 · TESTE (Trial Reel, 12 s) · "Fechou o mês e o caixa não bateu?"
 
-Versão curta do "Controle de caixa" ([`../reel-03/`](../reel-03), que **não é alterado**), para medir o gancho com quem não segue a conta. O original teve 90% de pulo: abria com o nome da funcionalidade e durava 30 s. Este tem **12 s** e abre com a dor. Vai ao ar como **Trial Reel** (não aparece na grade, então não tem capa).
+Versão curta do "Controle de caixa" ([`../reel-03/`](../../reel-03), que **não é alterado**), para medir o gancho com quem não segue a conta. O original teve 90% de pulo: abria com o nome da funcionalidade e durava 30 s. Este tem **12 s** e abre com a dor. Vai ao ar como **Trial Reel** (não aparece na grade, então não tem capa).
 
 **Formato:** 9:16 (1080×1920), **12,0 s**, 60 fps, H.264 + AAC 48 kHz, **−14 LUFS**, pico real abaixo de −1 dBTP. A trilha e os efeitos são os do original, sem música do Instagram.
 
