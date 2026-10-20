@@ -3,19 +3,19 @@ output/fala-01/fazlo-hospeda-fala-01.mp4
 
 OK     vídeo h264 High yuv420p
 OK     resolução 1080x1920 (9:16)
-OK     60 fps, 2149 quadros
-OK     duração do vídeo 35.817 s (alvo 30–36 s)
-OK     áudio aac 48000 Hz, 2 canais, 256 kb/s
-OK     vídeo e áudio com a mesma duração (Δ 20 ms)
-OK     arquivo 9.8 MB, 2.2 Mb/s
+OK     60 fps, 2141 quadros
+OK     duração do vídeo 35.683 s (alvo 30–36 s)
+OK     áudio aac 48000 Hz, 2 canais, 259 kb/s
+OK     vídeo e áudio com a mesma duração (Δ 14 ms)
+OK     arquivo 9.7 MB, 2.2 Mb/s
 OK     loudness integrado da mixagem -14.0 LUFS (alvo −14)
-OK     pico real -1.6 dBTP (limite −1)
+OK     pico real -1.7 dBTP (limite −1)
        faixa de loudness (LRA) 2.9 LU
-OK     a voz sozinha, na escala da mixagem: -14.4 LUFS integrados (a trilha e os efeitos somam o resto)
+OK     a voz sozinha, na escala da mixagem: -14.5 LUFS integrados (a trilha e os efeitos somam o resto)
 OK     sem trechos pretos ≥ 0,1 s antes do fade final
 OK     sem imagem congelada ≥ 0,75 s
 OK     ritmo: nenhuma janela de 2 s sem movimento
-       cenas: 1 titulo 2.9 s · 2 notinha 5.0 s · 3 notinha 3.0 s · 4 notinha 4.1 s · 5 relogio 2.3 s · 6 objetos 6.5 s · 7 valor 5.8 s · 8 virada 2.8 s · 9 fecho 3.2 s
+       cenas: 1 titulo 2.7 s · 2 notinha 5.0 s · 3 notinha 3.0 s · 4 notinha 4.1 s · 5 relogio 2.3 s · 6 objetos 6.5 s · 7 valor 5.8 s · 8 virada 2.8 s · 9 fecho 3.2 s
 OK     troca de cena a cada 2.3–6.5 s (média 3.9 s); movimento contínuo dentro de cada cena (o mais quieto: 0.11 de diferença média por quadro)
 OK     coluna de botões (x ≥ 950, y 1060–1560): 0 pixel aceso em 143 quadros amostrados
 OK     conteúdo entre y 265 e 1456: nada aceso acima de 265 (quadros: 0) nem abaixo de 1456 (quadros: 0), fora o fade final
@@ -23,6 +23,6 @@ OK     o 1º quadro já tem o gancho escrito (luminância média 22.5, texto na 
 
 Sincronização legenda × voz (detalhes em sincronia.txt):
 OK     legenda × imagem: 86 de 86 palavras começam a aparecer, na própria posição delas, no quadro da fala ou até 2 quadros depois (≤ 33 ms); mediana 1 quadro(s)
-OK     voz × legenda: nas 8 palavras que começam depois de uma pausa, o início medido no áudio fica a 38 ms em média e a 71 ms no máximo do instante em que a legenda aparece (limite 80 ms)
+OK     voz × legenda: nas 10 palavras que começam depois de uma pausa, o início medido no áudio fica a 35 ms em média e a 71 ms no máximo do instante em que a legenda aparece (limite 80 ms)
 
 RESULTADO: aprovado

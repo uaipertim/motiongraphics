@@ -9,7 +9,9 @@ set -euo pipefail
 cd "$(dirname "$0")/.."
 EP="${1:?uso: scripts/episodio.sh <id do episódio, ex. fala-02> [--voz]}"
 test -f "episodios/$EP.json" || { echo "episodios/$EP.json não existe"; exit 1; }
-if [ "${2:-}" = "--voz" ] || [ ! -f "audio/$EP/voz/falas.json" ]; then python3 scripts/voz.py "$EP"; fi
+if [ "${2:-}" = "--voz" ] || [ ! -f "audio/$EP/voz/falas.json" ]; then rm -rf "audio/$EP/voz/original"; python3 scripts/voz.py "$EP"; fi
+# perguntas na fala (campo "perguntas" do JSON): várias tomadas, a subida de F0 no fim é medida e a melhor entra na narração
+if grep -q '"perguntas"' "episodios/$EP.json"; then python3 scripts/entonacao.py "$EP" gerar; python3 scripts/entonacao.py "$EP" aplicar; fi
 python3 scripts/linha.py "$EP"                      # cenas e palavras no tempo do vídeo + a narração montada
 node scripts/render.cjs cues  --ep "$EP"            # os eventos da animação -> audio/$EP/cues.json
 node scripts/render.cjs boxes --ep "$EP"            # as palavras e as páginas da legenda -> output/$EP/revisao/

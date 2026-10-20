@@ -39,8 +39,8 @@ SR = 44100
 SCRIPT = json.load(open(os.path.join(ROOT, 'episodios', EP + '.json')))
 
 
-def tts(text, prev, nxt, seed):
-    body = {'text': text, 'model_id': MODEL, 'voice_settings': SETTINGS, 'seed': seed, 'previous_text': prev, 'next_text': nxt}
+def tts(text, prev, nxt, seed, settings=None, model=None):
+    body = {'text': text, 'model_id': model or MODEL, 'voice_settings': settings or SETTINGS, 'seed': seed, 'previous_text': prev, 'next_text': nxt}
     headers = {'Content-Type': 'application/json', 'Accept': 'application/json'}
     key = os.environ.get('ELEVENLABS_API_KEY')
     if key:

@@ -65,6 +65,22 @@ A chave da API do ElevenLabs **fica só em Segredos de rede** (a rede da nuvem p
 
 Cena nova = um bloco `CENAS.<nome> = { setup(sc), draw(ctx, sc, t, lt, u) }` em `src/anim.js`. Ela herda sozinha a legenda, as faixas seguras, a câmera, o corte limão e os eventos de som (`CUES.push({ t, type })`).
 
+### Entonação: pergunta na fala tem que soar como pergunta
+
+**Pergunta na fala tem que soar como pergunta: gerar várias tomadas e medir a subida no fim.** A voz, sozinha, tende a ler a pergunta com tom de afirmação (F0 plano ou caindo no fim). Por isso toda pergunta falada do roteiro entra no campo `perguntas` do JSON e passa por `scripts/entonacao.py`, que o `episodio.sh` já roda:
+
+```json
+"perguntas": [ { "cena": 1, "pergunta": "Quanto falta mesmo?",
+                 "variantes": [ { "estab": 0.30, "estilo": 0.60, "texto": "Ele pagou metade. Quanto falta mesmo??", "seed": 31 } ] } ]
+```
+
+1. **Gerar** pelo menos 5 tomadas do trecho (em `audio/<id>/tomadas/`): estabilidade mais baixa (0,15–0,35) e estilo mais alto (0,5–1,0) que o resto da voz, com variações de pontuação ("falta… mesmo?", "mesmo??", "?!"), MAIÚSCULA de ênfase, trecho só da pergunta com `previous_text` de dúvida (`so`/`prev`) e seeds diferentes. Marca de emoção (`[curious]` etc.) só existe no `eleven_v3`: ele aceita a marca, mas não deu subida melhor que o v2 nos testes do fala-01 e muda o timbre, então não é usado.
+2. **Medir** o F0 (autocorrelação, 10 ms) nos últimos 450 ms de fala: subida = F0 final − ponto mais baixo, em semitons. Vale 2 a 7 st (acima disso soa caricato), com o F0 seguindo subindo até o fim e sem saltar de registro; a pergunta não pode ficar mais de 0,35 s mais longa que a original.
+3. **Encaixar** só o trecho da pergunta: o começo da cena fica exatamente como estava (`audio/<id>/voz/original/`); a tomada nova entra no silêncio ou no fecho do "qu", com transição de 14 ms em potência igual e o volume ajustado ao do começo. A legenda e as cenas são ressincronizadas pelo novo alinhamento, e a legenda mostra sempre o texto do roteiro (sem "…" nem maiúsculas da tomada).
+4. As 3 melhores tomadas de cada pergunta, mais a original, vão para `output/<id>/revisao/tomadas/` (WAV curto com a subida medida no nome) e a tabela completa para `output/<id>/revisao/entonacao.txt`. Para trocar a escolha, grave `{"1": "c1-t05"}` em `audio/<id>/tomadas/escolha.json` e rode `python3 scripts/entonacao.py <id> aplicar` e depois `scripts/episodio.sh <id>`.
+
+No fala-01: cena 1 ("Quanto falta mesmo?") foi de +1,3 st (original) para +3,6 st (tomada c1-t34); cena 5 ("Quanto falta?") de +0,8 st para +5,5 st (c5-t08).
+
 ## Regras do formato (verificadas pela revisão)
 
 ### Layout do modelo (valem para todos os episódios)

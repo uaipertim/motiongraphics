@@ -1,14 +1,16 @@
 SÉRIE FALA · fala-01 — sincronia legenda × voz
 
 OK     legenda × imagem: 86 de 86 palavras começam a aparecer, na própria posição delas, no quadro da fala ou até 2 quadros depois (≤ 33 ms); mediana 1 quadro(s)
-OK     voz × legenda: nas 8 palavras que começam depois de uma pausa, o início medido no áudio fica a 38 ms em média e a 71 ms no máximo do instante em que a legenda aparece (limite 80 ms)
+OK     voz × legenda: nas 10 palavras que começam depois de uma pausa, o início medido no áudio fica a 35 ms em média e a 71 ms no máximo do instante em que a legenda aparece (limite 80 ms)
 
 Palavra a palavra (instante da palavra na marcação de tempo; início medido no áudio, nas que vêm depois de uma pausa):
-           0.080 s  "Ele           "  áudio  +38.3 ms
-           1.717 s  "Quanto        "  áudio  +27.0 ms
-           6.845 s  "Metade        "  áudio   +1.3 ms
-           9.895 s  "Cento         "  áudio  -20.9 ms
-          12.921 s  "e             "  áudio  +65.3 ms
-          25.343 s  "era           "  áudio  +71.4 ms
-          27.178 s  "Setenta       "  áudio  -23.2 ms
-          32.400 s  "Manda         "  áudio  +52.7 ms
+           0.080 s  "Ele           "  áudio  +38.4 ms
+           1.707 s  "Quanto        "  áudio  +25.1 ms
+           2.801 s  "Sexta,        "  áudio   +3.7 ms
+           6.656 s  "Metade        "  áudio   +1.3 ms
+           9.706 s  "Cento         "  áudio  -20.9 ms
+          12.732 s  "e             "  áudio  +65.3 ms
+          17.241 s  "Você          "  áudio  +43.3 ms
+          25.213 s  "era           "  áudio  +71.5 ms
+          27.048 s  "Setenta       "  áudio  -23.2 ms
+          32.270 s  "Manda         "  áudio  +52.7 ms

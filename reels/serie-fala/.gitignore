@@ -3,3 +3,6 @@ audio/*/musica.wav
 audio/*/sfx.wav
 audio/*/voz-tratada.wav
 .video-only.mp4
+audio/*/tomadas/*.wav
+!audio/*/tomadas/c1-t34.wav
+!audio/*/tomadas/c5-t08.wav

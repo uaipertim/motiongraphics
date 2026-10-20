@@ -171,5 +171,732 @@
       "destaque": [],
       "min": 3.2
     }
+  ],
+  "perguntas": [
+    {
+      "cena": 1,
+      "pergunta": "Quanto falta mesmo?",
+      "variantes": [
+        {
+          "estab": 0.4,
+          "estilo": 0.35
+        },
+        {
+          "estab": 0.3,
+          "estilo": 0.5
+        },
+        {
+          "estab": 0.25,
+          "estilo": 0.6
+        },
+        {
+          "estab": 0.2,
+          "estilo": 0.7
+        },
+        {
+          "estab": 0.3,
+          "estilo": 0.55,
+          "texto": "Ele pagou metade. Quanto falta… mesmo?"
+        },
+        {
+          "estab": 0.25,
+          "estilo": 0.65,
+          "texto": "Ele pagou metade. Quanto falta… mesmo?"
+        },
+        {
+          "estab": 0.2,
+          "estilo": 0.7,
+          "texto": "Ele pagou metade. Quanto falta… mesmo?"
+        },
+        {
+          "estab": 0.3,
+          "estilo": 0.55,
+          "texto": "Ele pagou metade. Quanto falta, mesmo?"
+        },
+        {
+          "estab": 0.25,
+          "estilo": 0.6,
+          "texto": "Ele pagou metade. Quanto falta mesmo…?"
+        },
+        {
+          "estab": 0.5,
+          "estilo": 0.6,
+          "texto": "[curious] Ele pagou metade. Quanto falta mesmo?",
+          "modelo": "eleven_v3"
+        },
+        {
+          "estab": 0.3,
+          "estilo": 0.5,
+          "so": true,
+          "prev": "Ele pagou metade. E ela, fazendo a conta de cabeça e sem lembrar, perguntou, em dúvida:"
+        },
+        {
+          "estab": 0.25,
+          "estilo": 0.6,
+          "so": true,
+          "prev": "Ele pagou metade. E ela, fazendo a conta de cabeça e sem lembrar, perguntou, em dúvida:",
+          "seed": 21
+        },
+        {
+          "estab": 0.4,
+          "estilo": 0.45,
+          "so": true,
+          "prev": "Ele pagou metade. E ela, fazendo a conta de cabeça e sem lembrar, perguntou, em dúvida:",
+          "seed": 22
+        },
+        {
+          "estab": 0.25,
+          "estilo": 0.65,
+          "so": true,
+          "prev": "Ele pagou metade. E ela, fazendo a conta de cabeça e sem lembrar, perguntou, em dúvida:",
+          "texto": "Quanto falta… mesmo?",
+          "seed": 23
+        },
+        {
+          "estab": 0.3,
+          "estilo": 0.55,
+          "so": true,
+          "prev": "Ele pagou metade. E ela, fazendo a conta de cabeça e sem lembrar, perguntou, em dúvida:",
+          "texto": "Quanto falta mesmo?",
+          "seed": 24
+        },
+        {
+          "estab": 0.35,
+          "estilo": 0.6,
+          "so": true,
+          "prev": "Ele pagou metade. E ela, fazendo a conta de cabeça e sem lembrar, perguntou, em dúvida:",
+          "texto": "Quanto falta, mesmo?",
+          "seed": 25
+        },
+        {
+          "estab": 0.25,
+          "estilo": 0.6,
+          "so": true,
+          "prev": "Ele pagou metade. E ela, fazendo a conta de cabeça e sem lembrar, perguntou, em dúvida:",
+          "texto": "Quanto falta MESMO?",
+          "seed": 26
+        },
+        {
+          "estab": 0.3,
+          "estilo": 0.6,
+          "texto": "Ele pagou metade. Quanto falta MESMO?",
+          "seed": 27
+        },
+        {
+          "estab": 0.28,
+          "estilo": 0.6,
+          "texto": "Ele pagou metade. Quanto falta… mesmo?",
+          "seed": 31
+        },
+        {
+          "estab": 0.28,
+          "estilo": 0.6,
+          "texto": "Ele pagou metade. Quanto falta… mesmo?",
+          "seed": 32
+        },
+        {
+          "estab": 0.28,
+          "estilo": 0.6,
+          "texto": "Ele pagou metade. Quanto falta… mesmo?",
+          "seed": 33
+        },
+        {
+          "estab": 0.28,
+          "estilo": 0.6,
+          "texto": "Ele pagou metade. Quanto falta… mesmo?",
+          "seed": 34
+        },
+        {
+          "estab": 0.28,
+          "estilo": 0.6,
+          "texto": "Ele pagou metade. Quanto falta… mesmo?",
+          "seed": 35
+        },
+        {
+          "estab": 0.28,
+          "estilo": 0.6,
+          "texto": "Ele pagou metade. Quanto falta… mesmo?",
+          "seed": 36
+        },
+        {
+          "estab": 0.28,
+          "estilo": 0.6,
+          "texto": "Ele pagou metade. Quanto falta… mesmo?",
+          "seed": 37
+        },
+        {
+          "estab": 0.28,
+          "estilo": 0.6,
+          "texto": "Ele pagou metade. Quanto falta… mesmo?",
+          "seed": 38
+        },
+        {
+          "estab": 0.3,
+          "estilo": 0.55,
+          "so": true,
+          "prev": "Ele pagou metade. E ela, fazendo a conta de cabeça e sem lembrar, perguntou, em dúvida:",
+          "texto": "Quanto falta… mesmo?",
+          "seed": 41
+        },
+        {
+          "estab": 0.3,
+          "estilo": 0.55,
+          "so": true,
+          "prev": "Ele pagou metade. E ela, fazendo a conta de cabeça e sem lembrar, perguntou, em dúvida:",
+          "texto": "Quanto falta… mesmo?",
+          "seed": 42
+        },
+        {
+          "estab": 0.3,
+          "estilo": 0.55,
+          "so": true,
+          "prev": "Ele pagou metade. E ela, fazendo a conta de cabeça e sem lembrar, perguntou, em dúvida:",
+          "texto": "Quanto falta… mesmo?",
+          "seed": 43
+        },
+        {
+          "estab": 0.3,
+          "estilo": 0.55,
+          "so": true,
+          "prev": "Ele pagou metade. E ela, fazendo a conta de cabeça e sem lembrar, perguntou, em dúvida:",
+          "texto": "Quanto falta… mesmo?",
+          "seed": 44
+        },
+        {
+          "estab": 0.3,
+          "estilo": 0.6,
+          "texto": "Ele pagou metade. Quanto falta mesmo?!",
+          "seed": 61
+        },
+        {
+          "estab": 0.3,
+          "estilo": 0.6,
+          "texto": "Ele pagou metade. Quanto falta mesmo?!",
+          "seed": 62
+        },
+        {
+          "estab": 0.3,
+          "estilo": 0.6,
+          "texto": "Ele pagou metade. Quanto falta mesmo??",
+          "seed": 61
+        },
+        {
+          "estab": 0.3,
+          "estilo": 0.6,
+          "texto": "Ele pagou metade. Quanto falta mesmo??",
+          "seed": 62
+        },
+        {
+          "estab": 0.2,
+          "estilo": 0.9,
+          "texto": "Ele pagou metade. Quanto falta mesmo?",
+          "seed": 63
+        },
+        {
+          "estab": 0.2,
+          "estilo": 0.9,
+          "texto": "Ele pagou metade. Quanto falta mesmo?",
+          "seed": 64
+        },
+        {
+          "estab": 0.3,
+          "estilo": 1.0,
+          "texto": "Ele pagou metade. Quanto falta mesmo?",
+          "seed": 63
+        },
+        {
+          "estab": 0.3,
+          "estilo": 1.0,
+          "texto": "Ele pagou metade. Quanto falta mesmo?",
+          "seed": 64
+        },
+        {
+          "estab": 0.15,
+          "estilo": 0.8,
+          "texto": "Ele pagou metade. Quanto falta mesmo?",
+          "seed": 63
+        },
+        {
+          "estab": 0.15,
+          "estilo": 0.8,
+          "texto": "Ele pagou metade. Quanto falta mesmo?",
+          "seed": 64
+        },
+        {
+          "estab": 0.0,
+          "estilo": 0.6,
+          "texto": "[curious] Ele pagou metade. Quanto falta mesmo?",
+          "modelo": "eleven_v3",
+          "seed": 70
+        },
+        {
+          "estab": 0.5,
+          "estilo": 0.6,
+          "texto": "[curious] Ele pagou metade. Quanto falta mesmo?",
+          "modelo": "eleven_v3",
+          "seed": 70
+        },
+        {
+          "estab": 0.0,
+          "estilo": 0.6,
+          "texto": "[questioning] Ele pagou metade. Quanto falta mesmo?",
+          "modelo": "eleven_v3",
+          "seed": 70
+        },
+        {
+          "estab": 0.5,
+          "estilo": 0.6,
+          "texto": "[questioning] Ele pagou metade. Quanto falta mesmo?",
+          "modelo": "eleven_v3",
+          "seed": 70
+        },
+        {
+          "estab": 0.0,
+          "estilo": 0.6,
+          "texto": "[uncertain] Ele pagou metade. Quanto falta mesmo?",
+          "modelo": "eleven_v3",
+          "seed": 70
+        },
+        {
+          "estab": 0.5,
+          "estilo": 0.6,
+          "texto": "[uncertain] Ele pagou metade. Quanto falta mesmo?",
+          "modelo": "eleven_v3",
+          "seed": 70
+        },
+        {
+          "estab": 0.3,
+          "estilo": 0.6,
+          "texto": "Ele pagou metade. Quanto falta MESMO?",
+          "seed": 81
+        },
+        {
+          "estab": 0.3,
+          "estilo": 0.6,
+          "texto": "Ele pagou metade. Quanto falta MESMO?",
+          "seed": 82
+        },
+        {
+          "estab": 0.3,
+          "estilo": 0.6,
+          "texto": "Ele pagou metade. Quanto falta MESMO?",
+          "seed": 83
+        },
+        {
+          "estab": 0.3,
+          "estilo": 0.6,
+          "texto": "Ele pagou metade. Quanto falta MESMO?",
+          "seed": 84
+        },
+        {
+          "estab": 0.35,
+          "estilo": 0.55,
+          "texto": "Ele pagou metade. Quanto falta… MESMO?",
+          "seed": 85
+        },
+        {
+          "estab": 0.35,
+          "estilo": 0.55,
+          "texto": "Ele pagou metade. Quanto falta… MESMO?",
+          "seed": 86
+        },
+        {
+          "estab": 0.35,
+          "estilo": 0.55,
+          "texto": "Ele pagou metade. Quanto falta… MESMO?",
+          "seed": 87
+        }
+      ]
+    },
+    {
+      "cena": 5,
+      "pergunta": "Quanto falta?",
+      "variantes": [
+        {
+          "estab": 0.4,
+          "estilo": 0.35
+        },
+        {
+          "estab": 0.3,
+          "estilo": 0.5
+        },
+        {
+          "estab": 0.25,
+          "estilo": 0.6
+        },
+        {
+          "estab": 0.2,
+          "estilo": 0.7
+        },
+        {
+          "estab": 0.3,
+          "estilo": 0.55,
+          "texto": "Onze da manhã. Mala na mão. Quanto… falta?"
+        },
+        {
+          "estab": 0.25,
+          "estilo": 0.65,
+          "texto": "Onze da manhã. Mala na mão. Quanto… falta?"
+        },
+        {
+          "estab": 0.2,
+          "estilo": 0.7,
+          "texto": "Onze da manhã. Mala na mão. Quanto… falta?"
+        },
+        {
+          "estab": 0.3,
+          "estilo": 0.55,
+          "texto": "Onze da manhã. Mala na mão. Quanto falta…?"
+        },
+        {
+          "estab": 0.25,
+          "estilo": 0.6,
+          "texto": "Onze da manhã. Mala na mão. E quanto falta?"
+        },
+        {
+          "estab": 0.5,
+          "estilo": 0.6,
+          "texto": "[curious] Onze da manhã. Mala na mão. Quanto falta?",
+          "modelo": "eleven_v3"
+        },
+        {
+          "estab": 0.3,
+          "estilo": 0.5,
+          "so": true,
+          "prev": "Onze da manhã. Mala na mão. O hóspede, no balcão, olha para a conta e pergunta direto:"
+        },
+        {
+          "estab": 0.25,
+          "estilo": 0.6,
+          "so": true,
+          "prev": "Onze da manhã. Mala na mão. O hóspede, no balcão, olha para a conta e pergunta direto:",
+          "seed": 21
+        },
+        {
+          "estab": 0.4,
+          "estilo": 0.45,
+          "so": true,
+          "prev": "Onze da manhã. Mala na mão. O hóspede, no balcão, olha para a conta e pergunta direto:",
+          "seed": 22
+        },
+        {
+          "estab": 0.25,
+          "estilo": 0.65,
+          "so": true,
+          "prev": "Onze da manhã. Mala na mão. O hóspede, no balcão, olha para a conta e pergunta direto:",
+          "texto": "Quanto… falta?",
+          "seed": 23
+        },
+        {
+          "estab": 0.3,
+          "estilo": 0.55,
+          "so": true,
+          "prev": "Onze da manhã. Mala na mão. O hóspede, no balcão, olha para a conta e pergunta direto:",
+          "texto": "Quanto falta…?",
+          "seed": 24
+        },
+        {
+          "estab": 0.35,
+          "estilo": 0.6,
+          "so": true,
+          "prev": "Onze da manhã. Mala na mão. O hóspede, no balcão, olha para a conta e pergunta direto:",
+          "seed": 25
+        },
+        {
+          "estab": 0.25,
+          "estilo": 0.6,
+          "so": true,
+          "prev": "Onze da manhã. Mala na mão. O hóspede, no balcão, olha para a conta e pergunta direto:",
+          "texto": "Quanto FALTA?",
+          "seed": 26
+        },
+        {
+          "estab": 0.3,
+          "estilo": 0.6,
+          "texto": "Onze da manhã. Mala na mão. Quanto FALTA?",
+          "seed": 27
+        },
+        {
+          "estab": 0.3,
+          "estilo": 0.55,
+          "texto": "Onze da manhã. Mala na mão. Quanto falta?",
+          "seed": 31
+        },
+        {
+          "estab": 0.3,
+          "estilo": 0.55,
+          "texto": "Onze da manhã. Mala na mão. Quanto falta?",
+          "seed": 32
+        },
+        {
+          "estab": 0.3,
+          "estilo": 0.55,
+          "texto": "Onze da manhã. Mala na mão. Quanto falta?",
+          "seed": 33
+        },
+        {
+          "estab": 0.3,
+          "estilo": 0.55,
+          "texto": "Onze da manhã. Mala na mão. Quanto falta?",
+          "seed": 34
+        },
+        {
+          "estab": 0.3,
+          "estilo": 0.55,
+          "texto": "Onze da manhã. Mala na mão. Quanto falta?",
+          "seed": 35
+        },
+        {
+          "estab": 0.3,
+          "estilo": 0.55,
+          "texto": "Onze da manhã. Mala na mão. Quanto falta?",
+          "seed": 36
+        },
+        {
+          "estab": 0.3,
+          "estilo": 0.55,
+          "texto": "Onze da manhã. Mala na mão. Quanto falta?",
+          "seed": 37
+        },
+        {
+          "estab": 0.3,
+          "estilo": 0.55,
+          "texto": "Onze da manhã. Mala na mão. Quanto falta?",
+          "seed": 38
+        },
+        {
+          "estab": 0.3,
+          "estilo": 0.55,
+          "texto": "Onze da manhã. Mala na mão. Quanto falta…?",
+          "seed": 41
+        },
+        {
+          "estab": 0.3,
+          "estilo": 0.55,
+          "texto": "Onze da manhã. Mala na mão. Quanto falta…?",
+          "seed": 42
+        },
+        {
+          "estab": 0.3,
+          "estilo": 0.55,
+          "texto": "Onze da manhã. Mala na mão. Quanto falta…?",
+          "seed": 43
+        },
+        {
+          "estab": 0.3,
+          "estilo": 0.55,
+          "texto": "Onze da manhã. Mala na mão. Quanto falta…?",
+          "seed": 44
+        },
+        {
+          "estab": 0.3,
+          "estilo": 0.55,
+          "so": true,
+          "prev": "Onze da manhã. Mala na mão. O hóspede, no balcão, olha para a conta e pergunta direto:",
+          "seed": 51
+        },
+        {
+          "estab": 0.3,
+          "estilo": 0.55,
+          "so": true,
+          "prev": "Onze da manhã. Mala na mão. O hóspede, no balcão, olha para a conta e pergunta direto:",
+          "seed": 52
+        },
+        {
+          "estab": 0.3,
+          "estilo": 0.55,
+          "so": true,
+          "prev": "Onze da manhã. Mala na mão. O hóspede, no balcão, olha para a conta e pergunta direto:",
+          "seed": 53
+        },
+        {
+          "estab": 0.3,
+          "estilo": 0.55,
+          "so": true,
+          "prev": "Onze da manhã. Mala na mão. O hóspede, no balcão, olha para a conta e pergunta direto:",
+          "seed": 54
+        },
+        {
+          "estab": 0.3,
+          "estilo": 0.6,
+          "texto": "Onze da manhã. Mala na mão. Quanto falta?!",
+          "seed": 61
+        },
+        {
+          "estab": 0.3,
+          "estilo": 0.6,
+          "texto": "Onze da manhã. Mala na mão. Quanto falta?!",
+          "seed": 62
+        },
+        {
+          "estab": 0.3,
+          "estilo": 0.6,
+          "texto": "Onze da manhã. Mala na mão. Quanto falta??",
+          "seed": 61
+        },
+        {
+          "estab": 0.3,
+          "estilo": 0.6,
+          "texto": "Onze da manhã. Mala na mão. Quanto falta??",
+          "seed": 62
+        },
+        {
+          "estab": 0.2,
+          "estilo": 0.9,
+          "texto": "Onze da manhã. Mala na mão. Quanto falta?",
+          "seed": 63
+        },
+        {
+          "estab": 0.2,
+          "estilo": 0.9,
+          "texto": "Onze da manhã. Mala na mão. Quanto falta?",
+          "seed": 64
+        },
+        {
+          "estab": 0.3,
+          "estilo": 1.0,
+          "texto": "Onze da manhã. Mala na mão. Quanto falta?",
+          "seed": 63
+        },
+        {
+          "estab": 0.3,
+          "estilo": 1.0,
+          "texto": "Onze da manhã. Mala na mão. Quanto falta?",
+          "seed": 64
+        },
+        {
+          "estab": 0.15,
+          "estilo": 0.8,
+          "texto": "Onze da manhã. Mala na mão. Quanto falta?",
+          "seed": 63
+        },
+        {
+          "estab": 0.15,
+          "estilo": 0.8,
+          "texto": "Onze da manhã. Mala na mão. Quanto falta?",
+          "seed": 64
+        },
+        {
+          "estab": 0.0,
+          "estilo": 0.6,
+          "texto": "[curious] Onze da manhã. Mala na mão. Quanto falta?",
+          "modelo": "eleven_v3",
+          "seed": 70
+        },
+        {
+          "estab": 0.5,
+          "estilo": 0.6,
+          "texto": "[curious] Onze da manhã. Mala na mão. Quanto falta?",
+          "modelo": "eleven_v3",
+          "seed": 70
+        },
+        {
+          "estab": 0.0,
+          "estilo": 0.6,
+          "texto": "[questioning] Onze da manhã. Mala na mão. Quanto falta?",
+          "modelo": "eleven_v3",
+          "seed": 70
+        },
+        {
+          "estab": 0.5,
+          "estilo": 0.6,
+          "texto": "[questioning] Onze da manhã. Mala na mão. Quanto falta?",
+          "modelo": "eleven_v3",
+          "seed": 70
+        },
+        {
+          "estab": 0.0,
+          "estilo": 0.6,
+          "texto": "[uncertain] Onze da manhã. Mala na mão. Quanto falta?",
+          "modelo": "eleven_v3",
+          "seed": 70
+        },
+        {
+          "estab": 0.5,
+          "estilo": 0.6,
+          "texto": "[uncertain] Onze da manhã. Mala na mão. Quanto falta?",
+          "modelo": "eleven_v3",
+          "seed": 70
+        },
+        {
+          "estab": 0.3,
+          "estilo": 0.55,
+          "texto": "Onze da manhã. Mala na mão. Quanto falta…?",
+          "seed": 81
+        },
+        {
+          "estab": 0.3,
+          "estilo": 0.55,
+          "texto": "Onze da manhã. Mala na mão. Quanto falta…?",
+          "seed": 82
+        },
+        {
+          "estab": 0.3,
+          "estilo": 0.55,
+          "texto": "Onze da manhã. Mala na mão. Quanto falta…?",
+          "seed": 83
+        },
+        {
+          "estab": 0.3,
+          "estilo": 0.55,
+          "texto": "Onze da manhã. Mala na mão. Quanto falta…?",
+          "seed": 84
+        },
+        {
+          "estab": 0.3,
+          "estilo": 0.55,
+          "texto": "Onze da manhã. Mala na mão. Quanto falta…?",
+          "seed": 85
+        },
+        {
+          "estab": 0.3,
+          "estilo": 0.55,
+          "texto": "Onze da manhã. Mala na mão. Quanto falta…?",
+          "seed": 86
+        },
+        {
+          "estab": 0.3,
+          "estilo": 0.6,
+          "texto": "Onze da manhã. Mala na mão. Quanto FALTA?",
+          "seed": 91
+        },
+        {
+          "estab": 0.3,
+          "estilo": 0.6,
+          "texto": "Onze da manhã. Mala na mão. Quanto FALTA?",
+          "seed": 92
+        },
+        {
+          "estab": 0.3,
+          "estilo": 0.6,
+          "texto": "Onze da manhã. Mala na mão. Quanto FALTA?",
+          "seed": 93
+        },
+        {
+          "estab": 0.3,
+          "estilo": 0.6,
+          "texto": "Onze da manhã. Mala na mão. Quanto FALTA?",
+          "seed": 94
+        },
+        {
+          "estab": 0.35,
+          "estilo": 0.55,
+          "texto": "Onze da manhã. Mala na mão. Quanto falta… ?",
+          "seed": 95
+        },
+        {
+          "estab": 0.35,
+          "estilo": 0.55,
+          "texto": "Onze da manhã. Mala na mão. Quanto falta… ?",
+          "seed": 96
+        },
+        {
+          "estab": 0.35,
+          "estilo": 0.55,
+          "texto": "Onze da manhã. Mala na mão. Quanto falta… ?",
+          "seed": 97
+        }
+      ]
+    }
   ]
 }
