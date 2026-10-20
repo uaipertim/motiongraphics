@@ -1,0 +1,42 @@
+CARROSSEL 04 — linhas de texto (palavra sozinha numa linha = FALHA)
+
+ok     slide 01 texto: Checklist
+ok     slide 01 texto: do check-in
+ok     slide 01 texto: sem correria.
+ok     slide 02 texto: Check-in bom é o que o hóspede nem percebe.
+ok     slide 02 texto: O hóspede
+ok     slide 02 texto: chegou cansado.
+ok     slide 02 texto: E a recepção foi
+ok     slide 02 texto: procurar a reserva.
+ok     slide 03 texto: 5 minutos na véspera poupam 30 no balcão.
+ok     slide 03 texto: Confirme a reserva
+ok     slide 03 texto: na véspera.
+ok     slide 03 texto: nome e número de hóspedes
+ok     slide 03 texto: previsão de chegada
+ok     slide 03 texto: saldo a receber
+ok     slide 04 texto: Hóspede que sabe o caminho não liga perdido.
+ok     slide 04 texto: Mande o caminho
+ok     slide 04 texto: antes de ele sair de casa.
+ok     slide 04 bolha: Oi, [nome]! Tudo pronto pra amanhã. O
+ok     slide 04 bolha: check-in é a partir das [14h] e o endereço é
+ok     slide 04 bolha: este: [link]. Chega por volta de que horas?
+ok     slide 05 texto: Conferir depois que ele entrou é pedir desculpa.
+ok     slide 05 texto: Acomodação conferida
+ok     slide 05 texto: antes da chegada.
+ok     slide 06 texto: Conta acertada no começo não vira surpresa
+ok     slide 06 texto: no fim.
+ok     slide 06 texto: Acerte o saldo
+ok     slide 06 texto: na chegada, não na saída.
+ok     slide 06 texto: valor combinado, pago na chegada
+ok     slide 06 texto: café, silêncio e horário do check-out
+ok     slide 07 texto: Reserva, caixa e recepção olhando a
+ok     slide 07 texto: mesma informação.
+ok     slide 07 texto: Registre a chegada
+ok     slide 07 texto: na hora, no mesmo lugar.
+ok     slide 07 texto: chegou às 18:40 · 2 adultos · saldo pago
+ok     slide 08 texto: Check-in tranquilo
+ok     slide 08 texto: começa na véspera.
+ok     slide 08 texto: Salva pra usar na próxima chegada e manda pra
+ok     slide 08 texto: quem recebe os hóspedes aí.
+
+RESULTADO: nenhuma palavra sozinha numa linha
