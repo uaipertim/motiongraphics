@@ -192,8 +192,10 @@ lst = lambda xs: '' if not xs else ': ' + '; '.join(f'{t:.2f}s {n}' for t, n in 
 ok(not nota_c, 'a notinha (e a impressora) não cobre nenhum conteúdo' + lst(nota_c))
 ok(not chav_c, 'o chaveiro não cobre nenhum conteúdo' + lst(chav_c))
 ok(not apoio_c, 'a linha de apoio não encosta no diagrama' + lst(apoio_c))
-viu_cad = any(b['nome'] == 'cadeado da data' for s in CX for b in s['caixas'])
-ok(viu_cad and not cad_c, 'o cadeado da data fica no canto da célula, sem cobrir o número do dia' + lst(cad_c))
+tipos = [c['diagrama']['tipo'] for c in LN['capitulos']]
+if 'calendario' in tipos:
+    viu_cad = any(b['nome'] == 'cadeado da data' for s in CX for b in s['caixas'])
+    ok(viu_cad and not cad_c, 'o cadeado da data fica no canto da célula, sem cobrir o número do dia' + lst(cad_c))
 
 # ---------------------------------------------------------------- a identidade da série
 report += ['', 'IDENTIDADE (notinha, chaveiro, sineta, fecho com a logo)']
@@ -211,7 +213,7 @@ tr_c = [c for c in MOT['cues'] if c['type'] == 'trans']
 ok(len(tr_c) == ncap - 1, f'{len(tr_c)} trocas de capítulo, cada uma com a passagem limão e o "ding" da sineta ({LN["tr"]:.1f} s)')
 CC = MOT['medidas']['cartao_credito']; util = MOT['medidas']['area_util'][1] - MOT['medidas']['area_util'][0]
 cc_box = [b for s in CX for b in s['caixas'] if b['nome'] == 'cartão de crédito']
-ok(bool(cc_box) and 0.62 <= CC['largura'] / util <= 0.78 and CC['mono_px'] >= 30 and CC['valor_px'] >= 56,
+if 'credito' in tipos: ok(bool(cc_box) and 0.62 <= CC['largura'] / util <= 0.78 and CC['mono_px'] >= 30 and CC['valor_px'] >= 56,
    f'cartão de crédito: {CC["largura"]}×{CC["altura"]} px = {100 * CC["largura"] / util:.0f}% da área útil ({util} px); mono {CC["mono_px"]} px, valor {CC["valor_px"]} px, validade {CC["sub_px"]} px')
 alc = []
 for c in LN['capitulos'][1:-1]:
@@ -258,10 +260,13 @@ def parado(t_a, t_b, nomes, so_texto=False):
 
 
 de, ate = FE['texto_de'], FE['texto_ate']
-d1 = parado(de + 0.02, ate - 0.05, ('título', 'rótulo', 'chaveiro', 'apoio', 'pergunta, linha', 'notinha'))
+NOMES1 = ('título', 'rótulo', 'chaveiro', 'apoio', 'pergunta, linha', 'notinha')
+d1 = parado(de + 0.02, ate - 0.05, NOMES1, so_texto=True)
 mx1 = max(d for _, d in d1) if d1 else 99
+d1c = parado(de + 0.02, ate - 0.05, NOMES1)
 ok(ate - de >= 3.0 and mx1 < 3.0, f'fecho, fase do texto: título, pergunta e notinha fechada parados de {de:.2f} a {ate:.2f} s ({ate - de:.2f} s, mínimo 3 s); '
-   f'{len(d1)} caixas iguais (maior diferença média {mx1:.2f} de 255)')
+   f'os pixels do texto de {len(d1)} caixas iguais (maior diferença média {mx1:.2f} de 255)')
+info('nas caixas inteiras (com o brilho do fundo, que respira por trás): maior diferença média ' + f'{max(d for _, d in d1c):.2f}')
 ult = FE['ultima_mudanca_de_texto']
 d2 = parado(DUR - 3.0, DUR - 0.08, ('logo final', 'nome final', '@ final'), so_texto=True)
 mx2 = max(d for _, d in d2) if d2 else 99
@@ -272,7 +277,7 @@ ok(len(d2) == 3 and DUR - ult >= 3.0 and mx2 < 3.0 and sino and abs(sino[-1]['t'
    f'(os pixels da logo, de "FAZLO Hospeda" e do @ iguais entre {DUR - 3:.2f} s e o fim; maior diferença média {mx2:.2f} de 255)')
 info('nas caixas inteiras (com o fundo e o anel da sineta em volta): ' + ' · '.join(f'{n} {d:.2f}' for n, d in d2c))
 voz_fim = fc['voz_t1']
-info(f'a voz do fecho termina em {voz_fim:.2f} s; a passagem para a logo começa em {FE["logo_passagem"]:.2f} s')
+ok(FE['logo_passagem'] >= voz_fim + 0.05, f'a logo só entra depois da última palavra: a voz do fecho termina em {voz_fim:.2f} s e a passagem para a logo começa em {FE["logo_passagem"]:.2f} s ({FE["logo_passagem"] - voz_fim:.2f} s depois)')
 
 # ---------------------------------------------------------------- folha das zonas seguras
 font = ImageFont.truetype(FONT, 26)

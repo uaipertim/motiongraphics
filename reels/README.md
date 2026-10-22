@@ -27,7 +27,7 @@ A **série EXPLICA** ([`serie-explica/`](serie-explica)) é o formato explicativ
 - **Fecho:** dura 8–9 s. Título, pergunta e notinha fechada ficam ≥ 3 s parados; nos últimos 3 s entra a logo oficial centralizada com a sineta.
 - **Voz:** uma geração inteira por capítulo, nunca emendada.
 
-Cada episódio é só um JSON e um comando (`scripts/episodio.sh <id>`). Pronto: explica-01 ("Sinal, saldo e crédito. Em 3 palavras.", 76,9 s).
+Cada episódio é só um JSON e um comando (`scripts/episodio.sh <id>`). Prontos: explica-01 ("Sinal, saldo e crédito. Em 3 palavras.", 76,9 s) e explica-02 ("Como nunca vender o mesmo chalé duas vezes.", 84,3 s).
 
 Os **cortes curtos** (Reel 00-curto, Reel 02-curto e Reel 03-teste) saíram do calendário e estão guardados, sem alteração, em [`arquivo/`](arquivo): [`reel-00-curto`](arquivo/reel-00-curto), [`reel-02-curto`](arquivo/reel-02-curto) e [`reel-03-teste`](arquivo/reel-03-teste) (Trial Reel de 12 s do "Controle de caixa"). Foram montados por remapeamento de tempo dos motores dos Reels 00, 02 e 03, que não foram alterados.
 

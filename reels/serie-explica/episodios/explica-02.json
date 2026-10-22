@@ -6,195 +6,542 @@
     {
       "rotulo": "PRA QUEM TEM POUSADA",
       "tom": "limao",
-      "titulo": ["Como nunca vender", "o mesmo chalé", "duas vezes."],
+      "titulo": [
+        "Como nunca vender",
+        "o mesmo chalé",
+        "duas vezes."
+      ],
       "fala": [
-        { "texto": "Dois hóspedes, o mesmo chalé, o mesmo fim de semana.", "apoio": null },
-        { "texto": "Dá pra nunca mais passar por isso.", "apoio": "Dá pra nunca mais passar por isso." },
-        { "texto": "São quatro passos.", "apoio": null }
+        {
+          "texto": "Dois hóspedes, o mesmo chalé, o mesmo fim de semana.",
+          "apoio": null
+        },
+        {
+          "texto": "Dá pra nunca mais passar por isso.",
+          "apoio": "Dá pra nunca mais passar por isso."
+        },
+        {
+          "texto": "São quatro passos.",
+          "apoio": null
+        }
       ],
       "diagrama": {
         "tipo": "capa",
         "faixa": "em 4 passos.",
         "cadeados": [
-          { "t": "PASSO 1", "em": "quatro" },
-          { "t": "PASSO 2", "em": "quatro" },
-          { "t": "PASSO 3", "em": "passos" },
-          { "t": "PASSO 4", "em": "passos" }
+          {
+            "t": "PASSO 1",
+            "em": "quatro"
+          },
+          {
+            "t": "PASSO 2",
+            "em": "quatro"
+          },
+          {
+            "t": "PASSO 3",
+            "em": "passos"
+          },
+          {
+            "t": "PASSO 4",
+            "em": "passos"
+          }
         ]
       }
     },
     {
       "rotulo": "A CENA",
       "tom": "ambar",
-      "titulo": ["Sábado, 15h.", "Dois carros no portão."],
+      "titulo": [
+        "Sábado, 15h.",
+        "Dois carros no portão."
+      ],
+      "inicio": 0.15,
+      "segura": 0.3,
       "fala": [
-        { "texto": "Sábado, três da tarde.", "apoio": "Sábado, 15h, na recepção." },
-        { "texto": "Dois carros no portão, e um chalé só.", "apoio": "Dois hóspedes e um chalé só." },
-        { "texto": "Uma reserva veio pelo WhatsApp.", "apoio": "Uma reserva veio pelo WhatsApp." },
-        { "texto": "A outra, pelo site de reservas.", "apoio": "A outra veio pelo site de reservas." },
-        { "texto": "As duas confirmadas.", "apoio": "E as duas estavam ~confirmadas~." }
+        {
+          "texto": "Dois carros no portão e um chalé só.",
+          "apoio": "Dois hóspedes e um chalé só."
+        },
+        {
+          "texto": "Uma reserva veio pelo WhatsApp, a outra pelo site.",
+          "apoio": "Uma veio pelo WhatsApp, a outra pelo site."
+        },
+        {
+          "texto": "As duas confirmadas.",
+          "apoio": "E as duas estavam ~confirmadas~."
+        }
       ],
       "diagrama": {
         "tipo": "colisao",
-        "semana": { "mes": "NOVEMBRO", "dias": [11, 12, 13, 14, 15, 16, 17], "nomes": ["QUA", "QUI", "SEX", "SÁB", "DOM", "SEG", "TER"], "alvo": 14, "em": "Sábado" },
+        "semana": {
+          "mes": "NOVEMBRO",
+          "dias": [
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17
+          ],
+          "nomes": [
+            "QUA",
+            "QUI",
+            "SEX",
+            "SÁB",
+            "DOM",
+            "SEG",
+            "TER"
+          ],
+          "alvo": 14,
+          "em": "carros"
+        },
         "reservas": [
-          { "t": "CHALÉ 3 · SÁB", "origem": "WHATSAPP · 10:12", "icone": "comentar", "em": "WhatsApp" },
-          { "t": "CHALÉ 3 · SÁB", "origem": "SITE DE RESERVAS · 10:47", "icone": "calendario", "em": "site" }
+          {
+            "t": "CHALÉ 3 · SÁB",
+            "origem": "WHATSAPP · 10:12",
+            "icone": "comentar",
+            "em": "WhatsApp"
+          },
+          {
+            "t": "CHALÉ 3 · SÁB",
+            "origem": "SITE DE RESERVAS · 10:47",
+            "icone": "calendario",
+            "em": "site"
+          }
         ],
-        "confirma": { "t": "CONFIRMADA", "em": "confirmadas" },
-        "selo": { "t": "RESERVA DUPLA" }
+        "confirma": {
+          "t": "CONFIRMADA",
+          "em": "confirmadas"
+        },
+        "selo": {
+          "t": "RESERVA DUPLA"
+        }
       }
     },
     {
       "rotulo": "O PROBLEMA",
       "tom": "roxo",
-      "titulo": ["A agenda morava", "em três lugares."],
+      "titulo": [
+        "A agenda morava",
+        "em três lugares."
+      ],
+      "inicio": 0.15,
+      "segura": 0.3,
       "fala": [
-        { "texto": "O problema não foi o hóspede.", "apoio": "O problema não foi o hóspede." },
-        { "texto": "Foi a agenda: um pouco no caderno, um pouco no WhatsApp, um pouco no site.", "apoio": "Foi a agenda, espalhada em três lugares." },
-        { "texto": "Nenhum deles sabia o que o outro tinha vendido.", "apoio": "Nenhum sabia o que o outro ~vendeu~." }
+        {
+          "texto": "O problema não foi o hóspede.",
+          "apoio": "O problema não foi o hóspede."
+        },
+        {
+          "texto": "Foi a agenda espalhada: caderno, WhatsApp e site.",
+          "apoio": "Foi a agenda, espalhada em três lugares."
+        },
+        {
+          "texto": "Um não sabia o que o outro vendeu.",
+          "apoio": "Um não sabia o que o outro ~vendeu~."
+        }
       ],
       "diagrama": {
         "tipo": "fontes",
         "fontes": [
-          { "t": "CADERNO", "icone": "recibo", "ocupados": [8, 14, 15], "em": "caderno" },
-          { "t": "WHATSAPP", "icone": "comentar", "ocupados": [12, 14], "em": "WhatsApp" },
-          { "t": "SITE", "icone": "calendario", "ocupados": [9, 14, 20], "em": "site" }
+          {
+            "t": "CADERNO",
+            "icone": "recibo",
+            "ocupados": [
+              8,
+              14,
+              15
+            ],
+            "em": "caderno"
+          },
+          {
+            "t": "WHATSAPP",
+            "icone": "comentar",
+            "ocupados": [
+              12,
+              14
+            ],
+            "em": "WhatsApp"
+          },
+          {
+            "t": "SITE",
+            "icone": "calendario",
+            "ocupados": [
+              9,
+              14,
+              20
+            ],
+            "em": "site"
+          }
         ],
         "primeiro": 8,
-        "quebra": { "em": "Nenhum" },
-        "alerta": { "em": "vendido" }
+        "quebra": {
+          "em": "sabia"
+        },
+        "alerta": {
+          "em": "vendeu"
+        }
       }
     },
     {
       "rotulo": "PASSO 1",
       "tom": "petroleo",
-      "titulo": ["Uma agenda só", "manda em todas."],
+      "titulo": [
+        "Uma agenda só",
+        "manda em todas."
+      ],
+      "inicio": 0.15,
+      "segura": 0.3,
       "fala": [
-        { "texto": "Primeiro passo: uma agenda só.", "apoio": "Passo 1: *uma agenda só*." },
-        { "texto": "Toda reserva, venha de onde vier, entra no mesmo lugar.", "apoio": "Venha de onde vier, entra no mesmo lugar." },
-        { "texto": "E é ela que responde se tem vaga.", "apoio": "É ela que responde se *tem vaga*." }
+        {
+          "texto": "Primeiro: uma agenda só.",
+          "apoio": "Passo 1: *uma agenda só*."
+        },
+        {
+          "texto": "Toda reserva, venha de onde vier, entra nela.",
+          "apoio": "Venha de onde vier, a reserva entra nela."
+        },
+        {
+          "texto": "E é ela que diz se tem vaga.",
+          "apoio": "É ela que diz se *tem vaga*."
+        }
       ],
       "diagrama": {
         "tipo": "agenda",
         "fontes": [
-          { "t": "CADERNO", "icone": "recibo", "dia": 8 },
-          { "t": "WHATSAPP", "icone": "comentar", "dia": 14 },
-          { "t": "SITE", "icone": "calendario", "dia": 20 }
+          {
+            "t": "CADERNO",
+            "icone": "recibo",
+            "dia": 8
+          },
+          {
+            "t": "WHATSAPP",
+            "icone": "comentar",
+            "dia": 18
+          },
+          {
+            "t": "SITE",
+            "icone": "calendario",
+            "dia": 14
+          }
         ],
-        "mes": "NOVEMBRO", "primeiro_dia_semana": 0, "dias_no_mes": 30,
-        "junta": { "em": "agenda" },
-        "entram": { "em": "reserva" },
-        "chip": { "t": "AGENDA ÚNICA", "em": "lugar" },
-        "vaga": { "em": "vaga" }
+        "mes": "NOVEMBRO",
+        "primeiro_dia_semana": 0,
+        "dias_no_mes": 30,
+        "junta": {
+          "em": "agenda"
+        },
+        "entram": {
+          "em": "reserva"
+        },
+        "chip": {
+          "t": "AGENDA ÚNICA",
+          "em": "nela"
+        },
+        "vaga": {
+          "em": "vaga"
+        }
       }
     },
     {
       "rotulo": "PASSO 2",
       "tom": "ambar",
-      "titulo": ["Pré-reserva", "tem prazo."],
+      "titulo": [
+        "Pré-reserva",
+        "tem prazo."
+      ],
+      "inicio": 0.15,
+      "segura": 0.3,
       "fala": [
-        { "texto": "Segundo: pré-reserva tem prazo.", "apoio": "Passo 2: a pré-reserva *tem prazo*." },
-        { "texto": "O hóspede pediu a data?", "apoio": "O hóspede pediu a data." },
-        { "texto": "Ela fica segura por vinte e quatro horas.", "apoio": "Ela fica segura por *24 horas*." },
-        { "texto": "Pagou o sinal, confirma.", "apoio": "Pagou o sinal: *confirmada*." },
-        { "texto": "Não pagou, a data volta a ficar livre.", "apoio": "Não pagou: a data volta a ficar livre." }
+        {
+          "texto": "Segundo: pré-reserva tem prazo.",
+          "apoio": "Passo 2: a pré-reserva *tem prazo*."
+        },
+        {
+          "texto": "A data fica segura por vinte e quatro horas.",
+          "apoio": "A data fica segura por *24 horas*."
+        },
+        {
+          "texto": "Pagou o sinal, confirma.",
+          "apoio": "Pagou o sinal: *confirmada*."
+        },
+        {
+          "texto": "Não pagou, a data fica livre.",
+          "apoio": "Não pagou: a data fica livre."
+        }
       ],
       "diagrama": {
         "tipo": "prazo",
-        "dia": 14, "semana": "SÁB",
-        "pre": { "t": "PRÉ-RESERVA", "em": "pediu" },
-        "relogio": { "horas": 24, "em": "segura" },
-        "pagou": { "t": "PAGOU O SINAL", "chip": "SINAL ✓", "fim": "CONFIRMADA", "em": "Pagou" },
-        "nao": { "t": "NÃO PAGOU", "fim": "LIVRE", "em": "Não", "em_fim": "livre" }
+        "dia": 14,
+        "semana": "SÁB",
+        "pre": {
+          "t": "PRÉ-RESERVA",
+          "em": "prazo"
+        },
+        "relogio": {
+          "horas": 24,
+          "em": "segura"
+        },
+        "pagou": {
+          "t": "PAGOU O SINAL",
+          "chip": "SINAL ✓",
+          "fim": "CONFIRMADA",
+          "em": "Pagou"
+        },
+        "nao": {
+          "t": "NÃO PAGOU",
+          "fim": "LIVRE",
+          "em": "Não",
+          "em_fim": "livre"
+        }
       }
     },
     {
       "rotulo": "PASSO 3",
       "tom": "limao",
-      "titulo": ["Vendeu num lugar,", "fecha em todos."],
+      "titulo": [
+        "Vendeu num lugar,",
+        "fecha em todos."
+      ],
+      "inicio": 0.15,
+      "segura": 0.3,
       "fala": [
-        { "texto": "Terceiro: vendeu num lugar, fecha em todos.", "apoio": "Passo 3: vendeu num lugar, *fecha em todos*." },
-        { "texto": "No mesmo minuto em que confirma, bloqueie a data no site e em qualquer outro canal.", "apoio": "No mesmo minuto, a data fecha em todos os canais." }
+        {
+          "texto": "Terceiro: vendeu num lugar, fecha em todos.",
+          "apoio": "Passo 3: vendeu num lugar, *fecha em todos*."
+        },
+        {
+          "texto": "Confirmou, bloqueie a data no site e nos outros canais na hora.",
+          "apoio": "Confirmou, a data fecha em todos os canais."
+        }
       ],
       "diagrama": {
         "tipo": "bloqueio",
-        "reserva": { "t": "CHALÉ 3 · SÁB 14", "sub": "CONFIRMADA · 10:47", "em": "vendeu" },
-        "cadeado": { "em": "fecha" },
+        "reserva": {
+          "t": "CHALÉ 3 · SÁB 14",
+          "sub": "CONFIRMADA · 10:47",
+          "em": "vendeu"
+        },
+        "cadeado": {
+          "em": "fecha"
+        },
         "canais": [
-          { "t": "WHATSAPP", "icone": "comentar", "em": "confirma" },
-          { "t": "SITE", "icone": "calendario", "em": "site" },
-          { "t": "TELEFONE", "icone": "telefone", "em": "canal" }
+          {
+            "t": "WHATSAPP",
+            "icone": "comentar",
+            "em": "bloqueie"
+          },
+          {
+            "t": "SITE",
+            "icone": "calendario",
+            "em": "site"
+          },
+          {
+            "t": "TELEFONE",
+            "icone": "telefone",
+            "em": "canais"
+          }
         ],
-        "abertos": { "em": "todos" },
+        "abertos": {
+          "em": "todos"
+        },
         "hora": "10:47"
       }
     },
     {
       "rotulo": "PASSO 4",
       "tom": "petroleo",
-      "titulo": ["Antes do “tem sim”,", "olhe a agenda."],
+      "titulo": [
+        "Antes do “tem sim”,",
+        "olhe a agenda."
+      ],
+      "inicio": 0.15,
+      "segura": 0.3,
       "fala": [
-        { "texto": "Quarto: antes de responder \"tem sim\", olhe a agenda.", "apoio": "Passo 4: antes do “tem sim”, *olhe a agenda*." },
-        { "texto": "Nunca a memória.", "apoio": "Nunca de memória." },
-        { "texto": "Leva dez segundos e evita o pior sábado do ano.", "apoio": "Leva *10 segundos* e evita o pior sábado do ano." }
+        {
+          "texto": "Quarto: antes do \"tem sim\", olhe a agenda.",
+          "apoio": "Passo 4: antes do “tem sim”, *olhe a agenda*."
+        },
+        {
+          "texto": "Nunca a memória.",
+          "apoio": "Nunca de memória."
+        },
+        {
+          "texto": "Dez segundos evitam o pior sábado do ano.",
+          "apoio": "*10 segundos* evitam o pior sábado do ano."
+        }
       ],
       "diagrama": {
         "tipo": "consulta",
-        "pergunta": { "t": "Tem vaga dia 14?", "em": "responder" },
-        "semana": { "dias": [8, 9, 10, 11, 12, 13, 14], "nomes": ["D", "S", "T", "Q", "Q", "S", "S"], "ocupados": [9, 10, 13], "alvo": 14 },
-        "lupa": { "em": "olhe", "achou": "agenda" },
-        "memoria": { "t": "DE MEMÓRIA", "em": "memória" },
-        "resposta": { "t": "Tem sim! Seguro pra você até amanhã, 18h.", "em": "Leva" }
+        "pergunta": {
+          "t": "Tem vaga dia 14?",
+          "em": "Quarto"
+        },
+        "semana": {
+          "dias": [
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14
+          ],
+          "nomes": [
+            "D",
+            "S",
+            "T",
+            "Q",
+            "Q",
+            "S",
+            "S"
+          ],
+          "ocupados": [
+            9,
+            10,
+            13
+          ],
+          "alvo": 14
+        },
+        "lupa": {
+          "em": "olhe",
+          "achou": "agenda"
+        },
+        "memoria": {
+          "t": "DE MEMÓRIA",
+          "em": "memória"
+        },
+        "resposta": {
+          "t": "Tem sim! Seguro pra você até amanhã, 18h.",
+          "em": "Dez"
+        }
       }
     },
     {
       "rotulo": "NÃO CONFUNDA",
       "tom": "roxo",
-      "titulo": ["Pré-reserva", "não é reserva."],
+      "titulo": [
+        "Pré-reserva",
+        "não é reserva."
+      ],
+      "inicio": 0.15,
+      "segura": 0.3,
       "fala": [
-        { "texto": "Não confunda: pré-reserva não é reserva.", "apoio": "A data segura não é a reserva feita." },
-        { "texto": "Reserva é quando o sinal entrou.", "apoio": "Reserva é quando o *sinal entrou*." }
+        {
+          "texto": "Não confunda: pré-reserva não é reserva.",
+          "apoio": "A data segura não é a reserva feita."
+        },
+        {
+          "texto": "Reserva é quando o sinal entrou.",
+          "apoio": "Reserva é quando o *sinal entrou*."
+        }
       ],
       "diagrama": {
         "tipo": "pares",
         "pares": [
-          { "a": { "t": "PRÉ-RESERVA", "sub": "data segura por um prazo", "icone": "relogio", "em": "pré-reserva" }, "b": { "t": "CONFIRMADA", "sub": "o sinal já entrou", "icone": "check", "em": "reserva" } },
-          { "a": { "t": "PEDIDO", "sub": "o hóspede quer a data", "icone": "comentar", "em": "reserva#2" }, "b": { "t": "SINAL PAGO", "sub": "o dinheiro na conta", "icone": "moedas", "em": "sinal" } }
+          {
+            "a": {
+              "t": "PRÉ-RESERVA",
+              "sub": "data segura por um prazo",
+              "icone": "relogio",
+              "em": "pré-reserva"
+            },
+            "b": {
+              "t": "CONFIRMADA",
+              "sub": "o sinal já entrou",
+              "icone": "check",
+              "em": "reserva"
+            }
+          },
+          {
+            "a": {
+              "t": "PEDIDO",
+              "sub": "o hóspede quer a data",
+              "icone": "comentar",
+              "em": "reserva#2"
+            },
+            "b": {
+              "t": "SINAL PAGO",
+              "sub": "o dinheiro na conta",
+              "icone": "moedas",
+              "em": "sinal"
+            }
+          }
         ]
       }
     },
     {
       "rotulo": "ANOTA AÍ",
       "tom": "limao",
-      "titulo": ["Os quatro passos", "contra a reserva dupla."],
+      "titulo": [
+        "Os quatro passos",
+        "contra a reserva dupla."
+      ],
+      "inicio": 0.15,
+      "segura": 0.3,
       "fala": [
-        { "texto": "Anota aí: uma agenda só, prazo na pré-reserva, bloqueio na hora e olhar antes de responder.", "apoio": "Um passo de cada vez, nessa ordem." }
+        {
+          "texto": "Anota aí: uma agenda só, prazo na pré-reserva, bloqueio na hora e olhar antes de responder.",
+          "apoio": "Um passo de cada vez, nessa ordem."
+        }
       ],
       "diagrama": {
         "tipo": "passos",
         "itens": [
-          { "t": "AGENDA ÚNICA", "icone": "calendario", "em": "agenda" },
-          { "t": "PRAZO NA PRÉ-RESERVA", "icone": "relogio", "em": "prazo" },
-          { "t": "BLOQUEIO NA HORA", "icone": "cadeado", "em": "bloqueio" },
-          { "t": "OLHAR ANTES DE RESPONDER", "icone": "lupa", "em": "olhar" }
+          {
+            "t": "AGENDA ÚNICA",
+            "icone": "calendario",
+            "em": "agenda"
+          },
+          {
+            "t": "PRAZO NA PRÉ-RESERVA",
+            "icone": "relogio",
+            "em": "prazo"
+          },
+          {
+            "t": "BLOQUEIO NA HORA",
+            "icone": "cadeado",
+            "em": "bloqueio"
+          },
+          {
+            "t": "OLHAR ANTES DE RESPONDER",
+            "icone": "lupa",
+            "em": "olhar"
+          }
         ]
       }
     },
     {
       "rotulo": "SALVA ESSE",
       "tom": "roxo",
-      "titulo": ["Salva e manda", "pra quem cuida das reservas."],
+      "titulo": [
+        "Salva e manda",
+        "pra quem cuida das reservas."
+      ],
       "inicio": 0.05,
       "min": 9.0,
       "segura": 3.55,
       "fala": [
-        { "texto": "Salva esse vídeo e manda pra quem cuida das reservas aí.", "apoio": "Pra ter à mão antes do próximo “tem vaga?”." },
-        { "texto": "E me conta: já aconteceu na sua pousada?", "apoio": null }
+        {
+          "texto": "Salva esse vídeo e manda pra quem cuida das reservas aí.",
+          "apoio": "Pra ter à mão antes do próximo “tem vaga?”."
+        },
+        {
+          "texto": "E me conta: já aconteceu na sua pousada?",
+          "apoio": null
+        }
       ],
       "diagrama": {
         "tipo": "fecho",
-        "pergunta": { "linhas": ["Já teve dois hóspedes", "*pro mesmo quarto?*", "Conta aqui."], "em": "+1.2" }
+        "pergunta": {
+          "linhas": [
+            "Já teve dois hóspedes",
+            "*pro mesmo quarto?*",
+            "Conta aqui."
+          ],
+          "em": "+1.2"
+        }
       }
     }
   ]

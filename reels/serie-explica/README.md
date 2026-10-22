@@ -5,6 +5,7 @@ Formato novo do FAZLO Hospeda, feito para ser a base dos próximos vídeos do Ho
 | Episódio | Tema | Duração | Saída |
 |---|---|---|---|
 | **explica-01** | "Sinal, saldo e crédito. Em 3 palavras." — 00 capa · 01 a frase · 02 o problema · 03 sinal · 04 saldo · 05 crédito · 06 não confunda · 07 no dia a dia · 08 anota aí · 09 salva esse | 76,9 s | [`output/explica-01/`](output/explica-01) |
+| **explica-02** | "Como nunca vender o mesmo chalé duas vezes." — 00 capa · 01 a cena · 02 o problema · 03 passo 1 · 04 passo 2 · 05 passo 3 · 06 passo 4 · 07 não confunda · 08 anota aí · 09 salva esse | 84,3 s | [`output/explica-02/`](output/explica-02) |
 
 Em cada episódio, `output/<id>/` traz:
 
@@ -33,7 +34,7 @@ A série tem cara própria da FAZLO, sem trilho, sem círculos numerados e sem c
    - Ao mesmo tempo, a notinha avança uma linha. A câmera não anda: cada capítulo se constrói no mesmo quadro.
 4. **O fecho com a logo (8–9 s).**
    - **Fase do texto:** o título ("Salva e manda / pra quem cuida das reservas."), a linha de apoio, a pergunta num balão de comentário grande e a notinha fechada ficam **≥ 3 s parados e legíveis**. Só a luz que corre na borda do balão e os pontinhos de "digitando…" se mexem.
-   - **Últimos 3 s, sempre:** uma passagem limão leva à **logo oficial FAZLO Hospeda centralizada**, com "FAZLO Hospeda", o @ e a sineta (como o fecho dos outros Reels). A logo pousa com a sineta 3,05 s antes do fim e não muda mais.
+   - **Últimos 3 s, sempre:** uma passagem limão leva à **logo oficial FAZLO Hospeda centralizada**, com "FAZLO Hospeda", o @ e a sineta (como o fecho dos outros Reels). A logo pousa com a sineta 3,05 s antes do fim e não muda mais. **A passagem para a logo só começa depois da última palavra da voz**: no JSON, o fecho usa `segura` ≥ 3,45 s (o motor avisa no console se não der, e a revisão confere). Vale a partir do explica-02.
    - A trilha faz o último acorde junto com essa sineta.
 
 ## Os princípios do formato (o que muda em relação à Série FALA)
@@ -132,9 +133,9 @@ A narração gerada (`audio/<id>/voz/cap-NN.wav` + `falas.json`) fica no reposit
 - **Os capítulos:** o **capítulo 0 é a capa** (diagrama `capa`), e o seu `rotulo` vira o chip da capa. Os capítulos 1… ganham o chaveiro "Nº 01"… e uma linha na notinha (o `rotulo`); o último deve ser o `fecho`.
 - **`fala`:** as frases do capítulo, na ordem. O texto falado é a junção delas e vai **inteiro numa geração só**.
 - **`apoio`:** a linha de apoio que entra com a frase (`null` = nenhuma; igual à anterior = continua).
-- **`titulo`:** sempre 2 linhas (a 2ª em limão); o tamanho se ajusta à largura. `risca_titulo: { "linha": 2, "em": "fim" }` risca uma linha em limão (em `fim` = perto do fim do capítulo).
+- **`titulo`:** sempre 2 linhas (a 2ª em limão); o tamanho se ajusta à largura. Só na capa o título pode ter 3 linhas, para ficar grande no recorte 3:4 (ex.: "Como nunca vender / o mesmo chalé / duas vezes."). `risca_titulo: { "linha": 2, "em": "fim" }` risca uma linha em limão (em `fim` = perto do fim do capítulo).
 - **`tom`:** `limao`, `ambar`, `petroleo` ou `roxo`.
-- **Tempo do capítulo:** `inicio` é a pausa antes da voz (padrão 0,25 s; capítulo 0: 0,10 s). `segura` é o tempo depois da voz antes da troca (padrão 0,45 s). `min` é a duração mínima. O fecho usa `min` 9 e `inicio` 0,05: precisa de 8–9 s, com a logo nos últimos 3 s. Se a fala do fecho passar de ~5,9 s, encurte a fala, não o fecho.
+- **Tempo do capítulo:** `inicio` é a pausa antes da voz (padrão 0,25 s; capítulo 0: 0,10 s). `segura` é o tempo depois da voz antes da troca (padrão 0,45 s). `min` é a duração mínima. O fecho usa `min` 9, `inicio` 0,05 e `segura` 3,55: precisa de 8–9 s, com a logo nos últimos 3 s, entrando só depois da última palavra. Se a fala do fecho passar de ~5,4 s, encurte a fala, não o fecho. Para caber em 70–85 s, os capítulos 01–08 podem usar `inicio` 0,15 e `segura` 0,30 (como no explica-02); a velocidade da voz nunca muda.
 - **`em` (dentro do diagrama):** a palavra da fala que dispara a peça.
   - `"sinal"` dispara na 1ª vez que a palavra aparece; `"sinal#2"`, na 2ª.
   - `"+1.2"` dispara 1,2 s depois do começo do capítulo; `"fim"`, perto do fim.
@@ -144,18 +145,25 @@ A narração gerada (`audio/<id>/voz/cap-NN.wav` + `falas.json`) fica no reposit
 
 | `tipo` | Visual | Campos |
 |---|---|---|
-| `capa` | Chip, título grande, faixa limão inclinada e cadeados "? ? ?" que acendem e mostram a palavra | `faixa`, `cadeados: [{t, em}]` |
+| `capa` | Chip, título grande (2 ou 3 linhas), faixa limão inclinada e cadeados "? ? ?" que acendem e mostram a palavra (3 ou 4 cadeados; dois na mesma palavra acendem um depois do outro) | `faixa`, `cadeados: [{t, em}]` |
 | `reserva` | Cartão da reserva (chalé, diárias, valor), pilha do caixa que tomba, "?" pulsando e selo "SEM REGISTRO" | `reserva: {titulo, linhas[], valor, em}`, `moedas: {em}`, `duvida: {em}` |
 | `partes` | O cartão se abre em encaixes ligados por linhas; um fica solto, vermelho, com o chip de alerta | `reserva`, `abre`, `partes: [{t, icone, em}]`, `solta: {i, em, t, em_t}` |
 | `calendario` | Calendário do mês: a data pontilhada ("promessa") recebe o cadeado, que cai e fecha **no canto da célula** (nunca sobre o número); o pagamento com check; o cartão de contraste | `mes, dia, primeiro_dia_semana (0 = domingo), dias_no_mes, em, promessa, garantida, cadeado: {em}, pagamento: {t, em}, contraste: {t, dia, sub, em, em_destaque}` |
 | `barra` | Barra de pagamento que se monta: total → pago → soma (consumo) → tira (desconto, cai) → colchete e valor que falta contando, a conta e o alerta | `escala`, `total: {t, v, em}`, `passos: [{tipo: pago\|soma\|tira, t, v, icone, em}]`, `resultado: {t, em}`, `conta`, `alerta: {t, em}` |
 | `credito` | A data antiga com a moeda do sinal: cancela, a moeda não some nem vai pro bolso; depois da seta, ela vira um **cartão de crédito grande** (546 px, ~70% da área útil; mono 32 px, valor 68 px) embaixo da nova data, que se encaixa nela por um conector limão | `antiga: {t, dia, em}`, `nova: {t, dia}`, `sinal: {t, em}`, `cancelou`, `fica`, `bolso`, `vira: {em}`, `cartao: {t, sub}` |
-| `pares` | Pares de cartões com "=" que é cortado e vira "≠" limão | `pares: [{a: {t, sub, icone, em}, b: {…}}]` |
+| `pares` | Pares de cartões com "=" que é cortado e vira "≠" limão (o nome do cartão se ajusta à largura) | `pares: [{a: {t, sub, icone, em}, b: {…}}]` |
 | `perguntas` | Ilustração (mala e chave) e perguntas que entram e ganham check, ligadas por um trilhinho | `ilustracao: {em}`, `itens: [{t, icone, em}]` |
 | `lista` | Palavra → significado (ligação, revelação e um brilho final) | `itens: [{t, sentido, icone, em}]` |
+| `colisao` | Uma semana em 7 casas; duas reservas do mesmo chalé entram pelos lados, cada uma com a sua origem, ligadas à mesma casa; confirmam, dão um tranco uma na outra, a casa fica vermelha e entra o selo | `semana: {mes, dias[], nomes[], alvo, em}`, `reservas: [{t, origem, icone, em}]` (2), `confirma: {t, em}`, `selo: {t}` |
+| `fontes` | Três origens da agenda (cartão com ícone + minicalendário de 2 semanas, cada um com os seus dias ocupados), ligadas por linhas tracejadas quebradas com × vermelho; no fim, o mesmo dia fica vermelho nas três | `fontes: [{t, icone, ocupados[], em}]` (3), `primeiro` (1º dia das 2 semanas), `quebra: {em}`, `alerta: {em}` |
+| `agenda` | As origens viram chips (os minicalendários somem), mandam setas até a borda de um calendário único grande e um ponto leva cada reserva até a sua casa; o chip limão do calendário e as casas livres acendendo ("tem vaga") | `fontes: [{t, icone, dia}]`, `mes`, `primeiro_dia_semana`, `dias_no_mes`, `junta: {em}`, `entram: {em}`, `chip: {t, em}`, `vaga: {em}` |
+| `prazo` | A pré-reserva (casa tracejada em âmbar + relógio correndo) e dois ramos: pagou o sinal → casa limão "CONFIRMADA"; não pagou → o prazo zera e a casa volta a "LIVRE" | `dia`, `semana`, `pre: {t, em}`, `relogio: {horas, em}`, `pagou: {t, chip, fim, em}`, `nao: {t, fim, em, em_fim}` |
+| `bloqueio` | A reserva confirmada recebe o cadeado limão, que viaja pelas linhas até os canais; cada canal passa de "ABERTO" a "FECHADO", todos na mesma hora | `reserva: {t, sub, em}`, `cadeado: {em}`, `canais: [{t, icone, em}]` (3), `abertos: {em}`, `hora` |
+| `consulta` | A pergunta num balão genérico (sem logo de app), uma lupa que passa pela semana e acha a casa livre, "DE MEMÓRIA" riscado e a resposta no balão limão do VOCÊ, só depois de olhar | `pergunta: {t, em}`, `semana: {dias[], nomes[], ocupados[], alvo}`, `lupa: {em, achou}`, `memoria: {t, em}`, `resposta: {t, em}` |
+| `passos` | Lista ligada: cada passo numa linha (número limão, ícone e o passo em mono), acendendo na sua palavra, com check e um brilho final | `itens: [{t, icone, em}]` (até 4) |
 | `fecho` | A pergunta num balão de comentário grande (com a notinha fechada e o título fixo); nos últimos 3 s, a logo oficial centralizada com a sineta (automática) | `pergunta: {linhas[], em}` (aceita `*limão*`; a pergunta deve entrar cedo, ex. `"+1.2"`, para ficar ≥ 3 s parada) |
 
-**Ícones** (`icone`): chale, mala, chave, moedas, cadeado, cadeado_aberto, check, x, alerta, calendario, cartao, recibo, comanda, pix, etiqueta, taca, curtir, comentar, enviar, salvar, carteira, seta, relogio.
+**Ícones** (`icone`): chale, mala, chave, moedas, cadeado, cadeado_aberto, check, x, alerta, calendario, cartao, recibo, comanda, pix, etiqueta, taca, curtir, comentar, enviar, salvar, carteira, seta, relogio, lupa, telefone.
 
 **Diagrama novo:** é um bloco `CENAS.<nome> = { setup(cap), draw(ctx, cap, t) }` em `src/anim.js`. No `setup`, resolva os tempos com `at(cap, "palavra")` e registre os sons com `cue(t, 'tipo')`. No `draw`, use as peças prontas: `panel`, `chip`, `badge`, `icon`, `enter`/`ent` (a entrada padrão), `reservaCard`, `miniCal` e `coin`. O resto vem sozinho: chaveiro, título, apoio, notinha, passagem com a sineta, marca, faixas seguras e caixas para a revisão. O diagrama deve ficar em x 160–940 (até 1010 acima de y 1060) e y ≈ 826–1406, e registrar com `BOX(nome, …)` as peças importantes.
 
@@ -175,6 +183,16 @@ Resultado: **aprovado**, refeito com a identidade nova. O relatório completo es
 | Cartão de crédito | 546×228 px = 70% da área útil; mono 32 px, valor 68 px | ~70%, ≥ 30 / ≥ 56 |
 | Fecho | 9,0 s; título + pergunta + notinha parados 3,9 s; logo com sineta parada nos últimos 3,05 s | 8–9 s, ≥ 3 s |
 | Capa | quadro 0, dentro da regra das capas | — |
+
+## Revisão técnica do explica-02
+
+Resultado: **aprovado** ([`output/explica-02/revisao/relatorio-tecnico.txt`](output/explica-02/revisao/relatorio-tecnico.txt)).
+
+- **Duração:** 84,25 s (alvo 70–85 s). Com o texto original, a narração dava 96,4 s; os capítulos 01–06 foram reescritos e gerados de novo, cada um em 1 geração inteira.
+- **Áudio:** −14,0 LUFS, pico real −1,8 dBTP.
+- **Áreas seguras e leitura:** 0 pixel aceso na coluna de botões e todas as linhas de apoio ≥ 1,5 s inteiras. Os diagramas descem até y 1378–1412.
+- **Identidade:** 9 linhas na notinha, 9 checks e "CONTA FECHADA ✓".
+- **Fecho:** dura 9,0 s. A voz termina em 80,44 s e a passagem para a logo começa em 80,91 s (0,47 s depois). A logo fica parada nos últimos 3,05 s.
 
 ## Estrutura
 

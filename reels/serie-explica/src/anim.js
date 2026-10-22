@@ -16,9 +16,10 @@
  * Dentro do capítulo nada é trocado: o rótulo e o título (2 linhas) ficam fixos, a linha de apoio muda a cada frase e o
  * DIAGRAMA cresce peça por peça no tempo da voz (cada peça tem "em": a palavra que a dispara).
  *
- * Biblioteca de diagramas (CENAS): capa · reserva · partes · calendario · barra · credito · pares · perguntas · lista · fecho.
+ * Biblioteca de diagramas (CENAS): capa · reserva · partes · calendario · barra · credito · pares · perguntas · lista ·
+ * colisao · fontes · agenda · prazo · bloqueio · consulta · passos · fecho.
  * Ícones: chale, mala, chave, moedas, cadeado, cadeado_aberto, check, x, alerta, calendario, cartao, recibo, comanda,
- * pix, etiqueta, taca, curtir, comentar, enviar, salvar, carteira, seta, relogio.
+ * pix, etiqueta, taca, curtir, comentar, enviar, salvar, carteira, seta, relogio, lupa, telefone.
  *
  * Regras de quadro: nada importante fora de y 265–1456; nada (nem a notinha, nem a passagem) em x ≥ 950 entre
  * y 1060 e 1560; o conteúdo do capítulo fica em x 160–940 (até x 1010 acima de y 1060), à direita da notinha;
@@ -99,15 +100,21 @@
   }
   const plain = (s) => (s || '').replace(/[*~]/g, '');
   function wrapRich(line, base, fam, size, weight, maxW) {
-    const words = [];
-    runs(line, base).forEach((r) => r.s.split(/(\s+)/).forEach((w) => { if (w.trim()) words.push({ s: w, c: r.c }); }));
+    // uma palavra só começa depois de um espaço: "~confirmadas~." é uma palavra (vermelha + o ponto na cor base)
+    const words = []; let cur = null;
+    runs(line, base).forEach((r) => r.s.split(/(\s+)/).forEach((w, i, arr) => {
+      if (!w) return;
+      if (!w.trim()) { cur = null; return; }
+      const seg = { s: w, c: r.c, w: tw(w, fam, size, weight) };
+      if (cur) { cur.segs.push(seg); cur.w += seg.w; } else { cur = { segs: [seg], w: seg.w }; words.push(cur); }
+      if (i < arr.length - 1) cur = null;
+    }));
     const sp = tw(' ', fam, size, weight);
     const rows = [[]]; let x = 0;
     words.forEach((w) => {
-      const ww = tw(w.s, fam, size, weight);
-      if (rows[rows.length - 1].length && x + sp + ww > maxW) { rows.push([]); x = 0; }
+      if (rows[rows.length - 1].length && x + sp + w.w > maxW) { rows.push([]); x = 0; }
       const row = rows[rows.length - 1];
-      x += (row.length ? sp : 0) + ww; row.push({ ...w, w: ww });
+      x += (row.length ? sp : 0) + w.w; row.push(w);
     });
     // duas linhas equilibradas, sem palavra sozinha
     if (rows.length === 2 && rows[1].length === 1 && rows[0].length > 2) { rows[1].unshift(rows[0].pop()); }
@@ -139,6 +146,8 @@
     carteira: 'M4.5 6.5h14A1.5 1.5 0 0 1 20 8v11a1.5 1.5 0 0 1-1.5 1.5h-14A1.5 1.5 0 0 1 3 19V8a1.5 1.5 0 0 1 1.5-1.5z M15.5 11.5H21v4h-5.5a2 2 0 0 1 0-4z M5 6.5l9.5-3v3',
     seta: 'M4 12h16 M14 6l6 6-6 6',
     relogio: 'M12 3a9 9 0 1 1 0 18 9 9 0 0 1 0-18z M12 7v5l3.2 2',
+    lupa: 'M10.5 3.5a7 7 0 1 1 0 14 7 7 0 0 1 0-14z M15.6 15.6 21 21',
+    telefone: 'M6.8 3.5h2.7l1.5 4.3-2.1 1.4a12.5 12.5 0 0 0 6 6l1.4-2.1 4.3 1.5v2.7a2 2 0 0 1-2.2 2A17 17 0 0 1 4.8 5.7a2 2 0 0 1 2-2.2z',
   };
   const ICON2D = {};
   function icon(ctx, name, x, y, s, col, o = {}) {
@@ -526,7 +535,7 @@
         const y = cap.apY + j * 48 + 12 * (1 - ein) - 8 * eout;
         let x = cap.apAlign === 'center' ? cap.apX - r.w / 2 : cap.apX;
         const x0 = x;
-        r.words.forEach((wd) => { txt(ctx, wd.s, x, y, { size: 38, weight: 600, color: wd.c, alpha: al }); x += wd.w + r.sp; });
+        r.words.forEach((wd) => { let xx = x; wd.segs.forEach((g) => { txt(ctx, g.s, xx, y, { size: 38, weight: 600, color: g.c, alpha: al }); xx += g.w; }); x += wd.w + r.sp; });
         if (al > 0.99) BOX(`apoio ${i + 1}, linha ${j + 1}`, x0, y - 30, x0 + r.w, y + 10);
       });
     });
@@ -541,29 +550,32 @@
   CENAS.capa = {
     setup(cap) {
       const d = cap.diagrama;
-      const S = fitSize(cap.titulo, DISPLAY, 900, 880, 158, -0.03);
+      const S = fitSize(cap.titulo, DISPLAY, 900, 880, 158, -0.03), nl = cap.titulo.length;
       const F = Math.round(S * 0.5);
       const bandW = tw(d.faixa, DISPLAY, F, 900, -0.02 * F) + 64, bandH = Math.round(F * 1.34);
       const chipH = 58, lockH = 96;
-      const titleH = 0.76 * S + 0.98 * S + 0.16 * S;
+      const titleH = 0.76 * S + (nl - 1) * 0.98 * S + 0.16 * S;
       const bandExt = bandH + bandW * Math.sin(3 * DEG);
       const total = chipH + 46 + titleH + 26 + bandExt + 52 + lockH;
       const top = 960 - total / 2;
       const Ly = {};
       Ly.chipY = top + chipH / 2;
-      Ly.b1 = top + chipH + 46 + 0.76 * S; Ly.b2 = Ly.b1 + 0.98 * S;
-      Ly.bandCy = Ly.b2 + 0.16 * S + 26 + bandExt / 2;
+      Ly.b = cap.titulo.map((_, i) => top + chipH + 46 + 0.76 * S + i * 0.98 * S);
+      Ly.bandCy = Ly.b[nl - 1] + 0.16 * S + 26 + bandExt / 2;
       Ly.lockY = Ly.bandCy + bandExt / 2 + 52 + lockH / 2;
       Ly.top = top; Ly.bottom = top + total;
       Object.assign(cap, { capaS: S, capaF: F, bandW, bandH, Ly });
       cap.apY = Ly.lockY + lockH / 2 + 84; cap.apX = 540; cap.apAlign = 'center';
-      cap.ev.locks = d.cadeados.map((c, i) => at(cap, c.em, cap.t0 + 0.4 + 0.5 * i));
+      let prev = -9;                                       // dois cadeados na mesma palavra acendem um depois do outro
+      cap.ev.locks = d.cadeados.map((c, i) => (prev = Math.max(at(cap, c.em, cap.t0 + 0.4 + 0.5 * i), prev + 0.2)));
+      const n = d.cadeados.length;
+      cap.lockGap = 18; cap.lockW = Math.min(198, (760 - (n - 1) * cap.lockGap) / n);
       cap.ev.locks.forEach((t) => cue(t, 'lockon'));
     },
     draw(ctx, cap, t) {
       const d = cap.diagrama, Ly = cap.Ly, S = cap.capaS;
       chip(ctx, cap.rotulo, 540, Ly.chipY, { size: 24, icon: 'chale', align: 'center', ls: 4, h: 58, box: 'chip' });
-      cap.titulo.forEach((ln, i) => txt(ctx, ln, 540, i ? Ly.b2 : Ly.b1, { size: S, weight: 900, align: 'center', ls: -0.03 * S, color: C.white, box: `título, linha ${i + 1}` }));
+      cap.titulo.forEach((ln, i) => txt(ctx, ln, 540, Ly.b[i], { size: S, weight: 900, align: 'center', ls: -0.03 * S, color: C.white, box: `título, linha ${i + 1}` }));
       // a faixa limão, levemente inclinada
       ctx.save(); ctx.translate(540, Ly.bandCy); ctx.rotate((-3 + 0.35 * Math.sin(t * 1.3)) * DEG);
       rr(ctx, -cap.bandW / 2, -cap.bandH / 2, cap.bandW, cap.bandH, 14);
@@ -573,7 +585,7 @@
       const ext = cap.bandH + cap.bandW * Math.sin(3 * DEG);
       BOX('faixa', 540 - cap.bandW / 2, Ly.bandCy - ext / 2, 540 + cap.bandW / 2, Ly.bandCy + ext / 2);
       // os três cadeados "? ? ?": cada um acende na sua palavra e mostra a palavra
-      const n = d.cadeados.length, bw = 198, gap = 22, x0 = 540 - (n * bw + (n - 1) * gap) / 2, bh = 96;
+      const n = d.cadeados.length, bw = cap.lockW, gap = cap.lockGap, x0 = 540 - (n * bw + (n - 1) * gap) / 2, bh = 96;
       d.cadeados.forEach((c, i) => {
         const x = x0 + i * (bw + gap), y = Ly.lockY - bh / 2, on = p(t, cap.ev.locks[i], cap.ev.locks[i] + 0.3);
         ctx.save();
@@ -583,10 +595,11 @@
         ctx.lineWidth = 2.5; ctx.strokeStyle = css(C.lime, 0.42 + 0.58 * on);
         if (on > 0) { ctx.shadowColor = css(C.lime, 0.7 * on); ctx.shadowBlur = 22; }
         ctx.stroke(); ctx.restore();
-        icon(ctx, on > 0.5 ? 'cadeado' : 'cadeado_aberto', x + 40, Ly.lockY, 34, on > 0 ? C.lime : C.gray, { lw: 2.2, fill: on > 0.5 ? css(C.lime, 0.2) : null });
+        const ix = bw < 190 ? 30 : 40, tcx = bw < 190 ? x + ix + 20 + (bw - ix - 20) / 2 : x + 40 + (bw - 40) / 2 + 2, lfs = bw < 190 ? 22 : 25;
+        icon(ctx, on > 0.5 ? 'cadeado' : 'cadeado_aberto', x + ix, Ly.lockY, bw < 190 ? 30 : 34, on > 0 ? C.lime : C.gray, { lw: 2.2, fill: on > 0.5 ? css(C.lime, 0.2) : null });
         const flip = Math.abs(Math.cos(Math.PI * on));
-        ctx.save(); ctx.translate(x + 40 + (bw - 40) / 2 + 2, Ly.lockY); ctx.scale(1, Math.max(0.05, flip)); ctx.translate(-(x + 40 + (bw - 40) / 2 + 2), -Ly.lockY);
-        txt(ctx, on < 0.5 ? '? ? ?' : c.t, x + 40 + (bw - 40) / 2 + 2, Ly.lockY + 9, { fam: MONO, size: 25, weight: 800, align: 'center', color: on < 0.5 ? C.gray : C.lime, ls: on < 0.5 ? 2 : 1 });
+        ctx.save(); ctx.translate(tcx, Ly.lockY); ctx.scale(1, Math.max(0.05, flip)); ctx.translate(-tcx, -Ly.lockY);
+        txt(ctx, on < 0.5 ? '? ? ?' : c.t, tcx, Ly.lockY + 9, { fam: MONO, size: lfs, weight: 800, align: 'center', color: on < 0.5 ? C.gray : C.lime, ls: on < 0.5 ? 2 : 1 });
         ctx.restore();
         BOX(`cadeado ${i + 1}`, x, y, x + bw, y + bh);
       });
@@ -1065,6 +1078,7 @@
       ev.rows.forEach((r) => { cue(r.a, 'pop', { f: 600 }); cue(r.b, 'pop', { f: 720 }); cue(r.neq, 'neq'); });
       const subs = d.pares.flatMap((pr) => [pr.a.sub || '', pr.b.sub || '']);
       cap.subS = fitSize(subs, DISPLAY, 600, 344 - 52, 32);
+      cap.parS = fitSize(d.pares.flatMap((pr) => [pr.a.t, pr.b.t]), MONO, 800, 344 - 120 - 18, 32, 2 / 32);
     },
     draw(ctx, cap, t) {
       const d = cap.diagrama, ev = cap.ev, cw = 344, ch = 236;
@@ -1074,7 +1088,7 @@
           panel(ctx, x, y, cw, ch, { r: 28, stroke: css(C.white, 0.16), box: tag });
           rr(ctx, x + 26, y + 28, 76, 76, 20); ctx.fillStyle = css(C.lime, 0.1); ctx.fill();
           icon(ctx, o.icone || 'cadeado', x + 64, y + 66, 42, C.lime, { lw: 2 });
-          txt(ctx, o.t, x + 120, y + 78, { fam: MONO, size: 32, weight: 800, color: C.white, ls: 2 });
+          txt(ctx, o.t, x + 120, y + 78, { fam: MONO, size: cap.parS, weight: 800, color: C.white, ls: 2 });
           txt(ctx, o.sub || '', x + 26, y + ch - 46, { size: cap.subS, weight: 600, color: C.gray });
         });
         side(pr.a, L.x0, r.a, `par ${i + 1}: ${pr.a.t}`);
@@ -1192,6 +1206,458 @@
     },
   };
 
+  // ---- peças comuns dos diagramas novos
+  // uma semana em 7 casas (dia da semana + número), dentro de um painel; devolve o centro de cada casa
+  function semana(ctx, x, y, w, h, dias, nomes, o = {}) {
+    panel(ctx, x, y, w, h, { r: 26, stroke: css(C.white, 0.14), box: o.box });
+    let gy = y + 18;
+    if (o.mes) { icon(ctx, 'calendario', x + 40, y + 38, 28, C.lime, { lw: 2 }); txt(ctx, o.mes, x + 66, y + 48, { fam: MONO, size: 24, weight: 800, color: C.white, ls: 3 }); gy = y + 70; }
+    const gap = 8, cw = (w - 32 - 6 * gap) / 7, ch = y + h - 16 - gy, cells = {};
+    dias.forEach((d, i) => {
+      const cx = x + 16 + i * (cw + gap), st = (o.estilo && o.estilo(d)) || {};
+      rr(ctx, cx, gy, cw, ch, 16);
+      ctx.fillStyle = st.fill || css(C.white, 0.035); ctx.fill();
+      if (st.stroke) { ctx.save(); ctx.setLineDash(st.dash || []); ctx.lineDashOffset = -(o.t || 0) * 18; ctx.lineWidth = st.lw || 2.5; ctx.strokeStyle = st.stroke; if (st.glow) { ctx.shadowColor = st.glow; ctx.shadowBlur = 20; } ctx.stroke(); ctx.restore(); }
+      txt(ctx, nomes[i], cx + cw / 2, gy + 30, { fam: MONO, size: 20, weight: 800, align: 'center', color: st.c2 || C.grayD, ls: 1 });
+      txt(ctx, String(d), cx + cw / 2, gy + ch - 18, { size: 36, weight: 800, align: 'center', color: st.c || '#D9DCD4' });
+      cells[d] = { x: cx + cw / 2, y: gy + ch / 2, x0: cx, y0: gy, w: cw, h: ch };
+    });
+    return cells;
+  }
+  // linha tracejada (ou cheia) com a ponta crescendo de 0 a 1
+  function linha(ctx, x0, y0, x1, y1, e, o = {}) {
+    if (e <= 0) return;
+    ctx.save(); ctx.strokeStyle = o.c || css(C.lime, 0.75); ctx.lineWidth = o.lw || 3; ctx.lineCap = 'round';
+    if (o.dash) { ctx.setLineDash(o.dash); ctx.lineDashOffset = -(o.t || 0) * 30; }
+    if (o.glow) { ctx.shadowColor = o.glow; ctx.shadowBlur = 12; }
+    const mx = o.curva ? x0 : (x0 + x1) / 2, my = o.curva ? y1 : (y0 + y1) / 2;
+    ctx.beginPath(); ctx.moveTo(x0, y0);
+    const n = 30;
+    for (let i = 1; i <= Math.round(n * e); i++) {
+      const u = i / n, v = 1 - u;
+      ctx.lineTo(v * v * x0 + 2 * v * u * mx + u * u * x1, v * v * y0 + 2 * v * u * my + u * u * y1);
+    }
+    ctx.stroke(); ctx.restore();
+  }
+  const bez = (x0, y0, x1, y1, u, curva) => { const mx = curva ? x0 : (x0 + x1) / 2, my = curva ? y1 : (y0 + y1) / 2, v = 1 - u; return [v * v * x0 + 2 * v * u * mx + u * u * x1, v * v * y0 + 2 * v * u * my + u * u * y1]; };
+  // cartão de origem (fonte da reserva): ícone + nome em mono
+  function fonteCard(ctx, x, y, w, h, f, o = {}) {
+    panel(ctx, x, y, w, h, { r: 24, stroke: o.stroke || css(C.white, 0.16), box: o.box });
+    rr(ctx, x + 20, y + 16, 48, 48, 14); ctx.fillStyle = css(C.lime, 0.1); ctx.fill();
+    icon(ctx, f.icone, x + 44, y + 40, 28, C.lime, { lw: 2 });
+    txt(ctx, f.t, x + 82, y + 50, { fam: MONO, size: 25, weight: 800, color: C.white, ls: 2 });
+  }
+
+  // ---- colisao: duas reservas do mesmo chalé deslizam para a mesma casa da semana e batem (RESERVA DUPLA)
+  CENAS.colisao = {
+    setup(cap) {
+      const d = cap.diagrama, ev = cap.ev;
+      ev.sem = at(cap, d.semana.em, cap.t0 + 0.3);
+      let prev = ev.sem + 0.3;
+      ev.res = d.reservas.map((r) => (prev = Math.max(at(cap, r.em, prev + 0.6), prev + 0.4)));
+      ev.conf = Math.max(at(cap, d.confirma.em, prev + 0.8), prev + 0.5);
+      ev.bate = ev.conf + 0.45; ev.selo = ev.bate + 0.3;
+      cue(ev.sem, 'pop', { f: 520 }); ev.res.forEach((t) => cue(t, 'slide')); cue(ev.conf, 'check'); cue(ev.bate, 'snap'); cue(ev.selo, 'alert');
+      cap.oriS = fitSize(d.reservas.map((r) => r.origem), MONO, 800, 372 - 56, 22, 1 / 22);
+    },
+    draw(ctx, cap, t) {
+      const d = cap.diagrama, ev = cap.ev, S = d.semana;
+      const bate = p(t, ev.bate, ev.bate + 0.25), red = t >= ev.bate;
+      let cells = null;
+      enter(ctx, ent(t, ev.sem, 0.5), L.cx, 920, () => {
+        cells = semana(ctx, L.x0, 836, L.x1 - L.x0, 196, S.dias, S.nomes, { mes: S.mes, box: 'semana', t,
+          estilo: (dd) => dd !== S.alvo || t < ev.res[0] ? null
+            : red ? { fill: css(C.red, 0.85 * E.outCubic(bate)), stroke: C.red, glow: css(C.red, 0.6), c: C.white, c2: C.white }
+              : { stroke: css(C.amber, 0.9), dash: [7, 6], c: C.amber, c2: C.amber } });
+      });
+      if (!cells) return;
+      const alvo = cells[S.alvo];
+      // o estalo na casa
+      if (red) { const r = p(t, ev.bate, ev.bate + 0.6); if (r < 1) { ctx.beginPath(); ctx.arc(alvo.x, alvo.y, 50 + 90 * E.outCubic(r), 0, TAU); ctx.strokeStyle = css(C.red, 0.7 * (1 - r)); ctx.lineWidth = 4; ctx.stroke(); } }
+      // as duas reservas
+      const cw = 372, ch = 196, cy = 1112;
+      d.reservas.forEach((r, i) => {
+        const e = E.outCubic(p(t, ev.res[i], ev.res[i] + 0.55));
+        if (e <= 0) return;
+        const side = i === 0 ? -1 : 1, hx = i === 0 ? L.x0 : L.x1 - cw;
+        // batem: as duas dão um tranco para o meio e tremem
+        const jolt = red ? -side * 22 * Math.sin(Math.PI * clamp(bate * 1.4)) + Math.sin((t - ev.bate) * 46) * 6 * (1 - p(t, ev.bate, ev.bate + 0.5)) : 0;
+        const x = hx + side * 280 * (1 - e) + jolt;
+        // a linha até a casa do sábado
+        const lx = x + cw / 2, ly = cy;
+        linha(ctx, lx, ly, alvo.x + side * 18, alvo.y0 + alvo.h, E.outCubic(p(t, ev.res[i] + 0.25, ev.res[i] + 0.7)), { c: red ? css(C.red, 0.85) : css(C.amber, 0.8), dash: [8, 7], t, curva: true, lw: 3.5 });
+        ctx.save(); ctx.globalAlpha *= clamp(e * 1.5);
+        panel(ctx, x, cy, cw, ch, { r: 26, stroke: red ? css(C.red, 0.8) : css(C.white, 0.16), glow: red ? css(C.red, 0.35) : null });
+        rr(ctx, x + 24, cy + 24, 56, 56, 16); ctx.fillStyle = css(C.lime, 0.1); ctx.fill();
+        icon(ctx, r.icone, x + 52, cy + 52, 32, C.lime, { lw: 2 });
+        txt(ctx, r.t, x + 98, cy + 63, { fam: MONO, size: 28, weight: 800, color: C.white, ls: 1 });
+        txt(ctx, r.origem, x + 26, cy + 122, { fam: MONO, size: cap.oriS, weight: 800, color: C.gray, ls: 1 });
+        const ce = p(t, ev.conf + i * 0.12, ev.conf + i * 0.12 + 0.3);
+        if (ce > 0) chip(ctx, d.confirma.t, x + 26, cy + 164, { size: 20, icon: 'check', color: C.ink, bg: C.lime, border: 'none', h: 40, pad: 14, alpha: E.outCubic(ce) });
+        ctx.restore();
+        if (e >= 1 && !red) BOX(`reserva ${i + 1}`, x, cy, x + cw, cy + ch);
+      });
+      // o selo
+      const se = p(t, ev.selo, ev.selo + 0.35);
+      if (se > 0) {
+        const k = E.outBack(se, 2.2), sy = 1372;
+        ctx.save(); ctx.translate(L.cx, sy); ctx.rotate(-3 * DEG); ctx.scale(k, k); ctx.translate(-L.cx, -sy);
+        chip(ctx, d.selo.t, L.cx, sy, { size: 32, icon: 'alerta', align: 'center', color: C.white, bg: C.red, border: 'none', glow: css(C.red, 0.6), h: 70, pad: 28 });
+        ctx.restore();
+        if (se >= 1) BOX('reserva dupla', L.cx - 210, sy - 40, L.cx + 210, sy + 40);
+      }
+    },
+  };
+
+  // ---- fontes: a agenda espalhada — três origens, cada uma com o seu minicalendário diferente; as ligações estão quebradas
+  function miniSemanas(ctx, x, y, w, primeiro, ocupados, o = {}) {
+    const cw = (w - 28) / 7, ch = 58, gx = x + 14;
+    for (let i = 0; i < 14; i++) {
+      const dn = primeiro + i, cx = gx + (i % 7) * cw + cw / 2, cy = y + Math.floor(i / 7) * ch + ch / 2;
+      const oc = ocupados.includes(dn), hot = oc && o.quente === dn;
+      if (oc) { rr(ctx, cx - cw / 2 + 3, cy - ch / 2 + 5, cw - 6, ch - 10, 10); ctx.fillStyle = hot ? css(C.red, 0.85) : css(C.white, 0.16); ctx.fill(); }
+      txt(ctx, String(dn), cx, cy + 8, { fam: MONO, size: 22, weight: 800, align: 'center', color: hot ? C.white : oc ? C.white : '#8E918A' });
+    }
+  }
+  CENAS.fontes = {
+    setup(cap) {
+      const d = cap.diagrama, ev = cap.ev;
+      let prev = cap.t0 + 0.2;
+      ev.fontes = d.fontes.map((f) => (prev = Math.max(at(cap, f.em, prev + 0.5), prev + 0.3)));
+      ev.quebra = Math.max(at(cap, d.quebra.em, prev + 0.6), prev + 0.4);
+      ev.alerta = Math.max(at(cap, d.alerta.em, ev.quebra + 0.8), ev.quebra + 0.5);
+      ev.fontes.forEach((t) => cue(t, 'pop', { f: 560 })); cue(ev.quebra, 'snap'); cue(ev.alerta, 'alert');
+    },
+    draw(ctx, cap, t) {
+      const d = cap.diagrama, ev = cap.ev, w = 340, h = 236;
+      const pos = [[L.x0, 836], [L.x1 - w, 836], [L.cx - w / 2, 1150]];
+      const ctr = pos.map(([x, y]) => [x + w / 2, y + h / 2]);
+      // as ligações (por trás dos cartões): tracejadas e quebradas no meio, com um × vermelho
+      const eq = p(t, ev.quebra, ev.quebra + 0.45);
+      if (eq > 0) {
+        [[0, 1, [L.cx, 954]], [0, 2, null], [1, 2, null]].forEach(([a, b, m], k) => {
+          const [ax, ay] = ctr[a], [bx, by] = ctr[b];
+          const mid = m || [lerp(ax, bx, 0.5), lerp(ay, by, 0.5)];
+          ctx.save(); ctx.setLineDash([9, 8]); ctx.lineDashOffset = -t * 20; ctx.strokeStyle = css(C.gray, 0.6 * eq); ctx.lineWidth = 3;
+          const dx = bx - ax, dy = by - ay, L0 = Math.hypot(dx, dy), ux = dx / L0, uy = dy / L0, gap = 30;
+          ctx.beginPath(); ctx.moveTo(ax, ay); ctx.lineTo(mid[0] - ux * gap, mid[1] - uy * gap); ctx.moveTo(mid[0] + ux * gap, mid[1] + uy * gap); ctx.lineTo(bx, by); ctx.stroke(); ctx.restore();
+          badge(ctx, mid[0], mid[1], 17, 'x', C.red, p(t, ev.quebra + 0.2 + 0.12 * k, ev.quebra + 0.5 + 0.12 * k), { ink: C.white });
+        });
+      }
+      d.fontes.forEach((f, i) => {
+        const [x, y] = pos[i];
+        enter(ctx, ent(t, ev.fontes[i], 0.5), x + w / 2, y + h / 2, () => {
+          fonteCard(ctx, x, y, w, h, f, { box: `fonte ${f.t}`, stroke: t >= ev.alerta ? css(C.red, 0.55) : null });
+          miniSemanas(ctx, x, y + 92, w, d.primeiro, f.ocupados, { quente: t >= ev.alerta + 0.1 * i ? 14 : null });
+        });
+      });
+    },
+  };
+
+  // ---- agenda: as três origens viram chips, mandam setas para um calendário único, que responde se tem vaga
+  CENAS.agenda = {
+    setup(cap) {
+      const d = cap.diagrama, ev = cap.ev;
+      ev.junta = at(cap, d.junta.em, cap.t0 + 0.5);
+      ev.cal = ev.junta + 0.35;
+      ev.entram = Math.max(at(cap, d.entram.em, ev.cal + 0.4), ev.cal + 0.3);
+      ev.chip = Math.max(at(cap, d.chip.em, ev.entram + 1.2), ev.entram + 0.9);
+      ev.vaga = Math.max(at(cap, d.vaga.em, ev.chip + 0.8), ev.chip + 0.5);
+      cue(ev.junta, 'whoosh'); cue(ev.cal, 'pop', { f: 480 });
+      d.fontes.forEach((f, i) => cue(ev.entram + 0.18 * i + 0.55, 'tick'));
+      cue(ev.chip, 'chip'); cue(ev.vaga, 'shine');
+    },
+    draw(ctx, cap, t) {
+      const d = cap.diagrama, ev = cap.ev;
+      const fw = 240, gap = (L.x1 - L.x0 - 3 * fw) / 2, fy = 836;
+      const col = E.inOutCubic(p(t, ev.junta, ev.junta + 0.45));              // os minicalendários somem
+      const fh = lerp(178, 74, col);
+      // o calendário único
+      const X = L.x0, Y = 1004, Wc = L.x1 - L.x0, Hc = 400;
+      const first = d.primeiro_dia_semana || 0, days = d.dias_no_mes || 30, cw = (Wc - 32) / 7, chh = 56, gy = Y + 108;
+      const cell = (dn) => { const k = dn - 1 + first; return { x: X + 16 + (k % 7) * cw + cw / 2, y: gy + Math.floor(k / 7) * chh + chh / 2 }; };
+      const eC = ent(t, ev.cal, 0.5);
+      const ocup = d.fontes.map((f, i) => (t >= ev.entram + 0.18 * i + 0.55 ? f.dia : null));
+      const vg = p(t, ev.vaga, ev.vaga + 0.5);
+      enter(ctx, eC, X + Wc / 2, Y + Hc / 2, () => {
+        const chipOn = p(t, ev.chip, ev.chip + 0.3);
+        panel(ctx, X, Y, Wc, Hc, { r: 30, stroke: chipOn > 0 ? css(C.lime, 0.55) : css(C.white, 0.14), glow: chipOn > 0 ? css(C.lime, 0.25 * chipOn) : null, box: 'agenda única' });
+        icon(ctx, 'calendario', X + 46, Y + 46, 32, C.lime, { lw: 2 });
+        txt(ctx, d.mes, X + 78, Y + 57, { fam: MONO, size: 28, weight: 800, color: C.white, ls: 4 });
+        if (chipOn > 0) chip(ctx, d.chip.t, X + Wc - 26, Y + 46, { size: 24, align: 'right', icon: 'check', color: C.ink, bg: C.lime, border: 'none', h: 52, pad: 18, glow: css(C.lime, 0.5), alpha: E.outCubic(chipOn) });
+        'DSTQQSS'.split('').forEach((w, i) => txt(ctx, w, X + 16 + i * cw + cw / 2, Y + 96, { fam: MONO, size: 20, weight: 700, color: C.grayD, align: 'center' }));
+        for (let dn = 1; dn <= days; dn++) {
+          const c = cell(dn), oc = ocup.includes(dn);
+          if (oc) { rr(ctx, c.x - cw / 2 + 6, c.y - chh / 2 + 4, cw - 12, chh - 8, 12); ctx.fillStyle = C.lime; ctx.fill(); }
+          else if (vg > 0) { rr(ctx, c.x - cw / 2 + 6, c.y - chh / 2 + 4, cw - 12, chh - 8, 12); ctx.strokeStyle = css(C.lime, 0.35 * vg); ctx.lineWidth = 2; ctx.stroke(); }
+          txt(ctx, String(dn), c.x, c.y + 9, { fam: MONO, size: 25, weight: 800, align: 'center', color: oc ? C.ink : '#C9CCC5', alpha: clamp((t - ev.cal - dn * 0.01) / 0.25) });
+        }
+      });
+      // as setas das origens até a casa de cada reserva, com um ponto viajando
+      d.fontes.forEach((f, i) => {
+        const fx = L.x0 + i * (fw + gap) + fw / 2, te = ev.entram + 0.18 * i;
+        const c = cell(f.dia), e = E.outCubic(p(t, te, te + 0.5));
+        if (e > 0) {
+          // a seta para na borda do calendário (não passa por cima dos números); o ponto segue até a casa da reserva
+          linha(ctx, fx, fy + fh, c.x, Y, e, { c: css(C.lime, 0.7), lw: 3.5, glow: css(C.lime, 0.5), curva: true });
+          if (e >= 1) { ctx.save(); ctx.fillStyle = C.lime; ctx.beginPath(); ctx.moveTo(c.x - 10, Y - 14); ctx.lineTo(c.x + 10, Y - 14); ctx.lineTo(c.x, Y); ctx.closePath(); ctx.fill(); ctx.restore(); }
+          const u = p(t, te, te + 0.55);
+          if (u > 0 && u < 1) {
+            const k = E.inOutCubic(u), [px, py] = k < 0.8 ? bez(fx, fy + fh, c.x, Y, k / 0.8, true) : [c.x, lerp(Y, c.y, (k - 0.8) / 0.2)];
+            ctx.beginPath(); ctx.arc(px, py, 9, 0, TAU); ctx.fillStyle = C.lime; ctx.shadowColor = C.lime; ctx.shadowBlur = 16; ctx.fill(); ctx.shadowColor = 'transparent';
+          }
+        }
+      });
+      // as origens: cartões com minicalendário que viram chips
+      d.fontes.forEach((f, i) => {
+        const x = L.x0 + i * (fw + gap);
+        fonteCard(ctx, x, fy, fw, fh, f, { box: col >= 1 ? `origem ${f.t}` : null });
+        if (col < 1) { ctx.save(); ctx.globalAlpha *= 1 - col; ctx.beginPath(); ctx.rect(x, fy + 70, fw, fh - 70); ctx.clip(); miniSemanas(ctx, x, fy + 78, fw, 8, [f.dia]); ctx.restore(); }
+      });
+    },
+  };
+
+  // ---- prazo: a pré-reserva fica segura por um prazo; num ramo o sinal confirma, no outro o prazo zera e a data volta a ficar livre
+  function casa(ctx, x, y, s, dia, sem, st) {
+    rr(ctx, x, y, s, s, 22);
+    if (st.fill) { ctx.fillStyle = st.fill; if (st.glow) { ctx.shadowColor = st.glow; ctx.shadowBlur = 26; } ctx.fill(); ctx.shadowColor = 'transparent'; }
+    if (st.stroke) { ctx.save(); ctx.setLineDash(st.dash || []); ctx.lineDashOffset = -(st.t || 0) * 20; ctx.lineWidth = 3; ctx.strokeStyle = st.stroke; ctx.stroke(); ctx.restore(); }
+    txt(ctx, sem, x + s / 2, y + s * 0.3, { fam: MONO, size: Math.round(s * 0.15), weight: 800, align: 'center', color: st.c, ls: 1 });
+    txt(ctx, String(dia), x + s / 2, y + s * 0.78, { size: Math.round(s * 0.42), weight: 900, align: 'center', color: st.c });
+  }
+  CENAS.prazo = {
+    setup(cap) {
+      const d = cap.diagrama, ev = cap.ev;
+      ev.pre = at(cap, d.pre.em, cap.t0 + 0.6);
+      ev.rel = Math.max(at(cap, d.relogio.em, ev.pre + 0.8), ev.pre + 0.4);
+      ev.pagou = Math.max(at(cap, d.pagou.em, ev.rel + 1.5), ev.rel + 0.6);
+      ev.sinal = ev.pagou + 0.45; ev.conf = ev.pagou + 0.8;
+      ev.nao = Math.max(at(cap, d.nao.em, ev.pagou + 1.2), ev.pagou + 0.8);
+      ev.livre = Math.max(at(cap, d.nao.em_fim, ev.nao + 1.0), ev.nao + 0.7);
+      cue(ev.pre, 'pop', { f: 440 }); cue(ev.rel, 'grow', { d: 0.5 }); cue(ev.pagou, 'slide'); cue(ev.sinal, 'coin'); cue(ev.conf, 'check');
+      cue(ev.nao, 'slide'); cue(ev.nao + 0.1, 'count', { d: Math.max(0.3, ev.livre - ev.nao - 0.2) }); cue(ev.livre, 'drop');
+    },
+    draw(ctx, cap, t) {
+      const d = cap.diagrama, ev = cap.ev;
+      const hh = (h) => `${String(Math.floor(h)).padStart(2, '0')}:${String(Math.floor((h % 1) * 60)).padStart(2, '0')}`;
+      // a pré-reserva com o relógio
+      const W0 = 600, X0 = L.cx - W0 / 2, Y0 = 836, H0 = 206;
+      enter(ctx, ent(t, ev.pre, 0.5), L.cx, Y0 + H0 / 2, () => {
+        panel(ctx, X0, Y0, W0, H0, { r: 28, stroke: css(C.amber, 0.5), box: 'pré-reserva' });
+        casa(ctx, X0 + 28, Y0 + 28, 150, d.dia, d.semana, { stroke: C.amber, dash: [8, 7], t, c: C.amber, fill: css(C.amber, 0.08) });
+        txt(ctx, d.pre.t, X0 + 206, Y0 + 70, { fam: MONO, size: 28, weight: 800, color: C.amber, ls: 2 });
+        const r = p(t, ev.rel, ev.rel + 0.4);
+        if (r > 0) {
+          const h = t < ev.pagou ? d.relogio.horas - 2.2 * Math.max(0, t - ev.rel - 0.4) : d.relogio.horas - 2.2 * (ev.pagou - ev.rel - 0.4);
+          icon(ctx, 'relogio', X0 + 230, Y0 + 132, 44, C.white, { lw: 2, alpha: r });
+          txt(ctx, hh(Math.max(0, h)), X0 + 266, Y0 + 152, { size: 64, weight: 900, color: C.white, alpha: r, box: r >= 1 ? 'relógio' : null });
+          ctx.fillStyle = css(C.white, 0.12 * r); rr(ctx, X0 + 208, Y0 + 176, 360, 8, 4); ctx.fill();
+          ctx.fillStyle = css(C.amber, r); rr(ctx, X0 + 208, Y0 + 176, 360 * clamp(h / d.relogio.horas), 8, 4); ctx.fill();
+        }
+      });
+      // os dois ramos
+      const bw = 372, bh = 252, by = 1146;
+      const ramo = (i, tIn, fn) => {
+        const e = E.outCubic(p(t, tIn, tIn + 0.5));
+        if (e <= 0) return;
+        const bx = i === 0 ? L.x0 : L.x1 - bw;
+        linha(ctx, L.cx + (i ? 40 : -40), Y0 + H0, bx + bw / 2, by, E.outCubic(p(t, tIn - 0.1, tIn + 0.3)), { c: i ? css(C.gray, 0.6) : css(C.lime, 0.75), lw: 3.5, dash: i ? [8, 7] : null, t });
+        enter(ctx, e, bx + bw / 2, by + bh / 2, () => fn(bx), { dy: 30 });
+      };
+      ramo(0, ev.pagou, (bx) => {
+        const ok = p(t, ev.conf, ev.conf + 0.3);
+        panel(ctx, bx, by, bw, bh, { r: 26, stroke: ok > 0 ? css(C.lime, 0.6) : css(C.white, 0.16), glow: ok > 0 ? css(C.lime, 0.3 * ok) : null, box: 'ramo: pagou' });
+        txt(ctx, d.pagou.t, bx + 26, by + 50, { fam: MONO, size: 24, weight: 800, color: C.lime, ls: 2 });
+        casa(ctx, bx + 26, by + 78, 140, d.dia, d.semana, ok > 0 ? { fill: C.lime, glow: css(C.lime, 0.6 * ok), c: C.ink } : { stroke: C.amber, dash: [8, 7], t, c: C.amber });
+        const se = p(t, ev.sinal, ev.sinal + 0.3);
+        if (se > 0) chip(ctx, d.pagou.chip.replace(' ✓', ''), bx + 188, by + 118, { size: 22, icon: 'check', color: C.ink, bg: C.lime, border: 'none', h: 48, pad: 14, alpha: E.outCubic(se), box: se >= 1 ? 'sinal' : null });
+        if (ok > 0) txt(ctx, d.pagou.fim, bx + 188, by + 196, { fam: MONO, size: 25, weight: 800, color: C.lime, alpha: E.outCubic(ok), box: ok >= 1 ? 'confirmada' : null });
+      });
+      ramo(1, ev.nao, (bx) => {
+        const lv = p(t, ev.livre, ev.livre + 0.3);
+        panel(ctx, bx, by, bw, bh, { r: 26, stroke: css(C.white, 0.16), box: 'ramo: não pagou' });
+        txt(ctx, d.nao.t, bx + 26, by + 50, { fam: MONO, size: 24, weight: 800, color: C.gray, ls: 2 });
+        casa(ctx, bx + 26, by + 78, 140, d.dia, d.semana, lv > 0 ? { stroke: css(C.white, 0.5), dash: [3, 7], t, c: C.white, fill: css(C.white, 0.04) } : { stroke: C.amber, dash: [8, 7], t, c: C.amber });
+        const h = d.relogio.horas * (1 - E.inOutCubic(p(t, ev.nao + 0.1, ev.livre - 0.05)));
+        txt(ctx, hh(h), bx + 188, by + 134, { fam: MONO, size: 40, weight: 800, color: h <= 0.01 ? C.red : C.amber, box: lv >= 1 ? 'prazo zerado' : null });
+        if (lv > 0) txt(ctx, d.nao.fim, bx + 188, by + 196, { fam: MONO, size: 25, weight: 800, color: C.white, alpha: E.outCubic(lv), box: lv >= 1 ? 'livre' : null });
+      });
+    },
+  };
+
+  // ---- bloqueio: a reserva confirmada recebe o cadeado, que se replica nos canais (cada um vira FECHADO no mesmo minuto)
+  CENAS.bloqueio = {
+    setup(cap) {
+      const d = cap.diagrama, ev = cap.ev;
+      ev.res = at(cap, d.reserva.em, cap.t0 + 0.5);
+      ev.lock = Math.max(at(cap, d.cadeado.em, ev.res + 0.6), ev.res + 0.4); ev.landL = ev.lock + 0.35;
+      ev.abre = Math.max(at(cap, d.abertos.em, ev.landL + 0.2), ev.landL);
+      let prev = ev.abre + 0.3;
+      ev.canais = d.canais.map((c) => (prev = Math.max(at(cap, c.em, prev + 0.5), prev + 0.35)));
+      cue(ev.res, 'pop', { f: 600 }); cue(ev.lock, 'drop'); cue(ev.landL, 'lock'); cue(ev.abre, 'slide');
+      ev.canais.forEach((t) => { cue(t, 'whoosh'); cue(t + 0.42, 'lock'); });
+    },
+    draw(ctx, cap, t) {
+      const d = cap.diagrama, ev = cap.ev;
+      const RW = 640, RX = L.cx - RW / 2, RY = 836, RH = 170;
+      const lx = RX + RW - 70, ly = RY + RH / 2;
+      enter(ctx, ent(t, ev.res, 0.5), L.cx, RY + RH / 2, () => {
+        panel(ctx, RX, RY, RW, RH, { r: 28, stroke: css(C.lime, 0.5), box: 'reserva confirmada' });
+        rr(ctx, RX + 26, RY + 26, 118, 118, 22); ctx.fillStyle = css(C.lime, 0.1); ctx.fill();
+        icon(ctx, 'chale', RX + 85, RY + 85, 64, C.lime, { lw: 1.8 });
+        txt(ctx, d.reserva.t, RX + 170, RY + 76, { fam: MONO, size: 30, weight: 800, color: C.white, ls: 1 });
+        txt(ctx, d.reserva.sub, RX + 170, RY + 124, { fam: MONO, size: 24, weight: 800, color: C.lime, ls: 1 });
+      });
+      // o cadeado que cai na reserva
+      const lockBadge = (x, y, r, k = 1) => {
+        ctx.save(); ctx.translate(x, y); ctx.scale(k, k);
+        ctx.beginPath(); ctx.arc(0, 0, r, 0, TAU); ctx.fillStyle = C.lime; ctx.shadowColor = css(C.lime, 0.7); ctx.shadowBlur = 22; ctx.fill(); ctx.shadowColor = 'transparent';
+        icon(ctx, 'cadeado', 0, 0, r * 1.15, C.ink, { lw: 2.6 }); ctx.restore();
+      };
+      if (t >= ev.lock) {
+        const u = p(t, ev.lock, ev.landL), k = t >= ev.landL ? 1 + 0.2 * (1 - p(t, ev.landL, ev.landL + 0.3)) : 1.2;
+        lockBadge(lx, lerp(ly - 240, ly, E.inCubic(u)), 38, k);
+        if (t >= ev.landL) BOX('cadeado', lx - 38, ly - 38, lx + 38, ly + 38);
+      }
+      // os canais
+      const cw = 248, gap = (L.x1 - L.x0 - 3 * cw) / 2, cy = 1124, chh = 270;
+      const ea = ent(t, ev.abre, 0.5);
+      d.canais.forEach((c, i) => {
+        const x = L.x0 + i * (cw + gap), cx = x + cw / 2, tc = ev.canais[i];
+        const fe = p(t, tc + 0.42, tc + 0.7), fechado = fe > 0;
+        // a linha da reserva até o canal, e o cadeado viajando por ela
+        linha(ctx, L.cx, RY + RH, cx, cy, ea, { c: fechado ? css(C.lime, 0.8) : css(C.gray, 0.5), dash: fechado ? null : [8, 7], t, lw: 3.5, glow: fechado ? css(C.lime, 0.4) : null });
+        const u = p(t, tc, tc + 0.42);
+        if (u > 0 && u < 1) { const [px, py] = bez(L.cx, RY + RH, cx, cy, E.inOutCubic(u)); lockBadge(px, py, 22); }
+        enter(ctx, ea, cx, cy + chh / 2, () => {
+          panel(ctx, x, cy, cw, chh, { r: 26, stroke: fechado ? css(C.lime, 0.7) : css(C.white, 0.16), glow: fechado ? css(C.lime, 0.3 * fe) : null, box: `canal ${c.t}` });
+          icon(ctx, c.icone, cx, cy + 62, 50, fechado ? C.lime : C.white, { lw: 2 });
+          txt(ctx, c.t, cx, cy + 138, { fam: MONO, size: 27, weight: 800, align: 'center', color: C.white, ls: 2 });
+          if (!fechado) chip(ctx, 'ABERTO', cx, cy + 196, { size: 22, align: 'center', color: C.gray, bg: 'rgba(255,255,255,0.04)', border: css(C.gray, 0.5), h: 46, pad: 16 });
+          else chip(ctx, 'FECHADO', cx, cy + 196, { size: 22, align: 'center', icon: 'cadeado', color: C.ink, bg: C.lime, border: 'none', h: 46, pad: 16, alpha: 0.4 + 0.6 * E.outCubic(fe) });
+          if (fechado) txt(ctx, `às ${d.hora}`, cx, cy + 246, { fam: MONO, size: 22, weight: 700, align: 'center', color: C.gray, alpha: E.outCubic(fe) });
+        });
+        if (fechado) badge(ctx, x + cw - 18, cy + 18, 22, 'cadeado', C.lime, fe);
+      });
+    },
+  };
+
+  // ---- consulta: a pergunta "tem vaga?", a lupa que passa pela agenda e a resposta só depois de olhar
+  function balaoTexto(ctx, x, y, w, linhas, o) {
+    const S = o.size, lh = S * 1.22, padX = 36, padY = 28, h = linhas.length * lh + 2 * padY - (lh - S * 1.1);
+    ctx.save();
+    rr(ctx, x, y, w, h, 32);
+    if (o.lado === 'esq') { ctx.moveTo(x + 40, y + h - 2); ctx.lineTo(x + 18, y + h + 26); ctx.lineTo(x + 84, y + h - 2); }
+    else { ctx.moveTo(x + w - 40, y + h - 2); ctx.lineTo(x + w - 18, y + h + 26); ctx.lineTo(x + w - 84, y + h - 2); }
+    ctx.fillStyle = o.bg; ctx.shadowColor = o.glow || 'rgba(0,0,0,0.5)'; ctx.shadowBlur = 36; ctx.fill(); ctx.shadowColor = 'transparent';
+    if (o.stroke) { ctx.lineWidth = 2.5; ctx.strokeStyle = o.stroke; ctx.stroke(); }
+    ctx.restore();
+    linhas.forEach((l, i) => txt(ctx, l, x + padX, y + padY + S * 0.86 + i * lh, { size: S, weight: 700, color: o.c, ls: -0.01 * S }));
+    if (o.box) BOX(o.box, x, y, x + w, y + h + 26);
+    return h;
+  }
+  CENAS.consulta = {
+    setup(cap) {
+      const d = cap.diagrama, ev = cap.ev;
+      ev.perg = at(cap, d.pergunta.em, cap.t0 + 0.4);
+      ev.sem = ev.perg + 0.35;
+      ev.lupa = Math.max(at(cap, d.lupa.em, ev.sem + 0.6), ev.sem + 0.4);
+      ev.achou = Math.max(at(cap, d.lupa.achou, ev.lupa + 0.9), ev.lupa + 0.7);
+      ev.mem = Math.max(at(cap, d.memoria.em, ev.achou + 0.8), ev.achou + 0.4);
+      ev.resp = Math.max(at(cap, d.resposta.em, ev.mem + 1), ev.mem + 0.6);
+      cue(ev.perg, 'slide'); cue(ev.sem, 'pop', { f: 500 }); cue(ev.lupa, 'whoosh'); cue(ev.achou, 'check'); cue(ev.mem, 'deny'); cue(ev.resp, 'slide');
+      // a resposta em linhas que caibam no balão
+      const maxW = 640 - 72, words = d.resposta.t.split(' '), ls = [];
+      let cur = '';
+      words.forEach((w) => { const tst = cur ? cur + ' ' + w : w; if (cur && tw(tst, DISPLAY, 38, 700) > maxW) { ls.push(cur); cur = w; } else cur = tst; });
+      if (cur) ls.push(cur);
+      cap.respL = ls;
+    },
+    draw(ctx, cap, t) {
+      const d = cap.diagrama, ev = cap.ev, S = d.semana;
+      // a pergunta (balão genérico, sem logo de app)
+      enter(ctx, ent(t, ev.perg, 0.45), L.x0 + 220, 900, () => {
+        const w = tw(d.pergunta.t, DISPLAY, 42, 700) + 72;
+        balaoTexto(ctx, L.x0, 846, w, [d.pergunta.t], { size: 42, bg: C.card2, stroke: css(C.white, 0.18), c: C.white, lado: 'esq', box: 'pergunta' });
+      });
+      // "de memória": riscado
+      const me = p(t, ev.mem, ev.mem + 0.35);
+      if (me > 0) {
+        const cy = 900;
+        const c = chip(ctx, d.memoria.t, L.x1, cy, { size: 26, align: 'right', color: C.red, bg: css(C.red, 0.1), border: css(C.red, 0.6), h: 58, pad: 22, alpha: E.outCubic(me), box: 'de memória' });
+        const tx0 = L.x1 - c + 18, tx1 = L.x1 - 18;
+        ctx.save(); ctx.strokeStyle = C.red; ctx.lineWidth = 4; ctx.lineCap = 'round'; ctx.beginPath(); ctx.moveTo(tx0, cy + 1); ctx.lineTo(lerp(tx0, tx1, E.outCubic(p(t, ev.mem + 0.2, ev.mem + 0.5))), cy - 3); ctx.stroke(); ctx.restore();
+      }
+      // a semana e a lupa
+      let cells = null;
+      const achou = p(t, ev.achou, ev.achou + 0.3);
+      enter(ctx, ent(t, ev.sem, 0.5), L.cx, 1072, () => {
+        cells = semana(ctx, L.x0, 986, L.x1 - L.x0, 172, S.dias, S.nomes, { box: 'semana', t,
+          estilo: (dd) => S.ocupados.includes(dd) ? { fill: css(C.white, 0.14), c: '#8E918A', c2: '#6B6F68' }
+            : dd === S.alvo && achou > 0 ? { fill: css(C.lime, 0.9 * achou), glow: css(C.lime, 0.6), c: C.ink, c2: C.ink } : null });
+      });
+      if (cells && t >= ev.lupa) {
+        const xs = S.dias.map((dd) => cells[dd].x), u = E.inOutSine(p(t, ev.lupa, ev.achou));
+        const pos = lerp(0, xs.length - 1, u), i0 = Math.floor(pos), i1 = Math.min(xs.length - 1, i0 + 1);
+        const lx = lerp(xs[i0], xs[i1], pos - i0) + 10, ly = cells[S.dias[0]].y - 6 - 8 * Math.sin(t * 6) * (1 - achou);
+        ctx.save(); ctx.globalAlpha *= clamp((t - ev.lupa) * 4) * (1 - p(t, ev.achou + 0.35, ev.achou + 0.7));
+        ctx.beginPath(); ctx.arc(lx, ly, 46, 0, TAU); ctx.fillStyle = css(C.lime, 0.08); ctx.fill(); ctx.lineWidth = 6; ctx.strokeStyle = C.lime; ctx.shadowColor = css(C.lime, 0.7); ctx.shadowBlur = 16; ctx.stroke();
+        ctx.lineCap = 'round'; ctx.lineWidth = 10; ctx.beginPath(); ctx.moveTo(lx + 33, ly + 33); ctx.lineTo(lx + 64, ly + 64); ctx.stroke();
+        ctx.restore();
+        if (achou >= 1) txt(ctx, 'LIVRE', cells[S.alvo].x, 1148 + 34, { fam: MONO, size: 22, weight: 800, align: 'center', color: C.lime, ls: 2, box: 'livre' });
+      }
+      // a resposta, só depois de olhar
+      const er = ent(t, ev.resp, 0.45);
+      if (er > 0) {
+        const w = Math.max(...cap.respL.map((l) => tw(l, DISPLAY, 38, 700))) + 72;
+        enter(ctx, er, L.x1 - w / 2, 1300, () => {
+          txt(ctx, 'VOCÊ', L.x1, 1222, { fam: MONO, size: 22, weight: 800, align: 'right', color: C.grayM, ls: 3 });
+          balaoTexto(ctx, L.x1 - w, 1236, w, cap.respL, { size: 38, bg: C.lime, glow: css(C.lime, 0.25), c: C.ink, lado: 'dir', box: 'resposta' });
+        });
+      }
+    },
+  };
+
+  // ---- passos: a lista ligada dos passos (número, ícone e o passo em mono), cada um acende na sua palavra
+  CENAS.passos = {
+    setup(cap) {
+      const d = cap.diagrama, ev = cap.ev;
+      let prev = cap.t0 + 0.2;
+      ev.itens = d.itens.map((x) => (prev = Math.max(at(cap, x.em, prev + 0.5), prev + 0.35)));
+      ev.checks = ev.itens.map((x) => x + 0.45);
+      ev.sweep = Math.max(cap.t1 - 1.0, ev.checks[ev.checks.length - 1] + 0.3);
+      ev.itens.forEach((x) => cue(x, 'slide')); ev.checks.forEach((x) => cue(x, 'check')); cue(ev.sweep, 'shine');
+      cap.passoS = fitSize(d.itens.map((x) => x.t), MONO, 800, L.x1 - L.x0 - 196 - 80, 32, 1 / 32);
+    },
+    draw(ctx, cap, t) {
+      const d = cap.diagrama, ev = cap.ev, rh = 118, gap = 22, y0 = 846, nx = L.x0 + 60;
+      // a ligação entre os números
+      const on = ev.itens.filter((x) => t >= x).length;
+      if (on > 1) {
+        const e = p(t, ev.itens[on - 1], ev.itens[on - 1] + 0.35);
+        ctx.save(); ctx.strokeStyle = css(C.lime, 0.7); ctx.lineWidth = 4; ctx.beginPath(); ctx.moveTo(nx, y0 + rh / 2);
+        ctx.lineTo(nx, y0 + rh / 2 + (on - 2 + e) * (rh + gap)); ctx.stroke(); ctx.restore();
+      }
+      d.itens.forEach((it, i) => {
+        const y = y0 + i * (rh + gap), ok = t >= ev.checks[i];
+        enter(ctx, ent(t, ev.itens[i], 0.4), L.cx, y + rh / 2, () => {
+          panel(ctx, L.x0, y, L.x1 - L.x0, rh, { r: 26, stroke: ok ? css(C.lime, 0.55) : css(C.white, 0.14), box: `passo ${i + 1}` });
+          ctx.beginPath(); ctx.arc(nx, y + rh / 2, 36, 0, TAU); ctx.fillStyle = C.lime; ctx.fill();
+          txt(ctx, String(i + 1).padStart(2, '0'), nx, y + rh / 2 + 10, { fam: MONO, size: 28, weight: 800, align: 'center', color: C.ink });
+          icon(ctx, it.icone, L.x0 + 140, y + rh / 2, 38, C.lime, { lw: 2 });
+          txt(ctx, it.t, L.x0 + 186, y + rh / 2 + cap.passoS * 0.36, { fam: MONO, size: cap.passoS, weight: 800, color: C.white, ls: 1 });
+          badge(ctx, L.x1 - 52, y + rh / 2, 26, 'check', C.lime, p(t, ev.checks[i], ev.checks[i] + 0.3));
+        }, { dy: 0, k0: 1 });
+        const sw = p(t, ev.sweep + i * 0.1, ev.sweep + 0.55 + i * 0.1);
+        if (sw > 0 && sw < 1) {
+          const gx = lerp(L.x0 - 100, L.x1 + 100, sw), g = ctx.createLinearGradient(gx - 90, 0, gx + 90, 0);
+          g.addColorStop(0, css(C.lime, 0)); g.addColorStop(0.5, css(C.lime, 0.3)); g.addColorStop(1, css(C.lime, 0));
+          ctx.save(); ctx.globalCompositeOperation = 'lighter'; ctx.fillStyle = g; ctx.fillRect(L.x0, y, L.x1 - L.x0, rh); ctx.restore();
+        }
+      });
+    },
+  };
+
   // ---- fecho: a pergunta num balão grande (com o título fixo e a notinha fechada ao lado); nos últimos 3 s, a logo
   CENAS.fecho = {
     setup(cap) {
@@ -1199,6 +1665,8 @@
       ev.balao = at(cap, d.pergunta.em, cap.t0 + 1.2);
       // a fase da logo: a passagem limão entra em (fim − 3,35 s) e a logo pousa, com a sineta, em (fim − 3,05 s)
       ev.wipe = cap.t1 - 3.35; ev.pousa = cap.t1 - 3.05;
+      // a passagem para a logo só começa depois da última palavra (no JSON, o fecho usa "segura" ≥ 3,45 s)
+      if (ev.wipe < cap.voz_t1 + 0.05) console.error(`fecho: a logo entraria ${(cap.voz_t1 + 0.05 - ev.wipe).toFixed(2)} s antes do fim da voz; aumente "segura" do fecho`);
       const inner = L.x1 - L.x0 - 2 * 46;
       cap.pergS = fitSize(d.pergunta.linhas.map(plain), DISPLAY, 800, inner, 66);
       Object.assign(FECHO, {
@@ -1336,7 +1804,7 @@
     get DURATION() { return DUR; },
     cues: () => ({ duration: DUR, capitulos: CAPS.map((c) => ({ n: c.n, rotulo: c.rotulo, tipo: c.diagrama.tipo, t0: c.t0, t1: c.t1, voz_t0: c.voz_t0, voz_t1: c.voz_t1, ev: c.ev })), cues: CUES.map((c) => ({ ...c, t: Math.round(c.t * 1e4) / 1e4 })) }),
     apoios: () => CAPS.flatMap((c) => c.apoios.map((a, i) => ({ cap: c.n, i: i + 1, texto: plain(a.texto), entra: a.t, inteira_de: a.t + 0.34, ate: c.n === NC - 1 && !c.apoios[i + 1] ? FECHO.wipe : (c.apoios[i + 1] ? c.apoios[i + 1].t : a.ate) }))),
-    fecho: () => ({ ultima_mudanca_de_texto: FECHO.ultima, duracao: DUR, texto_de: FECHO.texto_de, texto_ate: FECHO.texto_ate, logo_passagem: FECHO.wipe, logo_pousa: FECHO.pousa, sineta: FECHO.sino }),
+    fecho: () => ({ ultima_mudanca_de_texto: FECHO.ultima, duracao: DUR, voz_fim: CAPS[NC - 1].voz_t1, texto_de: FECHO.texto_de, texto_ate: FECHO.texto_ate, logo_passagem: FECHO.wipe, logo_pousa: FECHO.pousa, sineta: FECHO.sino }),
     notinha: () => ({ entra: NOTA.entra, rasga: NOTA.rasga, linhas: NOTA.ents.map((e) => ({ tipo: e.tipo, cap: e.k ?? null, texto: e.tipo === 'item' ? `${e.num} · ${e.lines.join(' ')}` : e.tipo === 'topo' ? 'CONTA' : 'CONTA FECHADA ✓', imprime: e.t, check: e.check ?? null })) }),
     medidas: () => ({ area_util: [L.x0, L.x1], cartao_credito: { largura: CARTAO.CW, altura: CARTAO.CH, mono_px: CARTAO.mono, valor_px: CARTAO.valor, sub_px: CARTAO.sub } }),
     trocas: () => CAPS.slice(0, -1).map((c, k) => ({ de: k, para: k + 1, t0: c.t1, t1: CAPS[k + 1].t0 })),

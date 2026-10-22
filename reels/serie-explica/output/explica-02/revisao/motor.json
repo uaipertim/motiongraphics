@@ -1,0 +1,1029 @@
+{
+ "duracao": 84.259,
+ "apoios": [
+  {
+   "cap": 0,
+   "i": 1,
+   "texto": "Dá pra nunca mais passar por isso.",
+   "entra": 4.311,
+   "inteira_de": 4.651,
+   "ate": 7.772
+  },
+  {
+   "cap": 1,
+   "i": 1,
+   "texto": "Dois hóspedes e um chalé só.",
+   "entra": 8.072,
+   "inteira_de": 8.411999999999999,
+   "ate": 10.751
+  },
+  {
+   "cap": 1,
+   "i": 2,
+   "texto": "Uma veio pelo WhatsApp, a outra pelo site.",
+   "entra": 10.751,
+   "inteira_de": 11.091,
+   "ate": 13.572
+  },
+  {
+   "cap": 1,
+   "i": 3,
+   "texto": "E as duas estavam confirmadas.",
+   "entra": 13.572,
+   "inteira_de": 13.911999999999999,
+   "ate": 15.992
+  },
+  {
+   "cap": 2,
+   "i": 1,
+   "texto": "O problema não foi o hóspede.",
+   "entra": 16.292,
+   "inteira_de": 16.632,
+   "ate": 18.251
+  },
+  {
+   "cap": 2,
+   "i": 2,
+   "texto": "Foi a agenda, espalhada em três lugares.",
+   "entra": 18.251,
+   "inteira_de": 18.591,
+   "ate": 23.58
+  },
+  {
+   "cap": 2,
+   "i": 3,
+   "texto": "Um não sabia o que o outro vendeu.",
+   "entra": 23.58,
+   "inteira_de": 23.919999999999998,
+   "ate": 26.358
+  },
+  {
+   "cap": 3,
+   "i": 1,
+   "texto": "Passo 1: uma agenda só.",
+   "entra": 26.658,
+   "inteira_de": 26.998,
+   "ate": 28.578
+  },
+  {
+   "cap": 3,
+   "i": 2,
+   "texto": "Venha de onde vier, a reserva entra nela.",
+   "entra": 28.578,
+   "inteira_de": 28.918,
+   "ate": 31.334
+  },
+  {
+   "cap": 3,
+   "i": 3,
+   "texto": "É ela que diz se tem vaga.",
+   "entra": 31.334,
+   "inteira_de": 31.674,
+   "ate": 33.844
+  },
+  {
+   "cap": 4,
+   "i": 1,
+   "texto": "Passo 2: a pré-reserva tem prazo.",
+   "entra": 34.144,
+   "inteira_de": 34.484,
+   "ate": 36.064
+  },
+  {
+   "cap": 4,
+   "i": 2,
+   "texto": "A data fica segura por 24 horas.",
+   "entra": 36.064,
+   "inteira_de": 36.404,
+   "ate": 38.971
+  },
+  {
+   "cap": 4,
+   "i": 3,
+   "texto": "Pagou o sinal: confirmada.",
+   "entra": 38.971,
+   "inteira_de": 39.311,
+   "ate": 41.235
+  },
+  {
+   "cap": 4,
+   "i": 4,
+   "texto": "Não pagou: a data fica livre.",
+   "entra": 41.235,
+   "inteira_de": 41.575,
+   "ate": 44.036
+  },
+  {
+   "cap": 5,
+   "i": 1,
+   "texto": "Passo 3: vendeu num lugar, fecha em todos.",
+   "entra": 44.336,
+   "inteira_de": 44.676,
+   "ate": 47.921
+  },
+  {
+   "cap": 5,
+   "i": 2,
+   "texto": "Confirmou, a data fecha em todos os canais.",
+   "entra": 47.921,
+   "inteira_de": 48.261,
+   "ate": 52.544
+  },
+  {
+   "cap": 6,
+   "i": 1,
+   "texto": "Passo 4: antes do “tem sim”, olhe a agenda.",
+   "entra": 52.844,
+   "inteira_de": 53.184000000000005,
+   "ate": 56.963
+  },
+  {
+   "cap": 6,
+   "i": 2,
+   "texto": "Nunca de memória.",
+   "entra": 56.963,
+   "inteira_de": 57.303000000000004,
+   "ate": 58.883
+  },
+  {
+   "cap": 6,
+   "i": 3,
+   "texto": "10 segundos evitam o pior sábado do ano.",
+   "entra": 58.883,
+   "inteira_de": 59.223000000000006,
+   "ate": 62.109
+  },
+  {
+   "cap": 7,
+   "i": 1,
+   "texto": "A data segura não é a reserva feita.",
+   "entra": 62.409,
+   "inteira_de": 62.749,
+   "ate": 65.204
+  },
+  {
+   "cap": 7,
+   "i": 2,
+   "texto": "Reserva é quando o sinal entrou.",
+   "entra": 65.204,
+   "inteira_de": 65.544,
+   "ate": 67.912
+  },
+  {
+   "cap": 8,
+   "i": 1,
+   "texto": "Um passo de cada vez, nessa ordem.",
+   "entra": 68.212,
+   "inteira_de": 68.552,
+   "ate": 75.259
+  },
+  {
+   "cap": 9,
+   "i": 1,
+   "texto": "Pra ter à mão antes do próximo “tem vaga?”.",
+   "entra": 75.559,
+   "inteira_de": 75.899,
+   "ate": 80.909
+  }
+ ],
+ "trocas": [
+  {
+   "de": 0,
+   "para": 1,
+   "t0": 7.272,
+   "t1": 7.772
+  },
+  {
+   "de": 1,
+   "para": 2,
+   "t0": 15.492,
+   "t1": 15.992
+  },
+  {
+   "de": 2,
+   "para": 3,
+   "t0": 25.858,
+   "t1": 26.358
+  },
+  {
+   "de": 3,
+   "para": 4,
+   "t0": 33.344,
+   "t1": 33.844
+  },
+  {
+   "de": 4,
+   "para": 5,
+   "t0": 43.536,
+   "t1": 44.036
+  },
+  {
+   "de": 5,
+   "para": 6,
+   "t0": 52.044,
+   "t1": 52.544
+  },
+  {
+   "de": 6,
+   "para": 7,
+   "t0": 61.609,
+   "t1": 62.109
+  },
+  {
+   "de": 7,
+   "para": 8,
+   "t0": 67.412,
+   "t1": 67.912
+  },
+  {
+   "de": 8,
+   "para": 9,
+   "t0": 74.759,
+   "t1": 75.259
+  }
+ ],
+ "montagens": [
+  {
+   "n": 0,
+   "t0": 0,
+   "t1": 7.272,
+   "primeira": 6.009,
+   "ultima": 6.609000000000001
+  },
+  {
+   "n": 1,
+   "t0": 7.772,
+   "t1": 15.492,
+   "primeira": 8.282,
+   "ultima": 14.767
+  },
+  {
+   "n": 2,
+   "t0": 15.992,
+   "t1": 25.858,
+   "primeira": 20.322,
+   "ultima": 25.163
+  },
+  {
+   "n": 3,
+   "t0": 26.358,
+   "t1": 33.344,
+   "primeira": 27.332,
+   "ultima": 32.673
+  },
+  {
+   "n": 4,
+   "t0": 33.844,
+   "t1": 43.536,
+   "primeira": 35.283,
+   "ultima": 42.829
+  },
+  {
+   "n": 5,
+   "t0": 44.036,
+   "t1": 52.044,
+   "primeira": 45.289,
+   "ultima": 50.989
+  },
+  {
+   "n": 6,
+   "t0": 52.544,
+   "t1": 61.609,
+   "primeira": 52.694,
+   "ultima": 58.627
+  },
+  {
+   "n": 7,
+   "t0": 62.109,
+   "t1": 67.412,
+   "primeira": 63.524,
+   "ultima": 66.735
+  },
+  {
+   "n": 8,
+   "t0": 67.912,
+   "t1": 74.759,
+   "primeira": 69.327,
+   "ultima": 73.955
+  },
+  {
+   "n": 9,
+   "t0": 75.259,
+   "t1": 84.259,
+   "primeira": 76.459,
+   "ultima": 81.209
+  }
+ ],
+ "fecho": {
+  "ultima_mudanca_de_texto": 81.209,
+  "duracao": 84.259,
+  "voz_fim": 80.441,
+  "texto_de": 77.009,
+  "texto_ate": 80.909,
+  "logo_passagem": 80.909,
+  "logo_pousa": 81.209,
+  "sineta": 81.209
+ },
+ "notinha": {
+  "entra": 6.492,
+  "rasga": 76.259,
+  "linhas": [
+   {
+    "tipo": "topo",
+    "cap": null,
+    "texto": "CONTA",
+    "imprime": 6.952,
+    "check": null
+   },
+   {
+    "tipo": "item",
+    "cap": 1,
+    "texto": "01 · A CENA",
+    "imprime": 7.372,
+    "check": 15.432
+   },
+   {
+    "tipo": "item",
+    "cap": 2,
+    "texto": "02 · O PROBLEMA",
+    "imprime": 15.592,
+    "check": 25.798000000000002
+   },
+   {
+    "tipo": "item",
+    "cap": 3,
+    "texto": "03 · PASSO 1",
+    "imprime": 25.958000000000002,
+    "check": 33.284
+   },
+   {
+    "tipo": "item",
+    "cap": 4,
+    "texto": "04 · PASSO 2",
+    "imprime": 33.444,
+    "check": 43.476
+   },
+   {
+    "tipo": "item",
+    "cap": 5,
+    "texto": "05 · PASSO 3",
+    "imprime": 43.636,
+    "check": 51.983999999999995
+   },
+   {
+    "tipo": "item",
+    "cap": 6,
+    "texto": "06 · PASSO 4",
+    "imprime": 52.144,
+    "check": 61.549
+   },
+   {
+    "tipo": "item",
+    "cap": 7,
+    "texto": "07 · NÃO CONFUNDA",
+    "imprime": 61.709,
+    "check": 67.352
+   },
+   {
+    "tipo": "item",
+    "cap": 8,
+    "texto": "08 · ANOTA AÍ",
+    "imprime": 67.512,
+    "check": 74.699
+   },
+   {
+    "tipo": "item",
+    "cap": 9,
+    "texto": "09 · SALVA ESSE",
+    "imprime": 74.859,
+    "check": 75.459
+   },
+   {
+    "tipo": "fim",
+    "cap": null,
+    "texto": "CONTA FECHADA ✓",
+    "imprime": 75.709,
+    "check": null
+   }
+  ]
+ },
+ "medidas": {
+  "area_util": [
+   160,
+   940
+  ],
+  "cartao_credito": {
+   "largura": 546,
+   "altura": 228,
+   "mono_px": 32,
+   "valor_px": 68,
+   "sub_px": 30
+  }
+ },
+ "cues": [
+  {
+   "t": 6.009,
+   "type": "lockon"
+  },
+  {
+   "t": 6.209,
+   "type": "lockon"
+  },
+  {
+   "t": 6.409,
+   "type": "lockon"
+  },
+  {
+   "t": 6.492,
+   "type": "printerin"
+  },
+  {
+   "t": 6.609,
+   "type": "lockon"
+  },
+  {
+   "t": 6.952,
+   "type": "print",
+   "d": 0.3,
+   "big": false
+  },
+  {
+   "t": 7.272,
+   "type": "trans",
+   "d": 0.5,
+   "k": 1
+  },
+  {
+   "t": 7.372,
+   "type": "print",
+   "d": 0.32,
+   "big": false
+  },
+  {
+   "t": 7.572,
+   "type": "chaveiro",
+   "k": 1
+  },
+  {
+   "t": 7.792,
+   "type": "title"
+  },
+  {
+   "t": 8.072,
+   "type": "apoio"
+  },
+  {
+   "t": 8.282,
+   "type": "pop",
+   "f": 520
+  },
+  {
+   "t": 10.751,
+   "type": "apoio"
+  },
+  {
+   "t": 11.823,
+   "type": "slide"
+  },
+  {
+   "t": 13.321,
+   "type": "slide"
+  },
+  {
+   "t": 13.572,
+   "type": "apoio"
+  },
+  {
+   "t": 14.017,
+   "type": "check"
+  },
+  {
+   "t": 14.467,
+   "type": "snap"
+  },
+  {
+   "t": 14.767,
+   "type": "alert"
+  },
+  {
+   "t": 15.432,
+   "type": "stamp"
+  },
+  {
+   "t": 15.492,
+   "type": "trans",
+   "d": 0.5,
+   "k": 2
+  },
+  {
+   "t": 15.592,
+   "type": "print",
+   "d": 0.32,
+   "big": false
+  },
+  {
+   "t": 15.792,
+   "type": "chaveiro",
+   "k": 2
+  },
+  {
+   "t": 16.012,
+   "type": "title"
+  },
+  {
+   "t": 16.292,
+   "type": "apoio"
+  },
+  {
+   "t": 18.251,
+   "type": "apoio"
+  },
+  {
+   "t": 20.322,
+   "type": "pop",
+   "f": 560
+  },
+  {
+   "t": 21.459,
+   "type": "pop",
+   "f": 560
+  },
+  {
+   "t": 22.586,
+   "type": "pop",
+   "f": 560
+  },
+  {
+   "t": 23.58,
+   "type": "apoio"
+  },
+  {
+   "t": 24.164,
+   "type": "snap"
+  },
+  {
+   "t": 25.163,
+   "type": "alert"
+  },
+  {
+   "t": 25.798,
+   "type": "stamp"
+  },
+  {
+   "t": 25.858,
+   "type": "trans",
+   "d": 0.5,
+   "k": 3
+  },
+  {
+   "t": 25.958,
+   "type": "print",
+   "d": 0.32,
+   "big": false
+  },
+  {
+   "t": 26.158,
+   "type": "chaveiro",
+   "k": 3
+  },
+  {
+   "t": 26.378,
+   "type": "title"
+  },
+  {
+   "t": 26.658,
+   "type": "apoio"
+  },
+  {
+   "t": 27.332,
+   "type": "whoosh"
+  },
+  {
+   "t": 27.682,
+   "type": "pop",
+   "f": 480
+  },
+  {
+   "t": 28.578,
+   "type": "apoio"
+  },
+  {
+   "t": 29.287,
+   "type": "tick"
+  },
+  {
+   "t": 29.467,
+   "type": "tick"
+  },
+  {
+   "t": 29.647,
+   "type": "tick"
+  },
+  {
+   "t": 30.63,
+   "type": "chip"
+  },
+  {
+   "t": 31.334,
+   "type": "apoio"
+  },
+  {
+   "t": 32.673,
+   "type": "shine"
+  },
+  {
+   "t": 33.284,
+   "type": "stamp"
+  },
+  {
+   "t": 33.344,
+   "type": "trans",
+   "d": 0.5,
+   "k": 4
+  },
+  {
+   "t": 33.444,
+   "type": "print",
+   "d": 0.32,
+   "big": false
+  },
+  {
+   "t": 33.644,
+   "type": "chaveiro",
+   "k": 4
+  },
+  {
+   "t": 33.864,
+   "type": "title"
+  },
+  {
+   "t": 34.144,
+   "type": "apoio"
+  },
+  {
+   "t": 35.283,
+   "type": "pop",
+   "f": 440
+  },
+  {
+   "t": 36.064,
+   "type": "apoio"
+  },
+  {
+   "t": 36.792,
+   "type": "grow",
+   "d": 0.5
+  },
+  {
+   "t": 38.971,
+   "type": "apoio"
+  },
+  {
+   "t": 39.091,
+   "type": "slide"
+  },
+  {
+   "t": 39.541,
+   "type": "coin"
+  },
+  {
+   "t": 39.891,
+   "type": "check"
+  },
+  {
+   "t": 41.235,
+   "type": "apoio"
+  },
+  {
+   "t": 41.355,
+   "type": "slide"
+  },
+  {
+   "t": 41.455,
+   "type": "count",
+   "d": 1.2740000000000038
+  },
+  {
+   "t": 42.829,
+   "type": "drop"
+  },
+  {
+   "t": 43.476,
+   "type": "stamp"
+  },
+  {
+   "t": 43.536,
+   "type": "trans",
+   "d": 0.5,
+   "k": 5
+  },
+  {
+   "t": 43.636,
+   "type": "print",
+   "d": 0.32,
+   "big": false
+  },
+  {
+   "t": 43.836,
+   "type": "chaveiro",
+   "k": 5
+  },
+  {
+   "t": 44.056,
+   "type": "title"
+  },
+  {
+   "t": 44.336,
+   "type": "apoio"
+  },
+  {
+   "t": 45.289,
+   "type": "pop",
+   "f": 600
+  },
+  {
+   "t": 46.624,
+   "type": "drop"
+  },
+  {
+   "t": 46.974,
+   "type": "lock"
+  },
+  {
+   "t": 47.007,
+   "type": "slide"
+  },
+  {
+   "t": 47.921,
+   "type": "apoio"
+  },
+  {
+   "t": 49.004,
+   "type": "whoosh"
+  },
+  {
+   "t": 49.424,
+   "type": "lock"
+  },
+  {
+   "t": 50.003,
+   "type": "whoosh"
+  },
+  {
+   "t": 50.423,
+   "type": "lock"
+  },
+  {
+   "t": 50.989,
+   "type": "whoosh"
+  },
+  {
+   "t": 51.409,
+   "type": "lock"
+  },
+  {
+   "t": 51.984,
+   "type": "stamp"
+  },
+  {
+   "t": 52.044,
+   "type": "trans",
+   "d": 0.5,
+   "k": 6
+  },
+  {
+   "t": 52.144,
+   "type": "print",
+   "d": 0.32,
+   "big": false
+  },
+  {
+   "t": 52.344,
+   "type": "chaveiro",
+   "k": 6
+  },
+  {
+   "t": 52.564,
+   "type": "title"
+  },
+  {
+   "t": 52.694,
+   "type": "slide"
+  },
+  {
+   "t": 52.844,
+   "type": "apoio"
+  },
+  {
+   "t": 53.044,
+   "type": "pop",
+   "f": 500
+  },
+  {
+   "t": 55.631,
+   "type": "whoosh"
+  },
+  {
+   "t": 56.331,
+   "type": "check"
+  },
+  {
+   "t": 56.963,
+   "type": "apoio"
+  },
+  {
+   "t": 57.512,
+   "type": "deny"
+  },
+  {
+   "t": 58.627,
+   "type": "slide"
+  },
+  {
+   "t": 58.883,
+   "type": "apoio"
+  },
+  {
+   "t": 61.549,
+   "type": "stamp"
+  },
+  {
+   "t": 61.609,
+   "type": "trans",
+   "d": 0.5,
+   "k": 7
+  },
+  {
+   "t": 61.709,
+   "type": "print",
+   "d": 0.32,
+   "big": false
+  },
+  {
+   "t": 61.909,
+   "type": "chaveiro",
+   "k": 7
+  },
+  {
+   "t": 62.129,
+   "type": "title"
+  },
+  {
+   "t": 62.409,
+   "type": "apoio"
+  },
+  {
+   "t": 63.524,
+   "type": "pop",
+   "f": 600
+  },
+  {
+   "t": 64.349,
+   "type": "pop",
+   "f": 720
+  },
+  {
+   "t": 64.669,
+   "type": "neq"
+  },
+  {
+   "t": 65.204,
+   "type": "apoio"
+  },
+  {
+   "t": 65.324,
+   "type": "pop",
+   "f": 600
+  },
+  {
+   "t": 66.415,
+   "type": "pop",
+   "f": 720
+  },
+  {
+   "t": 66.735,
+   "type": "neq"
+  },
+  {
+   "t": 67.352,
+   "type": "stamp"
+  },
+  {
+   "t": 67.412,
+   "type": "trans",
+   "d": 0.5,
+   "k": 8
+  },
+  {
+   "t": 67.512,
+   "type": "print",
+   "d": 0.32,
+   "big": false
+  },
+  {
+   "t": 67.712,
+   "type": "chaveiro",
+   "k": 8
+  },
+  {
+   "t": 67.932,
+   "type": "title"
+  },
+  {
+   "t": 68.212,
+   "type": "apoio"
+  },
+  {
+   "t": 69.327,
+   "type": "slide"
+  },
+  {
+   "t": 69.777,
+   "type": "check"
+  },
+  {
+   "t": 70.349,
+   "type": "slide"
+  },
+  {
+   "t": 70.799,
+   "type": "check"
+  },
+  {
+   "t": 71.766,
+   "type": "slide"
+  },
+  {
+   "t": 72.216,
+   "type": "check"
+  },
+  {
+   "t": 73.205,
+   "type": "slide"
+  },
+  {
+   "t": 73.655,
+   "type": "check"
+  },
+  {
+   "t": 73.955,
+   "type": "shine"
+  },
+  {
+   "t": 74.699,
+   "type": "stamp"
+  },
+  {
+   "t": 74.759,
+   "type": "trans",
+   "d": 0.5,
+   "k": 9
+  },
+  {
+   "t": 74.859,
+   "type": "print",
+   "d": 0.32,
+   "big": false
+  },
+  {
+   "t": 75.059,
+   "type": "chaveiro",
+   "k": 9
+  },
+  {
+   "t": 75.279,
+   "type": "title"
+  },
+  {
+   "t": 75.459,
+   "type": "stamp"
+  },
+  {
+   "t": 75.559,
+   "type": "apoio"
+  },
+  {
+   "t": 75.709,
+   "type": "print",
+   "d": 0.42,
+   "big": true
+  },
+  {
+   "t": 76.259,
+   "type": "tear"
+  },
+  {
+   "t": 76.459,
+   "type": "slide"
+  },
+  {
+   "t": 80.909,
+   "type": "logowipe",
+   "d": 0.3
+  },
+  {
+   "t": 81.209,
+   "type": "bell"
+  }
+ ]
+}

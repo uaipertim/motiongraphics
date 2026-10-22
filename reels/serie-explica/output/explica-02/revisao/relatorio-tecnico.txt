@@ -1,0 +1,98 @@
+SÉRIE EXPLICA · explica-02 — revisão técnica
+output/explica-02/fazlo-hospeda-explica-02.mp4
+
+FORMATO
+OK     vídeo h264 High yuv420p
+OK     resolução 1080x1920 (9:16)
+OK     60 fps, 5055 quadros
+OK     duração 84.25 s (alvo 60–90 s)
+OK     áudio aac 48000 Hz, 2 canais, 259 kb/s
+OK     vídeo e áudio com a mesma duração (Δ 9 ms)
+       arquivo 20.8 MB, 2.0 Mb/s
+       capítulos: 00 7.3 s · 01 7.7 s · 02 9.9 s · 03 7.0 s · 04 9.7 s · 05 8.0 s · 06 9.1 s · 07 5.3 s · 08 6.8 s · 09 9.0 s · trocas de 0.5 s
+
+SOM
+OK     loudness integrado -14.0 LUFS (alvo −14)
+OK     pico real -1.8 dBTP (limite −1)
+       a voz sozinha, na escala da mixagem: -14.1 LUFS
+       a trilha sozinha, na escala da mixagem: -27.1 LUFS
+       os efeitos sozinhos, na escala da mixagem: -27.4 LUFS
+
+VOZ (uma geração inteira por capítulo, nada emendado)
+OK     capítulo 00: 7.02 s contínuos da geração com seed 300 (arquivo íntegro: sim; diferença máxima vídeo × geração 0.000030; 1 geração(ões) inteiras feitas)
+OK     capítulo 01: 7.09 s contínuos da geração com seed 317 (arquivo íntegro: sim; diferença máxima vídeo × geração 0.000027; 1 geração(ões) inteiras feitas)
+OK     capítulo 02: 9.72 s contínuos da geração com seed 334 (arquivo íntegro: sim; diferença máxima vídeo × geração 0.000033; 1 geração(ões) inteiras feitas)
+OK     capítulo 03: 6.84 s contínuos da geração com seed 351 (arquivo íntegro: sim; diferença máxima vídeo × geração 0.000030; 1 geração(ões) inteiras feitas)
+OK     capítulo 04: 9.54 s contínuos da geração com seed 368 (arquivo íntegro: sim; diferença máxima vídeo × geração 0.000030; 1 geração(ões) inteiras feitas)
+OK     capítulo 05: 7.86 s contínuos da geração com seed 385 (arquivo íntegro: sim; diferença máxima vídeo × geração 0.000030; 1 geração(ões) inteiras feitas)
+OK     capítulo 06: 8.91 s contínuos da geração com seed 402 (arquivo íntegro: sim; diferença máxima vídeo × geração 0.000034; 1 geração(ões) inteiras feitas)
+OK     capítulo 07: 5.15 s contínuos da geração com seed 419 (arquivo íntegro: sim; diferença máxima vídeo × geração 0.000030; 1 geração(ões) inteiras feitas)
+OK     capítulo 08: 6.70 s contínuos da geração com seed 436 (arquivo íntegro: sim; diferença máxima vídeo × geração 0.000031; 1 geração(ões) inteiras feitas)
+OK     capítulo 09: 5.43 s contínuos da geração com seed 453 (arquivo íntegro: sim; diferença máxima vídeo × geração 0.000035; 1 geração(ões) inteiras feitas)
+
+LEITURA (linhas de apoio: ≥ 1,5 s inteiras na tela)
+       cap 00 · apoio 1: 3.12 s inteira · "Dá pra nunca mais passar por isso."
+       cap 01 · apoio 1: 2.34 s inteira · "Dois hóspedes e um chalé só."
+       cap 01 · apoio 2: 2.48 s inteira · "Uma veio pelo WhatsApp, a outra pelo site."
+       cap 01 · apoio 3: 2.08 s inteira · "E as duas estavam confirmadas."
+       cap 02 · apoio 1: 1.62 s inteira · "O problema não foi o hóspede."
+       cap 02 · apoio 2: 4.99 s inteira · "Foi a agenda, espalhada em três lugares."
+       cap 02 · apoio 3: 2.44 s inteira · "Um não sabia o que o outro vendeu."
+       cap 03 · apoio 1: 1.58 s inteira · "Passo 1: uma agenda só."
+       cap 03 · apoio 2: 2.42 s inteira · "Venha de onde vier, a reserva entra nela."
+       cap 03 · apoio 3: 2.17 s inteira · "É ela que diz se tem vaga."
+       cap 04 · apoio 1: 1.58 s inteira · "Passo 2: a pré-reserva tem prazo."
+       cap 04 · apoio 2: 2.57 s inteira · "A data fica segura por 24 horas."
+       cap 04 · apoio 3: 1.92 s inteira · "Pagou o sinal: confirmada."
+       cap 04 · apoio 4: 2.46 s inteira · "Não pagou: a data fica livre."
+       cap 05 · apoio 1: 3.24 s inteira · "Passo 3: vendeu num lugar, fecha em todos."
+       cap 05 · apoio 2: 4.28 s inteira · "Confirmou, a data fecha em todos os canais."
+       cap 06 · apoio 1: 3.78 s inteira · "Passo 4: antes do “tem sim”, olhe a agenda."
+       cap 06 · apoio 2: 1.58 s inteira · "Nunca de memória."
+       cap 06 · apoio 3: 2.89 s inteira · "10 segundos evitam o pior sábado do ano."
+       cap 07 · apoio 1: 2.45 s inteira · "A data segura não é a reserva feita."
+       cap 07 · apoio 2: 2.37 s inteira · "Reserva é quando o sinal entrou."
+       cap 08 · apoio 1: 6.71 s inteira · "Um passo de cada vez, nessa ordem."
+       cap 09 · apoio 1: 5.01 s inteira · "Pra ter à mão antes do próximo “tem vaga?”."
+OK     23 linhas de apoio, a mais curta fica 1.58 s inteira na tela (mínimo 1,5 s)
+
+ÁREAS SEGURAS
+OK     conteúdo importante entre y 265 e 1456: 2991 caixas em 290 quadros fora das trocas
+OK     nenhuma caixa na coluna de botões (x ≥ 950, y 1060–1560)
+       faixa usada pelo conteúdo: y 309–1434
+OK     coluna de botões: 0 pixel aceso em 337 quadros amostrados (nem a notinha nem a passagem limão passam por ali)
+OK     sem trechos pretos
+OK     sem imagem congelada por 1,5 s ou mais (o fundo, a notinha e as peças seguem vivos)
+OK     a notinha (e a impressora) não cobre nenhum conteúdo
+OK     o chaveiro não cobre nenhum conteúdo
+OK     a linha de apoio não encosta no diagrama
+
+IDENTIDADE (notinha, chaveiro, sineta, fecho com a logo)
+OK     a notinha imprime 9 linhas (uma por capítulo) e carimba um check limão no fim de cada uma
+       notinha: imprime em   6.95 s · "CONTA"
+       notinha: imprime em   7.37 s · "01 · A CENA" · check em 15.43 s
+       notinha: imprime em  15.59 s · "02 · O PROBLEMA" · check em 25.80 s
+       notinha: imprime em  25.96 s · "03 · PASSO 1" · check em 33.28 s
+       notinha: imprime em  33.44 s · "04 · PASSO 2" · check em 43.48 s
+       notinha: imprime em  43.64 s · "05 · PASSO 3" · check em 51.98 s
+       notinha: imprime em  52.14 s · "06 · PASSO 4" · check em 61.55 s
+       notinha: imprime em  61.71 s · "07 · NÃO CONFUNDA" · check em 67.35 s
+       notinha: imprime em  67.51 s · "08 · ANOTA AÍ" · check em 74.70 s
+       notinha: imprime em  74.86 s · "09 · SALVA ESSE" · check em 75.46 s
+       notinha: imprime em  75.71 s · "CONTA FECHADA ✓"
+OK     "CONTA FECHADA ✓" impresso em 75.71 s; a notinha destaca e sobe em 76.26 s
+OK     o chaveiro "Nº NN" aparece em todos os capítulos 01–09
+OK     9 trocas de capítulo, cada uma com a passagem limão e o "ding" da sineta (0.5 s)
+OK     os diagramas descem até y ≈ 1400: 01 1412 · 02 1386 · 03 1404 · 04 1398 · 05 1394 · 06 1406 · 07 1378 · 08 1384
+
+CAPA E FECHO
+OK     a capa é o quadro 0 do vídeo (PSNR 42.5 dB entre capa.png e o 1º quadro)
+OK     regra das capas (revisao/capa.txt): dentro da regra das capas
+OK     fecho de 9.00 s (8–9 s)
+OK     fecho, fase do texto: título, pergunta e notinha fechada parados de 77.01 a 80.91 s (3.90 s, mínimo 3 s); os pixels do texto de 9 caixas iguais (maior diferença média 1.71 de 255)
+       nas caixas inteiras (com o brilho do fundo, que respira por trás): maior diferença média 3.15
+OK     fecho, últimos 3 s: a logo oficial centralizada pousa com a sineta em 81.21 s e fica parada 3.05 s (os pixels da logo, de "FAZLO Hospeda" e do @ iguais entre 81.26 s e o fim; maior diferença média 1.27 de 255)
+       nas caixas inteiras (com o fundo e o anel da sineta em volta): logo final 3.33 · nome final 1.06 · @ final 1.11
+OK     a logo só entra depois da última palavra: a voz do fecho termina em 80.44 s e a passagem para a logo começa em 80.91 s (0.47 s depois)
+
+RESULTADO: aprovado
