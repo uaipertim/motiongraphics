@@ -1,0 +1,9 @@
+node_modules/
+output/*/.video-only.mp4
+__pycache__/
+audio/*/mix.wav
+audio/*/musica.wav
+audio/*/sfx.wav
+audio/*/voz-tratada.wav
+audio/*/.medida.wav
+output/*/stills/

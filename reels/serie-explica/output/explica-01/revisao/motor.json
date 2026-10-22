@@ -1,0 +1,345 @@
+{
+ "duracao": 78.992,
+ "apoios": [
+  {
+   "cap": 0,
+   "i": 1,
+   "texto": "Elas decidem se a pousada ganha ou perde.",
+   "entra": 3.08,
+   "inteira_de": 3.42,
+   "ate": 8.3
+  },
+  {
+   "cap": 1,
+   "i": 1,
+   "texto": "Uma frase que já derrubou muito caixa.",
+   "entra": 8.6,
+   "inteira_de": 8.94,
+   "ate": 11.425
+  },
+  {
+   "cap": 1,
+   "i": 2,
+   "texto": "Sem valor, sem data, sem registro.",
+   "entra": 11.425,
+   "inteira_de": 11.765,
+   "ate": 14.245
+  },
+  {
+   "cap": 2,
+   "i": 1,
+   "texto": "Sinal, saldo e crédito: cada um no seu encaixe.",
+   "entra": 14.545,
+   "inteira_de": 14.885,
+   "ate": 16.894
+  },
+  {
+   "cap": 2,
+   "i": 2,
+   "texto": "Basta uma ficar solta pra dar prejuízo.",
+   "entra": 16.894,
+   "inteira_de": 17.233999999999998,
+   "ate": 20.245
+  },
+  {
+   "cap": 3,
+   "i": 1,
+   "texto": "A primeira das três palavras.",
+   "entra": 20.545,
+   "inteira_de": 20.885,
+   "ate": 22.465
+  },
+  {
+   "cap": 3,
+   "i": 2,
+   "texto": "É o valor pago pra garantir a data.",
+   "entra": 22.465,
+   "inteira_de": 22.805,
+   "ate": 24.385
+  },
+  {
+   "cap": 3,
+   "i": 3,
+   "texto": "Sem sinal, a data ainda não é sua.",
+   "entra": 24.385,
+   "inteira_de": 24.725,
+   "ate": 26.305
+  },
+  {
+   "cap": 3,
+   "i": 4,
+   "texto": "É só uma promessa.",
+   "entra": 26.305,
+   "inteira_de": 26.645,
+   "ate": 29.125
+  },
+  {
+   "cap": 4,
+   "i": 1,
+   "texto": "A segunda palavra.",
+   "entra": 29.425,
+   "inteira_de": 29.765,
+   "ate": 31.345
+  },
+  {
+   "cap": 4,
+   "i": 2,
+   "texto": "Saldo é o que ainda falta pagar.",
+   "entra": 31.345,
+   "inteira_de": 31.685,
+   "ate": 33.265
+  },
+  {
+   "cap": 4,
+   "i": 3,
+   "texto": "Ele muda com consumo e desconto.",
+   "entra": 33.265,
+   "inteira_de": 33.605000000000004,
+   "ate": 36.267
+  },
+  {
+   "cap": 4,
+   "i": 4,
+   "texto": "Sem acompanhar, a cobrança sai errada.",
+   "entra": 36.267,
+   "inteira_de": 36.607000000000006,
+   "ate": 40.582
+  },
+  {
+   "cap": 5,
+   "i": 1,
+   "texto": "A terceira palavra.",
+   "entra": 40.882,
+   "inteira_de": 41.222,
+   "ate": 42.802
+  },
+  {
+   "cap": 5,
+   "i": 2,
+   "texto": "O hóspede cancelou a reserva.",
+   "entra": 42.802,
+   "inteira_de": 43.142,
+   "ate": 44.722
+  },
+  {
+   "cap": 5,
+   "i": 3,
+   "texto": "O sinal não some nem volta pro bolso.",
+   "entra": 44.722,
+   "inteira_de": 45.062000000000005,
+   "ate": 46.642
+  },
+  {
+   "cap": 5,
+   "i": 4,
+   "texto": "Sempre com a regra combinada antes.",
+   "entra": 46.642,
+   "inteira_de": 46.982000000000006,
+   "ate": 49.908
+  },
+  {
+   "cap": 6,
+   "i": 1,
+   "texto": "Sinal é parte do pagamento, não abatimento.",
+   "entra": 50.208,
+   "inteira_de": 50.548,
+   "ate": 53.149
+  },
+  {
+   "cap": 6,
+   "i": 2,
+   "texto": "Crédito vira outra data, não dinheiro de volta.",
+   "entra": 53.149,
+   "inteira_de": 53.489000000000004,
+   "ate": 56.291
+  },
+  {
+   "cap": 7,
+   "i": 1,
+   "texto": "Três perguntas, sempre nessa ordem.",
+   "entra": 56.591,
+   "inteira_de": 56.931000000000004,
+   "ate": 59.602
+  },
+  {
+   "cap": 7,
+   "i": 2,
+   "texto": "O que entrou, o que consumiu, o que falta.",
+   "entra": 59.602,
+   "inteira_de": 59.942,
+   "ate": 64.021
+  },
+  {
+   "cap": 8,
+   "i": 1,
+   "texto": "Uma frase pra cada palavra.",
+   "entra": 64.321,
+   "inteira_de": 64.661,
+   "ate": 66.252
+  },
+  {
+   "cap": 8,
+   "i": 2,
+   "texto": "Fácil de lembrar no balcão.",
+   "entra": 66.252,
+   "inteira_de": 66.592,
+   "ate": 68.172
+  },
+  {
+   "cap": 8,
+   "i": 3,
+   "texto": "Cola perto do caixa.",
+   "entra": 68.172,
+   "inteira_de": 68.512,
+   "ate": 70.992
+  },
+  {
+   "cap": 9,
+   "i": 1,
+   "texto": "Pra ter à mão no próximo check-out.",
+   "entra": 71.292,
+   "inteira_de": 71.632,
+   "ate": 74.175
+  },
+  {
+   "cap": 9,
+   "i": 2,
+   "texto": "Já ouviu essa? Conta aqui.",
+   "entra": 74.175,
+   "inteira_de": 74.515,
+   "ate": 79.892
+  }
+ ],
+ "trocas": [
+  {
+   "de": 0,
+   "para": 1,
+   "t0": 7.4,
+   "t1": 8.3
+  },
+  {
+   "de": 1,
+   "para": 2,
+   "t0": 13.345,
+   "t1": 14.245
+  },
+  {
+   "de": 2,
+   "para": 3,
+   "t0": 19.345,
+   "t1": 20.245
+  },
+  {
+   "de": 3,
+   "para": 4,
+   "t0": 28.225,
+   "t1": 29.125
+  },
+  {
+   "de": 4,
+   "para": 5,
+   "t0": 39.682,
+   "t1": 40.582
+  },
+  {
+   "de": 5,
+   "para": 6,
+   "t0": 49.008,
+   "t1": 49.908
+  },
+  {
+   "de": 6,
+   "para": 7,
+   "t0": 55.391,
+   "t1": 56.291
+  },
+  {
+   "de": 7,
+   "para": 8,
+   "t0": 63.121,
+   "t1": 64.021
+  },
+  {
+   "de": 8,
+   "para": 9,
+   "t0": 70.092,
+   "t1": 70.992
+  }
+ ],
+ "montagens": [
+  {
+   "n": 0,
+   "t0": 0,
+   "t1": 7.4,
+   "primeira": 0.1,
+   "ultima": 2.027
+  },
+  {
+   "n": 1,
+   "t0": 8.3,
+   "t1": 13.345,
+   "primeira": 8.945,
+   "ultima": 12.475999999999999
+  },
+  {
+   "n": 2,
+   "t0": 14.245,
+   "t1": 19.345,
+   "primeira": 15.424,
+   "ultima": 18.338
+  },
+  {
+   "n": 3,
+   "t0": 20.245,
+   "t1": 28.225,
+   "primeira": 21.319,
+   "ultima": 26.277
+  },
+  {
+   "n": 4,
+   "t0": 29.125,
+   "t1": 39.682,
+   "primeira": 30.315,
+   "ultima": 38.117
+  },
+  {
+   "n": 5,
+   "t0": 40.582,
+   "t1": 49.008,
+   "primeira": 41.401,
+   "ultima": 48.193999999999996
+  },
+  {
+   "n": 6,
+   "t0": 49.908,
+   "t1": 55.391,
+   "primeira": 51.47,
+   "ultima": 54.553
+  },
+  {
+   "n": 7,
+   "t0": 56.291,
+   "t1": 63.121,
+   "primeira": 57.923,
+   "ultima": 62.757
+  },
+  {
+   "n": 8,
+   "t0": 64.021,
+   "t1": 70.092,
+   "primeira": 64.817,
+   "ultima": 68.992
+  },
+  {
+   "n": 9,
+   "t0": 70.992,
+   "t1": 78.992,
+   "primeira": 71.242,
+   "ultima": 75.542
+  }
+ ],
+ "fecho": {
+  "ultima_mudanca_de_texto": 75.892,
+  "duracao": 78.992
+ }
+}

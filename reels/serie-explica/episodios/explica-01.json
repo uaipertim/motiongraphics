@@ -1,0 +1,207 @@
+{
+  "id": "explica-01",
+  "titulo": "Sinal, saldo e crédito. Em 3 palavras.",
+  "marca": "@fazlohospeda",
+  "capitulos": [
+    {
+      "rotulo": "PRA QUEM TEM POUSADA",
+      "tom": "limao",
+      "titulo": ["Sinal, saldo", "e crédito."],
+      "fala": [
+        { "texto": "Sinal, saldo e crédito.", "apoio": null },
+        { "texto": "Três palavras que decidem se a sua pousada ganha ou perde dinheiro.", "apoio": "Elas decidem se a pousada ganha ou perde." }
+      ],
+      "diagrama": {
+        "tipo": "capa",
+        "faixa": "em 3 palavras.",
+        "cadeados": [
+          { "t": "SINAL", "em": "Sinal" },
+          { "t": "SALDO", "em": "saldo" },
+          { "t": "CRÉDITO", "em": "crédito" }
+        ],
+        "ganha": { "t": "+ R$", "em": "ganha" },
+        "perde": { "t": "− R$", "em": "perde" }
+      }
+    },
+    {
+      "rotulo": "A FRASE",
+      "tom": "ambar",
+      "titulo": ["“Depois a gente", "acerta.”"],
+      "risca_titulo": { "linha": 2, "em": "fim" },
+      "fala": [
+        { "texto": "Tem uma frase que já derrubou muito caixa de pousada:", "apoio": "Uma frase que já derrubou muito caixa." },
+        { "texto": "depois a gente acerta.", "apoio": "Sem valor, sem data, sem registro." }
+      ],
+      "diagrama": {
+        "tipo": "reserva",
+        "reserva": { "titulo": "CHALÉ 2", "linhas": ["3 DIÁRIAS"], "valor": "R$ 900,00", "em": "frase" },
+        "moedas": { "em": "caixa" },
+        "duvida": { "em": "acerta" }
+      }
+    },
+    {
+      "rotulo": "O PROBLEMA",
+      "tom": "roxo",
+      "titulo": ["Toda reserva", "tem três partes."],
+      "fala": [
+        { "texto": "O problema é que toda reserva tem três partes.", "apoio": "Sinal, saldo e crédito: cada um no seu encaixe." },
+        { "texto": "E basta uma ficar solta pra dar prejuízo.", "apoio": "Basta uma ficar solta pra dar prejuízo." }
+      ],
+      "diagrama": {
+        "tipo": "partes",
+        "reserva": { "titulo": "CHALÉ 2", "linhas": ["3 DIÁRIAS"], "valor": "R$ 900,00", "em": "reserva" },
+        "abre": "três",
+        "partes": [
+          { "t": "SINAL", "icone": "cadeado", "em": "três" },
+          { "t": "SALDO", "icone": "recibo", "em": "partes" },
+          { "t": "CRÉDITO", "icone": "cartao", "em": "partes" }
+        ],
+        "solta": { "i": 1, "em": "solta", "t": "PREJUÍZO", "em_t": "prejuízo" }
+      }
+    },
+    {
+      "rotulo": "SINAL",
+      "tom": "petroleo",
+      "titulo": ["Sinal:", "segura a data."],
+      "fala": [
+        { "texto": "Primeira palavra: sinal.", "apoio": "A primeira das três palavras." },
+        { "texto": "É a parte que segura a data.", "apoio": "É o valor pago pra garantir a data." },
+        { "texto": "Sem sinal, a data não é sua.", "apoio": "Sem sinal, a data ainda não é sua." },
+        { "texto": "É só uma promessa.", "apoio": "É só uma promessa." }
+      ],
+      "diagrama": {
+        "tipo": "calendario",
+        "mes": "NOVEMBRO",
+        "dia": 14,
+        "primeiro_dia_semana": 0,
+        "dias_no_mes": 30,
+        "em": "sinal",
+        "promessa": "PROMESSA",
+        "garantida": "DATA GARANTIDA",
+        "cadeado": { "em": "segura" },
+        "pagamento": { "t": "PIX · R$ 450,00 · 50%", "em": "parte" },
+        "contraste": { "t": "SEM SINAL", "dia": 15, "sub": "só promessa", "em": "Sem", "em_destaque": "promessa" }
+      }
+    },
+    {
+      "rotulo": "SALDO",
+      "tom": "limao",
+      "titulo": ["Saldo:", "fecha a conta."],
+      "fala": [
+        { "texto": "Segunda: saldo.", "apoio": "A segunda palavra." },
+        { "texto": "É o que falta pagar.", "apoio": "Saldo é o que ainda falta pagar." },
+        { "texto": "E ele muda: entra consumo, entra desconto.", "apoio": "Ele muda com consumo e desconto." },
+        { "texto": "Se você não acompanha, cobra errado no check-out.", "apoio": "Sem acompanhar, a cobrança sai errada." }
+      ],
+      "diagrama": {
+        "tipo": "barra",
+        "escala": 1020,
+        "total": { "t": "TOTAL", "v": 900, "em": "saldo" },
+        "passos": [
+          { "tipo": "pago", "t": "PAGO", "v": 450, "em": "falta" },
+          { "tipo": "soma", "t": "VINHO", "v": 120, "icone": "taca", "em": "consumo" },
+          { "tipo": "tira", "t": "DESCONTO", "v": 50, "icone": "etiqueta", "em": "desconto" }
+        ],
+        "resultado": { "t": "FALTA", "em": "acompanha" },
+        "conta": "900 − 450 + 120 − 50 = 520",
+        "alerta": { "t": "COBRAR SÓ R$ 450 = ERRO", "em": "errado" }
+      }
+    },
+    {
+      "rotulo": "CRÉDITO",
+      "tom": "roxo",
+      "titulo": ["Crédito:", "salva o cancelamento."],
+      "segura": 1.5,
+      "fala": [
+        { "texto": "Terceira: crédito.", "apoio": "A terceira palavra." },
+        { "texto": "O hóspede cancelou?", "apoio": "O hóspede cancelou a reserva." },
+        { "texto": "O sinal não some, nem volta pro bolso.", "apoio": "O sinal não some nem volta pro bolso." },
+        { "texto": "Vira uma nova data.", "apoio": "Sempre com a regra combinada antes." }
+      ],
+      "diagrama": {
+        "tipo": "credito",
+        "antiga": { "t": "DATA ANTIGA", "dia": 14, "em": "crédito" },
+        "nova": { "t": "NOVA DATA", "dia": 21 },
+        "sinal": { "t": "R$ 450", "em": "crédito" },
+        "cancelou": { "t": "CANCELOU", "em": "cancelou" },
+        "fica": { "em": "some" },
+        "bolso": { "em": "bolso" },
+        "vira": { "em": "Vira" },
+        "cartao": { "t": "CRÉDITO · R$ 450", "sub": "válido por 6 meses" }
+      }
+    },
+    {
+      "rotulo": "NÃO CONFUNDA",
+      "tom": "ambar",
+      "titulo": ["Sinal não é desconto.", "Crédito não é reembolso."],
+      "fala": [
+        { "texto": "Não confunda: sinal não é desconto.", "apoio": "Sinal é parte do pagamento, não abatimento." },
+        { "texto": "E crédito não é reembolso.", "apoio": "Crédito vira outra data, não dinheiro de volta." }
+      ],
+      "diagrama": {
+        "tipo": "pares",
+        "pares": [
+          { "a": { "t": "SINAL", "sub": "parte do pagamento", "icone": "cadeado", "em": "sinal" }, "b": { "t": "DESCONTO", "sub": "abatimento no preço", "icone": "etiqueta", "em": "desconto" } },
+          { "a": { "t": "CRÉDITO", "sub": "vira uma nova data", "icone": "cartao", "em": "crédito" }, "b": { "t": "REEMBOLSO", "sub": "dinheiro de volta", "icone": "moedas", "em": "reembolso" } }
+        ]
+      }
+    },
+    {
+      "rotulo": "NO DIA A DIA",
+      "tom": "petroleo",
+      "titulo": ["Antes de cada", "check-out:"],
+      "fala": [
+        { "texto": "No dia a dia, antes de cada check-out, três perguntas:", "apoio": "Três perguntas, sempre nessa ordem." },
+        { "texto": "quanto entrou, quanto consumiu e quanto falta.", "apoio": "O que entrou, o que consumiu, o que falta." }
+      ],
+      "diagrama": {
+        "tipo": "perguntas",
+        "ilustracao": { "icones": ["mala", "chave"], "em": "check-out" },
+        "itens": [
+          { "t": "QUANTO ENTROU?", "icone": "moedas", "em": "entrou" },
+          { "t": "QUANTO CONSUMIU?", "icone": "comanda", "em": "consumiu" },
+          { "t": "QUANTO FALTA?", "icone": "recibo", "em": "falta" }
+        ]
+      }
+    },
+    {
+      "rotulo": "ANOTA AÍ",
+      "tom": "limao",
+      "titulo": ["Guarda essas", "três palavras."],
+      "fala": [
+        { "texto": "Anota aí: sinal segura a data.", "apoio": "Uma frase pra cada palavra." },
+        { "texto": "Saldo fecha a conta.", "apoio": "Fácil de lembrar no balcão." },
+        { "texto": "Crédito salva o cancelamento.", "apoio": "Cola perto do caixa." }
+      ],
+      "diagrama": {
+        "tipo": "lista",
+        "itens": [
+          { "t": "SINAL", "sentido": "segura a data", "icone": "cadeado", "em": "sinal" },
+          { "t": "SALDO", "sentido": "fecha a conta", "icone": "recibo", "em": "Saldo" },
+          { "t": "CRÉDITO", "sentido": "salva o cancelamento", "icone": "cartao", "em": "Crédito" }
+        ]
+      }
+    },
+    {
+      "rotulo": "SALVA ESSE",
+      "tom": "roxo",
+      "titulo": ["Salva e manda", "pra quem cuida das reservas."],
+      "min": 8.0,
+      "fala": [
+        { "texto": "Salva esse vídeo e manda pra quem cuida das reservas aí.", "apoio": "Pra ter à mão no próximo check-out." },
+        { "texto": "E me conta: você já ouviu um depois a gente acerta?", "apoio": "Já ouviu essa? Conta aqui." }
+      ],
+      "diagrama": {
+        "tipo": "fecho",
+        "card": { "titulo": ["Sinal, saldo", "e crédito."], "faixa": "em 3 palavras." },
+        "acoes": [
+          { "icone": "curtir", "em": "+0.5" },
+          { "icone": "comentar", "chip": "Comenta", "em": "conta" },
+          { "icone": "enviar", "chip": "Manda", "em": "manda" },
+          { "icone": "salvar", "chip": "Salva", "em": "Salva" }
+        ],
+        "comentario": { "nome": "pousada.serra", "t": "depois a gente acerta 😅", "em": "conta" }
+      }
+    }
+  ]
+}
