@@ -1,0 +1,15 @@
+{
+ "limao": 3.14,
+ "halo": 0.21,
+ "preenchimento": 0.44,
+ "corpo_titulo": 126,
+ "linhas": [
+  "Check-out com",
+  "a conta errada?"
+ ],
+ "altura_ilustracao": 440,
+ "altura_ilustracao_pct_recorte": 30.6,
+ "limao_ok": true,
+ "halo_ok": true,
+ "titulo_ok": true
+}

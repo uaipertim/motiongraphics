@@ -1,0 +1,16 @@
+{
+ "limao": 4.19,
+ "halo": 0.3,
+ "preenchimento": 0.89,
+ "corpo_titulo": 161,
+ "linhas": [
+  "Faltam",
+  "12 dias",
+  "pra Finados."
+ ],
+ "altura_ilustracao": 440,
+ "altura_ilustracao_pct_recorte": 30.6,
+ "limao_ok": true,
+ "halo_ok": true,
+ "titulo_ok": true
+}

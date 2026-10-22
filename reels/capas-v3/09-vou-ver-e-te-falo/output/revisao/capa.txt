@@ -1,0 +1,14 @@
+Capa — regra fixa da série (recorte 3:4, canto do play, faixa do contador, nada cortado ou escondido)
+
+OK     a) recorte 3:4 + folga 60 px: conteúdo em x 178–907, y 322–1522
+       (limite: x 60–1020, y 300–1620)
+OK     b) canto do play (x ≥ 860, y 240–440): 0 px de conteúdo
+OK     c) faixa do contador (y 1560–1680): 0 px de conteúdo
+OK     d) caixas: dentro do recorte, fora do canto do play e da faixa do contador, sem sobreposição
+OK     logo: x 392–688, y 311–365
+OK     título, linha 1: x 215–865, y 1023–1188
+OK     título, linha 2: x 194–886, y 1195–1360
+OK     título, linha 3: x 169–911, y 1368–1533
+OK     chip: x 339–741, y 927–985
+OK     ilustração: x 320–760, y 422–862
+RESULTADO: dentro da regra das capas

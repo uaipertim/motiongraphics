@@ -1,0 +1,16 @@
+{
+ "limao": 3.91,
+ "halo": 0.27,
+ "preenchimento": 1.71,
+ "corpo_titulo": 176,
+ "linhas": [
+  "'Vou ver",
+  "e te falo.'",
+  "(e sumiu)"
+ ],
+ "altura_ilustracao": 440,
+ "altura_ilustracao_pct_recorte": 30.6,
+ "limao_ok": true,
+ "halo_ok": true,
+ "titulo_ok": true
+}

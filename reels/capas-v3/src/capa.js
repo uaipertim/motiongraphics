@@ -190,11 +190,12 @@
       });
       L(ctx, (c) => { c.moveTo(-200, 120); c.lineTo(200, 270); c.moveTo(200, 120); c.lineTo(-200, 270); }, 13);
     },
-    // o relógio (limão, com o mostrador preenchido) às 11h; as três malas em cinza
+    // o relógio às 11h: os ponteiros em limão, o aro e o mostrador (preenchido) em cinza; as três malas em cinza
     relogio_malas(ctx) {
       F(ctx, (c) => { c.moveTo(180, -110); c.arc(0, -110, 180, 0, TAU); }, 0.16);
+      G(ctx, (c) => { c.moveTo(180, -110); c.arc(0, -110, 180, 0, TAU); }, 10, '#8E8E88');
       L(ctx, (c) => {
-        c.moveTo(180, -110); c.arc(0, -110, 180, 0, TAU);
+        c.moveTo(14, -110); c.arc(0, -110, 14, 0, TAU);
         c.moveTo(0, -110); c.lineTo(0, -245);
         c.moveTo(0, -110); c.lineTo(Math.cos(-Math.PI / 2 - Math.PI / 6) * 95, -110 + Math.sin(-Math.PI / 2 - Math.PI / 6) * 95);
       });
@@ -214,7 +215,7 @@
     // a prancheta vazia (limão, com o prendedor preenchido); a mala em cinza
     mala_prancheta(ctx) {
       G(ctx, (c) => mala(c, -165, 270, 230, 300));
-      F(ctx, (c) => rr(c, 85, -282, 120, 60, 16), 0.3);
+      F(ctx, (c) => { rr(c, 85, -282, 120, 60, 16); rr(c, 10, -250, 270, 520, 28); }, 0.16);
       L(ctx, (c) => { rr(c, 10, -250, 270, 520, 28); rr(c, 85, -282, 120, 60, 16); });
       ctx.save(); ctx.setLineDash([14 / K * 1, 20]); G(ctx, (c) => { for (let k = 0; k < 6; k++) { const y = -150 + k * 66; c.moveTo(55, y); c.lineTo(235, y); } }, 8); ctx.restore();
     },
@@ -260,8 +261,10 @@
         const w100 = Math.max(...linhas.map((l) => larg(l.t, 100)));
         // a altura que sobra para o título depois da ilustração mínima (28% do recorte), do chip e das folgas
         const espaco = Z.base - Z.ilusTopo - Math.round(0.28 * 1440) - 36 - 58 - 34;
-        const S = Math.min(Z.maxTitulo, Math.floor((100 * (c.largura_titulo || Z.larguraTitulo)) / w100), Math.floor(espaco / (0.98 * (linhas.length - 1) + 1.0)));
-        const score = S - 4 * (linhas.length - 2);                     // a mesma letra com menos linhas é melhor
+        const S = Math.min(c.max_titulo || Z.maxTitulo, Math.floor((100 * (c.largura_titulo || Z.larguraTitulo)) / w100), Math.floor(espaco / (0.98 * (linhas.length - 1) + 1.0)));
+        // a mesma letra com menos linhas é melhor; uma palavra curta sozinha numa linha ("De") é ruim
+        const orfa = linhas.some((l) => !l.t.includes(' ') && l.t.replace(/[^\p{L}\p{N}]/gu, '').length <= 4);
+        const score = S - 8 * (linhas.length - 2) - (orfa ? 40 : 0);
         if (!best || score > best.score) best = { linhas, S, score };
       }
     }

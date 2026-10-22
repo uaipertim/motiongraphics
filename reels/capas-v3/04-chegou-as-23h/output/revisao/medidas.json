@@ -1,0 +1,17 @@
+{
+ "limao": 4.33,
+ "halo": 0.25,
+ "preenchimento": 0.35,
+ "corpo_titulo": 156,
+ "linhas": [
+  "Chegou",
+  "às 23h.",
+  "Cadê a",
+  "chave?"
+ ],
+ "altura_ilustracao": 405,
+ "altura_ilustracao_pct_recorte": 28.1,
+ "limao_ok": true,
+ "halo_ok": true,
+ "titulo_ok": true
+}

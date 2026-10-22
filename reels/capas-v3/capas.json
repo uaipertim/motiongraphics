@@ -104,7 +104,8 @@
         "todo mundo."
       ],
       "chip": "ROTINA DE POUSADA",
-      "ilustracao": "relogio_malas"
+      "ilustracao": "relogio_malas",
+      "max_titulo": 136
     },
     {
       "id": "12-caiu-um-pix",
