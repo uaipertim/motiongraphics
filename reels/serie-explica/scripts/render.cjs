@@ -83,7 +83,7 @@ const grab = async (page, t) => decode(await page.evaluate((t) => window.frameAt
       fs.mkdirSync(path.join(dir, 'revisao'), { recursive: true });
       fs.writeFileSync(path.join(dir, 'capa.png'), decode(await page.evaluate(() => window.frameAt(0))));
       // as caixas do quadro 0 para a revisão da capa; o "bloco" é o conteúdo da capa sem a marca do topo
-      const bx = (await page.evaluate(() => window.caixas(0))).filter((b) => b.y1 > 0 && b.y0 < 1920);
+      const bx = (await page.evaluate(() => window.caixas(0))).filter((b) => !b.tipo && b.y1 > 0 && b.y0 < 1920);
       const out = {};
       bx.forEach((b) => { out[b.nome] = { x0: b.x0, x1: b.x1, y0: b.y0, y1: b.y1 }; });
       const bloco = bx.filter((b) => b.nome !== 'marca');

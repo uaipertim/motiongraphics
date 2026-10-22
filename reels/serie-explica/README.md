@@ -155,13 +155,15 @@ A narração gerada (`audio/<id>/voz/cap-NN.wav` + `falas.json`) fica no reposit
 | `perguntas` | Ilustração (mala e chave) e perguntas que entram e ganham check, ligadas por um trilhinho | `ilustracao: {em}`, `itens: [{t, icone, em}]` |
 | `lista` | Palavra → significado (ligação, revelação e um brilho final) | `itens: [{t, sentido, icone, em}]` |
 | `colisao` | Uma semana em 7 casas; duas reservas do mesmo chalé entram pelos lados, cada uma com a sua origem, ligadas à mesma casa; confirmam, dão um tranco uma na outra, a casa fica vermelha e entra o selo | `semana: {mes, dias[], nomes[], alvo, em}`, `reservas: [{t, origem, icone, em}]` (2), `confirma: {t, em}`, `selo: {t}` |
-| `fontes` | Três origens da agenda (cartão com ícone + minicalendário de 2 semanas, cada um com os seus dias ocupados), ligadas por linhas tracejadas quebradas com × vermelho; no fim, o mesmo dia fica vermelho nas três | `fontes: [{t, icone, ocupados[], em}]` (3), `primeiro` (1º dia das 2 semanas), `quebra: {em}`, `alerta: {em}` |
-| `agenda` | As origens viram chips (os minicalendários somem), mandam setas até a borda de um calendário único grande e um ponto leva cada reserva até a sua casa; o chip limão do calendário e as casas livres acendendo ("tem vaga") | `fontes: [{t, icone, dia}]`, `mes`, `primeiro_dia_semana`, `dias_no_mes`, `junta: {em}`, `entram: {em}`, `chip: {t, em}`, `vaga: {em}` |
+| `fontes` | Três origens da agenda (cartão com ícone + minicalendário de UMA semana, cada um com os seus dias ocupados), ligadas por linhas tracejadas quebradas com × vermelho; no fim, o dia em destaque fica vermelho nas três | `fontes: [{t, icone, ocupados[], em}]` (3), `semana` (os 7 dias, ex. `[11, …, 17]`), `destaque` (ex. 14), `quebra: {em}`, `alerta: {em}` |
+| `agenda` | As origens começam como os cartões do `fontes` (largos, com a semana) e encolhem até chips no topo (o minicalendário some antes de o cartão estreitar), mandam setas até a borda de um calendário único grande e um ponto leva cada reserva até a sua casa; o chip limão do calendário e as casas livres acendendo ("tem vaga") | `fontes: [{t, icone, dia}]`, `semana`, `destaque`, `mes`, `primeiro_dia_semana`, `dias_no_mes`, `junta: {em}`, `entram: {em}`, `chip: {t, em}`, `vaga: {em}` |
 | `prazo` | A pré-reserva (casa tracejada em âmbar + relógio correndo) e dois ramos: pagou o sinal → casa limão "CONFIRMADA"; não pagou → o prazo zera e a casa volta a "LIVRE" | `dia`, `semana`, `pre: {t, em}`, `relogio: {horas, em}`, `pagou: {t, chip, fim, em}`, `nao: {t, fim, em, em_fim}` |
 | `bloqueio` | A reserva confirmada recebe o cadeado limão, que viaja pelas linhas até os canais; cada canal passa de "ABERTO" a "FECHADO", todos na mesma hora | `reserva: {t, sub, em}`, `cadeado: {em}`, `canais: [{t, icone, em}]` (3), `abertos: {em}`, `hora` |
 | `consulta` | A pergunta num balão genérico (sem logo de app), uma lupa que passa pela semana e acha a casa livre, "DE MEMÓRIA" riscado e a resposta no balão limão do VOCÊ, só depois de olhar | `pergunta: {t, em}`, `semana: {dias[], nomes[], ocupados[], alvo}`, `lupa: {em, achou}`, `memoria: {t, em}`, `resposta: {t, em}` |
 | `passos` | Lista ligada: cada passo numa linha (número limão, ícone e o passo em mono), acendendo na sua palavra, com check e um brilho final | `itens: [{t, icone, em}]` (até 4) |
 | `fecho` | A pergunta num balão de comentário grande (com a notinha fechada e o título fixo); nos últimos 3 s, a logo oficial centralizada com a sineta (automática) | `pergunta: {linhas[], em}` (aceita `*limão*`; a pergunta deve entrar cedo, ex. `"+1.2"`, para ficar ≥ 3 s parada) |
+
+**Minicalendários:** sempre uma semana só (7 colunas de largura fixa, cada número centralizado na sua coluna), com folga interna de 16 px até a borda do cartão e número de 22–26 px (o maior que cabe). Se não couber, o cartão aumenta; nunca o número sai da borda. A revisão confere todos os textos de todos os cartões (abaixo).
 
 **Ícones** (`icone`): chale, mala, chave, moedas, cadeado, cadeado_aberto, check, x, alerta, calendario, cartao, recibo, comanda, pix, etiqueta, taca, curtir, comentar, enviar, salvar, carteira, seta, relogio, lupa, telefone.
 
@@ -192,6 +194,7 @@ Resultado: **aprovado** ([`output/explica-02/revisao/relatorio-tecnico.txt`](out
 - **Áudio:** −14,0 LUFS, pico real −1,8 dBTP.
 - **Áreas seguras e leitura:** 0 pixel aceso na coluna de botões e todas as linhas de apoio ≥ 1,5 s inteiras. Os diagramas descem até y 1378–1412.
 - **Identidade:** 9 linhas na notinha, 9 checks e "CONTA FECHADA ✓".
+- **Textos nos cartões:** nenhum texto passa da caixa do cartão que o contém (folga ≥ 12 px; 2.879 textos conferidos). Os minicalendários dos capítulos 02 e 03 mostram só a semana 11–17, com o 14 em destaque; no 03, os cartões começam largos (como no 02) e só depois encolhem até os chips. A mesma checagem rodou no explica-01 (2.326 textos, nenhum fora; DATA ANTIGA/NOVA DATA com folga de 20,7 px), sem re-renderizar.
 - **Fecho:** dura 9,0 s. A voz termina em 80,44 s e a passagem para a logo começa em 80,91 s (0,47 s depois). A logo fica parada nos últimos 3,05 s.
 
 ## Estrutura

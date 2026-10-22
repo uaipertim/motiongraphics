@@ -81,6 +81,8 @@
       ctx.fillText(s, x0, y); ctx.restore();
     }
     if (o.box) BOX(o.box, x0, y - size * 0.76, x0 + w, y + size * 0.22);
+    // para a revisão: todo texto visível vira uma caixa "texto" (a revisão confere se cabe no cartão que o contém)
+    if (BOXES && s.trim() && (o.alpha ?? 1) * ctx.globalAlpha > 0.5) BOXES.push({ tipo: 'texto', cap: OFF.n, nome: s, x0: x0 + OFF.dx, y0: y - size * 0.72 + OFF.dy, x1: x0 + w + OFF.dx, y1: y + (/[gjpqyçÇ,;]/.test(s) ? size * 0.2 : 0) + OFF.dy });
     return w;
   }
   function fitSize(lines, fam, weight, maxW, maxS, lsK = 0) {
@@ -177,6 +179,7 @@
     ctx.lineWidth = o.lw || 2; ctx.strokeStyle = o.stroke || C.line; ctx.stroke();
     ctx.restore();
     if (o.box) BOX(o.box, x, y, x + w, y + h);
+    if (BOXES && (o.alpha ?? 1) * ctx.globalAlpha > 0.5) BOXES.push({ tipo: 'cartao', cap: OFF.n, nome: o.box || 'cartão', x0: x + OFF.dx, y0: y + OFF.dy, x1: x + w + OFF.dx, y1: y + h + OFF.dy });
   }
   // pílula com texto (e ícone opcional); devolve a largura
   function chip(ctx, s, x, y, o = {}) {
@@ -1310,14 +1313,20 @@
   };
 
   // ---- fontes: a agenda espalhada — três origens, cada uma com o seu minicalendário diferente; as ligações estão quebradas
-  function miniSemanas(ctx, x, y, w, primeiro, ocupados, o = {}) {
-    const cw = (w - 28) / 7, ch = 58, gx = x + 14;
-    for (let i = 0; i < 14; i++) {
-      const dn = primeiro + i, cx = gx + (i % 7) * cw + cw / 2, cy = y + Math.floor(i / 7) * ch + ch / 2;
-      const oc = ocupados.includes(dn), hot = oc && o.quente === dn;
-      if (oc) { rr(ctx, cx - cw / 2 + 3, cy - ch / 2 + 5, cw - 6, ch - 10, 10); ctx.fillStyle = hot ? css(C.red, 0.85) : css(C.white, 0.16); ctx.fill(); }
-      txt(ctx, String(dn), cx, cy + 8, { fam: MONO, size: 22, weight: 800, align: 'center', color: hot ? C.white : oc ? C.white : '#8E918A' });
-    }
+  // minicalendário de UMA semana: 7 colunas de largura fixa (folga interna de 16 px até a borda do cartão), cada
+  // número centralizado na sua coluna, no maior corpo (22–26 px) em que o número mais largo cabe na coluna
+  const MINI = { pad: 16, h: 58 };
+  function miniSemana(ctx, x, y, w, dias, ocupados, o = {}) {
+    const cw = (w - 2 * MINI.pad) / 7, gx = x + MINI.pad;
+    let fs = 26;
+    while (fs > 22 && Math.max(...dias.map((dn) => tw(String(dn), MONO, fs, 800))) > cw - 8) fs -= 1;
+    dias.forEach((dn, i) => {
+      const cx = gx + i * cw + cw / 2, cy = y + MINI.h / 2;
+      const oc = ocupados.includes(dn), hot = o.quente === dn, alvo = o.destaque === dn;
+      if (oc || hot) { rr(ctx, gx + i * cw + 2, y + 4, cw - 4, MINI.h - 8, 10); ctx.fillStyle = hot ? css(C.red, 0.85) : css(C.white, 0.16); ctx.fill(); }
+      if (alvo && !hot) { rr(ctx, gx + i * cw + 2, y + 4, cw - 4, MINI.h - 8, 10); ctx.strokeStyle = C.amber; ctx.lineWidth = 2.5; ctx.stroke(); }
+      txt(ctx, String(dn), cx, cy + fs * 0.36, { fam: MONO, size: fs, weight: 800, align: 'center', color: hot ? C.white : alvo ? C.amber : oc ? C.white : '#8E918A' });
+    });
   }
   CENAS.fontes = {
     setup(cap) {
@@ -1329,13 +1338,13 @@
       ev.fontes.forEach((t) => cue(t, 'pop', { f: 560 })); cue(ev.quebra, 'snap'); cue(ev.alerta, 'alert');
     },
     draw(ctx, cap, t) {
-      const d = cap.diagrama, ev = cap.ev, w = 340, h = 236;
-      const pos = [[L.x0, 836], [L.x1 - w, 836], [L.cx - w / 2, 1150]];
+      const d = cap.diagrama, ev = cap.ev, w = 340, h = 196;
+      const pos = [[L.x0, 840], [L.x1 - w, 840], [L.cx - w / 2, 1180]];
       const ctr = pos.map(([x, y]) => [x + w / 2, y + h / 2]);
       // as ligações (por trás dos cartões): tracejadas e quebradas no meio, com um × vermelho
       const eq = p(t, ev.quebra, ev.quebra + 0.45);
       if (eq > 0) {
-        [[0, 1, [L.cx, 954]], [0, 2, null], [1, 2, null]].forEach(([a, b, m], k) => {
+        [[0, 1, [L.cx, 938]], [0, 2, null], [1, 2, null]].forEach(([a, b, m], k) => {
           const [ax, ay] = ctr[a], [bx, by] = ctr[b];
           const mid = m || [lerp(ax, bx, 0.5), lerp(ay, by, 0.5)];
           ctx.save(); ctx.setLineDash([9, 8]); ctx.lineDashOffset = -t * 20; ctx.strokeStyle = css(C.gray, 0.6 * eq); ctx.lineWidth = 3;
@@ -1348,7 +1357,7 @@
         const [x, y] = pos[i];
         enter(ctx, ent(t, ev.fontes[i], 0.5), x + w / 2, y + h / 2, () => {
           fonteCard(ctx, x, y, w, h, f, { box: `fonte ${f.t}`, stroke: t >= ev.alerta ? css(C.red, 0.55) : null });
-          miniSemanas(ctx, x, y + 92, w, d.primeiro, f.ocupados, { quente: t >= ev.alerta + 0.1 * i ? 14 : null });
+          miniSemana(ctx, x, y + 100, w, d.semana, f.ocupados, { destaque: d.destaque, quente: t >= ev.alerta + 0.1 * i ? d.destaque : null });
         });
       });
     },
@@ -1359,7 +1368,7 @@
     setup(cap) {
       const d = cap.diagrama, ev = cap.ev;
       ev.junta = at(cap, d.junta.em, cap.t0 + 0.5);
-      ev.cal = ev.junta + 0.35;
+      ev.cal = ev.junta + 0.55;                          // a agenda única entra quando os cartões já viraram chips
       ev.entram = Math.max(at(cap, d.entram.em, ev.cal + 0.4), ev.cal + 0.3);
       ev.chip = Math.max(at(cap, d.chip.em, ev.entram + 1.2), ev.entram + 0.9);
       ev.vaga = Math.max(at(cap, d.vaga.em, ev.chip + 0.8), ev.chip + 0.5);
@@ -1370,8 +1379,10 @@
     draw(ctx, cap, t) {
       const d = cap.diagrama, ev = cap.ev;
       const fw = 240, gap = (L.x1 - L.x0 - 3 * fw) / 2, fy = 836;
-      const col = E.inOutCubic(p(t, ev.junta, ev.junta + 0.45));              // os minicalendários somem
-      const fh = lerp(178, 74, col);
+      // os cartões começam como no capítulo 02 (largos, com o minicalendário da semana) e encolhem até os chips do topo;
+      // o minicalendário some antes de o cartão estreitar, então os números nunca ficam apertados
+      const col = E.inOutCubic(p(t, ev.junta, ev.junta + 0.5));
+      const ini = [[L.x0, 840], [L.x1 - 340, 840], [L.cx - 170, 1180]], fh = 74;
       // o calendário único
       const X = L.x0, Y = 1004, Wc = L.x1 - L.x0, Hc = 400;
       const first = d.primeiro_dia_semana || 0, days = d.dias_no_mes || 30, cw = (Wc - 32) / 7, chh = 56, gy = Y + 108;
@@ -1395,7 +1406,7 @@
       });
       // as setas das origens até a casa de cada reserva, com um ponto viajando
       d.fontes.forEach((f, i) => {
-        const fx = L.x0 + i * (fw + gap) + fw / 2, te = ev.entram + 0.18 * i;
+        const fx = L.x0 + i * (fw + gap) + fw / 2, te = ev.entram + 0.18 * i;   // (as setas saem dos chips já no topo)
         const c = cell(f.dia), e = E.outCubic(p(t, te, te + 0.5));
         if (e > 0) {
           // a seta para na borda do calendário (não passa por cima dos números); o ponto segue até a casa da reserva
@@ -1410,9 +1421,10 @@
       });
       // as origens: cartões com minicalendário que viram chips
       d.fontes.forEach((f, i) => {
-        const x = L.x0 + i * (fw + gap);
-        fonteCard(ctx, x, fy, fw, fh, f, { box: col >= 1 ? `origem ${f.t}` : null });
-        if (col < 1) { ctx.save(); ctx.globalAlpha *= 1 - col; ctx.beginPath(); ctx.rect(x, fy + 70, fw, fh - 70); ctx.clip(); miniSemanas(ctx, x, fy + 78, fw, 8, [f.dia]); ctx.restore(); }
+        const x = lerp(ini[i][0], L.x0 + i * (fw + gap), col), y = lerp(ini[i][1], fy, col);
+        const w = lerp(340, fw, col), h = lerp(196, fh, col), ma = 1 - p(col, 0, 0.3);
+        fonteCard(ctx, x, y, w, h, f, { box: col >= 1 ? `origem ${f.t}` : col <= 0 ? `fonte ${f.t}` : null });
+        if (ma > 0) { ctx.save(); ctx.globalAlpha *= ma; miniSemana(ctx, x, y + 100, w, d.semana || [11, 12, 13, 14, 15, 16, 17], [], { destaque: d.destaque || 14 }); ctx.restore(); }
       });
     },
   };

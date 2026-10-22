@@ -8,7 +8,7 @@ OK     60 fps, 5055 quadros
 OK     duração 84.25 s (alvo 60–90 s)
 OK     áudio aac 48000 Hz, 2 canais, 259 kb/s
 OK     vídeo e áudio com a mesma duração (Δ 9 ms)
-       arquivo 20.8 MB, 2.0 Mb/s
+       arquivo 20.9 MB, 2.0 Mb/s
        capítulos: 00 7.3 s · 01 7.7 s · 02 9.9 s · 03 7.0 s · 04 9.7 s · 05 8.0 s · 06 9.1 s · 07 5.3 s · 08 6.8 s · 09 9.0 s · trocas de 0.5 s
 
 SOM
@@ -57,7 +57,7 @@ LEITURA (linhas de apoio: ≥ 1,5 s inteiras na tela)
 OK     23 linhas de apoio, a mais curta fica 1.58 s inteira na tela (mínimo 1,5 s)
 
 ÁREAS SEGURAS
-OK     conteúdo importante entre y 265 e 1456: 2991 caixas em 290 quadros fora das trocas
+OK     conteúdo importante entre y 265 e 1456: 2993 caixas em 290 quadros fora das trocas
 OK     nenhuma caixa na coluna de botões (x ≥ 950, y 1060–1560)
        faixa usada pelo conteúdo: y 309–1434
 OK     coluna de botões: 0 pixel aceso em 337 quadros amostrados (nem a notinha nem a passagem limão passam por ali)
@@ -66,6 +66,7 @@ OK     sem imagem congelada por 1,5 s ou mais (o fundo, a notinha e as peças se
 OK     a notinha (e a impressora) não cobre nenhum conteúdo
 OK     o chaveiro não cobre nenhum conteúdo
 OK     a linha de apoio não encosta no diagrama
+OK     nenhum texto passa do cartão que o contém (folga ≥ 12 px): 2879 textos dentro de cartões conferidos
 
 IDENTIDADE (notinha, chaveiro, sineta, fecho com a logo)
 OK     a notinha imprime 9 linhas (uma por capítulo) e carimba um check limão no fim de cada uma
@@ -83,7 +84,7 @@ OK     a notinha imprime 9 linhas (uma por capítulo) e carimba um check limão 
 OK     "CONTA FECHADA ✓" impresso em 75.71 s; a notinha destaca e sobe em 76.26 s
 OK     o chaveiro "Nº NN" aparece em todos os capítulos 01–09
 OK     9 trocas de capítulo, cada uma com a passagem limão e o "ding" da sineta (0.5 s)
-OK     os diagramas descem até y ≈ 1400: 01 1412 · 02 1386 · 03 1404 · 04 1398 · 05 1394 · 06 1406 · 07 1378 · 08 1384
+OK     os diagramas descem até y ≈ 1400: 01 1412 · 02 1376 · 03 1404 · 04 1398 · 05 1394 · 06 1406 · 07 1378 · 08 1384
 
 CAPA E FECHO
 OK     a capa é o quadro 0 do vídeo (PSNR 42.5 dB entre capa.png e o 1º quadro)

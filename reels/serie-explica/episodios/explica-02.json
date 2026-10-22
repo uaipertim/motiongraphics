@@ -149,7 +149,7 @@
             "t": "CADERNO",
             "icone": "recibo",
             "ocupados": [
-              8,
+              11,
               14,
               15
             ],
@@ -168,20 +168,28 @@
             "t": "SITE",
             "icone": "calendario",
             "ocupados": [
-              9,
               14,
-              20
+              16
             ],
             "em": "site"
           }
         ],
-        "primeiro": 8,
         "quebra": {
           "em": "sabia"
         },
         "alerta": {
           "em": "vendeu"
-        }
+        },
+        "semana": [
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17
+        ],
+        "destaque": 14
       }
     },
     {
@@ -241,7 +249,17 @@
         },
         "vaga": {
           "em": "vaga"
-        }
+        },
+        "semana": [
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17
+        ],
+        "destaque": 14
       }
     },
     {

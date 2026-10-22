@@ -12,6 +12,7 @@ Confere:
   • áreas seguras: (pixels, a cada 0,25 s) nada aceso na coluna de botões x ≥ 950, y 1060–1560; (caixas do motor, a
     cada 0,25 s, fora das trocas de capítulo) todo conteúdo importante — marca, chaveiro, rótulo, título, linha de
     apoio, peças do diagrama, notinha — entre y 265 e 1456 e fora da coluna de botões;
+  • nenhum texto passa da caixa do cartão que o contém (folga mínima de 12 px até a borda, em todos os lados);
   • nada cobre o conteúdo: a notinha (e a impressora) e o chaveiro não encostam em nenhuma outra caixa; a linha de
     apoio não encosta no diagrama; o cadeado da data não cobre o número do dia;
   • a identidade: a notinha imprime uma linha por capítulo, carimba o check no fim de cada um e imprime "CONTA
@@ -44,6 +45,10 @@ OUT = os.path.join(ROOT, 'output', EP, 'revisao')
 LN = json.load(open(os.path.join(AUD, 'linha.json')))
 MOT = json.load(open(os.path.join(OUT, 'motor.json')))
 CX = json.load(open(os.path.join(OUT, 'caixas.json')))
+# as caixas de texto e de cartão (para a checagem "nenhum texto passa do cartão") ficam à parte das caixas de conteúdo
+TXC = [{'t': s['t'], 'textos': [b for b in s['caixas'] if b.get('tipo') == 'texto'], 'cartoes': [b for b in s['caixas'] if b.get('tipo') == 'cartao']} for s in CX]
+for s in CX:
+    s['caixas'] = [b for b in s['caixas'] if not b.get('tipo')]
 FALAS = json.load(open(os.path.join(AUD, 'voz', 'falas.json')))['capitulos']
 FONT = os.path.join(ROOT, 'src', 'fonts', 'JetBrainsMonoNL-Bold.ttf')
 DUR = LN['duracao']
@@ -196,6 +201,27 @@ tipos = [c['diagrama']['tipo'] for c in LN['capitulos']]
 if 'calendario' in tipos:
     viu_cad = any(b['nome'] == 'cadeado da data' for s in CX for b in s['caixas'])
     ok(viu_cad and not cad_c, 'o cadeado da data fica no canto da célula, sem cobrir o número do dia' + lst(cad_c))
+
+# nenhum texto passa do cartão que o contém (o cartão é o menor que contém o centro do texto)
+FOLGA = 12
+fora_c, n_tx = {}, 0
+for s in TXC:
+    if em_troca(s['t']):
+        continue
+    for tx in s['textos']:
+        cx, cy = (tx['x0'] + tx['x1']) / 2, (tx['y0'] + tx['y1']) / 2
+        dono = [c for c in s['cartoes'] if c['cap'] == tx['cap'] and c['x0'] <= cx <= c['x1'] and c['y0'] <= cy <= c['y1']]
+        if not dono:
+            continue
+        c = min(dono, key=lambda c: (c['x1'] - c['x0']) * (c['y1'] - c['y0']))
+        n_tx += 1
+        f = min(tx['x0'] - c['x0'], c['x1'] - tx['x1'], tx['y0'] - c['y0'], c['y1'] - tx['y1'])
+        if f < FOLGA - 0.5:
+            k = (tx['cap'], tx['nome'], c['nome'])
+            if k not in fora_c or f < fora_c[k][1]:
+                fora_c[k] = (s['t'], f)
+ok(not fora_c, f'nenhum texto passa do cartão que o contém (folga ≥ {FOLGA} px): {n_tx} textos dentro de cartões conferidos' +
+   ('' if not fora_c else ' · ' + '; '.join(f'cap {k[0]:02d} "{k[1]}" em "{k[2]}" folga {v[1]:.0f} px ({v[0]:.2f} s)' for k, v in list(fora_c.items())[:8])))
 
 # ---------------------------------------------------------------- a identidade da série
 report += ['', 'IDENTIDADE (notinha, chaveiro, sineta, fecho com a logo)']
