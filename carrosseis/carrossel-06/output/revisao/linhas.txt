@@ -1,0 +1,43 @@
+CARROSSEL 06 — linhas de texto (palavra sozinha numa linha = FALHA)
+
+ok     slide 01 texto: Mensagem de
+ok     slide 01 texto: boas-vindas
+ok     slide 01 texto: pronta.
+ok     slide 02 texto: Tudo isso cabe numa mensagem só,
+ok     slide 02 texto: mandada na chegada.
+ok     slide 02 texto: O hóspede chegou.
+ok     slide 02 texto: E a primeira coisa foi
+ok     slide 02 texto: uma dúvida.
+ok     slide 03 texto: Mensagem com nome não parece robô.
+ok     slide 03 texto: Comece pelo nome
+ok     slide 03 texto: e pelo quarto.
+ok     slide 03 bolha: Oi, [nome]! Seja bem-vindo à [pousada].
+ok     slide 03 bolha: Seu quarto é o [chalé 3].
+ok     slide 04 texto: As duas perguntas mais feitas, respondidas antes.
+ok     slide 04 texto: Wi-Fi e café
+ok     slide 04 texto: logo de cara.
+ok     slide 04 bolha: Wi-Fi: [rede], senha [senha]. Café da
+ok     slide 04 bolha: manhã das [7h30] às [10h].
+ok     slide 05 texto: Curto, gentil e escrito antes do problema.
+ok     slide 05 texto: Regras da casa
+ok     slide 05 texto: em três linhas.
+ok     slide 05 texto: a partir das [22h]
+ok     slide 05 texto: das [8h] às [20h]
+ok     slide 05 texto: conforme o combinado
+ok     slide 06 texto: Saldo combinado na chegada não vira surpresa
+ok     slide 06 texto: na saída.
+ok     slide 06 texto: Check-out e saldo
+ok     slide 06 texto: já combinados.
+ok     slide 06 bolha: O check-out é até as [12h]. O saldo de
+ok     slide 06 bolha: [R$ valor] pode ser acertado no Pix ou
+ok     slide 06 bolha: na recepção.
+ok     slide 07 texto: O hóspede sabe onde pedir antes de reclamar.
+ok     slide 07 texto: Termine com
+ok     slide 07 texto: um canal aberto.
+ok     slide 07 bolha: Qualquer coisa, é só chamar aqui.
+ok     slide 07 bolha: Boa estadia!
+ok     slide 08 texto: Salva o modelo
+ok     slide 08 texto: e usa no próximo check-in.
+ok     slide 08 texto: Manda pra quem recebe os hóspedes aí.
+
+RESULTADO: nenhuma palavra sozinha numa linha

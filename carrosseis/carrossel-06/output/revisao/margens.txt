@@ -1,0 +1,12 @@
+CARROSSEL 06 — margens (80 px nas laterais)
+
+OK     slide 01 (capa limão): conteúdo em x 81–999, y 411–1260
+OK     slide 02: conteúdo em x 81–973, y 163–1251
+OK     slide 03: conteúdo em x 80–999, y 94–1251
+OK     slide 04: conteúdo em x 80–999, y 94–1251
+OK     slide 05: conteúdo em x 81–812, y 94–1251
+OK     slide 06: conteúdo em x 80–999, y 94–1243
+OK     slide 07: conteúdo em x 81–999, y 94–1251
+OK     slide 08: conteúdo em x 81–994, y 202–1243
+
+RESULTADO: tudo dentro da margem de 80 px

@@ -1,0 +1,18 @@
+Mensagem de boas-vindas pronta pra copiar.
+
+O hóspede chega e a primeira coisa que faz é perguntar: senha do Wi-Fi, horário do café, se pode usar a piscina. Tudo isso cabe numa mensagem só, mandada na chegada.
+
+O modelo:
+"Oi, [nome]! Seja bem-vindo à [pousada]. Seu quarto é o [chalé].
+Wi-Fi: [rede], senha [senha]. Café da manhã das [7h30] às [10h].
+Silêncio a partir das [22h]. Piscina das [8h] às [20h].
+O check-out é até as [12h]. O saldo de [R$ valor] pode ser acertado no Pix ou na recepção.
+Qualquer coisa, é só chamar aqui. Boa estadia!"
+
+Troca o que está entre colchetes e pronto.
+
+Salva o modelo e manda pra quem recebe os hóspedes aí.
+
+FAZLO Hospeda: gestão para pousadas e pequenos meios de hospedagem.
+
+#FAZLOHospeda #gestaodepousadas #pousada #checkin #hospedes #dicasparapousadas #hotelaria #hospitalidade #meiosdehospedagem #empreendedorismo
