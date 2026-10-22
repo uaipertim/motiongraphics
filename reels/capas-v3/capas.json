@@ -1,0 +1,137 @@
+{
+  "capas": [
+    {
+      "id": "01-ele-pagou-metade",
+      "titulo": [
+        "Ele pagou",
+        "metade.",
+        "Quanto falta?"
+      ],
+      "chip": "ROTINA DE POUSADA",
+      "ilustracao": "moeda_partida",
+      "limao_desde": 2
+    },
+    {
+      "id": "02-sinal-saldo-credito",
+      "titulo": [
+        "Sinal, saldo",
+        "e crédito."
+      ],
+      "chip": "EXPLICA · EM 3 PALAVRAS",
+      "ilustracao": "tres_cadeados"
+    },
+    {
+      "id": "03-diaria-de-feriado",
+      "titulo": [
+        "Diária de feriado",
+        "com preço",
+        "de terça."
+      ],
+      "chip": "ROTINA DE POUSADA",
+      "ilustracao": "calendario_etiqueta",
+      "limao_desde": 1
+    },
+    {
+      "id": "04-chegou-as-23h",
+      "titulo": [
+        "Chegou às 23h.",
+        "Cadê a chave?"
+      ],
+      "chip": "ROTINA DE POUSADA",
+      "ilustracao": "chave_lua"
+    },
+    {
+      "id": "05-nunca-vender-duas-vezes",
+      "titulo": [
+        "Como nunca vender",
+        "o mesmo chalé",
+        "duas vezes."
+      ],
+      "chip": "EXPLICA · EM 4 PASSOS",
+      "ilustracao": "chale_chaves",
+      "largura_titulo": 900
+    },
+    {
+      "id": "06-dois-hospedes-mesmo-chale",
+      "titulo": [
+        "Dois hóspedes,",
+        "o mesmo chalé."
+      ],
+      "chip": "ROTINA DE POUSADA",
+      "ilustracao": "malas_porta"
+    },
+    {
+      "id": "07-faltam-12-dias-finados",
+      "titulo": [
+        "Faltam 12 dias",
+        "pra Finados."
+      ],
+      "chip": "ROTINA DE POUSADA",
+      "ilustracao": "calendario_02_ampulheta"
+    },
+    {
+      "id": "08-comanda-da-piscina",
+      "titulo": [
+        "A comanda da piscina",
+        "que ninguém fechou."
+      ],
+      "chip": "ROTINA DE POUSADA",
+      "ilustracao": "caipirinha_comanda"
+    },
+    {
+      "id": "09-vou-ver-e-te-falo",
+      "titulo": [
+        "'Vou ver e te falo.'",
+        "(e sumiu)"
+      ],
+      "chip": "ROTINA DE POUSADA",
+      "ilustracao": "balao_sumindo"
+    },
+    {
+      "id": "10-check-out-conta-errada",
+      "titulo": [
+        "Check-out com",
+        "a conta errada?"
+      ],
+      "chip": "ROTINA DE POUSADA",
+      "ilustracao": "notinha_x"
+    },
+    {
+      "id": "11-domingo-11h",
+      "titulo": [
+        "Domingo, 11h.",
+        "Check-out de",
+        "todo mundo."
+      ],
+      "chip": "ROTINA DE POUSADA",
+      "ilustracao": "relogio_malas"
+    },
+    {
+      "id": "12-caiu-um-pix",
+      "titulo": [
+        "Caiu um Pix às 14h.",
+        "De quem era?"
+      ],
+      "chip": "ROTINA DE POUSADA",
+      "ilustracao": "sino_pix"
+    },
+    {
+      "id": "13-hospede-chegou",
+      "titulo": [
+        "O hóspede chegou.",
+        "A reserva, não."
+      ],
+      "chip": "ROTINA DE POUSADA",
+      "ilustracao": "mala_prancheta"
+    },
+    {
+      "id": "14-fechou-o-mes",
+      "titulo": [
+        "Fechou o mês e",
+        "o caixa não bateu?"
+      ],
+      "chip": "CONTROLE DE CAIXA",
+      "ilustracao": "balanca"
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+{
+ "limao": 4.46,
+ "halo": 0.3,
+ "preenchimento": 1.72,
+ "corpo_titulo": 156,
+ "linhas": [
+  "Ele pagou",
+  "metade.",
+  "Quanto",
+  "falta?"
+ ],
+ "altura_ilustracao": 405,
+ "altura_ilustracao_pct_recorte": 28.1,
+ "limao_ok": true,
+ "halo_ok": true,
+ "titulo_ok": true
+}
