@@ -33,7 +33,7 @@ Os **cortes curtos** (Reel 00-curto, Reel 02-curto e Reel 03-teste) saíram do c
 
 O v1 continua intacto na raiz do repositório. Não há Reel 04 neste repositório; a numeração segue a dos pedidos.
 
-Fora da série de Reels, com a mesma identidade: os **Stories do Destaque "Conheça"** (4 × 8 s + capa do Destaque) em [`../stories/conheca/`](../stories/conheca) e os **carrosséis** do pilar DICA em [`../carrosseis/`](../carrosseis) (Carrossel 01: "Como cobrar o sinal sem constrangimento").
+Fora da série de Reels, com a mesma identidade: os **Stories do Destaque "Conheça"** (4 × 8 s + capa do Destaque) em [`../stories/conheca/`](../stories/conheca), os **Stories para Destaque** com conteúdo próprio (modelo por JSON; destaque "Dicas" com 8 Stories e as capas "Dicas", "Como funciona", "É pra você?" e "Contato") em [`../stories/destaques/`](../stories/destaques) e os **carrosséis** do pilar DICA em [`../carrosseis/`](../carrosseis) (Carrossel 01: "Como cobrar o sinal sem constrangimento").
 
 O **vídeo institucional** (102 s, com narração, para enviar no WhatsApp) fica em [`institucional/`](institucional). Ele usa outra mecânica, "recorte em relevo + trilho de módulos": um celular em ¾ com capturas reais da demonstração e as frases da narração escritas na tela. Tem formato próprio: 30 fps e MP4 leve. Não será usado agora: vai ser refeito com as telas do Hospeda V2, e o README dele explica como trocar as telas mantendo roteiro, narração, trilha e motion.
 

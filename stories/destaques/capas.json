@@ -1,0 +1,16 @@
+{
+  "nota": "Capas dos Destaques (1080x1080, círculo central). O 'Conheça' é a capa de stories/conheca/, só entra na prévia.",
+  "capas": [
+    { "id": "dicas", "nome": "Dicas", "icone": "lampada" },
+    { "id": "como-funciona", "nome": "Como funciona", "icone": "ciclo" },
+    { "id": "e-pra-voce", "nome": "É pra você?", "icone": "chale" },
+    { "id": "contato", "nome": "Contato", "icone": "balao" }
+  ],
+  "previa": [
+    { "nome": "Conheça", "arquivo": "../conheca/output/capa-destaque-conheca.png" },
+    { "nome": "Dicas", "arquivo": "output/capas/dicas.png" },
+    { "nome": "Como funciona", "arquivo": "output/capas/como-funciona.png" },
+    { "nome": "É pra você?", "arquivo": "output/capas/e-pra-voce.png" },
+    { "nome": "Contato", "arquivo": "output/capas/contato.png" }
+  ]
+}

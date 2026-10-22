@@ -1,0 +1,90 @@
+STORIES PARA DESTAQUE · Dicas (dicas) — revisão técnica
+
+
+STORY 01 · abertura
+OK     1080x1920, 60 fps, h264 yuv420p, 1.2 MB
+OK     sem faixa de áudio
+OK     duração 7.00 s (6–8 s)
+OK     nenhum texto nas faixas do Instagram (y < 250 ou y > 1670): 543 caixas de texto em 28 quadros
+       faixa usada pelos textos: y 290–1600
+OK     nenhum texto passa do cartão que o contém (folga ≥ 12 px): 26 textos conferidos
+OK     todo texto parado de 3.12 s até o fim (3.88 s, mínimo 3 s); pixels do texto iguais (maior diferença 2.35 de 255)
+OK     sem trechos pretos
+
+STORY 02 · cadeado · dica Nº 01
+OK     1080x1920, 60 fps, h264 yuv420p, 1.1 MB
+OK     sem faixa de áudio
+OK     duração 7.00 s (6–8 s)
+OK     nenhum texto nas faixas do Instagram (y < 250 ou y > 1670): 853 caixas de texto em 28 quadros
+       faixa usada pelos textos: y 290–1627
+OK     nenhum texto passa do cartão que o contém (folga ≥ 12 px): 440 textos conferidos
+OK     o cadeado fica no canto da célula, sem cobrir o número nem a letra do dia
+OK     todo texto parado de 2.40 s até o fim (4.60 s, mínimo 3 s); pixels do texto iguais (maior diferença 2.05 de 255)
+OK     sem trechos pretos
+
+STORY 03 · regra · dica Nº 02
+OK     1080x1920, 60 fps, h264 yuv420p, 1.0 MB
+OK     sem faixa de áudio
+OK     duração 7.00 s (6–8 s)
+OK     nenhum texto nas faixas do Instagram (y < 250 ou y > 1670): 613 caixas de texto em 28 quadros
+       faixa usada pelos textos: y 290–1627
+OK     nenhum texto passa do cartão que o contém (folga ≥ 12 px): 245 textos conferidos
+OK     todo texto parado de 2.35 s até o fim (4.65 s, mínimo 3 s); pixels do texto iguais (maior diferença 2.14 de 255)
+OK     sem trechos pretos
+
+STORY 04 · checks · dica Nº 03
+OK     1080x1920, 60 fps, h264 yuv420p, 1.0 MB
+OK     sem faixa de áudio
+OK     duração 7.00 s (6–8 s)
+OK     nenhum texto nas faixas do Instagram (y < 250 ou y > 1670): 628 caixas de texto em 28 quadros
+       faixa usada pelos textos: y 290–1627
+OK     nenhum texto passa do cartão que o contém (folga ≥ 12 px): 260 textos conferidos
+OK     todo texto parado de 2.00 s até o fim (5.00 s, mínimo 3 s); pixels do texto iguais (maior diferença 2.15 de 255)
+OK     sem trechos pretos
+
+STORY 05 · comanda · dica Nº 04
+OK     1080x1920, 60 fps, h264 yuv420p, 1.2 MB
+OK     sem faixa de áudio
+OK     duração 7.00 s (6–8 s)
+OK     nenhum texto nas faixas do Instagram (y < 250 ou y > 1670): 765 caixas de texto em 28 quadros
+       faixa usada pelos textos: y 290–1627
+OK     nenhum texto passa do cartão que o contém (folga ≥ 12 px): 319 textos conferidos
+OK     todo texto parado de 2.65 s até o fim (4.35 s, mínimo 3 s); pixels do texto iguais (maior diferença 2.28 de 255)
+OK     sem trechos pretos
+
+STORY 06 · etiqueta · dica Nº 05
+OK     1080x1920, 60 fps, h264 yuv420p, 1.1 MB
+OK     sem faixa de áudio
+OK     duração 7.00 s (6–8 s)
+OK     nenhum texto nas faixas do Instagram (y < 250 ou y > 1670): 792 caixas de texto em 28 quadros
+       faixa usada pelos textos: y 290–1627
+OK     nenhum texto passa do cartão que o contém (folga ≥ 12 px): 354 textos conferidos
+OK     todo texto parado de 3.20 s até o fim (3.80 s, mínimo 3 s); pixels do texto iguais (maior diferença 2.03 de 255)
+OK     sem trechos pretos
+
+STORY 07 · fechamento · dica Nº 06
+OK     1080x1920, 60 fps, h264 yuv420p, 1.1 MB
+OK     sem faixa de áudio
+OK     duração 7.00 s (6–8 s)
+OK     nenhum texto nas faixas do Instagram (y < 250 ou y > 1670): 892 caixas de texto em 28 quadros
+       faixa usada pelos textos: y 290–1627
+OK     nenhum texto passa do cartão que o contém (folga ≥ 12 px): 360 textos conferidos
+OK     todo texto parado de 2.65 s até o fim (4.35 s, mínimo 3 s); pixels do texto iguais (maior diferença 2.28 de 255)
+OK     sem trechos pretos
+
+STORY 08 · agenda · dica Nº 07
+OK     1080x1920, 60 fps, h264 yuv420p, 1.4 MB
+OK     sem faixa de áudio
+OK     duração 8.00 s (6–8 s)
+OK     nenhum texto nas faixas do Instagram (y < 250 ou y > 1670): 1020 caixas de texto em 32 quadros
+       faixa usada pelos textos: y 290–1627
+OK     nenhum texto passa do cartão que o contém (folga ≥ 12 px): 690 textos conferidos
+OK     texto da dica parado de 1.60 a 4.65 s (3.05 s, mínimo 3 s); pixels do texto iguais (maior diferença 2.04 de 255)
+OK     nos últimos 3 s: a logo oficial centralizada pousa em 4.95 s e fica parada 3.05 s, com a notinha "7 DE 7 ✓" (maior diferença 0.38 de 255)
+OK     "7 DE 7 ✓" impresso em 4.65 s (0,3 s) e fica parado na tela 3.05 s até o fim
+OK     sem trechos pretos
+
+NOTINHA
+OK     7 dicas numeradas em ordem (Nº 01–07), uma linha da notinha por dica, com check: 01 SINAL · 02 REGRA · 03 VÉSPERA · 04 COMANDA · 05 PIX · 06 CAIXA · 07 AGENDA
+
+RESULTADO: aprovado

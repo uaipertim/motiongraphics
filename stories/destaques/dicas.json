@@ -1,0 +1,57 @@
+{
+  "id": "dicas",
+  "nome": "Dicas",
+  "capa": { "icone": "lampada" },
+  "marca": "@fazlohospeda",
+  "nota": { "topo": "DICAS", "fim": "7 DE 7" },
+  "stories": [
+    {
+      "tipo": "abertura", "tom": "limao", "duracao": 7,
+      "titulo": ["7 dicas rápidas", "pra pousada."],
+      "apoio": "Salva esse destaque.",
+      "elemento": { "chaves": 7 }
+    },
+    {
+      "tipo": "cadeado", "n": 1, "rotulo": "DICA", "nota": "SINAL", "tom": "petroleo", "duracao": 7,
+      "titulo": ["Sinal *segura a data.*"],
+      "apoio": "Sem sinal, a data é só uma promessa.",
+      "elemento": { "mes": "NOVEMBRO", "dias": [8, 9, 10, 11, 12, 13, 14], "nomes": ["D", "S", "T", "Q", "Q", "S", "S"], "alvo": 14, "chip": "DATA GARANTIDA" }
+    },
+    {
+      "tipo": "regra", "n": 2, "rotulo": "DICA", "nota": "REGRA", "tom": "ambar", "duracao": 7,
+      "titulo": ["Combine o cancelamento", "antes do sinal."],
+      "apoio": "Regra enviada antes não vira briga depois.",
+      "elemento": { "cabecalho": "RESERVA", "linhas": ["CHALÉ 2 · 3 DIÁRIAS", "SINAL · 50%", "CANCELAMENTO · REGRA"], "enviada": "REGRA ENVIADA" }
+    },
+    {
+      "tipo": "checks", "n": 3, "rotulo": "DICA", "nota": "VÉSPERA", "tom": "roxo", "duracao": 7,
+      "titulo": ["Confirme a chegada", "na véspera."],
+      "apoio": "Quem chega, que horas e quanto falta.",
+      "elemento": { "itens": [ { "t": "Quem chega", "icone": "chave" }, { "t": "Que horas", "icone": "relogio" }, { "t": "Quanto falta", "icone": "moedas" } ] }
+    },
+    {
+      "tipo": "comanda", "n": 4, "rotulo": "DICA", "nota": "COMANDA", "tom": "limao", "duracao": 7,
+      "titulo": ["Comanda vai pra conta", "do quarto na hora."],
+      "apoio": "O hóspede vai embora. A conta não pode ficar.",
+      "elemento": { "titulo": "COMANDA · BAR", "itens": [["ÁGUA", "R$ 5"], ["PORÇÃO", "R$ 38"]], "total": ["TOTAL", "R$ 43"], "quarto": "QUARTO 3", "conta": "conta da hospedagem", "lancado": "+ R$ 43 · LANÇADA" }
+    },
+    {
+      "tipo": "etiqueta", "n": 5, "rotulo": "DICA", "nota": "PIX", "tom": "petroleo", "duracao": 7,
+      "titulo": ["Confira o Pix", "pelo nome."],
+      "apoio": "Valor sem nome vira dúvida no fim do mês.",
+      "elemento": { "t": "PIX · R$ 380", "sub": "HOJE · 14:02", "duvida": "de quem?", "etiqueta": "sinal · chalé 3" }
+    },
+    {
+      "tipo": "fechamento", "n": 6, "rotulo": "DICA", "nota": "CAIXA", "tom": "ambar", "duracao": 7,
+      "titulo": ["Feche o caixa", "no mesmo dia."],
+      "apoio": "5 minutos hoje. Uma tarde na semana que vem.",
+      "elemento": { "esperado": ["ESPERADO", 640], "contado": ["CONTADO", 640], "diferenca": "DIFERENÇA R$ 0" }
+    },
+    {
+      "tipo": "agenda", "n": 7, "rotulo": "DICA", "nota": "AGENDA", "tom": "roxo", "duracao": 8, "fecho": true,
+      "titulo": ["Reserva num *lugar só.*"],
+      "apoio": "Agenda em dois lugares vende o chalé duas vezes.",
+      "elemento": { "canais": [ { "t": "WHATSAPP", "icone": "comentar" }, { "t": "SITE", "icone": "calendario" }, { "t": "TELEFONE", "icone": "telefone" } ], "mes": "NOVEMBRO", "dias": [8, 9, 10, 11, 12, 13, 14], "ocupados": [9, 13, 14], "chip": "AGENDA ÚNICA" }
+    }
+  ]
+}

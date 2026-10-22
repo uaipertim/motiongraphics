@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>FAZLO Hospeda — Stories para Destaque</title>
+<style>
+  @font-face { font-family: 'FL Display'; src: url('fonts/InterDisplay-SemiBold.otf') format('opentype'); font-weight: 600; }
+  @font-face { font-family: 'FL Display'; src: url('fonts/InterDisplay-Bold.otf') format('opentype'); font-weight: 700; }
+  @font-face { font-family: 'FL Display'; src: url('fonts/InterDisplay-ExtraBold.otf') format('opentype'); font-weight: 800; }
+  @font-face { font-family: 'FL Display'; src: url('fonts/InterDisplay-Black.otf') format('opentype'); font-weight: 900; }
+  @font-face { font-family: 'FL Mono'; src: url('fonts/JetBrainsMonoNL-Medium.ttf') format('truetype'); font-weight: 500; }
+  @font-face { font-family: 'FL Mono'; src: url('fonts/JetBrainsMonoNL-Bold.ttf') format('truetype'); font-weight: 700; }
+  @font-face { font-family: 'FL Mono'; src: url('fonts/JetBrainsMonoNL-ExtraBold.ttf') format('truetype'); font-weight: 800; }
+  html, body { margin: 0; background: #0A0A0A; color: #F2F2EC; font-family: 'FL Mono', monospace; }
+  body { display: flex; flex-direction: column; align-items: center; gap: 12px; padding: 16px; box-sizing: border-box; min-height: 100vh; }
+  canvas { height: calc(100vh - 110px); aspect-ratio: 9 / 16; max-width: 100%; border-radius: 14px; background: #0A0A0A; }
+  .ui { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; justify-content: center; }
+  button { font: 800 14px 'FL Mono', monospace; background: #AFFA27; color: #0A0A0A; border: 0; border-radius: 999px; padding: 8px 14px; cursor: pointer; }
+  body.render { padding: 0; display: block; }
+  body.render canvas { height: auto; width: 1080px; border-radius: 0; }
+  body.render .ui { display: none; }
+</style>
+</head>
+<body>
+<canvas id="c" width="1080" height="1920"></canvas>
+<div class="ui" id="ui"></div>
+<script src="anim.js"></script>
+<script>
+  // ?d=<id do destaque> (stories/destaques/<id>.json) · ?s=<n do Story, 1…> · ?t=<s> · ?render (usado por scripts/render.cjs)
+  const canvas = document.getElementById('c'), ctx = canvas.getContext('2d');
+  const params = new URLSearchParams(location.search), ID = params.get('d') || 'dicas';
+  const loadImg = (src) => new Promise((ok, fail) => { const i = new Image(); i.onload = () => ok(i); i.onerror = fail; i.src = src; });
+  window.ready = (async () => {
+    const fonts = [600, 700, 800, 900].map((w) => document.fonts.load(`${w} 100px 'FL Display'`)).concat([500, 700, 800].map((w) => document.fonts.load(`${w} 100px 'FL Mono'`)));
+    const [img, dest] = await Promise.all([loadImg('assets/fazlo-hospeda-logo-alpha.png'), fetch(`../${ID}.json`).then((r) => r.json()), ...fonts]);
+    await img.decode(); await document.fonts.ready;
+    DESTAQUE.init(img, dest);
+    return dest;
+  })();
+  if (params.has('render')) {
+    document.body.classList.add('render');
+    window.frameAt = (i, t) => { DESTAQUE.renderAt(ctx, i, t); return canvas.toDataURL('image/png'); };
+    window.capaPNG = (icone) => { DESTAQUE.capa(ctx, icone); return canvas.toDataURL('image/png'); };
+    window.caixas = (i, t) => DESTAQUE.caixas(ctx, i, t);
+  } else {
+    let s = Math.max(0, (+params.get('s') || 1) - 1), t0 = performance.now() - (+params.get('t') || 0) * 1000;
+    window.ready.then((dest) => {
+      const ui = document.getElementById('ui');
+      dest.stories.forEach((_, i) => { const b = document.createElement('button'); b.textContent = String(i + 1).padStart(2, '0'); b.onclick = () => { s = i; t0 = performance.now(); }; ui.appendChild(b); });
+      const loop = (now) => { const st = DESTAQUE.info()[s]; let t = (now - t0) / 1000; if (t >= st.dur) { t0 = now; t = 0; } DESTAQUE.renderAt(ctx, s, t); requestAnimationFrame(loop); };
+      requestAnimationFrame(loop);
+    });
+  }
+</script>
+</body>
+</html>

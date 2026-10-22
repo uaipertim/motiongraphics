@@ -1,0 +1,70 @@
+[
+ {
+  "i": 0,
+  "n": null,
+  "tipo": "abertura",
+  "dur": 7,
+  "texto_parado_de": 3.12,
+  "fecho": null
+ },
+ {
+  "i": 1,
+  "n": 1,
+  "tipo": "cadeado",
+  "dur": 7,
+  "texto_parado_de": 2.4,
+  "fecho": null
+ },
+ {
+  "i": 2,
+  "n": 2,
+  "tipo": "regra",
+  "dur": 7,
+  "texto_parado_de": 2.35,
+  "fecho": null
+ },
+ {
+  "i": 3,
+  "n": 3,
+  "tipo": "checks",
+  "dur": 7,
+  "texto_parado_de": 2,
+  "fecho": null
+ },
+ {
+  "i": 4,
+  "n": 4,
+  "tipo": "comanda",
+  "dur": 7,
+  "texto_parado_de": 2.65,
+  "fecho": null
+ },
+ {
+  "i": 5,
+  "n": 5,
+  "tipo": "etiqueta",
+  "dur": 7,
+  "texto_parado_de": 3.2,
+  "fecho": null
+ },
+ {
+  "i": 6,
+  "n": 6,
+  "tipo": "fechamento",
+  "dur": 7,
+  "texto_parado_de": 2.65,
+  "fecho": null
+ },
+ {
+  "i": 7,
+  "n": 7,
+  "tipo": "agenda",
+  "dur": 8,
+  "texto_parado_de": 1.6,
+  "fecho": {
+   "fim_nota": 4.65,
+   "wipe": 4.65,
+   "pousa": 4.95
+  }
+ }
+]
