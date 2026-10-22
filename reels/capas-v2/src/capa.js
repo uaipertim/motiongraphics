@@ -42,17 +42,25 @@
 
   // ---------------------------------------------------------------- as ilustrações (quadro de ±300)
   const ILUS = {
-    // uma moeda partida ao meio em diagonal, as metades afastadas, e um "?" entre elas
+    // uma MOEDA (aro duplo + "R$" grande) partida em diagonal, com o corte passando pelo meio do "R$";
+    // as metades se afastam e o "?" fica no vão
     moeda_partida(ctx) {
-      const R = 205, off = 112, n = [Math.SQRT1_2, Math.SQRT1_2];
-      const metade = (a0, a1, s) => (c) => {
-        const dx = s * off * n[0], dy = s * off * n[1];
-        c.moveTo(dx + R * Math.cos(a0), dy + R * Math.sin(a0)); c.arc(dx, dy, R, a0, a1); c.closePath();
-        c.moveTo(dx + 135 * Math.cos(a0 + 0.25), dy + 135 * Math.sin(a0 + 0.25)); c.arc(dx, dy, 135, a0 + 0.25, a1 - 0.25);
+      const R0 = 240, R1 = 190, off = 84, n = [Math.SQRT1_2, Math.SQRT1_2], dv = [Math.SQRT1_2, -Math.SQRT1_2];
+      const metade = (s) => {
+        ctx.save(); ctx.translate(s * off * n[0], s * off * n[1]);
+        // só o lado da metade (semiplano pelo corte), com o próprio traço do corte
+        ctx.beginPath(); const L = 900;
+        ctx.moveTo(-L * dv[0], -L * dv[1]); ctx.lineTo(L * dv[0], L * dv[1]); ctx.lineTo(L * dv[0] + s * L * n[0], L * dv[1] + s * L * n[1]); ctx.lineTo(-L * dv[0] + s * L * n[0], -L * dv[1] + s * L * n[1]); ctx.closePath();
+        ctx.clip();
+        neon(ctx, (c) => { c.moveTo(R0, 0); c.arc(0, 0, R0, 0, TAU); c.moveTo(R1, 0); c.arc(0, 0, R1, 0, TAU); }, 20);
+        neonTexto(ctx, 'R$', 0, 8, 215);
+        ctx.restore();
+        ctx.save(); ctx.translate(s * off * n[0], s * off * n[1]);
+        neon(ctx, (c) => { c.moveTo(-R0 * dv[0], -R0 * dv[1]); c.lineTo(R0 * dv[0], R0 * dv[1]); }, 20);
+        ctx.restore();
       };
-      neon(ctx, metade(-Math.PI / 4, (3 * Math.PI) / 4, 1));
-      neon(ctx, metade((3 * Math.PI) / 4, (7 * Math.PI) / 4, -1));
-      neonTexto(ctx, '?', 0, 4, 170);
+      metade(1); metade(-1);
+      neonTexto(ctx, '?', 0, 4, 130);
     },
     // três cadeados em fila; o do meio maior, com "R$" gravado
     tres_cadeados(ctx) {
@@ -137,11 +145,11 @@
     const n = c.titulo.length;
     let S = n >= 3 ? 150 : 176;
     const larg = (s) => { ctx.font = `900 ${s}px ${DISPLAY}`; ctx.letterSpacing = `${-0.03 * s}px`; return Math.max(...c.titulo.map((l) => ctx.measureText(l).width)); };
-    while (larg(S) > Z.larguraTitulo) S -= 2;
+    while (larg(S) > (c.largura_titulo || Z.larguraTitulo)) S -= 2;
     const lh = S * 1.0, ultima = Z.base - 0.24 * S, base = (i) => ultima - (n - 1 - i) * lh;
     ctx.textAlign = 'center'; ctx.textBaseline = 'alphabetic';
     c.titulo.forEach((l, i) => {
-      ctx.font = `900 ${S}px ${DISPLAY}`; ctx.letterSpacing = `${-0.03 * S}px`; ctx.fillStyle = i === 0 ? '#FFFFFF' : LIME;
+      ctx.font = `900 ${S}px ${DISPLAY}`; ctx.letterSpacing = `${-0.03 * S}px`; ctx.fillStyle = i < (c.limao_desde ?? 1) ? '#FFFFFF' : LIME;
       ctx.fillText(l, 540, base(i));
       const w = ctx.measureText(l).width;
       caixas[`título, linha ${i + 1}`] = { x0: 540 - w / 2, y0: base(i) - 0.76 * S, x1: 540 + w / 2, y1: base(i) + 0.22 * S };

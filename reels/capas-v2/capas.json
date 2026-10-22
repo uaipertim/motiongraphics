@@ -1,9 +1,52 @@
 {
   "capas": [
-    { "id": "01-ele-pagou-metade", "titulo": ["Ele pagou metade.", "Quanto falta mesmo?"], "chip": "ROTINA DE POUSADA", "ilustracao": "moeda_partida" },
-    { "id": "02-sinal-saldo-credito", "titulo": ["Sinal, saldo", "e crédito."], "chip": "EXPLICA · EM 3 PALAVRAS", "ilustracao": "tres_cadeados" },
-    { "id": "03-diaria-de-feriado", "titulo": ["Diária de feriado", "com preço de terça."], "chip": "ROTINA DE POUSADA", "ilustracao": "calendario_etiqueta" },
-    { "id": "04-chegou-as-23h", "titulo": ["Chegou às 23h.", "Cadê a chave?"], "chip": "ROTINA DE POUSADA", "ilustracao": "chave_lua" },
-    { "id": "05-nunca-vender-duas-vezes", "titulo": ["Como nunca vender", "o mesmo chalé", "duas vezes."], "chip": "EXPLICA · EM 4 PASSOS", "ilustracao": "chale_chaves" }
+    {
+      "id": "01-ele-pagou-metade",
+      "titulo": [
+        "Ele pagou",
+        "metade.",
+        "Quanto falta?"
+      ],
+      "chip": "ROTINA DE POUSADA",
+      "ilustracao": "moeda_partida",
+      "limao_desde": 2
+    },
+    {
+      "id": "02-sinal-saldo-credito",
+      "titulo": [
+        "Sinal, saldo",
+        "e crédito."
+      ],
+      "chip": "EXPLICA · EM 3 PALAVRAS",
+      "ilustracao": "tres_cadeados"
+    },
+    {
+      "id": "03-diaria-de-feriado",
+      "titulo": [
+        "Diária de feriado",
+        "com preço de terça."
+      ],
+      "chip": "ROTINA DE POUSADA",
+      "ilustracao": "calendario_etiqueta"
+    },
+    {
+      "id": "04-chegou-as-23h",
+      "titulo": [
+        "Chegou às 23h.",
+        "Cadê a chave?"
+      ],
+      "chip": "ROTINA DE POUSADA",
+      "ilustracao": "chave_lua"
+    },
+    {
+      "id": "05-nunca-vender-duas-vezes",
+      "titulo": [
+        "Como nunca vender",
+        "o mesmo chalé",
+        "duas vezes."
+      ],
+      "chip": "EXPLICA · EM 4 PASSOS",
+      "ilustracao": "chale_chaves"
+    }
   ]
 }
