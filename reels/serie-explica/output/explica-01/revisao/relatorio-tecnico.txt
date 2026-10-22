@@ -4,19 +4,19 @@ output/explica-01/fazlo-hospeda-explica-01.mp4
 FORMATO
 OK     vídeo h264 High yuv420p
 OK     resolução 1080x1920 (9:16)
-OK     60 fps, 4737 quadros
-OK     duração 78.95 s (alvo 60–90 s)
-OK     áudio aac 48000 Hz, 2 canais, 260 kb/s
-OK     vídeo e áudio com a mesma duração (Δ 42 ms)
+OK     60 fps, 4612 quadros
+OK     duração 76.87 s (alvo 60–90 s)
+OK     áudio aac 48000 Hz, 2 canais, 261 kb/s
+OK     vídeo e áudio com a mesma duração (Δ 25 ms)
        arquivo 19.3 MB, 2.0 Mb/s
-       capítulos: 00 7.4 s · 01 5.0 s · 02 5.1 s · 03 8.0 s · 04 10.6 s · 05 8.4 s · 06 5.5 s · 07 6.8 s · 08 6.1 s · 09 8.0 s · trocas de 0.9 s
+       capítulos: 00 7.4 s · 01 5.0 s · 02 5.1 s · 03 8.0 s · 04 10.6 s · 05 8.9 s · 06 5.5 s · 07 6.8 s · 08 6.1 s · 09 9.0 s · trocas de 0.5 s
 
 SOM
 OK     loudness integrado -14.0 LUFS (alvo −14)
-OK     pico real -1.8 dBTP (limite −1)
-       a voz sozinha, na escala da mixagem: -14.3 LUFS
-       a trilha sozinha, na escala da mixagem: -27.4 LUFS
-       os efeitos sozinhos, na escala da mixagem: -26.4 LUFS
+OK     pico real -1.7 dBTP (limite −1)
+       a voz sozinha, na escala da mixagem: -14.0 LUFS
+       a trilha sozinha, na escala da mixagem: -27.1 LUFS
+       os efeitos sozinhos, na escala da mixagem: -27.2 LUFS
 
 VOZ (uma geração inteira por capítulo, nada emendado)
 OK     capítulo 00: 7.15 s contínuos da geração com seed 300 (arquivo íntegro: sim; diferença máxima vídeo × geração 0.000031; 1 geração(ões) inteiras feitas)
@@ -31,46 +31,71 @@ OK     capítulo 08: 5.42 s contínuos da geração com seed 436 (arquivo ínteg
 OK     capítulo 09: 6.13 s contínuos da geração com seed 453 (arquivo íntegro: sim; diferença máxima vídeo × geração 0.000034; 1 geração(ões) inteiras feitas)
 
 LEITURA (linhas de apoio: ≥ 1,5 s inteiras na tela)
-       cap 00 · apoio 1: 4.88 s inteira · "Elas decidem se a pousada ganha ou perde."
+       cap 00 · apoio 1: 4.48 s inteira · "Elas decidem se a pousada ganha ou perde."
        cap 01 · apoio 1: 2.49 s inteira · "Uma frase que já derrubou muito caixa."
-       cap 01 · apoio 2: 2.48 s inteira · "Sem valor, sem data, sem registro."
+       cap 01 · apoio 2: 2.08 s inteira · "Sem valor, sem data, sem registro."
        cap 02 · apoio 1: 2.01 s inteira · "Sinal, saldo e crédito: cada um no seu encaixe."
-       cap 02 · apoio 2: 3.01 s inteira · "Basta uma ficar solta pra dar prejuízo."
+       cap 02 · apoio 2: 2.61 s inteira · "Basta uma ficar solta pra dar prejuízo."
        cap 03 · apoio 1: 1.58 s inteira · "A primeira das três palavras."
        cap 03 · apoio 2: 1.58 s inteira · "É o valor pago pra garantir a data."
        cap 03 · apoio 3: 1.58 s inteira · "Sem sinal, a data ainda não é sua."
-       cap 03 · apoio 4: 2.48 s inteira · "É só uma promessa."
+       cap 03 · apoio 4: 2.08 s inteira · "É só uma promessa."
        cap 04 · apoio 1: 1.58 s inteira · "A segunda palavra."
        cap 04 · apoio 2: 1.58 s inteira · "Saldo é o que ainda falta pagar."
        cap 04 · apoio 3: 2.66 s inteira · "Ele muda com consumo e desconto."
-       cap 04 · apoio 4: 3.97 s inteira · "Sem acompanhar, a cobrança sai errada."
+       cap 04 · apoio 4: 3.57 s inteira · "Sem acompanhar, a cobrança sai errada."
        cap 05 · apoio 1: 1.58 s inteira · "A terceira palavra."
        cap 05 · apoio 2: 1.58 s inteira · "O hóspede cancelou a reserva."
        cap 05 · apoio 3: 1.58 s inteira · "O sinal não some nem volta pro bolso."
-       cap 05 · apoio 4: 2.93 s inteira · "Sempre com a regra combinada antes."
+       cap 05 · apoio 4: 3.03 s inteira · "Sempre com a regra combinada antes."
        cap 06 · apoio 1: 2.60 s inteira · "Sinal é parte do pagamento, não abatimento."
-       cap 06 · apoio 2: 2.80 s inteira · "Crédito vira outra data, não dinheiro de volta."
+       cap 06 · apoio 2: 2.40 s inteira · "Crédito vira outra data, não dinheiro de volta."
        cap 07 · apoio 1: 2.67 s inteira · "Três perguntas, sempre nessa ordem."
-       cap 07 · apoio 2: 4.08 s inteira · "O que entrou, o que consumiu, o que falta."
+       cap 07 · apoio 2: 3.68 s inteira · "O que entrou, o que consumiu, o que falta."
        cap 08 · apoio 1: 1.59 s inteira · "Uma frase pra cada palavra."
        cap 08 · apoio 2: 1.58 s inteira · "Fácil de lembrar no balcão."
-       cap 08 · apoio 3: 2.48 s inteira · "Cola perto do caixa."
-       cap 09 · apoio 1: 2.54 s inteira · "Pra ter à mão no próximo check-out."
-       cap 09 · apoio 2: 5.38 s inteira · "Já ouviu essa? Conta aqui."
-OK     26 linhas de apoio, a mais curta fica 1.58 s inteira na tela (mínimo 1,5 s)
+       cap 08 · apoio 3: 2.08 s inteira · "Cola perto do caixa."
+       cap 09 · apoio 1: 5.01 s inteira · "Pra ter à mão no próximo check-out."
+OK     25 linhas de apoio, a mais curta fica 1.58 s inteira na tela (mínimo 1,5 s)
 
 ÁREAS SEGURAS
-OK     conteúdo importante entre y 265 e 1456: 2228 caixas em 260 quadros fora das trocas
+OK     conteúdo importante entre y 265 e 1456: 2754 caixas em 261 quadros fora das trocas
 OK     nenhuma caixa na coluna de botões (x ≥ 950, y 1060–1560)
-       faixa usada pelo conteúdo: y 309–1438
-OK     coluna de botões: 0 pixel aceso em 316 quadros amostrados (nem o trilho passa por ali)
+       faixa usada pelo conteúdo: y 309–1437
+OK     coluna de botões: 0 pixel aceso em 307 quadros amostrados (nem a notinha nem a passagem limão passam por ali)
 OK     sem trechos pretos
-OK     sem imagem congelada por 1,5 s ou mais (o fundo, o trilho e as peças seguem vivos)
+OK     sem imagem congelada por 1,5 s ou mais (o fundo, a notinha e as peças seguem vivos)
+OK     a notinha (e a impressora) não cobre nenhum conteúdo
+OK     o chaveiro não cobre nenhum conteúdo
+OK     a linha de apoio não encosta no diagrama
+OK     o cadeado da data fica no canto da célula, sem cobrir o número do dia
+
+IDENTIDADE (notinha, chaveiro, sineta, fecho com a logo)
+OK     a notinha imprime 9 linhas (uma por capítulo) e carimba um check limão no fim de cada uma
+       notinha: imprime em   7.08 s · "CONTA"
+       notinha: imprime em   7.50 s · "01 · A FRASE" · check em 12.88 s
+       notinha: imprime em  13.04 s · "02 · O PROBLEMA" · check em 18.49 s
+       notinha: imprime em  18.65 s · "03 · SINAL" · check em 26.96 s
+       notinha: imprime em  27.12 s · "04 · SALDO" · check em 38.02 s
+       notinha: imprime em  38.18 s · "05 · CRÉDITO" · check em 47.45 s
+       notinha: imprime em  47.61 s · "06 · NÃO CONFUNDA" · check em 53.43 s
+       notinha: imprime em  53.59 s · "07 · NO DIA A DIA" · check em 60.76 s
+       notinha: imprime em  60.92 s · "08 · ANOTA AÍ" · check em 67.33 s
+       notinha: imprime em  67.49 s · "09 · SALVA ESSE" · check em 68.09 s
+       notinha: imprime em  68.34 s · "CONTA FECHADA ✓"
+OK     "CONTA FECHADA ✓" impresso em 68.34 s; a notinha destaca e sobe em 68.89 s
+OK     o chaveiro "Nº NN" aparece em todos os capítulos 01–09
+OK     9 trocas de capítulo, cada uma com a passagem limão e o "ding" da sineta (0.5 s)
+OK     cartão de crédito: 546×228 px = 70% da área útil (780 px); mono 32 px, valor 68 px, validade 30 px
+OK     os diagramas descem até y ≈ 1400: 01 1394 · 02 1430 · 03 1408 · 04 1437 · 05 1406 · 06 1378 · 07 1406 · 08 1390
 
 CAPA E FECHO
-OK     a capa é o quadro 0 do vídeo (PSNR 41.6 dB entre capa.png e o 1º quadro)
+OK     a capa é o quadro 0 do vídeo (PSNR 41.4 dB entre capa.png e o 1º quadro)
 OK     regra das capas (revisao/capa.txt): dentro da regra das capas
-OK     fecho: a última mudança de texto é em 75.89 s; o texto fica parado 3.10 s até o fim (mínimo 3 s)
-OK     fecho: 9 textos (título, apoio, chips, comentário) iguais entre 75.99 s e o fim (maior diferença média 1.24 de 255)
+OK     fecho de 9.00 s (8–9 s)
+OK     fecho, fase do texto: título, pergunta e notinha fechada parados de 69.64 a 73.54 s (3.90 s, mínimo 3 s); 10 caixas iguais (maior diferença média 1.63 de 255)
+OK     fecho, últimos 3 s: a logo oficial centralizada pousa com a sineta em 73.84 s e fica parada 3.05 s (os pixels da logo, de "FAZLO Hospeda" e do @ iguais entre 73.89 s e o fim; maior diferença média 1.44 de 255)
+       nas caixas inteiras (com o fundo e o anel da sineta em volta): logo final 3.20 · nome final 1.01 · @ final 1.12
+       a voz do fecho termina em 73.81 s; a passagem para a logo começa em 73.54 s
 
 RESULTADO: aprovado

@@ -2,11 +2,11 @@
 /*
  * Render da SÉRIE EXPLICA (FAZLO Hospeda). O episódio vem de episodios/<id>.json (a linha do tempo, de audio/<id>/linha.json).
  *   node scripts/render.cjs cues   --ep explica-01     -> audio/explica-01/cues.json (eventos de som tirados da animação)
- *   node scripts/render.cjs info   --ep explica-01     -> output/explica-01/revisao/motor.json (linhas de apoio, trocas, montagens, fecho)
+ *   node scripts/render.cjs info   --ep explica-01     -> output/explica-01/revisao/motor.json (linhas de apoio, trocas, montagens, fecho, notinha, medidas)
  *                                                         + caixas.json (as caixas do conteúdo importante a cada 0,25 s)
  *   node scripts/render.cjs capa   --ep explica-01     -> output/explica-01/capa.png (o quadro 0) + revisao/capa-caixas.json
  *   node scripts/render.cjs video  --ep explica-01 [--fps 60] [--workers 4] -> output/explica-01/fazlo-hospeda-explica-01.mp4
- *   node scripts/render.cjs stills 0.5,2,5.2 --ep explica-01 [--dir output/explica-01/stills] [--noblur]
+ *   node scripts/render.cjs stills 0.5,2,5.2 --ep explica-01 [--dir output/explica-01/stills]
  *
  * Sobe um servidor estático local, abre src/index.html?render no Chromium
  * (Playwright), captura cada quadro do canvas e envia direto ao ffmpeg.
@@ -28,7 +28,6 @@ const ROOT = path.resolve(__dirname, '..');
 const args = process.argv.slice(2);
 const mode = args[0] || 'video';
 const opt = (name, def) => { const i = args.indexOf('--' + name); return i >= 0 ? args[i + 1] : def; };
-const flag = (name) => args.includes('--' + name);
 const EP = opt('ep', 'explica-01');
 if (!fs.existsSync(path.join(ROOT, 'episodios', EP + '.json'))) { console.error(`episodios/${EP}.json não existe`); process.exit(1); }
 
@@ -72,7 +71,7 @@ const grab = async (page, t) => decode(await page.evaluate((t) => window.frameAt
       const page = await openPage(browser, port);
       const dir = path.resolve(ROOT, `output/${EP}/revisao`);
       fs.mkdirSync(dir, { recursive: true });
-      const info = await page.evaluate(() => ({ duracao: EXPLICA.DURATION, apoios: EXPLICA.apoios(), trocas: EXPLICA.trocas(), montagens: EXPLICA.montagens(), fecho: EXPLICA.fecho() }));
+      const info = await page.evaluate(() => ({ duracao: EXPLICA.DURATION, apoios: EXPLICA.apoios(), trocas: EXPLICA.trocas(), montagens: EXPLICA.montagens(), fecho: EXPLICA.fecho(), notinha: EXPLICA.notinha(), medidas: EXPLICA.medidas(), cues: EXPLICA.cues().cues }));
       fs.writeFileSync(path.join(dir, 'motor.json'), JSON.stringify(info, null, 1));
       const caixas = [];
       for (let t = 0; t < info.duracao; t += 0.25) caixas.push({ t: Math.round(t * 100) / 100, caixas: await page.evaluate((t) => window.caixas(t), t) });
@@ -82,7 +81,7 @@ const grab = async (page, t) => decode(await page.evaluate((t) => window.frameAt
       const page = await openPage(browser, port);
       const dir = path.resolve(ROOT, `output/${EP}`);
       fs.mkdirSync(path.join(dir, 'revisao'), { recursive: true });
-      fs.writeFileSync(path.join(dir, 'capa.png'), decode(await page.evaluate(() => window.frameAt(0, { noBlur: true }))));
+      fs.writeFileSync(path.join(dir, 'capa.png'), decode(await page.evaluate(() => window.frameAt(0))));
       // as caixas do quadro 0 para a revisão da capa; o "bloco" é o conteúdo da capa sem a marca do topo
       const bx = (await page.evaluate(() => window.caixas(0))).filter((b) => b.y1 > 0 && b.y0 < 1920);
       const out = {};
@@ -97,10 +96,9 @@ const grab = async (page, t) => decode(await page.evaluate((t) => window.frameAt
       const dir = path.resolve(ROOT, opt('dir', `output/${EP}/stills`));
       fs.mkdirSync(dir, { recursive: true });
       const page = await openPage(browser, port);
-      const o = flag('noblur') ? { noBlur: true } : {};
       for (const t of times) {
         const f = path.join(dir, `t${t.toFixed(2).padStart(5, '0')}.png`);
-        fs.writeFileSync(f, decode(await page.evaluate(([t, o]) => window.frameAt(t, o), [t, o])));
+        fs.writeFileSync(f, decode(await page.evaluate((t) => window.frameAt(t), t)));
         console.log('still', f);
       }
     } else {

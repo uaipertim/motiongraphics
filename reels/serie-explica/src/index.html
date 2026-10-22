@@ -53,7 +53,7 @@
   if (params.has('render')) {
     document.body.classList.add('render');
     // usados por scripts/render.cjs
-    window.frameAt = (t, o) => { EXPLICA.renderAt(ctx, t, o); return canvas.toDataURL('image/png'); };
+    window.frameAt = (t) => { EXPLICA.renderAt(ctx, t); return canvas.toDataURL('image/png'); };
     window.cues = () => EXPLICA.cues();
     window.caixas = (t) => EXPLICA.caixas(ctx, t);
   } else {

@@ -10,14 +10,19 @@ Confere:
   • som: −14 LUFS integrados (±0,5), pico real ≤ −1 dBTP, a voz sozinha na escala da mixagem;
   • sem quadros pretos e sem imagem congelada por 1,5 s ou mais;
   • áreas seguras: (pixels, a cada 0,25 s) nada aceso na coluna de botões x ≥ 950, y 1060–1560; (caixas do motor, a
-    cada 0,25 s, fora das trocas de capítulo) todo conteúdo importante — marca, rótulo, título, linha de apoio, peças
-    do diagrama — entre y 265 e 1456 e fora da coluna de botões;
+    cada 0,25 s, fora das trocas de capítulo) todo conteúdo importante — marca, chaveiro, rótulo, título, linha de
+    apoio, peças do diagrama, notinha — entre y 265 e 1456 e fora da coluna de botões;
+  • nada cobre o conteúdo: a notinha (e a impressora) e o chaveiro não encostam em nenhuma outra caixa; a linha de
+    apoio não encosta no diagrama; o cadeado da data não cobre o número do dia;
+  • a identidade: a notinha imprime uma linha por capítulo, carimba o check no fim de cada um e imprime "CONTA
+    FECHADA ✓" antes de destacar; cada troca tem a passagem com a sineta; o cartão de crédito tem ≈ 70% da área útil
+    (mono ≥ 30 px, valor ≥ 56 px); os diagramas chegam perto de y 1400;
   • leitura: cada linha de apoio fica ao menos 1,5 s inteira na tela (do fim da entrada até a próxima);
   • a voz: cada capítulo é UMA geração inteira, colocada sem cortes — o trecho do vídeo é idêntico ao arquivo da
     geração (fora os fades de 8 ms / 60 ms nas pontas), e o arquivo é o mesmo registrado na geração (sha1);
   • a capa é o quadro 0 (o quadro 0 do vídeo bate com capa.png);
-  • o fecho: todo texto parado e legível nos últimos 3 s (a última mudança de texto acontece ≥ 3 s antes do fim, e
-    as caixas de texto do fecho não mudam de pixel entre fim − 3 s e o fim).
+  • o fecho (8–9 s): o título, a pergunta e a notinha fechada ficam ≥ 3 s parados antes da logo; nos últimos 3 s, a
+    logo oficial centralizada com a sineta, parada (as caixas de texto não mudam de pixel entre fim − 3 s e o fim).
 """
 import hashlib
 import json
@@ -123,6 +128,8 @@ ok(not curtas, f'{len(MOT["apoios"])} linhas de apoio, a mais curta fica {min(ap
 # ---------------------------------------------------------------- áreas seguras pelas caixas do motor
 report += ['', 'ÁREAS SEGURAS']
 trocas = [(x['t0'], x['t1']) for x in MOT['trocas']]
+FE = MOT['fecho']
+trocas.append((FE['logo_passagem'], FE['logo_pousa']))
 em_troca = lambda t: any(a - 0.05 <= t <= b + 0.65 for a, b in trocas)            # troca + a entrada do título
 fora, botao, n_cx, n_t = [], [], 0, 0
 for s in CX:
@@ -152,14 +159,65 @@ while True:
         f0 = f.copy()
     n_but += int((f[1060:1560, 950:1080] > 70).sum()); n_fr += 1
 proc.wait()
-ok(n_but == 0, f'coluna de botões: {n_but} pixel aceso em {n_fr} quadros amostrados (nem o trilho passa por ali)')
+ok(n_but == 0, f'coluna de botões: {n_but} pixel aceso em {n_fr} quadros amostrados (nem a notinha nem a passagem limão passam por ali)')
 
 # quadros pretos / congelados
 bd = run(['ffmpeg', '-hide_banner', '-nostats', '-i', VIDEO, '-vf', 'blackdetect=d=0.1:pix_th=0.06', '-an', '-f', 'null', '-']).stderr
 ok(not re.findall(r'black_start', bd), 'sem trechos pretos')
 fz = run(['ffmpeg', '-hide_banner', '-nostats', '-i', VIDEO, '-vf', 'freezedetect=n=-60dB:d=1.5', '-an', '-f', 'null', '-']).stderr
 fr_ = re.findall(r'freeze_start: ([\d.]+)', fz)
-ok(not fr_, 'sem imagem congelada por 1,5 s ou mais (o fundo, o trilho e as peças seguem vivos)' + ('' if not fr_ else ': ' + ', '.join(fr_)))
+ok(not fr_, 'sem imagem congelada por 1,5 s ou mais (o fundo, a notinha e as peças seguem vivos)' + ('' if not fr_ else ': ' + ', '.join(fr_)))
+
+# ---------------------------------------------------------------- nada cobre o conteúdo
+def cobre(a, b, folga=0.0):
+    return min(a['x1'], b['x1']) - max(a['x0'], b['x0']) > folga and min(a['y1'], b['y1']) - max(a['y0'], b['y0']) > folga
+
+
+CAB = ('título', 'rótulo', 'marca', 'chaveiro', 'apoio', 'notinha', 'impressora')
+nota_c, chav_c, apoio_c, cad_c = [], [], [], []
+for s in CX:
+    if em_troca(s['t']):
+        continue
+    bs = s['caixas']
+    for a in bs:
+        if a['nome'].startswith(('notinha', 'impressora')):
+            nota_c += [(s['t'], b['nome']) for b in bs if not b['nome'].startswith(('notinha', 'impressora')) and cobre(a, b)]
+        if a['nome'] == 'chaveiro':
+            chav_c += [(s['t'], b['nome']) for b in bs if b['nome'] != 'chaveiro' and cobre(a, b)]
+        if a['nome'].startswith('apoio'):
+            apoio_c += [(s['t'], b['nome']) for b in bs if b['cap'] == a['cap'] and not b['nome'].startswith(CAB) and cobre(a, b)]
+        if a['nome'] == 'cadeado da data':
+            cad_c += [(s['t'], b['nome']) for b in bs if b['nome'].startswith('número do dia') and cobre(a, b)]
+lst = lambda xs: '' if not xs else ': ' + '; '.join(f'{t:.2f}s {n}' for t, n in xs[:5])
+ok(not nota_c, 'a notinha (e a impressora) não cobre nenhum conteúdo' + lst(nota_c))
+ok(not chav_c, 'o chaveiro não cobre nenhum conteúdo' + lst(chav_c))
+ok(not apoio_c, 'a linha de apoio não encosta no diagrama' + lst(apoio_c))
+viu_cad = any(b['nome'] == 'cadeado da data' for s in CX for b in s['caixas'])
+ok(viu_cad and not cad_c, 'o cadeado da data fica no canto da célula, sem cobrir o número do dia' + lst(cad_c))
+
+# ---------------------------------------------------------------- a identidade da série
+report += ['', 'IDENTIDADE (notinha, chaveiro, sineta, fecho com a logo)']
+NT = MOT['notinha']
+itens = [x for x in NT['linhas'] if x['tipo'] == 'item']
+ncap = len(LN['capitulos'])
+ok(len(itens) == ncap - 1 and all(x['check'] is not None for x in itens), f'a notinha imprime {len(itens)} linhas (uma por capítulo) e carimba um check limão no fim de cada uma')
+for x in NT['linhas']:
+    info(f'notinha: imprime em {x["imprime"]:6.2f} s · "{x["texto"]}"' + (f' · check em {x["check"]:.2f} s' if x['check'] else ''))
+fim_l = [x for x in NT['linhas'] if x['tipo'] == 'fim']
+ok(bool(fim_l) and fim_l[0]['imprime'] < NT['rasga'], f'"CONTA FECHADA ✓" impresso em {fim_l[0]["imprime"]:.2f} s; a notinha destaca e sobe em {NT["rasga"]:.2f} s')
+viu_ch = {b['cap'] for s in CX for b in s['caixas'] if b['nome'] == 'chaveiro'}
+ok(viu_ch >= set(range(1, ncap)), f'o chaveiro "Nº NN" aparece em todos os capítulos 01–{ncap - 1:02d}')
+tr_c = [c for c in MOT['cues'] if c['type'] == 'trans']
+ok(len(tr_c) == ncap - 1, f'{len(tr_c)} trocas de capítulo, cada uma com a passagem limão e o "ding" da sineta ({LN["tr"]:.1f} s)')
+CC = MOT['medidas']['cartao_credito']; util = MOT['medidas']['area_util'][1] - MOT['medidas']['area_util'][0]
+cc_box = [b for s in CX for b in s['caixas'] if b['nome'] == 'cartão de crédito']
+ok(bool(cc_box) and 0.62 <= CC['largura'] / util <= 0.78 and CC['mono_px'] >= 30 and CC['valor_px'] >= 56,
+   f'cartão de crédito: {CC["largura"]}×{CC["altura"]} px = {100 * CC["largura"] / util:.0f}% da área útil ({util} px); mono {CC["mono_px"]} px, valor {CC["valor_px"]} px, validade {CC["sub_px"]} px')
+alc = []
+for c in LN['capitulos'][1:-1]:
+    ys = [b['y1'] for s in CX if c['t0'] + 0.7 <= s['t'] <= c['t1'] for b in s['caixas'] if b['cap'] == c['n'] and not b['nome'].startswith(CAB)]
+    alc.append((c['n'], max(ys) if ys else 0))
+ok(all(y >= 1330 for _, y in alc), 'os diagramas descem até y ≈ 1400: ' + ' · '.join(f'{n:02d} {y:.0f}' for n, y in alc))
 
 # ---------------------------------------------------------------- capa = quadro 0
 report += ['', 'CAPA E FECHO']
@@ -172,11 +230,9 @@ if os.path.exists(ct):
     res = open(ct).read().strip().splitlines()[-1]
     ok('dentro da regra' in res, f'regra das capas (revisao/capa.txt): {res.replace("RESULTADO: ", "")}')
 
-# ---------------------------------------------------------------- fecho: ≥ 3 s parado e legível
-ult = MOT['fecho']['ultima_mudanca_de_texto']
-ok(DUR - ult >= 3.0, f'fecho: a última mudança de texto é em {ult:.2f} s; o texto fica parado {DUR - ult:.2f} s até o fim (mínimo 3 s)')
-fim = [s for s in CX if s['t'] >= DUR - 0.6]
-cxs = [b for b in fim[-1]['caixas'] if b['cap'] == len(LN['capitulos']) - 1 and not b['nome'].startswith(('card do vídeo', 'ação'))] if fim else []
+# ---------------------------------------------------------------- fecho: título + pergunta ≥ 3 s parados; a logo nos últimos 3 s
+fc = LN['capitulos'][-1]
+ok(8.0 <= fc['t1'] - fc['t0'] <= 9.0 + 1e-3, f'fecho de {fc["t1"] - fc["t0"]:.2f} s (8–9 s)')
 
 
 def frame_at(t):
@@ -186,13 +242,37 @@ def frame_at(t):
         return np.asarray(Image.open(pth).convert('L')).astype(float)
 
 
-fa, fb = frame_at(DUR - 3.0), frame_at(DUR - 0.08)
-difs = []
-for b in cxs:
-    x0, x1, y0, y1 = int(max(0, b['x0'])), int(min(1080, b['x1'])), int(max(0, b['y0'])), int(min(1920, b['y1']))
-    difs.append((b['nome'], float(np.abs(fa[y0:y1, x0:x1] - fb[y0:y1, x0:x1]).mean())))
-mx = max(d for _, d in difs) if difs else 0
-ok(mx < 3.0, f'fecho: {len(difs)} textos (título, apoio, chips, comentário) iguais entre {DUR - 3:.2f} s e o fim (maior diferença média {mx:.2f} de 255)')
+def parado(t_a, t_b, nomes, so_texto=False):
+    """diferença média entre dois quadros dentro das caixas; com so_texto, só nos pixels do texto/logo (claros no quadro final),
+    para que o fundo vivo e o anel da sineta em volta não contem"""
+    amostra = min(CX, key=lambda s: abs(s['t'] - (t_b - 0.1)))
+    cxs = [b for b in amostra['caixas'] if b['nome'].startswith(nomes)]
+    fa, fb = frame_at(t_a), frame_at(t_b)
+    difs = []
+    for b in cxs:
+        x0, x1, y0, y1 = int(max(0, b['x0'])), int(min(1080, b['x1'])), int(max(0, b['y0'])), int(min(1920, b['y1']))
+        d = np.abs(fa[y0:y1, x0:x1] - fb[y0:y1, x0:x1])
+        m = fb[y0:y1, x0:x1] > 90 if so_texto else np.ones_like(d, bool)
+        difs.append((b['nome'], float(d[m].mean()) if m.any() else 0.0))
+    return difs
+
+
+de, ate = FE['texto_de'], FE['texto_ate']
+d1 = parado(de + 0.02, ate - 0.05, ('título', 'rótulo', 'chaveiro', 'apoio', 'pergunta, linha', 'notinha'))
+mx1 = max(d for _, d in d1) if d1 else 99
+ok(ate - de >= 3.0 and mx1 < 3.0, f'fecho, fase do texto: título, pergunta e notinha fechada parados de {de:.2f} a {ate:.2f} s ({ate - de:.2f} s, mínimo 3 s); '
+   f'{len(d1)} caixas iguais (maior diferença média {mx1:.2f} de 255)')
+ult = FE['ultima_mudanca_de_texto']
+d2 = parado(DUR - 3.0, DUR - 0.08, ('logo final', 'nome final', '@ final'), so_texto=True)
+mx2 = max(d for _, d in d2) if d2 else 99
+d2c = parado(DUR - 3.0, DUR - 0.08, ('logo final', 'nome final', '@ final'))
+sino = [c for c in MOT['cues'] if c['type'] == 'bell']
+ok(len(d2) == 3 and DUR - ult >= 3.0 and mx2 < 3.0 and sino and abs(sino[-1]['t'] - FE['logo_pousa']) < 0.02,
+   f'fecho, últimos 3 s: a logo oficial centralizada pousa com a sineta em {FE["logo_pousa"]:.2f} s e fica parada {DUR - ult:.2f} s '
+   f'(os pixels da logo, de "FAZLO Hospeda" e do @ iguais entre {DUR - 3:.2f} s e o fim; maior diferença média {mx2:.2f} de 255)')
+info('nas caixas inteiras (com o fundo e o anel da sineta em volta): ' + ' · '.join(f'{n} {d:.2f}' for n, d in d2c))
+voz_fim = fc['voz_t1']
+info(f'a voz do fecho termina em {voz_fim:.2f} s; a passagem para a logo começa em {FE["logo_passagem"]:.2f} s')
 
 # ---------------------------------------------------------------- folha das zonas seguras
 font = ImageFont.truetype(FONT, 26)

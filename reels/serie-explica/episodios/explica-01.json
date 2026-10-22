@@ -111,7 +111,7 @@
       "rotulo": "CRÉDITO",
       "tom": "roxo",
       "titulo": ["Crédito:", "salva o cancelamento."],
-      "segura": 1.5,
+      "segura": 2.0,
       "fala": [
         { "texto": "Terceira: crédito.", "apoio": "A terceira palavra." },
         { "texto": "O hóspede cancelou?", "apoio": "O hóspede cancelou a reserva." },
@@ -186,21 +186,15 @@
       "rotulo": "SALVA ESSE",
       "tom": "roxo",
       "titulo": ["Salva e manda", "pra quem cuida das reservas."],
-      "min": 8.0,
+      "inicio": 0.05,
+      "min": 9.0,
       "fala": [
         { "texto": "Salva esse vídeo e manda pra quem cuida das reservas aí.", "apoio": "Pra ter à mão no próximo check-out." },
-        { "texto": "E me conta: você já ouviu um depois a gente acerta?", "apoio": "Já ouviu essa? Conta aqui." }
+        { "texto": "E me conta: você já ouviu um depois a gente acerta?", "apoio": null }
       ],
       "diagrama": {
         "tipo": "fecho",
-        "card": { "titulo": ["Sinal, saldo", "e crédito."], "faixa": "em 3 palavras." },
-        "acoes": [
-          { "icone": "curtir", "em": "+0.5" },
-          { "icone": "comentar", "chip": "Comenta", "em": "conta" },
-          { "icone": "enviar", "chip": "Manda", "em": "manda" },
-          { "icone": "salvar", "chip": "Salva", "em": "Salva" }
-        ],
-        "comentario": { "nome": "pousada.serra", "t": "depois a gente acerta 😅", "em": "conta" }
+        "pergunta": { "linhas": ["Já ouviu um", "*“depois a gente*", "*acerta”?*", "Conta aqui."], "em": "+1.2" }
       }
     }
   ]

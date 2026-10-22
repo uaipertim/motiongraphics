@@ -1,5 +1,5 @@
 {
- "duracao": 78.992,
+ "duracao": 76.892,
  "apoios": [
   {
    "cap": 0,
@@ -7,207 +7,199 @@
    "texto": "Elas decidem se a pousada ganha ou perde.",
    "entra": 3.08,
    "inteira_de": 3.42,
-   "ate": 8.3
+   "ate": 7.9
   },
   {
    "cap": 1,
    "i": 1,
    "texto": "Uma frase que já derrubou muito caixa.",
-   "entra": 8.6,
-   "inteira_de": 8.94,
-   "ate": 11.425
+   "entra": 8.2,
+   "inteira_de": 8.54,
+   "ate": 11.025
   },
   {
    "cap": 1,
    "i": 2,
    "texto": "Sem valor, sem data, sem registro.",
-   "entra": 11.425,
-   "inteira_de": 11.765,
-   "ate": 14.245
+   "entra": 11.025,
+   "inteira_de": 11.365,
+   "ate": 13.445
   },
   {
    "cap": 2,
    "i": 1,
    "texto": "Sinal, saldo e crédito: cada um no seu encaixe.",
-   "entra": 14.545,
-   "inteira_de": 14.885,
-   "ate": 16.894
+   "entra": 13.745,
+   "inteira_de": 14.084999999999999,
+   "ate": 16.094
   },
   {
    "cap": 2,
    "i": 2,
    "texto": "Basta uma ficar solta pra dar prejuízo.",
-   "entra": 16.894,
-   "inteira_de": 17.233999999999998,
-   "ate": 20.245
+   "entra": 16.094,
+   "inteira_de": 16.434,
+   "ate": 19.045
   },
   {
    "cap": 3,
    "i": 1,
    "texto": "A primeira das três palavras.",
-   "entra": 20.545,
-   "inteira_de": 20.885,
-   "ate": 22.465
+   "entra": 19.345,
+   "inteira_de": 19.685,
+   "ate": 21.265
   },
   {
    "cap": 3,
    "i": 2,
    "texto": "É o valor pago pra garantir a data.",
-   "entra": 22.465,
-   "inteira_de": 22.805,
-   "ate": 24.385
+   "entra": 21.265,
+   "inteira_de": 21.605,
+   "ate": 23.185
   },
   {
    "cap": 3,
    "i": 3,
    "texto": "Sem sinal, a data ainda não é sua.",
-   "entra": 24.385,
-   "inteira_de": 24.725,
-   "ate": 26.305
+   "entra": 23.185,
+   "inteira_de": 23.525,
+   "ate": 25.105
   },
   {
    "cap": 3,
    "i": 4,
    "texto": "É só uma promessa.",
-   "entra": 26.305,
-   "inteira_de": 26.645,
-   "ate": 29.125
+   "entra": 25.105,
+   "inteira_de": 25.445,
+   "ate": 27.525
   },
   {
    "cap": 4,
    "i": 1,
    "texto": "A segunda palavra.",
-   "entra": 29.425,
-   "inteira_de": 29.765,
-   "ate": 31.345
+   "entra": 27.825,
+   "inteira_de": 28.165,
+   "ate": 29.745
   },
   {
    "cap": 4,
    "i": 2,
    "texto": "Saldo é o que ainda falta pagar.",
-   "entra": 31.345,
-   "inteira_de": 31.685,
-   "ate": 33.265
+   "entra": 29.745,
+   "inteira_de": 30.085,
+   "ate": 31.665
   },
   {
    "cap": 4,
    "i": 3,
    "texto": "Ele muda com consumo e desconto.",
-   "entra": 33.265,
-   "inteira_de": 33.605000000000004,
-   "ate": 36.267
+   "entra": 31.665,
+   "inteira_de": 32.005,
+   "ate": 34.667
   },
   {
    "cap": 4,
    "i": 4,
    "texto": "Sem acompanhar, a cobrança sai errada.",
-   "entra": 36.267,
-   "inteira_de": 36.607000000000006,
-   "ate": 40.582
+   "entra": 34.667,
+   "inteira_de": 35.007000000000005,
+   "ate": 38.582
   },
   {
    "cap": 5,
    "i": 1,
    "texto": "A terceira palavra.",
-   "entra": 40.882,
-   "inteira_de": 41.222,
-   "ate": 42.802
+   "entra": 38.882,
+   "inteira_de": 39.222,
+   "ate": 40.802
   },
   {
    "cap": 5,
    "i": 2,
    "texto": "O hóspede cancelou a reserva.",
-   "entra": 42.802,
-   "inteira_de": 43.142,
-   "ate": 44.722
+   "entra": 40.802,
+   "inteira_de": 41.142,
+   "ate": 42.722
   },
   {
    "cap": 5,
    "i": 3,
    "texto": "O sinal não some nem volta pro bolso.",
-   "entra": 44.722,
-   "inteira_de": 45.062000000000005,
-   "ate": 46.642
+   "entra": 42.722,
+   "inteira_de": 43.062000000000005,
+   "ate": 44.642
   },
   {
    "cap": 5,
    "i": 4,
    "texto": "Sempre com a regra combinada antes.",
-   "entra": 46.642,
-   "inteira_de": 46.982000000000006,
-   "ate": 49.908
+   "entra": 44.642,
+   "inteira_de": 44.982000000000006,
+   "ate": 48.008
   },
   {
    "cap": 6,
    "i": 1,
    "texto": "Sinal é parte do pagamento, não abatimento.",
-   "entra": 50.208,
-   "inteira_de": 50.548,
-   "ate": 53.149
+   "entra": 48.308,
+   "inteira_de": 48.648,
+   "ate": 51.249
   },
   {
    "cap": 6,
    "i": 2,
    "texto": "Crédito vira outra data, não dinheiro de volta.",
-   "entra": 53.149,
-   "inteira_de": 53.489000000000004,
-   "ate": 56.291
+   "entra": 51.249,
+   "inteira_de": 51.589000000000006,
+   "ate": 53.991
   },
   {
    "cap": 7,
    "i": 1,
    "texto": "Três perguntas, sempre nessa ordem.",
-   "entra": 56.591,
-   "inteira_de": 56.931000000000004,
-   "ate": 59.602
+   "entra": 54.291,
+   "inteira_de": 54.631,
+   "ate": 57.302
   },
   {
    "cap": 7,
    "i": 2,
    "texto": "O que entrou, o que consumiu, o que falta.",
-   "entra": 59.602,
-   "inteira_de": 59.942,
-   "ate": 64.021
+   "entra": 57.302,
+   "inteira_de": 57.642,
+   "ate": 61.321
   },
   {
    "cap": 8,
    "i": 1,
    "texto": "Uma frase pra cada palavra.",
-   "entra": 64.321,
-   "inteira_de": 64.661,
-   "ate": 66.252
+   "entra": 61.621,
+   "inteira_de": 61.961000000000006,
+   "ate": 63.552
   },
   {
    "cap": 8,
    "i": 2,
    "texto": "Fácil de lembrar no balcão.",
-   "entra": 66.252,
-   "inteira_de": 66.592,
-   "ate": 68.172
+   "entra": 63.552,
+   "inteira_de": 63.892,
+   "ate": 65.472
   },
   {
    "cap": 8,
    "i": 3,
    "texto": "Cola perto do caixa.",
-   "entra": 68.172,
-   "inteira_de": 68.512,
-   "ate": 70.992
+   "entra": 65.472,
+   "inteira_de": 65.812,
+   "ate": 67.892
   },
   {
    "cap": 9,
    "i": 1,
    "texto": "Pra ter à mão no próximo check-out.",
-   "entra": 71.292,
-   "inteira_de": 71.632,
-   "ate": 74.175
-  },
-  {
-   "cap": 9,
-   "i": 2,
-   "texto": "Já ouviu essa? Conta aqui.",
-   "entra": 74.175,
-   "inteira_de": 74.515,
-   "ate": 79.892
+   "entra": 68.192,
+   "inteira_de": 68.532,
+   "ate": 73.542
   }
  ],
  "trocas": [
@@ -215,55 +207,55 @@
    "de": 0,
    "para": 1,
    "t0": 7.4,
-   "t1": 8.3
+   "t1": 7.9
   },
   {
    "de": 1,
    "para": 2,
-   "t0": 13.345,
-   "t1": 14.245
+   "t0": 12.945,
+   "t1": 13.445
   },
   {
    "de": 2,
    "para": 3,
-   "t0": 19.345,
-   "t1": 20.245
+   "t0": 18.545,
+   "t1": 19.045
   },
   {
    "de": 3,
    "para": 4,
-   "t0": 28.225,
-   "t1": 29.125
+   "t0": 27.025,
+   "t1": 27.525
   },
   {
    "de": 4,
    "para": 5,
-   "t0": 39.682,
-   "t1": 40.582
+   "t0": 38.082,
+   "t1": 38.582
   },
   {
    "de": 5,
    "para": 6,
-   "t0": 49.008,
-   "t1": 49.908
+   "t0": 47.508,
+   "t1": 48.008
   },
   {
    "de": 6,
    "para": 7,
-   "t0": 55.391,
-   "t1": 56.291
+   "t0": 53.491,
+   "t1": 53.991
   },
   {
    "de": 7,
    "para": 8,
-   "t0": 63.121,
-   "t1": 64.021
+   "t0": 60.821,
+   "t1": 61.321
   },
   {
    "de": 8,
    "para": 9,
-   "t0": 70.092,
-   "t1": 70.992
+   "t0": 67.392,
+   "t1": 67.892
   }
  ],
  "montagens": [
@@ -276,70 +268,788 @@
   },
   {
    "n": 1,
-   "t0": 8.3,
-   "t1": 13.345,
-   "primeira": 8.945,
-   "ultima": 12.475999999999999
+   "t0": 7.9,
+   "t1": 12.945,
+   "primeira": 8.545,
+   "ultima": 12.076
   },
   {
    "n": 2,
-   "t0": 14.245,
-   "t1": 19.345,
-   "primeira": 15.424,
-   "ultima": 18.338
+   "t0": 13.445,
+   "t1": 18.545,
+   "primeira": 14.624,
+   "ultima": 17.538
   },
   {
    "n": 3,
-   "t0": 20.245,
-   "t1": 28.225,
-   "primeira": 21.319,
-   "ultima": 26.277
+   "t0": 19.045,
+   "t1": 27.025,
+   "primeira": 20.119,
+   "ultima": 25.077
   },
   {
    "n": 4,
-   "t0": 29.125,
-   "t1": 39.682,
-   "primeira": 30.315,
-   "ultima": 38.117
+   "t0": 27.525,
+   "t1": 38.082,
+   "primeira": 28.715,
+   "ultima": 36.517
   },
   {
    "n": 5,
-   "t0": 40.582,
-   "t1": 49.008,
-   "primeira": 41.401,
-   "ultima": 48.193999999999996
+   "t0": 38.582,
+   "t1": 47.508,
+   "primeira": 39.401,
+   "ultima": 46.343999999999994
   },
   {
    "n": 6,
-   "t0": 49.908,
-   "t1": 55.391,
-   "primeira": 51.47,
-   "ultima": 54.553
+   "t0": 48.008,
+   "t1": 53.491,
+   "primeira": 49.57,
+   "ultima": 52.653
   },
   {
    "n": 7,
-   "t0": 56.291,
-   "t1": 63.121,
-   "primeira": 57.923,
-   "ultima": 62.757
+   "t0": 53.991,
+   "t1": 60.821,
+   "primeira": 55.623,
+   "ultima": 60.456999999999994
   },
   {
    "n": 8,
-   "t0": 64.021,
-   "t1": 70.092,
-   "primeira": 64.817,
-   "ultima": 68.992
+   "t0": 61.321,
+   "t1": 67.392,
+   "primeira": 62.117,
+   "ultima": 66.292
   },
   {
    "n": 9,
-   "t0": 70.992,
-   "t1": 78.992,
-   "primeira": 71.242,
-   "ultima": 75.542
+   "t0": 67.892,
+   "t1": 76.892,
+   "primeira": 69.092,
+   "ultima": 73.842
   }
  ],
  "fecho": {
-  "ultima_mudanca_de_texto": 75.892,
-  "duracao": 78.992
- }
+  "ultima_mudanca_de_texto": 73.842,
+  "duracao": 76.892,
+  "texto_de": 69.642,
+  "texto_ate": 73.542,
+  "logo_passagem": 73.542,
+  "logo_pousa": 73.842,
+  "sineta": 73.842
+ },
+ "notinha": {
+  "entra": 6.62,
+  "rasga": 68.892,
+  "linhas": [
+   {
+    "tipo": "topo",
+    "cap": null,
+    "texto": "CONTA",
+    "imprime": 7.08,
+    "check": null
+   },
+   {
+    "tipo": "item",
+    "cap": 1,
+    "texto": "01 · A FRASE",
+    "imprime": 7.5,
+    "check": 12.885
+   },
+   {
+    "tipo": "item",
+    "cap": 2,
+    "texto": "02 · O PROBLEMA",
+    "imprime": 13.045,
+    "check": 18.485000000000003
+   },
+   {
+    "tipo": "item",
+    "cap": 3,
+    "texto": "03 · SINAL",
+    "imprime": 18.645000000000003,
+    "check": 26.965
+   },
+   {
+    "tipo": "item",
+    "cap": 4,
+    "texto": "04 · SALDO",
+    "imprime": 27.125,
+    "check": 38.022
+   },
+   {
+    "tipo": "item",
+    "cap": 5,
+    "texto": "05 · CRÉDITO",
+    "imprime": 38.182,
+    "check": 47.448
+   },
+   {
+    "tipo": "item",
+    "cap": 6,
+    "texto": "06 · NÃO CONFUNDA",
+    "imprime": 47.608000000000004,
+    "check": 53.431
+   },
+   {
+    "tipo": "item",
+    "cap": 7,
+    "texto": "07 · NO DIA A DIA",
+    "imprime": 53.591,
+    "check": 60.760999999999996
+   },
+   {
+    "tipo": "item",
+    "cap": 8,
+    "texto": "08 · ANOTA AÍ",
+    "imprime": 60.921,
+    "check": 67.332
+   },
+   {
+    "tipo": "item",
+    "cap": 9,
+    "texto": "09 · SALVA ESSE",
+    "imprime": 67.49199999999999,
+    "check": 68.092
+   },
+   {
+    "tipo": "fim",
+    "cap": null,
+    "texto": "CONTA FECHADA ✓",
+    "imprime": 68.342,
+    "check": null
+   }
+  ]
+ },
+ "medidas": {
+  "area_util": [
+   160,
+   940
+  ],
+  "cartao_credito": {
+   "largura": 546,
+   "altura": 228,
+   "mono_px": 32,
+   "valor_px": 68,
+   "sub_px": 30
+  }
+ },
+ "cues": [
+  {
+   "t": 0.1,
+   "type": "lockon"
+  },
+  {
+   "t": 1.203,
+   "type": "lockon"
+  },
+  {
+   "t": 2.027,
+   "type": "lockon"
+  },
+  {
+   "t": 6.62,
+   "type": "printerin"
+  },
+  {
+   "t": 7.08,
+   "type": "print",
+   "d": 0.3,
+   "big": false
+  },
+  {
+   "t": 7.4,
+   "type": "trans",
+   "d": 0.5,
+   "k": 1
+  },
+  {
+   "t": 7.5,
+   "type": "print",
+   "d": 0.32,
+   "big": false
+  },
+  {
+   "t": 7.7,
+   "type": "chaveiro",
+   "k": 1
+  },
+  {
+   "t": 7.92,
+   "type": "title"
+  },
+  {
+   "t": 8.2,
+   "type": "apoio"
+  },
+  {
+   "t": 8.545,
+   "type": "pop",
+   "f": 620
+  },
+  {
+   "t": 9.915,
+   "type": "coin"
+  },
+  {
+   "t": 10.465,
+   "type": "coinsfall"
+  },
+  {
+   "t": 11.025,
+   "type": "apoio"
+  },
+  {
+   "t": 11.726,
+   "type": "question"
+  },
+  {
+   "t": 12.045,
+   "type": "strike"
+  },
+  {
+   "t": 12.076,
+   "type": "chip"
+  },
+  {
+   "t": 12.885,
+   "type": "stamp"
+  },
+  {
+   "t": 12.945,
+   "type": "trans",
+   "d": 0.5,
+   "k": 2
+  },
+  {
+   "t": 13.045,
+   "type": "print",
+   "d": 0.32,
+   "big": false
+  },
+  {
+   "t": 13.245,
+   "type": "chaveiro",
+   "k": 2
+  },
+  {
+   "t": 13.465,
+   "type": "title"
+  },
+  {
+   "t": 13.745,
+   "type": "apoio"
+  },
+  {
+   "t": 14.624,
+   "type": "pop",
+   "f": 560
+  },
+  {
+   "t": 15.193,
+   "type": "slot",
+   "i": 0
+  },
+  {
+   "t": 15.471,
+   "type": "slot",
+   "i": 1
+  },
+  {
+   "t": 15.691,
+   "type": "slot",
+   "i": 2
+  },
+  {
+   "t": 16.094,
+   "type": "apoio"
+  },
+  {
+   "t": 17.015,
+   "type": "snap"
+  },
+  {
+   "t": 17.538,
+   "type": "alert"
+  },
+  {
+   "t": 18.485,
+   "type": "stamp"
+  },
+  {
+   "t": 18.545,
+   "type": "trans",
+   "d": 0.5,
+   "k": 3
+  },
+  {
+   "t": 18.645,
+   "type": "print",
+   "d": 0.32,
+   "big": false
+  },
+  {
+   "t": 18.845,
+   "type": "chaveiro",
+   "k": 3
+  },
+  {
+   "t": 19.065,
+   "type": "title"
+  },
+  {
+   "t": 19.345,
+   "type": "apoio"
+  },
+  {
+   "t": 20.119,
+   "type": "pop",
+   "f": 520
+  },
+  {
+   "t": 21.265,
+   "type": "apoio"
+  },
+  {
+   "t": 21.338,
+   "type": "chip"
+  },
+  {
+   "t": 21.768,
+   "type": "drop"
+  },
+  {
+   "t": 21.838,
+   "type": "check"
+  },
+  {
+   "t": 22.148,
+   "type": "lock"
+  },
+  {
+   "t": 23.01,
+   "type": "pop",
+   "f": 440
+  },
+  {
+   "t": 23.185,
+   "type": "apoio"
+  },
+  {
+   "t": 25.077,
+   "type": "flicker"
+  },
+  {
+   "t": 25.105,
+   "type": "apoio"
+  },
+  {
+   "t": 26.965,
+   "type": "stamp"
+  },
+  {
+   "t": 27.025,
+   "type": "trans",
+   "d": 0.5,
+   "k": 4
+  },
+  {
+   "t": 27.125,
+   "type": "print",
+   "d": 0.32,
+   "big": false
+  },
+  {
+   "t": 27.325,
+   "type": "chaveiro",
+   "k": 4
+  },
+  {
+   "t": 27.545,
+   "type": "title"
+  },
+  {
+   "t": 27.825,
+   "type": "apoio"
+  },
+  {
+   "t": 28.715,
+   "type": "grow",
+   "d": 0.6
+  },
+  {
+   "t": 29.745,
+   "type": "apoio"
+  },
+  {
+   "t": 30.085,
+   "type": "fill",
+   "f": 700
+  },
+  {
+   "t": 31.665,
+   "type": "apoio"
+  },
+  {
+   "t": 32.57,
+   "type": "pop",
+   "f": 700
+  },
+  {
+   "t": 33.789,
+   "type": "cut",
+   "f": 700
+  },
+  {
+   "t": 34.339,
+   "type": "drop"
+  },
+  {
+   "t": 34.667,
+   "type": "apoio"
+  },
+  {
+   "t": 35.31,
+   "type": "count",
+   "d": 0.6
+  },
+  {
+   "t": 35.93,
+   "type": "big"
+  },
+  {
+   "t": 36.517,
+   "type": "alert"
+  },
+  {
+   "t": 38.022,
+   "type": "stamp"
+  },
+  {
+   "t": 38.082,
+   "type": "trans",
+   "d": 0.5,
+   "k": 5
+  },
+  {
+   "t": 38.182,
+   "type": "print",
+   "d": 0.32,
+   "big": false
+  },
+  {
+   "t": 38.382,
+   "type": "chaveiro",
+   "k": 5
+  },
+  {
+   "t": 38.602,
+   "type": "title"
+  },
+  {
+   "t": 38.882,
+   "type": "apoio"
+  },
+  {
+   "t": 39.401,
+   "type": "pop",
+   "f": 500
+  },
+  {
+   "t": 39.651,
+   "type": "coin"
+  },
+  {
+   "t": 40.802,
+   "type": "apoio"
+  },
+  {
+   "t": 41.061,
+   "type": "alert"
+  },
+  {
+   "t": 42.722,
+   "type": "apoio"
+  },
+  {
+   "t": 42.733,
+   "type": "rise"
+  },
+  {
+   "t": 43.697,
+   "type": "deny"
+  },
+  {
+   "t": 44.544,
+   "type": "whoosh"
+  },
+  {
+   "t": 44.642,
+   "type": "apoio"
+  },
+  {
+   "t": 45.044,
+   "type": "whoosh"
+  },
+  {
+   "t": 45.494,
+   "type": "big"
+  },
+  {
+   "t": 46.344,
+   "type": "lock"
+  },
+  {
+   "t": 46.544,
+   "type": "check"
+  },
+  {
+   "t": 47.448,
+   "type": "stamp"
+  },
+  {
+   "t": 47.508,
+   "type": "trans",
+   "d": 0.5,
+   "k": 6
+  },
+  {
+   "t": 47.608,
+   "type": "print",
+   "d": 0.32,
+   "big": false
+  },
+  {
+   "t": 47.808,
+   "type": "chaveiro",
+   "k": 6
+  },
+  {
+   "t": 48.028,
+   "type": "title"
+  },
+  {
+   "t": 48.308,
+   "type": "apoio"
+  },
+  {
+   "t": 49.57,
+   "type": "pop",
+   "f": 600
+  },
+  {
+   "t": 50.429,
+   "type": "pop",
+   "f": 720
+  },
+  {
+   "t": 50.749,
+   "type": "neq"
+  },
+  {
+   "t": 51.249,
+   "type": "apoio"
+  },
+  {
+   "t": 51.578,
+   "type": "pop",
+   "f": 600
+  },
+  {
+   "t": 52.333,
+   "type": "pop",
+   "f": 720
+  },
+  {
+   "t": 52.653,
+   "type": "neq"
+  },
+  {
+   "t": 53.431,
+   "type": "stamp"
+  },
+  {
+   "t": 53.491,
+   "type": "trans",
+   "d": 0.5,
+   "k": 7
+  },
+  {
+   "t": 53.591,
+   "type": "print",
+   "d": 0.32,
+   "big": false
+  },
+  {
+   "t": 53.791,
+   "type": "chaveiro",
+   "k": 7
+  },
+  {
+   "t": 54.011,
+   "type": "title"
+  },
+  {
+   "t": 54.291,
+   "type": "apoio"
+  },
+  {
+   "t": 55.623,
+   "type": "pop",
+   "f": 480
+  },
+  {
+   "t": 57.302,
+   "type": "apoio"
+  },
+  {
+   "t": 57.747,
+   "type": "slide"
+  },
+  {
+   "t": 58.297,
+   "type": "check"
+  },
+  {
+   "t": 58.502,
+   "type": "slide"
+  },
+  {
+   "t": 59.052,
+   "type": "check"
+  },
+  {
+   "t": 59.907,
+   "type": "slide"
+  },
+  {
+   "t": 60.457,
+   "type": "check"
+  },
+  {
+   "t": 60.761,
+   "type": "stamp"
+  },
+  {
+   "t": 60.821,
+   "type": "trans",
+   "d": 0.5,
+   "k": 8
+  },
+  {
+   "t": 60.921,
+   "type": "print",
+   "d": 0.32,
+   "big": false
+  },
+  {
+   "t": 61.121,
+   "type": "chaveiro",
+   "k": 8
+  },
+  {
+   "t": 61.341,
+   "type": "title"
+  },
+  {
+   "t": 61.621,
+   "type": "apoio"
+  },
+  {
+   "t": 62.117,
+   "type": "pop",
+   "f": 640
+  },
+  {
+   "t": 62.417,
+   "type": "tick"
+  },
+  {
+   "t": 63.552,
+   "type": "apoio"
+  },
+  {
+   "t": 63.672,
+   "type": "pop",
+   "f": 640
+  },
+  {
+   "t": 63.972,
+   "type": "tick"
+  },
+  {
+   "t": 65.089,
+   "type": "pop",
+   "f": 640
+  },
+  {
+   "t": 65.389,
+   "type": "tick"
+  },
+  {
+   "t": 65.472,
+   "type": "apoio"
+  },
+  {
+   "t": 66.292,
+   "type": "shine"
+  },
+  {
+   "t": 67.332,
+   "type": "stamp"
+  },
+  {
+   "t": 67.392,
+   "type": "trans",
+   "d": 0.5,
+   "k": 9
+  },
+  {
+   "t": 67.492,
+   "type": "print",
+   "d": 0.32,
+   "big": false
+  },
+  {
+   "t": 67.692,
+   "type": "chaveiro",
+   "k": 9
+  },
+  {
+   "t": 67.912,
+   "type": "title"
+  },
+  {
+   "t": 68.092,
+   "type": "stamp"
+  },
+  {
+   "t": 68.192,
+   "type": "apoio"
+  },
+  {
+   "t": 68.342,
+   "type": "print",
+   "d": 0.42,
+   "big": true
+  },
+  {
+   "t": 68.892,
+   "type": "tear"
+  },
+  {
+   "t": 69.092,
+   "type": "slide"
+  },
+  {
+   "t": 73.542,
+   "type": "logowipe",
+   "d": 0.3
+  },
+  {
+   "t": 73.842,
+   "type": "bell"
+  }
+ ]
 }

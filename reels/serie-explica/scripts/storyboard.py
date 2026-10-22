@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 """
 Storyboard de um episódio da SÉRIE EXPLICA: para cada capítulo, um quadro do meio da montagem do diagrama
-(entre a primeira e a última peça) e o quadro do capítulo pronto (logo antes da troca).
+(entre a primeira e a última peça) e o quadro do capítulo pronto (logo antes da troca); no fecho, a fase do texto
+parado e a logo final.
 
     python3 scripts/storyboard.py explica-01   ->  output/explica-01/storyboard.jpg
 """
@@ -29,6 +30,10 @@ for c, m in zip(caps, MOT['montagens']):
     if c['n'] == 0:
         meio = 0.0                                        # o capítulo 00 é a capa: o quadro 0
     fala = ' '.join(f['texto'] for f in c['fala']) if 'fala' in c else ' '.join(f['texto'] for f in c['frases'])
+    if c['n'] == len(caps) - 1:                           # o fecho: a fase do texto e a logo final
+        quadros.append((c, MOT['fecho']['texto_ate'] - 0.3, 'texto parado', fala))
+        quadros.append((c, c['t1'] - 0.2, 'logo + sineta', fala))
+        continue
     quadros.append((c, meio, 'montagem' if c['n'] else 'quadro 0 = capa', fala))
     quadros.append((c, c['t1'] - 0.2, 'pronto', fala))
 rows = (len(quadros) + COLS - 1) // COLS

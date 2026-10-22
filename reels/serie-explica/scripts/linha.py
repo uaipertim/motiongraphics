@@ -7,10 +7,10 @@ roteiro (episodios/<id>.json).
                                              audio/explica-01/voz.wav     (a narração montada, 48 kHz mono)
 
 Tempo de cada capítulo:
-  • a câmera chega no capítulo em t0 (o capítulo 00 começa no quadro 0, já com o gancho escrito);
+  • o capítulo começa em t0 (o capítulo 00 começa no quadro 0, já com o gancho escrito);
   • a voz entra `inicio` s depois (padrão 0,25 s; no capítulo 00, 0,10 s: o gancho é falado desde o começo);
   • o capítulo dura até o fim da voz + `segura` (padrão 0,45 s), com mínimo `min` (o fecho tem 8 s);
-  • a troca para o próximo capítulo (a câmera seguindo o trilho) dura TR = 0,9 s.
+  • a troca para o próximo capítulo (a passagem limão com a sineta, e a notinha avançando uma linha) dura TR = 0,5 s.
 Linha de apoio: uma por frase (o "apoio" de cada frase no JSON; null = nenhuma), entrando junto com a frase, mas nunca
 antes de a anterior ter ficado 1,5 s inteira na tela (entrada de 0,34 s + 1,5 s + folga = 1,92 s entre trocas). A última
 fica ao menos 1,92 s antes da troca de capítulo.
@@ -33,7 +33,7 @@ AUD = os.path.join(ROOT, 'audio', EP)
 SCRIPT = json.load(open(os.path.join(ROOT, 'episodios', EP + '.json')))
 FALAS = json.load(open(os.path.join(AUD, 'voz', 'falas.json')))['capitulos']
 SR_IN, SR = 44100, 48000
-TR = 0.9                      # a troca de capítulo (câmera no trilho)
+TR = 0.5                      # a troca de capítulo (passagem limão + sineta)
 AP_ENTRA = 0.34               # a linha de apoio entra em 0,34 s (a anterior sai antes: as duas nunca se sobrepõem)
 AP_LEITURA = 1.5              # e fica ao menos 1,5 s inteira na tela
 AP_PASSO = AP_ENTRA + AP_LEITURA + 0.08

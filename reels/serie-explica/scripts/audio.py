@@ -11,10 +11,10 @@
   • TRILHA contínua do começo ao fim: cama de acordes macios (Lá menor 9 → Fá 7M(9) → Dó 7M(9) → Sol 6/9, um acorde
     a cada 2 compassos, 92 BPM), baixo, um pulso grave suave nos tempos 1 e 3, um arpejo de pentatônica e um chiado
     de shaker bem baixo; fica ~13 dB abaixo da voz (em LUFS) e abaixa suavemente (até 6 dB, ataque 60 ms, soltura 450 ms)
-    enquanto a voz fala; no fecho, o último acorde sustenta e some;
-  • EFEITOS curtos tirados da animação (audio/<id>/cues.json): a luz correndo no trilho na troca de capítulo, o nó
-    que acende (um sino de vidro que sobe de nota a cada capítulo), peças que entram, checks, cadeado, alerta,
-    moedas, digitação e o coração do comentário;
+    enquanto a voz fala; no fecho, o último acorde entra junto com a sineta da logo, sustenta e some;
+  • EFEITOS curtos tirados da animação (audio/<id>/cues.json): a passagem limão da troca de capítulo com o "ding" da
+    sineta da recepção, o chaveiro que balança, a notinha (impressora a cada linha, o carimbo do check, o rasgo no
+    fecho), peças que entram, checks, cadeado, alerta, moedas e, no fim, a sineta da logo;
   • uma sala curtinha (reverb) nos efeitos e na trilha.
 """
 import json
@@ -153,6 +153,27 @@ def desk_bell(f, d=3.0):
 
 
 
+def paper_tear(d=0.45):
+    """a notinha destacando: o papel rasgando em fibras (estalinhos sobre um chiado que sobe)"""
+    t = tt(d)
+    base = filt(noise(d), [1800, 7000], 'band') * np.minimum(1, t / 0.03) * np.exp(-t / 0.16)
+    cr = np.zeros_like(t)
+    for k in range(26):
+        i = int(rng.uniform(0, d * 0.75) * SR)
+        c = click(0.012, 2500 + 3500 * rng.random(), 0.0015)
+        cr[i:i + len(c)] += c[: max(0, len(cr) - i)] * rng.uniform(0.3, 1.0)
+    return base * 0.8 + cr * 0.6
+
+
+def keys_jingle():
+    """o chaveiro balançando: a argola e a plaquinha tilintando"""
+    out = np.zeros(int(0.6 * SR))
+    for k, (t0, f) in enumerate([(0.0, 4200), (0.05, 5100), (0.13, 3900), (0.22, 4700)]):
+        s = coin_clink(f) * (0.9 - 0.18 * k)
+        i = int(t0 * SR); out[i:i + len(s)] += s[: len(out) - i]
+    return out
+
+
 def ping(f, d=0.6):
     """Ping suave e genérico: seno com um leve brilho (2º e 3º parciais) e decaimento curto."""
     t = tt(d)
@@ -265,15 +286,6 @@ def pop(f=700):
 
 
 
-def glass(f, d=1.6):
-    """o nó do trilho: sino de vidro curto (parciais quase harmônicos)"""
-    t = tt(d)
-    s = np.zeros_like(t)
-    for m, a, dec in [(1.0, 1.0, 0.9), (2.01, 0.35, 0.5), (3.02, 0.18, 0.25), (4.1, 0.08, 0.12), (1.003, 0.4, 0.8)]:
-        s += a * np.sin(2 * np.pi * f * m * t + rng.uniform(0, 6)) * np.exp(-t / dec)
-    return s * np.minimum(1, t / 0.002) / 2.0
-
-
 def coin_clink(f=3200):
     t = tt(0.35)
     s = sum(a * np.sin(2 * np.pi * f * m * t) * np.exp(-t / dec) for m, a, dec in [(1, 1, 0.08), (1.47, 0.6, 0.06), (2.31, 0.4, 0.04), (3.1, 0.2, 0.03)])
@@ -332,13 +344,26 @@ voz = voz * uniform_filter1d(gain, int(0.01 * SR))
 # --- os efeitos
 sfx, send = stereo(), stereo()
 SFX_G = 10 ** (-13 / 20)
-PENTA = [76, 79, 81, 83, 86, 88, 91, 93, 95, 98]
 for c in CUES['cues']:
     t, ty, d = c['t'], c['type'], c.get('d', 0.3)
     if ty == 'trans':
-        place_pan(sfx, whoosh(d, 260, 2600, 0.55, 1.1), t, 0.32, -0.6, 0.6); place(sfx, riser(d * 0.8, 400, 3000), t + 0.1, 0.1)
-    elif ty == 'node':
-        g = glass(midi(PENTA[c['k'] % len(PENTA)])); place(sfx, g, t, 0.42, -0.5); place(send, g, t, 0.3); place(sfx, thump(0.3, 58, 0.08, 0.7), t, 0.25)
+        # a passagem limão (esquerda → direita) e o "ding" da sineta da recepção no meio dela
+        place_pan(sfx, whoosh(d, 320, 2800, 0.5, 1.1), t, 0.26, -0.7, 0.7)
+        b = desk_bell(midi(91), 1.8); place(sfx, b, t + d * 0.45, 0.2, 0.1); place(send, b, t + d * 0.45, 0.14)
+    elif ty == 'logowipe':
+        place_pan(sfx, whoosh(d + 0.1, 300, 3000, 0.55, 1.1), t, 0.3, -0.7, 0.7)
+    elif ty == 'bell':
+        b = desk_bell(midi(91)); place(sfx, b, t, 0.5); place(send, b, t, 0.36)
+    elif ty == 'chaveiro':
+        place(sfx, keys_jingle(), t + 0.05, 0.16, -0.5)
+    elif ty == 'printerin':
+        place_pan(sfx, whoosh(0.35, 1500, 400, 0.4, 1.2), t, 0.12, -0.8, -0.5); place(sfx, wood(520, 0.1, 0.02), t + 0.35, 0.3, -0.7)
+    elif ty == 'print':
+        place(sfx, printer(d + 0.05, c.get('big', False)), t, 0.2 if c.get('big') else 0.14, -0.7)
+    elif ty == 'stamp':
+        place(sfx, wood(1300, 0.06, 0.01), t, 0.3, -0.7); place(sfx, ping(midi(96), 0.3), t + 0.02, 0.07, -0.7)
+    elif ty == 'tear':
+        place(sfx, paper_tear(), t, 0.34, -0.6); place(sfx, riser(0.5, 500, 2400), t + 0.1, 0.08, -0.5)
     elif ty == 'title':
         place(sfx, whoosh(0.3, 1500, 500, 0.3, 1.2), t, 0.12)
     elif ty == 'apoio':
@@ -418,7 +443,8 @@ CHORDS = [[57, 60, 64, 67, 71], [53, 57, 60, 64, 67], [60, 64, 67, 71, 74], [55,
 music = np.zeros(N)
 t = np.arange(N) / SR
 bars = 2 * BT * 4
-FIM = LN_C[-1]['voz_t1'] + 0.6                                                                         # o último acorde começa aqui e sustenta
+SINO = [c['t'] for c in CUES['cues'] if c['type'] == 'bell']
+FIM = SINO[-1] if SINO else LN_C[-1]['voz_t1'] + 0.6                                                  # o último acorde entra com a sineta da logo e sustenta
 nb = int(FIM / bars) + 1
 for k in range(nb + 1):
     t0 = k * bars
