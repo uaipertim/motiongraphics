@@ -1,0 +1,13 @@
+{
+  "id": "ep-10",
+  "titulo": ["Chegou às 23h.", "Cadê a chave?"],
+  "cards": [
+    { "rotulo": "WHATSAPP", "texto": "Tô chegando! Uns 10 min.", "hora": "22:51" },
+    { "rotulo": "RECEPÇÃO", "texto": "Fechada desde as 20h." },
+    { "texto": "A chave ficou com quem?" },
+    { "chip": "HÓSPEDE NO PORTÃO" }
+  ],
+  "carimbo": "23:04 · SEM CHAVE",
+  "virada": ["Chegada tarde não é problema.", "*Chegada sem combinado é.*"],
+  "fecho": "Manda pra quem já levantou de madrugada pra abrir o portão."
+}

@@ -1,0 +1,13 @@
+{
+  "id": "ep-11",
+  "titulo": ["Diária de feriado", "com preço de terça."],
+  "cards": [
+    { "rotulo": "TERÇA", "texto": "Chalé 2 · R$ 300" },
+    { "rotulo": "SÁB 31/10 · FERIADÃO", "texto": "Chalé 2 · R$ 300" },
+    { "texto": "Fechou em 5 minutos." },
+    { "chip": "FERIADÃO LOTADO" }
+  ],
+  "carimbo": "VENDEU BARATO",
+  "virada": ["Data concorrida tem preço próprio.", "*Ajuste antes de abrir a agenda.*"],
+  "fecho": "Manda pra quem cobra o mesmo preço no feriado."
+}
