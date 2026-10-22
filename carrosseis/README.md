@@ -8,6 +8,7 @@ Carrosséis estáticos para o Instagram da @fazlohospeda, com a mesma identidade
 | **02** | DICA | "5 respostas prontas pro ‘tem vaga?’" | 8 · 1080×1350 (4:5) | `01.png` (limão) | [`carrossel-02/`](carrossel-02) |
 | **03** | DICA | "Política de cancelamento sem briga" | 8 · 1080×1350 (4:5) | `01.png` (limão) | [`carrossel-03/`](carrossel-03) |
 | **04** | DICA | "Checklist do check-in" | 8 · 1080×1350 (4:5) | `01.png` (limão) | [`carrossel-04/`](carrossel-04) |
+| **05** | DICA | "Fechamento do caixa do dia" (sexta, 12h) | 8 · 1080×1350 (4:5) | `01.png` (limão) | [`carrossel-05/`](carrossel-05) |
 
 ## Capas — regra fixa (a partir de outubro de 2026)
 

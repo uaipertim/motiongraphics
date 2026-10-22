@@ -1,0 +1,41 @@
+CARROSSEL 05 — linhas de texto (palavra sozinha numa linha = FALHA)
+
+ok     slide 01 texto: Fechamento
+ok     slide 01 texto: do caixa
+ok     slide 01 texto: em 5 minutos.
+ok     slide 02 texto: No dia, leva 5 minutos.
+ok     slide 02 texto: Na semana seguinte, leva uma tarde.
+ok     slide 02 texto: O dia acabou.
+ok     slide 02 texto: E o caixa ficou pra amanhã.
+ok     slide 03 texto: Cada forma confere num lugar diferente.
+ok     slide 03 texto: Separe por forma
+ok     slide 03 texto: de pagamento.
+ok     slide 03 texto: o que caiu na conta hoje
+ok     slide 03 texto: o resumo da maquininha
+ok     slide 03 texto: o que está na gaveta
+ok     slide 04 texto: Pix sem nome vira dúvida no fim do mês.
+ok     slide 04 texto: Confira o Pix
+ok     slide 04 texto: pelo nome, não pelo valor.
+ok     slide 04 texto: R$ 380,00 · de quem?
+ok     slide 04 texto: sinal do chalé 3
+ok     slide 05 texto: Diferença zero é o objetivo.
+ok     slide 05 texto: Diferença anotada também vale.
+ok     slide 05 texto: Conte o dinheiro
+ok     slide 05 texto: e compare com o esperado.
+ok     slide 06 texto: Comanda aberta é dinheiro saindo pela porta.
+ok     slide 06 texto: Feche as comandas
+ok     slide 06 texto: antes de fechar o caixa.
+ok     slide 06 texto: 3 comandas abertas
+ok     slide 06 texto: na conta de cada quarto
+ok     slide 07 texto: Amanhã começa do zero, sem dúvida de ontem.
+ok     slide 07 texto: Registre o fechamento
+ok     slide 07 texto: com hora e responsável.
+ok     slide 07 texto: Pix R$ 1.260 · Cartão R$ 890 ·
+ok     slide 07 texto: Dinheiro R$ 640 · conferido por [nome]
+ok     slide 08 texto: Caixa conferido hoje
+ok     slide 08 texto: é dor de cabeça a
+ok     slide 08 texto: menos amanhã.
+ok     slide 08 texto: Salva pra usar no fechamento de hoje e manda pra
+ok     slide 08 texto: quem cuida do caixa aí.
+
+RESULTADO: nenhuma palavra sozinha numa linha
