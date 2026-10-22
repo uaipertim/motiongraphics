@@ -16,8 +16,8 @@
   const TAU = Math.PI * 2;
 
   // ---------------------------------------------------------------- neon: brilho largo + traço limão + miolo claro
-  function neon(ctx, desenha, lw = 22) {
-    ctx.save(); ctx.lineCap = 'round'; ctx.lineJoin = 'round';
+  function neon(ctx, desenha, lw = 22, dash = null) {
+    ctx.save(); ctx.lineCap = 'round'; ctx.lineJoin = 'round'; if (dash) ctx.setLineDash(dash);
     const passo = (cor, l, blur, a) => { ctx.save(); ctx.globalAlpha = a; ctx.strokeStyle = cor; ctx.lineWidth = l; ctx.shadowColor = LIME; ctx.shadowBlur = blur; ctx.beginPath(); desenha(ctx); ctx.stroke(); ctx.restore(); };
     passo(LIME, lw * 1.9, 70, 0.22);
     passo(LIME, lw, 34, 1);
@@ -38,6 +38,20 @@
     c.moveTo(r, 0); c.arc(0, 0, r, 0, TAU); c.moveTo(r * 0.4, 0); c.arc(0, 0, r * 0.4, 0, TAU);
     c.moveTo(r, 0); c.lineTo(L, 0); c.moveTo(L - r * 0.15, 0); c.lineTo(L - r * 0.15, r * 0.75); c.lineTo(L - r * 0.65, r * 0.75); c.lineTo(L - r * 0.65, r * 0.35);
     c.moveTo(L - r * 1.05, 0); c.lineTo(L - r * 1.05, r * 0.5);
+  };
+
+  // uma mala de viagem (corpo, alça e duas faixas), de base em (x, y), largura w e altura h
+  const mala = (c, x, y, w, h) => {
+    rr(c, x - w / 2, y - h, w, h, w * 0.12);
+    c.moveTo(x - w * 0.2, y - h); c.lineTo(x - w * 0.2, y - h - h * 0.22); c.lineTo(x + w * 0.2, y - h - h * 0.22); c.lineTo(x + w * 0.2, y - h);
+    c.moveTo(x - w * 0.22, y - h + h * 0.18); c.lineTo(x - w * 0.22, y - h * 0.12); c.moveTo(x + w * 0.22, y - h + h * 0.18); c.lineTo(x + w * 0.22, y - h * 0.12);
+  };
+  // apaga o fundo atrás de uma peça (para ela ficar NA FRENTE de outra)
+  const tapa = (ctx, f) => { ctx.save(); ctx.beginPath(); f(ctx); ctx.fillStyle = '#0B0B0B'; ctx.fill(); ctx.restore(); };
+  // folha de calendário (as argolas, a barra do topo) com caixa x0..x0+w, y0..y0+h
+  const folha = (c, x0, y0, w, h) => {
+    rr(c, x0, y0, w, h, 38); c.moveTo(x0, y0 + 100); c.lineTo(x0 + w, y0 + 100);
+    c.moveTo(x0 + w * 0.25, y0 - 35); c.lineTo(x0 + w * 0.25, y0 + 30); c.moveTo(x0 + w * 0.75, y0 - 35); c.lineTo(x0 + w * 0.75, y0 + 30);
   };
 
   // ---------------------------------------------------------------- as ilustrações (quadro de ±300)
@@ -109,14 +123,142 @@
       }, 18);
       neon(ctx, (c) => { [[60, -270, 16], [285, -40, 13]].forEach(([x, y, s]) => { c.moveTo(x - s, y); c.lineTo(x + s, y); c.moveTo(x, y - s); c.lineTo(x, y + s); }); }, 10);
     },
-    // contorno de chalé com duas chaves se cruzando em X na frente
+    // contorno de chalé (telhado, porta e janela) e, NA FRENTE dele, embaixo, duas chaves completas se cruzando,
+    // com uma faísca no ponto de encontro
     chale_chaves(ctx) {
       neon(ctx, (c) => {
-        c.moveTo(-270, -20); c.lineTo(0, -280); c.lineTo(270, -20);
-        c.moveTo(-210, -80); c.lineTo(-210, 260); c.lineTo(210, 260); c.lineTo(210, -80);
-      }, 20);
-      ctx.save(); ctx.translate(-150, -20); ctx.rotate(0.72); neon(ctx, (c) => chave(c, 400, 58), 18); ctx.restore();
-      ctx.save(); ctx.translate(150, -20); ctx.rotate(Math.PI - 0.72); ctx.scale(1, -1); neon(ctx, (c) => chave(c, 400, 58), 18); ctx.restore();
+        c.moveTo(-250, -95); c.lineTo(0, -320); c.lineTo(250, -95);              // telhado
+        c.moveTo(-195, -142); c.lineTo(-195, 20); c.lineTo(195, 20); c.lineTo(195, -142);   // paredes
+        c.moveTo(-45, 20); c.lineTo(-45, -105); c.lineTo(45, -105); c.lineTo(45, 20);       // porta
+        c.moveTo(22, -40); c.lineTo(22, -30);                                               // maçaneta
+        rr(c, 85, -115, 72, 72, 10); c.moveTo(121, -115); c.lineTo(121, -43); c.moveTo(85, -79); c.lineTo(157, -79);   // janela
+      }, 18);
+      // as chaves: argolas embaixo, nas pontas; as hastes sobem e se cruzam bem abaixo da casa
+      const B = [175, 290], T = [-175, 100], L = Math.hypot(B[0] - T[0], B[1] - T[1]), ang = Math.atan2(T[1] - B[1], T[0] - B[0]), r = 50;
+      ctx.save(); ctx.translate(-B[0], B[1]); ctx.rotate(Math.PI - ang); ctx.scale(1, -1); neon(ctx, (c) => chave(c, L, r), 17); ctx.restore();
+      ctx.save(); ctx.translate(B[0], B[1]); ctx.rotate(ang); neon(ctx, (c) => chave(c, L, r), 17); ctx.restore();
+      const cy = (B[1] + T[1]) / 2;
+      neon(ctx, (c) => { for (let k = 0; k < 8; k++) { const a = k * Math.PI / 4, r0 = k % 2 ? 26 : 30, r1 = k % 2 ? 44 : 64; c.moveTo(Math.cos(a) * r0, cy + Math.sin(a) * r0); c.lineTo(Math.cos(a) * r1, cy + Math.sin(a) * r1); } }, 9);
+    },
+    // duas malas lado a lado diante de uma porta só (batente, porta com almofadas e maçaneta)
+    malas_porta(ctx) {
+      neon(ctx, (c) => {
+        c.moveTo(-150, 270); c.lineTo(-150, -290); c.lineTo(150, -290); c.lineTo(150, 270);             // o batente
+        rr(c, -105, -240, 210, 510, 10);                                                                  // a porta
+        rr(c, -70, -200, 140, 150, 12); rr(c, -70, -10, 140, 110, 12);                                    // as almofadas
+        c.moveTo(-290, 270); c.lineTo(290, 270);                                                          // o chão
+      }, 16);
+      neon(ctx, (c) => { c.moveTo(70, 140); c.arc(60, 140, 10, 0, TAU); }, 12);                            // a maçaneta
+      tapa(ctx, (c) => { rr(c, -300, 120, 150, 150, 18); rr(c, 150, 120, 150, 150, 18); });
+      neon(ctx, (c) => { mala(c, -225, 270, 150, 150); mala(c, 225, 270, 150, 150); }, 16);
+    },
+    // folha de calendário com o dia 02 circulado e uma ampulheta ao lado
+    calendario_02_ampulheta(ctx) {
+      neon(ctx, (c) => {
+        folha(c, -290, -230, 370, 430);
+        for (let r = 0; r < 2; r++) for (let k = 0; k < 4; k++) { if (r === 0 && k === 1) continue; const x = -250 + k * 82, y = -80 + r * 230; c.moveTo(x, y); c.lineTo(x + 26, y); }
+        c.ellipse(-105, 30, 115, 82, -0.12, 0.25, TAU + 0.05);                                            // o círculo à mão em volta do 02
+      }, 18);
+      neonTexto(ctx, '02', -105, 36, 120);
+      neon(ctx, (c) => {
+        c.moveTo(150, -150); c.lineTo(290, -150); c.moveTo(150, 170); c.lineTo(290, 170);
+        c.moveTo(165, -150); c.lineTo(220, 10); c.lineTo(165, 170); c.moveTo(275, -150); c.lineTo(220, 10); c.lineTo(275, 170);
+        c.moveTo(190, 150); c.lineTo(220, 112); c.lineTo(250, 150); c.closePath();                        // a areia que caiu
+      }, 16);
+    },
+    // copo de caipirinha (limão na borda, gelo, canudo) com uma comanda pendurada
+    caipirinha_comanda(ctx) {
+      neon(ctx, (c) => {
+        c.moveTo(-150, -130); c.lineTo(-110, 260); c.lineTo(110, 260); c.lineTo(150, -130);              // o copo
+        c.moveTo(-140, -40); c.lineTo(140, -40);                                                          // o nível
+        rr(c, -95, 30, 80, 80, 14); rr(c, 5, 80, 80, 80, 14); rr(c, -60, 150, 70, 70, 12);               // gelo
+        c.moveTo(60, -40); c.lineTo(120, -290);                                                           // canudo
+      }, 17);
+      neon(ctx, (c) => {
+        // a rodela de limão na borda (meia-lua com os gomos), encaixada no canto do copo
+        c.moveTo(70, -130); c.arc(150, -130, 80, Math.PI, 0); c.closePath();
+        for (let k = 1; k < 4; k++) { const a = Math.PI + (k * Math.PI) / 4; c.moveTo(150, -132); c.lineTo(150 + 60 * Math.cos(a), -130 + 60 * Math.sin(a)); }
+      }, 13);
+      neon(ctx, (c) => {
+        // a comanda pendurada por um cordão no lado esquerdo do copo
+        c.moveTo(-135, -60); c.quadraticCurveTo(-200, -40, -215, 0);
+      }, 14);
+      tapa(ctx, (c) => rr(c, -300, 0, 170, 230, 18));
+      neon(ctx, (c) => {
+        rr(c, -300, 0, 170, 230, 18); c.moveTo(-215, 26); c.arc(-215, 18, 8, Math.PI / 2, Math.PI / 2 + TAU);
+        for (let k = 0; k < 4; k++) { const y = 70 + k * 38; c.moveTo(-270, y); c.lineTo(k === 3 ? -200 : -160, y); }
+      }, 14);
+    },
+    // balão de conversa com "…"; o contorno se desfaz em pontilhado à direita
+    balao_sumindo(ctx) {
+      neon(ctx, (c) => { c.moveTo(-60, -180); c.lineTo(-210, -180); c.arcTo(-280, -180, -280, -110, 70); c.lineTo(-280, 50); c.arcTo(-280, 120, -210, 120, 70); c.lineTo(-170, 120); c.lineTo(-215, 230); c.lineTo(-90, 120); c.lineTo(-60, 120); }, 20);
+      neon(ctx, (c) => { c.moveTo(-60, -180); c.lineTo(210, -180); c.arcTo(280, -180, 280, -110, 70); c.lineTo(280, 50); c.arcTo(280, 120, 210, 120, 70); c.lineTo(-60, 120); }, 20, [2, 46]);
+      neon(ctx, (c) => { [-130, -30, 70].forEach((x) => { c.moveTo(x, -30); c.lineTo(x + 0.1, -30); }); }, 46);
+    },
+    // notinha comprida de borda serrilhada, com um X grande riscando a linha do total
+    notinha_x(ctx) {
+      neon(ctx, (c) => {
+        const x0 = -165, x1 = 165, y0 = -290, y1 = 290, n = 8, w = (x1 - x0) / n;
+        c.moveTo(x0, y0 + 14); for (let i = 0; i < n; i++) { c.lineTo(x0 + (i + 0.5) * w, y0); c.lineTo(x0 + (i + 1) * w, y0 + 14); }
+        c.lineTo(x1, y1 - 14); for (let i = n - 1; i >= 0; i--) { c.lineTo(x0 + (i + 0.5) * w, y1); c.lineTo(x0 + i * w, y1 - 14); } c.closePath();
+        for (let k = 0; k < 5; k++) { const y = -200 + k * 60; c.moveTo(-115, y); c.lineTo(k % 2 ? 40 : 10, y); c.moveTo(75, y); c.lineTo(115, y); }
+        c.moveTo(-115, 125); c.lineTo(115, 125);                                                           // o traço antes do total
+        c.moveTo(-115, 195); c.lineTo(-20, 195); c.moveTo(50, 195); c.lineTo(115, 195);                    // a linha do total
+      }, 16);
+      neon(ctx, (c) => { c.moveTo(-200, 120); c.lineTo(200, 270); c.moveTo(200, 120); c.lineTo(-200, 270); }, 26);
+    },
+    // relógio de parede marcando 11h, com três malas enfileiradas na frente
+    relogio_malas(ctx) {
+      neon(ctx, (c) => {
+        c.moveTo(180, -110); c.arc(0, -110, 180, 0, TAU);
+        for (let k = 0; k < 12; k++) { const a = (k * Math.PI) / 6, r0 = k % 3 ? 150 : 132; c.moveTo(Math.cos(a) * r0, -110 + Math.sin(a) * r0); c.lineTo(Math.cos(a) * 160, -110 + Math.sin(a) * 160); }
+        c.moveTo(0, -110); c.lineTo(0, -245);                                                             // ponteiro dos minutos no 12
+        c.moveTo(0, -110); c.lineTo(Math.cos(-Math.PI / 2 - Math.PI / 6) * 95, -110 + Math.sin(-Math.PI / 2 - Math.PI / 6) * 95);   // horas no 11
+      }, 18);
+      tapa(ctx, (c) => { rr(c, -275, 140, 150, 160, 18); rr(c, -75, 140, 150, 160, 18); rr(c, 125, 140, 150, 160, 18); });
+      neon(ctx, (c) => { mala(c, -200, 300, 150, 160); mala(c, 0, 300, 150, 160); mala(c, 200, 300, 150, 160); }, 15);
+    },
+    // sino de notificação com "R$" e um "?" saindo dele (sem logo de app)
+    sino_pix(ctx) {
+      neon(ctx, (c) => {
+        c.moveTo(-200, 150); c.quadraticCurveTo(-150, 110, -150, 20); c.lineTo(-150, -60); c.bezierCurveTo(-150, -190, -80, -235, 0, -235);
+        c.bezierCurveTo(80, -235, 150, -190, 150, -60); c.lineTo(150, 20); c.quadraticCurveTo(150, 110, 200, 150); c.closePath();
+        c.moveTo(-45, 175); c.arc(0, 175, 45, Math.PI, 0, true);                                         // o badalo
+        c.moveTo(0, -235); c.lineTo(0, -270);
+        c.moveTo(195, -230); c.arc(150, -230, 45, 0, -0.9, true);                                         // ondas do toque
+        c.moveTo(-195, -230); c.arc(-150, -230, 45, Math.PI, Math.PI + 0.9, false);
+      }, 18);
+      neonTexto(ctx, 'R$', 0, -20, 130);
+      neonTexto(ctx, '?', 235, -95, 120);
+    },
+    // mala de viagem ao lado de uma prancheta vazia (linhas tracejadas, sem nome)
+    mala_prancheta(ctx) {
+      neon(ctx, (c) => mala(c, -165, 270, 230, 300), 18);
+      neon(ctx, (c) => {
+        rr(c, 10, -250, 270, 520, 28);
+        rr(c, 85, -282, 120, 60, 16);                                                                     // o prendedor
+        c.moveTo(55, -150); c.lineTo(110, -150);                                                          // "NOME:" (só o traço do rótulo)
+      }, 16);
+      neon(ctx, (c) => { for (let k = 0; k < 6; k++) { const y = -150 + k * 66; c.moveTo(k ? 55 : 135, y); c.lineTo(235, y); } }, 12, [12, 18]);
+    },
+    // balança inclinada: moedas empilhadas de um lado só (o lado que pesa e desce)
+    balanca(ctx) {
+      const tilt = 0.22, bx = 230, py = -170, by = (s) => py - s * Math.sin(tilt) * bx;   // a esquerda (com as moedas) desce
+      neon(ctx, (c) => {
+        c.moveTo(0, py - 50); c.lineTo(0, 250); c.moveTo(-120, 250); c.lineTo(120, 250);                 // coluna e base
+        c.moveTo(-bx * Math.cos(tilt), by(-1)); c.lineTo(bx * Math.cos(tilt), by(1));                    // o travessão
+        [[-1, 150], [1, 150]].forEach(([s, h]) => {
+          const x = s * bx * Math.cos(tilt), y = by(s);
+          c.moveTo(x, y); c.lineTo(x - 85, y + h); c.moveTo(x, y); c.lineTo(x + 85, y + h);                // os fios
+          c.moveTo(x - 110, y + h); c.quadraticCurveTo(x, y + h + 70, x + 110, y + h);                    // o prato
+        });
+        c.moveTo(14, py - 50); c.arc(0, py - 50, 14, 0, TAU);
+      }, 15);
+      // as moedas no prato da esquerda (que desce)
+      const x = -bx * Math.cos(tilt), y = by(-1) + 150 + 18;
+      // a pilha de moedas vista de lado: discos chatos, um sobre o outro, levemente desalinhados
+      tapa(ctx, (c) => { rr(c, x - 75, y - 4 * 30 - 6, 150, 4 * 30 + 24, 14); });
+      neon(ctx, (c) => { [[0, 0], [8, 1], [-6, 2], [4, 3]].forEach(([dx, k]) => { rr(c, x - 65 + dx, y - 22 - k * 30, 130, 26, 13); }); }, 11);
     },
   };
 
