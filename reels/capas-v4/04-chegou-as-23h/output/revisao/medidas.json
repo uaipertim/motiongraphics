@@ -1,0 +1,21 @@
+{
+ "limao": 4.56,
+ "halo": 4.99,
+ "preenchimento": 0.02,
+ "espessura_traco_limao": 1.499,
+ "brilho_difuso": 0.3244,
+ "corpo_titulo": 156,
+ "linhas": [
+  "Chegou",
+  "às 23h.",
+  "Cadê a",
+  "chave?"
+ ],
+ "altura_ilustracao": 405,
+ "largura_ilustracao": 515,
+ "largura_ilustracao_pct_util": 53.6,
+ "altura_ilustracao_pct_recorte": 28.1,
+ "limao_ok": true,
+ "halo_ok": true,
+ "titulo_ok": true
+}

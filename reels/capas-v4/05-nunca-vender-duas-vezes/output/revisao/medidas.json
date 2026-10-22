@@ -1,0 +1,21 @@
+{
+ "limao": 5.22,
+ "halo": 4.96,
+ "preenchimento": 0,
+ "espessura_traco_limao": 1.196,
+ "brilho_difuso": 0.2959,
+ "corpo_titulo": 131,
+ "linhas": [
+  "Como nunca",
+  "vender",
+  "o mesmo chalé",
+  "duas vezes."
+ ],
+ "altura_ilustracao": 418,
+ "largura_ilustracao": 318,
+ "largura_ilustracao_pct_util": 33.1,
+ "altura_ilustracao_pct_recorte": 29,
+ "limao_ok": true,
+ "halo_ok": true,
+ "titulo_ok": true
+}

@@ -1,0 +1,21 @@
+{
+ "limao": 5.21,
+ "halo": 4.97,
+ "preenchimento": 0,
+ "espessura_traco_limao": 1.421,
+ "brilho_difuso": 0.2529,
+ "corpo_titulo": 156,
+ "linhas": [
+  "Diária",
+  "de feriado",
+  "com preço",
+  "de terça."
+ ],
+ "altura_ilustracao": 405,
+ "largura_ilustracao": 405,
+ "largura_ilustracao_pct_util": 42.2,
+ "altura_ilustracao_pct_recorte": 28.1,
+ "limao_ok": true,
+ "halo_ok": true,
+ "titulo_ok": true
+}

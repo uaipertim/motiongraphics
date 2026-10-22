@@ -1,0 +1,20 @@
+{
+ "limao": 4.53,
+ "halo": 4.55,
+ "preenchimento": 0,
+ "espessura_traco_limao": 1.499,
+ "brilho_difuso": 0.3998,
+ "corpo_titulo": 144,
+ "linhas": [
+  "Caiu um",
+  "Pix às 14h.",
+  "De quem era?"
+ ],
+ "altura_ilustracao": 418,
+ "largura_ilustracao": 413,
+ "largura_ilustracao_pct_util": 43,
+ "altura_ilustracao_pct_recorte": 29,
+ "limao_ok": true,
+ "halo_ok": true,
+ "titulo_ok": true
+}

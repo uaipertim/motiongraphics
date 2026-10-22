@@ -1,0 +1,19 @@
+{
+ "limao": 4.75,
+ "halo": 5,
+ "preenchimento": 0,
+ "espessura_traco_limao": 1.499,
+ "brilho_difuso": 0.3158,
+ "corpo_titulo": 173,
+ "linhas": [
+  "Sinal, saldo",
+  "e crédito."
+ ],
+ "altura_ilustracao": 320,
+ "largura_ilustracao": 576,
+ "largura_ilustracao_pct_util": 60,
+ "altura_ilustracao_pct_recorte": 22.2,
+ "limao_ok": true,
+ "halo_ok": true,
+ "titulo_ok": true
+}

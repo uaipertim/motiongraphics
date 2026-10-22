@@ -1,0 +1,19 @@
+{
+ "limao": 5.22,
+ "halo": 5,
+ "preenchimento": 0.21,
+ "espessura_traco_limao": 1.499,
+ "brilho_difuso": 0.3998,
+ "corpo_titulo": 127,
+ "linhas": [
+  "Dois hóspedes,",
+  "o mesmo chalé."
+ ],
+ "altura_ilustracao": 418,
+ "largura_ilustracao": 447,
+ "largura_ilustracao_pct_util": 46.6,
+ "altura_ilustracao_pct_recorte": 29,
+ "limao_ok": true,
+ "halo_ok": true,
+ "titulo_ok": true
+}

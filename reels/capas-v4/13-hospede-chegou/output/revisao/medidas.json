@@ -1,0 +1,20 @@
+{
+ "limao": 4.86,
+ "halo": 4.95,
+ "preenchimento": 0.19,
+ "espessura_traco_limao": 1.499,
+ "brilho_difuso": 0.1889,
+ "corpo_titulo": 133,
+ "linhas": [
+  "O hóspede",
+  "chegou.",
+  "A reserva, não."
+ ],
+ "altura_ilustracao": 418,
+ "largura_ilustracao": 424,
+ "largura_ilustracao_pct_util": 44.2,
+ "altura_ilustracao_pct_recorte": 29,
+ "limao_ok": true,
+ "halo_ok": true,
+ "titulo_ok": true
+}

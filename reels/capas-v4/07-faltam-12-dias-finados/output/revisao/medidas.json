@@ -1,0 +1,20 @@
+{
+ "limao": 5.22,
+ "halo": 4.91,
+ "preenchimento": 0.34,
+ "espessura_traco_limao": 1.284,
+ "brilho_difuso": 0.1604,
+ "corpo_titulo": 161,
+ "linhas": [
+  "Faltam",
+  "12 dias",
+  "pra Finados."
+ ],
+ "altura_ilustracao": 418,
+ "largura_ilustracao": 518,
+ "largura_ilustracao_pct_util": 54,
+ "altura_ilustracao_pct_recorte": 29,
+ "limao_ok": true,
+ "halo_ok": true,
+ "titulo_ok": true
+}

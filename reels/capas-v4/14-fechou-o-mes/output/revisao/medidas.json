@@ -1,0 +1,21 @@
+{
+ "limao": 5.22,
+ "halo": 4.98,
+ "preenchimento": 0,
+ "espessura_traco_limao": 1.317,
+ "brilho_difuso": 0.292,
+ "corpo_titulo": 156,
+ "linhas": [
+  "Fechou",
+  "o mês e",
+  "o caixa",
+  "não bateu?"
+ ],
+ "altura_ilustracao": 405,
+ "largura_ilustracao": 556,
+ "largura_ilustracao_pct_util": 57.9,
+ "altura_ilustracao_pct_recorte": 28.1,
+ "limao_ok": true,
+ "halo_ok": true,
+ "titulo_ok": true
+}

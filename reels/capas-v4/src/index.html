@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="pt-BR"><head><meta charset="utf-8"><title>FAZLO Hospeda — Capas v4</title>
+<style>
+  @font-face { font-family: 'FL Display'; src: url('fonts/InterDisplay-Black.otf') format('opentype'); font-weight: 900; }
+  @font-face { font-family: 'FL Display'; src: url('fonts/InterDisplay-ExtraBold.otf') format('opentype'); font-weight: 800; }
+  @font-face { font-family: 'FL Mono'; src: url('fonts/JetBrainsMonoNL-ExtraBold.ttf') format('truetype'); font-weight: 800; }
+  html, body { margin: 0; background: #000; } canvas { display: block; }
+</style></head>
+<body><canvas id="c" width="1080" height="1920"></canvas>
+<script src="capa.js"></script>
+<script>
+  const ctx = document.getElementById('c').getContext('2d');
+  const img = new Image(); img.src = 'assets/fazlo-hospeda-logo-alpha.png';
+  window.ready = Promise.all([img.decode(), document.fonts.load("900 100px 'FL Display'"), document.fonts.load("800 100px 'FL Display'"), document.fonts.load("800 30px 'FL Mono'")]).then(() => document.fonts.ready);
+  window.desenha = (c, o) => CAPA.render(ctx, img, c, o || {});    // devolve as caixas de cada elemento
+  window.png = () => document.getElementById('c').toDataURL('image/png');
+  // a medida da v4, no quadro inteiro 1080x1920: limão = traço/texto limão sólido; halo = o verde que sobra (brilho),
+  // medido num render SEM o preenchimento translúcido (que é corpo, não brilho)
+  window.mede = (c) => {
+    const conta = () => {
+      const d = ctx.getImageData(0, 0, 1080, 1920).data; let lim = 0, verde = 0;   // v4: o quadro inteiro (como a medida das capas da Fazlo)
+      for (let i = 0; i < d.length; i += 4) {
+        const r = d[i], g = d[i + 1], b = d[i + 2];
+        if (Math.abs(r - 175) < 60 && Math.abs(g - 250) < 60 && Math.abs(b - 39) < 75) lim++;
+        else if (g - Math.max(r, b) > 18) verde++;
+      }
+      return { lim, verde, total: d.length / 4 };
+    };
+    CAPA.render(ctx, img, c, { semPreenchimento: true }); const a = conta();
+    CAPA.render(ctx, img, c); const b = conta();
+    return { limao: b.lim / b.total, halo: a.verde / a.total, preenchimento: Math.max(0, b.verde - a.verde) / b.total };
+  };
+</script></body></html>

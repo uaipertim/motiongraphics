@@ -1,0 +1,21 @@
+{
+ "limao": 5.21,
+ "halo": 4.62,
+ "preenchimento": 0.02,
+ "espessura_traco_limao": 1.001,
+ "brilho_difuso": 0.3998,
+ "corpo_titulo": 151,
+ "linhas": [
+  "A comanda",
+  "da piscina",
+  "que ninguém",
+  "fechou."
+ ],
+ "altura_ilustracao": 418,
+ "largura_ilustracao": 403,
+ "largura_ilustracao_pct_util": 42,
+ "altura_ilustracao_pct_recorte": 29,
+ "limao_ok": true,
+ "halo_ok": true,
+ "titulo_ok": true
+}

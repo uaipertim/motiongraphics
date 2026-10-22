@@ -1,0 +1,20 @@
+{
+ "limao": 5.5,
+ "halo": 4.98,
+ "preenchimento": 0,
+ "espessura_traco_limao": 1.001,
+ "brilho_difuso": 0.2959,
+ "corpo_titulo": 136,
+ "linhas": [
+  "Domingo, 11h.",
+  "Check-out de",
+  "todo mundo."
+ ],
+ "altura_ilustracao": 418,
+ "largura_ilustracao": 390,
+ "largura_ilustracao_pct_util": 40.6,
+ "altura_ilustracao_pct_recorte": 29,
+ "limao_ok": true,
+ "halo_ok": true,
+ "titulo_ok": true
+}
