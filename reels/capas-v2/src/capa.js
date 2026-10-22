@@ -69,14 +69,14 @@
         for (let r = 0; r < 3; r++) for (let k = 0; k < 4; k++) { const x = -200 + k * 80, y = -70 + r * 70; c.moveTo(x, y); c.lineTo(x + 26, y); }
       }, 20);
       neon(ctx, (c) => {
-        c.moveTo(110, 60); c.bezierCurveTo(170, 70, 190, 110, 185, 150);
+        c.moveTo(110, 40); c.bezierCurveTo(165, 40, 190, 60, 195, 90);
         // a etiqueta (pentágono com furo), inclinada
-        const a = -0.35, ca = Math.cos(a), sa = Math.sin(a), P = (x, y) => [185 + x * ca - y * sa, 150 + x * sa + y * ca];
+        const a = -0.35, ca = Math.cos(a), sa = Math.sin(a), P = (x, y) => [195 + x * ca - y * sa, 90 + x * sa + y * ca];
         const pts = [[0, 0], [70, 40], [70, 220], [-70, 220], [-70, 40]].map(([x, y]) => P(x, y));
         c.moveTo(...pts[0]); pts.slice(1).forEach((q) => c.lineTo(...q)); c.closePath();
         const [hx, hy] = P(0, 52); c.moveTo(hx + 14, hy); c.arc(hx, hy, 14, 0, TAU);
       }, 18);
-      ctx.save(); ctx.translate(185, 150); ctx.rotate(-0.35); neonTexto(ctx, 'R$', 0, 140, 64); ctx.restore();
+      ctx.save(); ctx.translate(195, 90); ctx.rotate(-0.35); neonTexto(ctx, 'R$', 0, 140, 64); ctx.restore();
     },
     // uma chave antiga com a plaquinha de chalé "Nº 3" e uma lua crescente ao lado
     chave_lua(ctx) {
@@ -91,8 +91,13 @@
       neonTexto(ctx, 'Nº 3', -215, 128, 50);
       // a lua crescente e duas estrelinhas
       neon(ctx, (c) => {
-        c.moveTo(250, -280); c.arc(170, -190, 120, -0.85, 2.0, false);
-        c.arc(215, -215, 95, 1.7, -0.55, true);
+        const [ax, ay, ar, bx, by, br] = [180, -190, 110, 225, -225, 100];
+        const dd = Math.hypot(bx - ax, by - ay), aa = (ar * ar - br * br + dd * dd) / (2 * dd), hh = Math.sqrt(ar * ar - aa * aa);
+        const mx = ax + aa * (bx - ax) / dd, my = ay + aa * (by - ay) / dd;
+        const P1 = [mx + hh * (by - ay) / dd, my - hh * (bx - ax) / dd], P2 = [mx - hh * (by - ay) / dd, my + hh * (bx - ax) / dd];
+        const ang = (cx, cy, q) => Math.atan2(q[1] - cy, q[0] - cx);
+        c.moveTo(...P1); c.arc(ax, ay, ar, ang(ax, ay, P1), ang(ax, ay, P2), true);
+        c.arc(bx, by, br, ang(bx, by, P2), ang(bx, by, P1), false);
       }, 18);
       neon(ctx, (c) => { [[60, -270, 16], [285, -40, 13]].forEach(([x, y, s]) => { c.moveTo(x - s, y); c.lineTo(x + s, y); c.moveTo(x, y - s); c.lineTo(x, y + s); }); }, 10);
     },
@@ -101,7 +106,6 @@
       neon(ctx, (c) => {
         c.moveTo(-270, -20); c.lineTo(0, -280); c.lineTo(270, -20);
         c.moveTo(-210, -80); c.lineTo(-210, 260); c.lineTo(210, 260); c.lineTo(210, -80);
-        c.moveTo(-40, -150); c.lineTo(40, -150);
       }, 20);
       ctx.save(); ctx.translate(-150, -20); ctx.rotate(0.72); neon(ctx, (c) => chave(c, 400, 58), 18); ctx.restore();
       ctx.save(); ctx.translate(150, -20); ctx.rotate(Math.PI - 0.72); ctx.scale(1, -1); neon(ctx, (c) => chave(c, 400, 58), 18); ctx.restore();
@@ -119,7 +123,7 @@
     // logo + "FAZLO Hospeda", pequena, no alto
     const d = 54; ctx.font = `800 30px ${DISPLAY}`; const nw = ctx.measureText('FAZLO Hospeda').width, gw = d + 14 + nw, lx = 540 - gw / 2;
     ctx.drawImage(logo, lx, Z.logoY - d / 2, d, d);
-    ctx.textBaseline = 'middle'; ctx.fillStyle = '#FFFFFF'; ctx.fillText('FAZLO', lx + d + 14, Z.logoY + 1);
+    ctx.textAlign = 'left'; ctx.textBaseline = 'middle'; ctx.fillStyle = '#FFFFFF'; ctx.fillText('FAZLO', lx + d + 14, Z.logoY + 1);
     ctx.fillStyle = LIME; ctx.fillText('Hospeda', lx + d + 14 + ctx.measureText('FAZLO ').width, Z.logoY + 1);
     caixas.logo = { x0: lx, y0: Z.logoY - d / 2, x1: lx + gw, y1: Z.logoY + d / 2 };
     // o chip da série
