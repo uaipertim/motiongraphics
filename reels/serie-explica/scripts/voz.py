@@ -5,6 +5,7 @@ Narração de um episódio da SÉRIE EXPLICA — ElevenLabs, endpoint com marca�
     python3 scripts/voz.py explica-01               -> gera os capítulos que ainda não têm narração
     python3 scripts/voz.py explica-01 --refaz 3,5   -> gera de novo os capítulos 3 e 5, INTEIROS (nova seed)
     python3 scripts/voz.py explica-01 --medir       -> só mostra a conferência (sem chamar a API)
+    ... --forcar-modelo-novo                        -> libera a trava (ver TRAVA abaixo)
 
 REGRA DA SÉRIE: cada capítulo é UMA geração inteira (todas as frases do capítulo numa chamada só). Se uma frase sair
 ruim, o capítulo inteiro é gerado de novo; nunca se emendam palavras ou trechos de gerações diferentes. Cada capítulo
@@ -15,10 +16,17 @@ Conferência automática de cada geração (se falhar, o capítulo inteiro é ge
   • nenhuma pausa interna maior que 0,9 s entre palavras;
   • a fala termina antes do fim do áudio (nada cortado no fim).
 
-Voz: Raquel - For Conversational (GDzHdQOi6jjf8zaXhCYD), a voz oficial da FAZLO (a mesma do Reel 08 com voz, do
-institucional e da Série FALA). Modelo eleven_multilingual_v2; estabilidade 0,45 · semelhança 0,80 · estilo 0,30 ·
-speaker boost · velocidade 1,0 (natural). O texto vizinho vai como contexto (previous_text / next_text), para a
-entonação seguir de um capítulo para o outro.
+Voz: Raquel - For Conversational (GDzHdQOi6jjf8zaXhCYD), a voz oficial da FAZLO. Modelo eleven_v4 (decisão de
+23/10/2026, teste A/B): voice_settings SÓ estabilidade 0,50 · semelhança 0,75; style, use_speaker_boost e speed NÃO
+são enviados (ficam no padrão da API). O texto vizinho vai como contexto (previous_text / next_text; o v4 aceita),
+para a entonação seguir de um capítulo para o outro. Cada geração grava no falas.json o modelo e os ajustes usados.
+
+PRONÚNCIA: o texto vai para a API com o dicionário de pronuncia.py ("Hospeda" → "Hospéda", "WhatsApp" → "Uátsap",
+"FAZLO"/"Fazlo" → "Fázlo"); o alinhamento devolvido é refeito na grafia oficial (pronuncia.realinha), e é ele que
+linha.py e qa.py usam. O falas.json guarda também o texto enviado e o alinhamento original da API.
+
+TRAVA: um episódio publicado (TRAVADOS) ou com narração gerada por outro modelo não é regenerado (nem com --refaz),
+a menos que se passe --forcar-modelo-novo. A conferência (--medir) continua liberada.
 
 A chave da API NÃO fica no repositório nem é impressa: nesta nuvem a rede a põe no cabeçalho xi-api-key
 (Segredos de rede); fora dela, defina ELEVENLABS_API_KEY no ambiente.
@@ -34,17 +42,35 @@ import urllib.error
 import urllib.request
 import numpy as np
 from scipy.io import wavfile
+from pronuncia import fonetica, realinha
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 EP = sys.argv[1] if len(sys.argv) > 1 and not sys.argv[1].startswith('--') else 'explica-01'
 OUT = os.path.join(ROOT, 'audio', EP, 'voz')
 API = 'https://api.elevenlabs.io/v1/text-to-speech/{voice}/with-timestamps?output_format={fmt}'
 VOICE = 'GDzHdQOi6jjf8zaXhCYD'                      # Raquel - For Conversational
-MODEL = 'eleven_multilingual_v2'
-SETTINGS = {'stability': 0.45, 'similarity_boost': 0.80, 'style': 0.30, 'use_speaker_boost': True, 'speed': 1.0}
+MODEL = 'eleven_v4'
+SETTINGS = {'stability': 0.50, 'similarity_boost': 0.75}      # só isto; style, speaker boost e speed ficam no padrão
 SR = 44100
 SCRIPT = json.load(open(os.path.join(ROOT, 'episodios', EP + '.json')))
 TENTATIVAS = 4
+# episódios publicados: a narração (audio/<id>/voz/) e o vídeo ficam exatamente como estão
+TRAVADOS = {
+    'explica-01': 'publicado; narração em eleven_multilingual_v2',
+    'explica-02': 'publicado; narração em eleven_multilingual_v2',
+}
+FORCAR = '--forcar-modelo-novo' in sys.argv
+
+
+def trava(D):
+    """recusa chamar a API num episódio travado ou com narração de outro modelo (salvo --forcar-modelo-novo)"""
+    motivo = None
+    if EP in TRAVADOS:
+        motivo = f'{EP} está travado ({TRAVADOS[EP]})'
+    elif D.get('modelo') and D['modelo'] != MODEL:
+        motivo = f'a narração de {EP} foi gerada com {D["modelo"]} (o modelo atual é {MODEL})'
+    if motivo and not FORCAR:
+        raise SystemExit(f'{motivo}: nada foi regenerado. Para regenerar mesmo assim, passe --forcar-modelo-novo.')
 
 
 def texto_cap(c):
@@ -52,7 +78,9 @@ def texto_cap(c):
 
 
 def tts(text, prev, nxt, seed):
-    body = {'text': text, 'model_id': MODEL, 'voice_settings': SETTINGS, 'seed': seed, 'previous_text': prev, 'next_text': nxt}
+    """(áudio, alinhamento NA GRAFIA OFICIAL, formato, texto enviado, alinhamento original da API)"""
+    enviado = fonetica(text)
+    body = {'text': enviado, 'model_id': MODEL, 'voice_settings': SETTINGS, 'seed': seed, 'previous_text': fonetica(prev), 'next_text': fonetica(nxt)}
     headers = {'Content-Type': 'application/json', 'Accept': 'application/json'}
     key = os.environ.get('ELEVENLABS_API_KEY')
     if key:
@@ -73,7 +101,7 @@ def tts(text, prev, nxt, seed):
         else:
             x = np.frombuffer(subprocess.run(['ffmpeg', '-v', 'error', '-i', '-', '-f', 's16le', '-ac', '1', '-ar', str(SR), '-'],
                                              input=raw, capture_output=True, check=True).stdout, '<i2').astype(np.float32) / 32768
-        return x, d['alignment'], fmt
+        return x, realinha(text, enviado, d['alignment']), fmt, enviado, d['alignment']
     raise SystemExit('nenhum formato de áudio aceito pela API')
 
 
@@ -127,12 +155,14 @@ def gerar(refaz):
             continue
         prev = texto_cap(caps[n - 1]) if n else None
         nxt = texto_cap(caps[n + 1]) if n + 1 < len(caps) else None
+        trava(D)                                          # daqui em diante a API seria chamada
         hist = atual['historico'] if atual and atual['texto'] == texto else []
         seed = c.get('seed', 300 + 17 * n) + 1000 * len(hist)
         for k in range(TENTATIVAS):
-            x, al, fmt = tts(texto, prev, nxt, seed)
+            x, al, fmt, enviado, al_api = tts(texto, prev, nxt, seed)
             ok, motivo, num = confere(x, al, texto)
-            hist.append({'seed': seed, 'formato': fmt, 'resultado': motivo, **num, 'quando': time.strftime('%Y-%m-%d %H:%M')})
+            hist.append({'seed': seed, 'modelo': MODEL, 'ajustes': SETTINGS, 'formato': fmt, 'resultado': motivo, **num,
+                         'quando': time.strftime('%Y-%m-%d %H:%M')})
             print(f'  cap {key}: seed {seed} · {motivo} · {num["fala_s"]} s · {num["ritmo_letras_s"]} letras/s · maior pausa {num["maior_pausa_s"]} s')
             if ok:
                 break
@@ -140,10 +170,10 @@ def gerar(refaz):
         pcm = np.round(np.clip(x, -1, 1) * 32767).astype(np.int16)
         wavfile.write(os.path.join(OUT, f'cap-{key}.wav'), SR, pcm)
         ws = palavras(al)
-        D['capitulos'][key] = {'n': n, 'texto': texto, 'seed': seed, 'formato': fmt, 'duracao_audio': round(len(x) / SR, 3),
+        D['capitulos'][key] = {'n': n, 'texto': texto, 'enviado': enviado, 'modelo': MODEL, 'ajustes': SETTINGS, 'seed': seed, 'formato': fmt, 'duracao_audio': round(len(x) / SR, 3),
                                'inicio_da_fala': round(ws[0]['t0'], 3), 'fim_da_fala': round(ws[-1]['fim_letra'], 3),
                                'sha1_audio': hashlib.sha1(pcm.tobytes()).hexdigest(), 'geracoes': len(hist), 'historico': hist,
-                               'alinhamento': al}
+                               'alinhamento': al, 'alinhamento_api': al_api}
         D.update({'voz': 'Raquel - For Conversational', 'voice_id': VOICE, 'modelo': MODEL, 'ajustes': SETTINGS,
                   'regra': 'uma geração inteira por capítulo; nada emendado'})
         json.dump(D, open(path, 'w'), ensure_ascii=False, indent=1)

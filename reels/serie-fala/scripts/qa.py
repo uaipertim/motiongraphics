@@ -12,6 +12,8 @@ quadros congelados e RITMO (nenhuma janela de 2 s sem movimento; troca de cena a
 contínuo dentro de cada cena).
 Áreas seguras (medidas nos pixels de quadros a cada 0,25 s): nada na coluna de botões (x ≥ 950, y 1060–1560) e nada
 importante acima de y 265 nem abaixo de y 1456 (a legenda fica em y 1280–1440).
+Grafia oficial: nenhuma grafia fonética da pronúncia ("Hospéda", "Uátsap", "Fázlo") na legenda (linha.json,
+palavras.json) nem no roteiro (o que é escrito no quadro).
 Sincronia legenda × voz:
   1. cada palavra da legenda aparece no quadro em que a voz a diz: a mudança da faixa da legenda cai a ≤ 2 quadros
      (33 ms) do início da palavra (marcação de tempo da API, em output/<id>/revisao/palavras.json);
@@ -28,6 +30,9 @@ import numpy as np
 from PIL import Image, ImageDraw, ImageFont
 from scipy.io import wavfile
 from scipy.ndimage import uniform_filter1d
+
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))), 'serie-explica', 'scripts'))
+from pronuncia import FONETICAS, foneticas_em        # noqa: E402  (o dicionário de pronúncia é um só, nas duas séries)
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 EP = sys.argv[1] if len(sys.argv) > 1 else 'fala-01'
@@ -46,6 +51,26 @@ def ok(cond, msg, rep=report):
     rep.append(('OK   ' if cond else 'FALHA') + '  ' + msg)
     if not cond:
         fails.append(msg)
+
+
+# ---------------------------------------------------------------- grafia oficial (pronúncia só na API)
+def textos(o):
+    """todas as strings de um JSON (legenda, títulos, telas, dados das cenas)"""
+    if isinstance(o, str):
+        yield o
+    elif isinstance(o, dict):
+        for v_ in o.values():
+            yield from textos(v_)
+    elif isinstance(o, list):
+        for v_ in o:
+            yield from textos(v_)
+
+
+def grafia_oficial(fontes):
+    """nenhuma grafia fonética ("Hospéda", "Uátsap", "Fázlo") em legenda ou quadro"""
+    achou = sorted({(nome, f) for nome, o in fontes for s_ in textos(o) for f in foneticas_em(s_)})
+    ok(not achou, f'grafia oficial: nenhuma grafia fonética ({", ".join(FONETICAS)}) na legenda nem no texto do quadro'
+       + ('' if not achou else ' · achou: ' + '; '.join(f'"{f}" em {n}' for n, f in achou)))
 
 
 def run(cmd):
@@ -169,6 +194,8 @@ ok(n_but == 0, f'coluna de botões (x ≥ 950, y 1060–1560): 0 pixel aceso em 
 ok(sob == 0 and baixo == 0, f'conteúdo entre y 265 e 1456: nada aceso acima de 265 (quadros: {sob}) nem abaixo de 1456 (quadros: {baixo}), fora o fade final')
 f0 = fr[0]
 ok(f0.mean() > 3 and (f0[560:900, 100:960] > 120).sum() > 500, f'o 1º quadro já tem o gancho escrito (luminância média {f0.mean():.1f}, texto na faixa y 560–900)')
+
+grafia_oficial([('linha.json', LN), ('palavras.json', PAL), (f'episodios/{EP}.json', json.load(open(os.path.join(ROOT, 'episodios', EP + '.json'))))])
 
 # ---------------------------------------------------------------- folhas
 font = ImageFont.truetype(FONT, 26)

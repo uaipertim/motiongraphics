@@ -22,6 +22,8 @@ Confere:
   • a voz: cada capítulo é UMA geração inteira, colocada sem cortes — o trecho do vídeo é idêntico ao arquivo da
     geração (fora os fades de 8 ms / 60 ms nas pontas), e o arquivo é o mesmo registrado na geração (sha1);
   • a capa é o quadro 0 (o quadro 0 do vídeo bate com capa.png);
+  • grafia oficial: nenhuma grafia fonética da pronúncia ("Hospéda", "Uátsap", "Fázlo") na legenda/linha do tempo,
+    no roteiro nem nos dados do motor (o que é escrito no quadro);
   • o fecho (8–9 s): o título, a pergunta e a notinha fechada ficam ≥ 3 s parados antes da logo; nos últimos 3 s, a
     logo oficial centralizada com a sineta, parada (as caixas de texto não mudam de pixel entre fim − 3 s e o fim).
 """
@@ -36,6 +38,7 @@ import numpy as np
 from PIL import Image, ImageDraw, ImageFont
 from scipy.io import wavfile
 from scipy.signal import resample_poly
+from pronuncia import FONETICAS, foneticas_em
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 EP = sys.argv[1] if len(sys.argv) > 1 else 'explica-01'
@@ -63,6 +66,26 @@ def ok(cond, msg):
 
 def info(msg):
     report.append('       ' + msg)
+
+
+# ---------------------------------------------------------------- grafia oficial (pronúncia só na API)
+def textos(o):
+    """todas as strings de um JSON (legenda, títulos, telas, dados das cenas)"""
+    if isinstance(o, str):
+        yield o
+    elif isinstance(o, dict):
+        for v_ in o.values():
+            yield from textos(v_)
+    elif isinstance(o, list):
+        for v_ in o:
+            yield from textos(v_)
+
+
+def grafia_oficial(fontes):
+    """nenhuma grafia fonética ("Hospéda", "Uátsap", "Fázlo") em legenda ou quadro"""
+    achou = sorted({(nome, f) for nome, o in fontes for s_ in textos(o) for f in foneticas_em(s_)})
+    ok(not achou, f'grafia oficial: nenhuma grafia fonética ({", ".join(FONETICAS)}) na legenda nem no texto do quadro'
+       + ('' if not achou else ' · achou: ' + '; '.join(f'"{f}" em {n}' for n, f in achou)))
 
 
 def run(cmd):
@@ -304,6 +327,8 @@ ok(len(d2) == 3 and DUR - ult >= 3.0 and mx2 < 3.0 and sino and abs(sino[-1]['t'
 info('nas caixas inteiras (com o fundo e o anel da sineta em volta): ' + ' · '.join(f'{n} {d:.2f}' for n, d in d2c))
 voz_fim = fc['voz_t1']
 ok(FE['logo_passagem'] >= voz_fim + 0.05, f'a logo só entra depois da última palavra: a voz do fecho termina em {voz_fim:.2f} s e a passagem para a logo começa em {FE["logo_passagem"]:.2f} s ({FE["logo_passagem"] - voz_fim:.2f} s depois)')
+
+grafia_oficial([('linha.json', LN), (f'episodios/{EP}.json', json.load(open(os.path.join(ROOT, 'episodios', EP + '.json')))), ('motor.json', MOT)])
 
 # ---------------------------------------------------------------- folha das zonas seguras
 font = ImageFont.truetype(FONT, 26)

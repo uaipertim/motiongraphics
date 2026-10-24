@@ -5,14 +5,23 @@ Narração de um episódio da SÉRIE FALA — ElevenLabs, endpoint com marcaçã
     python3 scripts/voz.py fala-01              -> audio/fala-01/voz/cena-N.wav + falas.json
     python3 scripts/voz.py fala-01 --so 3,4     -> refaz só as cenas 3 e 4 (índices a partir de 1)
     python3 scripts/voz.py fala-01 --medir      -> só refaz a conferência (sem chamar a API)
+    ... --forcar-modelo-novo                    -> libera a trava (ver TRAVA abaixo)
 
 Cada fala do JSON (cenas[].fala) é gerada numa chamada própria, com as falas vizinhas como contexto
 (previous_text / next_text) para a entonação seguir de uma cena para a outra. A API devolve o tempo de cada
 caractere; scripts/linha.py transforma isso nos tempos de cena e de palavra do vídeo.
 
-Voz: Raquel - For Conversational (GDzHdQOi6jjf8zaXhCYD), a voz oficial da FAZLO (a mesma da versão com voz do
-Reel 08 e do institucional). Modelo eleven_multilingual_v2; estabilidade 0,40 · semelhança 0,80 · estilo 0,35 ·
-speaker boost ligado · velocidade 1,0 (a voz nunca é acelerada): tom de conversa, não de locutor.
+Voz: Raquel - For Conversational (GDzHdQOi6jjf8zaXhCYD), a voz oficial da FAZLO. Modelo eleven_v4 (decisão de
+23/10/2026, teste A/B): voice_settings SÓ estabilidade 0,50 · semelhança 0,75; style, use_speaker_boost e speed NÃO
+são enviados (ficam no padrão da API; a voz nunca é acelerada). O v4 aceita previous_text / next_text e seed.
+Cada geração grava no falas.json o modelo e os ajustes usados.
+
+PRONÚNCIA: o texto vai para a API com o dicionário compartilhado (../serie-explica/scripts/pronuncia.py:
+"Hospeda" → "Hospéda", "WhatsApp" → "Uátsap", "FAZLO"/"Fazlo" → "Fázlo"); o alinhamento devolvido é refeito na
+grafia oficial, palavra por palavra, e é ele que linha.py, entonacao.py e qa.py usam.
+
+TRAVA: um episódio publicado (TRAVADOS) ou com narração gerada por outro modelo não é regenerado (nem com --so),
+a menos que se passe --forcar-modelo-novo. A conferência (--medir) continua liberada.
 
 A chave da API NÃO fica no repositório nem é impressa: nesta nuvem ela é posta no cabeçalho xi-api-key pela
 própria rede (Segredos de rede); fora dela, defina ELEVENLABS_API_KEY no ambiente.
@@ -27,20 +36,40 @@ import urllib.request
 import numpy as np
 from scipy.io import wavfile
 
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))), 'serie-explica', 'scripts'))
+from pronuncia import fonetica, realinha                    # noqa: E402  (o dicionário de pronúncia é um só, nas duas séries)
+
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 EP = sys.argv[1] if len(sys.argv) > 1 and not sys.argv[1].startswith('--') else 'fala-01'
 OUT = os.path.join(ROOT, 'audio', EP, 'voz')
 API = 'https://api.elevenlabs.io/v1/text-to-speech/{voice}/with-timestamps?output_format={fmt}'
 VOICE = 'GDzHdQOi6jjf8zaXhCYD'                      # Raquel - For Conversational
-MODEL = 'eleven_multilingual_v2'
-SETTINGS = {'stability': 0.40, 'similarity_boost': 0.80, 'style': 0.35, 'use_speaker_boost': True, 'speed': 1.0}
+MODEL = 'eleven_v4'
+SETTINGS = {'stability': 0.50, 'similarity_boost': 0.75}      # só isto; style, speaker boost e speed ficam no padrão
 SEED = 808
 SR = 44100
 SCRIPT = json.load(open(os.path.join(ROOT, 'episodios', EP + '.json')))
+# episódios publicados: a narração (audio/<id>/voz/, tomadas incluídas) e o vídeo ficam exatamente como estão
+TRAVADOS = {'fala-01': 'publicado; narração em eleven_multilingual_v2 (+ tomadas de pergunta em eleven_v3)'}
+FORCAR = '--forcar-modelo-novo' in sys.argv
 
 
-def tts(text, prev, nxt, seed, settings=None, model=None):
-    body = {'text': text, 'model_id': model or MODEL, 'voice_settings': settings or SETTINGS, 'seed': seed, 'previous_text': prev, 'next_text': nxt}
+def trava():
+    """recusa chamar a API num episódio travado ou com narração de outro modelo (salvo --forcar-modelo-novo)"""
+    motivo, path = None, os.path.join(OUT, 'falas.json')
+    modelo = json.load(open(path)).get('modelo') if os.path.exists(path) else None
+    if EP in TRAVADOS:
+        motivo = f'{EP} está travado ({TRAVADOS[EP]})'
+    elif modelo and modelo != MODEL:
+        motivo = f'a narração de {EP} foi gerada com {modelo} (o modelo atual é {MODEL})'
+    if motivo and not FORCAR:
+        raise SystemExit(f'{motivo}: nada foi regenerado. Para regenerar mesmo assim, passe --forcar-modelo-novo.')
+
+
+def tts(text, prev, nxt, seed):
+    """(áudio, alinhamento NA GRAFIA OFICIAL, formato, texto enviado, alinhamento original da API)"""
+    enviado = fonetica(text)
+    body = {'text': enviado, 'model_id': MODEL, 'voice_settings': SETTINGS, 'seed': seed, 'previous_text': fonetica(prev), 'next_text': fonetica(nxt)}
     headers = {'Content-Type': 'application/json', 'Accept': 'application/json'}
     key = os.environ.get('ELEVENLABS_API_KEY')
     if key:
@@ -61,7 +90,7 @@ def tts(text, prev, nxt, seed, settings=None, model=None):
         else:
             x = np.frombuffer(subprocess.run(['ffmpeg', '-v', 'error', '-i', '-', '-f', 's16le', '-ac', '1', '-ar', str(SR), '-'],
                                              input=raw, capture_output=True, check=True).stdout, '<i2').astype(np.float32) / 32768
-        return x, d['alignment'], fmt
+        return x, realinha(text, enviado, d['alignment']), fmt, enviado, d['alignment']
     raise SystemExit('nenhum formato de áudio aceito pela API')
 
 
@@ -73,6 +102,7 @@ def limites(al):
 
 
 def gerar(so):
+    trava()
     os.makedirs(OUT, exist_ok=True)
     cenas = SCRIPT['cenas']
     prev_json = os.path.join(OUT, 'falas.json')
@@ -82,11 +112,12 @@ def gerar(so):
             continue
         prev = cenas[n - 2]['fala'] if n > 1 else None
         nxt = cenas[n]['fala'] if n < len(cenas) else None
-        x, al, fmt = tts(c.get('api', c['fala']), prev, nxt, c.get('seed', SEED))
+        x, al, fmt, enviado, al_api = tts(c.get('api', c['fala']), prev, nxt, c.get('seed', SEED))
         wavfile.write(os.path.join(OUT, f'cena-{n}.wav'), SR, np.round(np.clip(x, -1, 1) * 32767).astype(np.int16))
         a, b = limites(al)
-        falas[n] = {'n': n, 'fala': c['fala'], 'enviado': c.get('api', c['fala']), 'formato': fmt, 'duracao_audio': round(len(x) / SR, 3),
-                    'inicio_da_fala': round(a, 3), 'fim_da_fala': round(b, 3), 'alinhamento': al}
+        falas[n] = {'n': n, 'fala': c['fala'], 'enviado': enviado, 'modelo': MODEL, 'ajustes': SETTINGS, 'seed': c.get('seed', SEED),
+                    'formato': fmt, 'duracao_audio': round(len(x) / SR, 3),
+                    'inicio_da_fala': round(a, 3), 'fim_da_fala': round(b, 3), 'alinhamento': al, 'alinhamento_api': al_api}
         print(f'  cena {n}: fala {b - a:.2f} s · {fmt}')
     json.dump({'voz': 'Raquel - For Conversational', 'voice_id': VOICE, 'modelo': MODEL, 'ajustes': SETTINGS, 'seed': SEED,
                'falas': [falas[k] for k in sorted(falas)]}, open(prev_json, 'w'), ensure_ascii=False, indent=1)

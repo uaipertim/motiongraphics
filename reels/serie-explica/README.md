@@ -61,7 +61,11 @@ A série tem cara própria da FAZLO, sem trilho, sem círculos numerados e sem c
 7. **Marca fixa.** No topo de todos os quadros (y 309–359) vão a logo oficial (o arquivo, sem redesenho), "FAZLO Hospeda" e o @ do JSON (`marca`).
 8. **Voz fluida.**
    - É a voz oficial da FAZLO no ElevenLabs.
-   - **Cada capítulo é UMA geração inteira** (todas as frases numa chamada só), com estabilidade 0,45, estilo 0,30 e velocidade 1,0.
+   - **Cada capítulo é UMA geração inteira** (todas as frases numa chamada só).
+   - **Configuração (desde 23/10/2026):** `eleven_v4`, voz Raquel, `voice_settings` só com estabilidade 0,50 e semelhança 0,75. `style`, `use_speaker_boost` e `speed` não são enviados. Cada geração grava no `falas.json` o modelo e os ajustes.
+   - **Pronúncia:** o texto vai para a API com o dicionário de [`scripts/pronuncia.py`](scripts/pronuncia.py), compartilhado com a Série Fala: "Hospeda" → "Hospéda", "WhatsApp" → "Uátsap", "FAZLO"/"Fazlo" → "Fázlo". A troca é só da palavra inteira. O alinhamento volta para a grafia oficial, palavra por palavra, e o `qa.py` reprova qualquer grafia fonética na legenda ou no quadro.
+   - **Trava:** explica-01 e explica-02 (publicados, em `eleven_multilingual_v2`) não são regenerados, nem com `--refaz`. O mesmo vale para qualquer episódio narrado por outro modelo. Só passa com `--forcar-modelo-novo`.
+   - **Teste v2 × v4:** em [`teste-v4/`](teste-v4): medidas e áudios para ouvir, sem tocar nos episódios.
    - Se uma frase sair ruim, o capítulo inteiro é gerado de novo. Nunca se emendam palavras ou trechos.
    - A trilha sintetizada é contínua por baixo, com ducking suave. A mixagem fica em −14 LUFS, com pico real ≤ −1 dBTP.
    - Quando a duração muda (TR, `segura`, `min`), a trilha se refaz sozinha pelo novo tempo.

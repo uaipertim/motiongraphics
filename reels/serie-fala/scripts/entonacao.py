@@ -14,6 +14,13 @@ do "qu") antes da pergunta, com 14 ms de transição em potência igual e o volu
 Medida: F0 por autocorrelação (quadros de 10 ms, 90–450 Hz). Na última palavra, "subida" = semitons entre a mediana dos 6 últimos
 quadros vozeados (final da palavra) e o ponto mais baixo da palavra (vale da sílaba tônica). Natural = 2 a 7 st; acima disso soa caricato.
 
+Tomadas no eleven_v4 com a MESMA configuração da narração (voz.py: só estabilidade 0,50 · semelhança 0,75) e com o
+contexto (previous_text / next_text; o v4 aceita). Elas variam SÓ na seed e na redação ("texto" / "prev" de cada
+variante); estabilidade e estilo não variam. Os campos "estab", "estilo" e "modelo" das variantes antigas (fala-01, em
+v2/v3) ficam só como registro e não são usados nas tomadas novas. O texto vai à API com o dicionário de pronúncia, e o
+alinhamento gravado em cada tomada é o da grafia oficial (o original da API fica em "alinhamento_api").
+`gerar` e `aplicar` obedecem à mesma trava do voz.py (episódio publicado ou de outro modelo: só com --forcar-modelo-novo).
+
 A chave da API não é lida de arquivo nem impressa: a rede da nuvem põe o cabeçalho xi-api-key (Segredos de rede); fora dela,
 ELEVENLABS_API_KEY no ambiente.
 """
@@ -45,8 +52,9 @@ SCRIPT = V.SCRIPT
 
 
 # ---------------------------------------------------------------- gerar
-def ajustes(estab, estilo):
-    return {'stability': estab, 'similarity_boost': 0.80, 'style': estilo, 'use_speaker_boost': True, 'speed': 1.0}
+def ajustes():
+    """a configuração das tomadas: a mesma da narração (fixa; só a seed e a redação variam)"""
+    return dict(V.SETTINGS)
 
 
 def gerar():
@@ -62,14 +70,15 @@ def gerar():
                 continue
             texto = v.get('texto', q['pergunta'] if v.get('so') else cenas[n - 1]['fala'])
             prev = v['prev'] if v.get('prev') else prev0
-            v3 = v.get('modelo') == 'eleven_v3'              # o v3 não aceita previous_text/next_text
-            try:
-                x, al, fmt = V.tts(texto, None if v3 else prev, None if v3 else nxt, v.get('seed', 808 + k), ajustes(v['estab'], v['estilo']), v.get('modelo'))
+            seed = v.get('seed', 808 + k)
+            try:                                             # o v4 aceita o contexto (teste de 23/10/2026): vai sempre
+                x, al, fmt, enviado, al_api = V.tts(texto, prev, nxt, seed)
             except Exception as e:                           # uma tomada recusada pela API não derruba as outras
                 print(f'  {nome}: recusada pela API ({e})'); continue
             wavfile.write(os.path.join(TOM, nome + '.wav'), SR, np.round(np.clip(x, -1, 1) * 32767).astype(np.int16))
-            json.dump({'texto': texto, 'variante': v, 'alinhamento': al, 'formato': fmt}, open(os.path.join(TOM, nome + '.json'), 'w'), ensure_ascii=False)
-            print(f'  {nome}: "{texto}" · estab {v["estab"]} · estilo {v["estilo"]} · {v.get("modelo", V.MODEL)}')
+            json.dump({'texto': texto, 'enviado': enviado, 'variante': v, 'modelo': V.MODEL, 'ajustes': ajustes(), 'seed': seed,
+                       'alinhamento': al, 'alinhamento_api': al_api, 'formato': fmt}, open(os.path.join(TOM, nome + '.json'), 'w'), ensure_ascii=False)
+            print(f'  {nome}: "{texto}" · seed {seed} · {V.MODEL}')
 
 
 # ---------------------------------------------------------------- F0
@@ -227,9 +236,9 @@ def medir(verbose=True):
             if m and (k1_ is None or len(wn_[k1_:]) != len(q['pergunta'].split())):
                 m = None                                  # a tomada não tem as palavras do roteiro nesse trecho
             v = J['variante']
-            lista.append({'nome': nome, 'medida': m, 'variante': v, 'texto': J['texto']})
+            lista.append({'nome': nome, 'medida': m, 'variante': v, 'texto': J['texto'], 'modelo': J.get('modelo')})
             if verbose and m:
-                print(f'  {nome}   {v["estab"]:.2f}  {v["estilo"]:.2f}   {v.get("modelo", "v2"):20s} {J["texto"][-42:]:42s} {m["subida_st"]:6.2f}  {m["final_hz"]:4d}/{m["vale_hz"]:<4d}      {m["final_vs_anterior_st"]:6.2f}            {m["ultima_palavra_s"]:.2f}')
+                print(f'  {nome}   {v.get("estab", 0.5):.2f}  {v.get("estilo", 0):.2f}   {J.get("modelo", v.get("modelo", "v2")):20s} {J["texto"][-42:]:42s} {m["subida_st"]:6.2f}  {m["final_hz"]:4d}/{m["vale_hz"]:<4d}      {m["final_vs_anterior_st"]:6.2f}            {m["ultima_palavra_s"]:.2f}')
             k += 1
         res[n] = {'original': ref, 'tomadas': lista}
     return res
@@ -398,7 +407,7 @@ def aplicar():
             for t in sorted([t for t in res[n]['tomadas'] if t['medida']], key=lambda t: -pontua(t['medida'], n)):
                 m, v = t['medida'], t['variante']
                 marca = ' <= ESCOLHIDA' if t['nome'] == por[n].get('tomada_pergunta') else ''
-                fh.write(f'  {t["nome"]}  subida {m["subida_st"]:+6.2f}  segue {m["continua_subindo"]:.2f}  mediana {m["mediana_hz"]:3d}  pergunta {m["dur_pergunta_s"]:.2f} s  pontos {pontua(m, n):5.2f}  estab {v["estab"]:.2f} estilo {v["estilo"]:.2f} {v.get("modelo", "v2")[-6:]:7s} "{t["texto"]}"{marca}\n')
+                fh.write(f'  {t["nome"]}  subida {m["subida_st"]:+6.2f}  segue {m["continua_subindo"]:.2f}  mediana {m["mediana_hz"]:3d}  pergunta {m["dur_pergunta_s"]:.2f} s  pontos {pontua(m, n):5.2f}  estab {v.get("estab", 0.5):.2f} estilo {v.get("estilo", 0):.2f} {t.get("modelo", v.get("modelo", "v2"))[-6:]:7s} "{t["texto"]}"{marca}\n')
     D['falas'] = [por[k] for k in sorted(por)]
     D['entonacao'] = {str(n): {'tomada': nome, 'subida_st': m['subida_st']} for n, nome, m, _ in resumo}
     json.dump(D, open(falas_path, 'w'), ensure_ascii=False, indent=1)
@@ -407,6 +416,8 @@ def aplicar():
 
 
 if __name__ == '__main__':
+    if ACAO in ('gerar', 'aplicar'):
+        V.trava()                                      # episódio publicado ou de outro modelo: nada é gerado nem trocado
     if not os.path.isdir(ORIG):                        # guarda a narração como estava, uma única vez
         os.makedirs(ORIG)
         for f in os.listdir(VOZ):
