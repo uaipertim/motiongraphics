@@ -455,10 +455,10 @@
   // Nada aqui imita tela do sistema: card limpo com a logo, grade de calendário abstrata e cards de reserva só com
   // os chips do chalé e das datas (os mesmos do caos). Sem nomes, valores ou outros números.
   // escala para o celular: a composição ocupa y 330–1240 (centro em ~42% da altura), acima da legenda e dos 20% de baixo
-  const HUB = { x: 90, y: 360, w: 900, h: 880 }, TOPO = { x: 220, y: 330, w: 640, h: 140 };
-  const GR = { x0: 38, y0: 520, cw: 242, ch: 210, g: 12, cols: 4, rows: 3 };
+  const HUB = { x: 135, y: 360, w: 810, h: 880 }, TOPO = { x: 220, y: 330, w: 640, h: 140 };
+  const GR = { x0: 168, y0: 520, cw: 240, ch: 210, g: 12, cols: 3, rows: 3 };   // x 168–912: margem nas duas laterais, fora da coluna x ≥ 950
   const celula = (col, lin, n = 1) => ({ x: GR.x0 + col * (GR.cw + GR.g), y: GR.y0 + lin * (GR.ch + GR.g), w: n * GR.cw + (n - 1) * GR.g, h: GR.ch });
-  const VAGA = celula(1, 1, 3);                                  // o espaço da reserva: o chalé (linha) e os 3 dias (colunas)
+  const VAGA = celula(0, 1, 3);                                  // o espaço da reserva: o chalé (linha) e os 3 dias (colunas)
   const R0 = { x: 120, y: 640, w: 840, h: 224 };                // onde o card de reserva nasce (grande, no centro da grade)
   const lerpR = (a, b, u) => ({ x: lerp(a.x, b.x, u), y: lerp(a.y, b.y, u), w: lerp(a.w, b.w, u), h: lerp(a.h, b.h, u) });
   function cobre(ctx, img, r, a) {                               // a imagem cobrindo o retângulo (recorte central)
@@ -468,11 +468,11 @@
   }
   // o card de reserva: "RESERVA" + os chips do chalé e das datas, desenhado em 520×150 e escalado para o retângulo
   function cardReserva(ctx, r, o = {}) {
-    const K = LN.caos, s = Math.min(r.w / 600, r.h / 160);
+    const K = LN.caos, s = Math.min(r.w / 595, r.h / 160);
     ctx.save(); ctx.globalAlpha *= o.alpha ?? 1;
     const borda = o.cor || C.lime;
     painel(ctx, r.x, r.y, r.w, r.h, { r: 26 * s, stroke: borda, lw: 3, glow: o.glow || 0, glowColor: css(borda === C.lime ? C.lime : C.red, 0.8) });
-    ctx.translate(r.x + r.w / 2, r.y + r.h / 2); ctx.scale(s, s); ctx.translate(-300, -80);
+    ctx.translate(r.x + r.w / 2, r.y + r.h / 2); ctx.scale(s, s); ctx.translate(-297.5, -80);
     txt(ctx, 'RESERVA', 30, 44, { size: 24, weight: 800, fam: MONO, color: C.gray });
     let x = 30;
     [[K.chale, o.pulso1 || 0], [K.datas, o.pulso2 || 0]].forEach(([rot, pu]) => {
@@ -528,12 +528,12 @@
       if (ua > 0 && someLinhas > 0) {
         ctx.save(); ctx.globalAlpha *= clamp(ua) * someLinhas;
         const k = lerp(0.85, 1, ua); ctx.translate(540, ly); ctx.scale(k, k); ctx.translate(-540, -ly);
-        rr(ctx, 140, ly - 58, 800, 116, 58); ctx.fillStyle = '#0B0C0A'; ctx.fill(); ctx.lineWidth = 2.5; ctx.strokeStyle = css(C.white, 0.22); ctx.stroke();
-        if (ic === 'recado') { ctx.save(); ctx.translate(215, ly); ctx.scale(1.7, 1.7); ctx.translate(-358, -ly); ctx.lineWidth = 3.2; ctx.strokeStyle = C.white; rr(ctx, 340, ly - 18, 36, 36, 4); ctx.stroke(); ctx.beginPath(); ctx.moveTo(347, ly - 4); ctx.lineTo(369, ly - 4); ctx.moveTo(347, ly + 6); ctx.lineTo(362, ly + 6); ctx.stroke(); ctx.restore(); }
-        else icone(ctx, ic, 215, ly, 74, C.white, 0.08);
-        txt(ctx, nome, 285, ly + 21, { size: 58, weight: 800 });
+        rr(ctx, 180, ly - 58, 720, 116, 58); ctx.fillStyle = '#0B0C0A'; ctx.fill(); ctx.lineWidth = 2.5; ctx.strokeStyle = css(C.white, 0.22); ctx.stroke();
+        if (ic === 'recado') { ctx.save(); ctx.translate(255, ly); ctx.scale(1.7, 1.7); ctx.translate(-358, -ly); ctx.lineWidth = 3.2; ctx.strokeStyle = C.white; rr(ctx, 340, ly - 18, 36, 36, 4); ctx.stroke(); ctx.beginPath(); ctx.moveTo(347, ly - 4); ctx.lineTo(369, ly - 4); ctx.moveTo(347, ly + 6); ctx.lineTo(362, ly + 6); ctx.stroke(); ctx.restore(); }
+        else icone(ctx, ic, 255, ly, 74, C.white, 0.08);
+        txt(ctx, nome, 325, ly + 21, { size: 58, weight: 800 });
         const uc = E.outBack(p(t, T.so + i * 0.12, T.so + 0.3 + i * 0.12), 2);
-        if (uc > 0) { ctx.save(); ctx.translate(870, ly); ctx.scale(uc * 1.6, uc * 1.6); ctx.beginPath(); ctx.arc(0, 0, 22, 0, TAU); ctx.fillStyle = C.lime; ctx.fill();
+        if (uc > 0) { ctx.save(); ctx.translate(840, ly); ctx.scale(uc * 1.6, uc * 1.6); ctx.beginPath(); ctx.arc(0, 0, 22, 0, TAU); ctx.fillStyle = C.lime; ctx.fill();
           ctx.lineWidth = 5; ctx.strokeStyle = '#0B0C0A'; ctx.lineCap = 'round'; ctx.beginPath(); ctx.moveTo(-9, 1); ctx.lineTo(-2, 8); ctx.lineTo(10, -7); ctx.stroke(); ctx.restore(); }
         ctx.restore();
       }
@@ -541,7 +541,7 @@
     // 3) a grade do calendário (abstrata: só células, sem números nem nomes)
     const ug = p(t, T.lanca + 0.2, T.lanca + 1.0);
     if (ug > 0) {
-      const ocupadas = [[0, 0, 2], [3, 0, 1], [0, 2, 1], [2, 2, 2]];
+      const ocupadas = [[0, 0, 2], [2, 0, 1], [0, 2, 1], [1, 2, 2]];
       for (let lin = 0; lin < GR.rows; lin++) for (let col = 0; col < GR.cols; col++) {
         const uc = E.outCubic(p(t, T.lanca + 0.2 + (lin + col) * 0.05, T.lanca + 0.6 + (lin + col) * 0.05)); if (uc <= 0) continue;
         const q = celula(col, lin); ctx.save(); ctx.globalAlpha *= uc;
@@ -569,7 +569,7 @@
     // 5) a segunda reserva igual tenta entrar no mesmo espaço, bate, é rejeitada e bloqueada
     const u2 = p(t, T.alguem, T.alguem + 0.4);
     if (u2 > 0) {
-      const PAIRA = { ...VAGA, y: VAGA.y - 230 }, P0 = { ...PAIRA, x: PAIRA.x - 250 };
+      const PAIRA = { ...VAGA, y: VAGA.y - 230 }, P0 = { ...PAIRA, x: PAIRA.x - 120 };
       const ida = E.inOutCubic(p(t, T.mesmo5 - 0.1, T.mesmas + 0.3));
       let r2 = lerpR(P0, PAIRA, ida);
       const desce = E.inOutCubic(p(t, T.bate - 0.16, T.bate)), volta = E.outBack(p(t, T.bate, T.bate + 0.45), 2.2);
@@ -621,12 +621,13 @@
     const sai = E.inOutCubic(p(t, T.logo.t0 - 0.1, T.logo.t0 + 0.25));
     ctx.save(); ctx.globalAlpha *= 1 - sai;
     const sobe = E.inOutCubic(p(t, T.conheca, T.conheca + 0.45));
-    const itens = [[T.menos1, T.risco1, 'caderno', 'caderno', 560], [T.menos2, T.risco2, 'alerta', 'susto', 760]];
+    const itens = [[T.menos1, T.risco1, 'caderno', 'caderno', 540], [T.menos2, T.risco2, 'alerta', 'susto', 800]];
     for (const [t0, tr, ic, nome, y0] of itens) {
       const u = p(t, t0, t0 + 0.4); if (u <= 0) continue;
       const y = y0 - 260 * sobe;
       ctx.save(); ctx.globalAlpha *= 1 - sobe;
       enter(ctx, u, 540, y, () => {
+        ctx.translate(540, y); ctx.scale(1.3, 1.3); ctx.translate(-540, -y);         // chips 1,3x
         const risc = E.outCubic(p(t, tr, tr + 0.3));
         painel(ctx, 250, y - 75, 580, 150, { r: 75, stroke: css(C.white, 0.25 + 0.1 * (1 - risc)) });
         ctx.save(); ctx.globalAlpha *= 1 - 0.5 * risc;
@@ -649,7 +650,7 @@
     }, { back: 1.2 });
     const ul = p(t, T.link, T.link + 0.4);
     if (ul > 0) enter(ctx, ul, 540, 860, () => {
-      const pulso = 1 + 0.03 * Math.sin((t - T.link) * 7);
+      const pulso = 1.3 * (1 + 0.03 * Math.sin((t - T.link) * 7));                 // chip 1,3x
       ctx.save(); ctx.translate(540, 860); ctx.scale(pulso, pulso); ctx.translate(-540, -860);
       rr(ctx, 270, 800, 540, 120, 60); ctx.fillStyle = C.lime; ctx.shadowColor = css(C.lime, 0.6); ctx.shadowBlur = 30; ctx.fill(); ctx.shadowColor = 'transparent';
       txt(ctx, 'link na bio', 515, 880, { size: 58, weight: 900, color: '#0B0C0A', align: 'center' });

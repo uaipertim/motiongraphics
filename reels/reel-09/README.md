@@ -36,11 +36,13 @@ Mudança em relação ao plano aprovado: o fim da colisão foi segurado até 24,
   - O texto dentro deles tem 54–60 px, e as etiquetas 33 px.
   - As reservas que colidem medem 480×290 px.
 - **Cenas 5 e 6 (26–40 s):** a composição ocupa y 330–1240, com o centro em ~42% da altura, acima da legenda e dos 20% de baixo.
-  - O card da marca mede 900×880 px.
-  - A grade tem 4×3 células de 242×210 px, com contorno e preenchimento mais claros.
-  - O card de reserva encaixa numa vaga de 750×210 px.
+  - O card da marca mede 810×880 px (x 135–945).
+  - A grade tem 3×3 células de 240×210 px (x 168–912), com contorno e preenchimento mais claros. A grade e o card da marca deixam margem nas duas laterais e ficam fora da coluna dos botões (x ≥ 950).
+  - O card de reserva encaixa numa vaga de 744×210 px.
   - O texto dos chips "Chalé 3" e "14 a 16/11" tem 38 px de altura de letra, medidos no quadro.
   - O carimbo "BLOQUEADO" está ~1,7× maior.
+
+- **Reta final (42–48 s):** os chips "− caderno", "− susto" e "link na bio" estão 1,3× maiores.
 
 ## Voz (configuração só deste Reel)
 
