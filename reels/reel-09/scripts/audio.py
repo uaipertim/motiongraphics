@@ -37,9 +37,10 @@ def ff_wav(src, ss=None, to=None):
     return np.frombuffer(subprocess.run(cmd, capture_output=True, check=True).stdout, '<f4').copy()
 
 
-def lufs(x):
+def lufs(x, estereo=False):
+    """loudness integrada; estereo=True mede como o arquivo final (os dois canais iguais somam +3 dB)"""
     with tempfile.NamedTemporaryFile(suffix='.wav') as f:
-        wavfile.write(f.name, SR, x.astype(np.float32))
+        wavfile.write(f.name, SR, (np.stack([x, x], 1) if estereo else x).astype(np.float32))
         e = subprocess.run(['ffmpeg', '-hide_banner', '-nostats', '-i', f.name, '-af', 'ebur128=peak=true', '-f', 'null', '-'],
                            capture_output=True, text=True).stderr
     i = float(re.findall(r'I:\s+(-?[\d.]+) LUFS', e)[-1])
@@ -187,11 +188,11 @@ def main():
         place(sfx, fx(c['type'], c.get('forca', 1.0)), c['t'], 0.5)
     mix = v + m + sfx
     # −14 LUFS e pico ≤ −1,5 dBTP (ganho + limitador suave)
-    li, _ = lufs(mix)
+    li, _ = lufs(mix, estereo=True)
     mix *= 10 ** ((-14 - li) / 20)
     teto = 10 ** (-1.8 / 20)
     mix = np.where(np.abs(mix) > teto * 0.8, np.sign(mix) * (teto * 0.8 + (teto * 0.2) * np.tanh((np.abs(mix) - teto * 0.8) / (teto * 0.2))), mix)
-    li, tp = lufs(mix)
+    li, tp = lufs(mix, estereo=True)
     st = np.stack([mix, mix], 1).astype(np.float32)
     wavfile.write(os.path.join(ROOT, 'audio', 'mix.wav'), SR, st)
     lvv, _ = lufs(v); lmm, _ = lufs(m)
