@@ -109,7 +109,13 @@ A narração gerada (`audio/<id>/voz/cap-NN.wav` + `falas.json`) fica no reposit
 - o sha1 do áudio;
 - o histórico de todas as gerações inteiras feitas, com ritmo, maior pausa e o motivo de cada recusa.
 
-**Conferência automática:** cada geração é conferida (ritmo 8–19 letras/s, nenhuma pausa interna > 0,9 s, fala não cortada no fim). Se falhar, o capítulo inteiro é gerado de novo com outra seed, até 4 vezes.
+**Conferência automática:** cada geração é conferida. Se falhar, o capítulo inteiro é gerado de novo com outra seed, até 4 vezes. As regras, com os limites de 24/10/2026 para o `eleven_v4`:
+- ritmo de 7,5 a 19 letras/s;
+- nenhuma pausa interna acima de 0,9 s;
+- ao menos 0,05 s de áudio depois da fala (nada cortado no fim);
+- episódio de 60 a 90 s.
+
+O **fim da fala** é medido no áudio (último trecho de 10 ms acima de −40 dBFS), e não na marcação da API. No v4, a marcação às vezes estica a última letra até o fim do arquivo. Esse fim vale para a sobra, para o ritmo e para o `linha.py`: a última palavra, a cena e a logo não seguram o tempo esticado.
 
 ## Formato do JSON
 

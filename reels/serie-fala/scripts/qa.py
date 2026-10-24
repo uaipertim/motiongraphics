@@ -6,7 +6,7 @@ Revisão técnica de um episódio da SÉRIE FALA (roda depois do render).
                                        output/fala-01/revisao/sincronia.txt
                                        output/fala-01/revisao/zonas-seguras.jpg
 
-Técnica: formato (1080x1920, 60 fps, H.264 yuv420p, AAC 48 kHz estéreo), duração de 30–36 s (vídeo e áudio),
+Técnica: formato (1080x1920, 60 fps, H.264 yuv420p, AAC 48 kHz estéreo), duração de 30–42 s (vídeo e áudio; limite de 24/10/2026, para o eleven_v4),
 loudness da mixagem (−14 LUFS ±1) e da voz sozinha, pico real (≤ −1 dBTP), quadros pretos (fora o fade final),
 quadros congelados e RITMO (nenhuma janela de 2 s sem movimento; troca de cena a cada ≤ 7 s, com movimento
 contínuo dentro de cada cena).
@@ -86,7 +86,7 @@ vd, ad = float(v['duration']), float(a['duration'])
 ok(v['codec_name'] == 'h264' and v['pix_fmt'] == 'yuv420p', f"vídeo {v['codec_name']} {v.get('profile', '')} {v['pix_fmt']}")
 ok((int(v['width']), int(v['height'])) == (1080, 1920), f"resolução {v['width']}x{v['height']} (9:16)")
 ok(abs(fps - 60) < 0.01, f'{fps:.0f} fps, {v.get("nb_frames", "?")} quadros')
-ok(30 <= vd <= 36.02, f'duração do vídeo {vd:.3f} s (alvo 30–36 s)')
+ok(30 <= vd <= 42.02, f'duração do vídeo {vd:.3f} s (alvo 30–42 s)')
 ok(a['codec_name'] == 'aac' and int(a['sample_rate']) == 48000 and int(a['channels']) == 2, f"áudio {a['codec_name']} {a['sample_rate']} Hz, {a['channels']} canais, {int(a.get('bit_rate', 0)) // 1000} kb/s")
 ok(abs(vd - ad) < 0.05, f'vídeo e áudio com a mesma duração (Δ {abs(vd - ad) * 1000:.0f} ms)')
 size_mb = int(info['format']['size']) / 1e6

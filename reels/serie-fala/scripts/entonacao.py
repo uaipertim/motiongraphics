@@ -372,8 +372,9 @@ def aplicar():
         nome = esc.get(str(n), L[0]['nome'])
         y, al, ganho, cortes = emenda(n, nome)
         wavfile.write(os.path.join(VOZ, f'cena-{n}.wav'), SR, np.round(np.clip(y, -1, 1) * 32767).astype(np.int16))
-        a, b = V.limites(al)
-        f = dict(por[n]); f['alinhamento'] = al; f['inicio_da_fala'] = round(a, 3); f['fim_da_fala'] = round(b, 3)
+        a, b_api = V.limites(al)
+        b = V.fim_da_voz(y)                                  # o fim da fala medido no áudio (como no voz.py)
+        f = dict(por[n]); f['alinhamento'] = al; f['inicio_da_fala'] = round(a, 3); f['fim_da_fala'] = round(b, 3); f['fim_da_fala_api'] = round(b_api, 3)
         f['duracao_audio'] = round(len(y) / SR, 3); f['tomada_pergunta'] = nome
         f['enviado_pergunta'] = [t for t in L if t['nome'] == nome][0]['texto']
         por[n] = f

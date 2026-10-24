@@ -14,6 +14,8 @@ Tempo de cada capítulo:
 Linha de apoio: uma por frase (o "apoio" de cada frase no JSON; null = nenhuma), entrando junto com a frase, mas nunca
 antes de a anterior ter ficado 1,5 s inteira na tela (entrada de 0,34 s + 1,5 s + folga = 1,92 s entre trocas). A última
 fica ao menos 1,92 s antes da troca de capítulo.
+Fim da voz: "fim_da_fala" do falas.json. Nas gerações v4 ele é medido no áudio (−40 dBFS; ver voz.py), e a última palavra e a
+última frase nunca passam dele, então a cena e a logo não seguram o tempo da marcação esticada da API.
 Voz: o áudio de cada capítulo entra INTEIRO e contínuo (só se tira o silêncio antes da 1ª letra e depois da última, com
 fades de 8 ms / 60 ms nas pontas). Nada é cortado ou emendado dentro de um capítulo; a colocação de cada um fica
 registrada em linha.json ("colocacao") para a revisão conferir.
@@ -84,13 +86,15 @@ def main():
         desloc = v0 - ini                               # tempo do arquivo -> tempo do vídeo
         v1 = fim + desloc
         ws = palavras(al, desloc)
+        for w in ws:                                    # nada passa do fim real da voz (a marcação do v4 estica a última letra)
+            w['t1'] = round(min(w['t1'], v1), 4)
         # as frases: o trecho de caracteres de cada uma no texto do capítulo
         frases, pos = [], 0
         L = letras(al)
         for f in c['fala']:
             a, b = pos, pos + len(f['texto'])
             alfa = [x for x in L[a:b] if x[1].isalnum()]
-            frases.append({'texto': f['texto'], 'apoio': f.get('apoio'), 't0': round(alfa[0][2] + desloc, 4), 't1': round(alfa[-1][3] + desloc, 4)})
+            frases.append({'texto': f['texto'], 'apoio': f.get('apoio'), 't0': round(alfa[0][2] + desloc, 4), 't1': round(min(alfa[-1][3] + desloc, v1), 4)})
             pos = b + 1
         # as linhas de apoio
         apoios, ult = [], None

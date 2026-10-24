@@ -12,9 +12,12 @@ ruim, o capítulo inteiro é gerado de novo; nunca se emendam palavras ou trecho
 fica em audio/<id>/voz/cap-NN.wav (o áudio que a API devolveu, sem cortes) e o histórico das gerações em falas.json.
 
 Conferência automática de cada geração (se falhar, o capítulo inteiro é gerado de novo com outra seed, até 4 vezes):
-  • ritmo entre 8 e 19 caracteres falados por segundo;
+  • ritmo entre 7,5 e 19 caracteres falados por segundo (limites de 24/10/2026, para o eleven_v4);
   • nenhuma pausa interna maior que 0,9 s entre palavras;
-  • a fala termina antes do fim do áudio (nada cortado no fim).
+  • a fala termina ao menos 0,05 s antes do fim do áudio (nada cortado no fim).
+O FIM DA FALA é medido no áudio (último trecho de 10 ms acima de −40 dBFS), não na marcação da API: no v4 a marcação
+às vezes estica a última letra até o fim do arquivo, mesmo com meio segundo de silêncio depois da voz. Esse fim vale
+para a sobra, para o ritmo e para o linha.py ("fim_da_fala"; o da marcação fica em "fim_da_fala_api").
 
 Voz: Raquel - For Conversational (GDzHdQOi6jjf8zaXhCYD), a voz oficial da FAZLO. Modelo eleven_v4 (decisão de
 23/10/2026, teste A/B): voice_settings SÓ estabilidade 0,50 · semelhança 0,75; style, use_speaker_boost e speed NÃO
@@ -123,17 +126,28 @@ def palavras(al):
     return [w for w in out if w['fim_letra'] is not None]
 
 
+def fim_da_voz(x, sr=SR, limiar_db=-40):
+    """fim da fala medido no áudio: o fim do último trecho de 10 ms acima de −40 dBFS"""
+    h = int(0.01 * sr)
+    n = len(x) // h
+    rms = np.sqrt((x[:n * h].astype(np.float64).reshape(n, h) ** 2).mean(axis=1))
+    acima = np.nonzero(rms > 10 ** (limiar_db / 20))[0]
+    return (acima[-1] + 1) * h / sr if len(acima) else 0.0
+
+
 def confere(x, al, texto):
     """(ok, motivo, números) de uma geração"""
     ws = palavras(al)
-    ini, fim = ws[0]['t0'], ws[-1]['fim_letra']
+    ini, fim_api = ws[0]['t0'], ws[-1]['fim_letra']
+    fim = fim_da_voz(x)                                   # o fim real da voz (a marcação do v4 pode esticar a última letra)
     letras = sum(c.isalnum() for c in texto)
     ritmo = letras / max(0.1, fim - ini)
     gaps = [b['t0'] - a['fim_letra'] for a, b in zip(ws, ws[1:])]
     maior = max(gaps) if gaps else 0.0
     sobra = len(x) / SR - fim
-    n = {'ritmo_letras_s': round(ritmo, 1), 'maior_pausa_s': round(maior, 2), 'sobra_no_fim_s': round(sobra, 2), 'fala_s': round(fim - ini, 2)}
-    if not 8 <= ritmo <= 19:
+    n = {'ritmo_letras_s': round(ritmo, 1), 'maior_pausa_s': round(maior, 2), 'sobra_no_fim_s': round(sobra, 2), 'fala_s': round(fim - ini, 2),
+         'fim_da_fala_s': round(fim, 3), 'fim_da_fala_api_s': round(fim_api, 3)}
+    if not 7.5 <= ritmo <= 19:
         return False, f'ritmo {ritmo:.1f} letras/s', n
     if maior > 0.9:
         return False, f'pausa interna de {maior:.2f} s', n
@@ -171,7 +185,8 @@ def gerar(refaz):
         wavfile.write(os.path.join(OUT, f'cap-{key}.wav'), SR, pcm)
         ws = palavras(al)
         D['capitulos'][key] = {'n': n, 'texto': texto, 'enviado': enviado, 'modelo': MODEL, 'ajustes': SETTINGS, 'seed': seed, 'formato': fmt, 'duracao_audio': round(len(x) / SR, 3),
-                               'inicio_da_fala': round(ws[0]['t0'], 3), 'fim_da_fala': round(ws[-1]['fim_letra'], 3),
+                               'inicio_da_fala': round(ws[0]['t0'], 3), 'fim_da_fala': round(fim_da_voz(x), 3),
+                               'fim_da_fala_api': round(ws[-1]['fim_letra'], 3),
                                'sha1_audio': hashlib.sha1(pcm.tobytes()).hexdigest(), 'geracoes': len(hist), 'historico': hist,
                                'alinhamento': al, 'alinhamento_api': al_api}
         D.update({'voz': 'Raquel - For Conversational', 'voice_id': VOICE, 'modelo': MODEL, 'ajustes': SETTINGS,

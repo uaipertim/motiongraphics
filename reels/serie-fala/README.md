@@ -1,6 +1,6 @@
 # Série FALA — a dor narrada, cena por cena
 
-Formato novo do FAZLO Hospeda: um Reel de 30–36 s em que uma voz conta uma dor da rotina da pousada e **cada frase da narração ganha uma cena diferente**. Não usa o motor da Série ROTINA (onde todo episódio tem a mesma cara): aqui há uma **biblioteca de tipos de cena**, e cada episódio é só um JSON que diz, frase por frase, qual cena entra e com quais dados.
+Formato novo do FAZLO Hospeda: um Reel de 30–42 s em que uma voz conta uma dor da rotina da pousada e **cada frase da narração ganha uma cena diferente**. Não usa o motor da Série ROTINA (onde todo episódio tem a mesma cara): aqui há uma **biblioteca de tipos de cena**, e cada episódio é só um JSON que diz, frase por frase, qual cena entra e com quais dados.
 
 | Episódio | Dor | Duração | Pasta de saída |
 |---|---|---|---|
@@ -94,7 +94,7 @@ No fala-01: cena 1 ("Ele pagou metade. Peraí… quanto falta mesmo?") ficou com
 1. **Cada cena fica centralizada na faixa livre**: entre y 300 e o topo da legenda (≈ y 1295), com folga de pelo menos 60 px acima dela, ou seja, a faixa vai de y 300 a y 1235 e o centro do conteúdo cai em y ≈ 767. O motor faz isso sozinho para **todo tipo de cena**: ao iniciar, mede onde o conteúdo assentado de cada cena começa e termina e desloca a cena inteira. Cena nova não precisa de ajuste manual. Cenas cujo conteúdo cresce no meio (a pergunta que entra abaixo do relógio) declaram `fases(sc)` e o conjunto desliza suavemente para o novo centro; a nota que continua (`herda`) acompanha o próprio crescimento. As medidas de cada episódio saem em `output/<id>/revisao/centragem.json`.
 2. **Legenda sem fundo**: nada de faixa ou painel atrás do texto, só uma sombra suave para leitura. Fica centralizada no eixo x = 540 e limitada a x 130–950 (820 px). As palavras aparecem uma a uma, e cada linha é centralizada pela própria largura final.
 
-- **Vídeo:** 1080×1920 (9:16), 60 fps, H.264 + AAC 48 kHz, 30–36 s. **Voz:** voz oficial da FAZLO (Raquel), tom de conversa. Desde 23/10/2026: `eleven_v4`, só estabilidade 0,50 e semelhança 0,75, com o dicionário de pronúncia compartilhado (`../serie-explica/scripts/pronuncia.py`). O fala-01 (publicado, em v2 com tomadas v3) está travado: `voz.py`, `--so` e `entonacao.py gerar/aplicar` recusam regenerar sem `--forcar-modelo-novo`. **Áudio:** −14 LUFS integrados, pico real ≤ −1 dBTP; a música (colchão sintetizado em Am9 → Fmaj9 → Cmaj9 → G6/9, 88 BPM) fica ~22 dB abaixo da voz e abaixa até 9 dB enquanto ela fala; efeitos curtos marcam cada troca de cena. A música **está dentro do vídeo**.
+- **Vídeo:** 1080×1920 (9:16), 60 fps, H.264 + AAC 48 kHz, 30–42 s. **Voz:** voz oficial da FAZLO (Raquel), tom de conversa. Desde 23/10/2026: `eleven_v4`, só estabilidade 0,50 e semelhança 0,75, com o dicionário de pronúncia compartilhado (`../serie-explica/scripts/pronuncia.py`). O fala-01 (publicado, em v2 com tomadas v3) está travado: `voz.py`, `--so` e `entonacao.py gerar/aplicar` recusam regenerar sem `--forcar-modelo-novo`. **Áudio:** −14 LUFS integrados, pico real ≤ −1 dBTP; a música (colchão sintetizado em Am9 → Fmaj9 → Cmaj9 → G6/9, 88 BPM) fica ~22 dB abaixo da voz e abaixa até 9 dB enquanto ela fala; efeitos curtos marcam cada troca de cena. A música **está dentro do vídeo**.
 - **Legenda falada:** palavra a palavra, no instante da voz; Inter Display 900, ~68 px, branca; valores, horas e palavras-chave em limão; no máximo 2 linhas, sem painel, centralizada em x = 540 (limite x 130–950), nas linhas y 1332 e 1412. Cada página dura até a primeira palavra da próxima.
 - **Áreas seguras:** nada em x ≥ 950 entre y 1060–1560 (coluna de botões do Reels); conteúdo importante entre y 265 e 1456.
 - **Ritmo:** uma cena nova a cada 2–6,5 s e **nada parado por mais de 2 s** (toda cena tem movimento contínuo interno; a revisão mede isso quadro a quadro).
@@ -108,7 +108,7 @@ Resultado: **aprovado** (refeita com a cena centralizada na faixa y 300–1235 e
 
 | Item | Medido | Limite |
 |---|---|---|
-| Duração | 35,82 s (2149 quadros, 60 fps) | 30–36 s |
+| Duração | 35,82 s (2149 quadros, 60 fps) | 30–42 s |
 | Áudio | AAC 48 kHz, 2 canais; vídeo e áudio com Δ 20 ms | — |
 | Loudness integrado | −14,0 LUFS (voz sozinha −14,4; LRA 2,9 LU) | −14 |
 | Pico real | −1,6 dBTP | ≤ −1 |

@@ -20,6 +20,10 @@ PRONÚNCIA: o texto vai para a API com o dicionário compartilhado (../serie-exp
 "Hospeda" → "Hospéda", "WhatsApp" → "Uátsap", "FAZLO"/"Fazlo" → "Fázlo"); o alinhamento devolvido é refeito na
 grafia oficial, palavra por palavra, e é ele que linha.py, entonacao.py e qa.py usam.
 
+FIM DA FALA: medido no áudio (último trecho de 10 ms acima de −40 dBFS), não na marcação da API (no v4 ela às vezes
+estica a última letra até o fim do arquivo). É o "fim_da_fala" do falas.json, usado pelo linha.py; o da marcação fica
+em "fim_da_fala_api".
+
 TRAVA: um episódio publicado (TRAVADOS) ou com narração gerada por outro modelo não é regenerado (nem com --so),
 a menos que se passe --forcar-modelo-novo. A conferência (--medir) continua liberada.
 
@@ -94,6 +98,15 @@ def tts(text, prev, nxt, seed):
     raise SystemExit('nenhum formato de áudio aceito pela API')
 
 
+def fim_da_voz(x, sr=SR, limiar_db=-40):
+    """fim da fala medido no áudio: o fim do último trecho de 10 ms acima de −40 dBFS"""
+    h = int(0.01 * sr)
+    n = len(x) // h
+    rms = np.sqrt((x[:n * h].astype(np.float64).reshape(n, h) ** 2).mean(axis=1))
+    acima = np.nonzero(rms > 10 ** (limiar_db / 20))[0]
+    return (acima[-1] + 1) * h / sr if len(acima) else 0.0
+
+
 def limites(al):
     """início da 1ª letra e fim da última letra/dígito da fala (a pontuação e os espaços não contam)"""
     ch, st, en = al['characters'], al['character_start_times_seconds'], al['character_end_times_seconds']
@@ -114,10 +127,12 @@ def gerar(so):
         nxt = cenas[n]['fala'] if n < len(cenas) else None
         x, al, fmt, enviado, al_api = tts(c.get('api', c['fala']), prev, nxt, c.get('seed', SEED))
         wavfile.write(os.path.join(OUT, f'cena-{n}.wav'), SR, np.round(np.clip(x, -1, 1) * 32767).astype(np.int16))
-        a, b = limites(al)
+        a, b_api = limites(al)
+        b = fim_da_voz(x)                                  # o fim real da voz (a marcação do v4 pode esticar a última letra)
         falas[n] = {'n': n, 'fala': c['fala'], 'enviado': enviado, 'modelo': MODEL, 'ajustes': SETTINGS, 'seed': c.get('seed', SEED),
                     'formato': fmt, 'duracao_audio': round(len(x) / SR, 3),
-                    'inicio_da_fala': round(a, 3), 'fim_da_fala': round(b, 3), 'alinhamento': al, 'alinhamento_api': al_api}
+                    'inicio_da_fala': round(a, 3), 'fim_da_fala': round(b, 3), 'fim_da_fala_api': round(b_api, 3),
+                    'alinhamento': al, 'alinhamento_api': al_api}
         print(f'  cena {n}: fala {b - a:.2f} s · {fmt}')
     json.dump({'voz': 'Raquel - For Conversational', 'voice_id': VOICE, 'modelo': MODEL, 'ajustes': SETTINGS, 'seed': SEED,
                'falas': [falas[k] for k in sorted(falas)]}, open(prev_json, 'w'), ensure_ascii=False, indent=1)
