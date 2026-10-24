@@ -1,0 +1,11 @@
+{
+ "titulo": "Dois hóspedes, um chalé",
+ "clara": {"arquivo": "clara-fala.mp4", "de": 0.2, "ate": 7.0,
+           "texto": "Eu controlava as reservas da pousada num caderno. Até o dia em que dois hóspedes chegaram pro mesmo chalé."},
+ "narracao": [
+  {"bloco": 2, "texto": "Parece exagero? Pra quem anota tudo no caderno e no WhatsApp, acontece mais do que parece."},
+  {"bloco": 3, "texto": "Reserva confirmada no WhatsApp, anotada no caderno, um recado num papel solto… e quando você vê, o mesmo chalé foi prometido duas vezes."},
+  {"bloco": 5, "texto": "No Fazlo Hospéda, toda reserva fica num lugar só. Você lança a reserva e ela aparece no calendário, com o chalé e as datas. E se alguém tentar reservar o mesmo chalé nas mesmas datas, o sistema bloqueia na hora."},
+  {"bloco": 7, "texto": "Menos caderno, menos susto. Conheça o Fazlo Hospéda: link na bio."}
+ ]
+}
