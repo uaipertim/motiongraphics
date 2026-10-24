@@ -1,0 +1,5 @@
+src/quadros/
+output/.video-only.mp4
+output/stills/
+audio/mix.wav
+__pycache__/

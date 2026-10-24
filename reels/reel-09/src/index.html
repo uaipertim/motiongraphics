@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="pt-BR"><head><meta charset="utf-8"><title>FAZLO Hospeda — Reel 09</title>
+<style>
+  @font-face { font-family: 'FL Display'; src: url('fonts/InterDisplay-Black.otf') format('opentype'); font-weight: 900; }
+  @font-face { font-family: 'FL Display'; src: url('fonts/InterDisplay-ExtraBold.otf') format('opentype'); font-weight: 800; }
+  @font-face { font-family: 'FL Display'; src: url('fonts/InterDisplay-Bold.otf') format('opentype'); font-weight: 700; }
+  @font-face { font-family: 'FL Mono'; src: url('fonts/JetBrainsMonoNL-ExtraBold.ttf') format('truetype'); font-weight: 800; }
+  html, body { margin: 0; background: #000; } canvas { display: block; }
+</style></head>
+<body><canvas id="c" width="1080" height="1920"></canvas>
+<script src="anim.js"></script>
+<script>
+  const cv = document.getElementById('c'), ctx = cv.getContext('2d');
+  const logo = new Image(); logo.src = 'assets/fazlo-hospeda-logo-alpha.png';
+  window.ready = Promise.all([
+    fetch('../audio/linha.json').then((r) => r.json()), logo.decode(),
+    document.fonts.load("900 100px 'FL Display'"), document.fonts.load("800 100px 'FL Display'"), document.fonts.load("700 100px 'FL Display'"),
+    document.fonts.load("800 30px 'FL Mono'"),
+  ]).then(([linha]) => document.fonts.ready.then(() => REEL.init(linha, logo)));
+  window.frameAt = async (t) => { await REEL.prepara(t); REEL.draw(ctx, t); return cv.toDataURL('image/png'); };
+  window.caixas = async (t) => { await REEL.prepara(t); return REEL.draw(ctx, t); };
+  if (!location.search.includes('render')) {                    // prévia no navegador
+    window.ready.then(() => { const t0 = performance.now(); const loop = async () => { const t = ((performance.now() - t0) / 1000) % REEL.DURATION; await REEL.prepara(t); REEL.draw(ctx, t); requestAnimationFrame(loop); }; loop(); });
+  }
+</script></body></html>

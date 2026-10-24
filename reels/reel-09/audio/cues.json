@@ -1,0 +1,103 @@
+{
+ "duracao": 51,
+ "cues": [
+  {
+   "t": 2.01,
+   "type": "pop"
+  },
+  {
+   "t": 3.18,
+   "type": "pop"
+  },
+  {
+   "t": 4.51,
+   "type": "pop"
+  },
+  {
+   "t": 6.16,
+   "type": "impacto",
+   "forca": 0.6
+  },
+  {
+   "t": 6.8,
+   "type": "corte"
+  },
+  {
+   "t": 8.8,
+   "type": "whoosh"
+  },
+  {
+   "t": 9.72,
+   "type": "pop"
+  },
+  {
+   "t": 10.493,
+   "type": "pop"
+  },
+  {
+   "t": 11.48,
+   "type": "alerta"
+  },
+  {
+   "t": 13.3,
+   "type": "whoosh"
+  },
+  {
+   "t": 13.6,
+   "type": "pop"
+  },
+  {
+   "t": 15.75,
+   "type": "corte"
+  },
+  {
+   "t": 16.21,
+   "type": "pop"
+  },
+  {
+   "t": 17.36,
+   "type": "pop"
+  },
+  {
+   "t": 20.88,
+   "type": "whoosh"
+  },
+  {
+   "t": 22.58,
+   "type": "impacto",
+   "forca": 1
+  },
+  {
+   "t": 24,
+   "type": "corte"
+  },
+  {
+   "t": 42.6,
+   "type": "pop"
+  },
+  {
+   "t": 43.56,
+   "type": "risco"
+  },
+  {
+   "t": 43.92,
+   "type": "pop"
+  },
+  {
+   "t": 44.6,
+   "type": "risco"
+  },
+  {
+   "t": 47,
+   "type": "pop"
+  },
+  {
+   "t": 48,
+   "type": "whoosh"
+  },
+  {
+   "t": 48.42,
+   "type": "sino"
+  }
+ ]
+}
