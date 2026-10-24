@@ -27,6 +27,21 @@ A Clara é uma dona de pousada contando uma dor. Ela não é cliente e não cita
 
 Mudança em relação ao plano aprovado: o fim da colisão foi segurado até 24,0 s, para o chip vermelho ficar ~1,5 s na tela. Com isso, tudo depois andou +0,4 s, e a logo termina em 51,0 s.
 
+## Escala para o celular
+
+- **Card da Clara:** 702×1248 px, 65% da largura da tela, com borda limão e selo no topo. A legenda passa por cima da base do card, que tem um véu escuro para leitura.
+- **Caderno / WhatsApp (8,8–13,4 s):** cards de 470×448 px, cerca de 1,4× o tamanho anterior.
+- **Caos (13,6–24 s):**
+  - Os papéis estão 1,5× maiores, espalhados pelo quadro: balão em cima à esquerda, página no meio à direita, recado embaixo à esquerda.
+  - O texto dentro deles tem 54–60 px, e as etiquetas 33 px.
+  - As reservas que colidem medem 480×290 px.
+- **Cenas 5 e 6 (26–40 s):** a composição ocupa y 330–1240, com o centro em ~42% da altura, acima da legenda e dos 20% de baixo.
+  - O card da marca mede 900×880 px.
+  - A grade tem 4×3 células de 242×210 px, com contorno e preenchimento mais claros.
+  - O card de reserva encaixa numa vaga de 750×210 px.
+  - O texto dos chips "Chalé 3" e "14 a 16/11" tem 38 px de altura de letra, medidos no quadro.
+  - O carimbo "BLOQUEADO" está ~1,7× maior.
+
 ## Voz (configuração só deste Reel)
 
 - **model_id:** `eleven_v4`.
