@@ -4,231 +4,285 @@
  "modelo": "eleven_v4",
  "ajustes": {
   "stability": 0.5,
-  "similarity_boost": 0.8,
-  "style": 0.35,
-  "use_speaker_boost": true,
-  "speed": 1.0
+  "similarity_boost": 0.75
  },
  "blocos": {
   "2": {
    "texto": "Parece exagero? Pra quem anota tudo no caderno e no WhatsApp, acontece mais do que parece.",
+   "enviado": "Parece exagero? Pra quem anota tudo no caderno e no Uátsap, acontece mais do que parece.",
+   "modelo": "eleven_v4",
+   "ajustes": {
+    "stability": 0.5,
+    "similarity_boost": 0.75
+   },
    "seed": 920,
    "formato": "mp3_44100_128",
-   "duracao_audio": 6.32,
+   "duracao_audio": 6.4,
    "fala_ini": 0.0,
    "fala_fim": 6.16,
    "palavras": [
     {
      "w": "Parece",
      "t0": 0.0,
-     "t1": 0.4
+     "t1": 0.32,
+     "legenda": "Parece"
     },
     {
      "w": "exagero?",
-     "t0": 0.48,
-     "t1": 1.04
+     "t0": 0.4,
+     "t1": 1.04,
+     "legenda": "exagero?"
     },
     {
      "w": "Pra",
-     "t0": 1.52,
-     "t1": 1.6
+     "t0": 1.44,
+     "t1": 1.52,
+     "legenda": "Pra"
     },
     {
      "w": "quem",
-     "t0": 1.68,
-     "t1": 1.84
+     "t0": 1.6,
+     "t1": 1.76,
+     "legenda": "quem"
     },
     {
      "w": "anota",
-     "t0": 1.92,
-     "t1": 2.24
+     "t0": 1.84,
+     "t1": 2.16,
+     "legenda": "anota"
     },
     {
      "w": "tudo",
-     "t0": 2.4,
-     "t1": 2.64
-    },
-    {
-     "w": "no",
-     "t0": 2.72,
-     "t1": 2.8
-    },
-    {
-     "w": "caderno",
-     "t0": 2.92,
-     "t1": 3.28
-    },
-    {
-     "w": "e",
-     "t0": 3.307,
-     "t1": 3.333
-    },
-    {
-     "w": "no",
-     "t0": 3.36,
-     "t1": 3.4
-    },
-    {
-     "w": "WhatsApp,",
-     "t0": 3.44,
-     "t1": 4.08
-    },
-    {
-     "w": "acontece",
-     "t0": 4.4,
-     "t1": 4.96
-    },
-    {
-     "w": "mais",
-     "t0": 5.04,
-     "t1": 5.28
-    },
-    {
-     "w": "do",
-     "t0": 5.36,
-     "t1": 5.44
-    },
-    {
-     "w": "que",
-     "t0": 5.48,
-     "t1": 5.52
-    },
-    {
-     "w": "parece.",
-     "t0": 5.6,
-     "t1": 6.16
-    }
-   ],
-   "quando": "2026-10-24 02:03"
-  },
-  "3": {
-   "texto": "Reserva confirmada no WhatsApp, anotada no caderno, um recado num papel solto… e quando você vê, o mesmo chalé foi prometido duas vezes.",
-   "seed": 930,
-   "formato": "mp3_44100_128",
-   "duracao_audio": 10.0,
-   "fala_ini": 0.0,
-   "fala_fim": 9.84,
-   "palavras": [
-    {
-     "w": "Reserva",
-     "t0": 0.0,
-     "t1": 0.48
-    },
-    {
-     "w": "confirmada",
-     "t0": 0.68,
-     "t1": 1.04
-    },
-    {
-     "w": "no",
-     "t0": 1.08,
-     "t1": 1.12
-    },
-    {
-     "w": "WhatsApp,",
-     "t0": 1.2,
-     "t1": 1.84
-    },
-    {
-     "w": "anotada",
-     "t0": 2.16,
-     "t1": 2.56
+     "t0": 2.32,
+     "t1": 2.56,
+     "legenda": "tudo"
     },
     {
      "w": "no",
      "t0": 2.6,
-     "t1": 2.64
+     "t1": 2.64,
+     "legenda": "no"
+    },
+    {
+     "w": "caderno",
+     "t0": 2.72,
+     "t1": 3.2,
+     "legenda": "caderno"
+    },
+    {
+     "w": "e",
+     "t0": 3.24,
+     "t1": 3.28,
+     "legenda": "e"
+    },
+    {
+     "w": "no",
+     "t0": 3.36,
+     "t1": 3.44,
+     "legenda": "no"
+    },
+    {
+     "w": "Uátsap,",
+     "t0": 3.493,
+     "t1": 4.08,
+     "legenda": "WhatsApp,"
+    },
+    {
+     "w": "acontece",
+     "t0": 4.48,
+     "t1": 4.96,
+     "legenda": "acontece"
+    },
+    {
+     "w": "mais",
+     "t0": 5.12,
+     "t1": 5.36,
+     "legenda": "mais"
+    },
+    {
+     "w": "do",
+     "t0": 5.44,
+     "t1": 5.48,
+     "legenda": "do"
+    },
+    {
+     "w": "que",
+     "t0": 5.52,
+     "t1": 5.6,
+     "legenda": "que"
+    },
+    {
+     "w": "parece.",
+     "t0": 5.68,
+     "t1": 6.16,
+     "legenda": "parece."
+    }
+   ],
+   "quando": "2026-10-24 02:20"
+  },
+  "3": {
+   "texto": "Reserva confirmada no WhatsApp, anotada no caderno, um recado num papel solto… e quando você vê, o mesmo chalé foi prometido duas vezes.",
+   "enviado": "Reserva confirmada no Uátsap, anotada no caderno, um recado num papel solto… e quando você vê, o mesmo chalé foi prometido duas vezes.",
+   "modelo": "eleven_v4",
+   "ajustes": {
+    "stability": 0.5,
+    "similarity_boost": 0.75
+   },
+   "seed": 930,
+   "formato": "mp3_44100_128",
+   "duracao_audio": 9.84,
+   "fala_ini": 0.0,
+   "fala_fim": 9.68,
+   "palavras": [
+    {
+     "w": "Reserva",
+     "t0": 0.0,
+     "t1": 0.48,
+     "legenda": "Reserva"
+    },
+    {
+     "w": "confirmada",
+     "t0": 0.68,
+     "t1": 1.04,
+     "legenda": "confirmada"
+    },
+    {
+     "w": "no",
+     "t0": 1.12,
+     "t1": 1.2,
+     "legenda": "no"
+    },
+    {
+     "w": "Uátsap,",
+     "t0": 1.253,
+     "t1": 1.84,
+     "legenda": "WhatsApp,"
+    },
+    {
+     "w": "anotada",
+     "t0": 2.16,
+     "t1": 2.56,
+     "legenda": "anotada"
+    },
+    {
+     "w": "no",
+     "t0": 2.6,
+     "t1": 2.64,
+     "legenda": "no"
     },
     {
      "w": "caderno,",
-     "t0": 2.76,
-     "t1": 3.36
+     "t0": 2.72,
+     "t1": 3.36,
+     "legenda": "caderno,"
     },
     {
      "w": "um",
      "t0": 3.64,
-     "t1": 3.68
+     "t1": 3.68,
+     "legenda": "um"
     },
     {
      "w": "recado",
      "t0": 3.76,
-     "t1": 4.16
+     "t1": 4.16,
+     "legenda": "recado"
     },
     {
      "w": "num",
      "t0": 4.24,
-     "t1": 4.32
+     "t1": 4.32,
+     "legenda": "num"
     },
     {
      "w": "papel",
      "t0": 4.427,
-     "t1": 4.64
+     "t1": 4.64,
+     "legenda": "papel"
     },
     {
      "w": "solto…",
      "t0": 4.72,
-     "t1": 5.28
+     "t1": 5.28,
+     "legenda": "solto…"
     },
     {
      "w": "e",
      "t0": 5.84,
-     "t1": 5.92
+     "t1": 5.92,
+     "legenda": "e"
     },
     {
      "w": "quando",
-     "t0": 6.08,
-     "t1": 6.24
+     "t0": 5.96,
+     "t1": 6.16,
+     "legenda": "quando"
     },
     {
      "w": "você",
-     "t0": 6.32,
-     "t1": 6.56
+     "t0": 6.24,
+     "t1": 6.48,
+     "legenda": "você"
     },
     {
      "w": "vê,",
-     "t0": 6.64,
-     "t1": 6.88
+     "t0": 6.56,
+     "t1": 6.8,
+     "legenda": "vê,"
     },
     {
      "w": "o",
-     "t0": 7.2,
-     "t1": 7.28
+     "t0": 7.12,
+     "t1": 7.2,
+     "legenda": "o"
     },
     {
      "w": "mesmo",
-     "t0": 7.36,
-     "t1": 7.68
+     "t0": 7.28,
+     "t1": 7.6,
+     "legenda": "mesmo"
     },
     {
      "w": "chalé",
-     "t0": 7.76,
-     "t1": 8.08
+     "t0": 7.68,
+     "t1": 8.0,
+     "legenda": "chalé"
     },
     {
      "w": "foi",
-     "t0": 8.16,
-     "t1": 8.28
+     "t0": 8.08,
+     "t1": 8.16,
+     "legenda": "foi"
     },
     {
      "w": "prometido",
-     "t0": 8.32,
-     "t1": 8.8
+     "t0": 8.24,
+     "t1": 8.72,
+     "legenda": "prometido"
     },
     {
      "w": "duas",
-     "t0": 8.96,
-     "t1": 9.28
+     "t0": 8.8,
+     "t1": 9.12,
+     "legenda": "duas"
     },
     {
      "w": "vezes.",
-     "t0": 9.36,
-     "t1": 9.84
+     "t0": 9.2,
+     "t1": 9.68,
+     "legenda": "vezes."
     }
    ],
-   "quando": "2026-10-24 02:03"
+   "quando": "2026-10-24 02:20"
   },
   "5": {
    "texto": "No Fazlo Hospéda, toda reserva fica num lugar só. Você lança a reserva e ela aparece no calendário, com o chalé e as datas. E se alguém tentar reservar o mesmo chalé nas mesmas datas, o sistema bloqueia na hora.",
+   "enviado": "No Fazlo Hospéda, toda reserva fica num lugar só. Você lança a reserva e ela aparece no calendário, com o chalé e as datas. E se alguém tentar reservar o mesmo chalé nas mesmas datas, o sistema bloqueia na hora.",
+   "modelo": "eleven_v4",
+   "ajustes": {
+    "stability": 0.5,
+    "similarity_boost": 0.75
+   },
    "seed": 950,
    "formato": "mp3_44100_128",
    "duracao_audio": 14.0,
@@ -238,208 +292,254 @@
     {
      "w": "No",
      "t0": 0.0,
-     "t1": 0.16
+     "t1": 0.16,
+     "legenda": "No"
     },
     {
      "w": "Fazlo",
      "t0": 0.24,
-     "t1": 0.56
+     "t1": 0.56,
+     "legenda": "Fazlo"
     },
     {
      "w": "Hospéda,",
      "t0": 0.667,
-     "t1": 1.12
+     "t1": 1.12,
+     "legenda": "Hospéda,"
     },
     {
      "w": "toda",
      "t0": 1.36,
-     "t1": 1.52
+     "t1": 1.52,
+     "legenda": "toda"
     },
     {
      "w": "reserva",
      "t0": 1.6,
-     "t1": 2.16
+     "t1": 2.16,
+     "legenda": "reserva"
     },
     {
      "w": "fica",
      "t0": 2.2,
-     "t1": 2.4
+     "t1": 2.4,
+     "legenda": "fica"
     },
     {
      "w": "num",
      "t0": 2.48,
-     "t1": 2.56
+     "t1": 2.56,
+     "legenda": "num"
     },
     {
      "w": "lugar",
      "t0": 2.667,
-     "t1": 2.88
+     "t1": 2.88,
+     "legenda": "lugar"
     },
     {
      "w": "só.",
      "t0": 2.96,
-     "t1": 3.2
+     "t1": 3.2,
+     "legenda": "só."
     },
     {
      "w": "Você",
      "t0": 3.68,
-     "t1": 3.92
+     "t1": 3.92,
+     "legenda": "Você"
     },
     {
      "w": "lança",
      "t0": 4.0,
-     "t1": 4.24
+     "t1": 4.24,
+     "legenda": "lança"
     },
     {
      "w": "a",
      "t0": 4.28,
-     "t1": 4.32
+     "t1": 4.32,
+     "legenda": "a"
     },
     {
      "w": "reserva",
      "t0": 4.4,
-     "t1": 4.88
+     "t1": 4.88,
+     "legenda": "reserva"
     },
     {
      "w": "e",
      "t0": 4.96,
-     "t1": 5.04
+     "t1": 5.04,
+     "legenda": "e"
     },
     {
      "w": "ela",
      "t0": 5.12,
-     "t1": 5.2
+     "t1": 5.2,
+     "legenda": "ela"
     },
     {
      "w": "aparece",
      "t0": 5.28,
-     "t1": 5.6
+     "t1": 5.6,
+     "legenda": "aparece"
     },
     {
      "w": "no",
      "t0": 5.68,
-     "t1": 5.76
+     "t1": 5.76,
+     "legenda": "no"
     },
     {
      "w": "calendário,",
      "t0": 5.84,
-     "t1": 6.4
+     "t1": 6.4,
+     "legenda": "calendário,"
     },
     {
      "w": "com",
      "t0": 6.64,
-     "t1": 6.72
+     "t1": 6.72,
+     "legenda": "com"
     },
     {
      "w": "o",
      "t0": 6.747,
-     "t1": 6.773
+     "t1": 6.773,
+     "legenda": "o"
     },
     {
      "w": "chalé",
      "t0": 6.8,
-     "t1": 7.28
+     "t1": 7.28,
+     "legenda": "chalé"
     },
     {
      "w": "e",
      "t0": 7.36,
-     "t1": 7.44
+     "t1": 7.44,
+     "legenda": "e"
     },
     {
      "w": "as",
      "t0": 7.52,
-     "t1": 7.6
+     "t1": 7.6,
+     "legenda": "as"
     },
     {
      "w": "datas.",
      "t0": 7.68,
-     "t1": 8.16
+     "t1": 8.16,
+     "legenda": "datas."
     },
     {
      "w": "E",
      "t0": 8.56,
-     "t1": 8.64
+     "t1": 8.64,
+     "legenda": "E"
     },
     {
      "w": "se",
      "t0": 8.68,
-     "t1": 8.72
+     "t1": 8.72,
+     "legenda": "se"
     },
     {
      "w": "alguém",
      "t0": 8.76,
-     "t1": 8.96
+     "t1": 8.96,
+     "legenda": "alguém"
     },
     {
      "w": "tentar",
      "t0": 9.08,
-     "t1": 9.28
+     "t1": 9.28,
+     "legenda": "tentar"
     },
     {
      "w": "reservar",
      "t0": 9.36,
-     "t1": 9.76
+     "t1": 9.76,
+     "legenda": "reservar"
     },
     {
      "w": "o",
      "t0": 9.84,
-     "t1": 10.0
+     "t1": 10.0,
+     "legenda": "o"
     },
     {
      "w": "mesmo",
      "t0": 10.12,
-     "t1": 10.32
+     "t1": 10.32,
+     "legenda": "mesmo"
     },
     {
      "w": "chalé",
      "t0": 10.4,
-     "t1": 10.72
+     "t1": 10.72,
+     "legenda": "chalé"
     },
     {
      "w": "nas",
      "t0": 10.8,
-     "t1": 11.04
+     "t1": 11.04,
+     "legenda": "nas"
     },
     {
      "w": "mesmas",
      "t0": 11.16,
-     "t1": 11.44
+     "t1": 11.44,
+     "legenda": "mesmas"
     },
     {
      "w": "datas,",
      "t0": 11.52,
-     "t1": 12.0
+     "t1": 12.0,
+     "legenda": "datas,"
     },
     {
      "w": "o",
      "t0": 12.2,
-     "t1": 12.24
+     "t1": 12.24,
+     "legenda": "o"
     },
     {
      "w": "sistema",
      "t0": 12.28,
-     "t1": 12.64
+     "t1": 12.64,
+     "legenda": "sistema"
     },
     {
      "w": "bloqueia",
      "t0": 12.76,
-     "t1": 13.12
+     "t1": 13.12,
+     "legenda": "bloqueia"
     },
     {
      "w": "na",
      "t0": 13.2,
-     "t1": 13.36
+     "t1": 13.36,
+     "legenda": "na"
     },
     {
      "w": "hora.",
      "t0": 13.44,
-     "t1": 13.76
+     "t1": 13.76,
+     "legenda": "hora."
     }
    ],
-   "quando": "2026-10-24 02:03"
+   "quando": "2026-10-24 02:20"
   },
   "7": {
    "texto": "Menos caderno, menos susto. Conheça o Fazlo Hospéda: link na bio.",
+   "enviado": "Menos caderno, menos susto. Conheça o Fazlo Hospéda: link na bio.",
+   "modelo": "eleven_v4",
+   "ajustes": {
+    "stability": 0.5,
+    "similarity_boost": 0.75
+   },
    "seed": 970,
    "formato": "mp3_44100_128",
    "duracao_audio": 5.2,
@@ -449,60 +549,71 @@
     {
      "w": "Menos",
      "t0": 0.0,
-     "t1": 0.32
+     "t1": 0.32,
+     "legenda": "Menos"
     },
     {
      "w": "caderno,",
      "t0": 0.4,
-     "t1": 0.96
+     "t1": 0.96,
+     "legenda": "caderno,"
     },
     {
      "w": "menos",
      "t0": 1.32,
-     "t1": 1.52
+     "t1": 1.52,
+     "legenda": "menos"
     },
     {
      "w": "susto.",
      "t0": 1.6,
-     "t1": 2.0
+     "t1": 2.0,
+     "legenda": "susto."
     },
     {
      "w": "Conheça",
      "t0": 2.52,
-     "t1": 2.88
+     "t1": 2.88,
+     "legenda": "Conheça"
     },
     {
      "w": "o",
      "t0": 2.96,
-     "t1": 3.04
+     "t1": 3.04,
+     "legenda": "o"
     },
     {
      "w": "Fazlo",
      "t0": 3.08,
-     "t1": 3.44
+     "t1": 3.44,
+     "legenda": "Fazlo"
     },
     {
      "w": "Hospéda:",
      "t0": 3.48,
-     "t1": 4.0
+     "t1": 4.0,
+     "legenda": "Hospéda:"
     },
     {
      "w": "link",
      "t0": 4.4,
-     "t1": 4.56
+     "t1": 4.56,
+     "legenda": "link"
     },
     {
      "w": "na",
      "t0": 4.64,
-     "t1": 4.8
+     "t1": 4.8,
+     "legenda": "na"
     },
     {
      "w": "bio.",
      "t0": 4.92,
-     "t1": 5.04
+     "t1": 5.04,
+     "legenda": "bio."
     }
    ],
-   "quando": "2026-10-24 02:03"
+   "quando": "2026-10-24 02:20"
   }
  }
 }

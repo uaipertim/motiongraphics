@@ -7,7 +7,7 @@ Configuração de voz SÓ deste Reel (não importa nem altera a narração das s
     python3 scripts/voz.py --refaz 2,5  -> refaz esses blocos (semente seguinte)
 
 Cada bloco vai como frase completa, numa chamada própria, para manter a entonação das perguntas. A pronúncia da marca
-vai escrita como deve soar: "Fazlo Hospéda" (nunca "Hóspeda"). A chave da API não fica no repositório: nesta nuvem a rede
+vai escrita como deve soar: "Fazlo Hospéda" (nunca "Hóspeda"); "WhatsApp" vai como "Uátsap" só no texto enviado (GRAFIA). A chave da API não fica no repositório: nesta nuvem a rede
 põe o cabeçalho xi-api-key (Segredos de rede); fora dela, defina ELEVENLABS_API_KEY no ambiente.
 """
 import base64
@@ -26,7 +26,9 @@ OUT = os.path.join(ROOT, 'audio', 'voz')
 API = 'https://api.elevenlabs.io/v1/text-to-speech/{voice}/with-timestamps?output_format={fmt}'
 VOICE = 'GDzHdQOi6jjf8zaXhCYD'                      # Raquel - For Conversational
 MODEL = 'eleven_v4'                                  # o mais expressivo disponível na API (nunca Flash nem Turbo)
-SETTINGS = {'stability': 0.5, 'similarity_boost': 0.80, 'style': 0.35, 'use_speaker_boost': True, 'speed': 1.0}
+SETTINGS = {'stability': 0.50, 'similarity_boost': 0.75}     # versão C do teste A/B: style, speaker boost e speed no padrão (não enviados)
+# grafia enviada à API para a pronúncia (a legenda usa o texto do roteiro): "WhatsApp" -> "Uátsap"
+GRAFIA = {'WhatsApp': 'Uátsap'}
 SR = 44100
 BLOCOS = json.load(open(os.path.join(ROOT, 'roteiro.json')))['narracao']
 
@@ -57,6 +59,12 @@ def tts(text, seed):
     raise SystemExit('nenhum formato de áudio aceito pela API')
 
 
+def grafia(s):
+    for a, b in GRAFIA.items():
+        s = s.replace(a, b)
+    return s
+
+
 def palavras(al):
     """tempo de cada palavra (início, fim da última letra) a partir do alinhamento por caractere"""
     out, cur = [], None
@@ -85,13 +93,18 @@ def main():
     for b in BLOCOS:
         k = str(b['bloco'])
         atual = D['blocos'].get(k)
-        if atual and atual['texto'] == b['texto'] and b['bloco'] not in refaz and os.path.exists(os.path.join(OUT, f'bloco-{k}.wav')):
+        enviado = grafia(b['texto'])
+        if (atual and atual['texto'] == b['texto'] and atual.get('enviado') == enviado and atual.get('ajustes') == SETTINGS
+                and atual.get('modelo') == MODEL and b['bloco'] not in refaz and os.path.exists(os.path.join(OUT, f'bloco-{k}.wav'))):
             continue
         seed = (atual['seed'] + 1) if atual and b['bloco'] in refaz else b.get('seed', 900 + 10 * b['bloco'])
-        x, al, fmt = tts(b['texto'], seed)
+        x, al, fmt = tts(enviado, seed)
         wavfile.write(os.path.join(OUT, f'bloco-{k}.wav'), SR, np.round(np.clip(x, -1, 1) * 32767).astype(np.int16))
         ws = palavras(al)
-        D['blocos'][k] = {'texto': b['texto'], 'seed': seed, 'formato': fmt, 'duracao_audio': round(len(x) / SR, 3),
+        leg = b['texto'].split()                         # a legenda é o texto do roteiro, palavra a palavra
+        assert len(leg) == len(ws), f'bloco {k}: {len(leg)} palavras no roteiro, {len(ws)} no alinhamento'
+        ws = [{**w, 'legenda': l} for w, l in zip(ws, leg)]
+        D['blocos'][k] = {'texto': b['texto'], 'enviado': enviado, 'modelo': MODEL, 'ajustes': SETTINGS, 'seed': seed, 'formato': fmt, 'duracao_audio': round(len(x) / SR, 3),
                           'fala_ini': ws[0]['t0'], 'fala_fim': ws[-1]['t1'], 'palavras': ws,
                           'quando': time.strftime('%Y-%m-%d %H:%M')}
         print(f'  bloco {k}: seed {seed} · {fmt} · áudio {len(x) / SR:.2f} s · fala {ws[0]["t0"]:.2f}–{ws[-1]["t1"]:.2f} s')
