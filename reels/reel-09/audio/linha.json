@@ -654,15 +654,9 @@
    "arquivo": "clara-reacao-aliviada.mp4",
    "de": 1.2,
    "ate": 3.4,
-   "t": 40.2,
-   "pendente": true
+   "t": 40.2
   }
  ],
- "pendente": {
-  "de": 26.0,
-  "ate": 42.6,
-  "motivo": "cenas 5 e 6: aguardando os prints reais do Hospeda (reserva, calendário semanal e bloqueio da duplicada)"
- },
  "logo": {
   "t0": 48.0,
   "t1": 51.0

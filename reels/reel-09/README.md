@@ -6,11 +6,7 @@ A Clara é uma dona de pousada contando uma dor. Ela não é cliente e não cita
 
 **Isolamento:** tudo deste Reel fica nesta pasta: roteiro, voz, animação, legenda, trilha e render. Nada importa nem altera o código das séries ou dos outros Reels. As fontes, a logo e os clipes são cópias.
 
-> **Estado:** as cenas 1–4, 7 e 8 estão prontas. As **cenas 5 e 6** (interface real do Hospeda e corte aliviado, 26,0–42,6 s) estão com um marcador ("aguardando os prints"), à espera dos prints reais:
-> - a reserva preenchida;
-> - "Reserva Criada!" com a acomodação;
-> - o calendário semanal com a reserva;
-> - a mensagem de bloqueio da reserva duplicada.
+> **Sem telas do sistema.** Este Reel não usa nenhuma captura do Hospeda: as do repositório são da V1, e a V2 sai em breve. As cenas 5 e 6 são motion conceitual na identidade da marca: card limpo com a logo, grade de calendário abstrata e cards de reserva só com os chips do chalé e das datas. Nada imita o layout do sistema. Não há nomes de hóspedes, valores nem outros números nessas cenas.
 
 ## Timeline (ajustada aos áudios reais)
 
@@ -22,7 +18,10 @@ A Clara é uma dona de pousada contando uma dor. Ela não é cliente e não cita
 | 13,60–24,00 | Bloco 3 (13,60–23,28) | Caos organizado: balão (13,6), página do caderno (15,9), recado em papel solto (17,2). Em "o mesmo chalé", duas reservas entram dos lados e colidem em "duas vezes" (22,6), com o chip "MESMO CHALÉ · MESMAS DATAS" |
 | 15,75–16,75 | (sobre "anotada no caderno") | Corte extra: reação cansada (2,5–3,5 s, ela lendo o caderno), num card menor |
 | 24,00–26,00 | Sem narração | Corte: reação pensativa (2,5–4,5 s) |
-| 26,0–42,6 | Bloco 5 (26,20–39,96) | **Pendente:** o card da Clara vira celular e mostra a interface real (lançamento → calendário → bloqueio da duplicada). Depois, o corte da reação aliviada (40,2–42,4; clipe 1,2–3,4 s) |
+| 26,0–29,9 | "No FAZLO Hospeda, toda reserva fica num lugar só." | O card da Clara encolhe e vira um card limpo com a logo. O balão, a página do caderno e o recado da cena 3 são sugados para dentro e viram três linhas organizadas (WhatsApp, Caderno, Recado), cada uma com um check limão em "só" |
+| 29,9–34,6 | "Você lança a reserva e ela aparece no calendário, com o chalé e as datas." | O card da marca sobe e vira um topo compacto. Nasce o card de reserva (chips "Chalé 3" e "14 a 16/11") e a grade abstrata se monta (5×4 células, sem números). O card encaixa na vaga tracejada em "calendário", e os chips pulsam em "chalé" e em "datas" |
+| 34,6–40,2 | "E se alguém tentar reservar o mesmo chalé nas mesmas datas, o sistema bloqueia na hora." | Um segundo card igual paira sobre a mesma vaga, desce, bate (estouro, tremida, borda vermelha) e volta. Em "bloqueia", entra o carimbo vermelho "BLOQUEADO" com cadeado. O primeiro card fica firme no lugar, com brilho limão |
+| 40,2–42,6 | Sem narração | Corte: reação aliviada (clipe 1,2–3,4 s); o card encolhe ao sair |
 | 42,60–48,00 | "Menos caderno, menos susto. Conheça o FAZLO Hospeda: link na bio." (até 47,64) | "− caderno" e "− susto" riscados em limão. "Conheça o FAZLO Hospeda" e o chip "link na bio" |
 | 48,00–51,00 | Fim da trilha + sineta | Logo do FAZLO Hospeda, só depois da última palavra |
 
@@ -45,7 +44,7 @@ Mudança em relação ao plano aprovado: o fim da colisão foi segurado até 24,
 - **Volume:** a fala da Clara e cada narração são igualadas em −16 LUFS antes da mixagem. Na mix final, os trechos de voz ficam todos a ±0,3 dB uns dos outros.
 - **Clipes de reação:** entram mudos.
 - **Trilha:** colchão sintetizado (Am9 → Fmaj9 → Cmaj9 → G6/9, 84 BPM), 20 dB abaixo das vozes. Abaixa mais 8 dB enquanto alguém fala.
-- **Efeitos curtos nos eventos:** pop, corte, whoosh, impacto na colisão, risco da caneta e sineta na logo.
+- **Efeitos curtos nos eventos:** pop, corte, whoosh, impacto nas colisões, puxada dos papéis, encaixe da reserva, carimbo do bloqueio, risco da caneta e sineta na logo.
 - **Mix final:** −14 LUFS, pico ≤ −1,5 dBTP.
 
 ## Legenda
@@ -60,7 +59,7 @@ Mudança em relação ao plano aprovado: o fim da colisão foi segurado até 24,
 
 ## Arquivos
 
-- `roteiro.json`: textos, tempos de cada bloco e corte, destaques e o texto do "caos" (chalé, datas, hóspedes fictícios).
+- `roteiro.json`: textos, tempos de cada bloco e corte, destaques e o texto do "caos". O chalé e as datas ("Chalé 3", "14 a 16/11") também aparecem nos cards das cenas 5 e 6. Os hóspedes (Ana e Rui, fictícios) aparecem só na cena 3.
 - `scripts/voz.py`: narração (ElevenLabs, with-timestamps) → `audio/voz/`.
 - `scripts/linha.py`: palavras no tempo do vídeo → `audio/linha.json`.
 - `scripts/quadros.sh`: quadros dos clipes → `src/quadros/` (fora do git; saem dos MP4 em `src/clips/`).

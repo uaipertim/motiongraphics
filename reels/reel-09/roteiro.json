@@ -3,35 +3,95 @@
  "marca": "@fazlohospeda",
  "duracao": 51.0,
  "clara": {
-  "arquivo": "clara-fala.mp4", "de": 0.2, "ate": 7.0, "t": 0.0,
+  "arquivo": "clara-fala.mp4",
+  "de": 0.2,
+  "ate": 7.0,
+  "t": 0.0,
   "texto": "Eu controlava as reservas da pousada num caderno. Até o dia em que dois hóspedes chegaram pro mesmo chalé.",
   "destaque": ["caderno.", "dois hóspedes", "mesmo chalé."],
   "palavras_nota": "tempos no clipe (s): pausas reais da fala medidas pela energia (0,24–1,61 · 1,69–2,76 · 3,38–4,35 · 4,44–5,26 · 5,34–5,97 · 6,04–6,88) e, dentro de cada trecho, divididos pelas sílabas",
   "palavras": [
-   ["Eu", 0.24, 0.39], ["controlava", 0.39, 0.99], ["as", 0.99, 1.14], ["reservas", 1.14, 1.61],
-   ["da", 1.69, 1.82], ["pousada", 1.82, 2.22], ["num", 2.22, 2.36], ["caderno.", 2.36, 2.76],
-   ["Até", 3.38, 3.77], ["o", 3.77, 3.96], ["dia", 3.96, 4.35],
-   ["em", 4.44, 4.58], ["que", 4.58, 4.71], ["dois", 4.71, 4.85], ["hóspedes", 4.85, 5.26],
-   ["chegaram", 5.34, 5.81], ["pro", 5.81, 5.97], ["mesmo", 6.04, 6.46], ["chalé.", 6.46, 6.88]
+   ["Eu", 0.24, 0.39],
+   ["controlava", 0.39, 0.99],
+   ["as", 0.99, 1.14],
+   ["reservas", 1.14, 1.61],
+   ["da", 1.69, 1.82],
+   ["pousada", 1.82, 2.22],
+   ["num", 2.22, 2.36],
+   ["caderno.", 2.36, 2.76],
+   ["Até", 3.38, 3.77],
+   ["o", 3.77, 3.96],
+   ["dia", 3.96, 4.35],
+   ["em", 4.44, 4.58],
+   ["que", 4.58, 4.71],
+   ["dois", 4.71, 4.85],
+   ["hóspedes", 4.85, 5.26],
+   ["chegaram", 5.34, 5.81],
+   ["pro", 5.81, 5.97],
+   ["mesmo", 6.04, 6.46],
+   ["chalé.", 6.46, 6.88]
   ]
  },
  "narracao": [
-  {"bloco": 2, "t": 7.0, "destaque": ["exagero?", "caderno", "WhatsApp,"],
-   "texto": "Parece exagero? Pra quem anota tudo no caderno e no WhatsApp, acontece mais do que parece."},
-  {"bloco": 3, "t": 13.6, "destaque": ["WhatsApp,", "caderno,", "papel solto…", "mesmo chalé", "duas vezes."],
-   "texto": "Reserva confirmada no WhatsApp, anotada no caderno, um recado num papel solto… e quando você vê, o mesmo chalé foi prometido duas vezes."},
-  {"bloco": 5, "t": 26.2, "destaque": ["Fazlo Hospéda,", "num lugar só.", "calendário,", "bloqueia na hora."],
-   "texto": "No Fazlo Hospéda, toda reserva fica num lugar só. Você lança a reserva e ela aparece no calendário, com o chalé e as datas. E se alguém tentar reservar o mesmo chalé nas mesmas datas, o sistema bloqueia na hora."},
-  {"bloco": 7, "t": 42.6, "destaque": ["menos susto.", "Fazlo Hospéda:", "link na bio."],
-   "texto": "Menos caderno, menos susto. Conheça o Fazlo Hospéda: link na bio."}
+  {
+   "bloco": 2,
+   "t": 7.0,
+   "destaque": ["exagero?", "caderno", "WhatsApp,"],
+   "texto": "Parece exagero? Pra quem anota tudo no caderno e no WhatsApp, acontece mais do que parece."
+  },
+  {
+   "bloco": 3,
+   "t": 13.6,
+   "destaque": ["WhatsApp,", "caderno,", "papel solto…", "mesmo chalé", "duas vezes."],
+   "texto": "Reserva confirmada no WhatsApp, anotada no caderno, um recado num papel solto… e quando você vê, o mesmo chalé foi prometido duas vezes."
+  },
+  {
+   "bloco": 5,
+   "t": 26.2,
+   "destaque": ["Fazlo Hospéda,", "num lugar só.", "calendário,", "bloqueia na hora."],
+   "texto": "No Fazlo Hospéda, toda reserva fica num lugar só. Você lança a reserva e ela aparece no calendário, com o chalé e as datas. E se alguém tentar reservar o mesmo chalé nas mesmas datas, o sistema bloqueia na hora."
+  },
+  {
+   "bloco": 7,
+   "t": 42.6,
+   "destaque": ["menos susto.", "Fazlo Hospéda:", "link na bio."],
+   "texto": "Menos caderno, menos susto. Conheça o Fazlo Hospéda: link na bio."
+  }
  ],
  "cortes": [
-  {"id": "cansada", "arquivo": "clara-reacao-cansada.mp4", "de": 5.9, "ate": 7.9, "t": 6.8},
-  {"id": "cansada-extra", "arquivo": "clara-reacao-cansada.mp4", "de": 2.5, "ate": 3.5, "t": 15.75},
-  {"id": "pensativa", "arquivo": "clara-reacao-pensativa.mp4", "de": 2.5, "ate": 4.5, "t": 24.0},
-  {"id": "aliviada", "arquivo": "clara-reacao-aliviada.mp4", "de": 1.2, "ate": 3.4, "t": 40.2, "pendente": true}
+  {
+   "id": "cansada",
+   "arquivo": "clara-reacao-cansada.mp4",
+   "de": 5.9,
+   "ate": 7.9,
+   "t": 6.8
+  },
+  {
+   "id": "cansada-extra",
+   "arquivo": "clara-reacao-cansada.mp4",
+   "de": 2.5,
+   "ate": 3.5,
+   "t": 15.75
+  },
+  {
+   "id": "pensativa",
+   "arquivo": "clara-reacao-pensativa.mp4",
+   "de": 2.5,
+   "ate": 4.5,
+   "t": 24.0
+  },
+  {
+   "id": "aliviada",
+   "arquivo": "clara-reacao-aliviada.mp4",
+   "de": 1.2,
+   "ate": 3.4,
+   "t": 40.2
+  }
  ],
- "pendente": {"de": 26.0, "ate": 42.6, "motivo": "cenas 5 e 6: aguardando os prints reais do Hospeda (reserva, calendário semanal e bloqueio da duplicada)"},
  "logo": {"t0": 48.0, "t1": 51.0},
- "caos": {"chale": "Chalé 3", "datas": "14 a 16/11", "hospedes": ["Ana", "Rui"]}
+ "caos": {
+  "chale": "Chalé 3",
+  "datas": "14 a 16/11",
+  "hospedes": ["Ana", "Rui"]
+ }
 }

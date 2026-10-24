@@ -52,7 +52,7 @@ def main():
     for b in blocos:
         for w in b['palavras']:
             w['w'] = escrita(w['w'])
-    out = {'duracao': R['duracao'], 'blocos': blocos, 'cortes': R['cortes'], 'pendente': R.get('pendente'), 'logo': R['logo'],
+    out = {'duracao': R['duracao'], 'blocos': blocos, 'cortes': R['cortes'], 'logo': R['logo'],
            'clara': {k: c[k] for k in ('arquivo', 'de', 'ate', 't')}, 'caos': R['caos'], 'marca': R['marca']}
     os.makedirs(os.path.join(ROOT, 'audio'), exist_ok=True)
     json.dump(out, open(os.path.join(ROOT, 'audio', 'linha.json'), 'w'), ensure_ascii=False, indent=1)

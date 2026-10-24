@@ -160,6 +160,20 @@ def fx(tipo, forca=1.0):
         d = 2.5; tt = np.arange(n(d)) / SR
         s = sum(a * np.sin(2 * np.pi * 1318 * r * tt) * np.exp(-tt / dd) for a, r, dd in ((1, 1, 0.9), (0.5, 2.76, 0.4), (0.3, 5.4, 0.2), (0.2, 0.5, 1.2)))
         return 0.32 * s * env(n(d), 0.002, 10)
+    if tipo == 'suga':                                          # puxada curta, de grave para agudo
+        d = 0.35; x = rng.standard_normal(n(d)); tt = np.arange(n(d)) / SR
+        y = np.zeros_like(x)
+        for a in range(0, len(x), 2400):
+            f = 2500 - 1900 * (a / len(x)); y[a:a + 2400] = bp(x[a:a + 2400], f * 0.7, f * 1.4)
+        return 0.35 * y * (tt / d) ** 1.5
+    if tipo == 'encaixe':                                       # clique duplo de peça que encaixa
+        d = 0.18; tt = np.arange(n(d)) / SR
+        k = lambda f, t0: np.where(tt >= t0, np.sin(2 * np.pi * f * (tt - t0)) * np.exp(-(tt - t0) / 0.018), 0)
+        return 0.5 * (k(1400, 0) + 0.8 * k(2100, 0.05))
+    if tipo == 'carimbo':                                       # carimbo: batida seca + estalo
+        d = 0.4; tt = np.arange(n(d)) / SR
+        corpo = np.sin(2 * np.pi * (140 * np.exp(-tt * 18) + 70) * tt) * env(n(d), 0.001, 0.07)
+        return 0.8 * corpo + 0.3 * lp(rng.standard_normal(n(d)), 4000) * env(n(d), 0.001, 0.02)
     raise ValueError(tipo)
 
 

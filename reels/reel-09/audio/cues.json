@@ -72,6 +72,63 @@
    "type": "corte"
   },
   {
+   "t": 26,
+   "type": "whoosh"
+  },
+  {
+   "t": 27.56,
+   "type": "suga"
+  },
+  {
+   "t": 27.78,
+   "type": "suga"
+  },
+  {
+   "t": 28,
+   "type": "suga"
+  },
+  {
+   "t": 29.16,
+   "type": "pop"
+  },
+  {
+   "t": 29.28,
+   "type": "pop"
+  },
+  {
+   "t": 29.4,
+   "type": "pop"
+  },
+  {
+   "t": 29.88,
+   "type": "whoosh"
+  },
+  {
+   "t": 29.93,
+   "type": "pop"
+  },
+  {
+   "t": 32.39,
+   "type": "encaixe"
+  },
+  {
+   "t": 34.96,
+   "type": "pop"
+  },
+  {
+   "t": 38.43,
+   "type": "impacto",
+   "forca": 0.8
+  },
+  {
+   "t": 38.96,
+   "type": "carimbo"
+  },
+  {
+   "t": 40.2,
+   "type": "corte"
+  },
+  {
    "t": 42.6,
    "type": "pop"
   },

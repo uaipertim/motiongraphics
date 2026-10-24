@@ -81,7 +81,7 @@
       m2fim: LN.blocos.find((b) => b.id === 'bloco-3').t - 0.3,
       balao: palavra('bloco-3', 'Reserva'), pagina: palavra('bloco-3', 'anotada') + 0.1, recado: palavra('bloco-3', 'recado'),
       quando: palavra('bloco-3', 'quando'), mesmo: palavra('bloco-3', 'mesmo'), choque: palavra('bloco-3', 'duas'),
-      pendente: LN.pendente,
+      aliviada: corte('aliviada'),
       menos1: palavra('bloco-7', 'Menos'), risco1: fimPalavra('bloco-7', 'caderno'), menos2: palavra('bloco-7', 'menos'),
       risco2: fimPalavra('bloco-7', 'susto'), conheca: palavra('bloco-7', 'Conheça'), marca7: palavra('bloco-7', 'FAZLO'),
       link: palavra('bloco-7', 'link'), logo: LN.logo,
@@ -90,12 +90,21 @@
     T.extraFim = T.extra.t + (T.extra.ate - T.extra.de);
     T.pensativaFim = T.pensativa.t + (T.pensativa.ate - T.pensativa.de);
     T.s3fim = T.pensativa.t;
+    const b5 = (w, n = 1) => palavra('bloco-5', w, n);
+    Object.assign(T, {
+      s5: T.pensativaFim, logo5: b5('FAZLO'), suga: b5('toda'), so: b5('só'), lanca: b5('Você'), cal: b5('aparece'), encaixe: b5('calendário'),
+      chale5: b5('chalé'), datas5: b5('datas'), alguem: b5('alguém'), mesmo5: b5('mesmo'), mesmas: b5('mesmas'),
+      bate: b5('sistema') - 0.05, bloqueia: b5('bloqueia'),
+    });
     // os eventos de som (scripts/audio.py lê de audio/cues.json)
     cue(T.caderno1, 'pop'); cue(T.chale1, 'pop'); cue(T.hospedes1, 'pop'); cue(T.colisao1 + 0.32, 'impacto', { forca: 0.6 });
     cue(T.cansada.t, 'corte'); cue(T.cansadaFim, 'whoosh');
     cue(T.m2caderno, 'pop'); cue(T.m2whats, 'pop'); cue(T.m2acontece, 'alerta');
     cue(T.m2fim, 'whoosh'); cue(T.balao, 'pop'); cue(T.extra.t, 'corte'); cue(T.pagina + 0.35, 'pop'); cue(T.recado, 'pop');
     cue(T.mesmo, 'whoosh'); cue(T.choque + 0.18, 'impacto', { forca: 1 }); cue(T.pensativa.t, 'corte');
+    cue(T.s5, 'whoosh'); [0, 1, 2].forEach((i) => cue(T.suga + i * 0.22, 'suga')); [0, 1, 2].forEach((i) => cue(T.so + i * 0.12, 'pop'));
+    cue(T.lanca, 'whoosh'); cue(T.lanca + 0.05, 'pop'); cue(T.encaixe + 0.35, 'encaixe');
+    cue(T.alguem, 'pop'); cue(T.bate, 'impacto', { forca: 0.8 }); cue(T.bloqueia, 'carimbo'); cue(T.aliviada.t, 'corte');
     cue(T.menos1, 'pop'); cue(T.risco1, 'risco'); cue(T.menos2, 'pop'); cue(T.risco2, 'risco'); cue(T.link, 'pop');
     cue(T.logo.t0, 'whoosh'); cue(T.logo.t0 + 0.42, 'sino');
   }
@@ -109,9 +118,8 @@
     const cl = LN.clara;
     if (t < T.cansada.t) out.push(nomeQ(cl.arquivo, cl.de + clamp(t - cl.t, 0, cl.ate - cl.de - 0.01)));
     for (const c of LN.cortes) {
-      if (c.pendente) continue;
       const d = c.ate - c.de;
-      if (t >= c.t - 0.02 && t < c.t + d + 0.5) out.push(nomeQ(c.arquivo, c.de + clamp(t - c.t, 0, d - 0.01)));
+      if (t >= c.t - 0.02 && t < c.t + d + 0.7) out.push(nomeQ(c.arquivo, c.de + clamp(t - c.t, 0, d - 0.01)));
     }
     return out;
   }
@@ -168,7 +176,7 @@
     const g = ctx.createLinearGradient(0, y, 0, y + h); g.addColorStop(0, o.top || '#1B1F18'); g.addColorStop(1, o.bot || '#111310');
     ctx.fillStyle = g; ctx.fill(); ctx.shadowColor = 'transparent';
     ctx.lineWidth = o.lw ?? 2.5; ctx.strokeStyle = o.stroke || css(C.lime, 0.55); ctx.stroke();
-    if (o.glow) { ctx.shadowColor = o.glowColor || o.stroke; ctx.shadowBlur = o.glow; ctx.stroke(); }
+    if (o.glow) { ctx.shadowColor = o.glowColor || o.stroke; ctx.shadowBlur = o.glow; ctx.shadowOffsetY = 0; ctx.stroke(); }
     ctx.restore();
   }
   // ícones de traço (limão por padrão)
@@ -331,6 +339,41 @@
     ctx.restore();
   }
 
+  // os três "papéis" do caos (desenhados na origem; a cena 3 os espalha e a cena 5 os suga para dentro do card)
+  function desenhaBalao(ctx) {
+    const K = LN.caos, h2 = K.hospedes[1];
+    txt(ctx, 'WHATSAPP', -220, -102, { size: 22, weight: 800, fam: MONO, color: C.gray });
+    rr(ctx, -230, -80, 460, 170, 30); ctx.fillStyle = '#16301F'; ctx.fill(); ctx.lineWidth = 2.5; ctx.strokeStyle = css(C.lime, 0.5); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(150, 90); ctx.lineTo(205, 128); ctx.lineTo(196, 80); ctx.fillStyle = '#16301F'; ctx.fill();
+    txt(ctx, `Fechado, ${h2}! ${K.chale},`, -200, -18, { size: 36, weight: 700 });
+    txt(ctx, `de ${K.datas}`, -200, 32, { size: 36, weight: 700 });
+    txt(ctx, '✓✓', 160, 64, { size: 30, weight: 800, color: C.lime });
+  }
+  function desenhaPagina(ctx, risco = 1) {
+    const K = LN.caos;
+    ctx.save(); ctx.shadowColor = 'rgba(0,0,0,0.6)'; ctx.shadowBlur = 30; ctx.shadowOffsetY = 12;
+    ctx.fillStyle = C.paper; ctx.fillRect(-200, -150, 400, 300); ctx.restore();
+    for (let i = 0; i < 7; i++) { ctx.fillStyle = 'rgba(80,110,160,0.25)'; ctx.fillRect(-200, -100 + i * 38, 400, 2); }
+    ctx.fillStyle = 'rgba(220,80,80,0.35)'; ctx.fillRect(-150, -150, 2, 300);
+    txt(ctx, 'CADERNO', -136, -116, { size: 20, weight: 800, fam: MONO, color: '#7A776C' });
+    ctx.save(); ctx.transform(1, 0, -0.18, 1, 0, 0);
+    txt(ctx, `${K.hospedes[0]} · ${K.chale}`, -120, -32, { size: 40, weight: 800, color: C.ink });
+    txt(ctx, K.datas, -110, 26, { size: 40, weight: 800, color: C.ink });
+    ctx.restore();
+    rabisco(ctx, -126, 84, 220, risco, C.ink, 3, 3.5);
+  }
+  function desenhaRecado(ctx) {
+    const K = LN.caos;
+    ctx.save(); ctx.shadowColor = 'rgba(0,0,0,0.6)'; ctx.shadowBlur = 26; ctx.shadowOffsetY = 10;
+    ctx.fillStyle = '#E4F5B8'; ctx.fillRect(-180, -125, 360, 250); ctx.restore();
+    txt(ctx, 'RECADO', -156, -82, { size: 20, weight: 800, fam: MONO, color: '#6B7A45' });
+    ctx.save(); ctx.transform(1, 0, -0.18, 1, 0, 0);
+    txt(ctx, `${K.hospedes[1]} ligou:`, -140, -20, { size: 38, weight: 800, color: C.ink });
+    txt(ctx, `${K.chale},`, -130, 30, { size: 38, weight: 800, color: C.ink });
+    txt(ctx, K.datas, -120, 80, { size: 38, weight: 800, color: C.ink });
+    ctx.restore();
+  }
+
   // ---------------------------------------------------------------- cena 3: o caos organizado e as duas reservas
   function cena3(ctx, t) {
     if (t < T.balao - 0.05 || t > T.s3fim + 0.05) return;
@@ -346,47 +389,21 @@
     if (ub > 0) {
       const [jx, jy] = jit(1);
       const y = lerp(-200, 470, E.outBack(ub, 1.1)), x = 330 + jx, rot = lerp(0.4, -0.05, E.outCubic(ub));
-      ctx.save(); ctx.translate(x, y + jy); ctx.rotate(rot);
-      txt(ctx, 'WHATSAPP', -220, -102, { size: 22, weight: 800, fam: MONO, color: C.gray });
-      rr(ctx, -230, -80, 460, 170, 30); ctx.fillStyle = '#16301F'; ctx.fill(); ctx.lineWidth = 2.5; ctx.strokeStyle = css(C.lime, 0.5); ctx.stroke();
-      ctx.beginPath(); ctx.moveTo(150, 90); ctx.lineTo(205, 128); ctx.lineTo(196, 80); ctx.fillStyle = '#16301F'; ctx.fill();
-      txt(ctx, `Fechado, ${h2}! ${K.chale},`, -200, -18, { size: 36, weight: 700 });
-      txt(ctx, `de ${K.datas}`, -200, 32, { size: 36, weight: 700 });
-      txt(ctx, '✓✓', 160, 64, { size: 30, weight: 800, color: C.lime });
-      ctx.restore();
+      ctx.save(); ctx.translate(x, y + jy); ctx.rotate(rot); desenhaBalao(ctx); ctx.restore();
     }
     // 2) a página do caderno entra girando e assenta à direita
     const up = p(t, T.pagina, T.pagina + 0.65);
     if (up > 0) {
       const [jx, jy] = jit(2);
       const x = lerp(1300, 770, E.outBack(up, 1.1)) + jx, y = 700 + jy, rot = lerp(0.7, 0.07, E.outCubic(up));
-      ctx.save(); ctx.translate(x, y); ctx.rotate(rot);
-      ctx.shadowColor = 'rgba(0,0,0,0.6)'; ctx.shadowBlur = 30; ctx.shadowOffsetY = 12;
-      ctx.fillStyle = C.paper; ctx.fillRect(-200, -150, 400, 300); ctx.shadowColor = 'transparent';
-      for (let i = 0; i < 7; i++) { ctx.fillStyle = 'rgba(80,110,160,0.25)'; ctx.fillRect(-200, -100 + i * 38, 400, 2); }
-      ctx.fillStyle = 'rgba(220,80,80,0.35)'; ctx.fillRect(-150, -150, 2, 300);
-      txt(ctx, 'CADERNO', -136, -116, { size: 20, weight: 800, fam: MONO, color: '#7A776C' });
-      ctx.save(); ctx.transform(1, 0, -0.18, 1, 0, 0);
-      txt(ctx, `${h1} · ${K.chale}`, -120, -32, { size: 40, weight: 800, color: C.ink });
-      txt(ctx, K.datas, -110, 26, { size: 40, weight: 800, color: C.ink });
-      ctx.restore();
-      rabisco(ctx, -126, 84, 220, p(t, T.pagina + 0.5, T.pagina + 1.1), C.ink, 3, 3.5);
-      ctx.restore();
+      ctx.save(); ctx.translate(x, y); ctx.rotate(rot); desenhaPagina(ctx, p(t, T.pagina + 0.5, T.pagina + 1.1)); ctx.restore();
     }
     // 3) o papel solto (recado) cai e assenta embaixo à esquerda
     const ur = p(t, T.recado, T.recado + 0.7);
     if (ur > 0) {
       const [jx, jy] = jit(3);
       const x = 330 + jx, y = lerp(-250, 965, E.outBack(ur, 1.0)) + jy, rot = lerp(-0.9, -0.08, E.outCubic(ur));
-      ctx.save(); ctx.translate(x, y); ctx.rotate(rot);
-      ctx.shadowColor = 'rgba(0,0,0,0.6)'; ctx.shadowBlur = 26; ctx.shadowOffsetY = 10;
-      ctx.fillStyle = '#E4F5B8'; ctx.fillRect(-180, -125, 360, 250); ctx.shadowColor = 'transparent';
-      txt(ctx, 'RECADO', -156, -82, { size: 20, weight: 800, fam: MONO, color: '#6B7A45' });
-      ctx.save(); ctx.transform(1, 0, -0.18, 1, 0, 0);
-      txt(ctx, `${h2} ligou:`, -140, -20, { size: 38, weight: 800, color: C.ink });
-      txt(ctx, `${K.chale},`, -130, 30, { size: 38, weight: 800, color: C.ink });
-      txt(ctx, K.datas, -120, 80, { size: 38, weight: 800, color: C.ink });
-      ctx.restore(); ctx.restore();
+      ctx.save(); ctx.translate(x, y); ctx.rotate(rot); desenhaRecado(ctx); ctx.restore();
     }
     ctx.restore();
     // corte extra (1 s): a Clara lendo o caderno, num card menor embaixo à esquerda
@@ -429,27 +446,168 @@
   }
 
   // ---------------------------------------------------------------- cena 4: reação pensativa (sem narração)
-  function cena4(ctx, t) {
-    const c = T.pensativa;
-    if (t < c.t || t >= T.pendente.de) return;
+  function cena4(ctx, t) { corteCheio(ctx, t, T.pensativa, T.pensativaFim); }
+
+  // ---------------------------------------------------------------- cena 5: tudo num lugar só (motion conceitual)
+  // Nada aqui imita tela do sistema: card limpo com a logo, grade de calendário abstrata e cards de reserva só com
+  // os chips do chalé e das datas (os mesmos do caos). Sem nomes, valores ou outros números.
+  const HUB = { x: 240, y: 440, w: 600, h: 640 }, TOPO = { x: 300, y: 296, w: 480, h: 112 };
+  const GR = { x0: 145, y0: 610, cw: 150, ch: 130, g: 10, cols: 5, rows: 4 };
+  const celula = (col, lin, n = 1) => ({ x: GR.x0 + col * (GR.cw + GR.g), y: GR.y0 + lin * (GR.ch + GR.g), w: n * GR.cw + (n - 1) * GR.g, h: GR.ch });
+  const VAGA = celula(1, 1, 3);                                  // o espaço da reserva: o chalé (linha) e os 3 dias (colunas)
+  const R0 = { x: 280, y: 452, w: 520, h: 150 };                // onde o card de reserva nasce
+  const lerpR = (a, b, u) => ({ x: lerp(a.x, b.x, u), y: lerp(a.y, b.y, u), w: lerp(a.w, b.w, u), h: lerp(a.h, b.h, u) });
+  function cobre(ctx, img, r, a) {                               // a imagem cobrindo o retângulo (recorte central)
+    if (!img || a <= 0) return;
+    const s = Math.max(r.w / img.width, r.h / img.height), w = img.width * s, h = img.height * s;
+    ctx.save(); ctx.globalAlpha *= a; ctx.drawImage(img, r.x + (r.w - w) / 2, r.y + (r.h - h) * 0.3, w, h); ctx.restore();
+  }
+  // o card de reserva: "RESERVA" + os chips do chalé e das datas, desenhado em 520×150 e escalado para o retângulo
+  function cardReserva(ctx, r, o = {}) {
+    const K = LN.caos, s = Math.min(r.w / 520, r.h / 150);
+    ctx.save(); ctx.globalAlpha *= o.alpha ?? 1;
+    const borda = o.cor || C.lime;
+    painel(ctx, r.x, r.y, r.w, r.h, { r: 26 * s, stroke: borda, lw: 3, glow: o.glow || 0, glowColor: css(borda === C.lime ? C.lime : C.red, 0.8) });
+    ctx.translate(r.x + r.w / 2, r.y + r.h / 2); ctx.scale(s, s); ctx.translate(-260, -75);
+    txt(ctx, 'RESERVA', 30, 44, { size: 22, weight: 800, fam: MONO, color: C.gray });
+    let x = 30;
+    [[K.chale, o.pulso1 || 0], [K.datas, o.pulso2 || 0]].forEach(([rot, pu]) => {
+      const size = 32, pw = tw(ctx, rot, size, 800, MONO) + 44, ph = 58, cy = 100;
+      ctx.save(); const k = 1 + 0.12 * Math.sin(Math.PI * pu); ctx.translate(x + pw / 2, cy); ctx.scale(k, k); ctx.translate(-(x + pw / 2), -cy);
+      rr(ctx, x, cy - ph / 2, pw, ph, ph / 2); ctx.fillStyle = css(borda, 0.14 + 0.3 * Math.sin(Math.PI * pu)); ctx.fill();
+      ctx.lineWidth = 2; ctx.strokeStyle = borda; ctx.stroke();
+      txt(ctx, rot, x + pw / 2, cy + 11, { size, weight: 800, fam: MONO, color: borda, align: 'center' });
+      ctx.restore(); x += pw + 16;
+    });
+    ctx.restore();
+  }
+  function cadeado(ctx, cx, cy, s, cor) {
+    ctx.save(); ctx.translate(cx, cy); ctx.scale(s, s); ctx.lineWidth = 0.1; ctx.strokeStyle = cor; ctx.fillStyle = cor; ctx.lineCap = 'round';
+    ctx.beginPath(); ctx.arc(0, -0.12, 0.26, Math.PI, 0); ctx.lineTo(0.26, 0.02); ctx.moveTo(-0.26, 0.02); ctx.lineTo(-0.26, -0.12); ctx.stroke();
+    rr(ctx, -0.4, 0, 0.8, 0.56, 0.1); ctx.fill();
+    ctx.beginPath(); ctx.arc(0, 0.22, 0.07, 0, TAU); ctx.fillStyle = '#0B0C0A'; ctx.fill(); ctx.fillRect(-0.025, 0.24, 0.05, 0.14);
+    ctx.restore();
+  }
+  function cena5(ctx, t) {
+    if (t < T.s5 || t >= T.aliviada.t) return;
+    const fim = p(t, T.aliviada.t - 0.18, T.aliviada.t);
+    ctx.save(); ctx.globalAlpha *= 1 - fim;
+    // 1) o card da Clara encolhe e vira o card limpo da marca; depois sobe e vira o topo compacto
+    const um = E.inOutCubic(p(t, T.s5, T.s5 + 0.6)), ut = E.inOutCubic(p(t, T.lanca - 0.3, T.lanca + 0.3));
+    const r = ut > 0 ? lerpR(HUB, TOPO, ut) : lerpR({ ...CARD }, HUB, um);
+    painel(ctx, r.x, r.y, r.w, r.h, { r: lerp(44, 32, um), stroke: C.lime, lw: 3, glow: 14 });
+    ctx.save(); rr(ctx, r.x, r.y, r.w, r.h, lerp(44, 32, um)); ctx.clip();
+    const c = T.pensativa; cobre(ctx, quadro(c.arquivo, c.ate - 0.01), r, 1 - E.outCubic(p(t, T.s5, T.s5 + 0.5)));
+    ctx.restore();
+    // a marca dentro do card (grande no centro; pequena no topo compacto)
+    const ul = E.outCubic(p(t, T.logo5 - 0.1, T.logo5 + 0.35));
+    if (ul > 0) {
+      const d = lerp(120, 64, ut), lx = lerp(540, TOPO.x + 70, ut), ly = lerp(HUB.y + 112, TOPO.y + TOPO.h / 2, ut);
+      ctx.save(); ctx.globalAlpha *= ul; if (LOGO) ctx.drawImage(LOGO, lx - d / 2, ly - d / 2, d, d);
+      const ns = lerp(52, 40, ut), w1 = tw(ctx, 'FAZLO ', ns, 900), w2 = tw(ctx, 'Hospeda', ns, 700);
+      const nx = ut > 0 ? lerp(540 - (w1 + w2) / 2, TOPO.x + 122, ut) : 540 - (w1 + w2) / 2, ny = lerp(HUB.y + 230, TOPO.y + TOPO.h / 2 + 14, ut);
+      txt(ctx, 'FAZLO ', nx, ny, { size: ns, weight: 900 }); txt(ctx, 'Hospeda', nx + w1, ny, { size: ns, weight: 700, color: C.lime });
+      ctx.restore();
+    }
+    // 2) os papéis do caos são sugados para dentro e viram linhas organizadas, cada uma com um check limão
+    const papeis = [[desenhaBalao, 330, 470, -0.05, 'balao', 'WhatsApp'], [desenhaPagina, 770, 700, 0.07, 'caderno', 'Caderno'], [desenhaRecado, 330, 965, -0.08, 'recado', 'Recado']];
+    const someLinhas = 1 - E.outCubic(p(t, T.lanca - 0.3, T.lanca));
+    papeis.forEach(([f, x0, y0, r0, ic, nome], i) => {
+      const t0 = T.suga + i * 0.22, u = p(t, t0, t0 + 0.65), ly = HUB.y + 330 + i * 92;
+      if (u <= 0) return;
+      if (u < 1) {                                                  // em voo: curva até a linha, girando e encolhendo
+        const e = E.inOutCubic(u), cx = lerp(x0, 540, e) + Math.sin(Math.PI * e) * (i === 1 ? -120 : 120), cy = lerp(y0, ly, e);
+        ctx.save(); ctx.globalAlpha *= clamp(u * 5) * (1 - 0.6 * e); ctx.translate(cx, cy); ctx.rotate(r0 + e * (i === 1 ? -2.4 : 2.4)); ctx.scale(lerp(0.6, 0.12, e), lerp(0.6, 0.12, e));
+        f(ctx); ctx.restore();
+      }
+      const ua = E.outBack(p(t, t0 + 0.5, t0 + 0.85), 1.4);
+      if (ua > 0 && someLinhas > 0) {
+        ctx.save(); ctx.globalAlpha *= clamp(ua) * someLinhas;
+        const k = lerp(0.85, 1, ua); ctx.translate(540, ly); ctx.scale(k, k); ctx.translate(-540, -ly);
+        rr(ctx, 300, ly - 36, 480, 72, 36); ctx.fillStyle = '#0B0C0A'; ctx.fill(); ctx.lineWidth = 2; ctx.strokeStyle = css(C.white, 0.18); ctx.stroke();
+        if (ic === 'recado') { ctx.save(); ctx.lineWidth = 3.2; ctx.strokeStyle = C.white; rr(ctx, 340, ly - 18, 36, 36, 4); ctx.stroke(); ctx.beginPath(); ctx.moveTo(347, ly - 4); ctx.lineTo(369, ly - 4); ctx.moveTo(347, ly + 6); ctx.lineTo(362, ly + 6); ctx.stroke(); ctx.restore(); }
+        else icone(ctx, ic, 358, ly, 44, C.white, 0.08);
+        txt(ctx, nome, 400, ly + 13, { size: 36, weight: 800 });
+        const uc = E.outBack(p(t, T.so + i * 0.12, T.so + 0.3 + i * 0.12), 2);
+        if (uc > 0) { ctx.save(); ctx.translate(735, ly); ctx.scale(uc, uc); ctx.beginPath(); ctx.arc(0, 0, 22, 0, TAU); ctx.fillStyle = C.lime; ctx.fill();
+          ctx.lineWidth = 5; ctx.strokeStyle = '#0B0C0A'; ctx.lineCap = 'round'; ctx.beginPath(); ctx.moveTo(-9, 1); ctx.lineTo(-2, 8); ctx.lineTo(10, -7); ctx.stroke(); ctx.restore(); }
+        ctx.restore();
+      }
+    });
+    // 3) a grade do calendário (abstrata: só células, sem números nem nomes)
+    const ug = p(t, T.lanca + 0.2, T.lanca + 1.0);
+    if (ug > 0) {
+      const ocupadas = [[0, 0, 2], [3, 0, 2], [2, 2, 3], [0, 3, 2]];
+      for (let lin = 0; lin < GR.rows; lin++) for (let col = 0; col < GR.cols; col++) {
+        const uc = E.outCubic(p(t, T.lanca + 0.2 + (lin + col) * 0.05, T.lanca + 0.6 + (lin + col) * 0.05)); if (uc <= 0) continue;
+        const q = celula(col, lin); ctx.save(); ctx.globalAlpha *= uc;
+        rr(ctx, q.x, q.y + (1 - uc) * 16, q.w, q.h, 18); ctx.fillStyle = '#0E100D'; ctx.fill(); ctx.lineWidth = 1.5; ctx.strokeStyle = css(C.white, 0.1); ctx.stroke(); ctx.restore();
+      }
+      ocupadas.forEach(([col, lin, n], i) => {
+        const uo = E.outCubic(p(t, T.lanca + 0.7 + i * 0.1, T.lanca + 1.1 + i * 0.1)); if (uo <= 0) return;
+        const q = celula(col, lin, n); ctx.save(); ctx.globalAlpha *= uo * 0.9;
+        rr(ctx, q.x + 8, q.y + 30, (q.w - 16) * uo, q.h - 60, 16); ctx.fillStyle = '#262923'; ctx.fill(); ctx.restore();
+      });
+      // a vaga livre do chalé nas datas: contorno tracejado limão até a reserva encaixar
+      const uv = p(t, T.cal - 0.1, T.cal + 0.3) * (1 - p(t, T.encaixe + 0.35, T.encaixe + 0.5));
+      if (uv > 0) { ctx.save(); ctx.globalAlpha *= uv; rr(ctx, VAGA.x, VAGA.y, VAGA.w, VAGA.h, 22); ctx.setLineDash([14, 10]); ctx.lineDashOffset = -t * 30; ctx.lineWidth = 3; ctx.strokeStyle = C.lime; ctx.stroke(); ctx.restore(); }
+    }
+    // 4) a reserva: nasce, voa e encaixa na vaga certa; os chips pulsam em "chalé" e "datas"
+    const u1 = p(t, T.lanca + 0.05, T.lanca + 0.45);
+    if (u1 > 0) {
+      const uv = E.inOutCubic(p(t, T.encaixe - 0.2, T.encaixe + 0.35));
+      const rr1 = lerpR(R0, VAGA, uv);
+      const bate = T.bate, firme = Math.sin(Math.PI * p(t, bate, bate + 0.6));
+      const pouso = Math.sin(Math.PI * p(t, T.encaixe + 0.35, T.encaixe + 0.75));
+      enter(ctx, u1, rr1.x + rr1.w / 2, rr1.y + rr1.h / 2, () => cardReserva(ctx, rr1, {
+        glow: 18 * pouso + 26 * firme, pulso1: p(t, T.chale5, T.chale5 + 0.5), pulso2: p(t, T.datas5, T.datas5 + 0.5) }));
+    }
+    // 5) a segunda reserva igual tenta entrar no mesmo espaço, bate, é rejeitada e bloqueada
+    const u2 = p(t, T.alguem, T.alguem + 0.4);
+    if (u2 > 0) {
+      const PAIRA = { ...VAGA, y: VAGA.y - 175 };
+      const ida = E.inOutCubic(p(t, T.mesmo5 - 0.1, T.mesmas + 0.3));
+      let r2 = lerpR(R0, PAIRA, ida);
+      const desce = E.inOutCubic(p(t, T.bate - 0.16, T.bate)), volta = E.outBack(p(t, T.bate, T.bate + 0.45), 2.2);
+      r2 = { ...r2, y: r2.y + 150 * desce * (1 - volta) };
+      const [sx, sy] = tremor(t, T.bate, 0.6, 16);
+      const verm = p(t, T.bate, T.bate + 0.12);
+      ctx.save(); ctx.translate(sx, sy);
+      enter(ctx, u2, r2.x + r2.w / 2, r2.y + r2.h / 2, () => cardReserva(ctx, r2, { cor: verm > 0 ? C.red : C.lime, glow: 22 * verm, alpha: lerp(1, 0.8, p(t, T.bloqueia, T.bloqueia + 0.3)) }));
+      ctx.restore();
+      estouro(ctx, VAGA.x + VAGA.w / 2, VAGA.y, p(t, T.bate, T.bate + 0.8), C.red, 110);
+      // o cadeado e o carimbo "BLOQUEADO" em cima da segunda reserva
+      const uc = p(t, T.bloqueia, T.bloqueia + 0.35);
+      if (uc > 0) {
+        const cx = PAIRA.x + PAIRA.w / 2, cy = PAIRA.y + PAIRA.h / 2;
+        const k = lerp(1.6, 1, E.outBack(uc, 1.4));
+        ctx.save(); ctx.globalAlpha *= clamp(uc * 3); ctx.translate(cx, cy); ctx.rotate(-0.1); ctx.scale(k, k);
+        const pw = 360, ph = 84;
+        rr(ctx, -pw / 2, -ph / 2, pw, ph, 18); ctx.fillStyle = '#1A0A08'; ctx.fill(); ctx.lineWidth = 5; ctx.strokeStyle = C.red; ctx.stroke();
+        cadeado(ctx, -pw / 2 + 52, -4, 58, C.red);
+        txt(ctx, 'BLOQUEADO', 30, 15, { size: 42, weight: 900, fam: MONO, color: C.red, align: 'center' });
+        ctx.restore();
+      }
+    }
+    ctx.restore();
+  }
+
+  // ---------------------------------------------------------------- cortes cheios (pensativa e aliviada)
+  function corteCheio(ctx, t, c, ate) {
+    if (t < c.t || t >= ate) return;
     const u = p(t, c.t, c.t + 0.22);
     ctx.save(); ctx.globalAlpha *= clamp(u * 2);
     const k = lerp(0.92, 1, E.outCubic(u)); ctx.translate(540, 780); ctx.scale(k, k); ctx.translate(-540, -780);
     cartao(ctx, quadro(c.arquivo, c.de + clamp(t - c.t, 0, c.ate - c.de - 0.01)), { flash: 1 - p(t, c.t, c.t + 0.25) });
     ctx.restore();
   }
-
-  // ---------------------------------------------------------------- cenas 5 e 6: pendentes (aguardando os prints)
-  function pendente(ctx, t) {
-    const P = T.pendente;
-    if (t < P.de || t >= P.ate) return;
-    const u = p(t, P.de, P.de + 0.3) * (1 - p(t, P.ate - 0.3, P.ate));
-    ctx.save(); ctx.globalAlpha *= u;
-    rr(ctx, 120, 420, 840, 700, 40); ctx.setLineDash([18, 14]); ctx.lineWidth = 3; ctx.strokeStyle = css(C.lime, 0.5); ctx.stroke(); ctx.setLineDash([]);
-    txt(ctx, 'CENAS 5 E 6', 540, 700, { size: 64, weight: 900, align: 'center', color: C.lime });
-    txt(ctx, 'aguardando os prints reais', 540, 790, { size: 34, weight: 800, fam: MONO, align: 'center', color: C.gray });
-    txt(ctx, 'do Hospeda (reserva, calendário', 540, 840, { size: 34, weight: 800, fam: MONO, align: 'center', color: C.gray });
-    txt(ctx, 'e bloqueio da duplicada)', 540, 890, { size: 34, weight: 800, fam: MONO, align: 'center', color: C.gray });
+  // cena 6: reação aliviada (o card some encolhendo antes da cena 7)
+  function cena6(ctx, t) {
+    const c = T.aliviada, fimC = c.t + (c.ate - c.de);
+    if (t < c.t || t >= fimC + 0.25) return;
+    const v = E.inOutCubic(p(t, fimC, fimC + 0.25));
+    ctx.save(); ctx.globalAlpha *= 1 - v; const k = lerp(1, 0.6, v); ctx.translate(540, 780); ctx.scale(k, k); ctx.translate(-540, -780);
+    corteCheio(ctx, Math.min(t, fimC - 0.001), c, fimC);
     ctx.restore();
   }
 
@@ -609,7 +767,7 @@
   }
   function draw(ctx, t) {
     ctx.save(); ctx.clearRect(0, 0, W, H); ctx.drawImage(FUNDO, 0, 0);
-    cena1(ctx, t); cena2(ctx, t); cena3(ctx, t); cena4(ctx, t); pendente(ctx, t); cena7(ctx, t); cena8(ctx, t);
+    cena1(ctx, t); cena2(ctx, t); cena3(ctx, t); cena4(ctx, t); cena5(ctx, t); cena6(ctx, t); cena7(ctx, t); cena8(ctx, t);
     const cx = legenda(ctx, t);
     ctx.restore();
     return cx;
