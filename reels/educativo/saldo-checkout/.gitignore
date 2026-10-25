@@ -1,0 +1,5 @@
+output/*.mp4
+output/stills/
+output/info.json
+output/render.log
+output/.video-only.mp4

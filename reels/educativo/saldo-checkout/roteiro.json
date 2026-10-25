@@ -1,0 +1,32 @@
+{
+ "id": "saldo-checkout",
+ "titulo": "Recebeu o sinal. Quanto falta no check-out?",
+ "marca": "@fazlohospeda",
+ "voz": { "modelo": "eleven_v4", "voz": "Raquel - For Conversational (GDzHdQOi6jjf8zaXhCYD)", "stability": 0.5, "similarity_boost": 0.75 },
+ "nota": "Exemplo educativo com valores ilustrativos. Não é demonstração do FAZLO Hospeda: sem interface, sem nome de hóspede. Cada item de 'frases' é uma frase da locução; 'fala' é o que a voz diz, 'tela' (quando existe) é o que a legenda mostra no lugar daquelas palavras.",
+ "frases": [
+  { "id": "gancho", "pausa": 0.45, "tokens": [
+   { "fala": "Recebeu o" }, { "fala": "sinal.", "chave": true, "id": "sinal" },
+   { "fala": "Quanto falta cobrar no" }, { "fala": "check-out?", "chave": true, "id": "checkout" } ] },
+  { "id": "confira", "pausa": 0.5, "tokens": [
+   { "fala": "Antes de fechar a conta, confira" }, { "fala": "três coisas:", "chave": true, "id": "tres" },
+   { "fala": "o" }, { "fala": "valor da estadia,", "chave": true, "id": "estadia" },
+   { "fala": "os" }, { "fala": "consumos", "chave": true, "id": "consumos" },
+   { "fala": "e os" }, { "fala": "pagamentos já registrados.", "chave": true, "id": "pagamentos" } ] },
+  { "id": "conta", "pausa": 0.45, "tokens": [
+   { "fala": "Neste exemplo, são", "id": "exemplo" },
+   { "fala": "mil trezentos e cinquenta reais", "tela": "R$ 1.350", "chave": true, "id": "diarias" },
+   { "fala": "em diárias," },
+   { "fala": "mais", "id": "mais" }, { "fala": "cento e vinte", "tela": "R$ 120", "chave": true, "id": "consumo" }, { "fala": "de consumo," },
+   { "fala": "menos", "id": "menos" }, { "fala": "quatrocentos e cinquenta", "tela": "R$ 450", "chave": true, "id": "pago" }, { "fala": "já pagos." } ] },
+  { "id": "saldo", "pausa": 0.6, "tokens": [
+   { "fala": "O", "id": "o_saldo" }, { "fala": "saldo", "id": "saldo" }, { "fala": "é" },
+   { "fala": "mil e vinte reais.", "tela": "R$ 1.020.", "chave": true, "id": "resultado" } ] },
+  { "id": "desconto", "pausa": 0.5, "tokens": [
+   { "fala": "Houve" }, { "fala": "desconto?", "chave": true, "id": "desconto" },
+   { "fala": "Ele também entra na" }, { "fala": "conferência.", "chave": true, "id": "conferencia" } ] },
+  { "id": "cta", "pausa": 0, "tokens": [
+   { "fala": "Envie", "chave": true, "id": "envie" }, { "fala": "para quem fecha essas contas com você.", "id": "quem" } ] }
+ ],
+ "legenda_post": "Recebeu o sinal. Quanto falta cobrar no check-out?\n\nAntes de fechar a conta, confira o total da estadia, os consumos e os pagamentos já registrados para aquela reserva.\n\nNeste exemplo fictício, sem descontos:\n\nDiárias: R$ 1.350\nConsumos: + R$ 120\nPagamento recebido: − R$ 450\n\nSaldo a receber: R$ 1.020.\n\nSe houver descontos ou outros ajustes, eles também precisam entrar na conferência.\n\nEnvie para quem confere os check-outs com você.\n\n#pousada #gestaodepousada #hospedagem"
+}
