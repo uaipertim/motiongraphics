@@ -9,7 +9,8 @@ Conta do exemplo (sem descontos): R$ 1.350 + R$ 120 − R$ 450 = **R$ 1.020**.
 
 - 25/10: locução recebida (`audio/voz.mp3`, ElevenLabs eleven_v4, Raquel, 29,8 s). `linha.json` refeita pelo áudio
   (frases nas pausas reais; palavras pelas letras dentro de cada trecho, precisão estimada de ±0,2 s nos trechos longos).
-- Voz tratada para −14,4 LUFS, pico −1,8 dBFS (`audio/voz-final.wav`, ganho + limitador). Sem trilha.
+- Áudio: `python3 scripts/audio.py` -> `audio/mix.wav` = voz + trilha da Série Explica (sintetizada, ~10 dB abaixo da voz,
+  abaixa quando a voz fala, último acorde com a sineta da logo) + efeitos nos gestos da animação. −14,0 LUFS, pico −1,7 dBFS.
 - Vídeo final para aprovação: `output/saldo-checkout.mp4` (33,8 s) e capa `output/capa.jpg` (o quadro 0). Publicar só depois da aprovação.
 
 ## Locução (ElevenLabs, conta autorizada)
@@ -22,7 +23,8 @@ O texto exato está em `roteiro.json` (o "fala" de cada token, na ordem). A chav
 ```
 python3 scripts/linha.py --audio caminho/voz.mp3      # tempos reais: frases nas pausas do áudio, palavras pelas letras
 node scripts/render.cjs stills 0,5,15,25 --previa      # conferir quadros
-node scripts/render.cjs video --audio caminho/voz.mp3  # vídeo final, sem o aviso de prévia
+python3 scripts/audio.py                               # voz + trilha + efeitos -> audio/mix.wav
+node scripts/render.cjs video --mix audio/mix.wav      # vídeo final, sem o aviso de prévia
 ```
 
 Com o arquivo de tempos do ElevenLabs (with-timestamps), use também `--alinhamento` para sincronizar palavra por palavra.

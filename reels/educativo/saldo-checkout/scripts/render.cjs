@@ -1,7 +1,8 @@
 #!/usr/bin/env node
 /*
  * node scripts/render.cjs stills 0,2,5 [--previa]        -> output/stills/tNN.NN.png
- * node scripts/render.cjs video [--previa] [--audio voz.wav] [--fps 60] [--workers 4]
+ * node scripts/render.cjs video [--previa] [--audio voz.wav | --mix audio/mix.wav] [--fps 60] [--workers 4]
+ *        (--mix: a mixagem pronta de scripts/audio.py, já no tempo do vídeo)
  *        -> output/saldo-checkout[-previa].mp4 (com --audio, a locução entra em linha.inicio_voz)
  * node scripts/render.cjs info                          -> output/info.json (legenda, tempos, caixas a cada 0,25 s)
  */
@@ -56,9 +57,11 @@ const decode = (u) => Buffer.from(u.split(',')[1], 'base64');
       let chain = Promise.resolve();
       await Promise.all(pages.map(async (pg) => { for (;;) { const i = next++; if (i >= total) break; while (i - written > 120) await new Promise((r) => setTimeout(r, 5)); pend.set(i, decode(await pg.evaluate((t) => window.frameAt(t), i / fps))); chain = chain.then(flush); } }));
       await chain; await flush(); ff.stdin.end(); await done;
-      const audio = opt('audio');
+      const audio = opt('audio'), mix = opt('mix');
       const lnj = JSON.parse(fs.readFileSync(path.join(ROOT, 'linha.json')));
-      if (audio) {
+      if (mix) {
+        execSync(`ffmpeg -y -loglevel error -i "${silent}" -i "${mix}" -map 0:v -map 1:a -c:v copy -c:a aac -b:a 256k -ar 48000 -t ${(total / fps).toFixed(4)} -movflags +faststart "${out}"`);
+      } else if (audio) {
         const d = Math.round(lnj.inicio_voz * 1000);
         execSync(`ffmpeg -y -loglevel error -i "${silent}" -i "${audio}" -filter_complex "[1:a]adelay=${d}|${d},apad[a]" -map 0:v -map "[a]" -c:v copy -c:a aac -b:a 256k -ar 48000 -t ${(total / fps).toFixed(4)} -movflags +faststart "${out}"`);
       } else {
