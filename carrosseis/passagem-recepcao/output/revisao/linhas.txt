@@ -1,0 +1,41 @@
+PASSAGEM DA RECEPÇÃO — linhas de texto (palavra sozinha numa linha = FALHA)
+
+ok     slide 01 texto: Outra pessoa
+ok     slide 01 texto: vai assumir
+ok     slide 01 texto: a recepção.
+ok     slide 01 texto: O que ela precisa
+ok     slide 01 texto: saber?
+ok     slide 02 texto: Com o horário combinado anotado, ninguém é
+ok     slide 02 texto: esperado na hora errada.
+ok     slide 02 texto: Chegadas e saídas
+ok     slide 02 texto: de hoje.
+ok     slide 02 texto: [nome] · chega às [horário]
+ok     slide 02 texto: · [acomodação]
+ok     slide 02 texto: [nome] · sai às [horário] · [acomodação]
+ok     slide 03 texto: O que foi combinado e não foi registrado some na
+ok     slide 03 texto: troca de turno.
+ok     slide 03 texto: Reservas
+ok     slide 03 texto: pendentes.
+ok     slide 03 texto: aguardando sinal · prazo: [data]
+ok     slide 03 texto: pedidos já combinados na conversa: [quem]
+ok     slide 03 texto: · [datas]
+ok     slide 04 texto: Quem assume precisa saber o que já entrou e o
+ok     slide 04 texto: que ainda falta cobrar.
+ok     slide 04 texto: Pagamentos
+ok     slide 04 texto: a conferir.
+ok     slide 04 texto: o comprovante bateu? [sim / não]
+ok     slide 04 texto: saldo de cada hóspede: [nome] · [saldo]
+ok     slide 05 texto: Comanda aberta de quem sai hoje se confere antes
+ok     slide 05 texto: do check-out.
+ok     slide 05 texto: Comandas
+ok     slide 05 texto: e consumos.
+ok     slide 05 texto: o que já está na comanda
+ok     slide 05 texto: [item] · [acomodação]
+ok     slide 05 texto: [acomodação] · conferir antes de fechar
+ok     slide 06 texto: Ocorrências
+ok     slide 06 texto: e tarefas.
+ok     slide 06 texto: manutenção, pedido especial, reclamação
+ok     slide 06 texto: [tarefa] · [quem resolve]
+ok     slide 06 quadro: Hoje: entradas __ · saídas __ · pendências __ · a cobrar __ · observações __
+
+RESULTADO: nenhuma palavra sozinha numa linha

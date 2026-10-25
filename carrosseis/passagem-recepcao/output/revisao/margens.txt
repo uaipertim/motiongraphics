@@ -1,0 +1,10 @@
+PASSAGEM DA RECEPÇÃO — margens (80 px nas laterais)
+
+OK     slide 01 (capa limão): conteúdo em x 81–999, y 331–1260
+OK     slide 02: conteúdo em x 80–904, y 94–1251
+OK     slide 03: conteúdo em x 80–961, y 94–1243
+OK     slide 04: conteúdo em x 81–922, y 94–1251
+OK     slide 05: conteúdo em x 81–995, y 94–1243
+OK     slide 06: conteúdo em x 79–1000, y 94–1293
+
+RESULTADO: tudo dentro da margem de 80 px
