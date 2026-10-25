@@ -1,16 +1,16 @@
 {
- "provisoria": true,
- "audio": null,
+ "provisoria": false,
+ "audio": "audio/voz.mp3",
  "inicio_voz": 0.35,
- "fim_voz": 31.309,
- "logo": 32.009,
- "duracao": 35.209,
+ "fim_voz": 29.93,
+ "logo": 30.63,
+ "duracao": 33.83,
  "marca": "@fazlohospeda",
  "frases": [
   {
    "id": "gancho",
-   "t0": 0.35,
-   "t1": 3.663,
+   "t0": 0.43,
+   "t1": 3.41,
    "palavras": [
     {
      "frase": 0,
@@ -18,8 +18,8 @@
      "fala": "Recebeu",
      "chave": false,
      "id": null,
-     "t0": 0.35,
-     "t1": 0.85
+     "t0": 0.43,
+     "t1": 0.936
     },
     {
      "frase": 0,
@@ -27,8 +27,8 @@
      "fala": "o",
      "chave": false,
      "id": null,
-     "t0": 0.9,
-     "t1": 1.06
+     "t0": 0.936,
+     "t1": 1.008
     },
     {
      "frase": 0,
@@ -36,8 +36,8 @@
      "fala": "sinal.",
      "chave": true,
      "id": "sinal",
-     "t0": 1.11,
-     "t1": 1.467
+     "t0": 1.008,
+     "t1": 1.37
     },
     {
      "frase": 0,
@@ -45,8 +45,8 @@
      "fala": "Quanto",
      "chave": false,
      "id": null,
-     "t0": 1.517,
-     "t1": 1.946
+     "t0": 1.81,
+     "t1": 2.166
     },
     {
      "frase": 0,
@@ -54,8 +54,8 @@
      "fala": "falta",
      "chave": false,
      "id": null,
-     "t0": 1.996,
-     "t1": 2.353
+     "t0": 2.166,
+     "t1": 2.462
     },
     {
      "frase": 0,
@@ -63,8 +63,8 @@
      "fala": "cobrar",
      "chave": false,
      "id": null,
-     "t0": 2.403,
-     "t1": 2.831
+     "t0": 2.462,
+     "t1": 2.817
     },
     {
      "frase": 0,
@@ -72,8 +72,8 @@
      "fala": "no",
      "chave": false,
      "id": null,
-     "t0": 2.881,
-     "t1": 3.041
+     "t0": 2.817,
+     "t1": 2.936
     },
     {
      "frase": 0,
@@ -81,15 +81,15 @@
      "fala": "check-out?",
      "chave": true,
      "id": "checkout",
-     "t0": 3.091,
-     "t1": 3.663
+     "t0": 2.936,
+     "t1": 3.41
     }
    ]
   },
   {
    "id": "confira",
-   "t0": 4.163,
-   "t1": 12.139,
+   "t0": 4.07,
+   "t1": 11.87,
    "palavras": [
     {
      "frase": 1,
@@ -97,8 +97,8 @@
      "fala": "Antes",
      "chave": false,
      "id": null,
-     "t0": 4.163,
-     "t1": 4.52
+     "t0": 4.07,
+     "t1": 4.462
     },
     {
      "frase": 1,
@@ -106,8 +106,8 @@
      "fala": "de",
      "chave": false,
      "id": null,
-     "t0": 4.57,
-     "t1": 4.73
+     "t0": 4.462,
+     "t1": 4.618
     },
     {
      "frase": 1,
@@ -115,8 +115,8 @@
      "fala": "fechar",
      "chave": false,
      "id": null,
-     "t0": 4.78,
-     "t1": 5.209
+     "t0": 4.618,
+     "t1": 5.088
     },
     {
      "frase": 1,
@@ -124,8 +124,8 @@
      "fala": "a",
      "chave": false,
      "id": null,
-     "t0": 5.259,
-     "t1": 5.419
+     "t0": 5.088,
+     "t1": 5.167
     },
     {
      "frase": 1,
@@ -133,8 +133,8 @@
      "fala": "conta,",
      "chave": false,
      "id": null,
-     "t0": 5.469,
-     "t1": 5.826
+     "t0": 5.167,
+     "t1": 5.558
     },
     {
      "frase": 1,
@@ -142,8 +142,8 @@
      "fala": "confira",
      "chave": false,
      "id": null,
-     "t0": 6.046,
-     "t1": 6.546
+     "t0": 5.558,
+     "t1": 6.107
     },
     {
      "frase": 1,
@@ -151,8 +151,8 @@
      "fala": "três",
      "chave": true,
      "id": "tres",
-     "t0": 6.596,
-     "t1": 6.881
+     "t0": 6.107,
+     "t1": 6.42
     },
     {
      "frase": 1,
@@ -160,8 +160,8 @@
      "fala": "coisas:",
      "chave": true,
      "id": null,
-     "t0": 6.931,
-     "t1": 7.36
+     "t0": 6.42,
+     "t1": 6.89
     },
     {
      "frase": 1,
@@ -169,8 +169,8 @@
      "fala": "o",
      "chave": false,
      "id": null,
-     "t0": 7.58,
-     "t1": 7.74
+     "t0": 7.35,
+     "t1": 7.433
     },
     {
      "frase": 1,
@@ -178,8 +178,8 @@
      "fala": "valor",
      "chave": true,
      "id": "estadia",
-     "t0": 7.79,
-     "t1": 8.147
+     "t0": 7.433,
+     "t1": 7.846
     },
     {
      "frase": 1,
@@ -187,8 +187,8 @@
      "fala": "da",
      "chave": true,
      "id": null,
-     "t0": 8.197,
-     "t1": 8.357
+     "t0": 7.846,
+     "t1": 8.011
     },
     {
      "frase": 1,
@@ -196,8 +196,8 @@
      "fala": "estadia,",
      "chave": true,
      "id": null,
-     "t0": 8.407,
-     "t1": 8.907
+     "t0": 8.011,
+     "t1": 8.59
     },
     {
      "frase": 1,
@@ -205,8 +205,8 @@
      "fala": "os",
      "chave": false,
      "id": null,
-     "t0": 9.127,
-     "t1": 9.287
+     "t0": 8.85,
+     "t1": 9.018
     },
     {
      "frase": 1,
@@ -214,8 +214,8 @@
      "fala": "consumos",
      "chave": true,
      "id": "consumos",
-     "t0": 9.337,
-     "t1": 9.909
+     "t0": 9.018,
+     "t1": 9.689
     },
     {
      "frase": 1,
@@ -223,8 +223,8 @@
      "fala": "e",
      "chave": false,
      "id": null,
-     "t0": 9.959,
-     "t1": 10.119
+     "t0": 9.689,
+     "t1": 9.773
     },
     {
      "frase": 1,
@@ -232,8 +232,8 @@
      "fala": "os",
      "chave": false,
      "id": null,
-     "t0": 10.169,
-     "t1": 10.329
+     "t0": 9.773,
+     "t1": 9.941
     },
     {
      "frase": 1,
@@ -241,8 +241,8 @@
      "fala": "pagamentos",
      "chave": true,
      "id": "pagamentos",
-     "t0": 10.379,
-     "t1": 11.093
+     "t0": 9.941,
+     "t1": 10.779
     },
     {
      "frase": 1,
@@ -250,8 +250,8 @@
      "fala": "já",
      "chave": true,
      "id": null,
-     "t0": 11.143,
-     "t1": 11.303
+     "t0": 10.779,
+     "t1": 10.947
     },
     {
      "frase": 1,
@@ -259,15 +259,15 @@
      "fala": "registrados.",
      "chave": true,
      "id": null,
-     "t0": 11.353,
-     "t1": 12.139
+     "t0": 10.947,
+     "t1": 11.87
     }
    ]
   },
   {
    "id": "conta",
-   "t0": 12.689,
-   "t1": 21.686,
+   "t0": 12.42,
+   "t1": 21.09,
    "palavras": [
     {
      "frase": 2,
@@ -275,8 +275,8 @@
      "fala": "Neste",
      "chave": false,
      "id": "exemplo",
-     "t0": 12.689,
-     "t1": 13.046
+     "t0": 12.42,
+     "t1": 12.804
     },
     {
      "frase": 2,
@@ -284,8 +284,8 @@
      "fala": "exemplo,",
      "chave": false,
      "id": null,
-     "t0": 13.096,
-     "t1": 13.596
+     "t0": 12.804,
+     "t1": 13.342
     },
     {
      "frase": 2,
@@ -293,8 +293,8 @@
      "fala": "são",
      "chave": false,
      "id": null,
-     "t0": 13.816,
-     "t1": 14.03
+     "t0": 13.342,
+     "t1": 13.572
     },
     {
      "frase": 2,
@@ -302,8 +302,8 @@
      "fala": "mil trezentos e cinquenta reais",
      "chave": true,
      "id": "diarias",
-     "t0": 14.08,
-     "t1": 16.009
+     "t0": 13.572,
+     "t1": 15.646
     },
     {
      "frase": 2,
@@ -311,8 +311,8 @@
      "fala": "em",
      "chave": false,
      "id": null,
-     "t0": 16.059,
-     "t1": 16.219
+     "t0": 15.646,
+     "t1": 15.799
     },
     {
      "frase": 2,
@@ -320,8 +320,8 @@
      "fala": "diárias,",
      "chave": false,
      "id": null,
-     "t0": 16.269,
-     "t1": 16.769
+     "t0": 15.799,
+     "t1": 16.337
     },
     {
      "frase": 2,
@@ -329,8 +329,8 @@
      "fala": "mais",
      "chave": false,
      "id": "mais",
-     "t0": 16.989,
-     "t1": 17.274
+     "t0": 16.337,
+     "t1": 16.644
     },
     {
      "frase": 2,
@@ -338,8 +338,8 @@
      "fala": "cento e vinte",
      "chave": true,
      "id": "consumo",
-     "t0": 17.324,
-     "t1": 18.11
+     "t0": 16.644,
+     "t1": 17.489
     },
     {
      "frase": 2,
@@ -347,8 +347,8 @@
      "fala": "de",
      "chave": false,
      "id": null,
-     "t0": 18.16,
-     "t1": 18.32
+     "t0": 17.489,
+     "t1": 17.642
     },
     {
      "frase": 2,
@@ -356,8 +356,8 @@
      "fala": "consumo,",
      "chave": false,
      "id": null,
-     "t0": 18.37,
-     "t1": 18.87
+     "t0": 17.642,
+     "t1": 18.18
     },
     {
      "frase": 2,
@@ -365,8 +365,8 @@
      "fala": "menos",
      "chave": false,
      "id": "menos",
-     "t0": 19.09,
-     "t1": 19.447
+     "t0": 18.54,
+     "t1": 18.915
     },
     {
      "frase": 2,
@@ -374,8 +374,8 @@
      "fala": "quatrocentos e cinquenta",
      "chave": true,
      "id": "pago",
-     "t0": 19.497,
-     "t1": 21.069
+     "t0": 18.915,
+     "t1": 20.565
     },
     {
      "frase": 2,
@@ -383,8 +383,8 @@
      "fala": "já",
      "chave": false,
      "id": null,
-     "t0": 21.119,
-     "t1": 21.279
+     "t0": 20.565,
+     "t1": 20.715
     },
     {
      "frase": 2,
@@ -392,15 +392,15 @@
      "fala": "pagos.",
      "chave": false,
      "id": null,
-     "t0": 21.329,
-     "t1": 21.686
+     "t0": 20.715,
+     "t1": 21.09
     }
    ]
   },
   {
    "id": "saldo",
-   "t0": 22.186,
-   "t1": 24.013,
+   "t0": 21.53,
+   "t1": 23.51,
    "palavras": [
     {
      "frase": 3,
@@ -408,8 +408,8 @@
      "fala": "O",
      "chave": false,
      "id": "o_saldo",
-     "t0": 22.186,
-     "t1": 22.346
+     "t0": 21.53,
+     "t1": 21.624
     },
     {
      "frase": 3,
@@ -417,8 +417,8 @@
      "fala": "saldo",
      "chave": false,
      "id": "saldo",
-     "t0": 22.396,
-     "t1": 22.753
+     "t0": 21.624,
+     "t1": 22.096
     },
     {
      "frase": 3,
@@ -426,8 +426,8 @@
      "fala": "é",
      "chave": false,
      "id": null,
-     "t0": 22.803,
-     "t1": 22.963
+     "t0": 22.096,
+     "t1": 22.19
     },
     {
      "frase": 3,
@@ -435,15 +435,15 @@
      "fala": "mil e vinte reais.",
      "chave": true,
      "id": "resultado",
-     "t0": 23.013,
-     "t1": 24.013
+     "t0": 22.19,
+     "t1": 23.51
     }
    ]
   },
   {
    "id": "desconto",
-   "t0": 24.663,
-   "t1": 27.837,
+   "t0": 23.98,
+   "t1": 27.1,
    "palavras": [
     {
      "frase": 4,
@@ -451,8 +451,8 @@
      "fala": "Houve",
      "chave": false,
      "id": null,
-     "t0": 24.663,
-     "t1": 25.02
+     "t0": 23.98,
+     "t1": 24.299
     },
     {
      "frase": 4,
@@ -460,8 +460,8 @@
      "fala": "desconto?",
      "chave": true,
      "id": "desconto",
-     "t0": 25.07,
-     "t1": 25.641
+     "t0": 24.299,
+     "t1": 24.81
     },
     {
      "frase": 4,
@@ -469,8 +469,8 @@
      "fala": "Ele",
      "chave": false,
      "id": null,
-     "t0": 25.691,
-     "t1": 25.906
+     "t0": 25.24,
+     "t1": 25.447
     },
     {
      "frase": 4,
@@ -478,8 +478,8 @@
      "fala": "também",
      "chave": false,
      "id": null,
-     "t0": 25.956,
-     "t1": 26.384
+     "t0": 25.447,
+     "t1": 25.86
     },
     {
      "frase": 4,
@@ -487,8 +487,8 @@
      "fala": "entra",
      "chave": false,
      "id": null,
-     "t0": 26.434,
-     "t1": 26.791
+     "t0": 25.86,
+     "t1": 26.204
     },
     {
      "frase": 4,
@@ -496,8 +496,8 @@
      "fala": "na",
      "chave": false,
      "id": null,
-     "t0": 26.841,
-     "t1": 27.001
+     "t0": 26.204,
+     "t1": 26.342
     },
     {
      "frase": 4,
@@ -505,15 +505,15 @@
      "fala": "conferência.",
      "chave": true,
      "id": "conferencia",
-     "t0": 27.051,
-     "t1": 27.837
+     "t0": 26.342,
+     "t1": 27.1
     }
    ]
   },
   {
    "id": "cta",
-   "t0": 28.387,
-   "t1": 31.309,
+   "t0": 27.54,
+   "t1": 29.93,
    "palavras": [
     {
      "frase": 5,
@@ -521,8 +521,8 @@
      "fala": "Envie",
      "chave": true,
      "id": "envie",
-     "t0": 28.387,
-     "t1": 28.744
+     "t0": 27.54,
+     "t1": 27.872
     },
     {
      "frase": 5,
@@ -530,8 +530,8 @@
      "fala": "para",
      "chave": false,
      "id": "quem",
-     "t0": 28.794,
-     "t1": 29.08
+     "t0": 27.872,
+     "t1": 28.138
     },
     {
      "frase": 5,
@@ -539,8 +539,8 @@
      "fala": "quem",
      "chave": false,
      "id": null,
-     "t0": 29.13,
-     "t1": 29.416
+     "t0": 28.138,
+     "t1": 28.403
     },
     {
      "frase": 5,
@@ -548,8 +548,8 @@
      "fala": "fecha",
      "chave": false,
      "id": null,
-     "t0": 29.466,
-     "t1": 29.823
+     "t0": 28.403,
+     "t1": 28.735
     },
     {
      "frase": 5,
@@ -557,8 +557,8 @@
      "fala": "essas",
      "chave": false,
      "id": null,
-     "t0": 29.873,
-     "t1": 30.23
+     "t0": 28.735,
+     "t1": 29.067
     },
     {
      "frase": 5,
@@ -566,8 +566,8 @@
      "fala": "contas",
      "chave": false,
      "id": null,
-     "t0": 30.28,
-     "t1": 30.709
+     "t0": 29.067,
+     "t1": 29.465
     },
     {
      "frase": 5,
@@ -575,8 +575,8 @@
      "fala": "com",
      "chave": false,
      "id": null,
-     "t0": 30.759,
-     "t1": 30.973
+     "t0": 29.465,
+     "t1": 29.664
     },
     {
      "frase": 5,
@@ -584,8 +584,8 @@
      "fala": "você.",
      "chave": false,
      "id": null,
-     "t0": 31.023,
-     "t1": 31.309
+     "t0": 29.664,
+     "t1": 29.93
     }
    ]
   }

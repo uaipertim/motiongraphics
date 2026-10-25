@@ -7,9 +7,10 @@ Conta do exemplo (sem descontos): R$ 1.350 + R$ 120 − R$ 450 = **R$ 1.020**.
 
 ## Estado
 
-- Roteiro, legenda do post e montagem-base: prontos para aprovação.
-- **Locução pendente.** A montagem usa tempos estimados (`linha.json` com `"provisoria": true`) e traz o aviso
-  "PRÉVIA · LOCUÇÃO PENDENTE" no topo. Não publicar esta versão.
+- 25/10: locução recebida (`audio/voz.mp3`, ElevenLabs eleven_v4, Raquel, 29,8 s). `linha.json` refeita pelo áudio
+  (frases nas pausas reais; palavras pelas letras dentro de cada trecho, precisão estimada de ±0,2 s nos trechos longos).
+- Voz tratada para −14,4 LUFS, pico −1,8 dBFS (`audio/voz-final.wav`, ganho + limitador). Sem trilha.
+- Vídeo final para aprovação: `output/saldo-checkout.mp4` (33,8 s) e capa `output/capa.jpg` (o quadro 0). Publicar só depois da aprovação.
 
 ## Locução (ElevenLabs, conta autorizada)
 

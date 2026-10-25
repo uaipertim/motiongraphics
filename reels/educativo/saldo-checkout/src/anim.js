@@ -213,7 +213,7 @@
   }
 
   // ---------------------------------------------------------------- 3. A CONTA (a notinha de conferência)
-  const NOTA = { x0: 160, x1: 920, y0: 470 };
+  const NOTA = { x0: 160, x1: 920, y0: 430 };
   const LINHAS = [
     { k: 'diarias', sinal: '', rot: 'Diárias', v: 'R$ 1.350,00' },
     { k: 'consumo', sinal: '+', rot: 'Consumos', v: 'R$ 120,00' },
@@ -227,10 +227,10 @@
       const { x0, x1, y0 } = NOTA, w = x1 - x0;
       const temDesc = t >= T.linhas.desconto - 0.1;
       const ed = E.outCubic(p(t, T.linhas.desconto - 0.1, T.linhas.desconto + 0.35));
-      const rowH = 92, top = y0 + 190;
+      const rowH = 84, top = y0 + 176;
       const yLinhas = (i) => top + i * rowH;
       const ySep = top + 3 * rowH + ed * rowH + 10;
-      const h = ySep - y0 + 230;
+      const h = ySep - y0 + 222;
       c.save(); c.globalAlpha *= e; c.translate(0, 80 * (1 - e)); c.rotate(0);
       // o papel com a borda de baixo picotada
       c.save(); c.shadowColor = 'rgba(0,0,0,0.55)'; c.shadowBlur = 50; c.shadowOffsetY = 24;
@@ -247,7 +247,7 @@
       const sw = tw('EXEMPLO FICTÍCIO', MONO, 22, 800, 3) + 36;
       rr(c, x0 + 46, y0 + 106, sw, 44, 10); c.strokeStyle = '#C25E00'; c.lineWidth = 2.5; c.setLineDash([7, 5]); c.stroke(); c.setLineDash([]);
       txt(c, 'EXEMPLO FICTÍCIO', x0 + 64, y0 + 136, { fam: MONO, size: 22, weight: 800, color: '#C25E00', ls: 3, box: 'exemplo fictício' });
-      c.fillStyle = C.paper2; c.fillRect(x0 + 40, y0 + 168, w - 80, 3);
+      c.fillStyle = C.paper2; c.fillRect(x0 + 40, y0 + 164, w - 80, 3);
       // as linhas, cada uma na palavra falada
       const linhas = LINHAS.map((l) => ({ ...l, t: T.linhas[l.k] }));
       linhas.forEach((l, i) => {
@@ -356,8 +356,9 @@
   function layoutLegenda() {
     PAGES = [];
     const wid = (ws, a, b) => tw(ws.slice(a, b).map((x) => x.w).join(' '), DISPLAY, CAP.size, 900, -0.02 * CAP.size);
-    LN.frases.forEach((f) => {
+    LN.frases.forEach((f, fi) => {
       const ws = f.palavras, pages = [];
+      const prox = LN.frases[fi + 1] ? LN.frases[fi + 1].palavras[0].t0 : LN.logo - 0.05;
       let i = 0;
       while (i < ws.length) {
         let j = i, lines = 1, a = i;
@@ -365,10 +366,17 @@
           if (wid(ws, a, j + 1) > CAP.maxW) { if (a === j) { j++; continue; } lines++; a = j; if (lines > 2) break; }
           else { j++; if (/[.?!]$/.test(ws[j - 1].w) && j < ws.length && ws[j - 1].t1 - ws[i].t0 >= CAP.minPag + 0.2) break; }
         }
+        // página cheia no meio de uma frase: volta até a última vírgula/ponto, se a página continuar com ≥ 1,5 s
+        if (j < ws.length && !/[,.:;?!]$/.test(ws[j - 1].w)) {
+          let achou = false;
+          for (let k = j - 1; k > i + 1; k--) if (/[,.:;?!]$/.test(ws[k - 1].w) && ws[k - 1].t1 - ws[i].t0 >= CAP.minPag) { j = k; achou = true; break; }
+          // sem pontuação boa: corta antes de "e", "ou", "mais", "menos" (a página nova começa na conjunção)
+          if (!achou) for (let k = j - 1; k > i + 1; k--) if (/^(e|ou|mais|menos)$/i.test(ws[k].w) && ws[k - 1].t1 - ws[i].t0 >= CAP.minPag) { j = k; break; }
+        }
         pages.push([i, j]); i = j;
       }
       const cabe = (a, b) => { let ln = 1, x0 = a; for (let k = a + 1; k <= b; k++) if (wid(ws, x0, k) > CAP.maxW) { if (k - 1 === x0) continue; ln++; x0 = k - 1; } return ln <= 2; };
-      const dura = (k) => (pages[k + 1] ? ws[pages[k + 1][0]].t0 : ws[pages[k][1] - 1].t1 + CAP.segura) - ws[pages[k][0]].t0;
+      const dura = (k) => (pages[k + 1] ? ws[pages[k + 1][0]].t0 : Math.min(prox, ws[pages[k][1] - 1].t1 + CAP.segura)) - ws[pages[k][0]].t0;
       for (let k = pages.length - 1; k > 0; k--)
         while ((dura(k) < CAP.minPag || pages[k][1] - pages[k][0] === 1) && pages[k - 1][1] - pages[k - 1][0] > 2 && cabe(pages[k][0] - 1, pages[k][1])) { pages[k - 1][1]--; pages[k][0]--; }
       pages.forEach(([a, b]) => {

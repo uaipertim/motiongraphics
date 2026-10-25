@@ -77,32 +77,35 @@ def trechos_de_fala(audio):
 
 
 def pelo_audio(audio):
+    """cada trecho de fala do áudio recebe um bloco de palavras que termina em pontuação (vírgula, dois-pontos, ponto,
+    interrogação); escolhe os cortes que deixam o ritmo (letras por segundo) mais parecido entre os trechos.
+    Dentro do trecho, as palavras dividem o tempo pelo número de letras faladas."""
+    import itertools, math
     ws = tokens_palavras()
     segs, dur_audio = trechos_de_fala(audio)
-    nf = len(R['frases'])
-    # agrupa os trechos de fala em nf frases: corta nas nf−1 maiores pausas
-    gaps = sorted(range(len(segs) - 1), key=lambda k: segs[k + 1][0] - segs[k][1], reverse=True)[:nf - 1]
-    cortes = sorted(gaps)
-    grupos, a = [], 0
-    for c in cortes + [len(segs) - 1]:
-        grupos.append(segs[a:c + 1]); a = c + 1
-    if len(grupos) != nf:
-        sys.exit(f'o áudio tem {len(grupos)} blocos de fala e o roteiro {nf} frases; confira o arquivo')
-    for fi, g in enumerate(grupos):
-        pw = [w for w in ws if w['frase'] == fi]
-        tot = sum(letras(w['fala']) for w in pw)
-        fala = sum(b - a for a, b in g)
-        acc = 0.0
-        def tempo(frac):                                # posição (0..1) da fala da frase -> segundo do áudio
-            alvo, s = frac * fala, 0.0
-            for a, b in g:
-                if s + (b - a) >= alvo: return a + (alvo - s)
-                s += b - a
-            return g[-1][1]
-        for w in pw:
+    fins = [i for i, w in enumerate(ws) if re.search(r'[,.:;?!]$', w['fala'])]       # depois destas palavras pode haver pausa
+    if fins[-1] != len(ws) - 1: fins.append(len(ws) - 1)
+    cand, ns = fins[:-1], len(segs)
+    if len(cand) < ns - 1:
+        sys.exit(f'o áudio tem {ns} trechos de fala e o roteiro só {len(cand) + 1} blocos com pontuação; confira o arquivo')
+    L = [letras(w['fala']) for w in ws]
+    melhor = None
+    for cortes in itertools.combinations(cand, ns - 1):
+        bordas = [-1, *cortes, len(ws) - 1]
+        rates = [math.log(sum(L[bordas[k] + 1:bordas[k + 1] + 1]) / (segs[k][1] - segs[k][0])) for k in range(ns)]
+        m = sum(rates) / ns
+        custo = sum((r - m) ** 2 for r in rates)
+        if melhor is None or custo < melhor[0]: melhor = (custo, bordas, rates)
+    _, bordas, rates = melhor
+    for k in range(ns):
+        a, b = segs[k]
+        grupo = ws[bordas[k] + 1:bordas[k + 1] + 1]
+        tot = sum(letras(w['fala']) for w in grupo); acc = 0
+        for w in grupo:
             l = letras(w['fala'])
-            w['t0'], w['t1'] = round(tempo(acc / tot) + INI, 3), round(tempo((acc + l) / tot) + INI, 3)
-            acc += l
+            w['t0'] = round(a + (b - a) * acc / tot + INI, 3); acc += l
+            w['t1'] = round(a + (b - a) * acc / tot + INI, 3)
+        print(f'  trecho {k + 1:2d} {a:5.2f}–{b:5.2f} s  {math.exp(rates[k]):4.1f} letras/s  ' + ' '.join(w['fala'] for w in grupo))
     return ws, dur_audio
 
 
