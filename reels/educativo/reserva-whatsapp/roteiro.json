@@ -1,0 +1,44 @@
+{
+ "id": "reserva-whatsapp",
+ "titulo": "Recebeu uma reserva pelo WhatsApp? Confira antes de registrar.",
+ "marca": "@fazlohospeda",
+ "voz": { "modelo": "eleven_v4", "voz": "Raquel - For Conversational (GDzHdQOi6jjf8zaXhCYD)", "stability": 0.5, "similarity_boost": 0.75 },
+ "nota": "Conteúdo educativo (sexta, 30/10/2026). Não é demonstração do FAZLO Hospeda: sem interface e sem imitar o app de conversa. Os dados da conversa e da ficha são fictícios e a tela avisa 'Exemplo fictício'. Cada item de 'frases' é uma frase da locução; o texto de todos os tokens, na ordem, é exatamente a narração aprovada. 'chave': palavras em limão na legenda; 'id': marca o instante que dispara a animação.",
+ "frases": [
+  { "id": "gancho", "tokens": [
+   { "fala": "Recebeu uma reserva pelo" }, { "fala": "WhatsApp?", "chave": true, "id": "whats" } ] },
+  { "id": "confira", "tokens": [
+   { "fala": "Antes de registrar, confira" }, { "fala": "cinco informações.", "chave": true, "id": "cinco" } ] },
+  { "id": "nome", "tokens": [
+   { "fala": "Nome completo", "chave": true, "id": "nome" }, { "fala": "e" }, { "fala": "telefone", "chave": true, "id": "telefone" },
+   { "fala": "de quem vai se hospedar." } ] },
+  { "id": "datas", "tokens": [
+   { "fala": "Datas", "chave": true, "id": "datas" }, { "fala": "de entrada e saída, e quantas" }, { "fala": "noites.", "chave": true, "id": "noites" } ] },
+  { "id": "pessoas", "tokens": [
+   { "fala": "Quantas" }, { "fala": "pessoas:", "chave": true, "id": "pessoas" }, { "fala": "adultos, crianças, e se vem", "id": "adultos" },
+   { "fala": "pet.", "chave": true, "id": "pet" } ] },
+  { "id": "acomodacao", "tokens": [
+   { "fala": "Qual" }, { "fala": "acomodação", "chave": true, "id": "acomodacao" }, { "fala": "e o" },
+   { "fala": "valor combinado.", "chave": true, "id": "valor" } ] },
+  { "id": "sinal", "tokens": [
+   { "fala": "E o" }, { "fala": "sinal:", "chave": true, "id": "sinal" }, { "fala": "quanto, por qual forma e se o" },
+   { "fala": "comprovante bateu.", "chave": true, "id": "comprovante" } ] },
+  { "id": "certa", "tokens": [
+   { "fala": "Com isso" }, { "fala": "conferido,", "id": "conferido" }, { "fala": "a reserva entra" },
+   { "fala": "certa", "chave": true, "id": "certa" }, { "fala": "desde o começo." } ] },
+  { "id": "cta", "tokens": [
+   { "fala": "Envie", "chave": true, "id": "envie" }, { "fala": "para quem atende o WhatsApp da sua pousada." } ] }
+ ],
+ "narracao": "Recebeu uma reserva pelo WhatsApp? Antes de registrar, confira cinco informações. Nome completo e telefone de quem vai se hospedar. Datas de entrada e saída, e quantas noites. Quantas pessoas: adultos, crianças, e se vem pet. Qual acomodação e o valor combinado. E o sinal: quanto, por qual forma e se o comprovante bateu. Com isso conferido, a reserva entra certa desde o começo. Envie para quem atende o WhatsApp da sua pousada.",
+ "exemplo": {
+  "mensagem": ["Oi! Sou a Ana Lima. Quero reservar", "o chalé de 14 a 16/11, para", "2 adultos e 1 criança. Pode ser?"],
+  "ficha": [
+   { "id": "nome", "rotulo": "Nome e telefone", "valor": "Ana Lima · (00) 90000-0000" },
+   { "id": "datas", "rotulo": "Entrada, saída e noites", "valor": "14/11 → 16/11 · 2 noites" },
+   { "id": "pessoas", "rotulo": "Pessoas", "valor": "2 adultos · 1 criança · sem pet" },
+   { "id": "acomodacao", "rotulo": "Acomodação e valor", "valor": "Chalé 3 · R$ 900,00" },
+   { "id": "sinal", "rotulo": "Sinal", "valor": "R$ 450,00 · Pix · comprovante ok" }
+  ]
+ },
+ "legenda_post": "Recebeu uma reserva pelo WhatsApp? Antes de registrar, confira estas 5 informações:\n\n1. Nome completo e telefone de quem vai se hospedar.\n2. Datas de entrada e saída, e quantas noites.\n3. Quantas pessoas: adultos, crianças e se vem pet.\n4. Qual acomodação e o valor combinado.\n5. O sinal: quanto, por qual forma e se o comprovante bateu.\n\nCom isso conferido, a reserva entra certa desde o começo.\n\nEnvie para quem atende o WhatsApp da sua pousada.\n\n#pousada #gestaodepousada #hospedagem"
+}
