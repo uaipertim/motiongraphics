@@ -1,0 +1,262 @@
+[
+ {
+  "capitulo": 0,
+  "tipo": "capa",
+  "t": 3.0,
+  "opcao": "A · faixa do apoio",
+  "linhas": [
+   "Dois hóspedes, o mesmo"
+  ],
+  "y": [
+   738,
+   805
+  ],
+  "cobre": [
+   "título, linha 1"
+  ]
+ },
+ {
+  "capitulo": 0,
+  "tipo": "capa",
+  "t": 3.0,
+  "opcao": "B · embaixo (Fala)",
+  "linhas": [
+   "Dois hóspedes, o mesmo",
+   "chalé, o mesmo fim de"
+  ],
+  "y": [
+   1280,
+   1427
+  ],
+  "cobre": [
+   "cadeado 1",
+   "cadeado 2",
+   "cadeado 3",
+   "cadeado 4"
+  ]
+ },
+ {
+  "capitulo": 1,
+  "tipo": "colisao",
+  "t": 15.09,
+  "opcao": "A · faixa do apoio",
+  "linhas": [
+   "Dois carros no portão e"
+  ],
+  "y": [
+   738,
+   805
+  ],
+  "cobre": []
+ },
+ {
+  "capitulo": 1,
+  "tipo": "colisao",
+  "t": 15.09,
+  "opcao": "B · embaixo (Fala)",
+  "linhas": [
+   "Dois carros no portão e",
+   "um chalé só. Uma"
+  ],
+  "y": [
+   1280,
+   1427
+  ],
+  "cobre": [
+   "impressora"
+  ]
+ },
+ {
+  "capitulo": 3,
+  "tipo": "agenda",
+  "t": 32.94,
+  "opcao": "A · faixa do apoio",
+  "linhas": [
+   "Primeiro: uma agenda"
+  ],
+  "y": [
+   738,
+   805
+  ],
+  "cobre": []
+ },
+ {
+  "capitulo": 3,
+  "tipo": "agenda",
+  "t": 32.94,
+  "opcao": "B · embaixo (Fala)",
+  "linhas": [
+   "Primeiro: uma agenda",
+   "só. Toda reserva, venha"
+  ],
+  "y": [
+   1280,
+   1427
+  ],
+  "cobre": [
+   "agenda única",
+   "impressora"
+  ]
+ },
+ {
+  "capitulo": 5,
+  "tipo": "bloqueio",
+  "t": 51.64,
+  "opcao": "A · faixa do apoio",
+  "linhas": [
+   "Terceiro: vendeu num"
+  ],
+  "y": [
+   738,
+   805
+  ],
+  "cobre": []
+ },
+ {
+  "capitulo": 5,
+  "tipo": "bloqueio",
+  "t": 51.64,
+  "opcao": "B · embaixo (Fala)",
+  "linhas": [
+   "Terceiro: vendeu num",
+   "lugar, fecha em todos."
+  ],
+  "y": [
+   1280,
+   1427
+  ],
+  "cobre": [
+   "canal SITE",
+   "canal TELEFONE",
+   "canal WHATSAPP"
+  ]
+ },
+ {
+  "capitulo": 6,
+  "tipo": "consulta",
+  "t": 61.21,
+  "opcao": "A · faixa do apoio",
+  "linhas": [
+   "Quarto: antes do \"tem"
+  ],
+  "y": [
+   738,
+   805
+  ],
+  "cobre": []
+ },
+ {
+  "capitulo": 6,
+  "tipo": "consulta",
+  "t": 61.21,
+  "opcao": "B · embaixo (Fala)",
+  "linhas": [
+   "Quarto: antes do \"tem",
+   "sim\", olhe a agenda."
+  ],
+  "y": [
+   1280,
+   1427
+  ],
+  "cobre": [
+   "resposta"
+  ]
+ },
+ {
+  "capitulo": 8,
+  "tipo": "passos",
+  "t": 74.36,
+  "opcao": "A · faixa do apoio",
+  "linhas": [
+   "Anota aí: uma agenda só,"
+  ],
+  "y": [
+   738,
+   805
+  ],
+  "cobre": [
+   "notinha"
+  ]
+ },
+ {
+  "capitulo": 8,
+  "tipo": "passos",
+  "t": 74.36,
+  "opcao": "B · embaixo (Fala)",
+  "linhas": [
+   "Anota aí: uma agenda só,",
+   "prazo na pré-reserva,"
+  ],
+  "y": [
+   1280,
+   1427
+  ],
+  "cobre": [
+   "impressora",
+   "notinha",
+   "passo 4"
+  ]
+ },
+ {
+  "capitulo": 9,
+  "tipo": "fecho",
+  "t": 78.26,
+  "opcao": "A · faixa do apoio",
+  "linhas": [
+   "Salva esse vídeo e"
+  ],
+  "y": [
+   738,
+   805
+  ],
+  "cobre": []
+ },
+ {
+  "capitulo": 9,
+  "tipo": "fecho",
+  "t": 78.26,
+  "opcao": "B · embaixo (Fala)",
+  "linhas": [
+   "Salva esse vídeo e",
+   "manda pra quem cuida"
+  ],
+  "y": [
+   1280,
+   1427
+  ],
+  "cobre": [
+   "balão da pergunta"
+  ]
+ },
+ {
+  "capitulo": 9,
+  "tipo": "fecho (logo)",
+  "t": 83.26,
+  "opcao": "A · faixa do apoio",
+  "linhas": [
+   "conta: já aconteceu na"
+  ],
+  "y": [
+   738,
+   805
+  ],
+  "cobre": [
+   "logo final"
+  ]
+ },
+ {
+  "capitulo": 9,
+  "tipo": "fecho (logo)",
+  "t": 83.26,
+  "opcao": "B · embaixo (Fala)",
+  "linhas": [
+   "conta: já aconteceu na",
+   "sua pousada?"
+  ],
+  "y": [
+   1280,
+   1427
+  ],
+  "cobre": []
+ }
+]
