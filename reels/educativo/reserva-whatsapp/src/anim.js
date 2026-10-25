@@ -213,7 +213,7 @@
   }
 
   // ---------------------------------------------------------------- 3. A FICHA DE CONFERÊNCIA (papel)
-  const FICHA = { x0: 130, x1: 950, y0: 610, cab: 104, row: 100 };     // termina em y ≈ 1236 (a legenda começa em ≈ 1280)
+  const FICHA = { x0: 130, x1: 950, y0: 610, cab: 132, row: 94 };      // termina em y ≈ 1234 (a legenda começa em ≈ 1280)
   function ficha(c, t) {
     const t0 = T.confiraFim - 0.1;
     if (t < t0 || t > T.fichaFim) return;
@@ -229,7 +229,7 @@
       BOX('ficha', x0, y0, x1, y0 + h + 14);
       icon(c, 'recibo', x0 + 56, y0 + 54, 42, C.ink, 3.5);
       txt(c, 'CONFERÊNCIA DA RESERVA', x0 + 98, y0 + 66, { fam: MONO, size: 27, weight: 800, color: C.ink, ls: 2, box: 'ficha título' });
-      selo(c, x0 + 42, y0 + 84, { size: 19 });
+      selo(c, x0 + 98, y0 + 98, { size: 19 });            // abaixo do título, à direita do ícone
       c.fillStyle = C.paper2; c.fillRect(x0 + 36, y0 + cab - 2, w - 72, 3);
       itens.forEach((it, i) => {
         const fr = T.F[it.id], y = y0 + cab + i * row, tc = at(it.id, fr.t0);
