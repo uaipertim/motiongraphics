@@ -149,7 +149,7 @@
     if (t > T.fichaFim) return;
     // grande no gancho; encolhe e sobe na cena "confira"; some com a ficha
     const u = E.inOutCubic(p(t, T.ganchoFim - 0.3, T.ganchoFim + 0.4));
-    const s = lerp(1, 0.62, u), cx = 540, cy = lerp(BAL.y0 + BAL.h / 2, 474, u);
+    const s = lerp(1, 0.62, u), cx = 540, cy = lerp(BAL.y0 + BAL.h / 2, 502, u)   // ≥ 28 px abaixo da marca, ≥ 20 px acima da ficha;
     const vai = p(t, T.fichaFim - 0.3, T.fichaFim);
     c.save(); c.globalAlpha *= 1 - E.inCubic(vai);
     c.translate(cx, cy); c.scale(s, s); c.translate(-cx, -(BAL.y0 + BAL.h / 2));
