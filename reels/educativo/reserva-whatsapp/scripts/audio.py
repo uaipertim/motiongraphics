@@ -4,7 +4,7 @@
 Am9 → Fmaj9 → Cmaj9 → G6/9 a 92 BPM, baixo, pulso grave, shaker e arpejo, 100% sintetizada) + efeitos curtos nos
 gestos da animação (balão, casas da conferência, itens e checks da ficha, carimbo, avião, sineta da logo).
 
-    python3 scripts/audio.py   -> audio/mix.wav (48 kHz, estéreo, −14 LUFS, pico real ≤ −1,8 dBTP) + audio/cues.json
+    python3 scripts/audio.py   -> audio/mix.wav (48 kHz, estéreo, −14 LUFS, pico real ≤ −2,4 dBTP no WAV, ≤ −1,5 dBTP no MP4) + audio/cues.json
 
 A trilha fica ~10 dB abaixo da voz (3 dB acima da Série Explica, pedido de 25/10: o vídeo pedia mais ação) e abaixa até 6 dB enquanto a voz fala; o último acorde entra com a sineta da logo.
 Os geradores de som (helpers e trilha) são copiados de serie-explica/scripts/audio.py, sem alteração.
@@ -442,7 +442,7 @@ def lufs(x):
 
 x = mix.T / max(1e-9, np.abs(mix).max()) * 0.5
 for _ in range(5):
-    x = true_peak_limit(x * 10 ** ((TARGET_LUFS - lufs(x)) / 20), -1.8)
+    x = true_peak_limit(x * 10 ** ((TARGET_LUFS - lufs(x)) / 20), -2.4)   # folga para a codificação AAC (pico final ≤ −1,5 dBTP)
 I = lufs(x)
 wavfile.write(os.path.join(AUD, 'mix.wav'), SR, np.round(np.clip(x, -1, 1) * 32767).astype(np.int16))
 for nome, sig in (('voz-tratada', np.stack([voz, voz])), ('musica', msc), ('sfx', sfx)):

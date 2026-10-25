@@ -1,0 +1,37 @@
+EDUCATIVO reserva-whatsapp — revisão técnica
+output/reserva-whatsapp.mp4
+
+FORMATO
+OK     vídeo h264 yuv420p 1080x1920 60 fps
+OK     áudio aac 48000 Hz 2 canais
+OK     duração 35.75 s (alvo 30–40 s)
+OK     vídeo e áudio com a mesma duração (Δ 0 ms)
+
+SOM
+OK     loudness integrado -14.0 LUFS (alvo −14)
+OK     pico real -2.2 dBTP (limite −1,5)
+OK     a trilha fica 10.2 dB abaixo da voz (voz -14.2 LUFS, trilha -24.4 LUFS; alvo ~10 dB, com ducking)
+
+LEGENDA
+OK     15 páginas; cada uma fica ≥ 1,5 s na tela (a mais curta: 1.55 s)
+OK     a página anterior sai antes da próxima entrar (nenhuma sobreposição)
+OK     chaves em limão: 18 palavras
+OK     legenda dentro de x 130–950 e acima de y 1536 em todos os quadros amostrados
+OK     a legenda não encosta em nenhum elemento da cena
+
+SINCRONIA
+OK     voz × legenda: 21 palavras depois de pausa, a 3 ms em média e 31 ms no máximo (limite 80 ms) · sem silêncio real antes (não medidas): reserva, forma, certa
+       Antes +0 · confira +0 · Nome +0 · Datas +1 · entrada -3 · e +0 · Quantas -21 · adultos, -1 · crianças, +0 · e +11 · pet. -2 · Qual +0 · acomodação +31 · e +0 · E +0 · quanto, +0 · por +0 · e -1 · Com +0 · a -1 · Envie +0
+OK     cada página aparece no quadro da 1ª palavra (atraso em quadros: [1, 1, 1, 0, 0, 0, 0, 1, 0, 1, 0, 0, 1, 0, 0])
+
+ZONAS SEGURAS E CONTEÚDO
+OK     coluna de botões (x ≥ 950, y 1060–1560): 0 pixel aceso em 143 quadros
+OK     20% de baixo (y > 1536): nada aceso em 143 quadros
+OK     todas as caixas da cena entre y 265 e 1536 e fora da coluna de botões
+OK     grafia oficial: nenhuma grafia fonética (Fázlo, Hospéda, Uátsap) na legenda nem no quadro
+OK     "Exemplo fictício" visível em todos os 116 quadros amostrados que mostram dado
+OK     a logo entra 0.70 s depois da última palavra e fica 3.20 s até o fim
+OK     o vídeo termina com a logo
+OK     capa (quadro 0) na regra das capas: dentro da regra das capas
+
+RESULTADO: aprovado

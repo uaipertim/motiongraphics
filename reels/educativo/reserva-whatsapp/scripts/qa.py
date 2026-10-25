@@ -161,7 +161,10 @@ ok(all(any(b['nome'] == 'logo final' for b in s['caixas']) for s in fim), 'o ví
 # ---------------------------------------------------------------- capa (quadro 0) e folha das zonas seguras
 subprocess.run(['ffmpeg', '-v', 'error', '-y', '-i', VIDEO, '-frames:v', '1', os.path.join(OUT, 'capa.png')], check=True)
 c0 = [s for s in INFO['caixas'] if s['t'] == 0][0]['caixas']
-json.dump({b['nome']: {k: b[k] for k in ('x0', 'x1', 'y0', 'y1')} for b in c0 if b['nome'] not in ('legenda',)}, open(os.path.join(REV, 'capa-caixas.json'), 'w'), ensure_ascii=False, indent=1)
+# cada elemento entra uma vez: o que está inteiro dentro de outra caixa (o texto e o selo do balão) faz parte dela
+dentro = lambda b, o: o is not b and o['x0'] <= b['x0'] + 1 and o['x1'] >= b['x1'] - 1 and o['y0'] <= b['y0'] + 1 and o['y1'] >= b['y1'] - 1
+c0 = [b for b in c0 if b['nome'] != 'legenda' and not any(dentro(b, o) for o in c0 if o['nome'] != 'legenda')]
+json.dump({b['nome']: {k: b[k] for k in ('x0', 'x1', 'y0', 'y1')} for b in c0}, open(os.path.join(REV, 'capa-caixas.json'), 'w'), ensure_ascii=False, indent=1)
 cap = run([sys.executable, os.path.join(ROOT, '..', '..', 'tools', 'revisao_capa.py'), ROOT]).stdout
 res = [l for l in cap.splitlines() if 'RESULTADO' in l]
 ok(bool(res) and 'dentro da regra' in res[-1], 'capa (quadro 0) na regra das capas: ' + (res[-1].replace('RESULTADO: ', '') if res else 'sem resultado'))

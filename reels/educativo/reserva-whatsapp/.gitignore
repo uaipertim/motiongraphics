@@ -1,4 +1,4 @@
-output/*.mp4
+output/*-previa.mp4
 output/stills/
 output/info.json
 output/render.log

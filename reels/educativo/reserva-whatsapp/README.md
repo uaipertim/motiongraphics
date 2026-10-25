@@ -8,7 +8,7 @@ Reel educativo do @fazlohospeda (sexta, 30/10/2026), feito a partir do [saldo-ch
 - Os dados da mensagem e da ficha são fictícios ("Ana Lima", telefone `(00) 90000-0000`, Chalé 3, valores) e a tela mostra "Exemplo fictício" em todo quadro com dado.
 - Não promete integração com nenhum serviço.
 
-▶ **Vídeo:** [`output/reserva-whatsapp.mp4`](output) (≈ 35,8 s, 1080×1920, 60 fps; não vai para o git, sai de `render.cjs`).
+▶ **Vídeo:** [`output/reserva-whatsapp.mp4`](output/reserva-whatsapp.mp4) (35,75 s, 1080×1920, 60 fps). **Para aprovação: não publicar antes do OK.**
 **Capa (quadro 0):** [`output/capa.jpg`](output/capa.jpg). **Legenda do post:** [`legenda.txt`](legenda.txt). **Revisão:** [`output/revisao/relatorio.txt`](output/revisao/relatorio.txt).
 
 ## Cenas (no tempo da locução)
@@ -38,7 +38,7 @@ Reel educativo do @fazlohospeda (sexta, 30/10/2026), feito a partir do [saldo-ch
   - Inter Display 900, 68 px, branca, chaves em limão.
   - Linhas em y 1332/1412, x 130–950.
   - Cada página fica ≥ 1,5 s na tela.
-- **Som** (`scripts/audio.py`): voz + trilha da Série Explica, ~10 dB abaixo da voz, com ducking, + efeitos nos gestos da animação. Master em −14 LUFS, pico ≤ −1,8 dBTP.
+- **Som** (`scripts/audio.py`): voz + trilha da Série Explica, ~10 dB abaixo da voz, com ducking, + efeitos nos gestos da animação. Master em −14 LUFS, com o limitador em −2,4 dBTP para deixar folga para o AAC (no MP4: pico ≤ −1,5 dBTP).
 
 ## Rodar
 
@@ -51,3 +51,17 @@ node scripts/render.cjs video --mix audio/mix.wav   # output/reserva-whatsapp.mp
 node scripts/render.cjs info                        # output/info.json (páginas da legenda e caixas a cada 0,25 s)
 python3 scripts/qa.py                               # output/revisao/relatorio.txt, zonas-seguras.jpg, capa e revisão da capa
 ```
+
+## Revisão (scripts/qa.py) · resultado: aprovado
+
+- **Formato:** H.264 yuv420p 1080×1920 60 fps · AAC 48 kHz estéreo · 35,75 s · vídeo e áudio com a mesma duração.
+- **Som:** −14,0 LUFS · pico real −2,2 dBTP · trilha 10,3 dB abaixo da voz.
+- **Legenda:** 15 páginas, a mais curta com 1,55 s na tela, sem sobreposição. Fica dentro de x 130–950, acima de y 1536, e não encosta na cena. 18 palavras-chave em limão.
+- **Sincronia:**
+  - 21 palavras depois de pausa: 3 ms em média e 31 ms no máximo (limite 80 ms).
+  - Cada página aparece no quadro da 1ª palavra ou até 1 quadro depois.
+  - "reserva", "forma" e "certa" não têm silêncio real antes e não entram na medida.
+- **Zonas seguras:** nada na coluna de botões nem nos 20% de baixo; todas as caixas entre y 265 e 1536.
+- **Grafia e dados:** nenhuma grafia fonética na tela. "Exemplo fictício" aparece em todos os quadros com dado.
+- **Logo:** entra 0,70 s depois da última palavra e fica 3,2 s.
+- **Capa:** o quadro 0 está dentro da regra das capas ([`capa.txt`](output/revisao/capa.txt), [`capa-no-feed.jpg`](output/revisao/capa-no-feed.jpg)).
