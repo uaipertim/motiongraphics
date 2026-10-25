@@ -1742,6 +1742,87 @@
     BOX('@ final', 540 - hw / 2, 1100, 540 + hw / 2, 1136);
   }
 
+
+  // =====================================================================
+  // LEGENDA PALAVRA A PALAVRA (episódios com "legenda": "palavras"): o padrão do reel-09 e da Série Fala.
+  // Inter Display 900, branca, palavras-chave em limão com pop, sombra suave, sem painel. Fica na faixa livre de y 1424–1536
+  // (abaixo dos diagramas, que acabam em y 1412, e acima dos 20% de baixo da interface), em x 150–950 (fora da coluna de botões
+  // e da impressorinha). Páginas de até 2 linhas; a palavra aparece no instante em que é falada; cada página dura ≥ 1,5 s.
+  // =====================================================================
+  const CAPT = { size: 52, lh: 56, y1: 1466, maxW: 780, cx: 550, x0: 150, x1: 950, minPag: 1.5, segura: 0.9 };
+  let LEG = false, PAGES = [];
+  const capLs = () => -0.02 * CAPT.size;
+  function layoutLegenda() {
+    PAGES = [];
+    if (!LEG) return;
+    const wid = (ws, a, b) => tw(ws.slice(a, b).map((x) => x.w).join(' '), DISPLAY, CAPT.size, 900, capLs());
+    const todas = [];
+    CAPS.forEach((cap) => cap.palavras.forEach((w) => todas.push({ ...w, cap: cap.n })));
+    CAPS.forEach((cap) => {
+      const ws = cap.palavras, pages = [];
+      let i = 0;
+      while (i < ws.length) {
+        // o máximo de palavras em 2 linhas; fecha também no fim de uma frase, se a página já durou ≥ 1,5 s
+        let j = i, lines = 1, a = i;
+        while (j < ws.length) {
+          if (wid(ws, a, j + 1) > CAPT.maxW) { if (a === j) { j++; continue; } lines++; a = j; if (lines > 2) break; }
+          else {
+            j++;
+            if (/[.?!…]["”)]*$/.test(ws[j - 1].w) && ws[j - 1].t1 - ws[i].t0 >= CAPT.minPag + 0.2) break;
+          }
+        }
+        pages.push([i, j]); i = j;
+      }
+      // nenhuma página fica curta demais (< 1,5 s na tela): puxa palavras do fim da anterior, enquanto couberem em 2 linhas
+      const cabe = (a, b) => { let ln = 1, x0 = a; for (let j = a + 1; j <= b; j++) if (wid(ws, x0, j) > CAPT.maxW) { if (j - 1 === x0) continue; ln++; x0 = j - 1; } return ln <= 2; };
+      const dura = (k) => (pages[k + 1] ? Math.min(ws[pages[k + 1][0]].t0, ws[pages[k][1] - 1].t1 + CAPT.segura) : ws[pages[k][1] - 1].t1 + CAPT.segura) - ws[pages[k][0]].t0;
+      for (let k = pages.length - 1; k > 0; k--) {
+        while ((dura(k) < CAPT.minPag || pages[k][1] - pages[k][0] === 1) && pages[k - 1][1] - pages[k - 1][0] > 2 && cabe(pages[k][0] - 1, pages[k][1])) { pages[k - 1][1]--; pages[k][0]--; }
+      }
+      pages.forEach(([a, b]) => {
+        const n = b - a, full = wid(ws, a, b);
+        let brk = n;                                    // 1 linha, ou o corte que equilibra as duas
+        if (full > CAPT.maxW) { let best = 1e9; for (let k = 1; k < n; k++) { const m = Math.max(wid(ws, a, a + k), wid(ws, a + k, b)); if (m < best) { best = m; brk = k; } } }
+        const rows = brk >= n ? [[a, b]] : [[a, a + brk], [a + brk, b]];
+        const pos = {};
+        rows.forEach(([r0, r1], ri) => {
+          const w = wid(ws, r0, r1); let x = CAPT.cx - w / 2;
+          for (let k = r0; k < r1; k++) { pos[k] = { x, row: ri }; x += tw(ws[k].w + ' ', DISPLAY, CAPT.size, 900, capLs()) + capLs(); }
+        });
+        PAGES.push({ cap: cap.n, a, b, rows, pos, nrows: rows.length, t0: ws[a].t0, words: ws, fimFala: ws[b - 1].t1 });
+      });
+    });
+    // cada página dura até a 1ª palavra da seguinte; a última de um capítulo fica um pouco depois do fim da fala (e ≥ 1,5 s)
+    PAGES.forEach((q, i) => {
+      const nx = PAGES[i + 1], lim = q.cap === NC - 1 && !nx ? FECHO.wipe : DUR;
+      let t1 = Math.min(nx ? nx.t0 : lim, q.fimFala + CAPT.segura);
+      t1 = Math.max(t1, Math.min(q.t0 + CAPT.minPag, nx ? nx.t0 : lim));
+      q.t1 = Math.min(t1, lim);
+    });
+  }
+  function legenda(ctx, t) {
+    const pg = PAGES.find((q) => t >= q.t0 && t < q.t1);
+    if (!pg) return;
+    const y0 = CAPT.y1 + (pg.nrows === 1 ? CAPT.lh / 2 : 0);
+    const f = ctx.font, ls = ctx.letterSpacing;
+    ctx.save();
+    ctx.shadowColor = 'rgba(0,0,0,0.7)'; ctx.shadowBlur = 14; ctx.shadowOffsetY = 2;
+    for (let k = pg.a; k < pg.b; k++) {
+      const w = pg.words[k];
+      if (t < w.t0) continue;
+      const u = E.outCubic(p(t, w.t0, w.t0 + 0.09)), ps = pg.pos[k];
+      const ww = tw(w.w, DISPLAY, CAPT.size, 900, capLs());
+      const pop = w.chave ? 1 + 0.07 * Math.exp(-((t - w.t0) / 0.18) * 4) : 1, y = y0 + ps.row * CAPT.lh + (1 - u) * 8;
+      ctx.save(); setFont(ctx, DISPLAY, CAPT.size, 900, capLs()); ctx.textAlign = 'left'; ctx.textBaseline = 'alphabetic';
+      ctx.globalAlpha = u; ctx.fillStyle = w.chave ? C.lime : C.white;
+      ctx.translate(ps.x + ww / 2, y - CAPT.size * 0.3); ctx.scale(pop, pop);
+      ctx.fillText(w.w, -ww / 2, CAPT.size * 0.3);
+      ctx.restore();
+      if (u > 0.99) BOX(`legenda ${k - pg.a + 1}`, ps.x, y - CAPT.size * 0.8, ps.x + ww, y + CAPT.size * 0.22);
+    }
+    ctx.restore();
+  }
+
   // =====================================================================
   // O QUADRO
   // =====================================================================
@@ -1761,6 +1842,7 @@
     OFF = { dx: 0, dy: 0, n: -1 };
     drawNota(ctx, t);
     brand(ctx);
+    if (LEG) { OFF = { dx: 0, dy: 0, n: -2 }; legenda(ctx, t); OFF = { dx: 0, dy: 0, n: -1 }; }
   }
   function frame(ctx, t) {
     ctx.setTransform(1, 0, 0, 1, 0, 0); ctx.globalAlpha = 1; ctx.globalCompositeOperation = 'source-over'; ctx.shadowColor = 'transparent';
@@ -1789,6 +1871,7 @@
     NC = CAPS.length;
     if (CAPS[NC - 1].diagrama.tipo !== 'fecho') throw new Error('o último capítulo deve ser o fecho');
     NOTA = buildNota();
+    LEG = linha.legenda === 'palavras';
     CAPS.forEach((cap, k) => {
       if (!CENAS[cap.diagrama.tipo]) throw new Error('tipo de diagrama desconhecido: ' + cap.diagrama.tipo);
       if (cap.diagrama.tipo !== 'capa') layoutTitulo(cap);
@@ -1802,6 +1885,7 @@
     cue(NOTA.entra, 'printerin');
     NOTA.ents.forEach((e) => { cue(e.t, 'print', { d: e.d, big: e.tipo === 'fim' }); if (e.check !== undefined) cue(e.check, 'stamp'); });
     CUES.sort((a, b) => a.t - b.t);
+    layoutLegenda();
   }
 
   function caixas(ctx, t) {
@@ -1819,6 +1903,9 @@
     fecho: () => ({ ultima_mudanca_de_texto: FECHO.ultima, duracao: DUR, voz_fim: CAPS[NC - 1].voz_t1, texto_de: FECHO.texto_de, texto_ate: FECHO.texto_ate, logo_passagem: FECHO.wipe, logo_pousa: FECHO.pousa, sineta: FECHO.sino }),
     notinha: () => ({ entra: NOTA.entra, rasga: NOTA.rasga, linhas: NOTA.ents.map((e) => ({ tipo: e.tipo, cap: e.k ?? null, texto: e.tipo === 'item' ? `${e.num} · ${e.lines.join(' ')}` : e.tipo === 'topo' ? 'CONTA' : 'CONTA FECHADA ✓', imprime: e.t, check: e.check ?? null })) }),
     medidas: () => ({ area_util: [L.x0, L.x1], cartao_credito: { largura: CARTAO.CW, altura: CARTAO.CH, mono_px: CARTAO.mono, valor_px: CARTAO.valor, sub_px: CARTAO.sub } }),
+    legenda: () => PAGES.map((q) => ({ cap: q.cap, t0: q.t0, t1: q.t1, linhas: q.rows.map(([a, b]) => q.words.slice(a, b).map((x) => x.w).join(' ')),
+      palavras: Array.from({ length: q.b - q.a }, (_, i) => { const k = q.a + i, ps = q.pos[k]; return { w: q.words[k].w, t0: q.words[k].t0, chave: !!q.words[k].chave, x: ps.x, w_px: tw(q.words[k].w, DISPLAY, CAPT.size, 900, capLs()), y: CAPT.y1 + (q.nrows === 1 ? CAPT.lh / 2 : 0) + ps.row * CAPT.lh }; }) })),
+    legenda_medidas: () => CAPT,
     trocas: () => CAPS.slice(0, -1).map((c, k) => ({ de: k, para: k + 1, t0: c.t1, t1: CAPS[k + 1].t0 })),
     caixas,
     montagens: () => CAPS.map((c) => {

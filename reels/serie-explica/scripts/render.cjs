@@ -71,7 +71,7 @@ const grab = async (page, t) => decode(await page.evaluate((t) => window.frameAt
       const page = await openPage(browser, port);
       const dir = path.resolve(ROOT, `output/${EP}/revisao`);
       fs.mkdirSync(dir, { recursive: true });
-      const info = await page.evaluate(() => ({ duracao: EXPLICA.DURATION, apoios: EXPLICA.apoios(), trocas: EXPLICA.trocas(), montagens: EXPLICA.montagens(), fecho: EXPLICA.fecho(), notinha: EXPLICA.notinha(), medidas: EXPLICA.medidas(), cues: EXPLICA.cues().cues }));
+      const info = await page.evaluate(() => ({ duracao: EXPLICA.DURATION, apoios: EXPLICA.apoios(), trocas: EXPLICA.trocas(), montagens: EXPLICA.montagens(), fecho: EXPLICA.fecho(), notinha: EXPLICA.notinha(), medidas: EXPLICA.medidas(), cues: EXPLICA.cues().cues, legenda: EXPLICA.legenda(), legenda_medidas: EXPLICA.legenda_medidas() }));
       fs.writeFileSync(path.join(dir, 'motor.json'), JSON.stringify(info, null, 1));
       const caixas = [];
       for (let t = 0; t < info.duracao; t += 0.25) caixas.push({ t: Math.round(t * 100) / 100, caixas: await page.evaluate((t) => window.caixas(t), t) });
@@ -146,7 +146,7 @@ const grab = async (page, t) => decode(await page.evaluate((t) => window.frameAt
 
       const audio = path.resolve(ROOT, `audio/${EP}/mix.wav`);
       if (fs.existsSync(audio)) {
-        execSync(`ffmpeg -y -loglevel error -i "${silent}" -i "${audio}" -map 0:v -map 1:a -c:v copy -c:a aac -b:a 256k -ar 48000 -shortest -movflags +faststart "${out}"`);
+        execSync(`ffmpeg -y -loglevel error -i "${silent}" -i "${audio}" -map 0:v -map 1:a -c:v copy -c:a aac -b:a 256k -ar 48000 -t ${(total / fps).toFixed(4)} -movflags +faststart "${out}"`);
         fs.unlinkSync(silent);
       } else fs.renameSync(silent, out);
       console.log('  final:', out);

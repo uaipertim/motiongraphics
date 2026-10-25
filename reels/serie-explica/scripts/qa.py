@@ -50,8 +50,12 @@ MOT = json.load(open(os.path.join(OUT, 'motor.json')))
 CX = json.load(open(os.path.join(OUT, 'caixas.json')))
 # as caixas de texto e de cartão (para a checagem "nenhum texto passa do cartão") ficam à parte das caixas de conteúdo
 TXC = [{'t': s['t'], 'textos': [b for b in s['caixas'] if b.get('tipo') == 'texto'], 'cartoes': [b for b in s['caixas'] if b.get('tipo') == 'cartao']} for s in CX]
+LEG = LN.get('legenda') == 'palavras'                 # episódio com legenda palavra a palavra (sem a linha de apoio cinza)
+LEGB = {}
 for s in CX:
     s['caixas'] = [b for b in s['caixas'] if not b.get('tipo')]
+    LEGB[s['t']] = [b for b in s['caixas'] if b['nome'].startswith('legenda')]
+    s['caixas'] = [b for b in s['caixas'] if not b['nome'].startswith('legenda')]
 FALAS = json.load(open(os.path.join(AUD, 'voz', 'falas.json')))['capitulos']
 FONT = os.path.join(ROOT, 'src', 'fonts', 'JetBrainsMonoNL-Bold.ttf')
 DUR = LN['duracao']
@@ -144,14 +148,17 @@ for c in LN['colocacao']:
        f'(arquivo íntegro: {"sim" if sha_ok else "NÃO"}; diferença máxima vídeo × geração {dif:.6f}; {nome_hist} geração(ões) inteiras feitas)')
 
 # ---------------------------------------------------------------- leitura das linhas de apoio
-report += ['', 'LEITURA (linhas de apoio: ≥ 1,5 s inteiras na tela)']
+report += ['', 'LEITURA (linhas de apoio: ≥ 1,5 s inteiras na tela)' if not LEG else 'LEITURA (legenda palavra a palavra no lugar da linha de apoio)']
 curtas = []
 for ap in MOT['apoios']:
     tempo = ap['ate'] - ap['inteira_de']
     if tempo < 1.5 - 1e-3:
         curtas.append(ap)
     info(f'cap {ap["cap"]:02d} · apoio {ap["i"]}: {tempo:4.2f} s inteira · "{ap["texto"]}"')
-ok(not curtas, f'{len(MOT["apoios"])} linhas de apoio, a mais curta fica {min(ap["ate"] - ap["inteira_de"] for ap in MOT["apoios"]):.2f} s inteira na tela (mínimo 1,5 s)')
+if LEG:
+    ok(not MOT['apoios'], 'sem linha de apoio cinza: a legenda palavra a palavra a substitui')
+else:
+  ok(not curtas, f'{len(MOT["apoios"])} linhas de apoio, a mais curta fica {min(ap["ate"] - ap["inteira_de"] for ap in MOT["apoios"]):.2f} s inteira na tela (mínimo 1,5 s)')
 
 # ---------------------------------------------------------------- áreas seguras pelas caixas do motor
 report += ['', 'ÁREAS SEGURAS']
@@ -327,6 +334,43 @@ ok(len(d2) == 3 and DUR - ult >= 3.0 and mx2 < 3.0 and sino and abs(sino[-1]['t'
 info('nas caixas inteiras (com o fundo e o anel da sineta em volta): ' + ' · '.join(f'{n} {d:.2f}' for n, d in d2c))
 voz_fim = fc['voz_t1']
 ok(FE['logo_passagem'] >= voz_fim + 0.05, f'a logo só entra depois da última palavra: a voz do fecho termina em {voz_fim:.2f} s e a passagem para a logo começa em {FE["logo_passagem"]:.2f} s ({FE["logo_passagem"] - voz_fim:.2f} s depois)')
+
+if LEG:
+    report += ['', 'LEGENDA PALAVRA A PALAVRA']
+    PG = MOT['legenda']
+    todas = [w for c in LN['capitulos'] for w in c['palavras']]
+    leg_w = [w for q in PG for w in q['palavras']]
+    ok([w['w'] for w in leg_w] == [w['w'] for w in todas] and all(abs(a['t0'] - b['t0']) < 1e-3 for a, b in zip(leg_w, todas)),
+       f'{len(leg_w)} palavras na legenda, as mesmas da narração, na mesma ordem e no tempo da voz (grafia oficial)')
+    curtas_l = [q for q in PG if q['t1'] - q['t0'] < 1.5 - 1e-3]
+    ok(not curtas_l, f'{len(PG)} páginas de legenda, a mais curta fica {min(q["t1"] - q["t0"] for q in PG):.2f} s na tela (mínimo 1,5 s)'
+       + ('' if not curtas_l else ' · curtas: ' + '; '.join(f'{q["t0"]:.2f}s "{" ".join(q["linhas"])}"' for q in curtas_l[:5])))
+    ok(max(len(q['linhas']) for q in PG) <= 2, 'no máximo 2 linhas por página')
+    x0m = min(w['x'] for q in PG for w in q['palavras']); x1m = max(w['x'] + w['w_px'] for q in PG for w in q['palavras'])
+    ym = max(w['y'] for q in PG for w in q['palavras']); ys0 = min(w['y'] for q in PG for w in q['palavras'])
+    CP = MOT['legenda_medidas']
+    ok(x0m >= 150 - 0.5 and x1m <= 950 + 0.5, f'legenda em x {x0m:.0f}–{x1m:.0f} (dentro de x 150–950, fora da coluna de botões)')
+    ok(ym + 0.22 * CP['size'] <= 1536 + 0.5, f'legenda termina em y {ym + 0.22 * CP["size"]:.0f} (acima dos 20% de baixo, y 1536)')
+    cob_l, n_l = [], 0
+    for s_ in CX:
+        for a in LEGB.get(s_['t'], []):
+            n_l += 1
+            cob_l += [(s_['t'], b['nome']) for b in s_['caixas'] if cobre(a, b) and not b['nome'].startswith(('marca',))]
+    ok(not cob_l, f'a legenda não cobre nenhum elemento do quadro ({n_l} palavras conferidas nos quadros amostrados)' + lst(cob_l))
+    fim_l = max(q['t1'] for q in PG if q['cap'] == len(LN['capitulos']) - 1)
+    ok(fim_l <= FE['logo_passagem'] + 1e-3, f'a última página sai em {fim_l:.2f} s, antes da logo ({FE["logo_passagem"]:.2f} s)')
+    # no vídeo: cada palavra (menos a 1ª da página) aparece no seu instante, em 1–2 quadros
+    import random
+    amostra = [(q, w) for q in PG for w in q['palavras'][1:]]
+    random.Random(7).shuffle(amostra)
+    ruins = []
+    for q, w in amostra[:24]:
+        x_a, x_b, y_a, y_b = int(w['x']) - 4, int(w['x'] + w['w_px']) + 4, int(w['y'] - 52), int(w['y'] + 12)
+        antes = frame_at(w['t0'] - 0.017)[y_a:y_b, x_a:x_b]; depois = frame_at(w['t0'] + 0.20)[y_a:y_b, x_a:x_b]
+        tinta_a, tinta_d = (antes > 150).sum(), (depois > 150).sum()
+        if not (tinta_d > 80 and tinta_a < 0.15 * tinta_d):
+            ruins.append(f'{w["t0"]:.2f}s "{w["w"]}" (antes {tinta_a}, depois {tinta_d})')
+    ok(not ruins, f'sincronia voz × legenda no vídeo: {min(24, len(amostra))} palavras sorteadas aparecem no instante da fala (≤ 1 quadro de diferença)' + ('' if not ruins else ' · ' + '; '.join(ruins[:4])))
 
 grafia_oficial([('linha.json', LN), (f'episodios/{EP}.json', json.load(open(os.path.join(ROOT, 'episodios', EP + '.json')))), ('motor.json', MOT)])
 

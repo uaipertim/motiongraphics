@@ -35,6 +35,7 @@ AUD = os.path.join(ROOT, 'audio', EP)
 SCRIPT = json.load(open(os.path.join(ROOT, 'episodios', EP + '.json')))
 FALAS = json.load(open(os.path.join(AUD, 'voz', 'falas.json')))['capitulos']
 SR_IN, SR = 44100, 48000
+LEG = SCRIPT.get('legenda') == 'palavras'
 TR = 0.5                      # a troca de capítulo (passagem limão + sineta)
 AP_ENTRA = 0.34               # a linha de apoio entra em 0,34 s (a anterior sai antes: as duas nunca se sobrepõem)
 AP_LEITURA = 1.5              # e fica ao menos 1,5 s inteira na tela
@@ -96,7 +97,19 @@ def main():
             alfa = [x for x in L[a:b] if x[1].isalnum()]
             frases.append({'texto': f['texto'], 'apoio': f.get('apoio'), 't0': round(alfa[0][2] + desloc, 4), 't1': round(min(alfa[-1][3] + desloc, v1), 4)})
             pos = b + 1
-        # as linhas de apoio
+        # legenda palavra a palavra (só nos episódios com "legenda": "palavras"): as palavras-chave ficam em limão
+        if LEG:
+            nw = [w['n'] for w in ws]
+            for w in ws:
+                w['chave'] = False
+            marc = [[norm(x) for x in re.sub(r'[~]', ' ', m).split()] for f in c['fala'] for m in re.findall(r'~([^~]+)~', f.get('apoio') or '')]
+            for fr in [[norm(x) for x in q.split()] for q in c.get('destaque', []) + SCRIPT.get('destaque_global', []) + [q for f in c['fala'] for q in f.get('destaque', [])]] + marc:
+                for i in range(len(nw) - len(fr) + 1):
+                    if fr and nw[i:i + len(fr)] == fr:
+                        for k in range(i, i + len(fr)):
+                            ws[k]['chave'] = True
+        # as linhas de apoio: com a legenda palavra a palavra elas não aparecem, mas seguem dando o ritmo do capítulo (os diagramas foram
+        # afinados com essa duração: o último gesto, como o selo "RESERVA DUPLA", ainda precisa de tempo antes da troca)
         apoios, ult = [], None
         for f in frases:
             if not f['apoio'] or (apoios and apoios[-1]['texto'] == f['apoio']):
@@ -106,6 +119,8 @@ def main():
         t1 = max(v1 + c.get('segura', 0.45), t0 + c.get('min', 0), (apoios[-1]['t'] + AP_PASSO) if apoios else 0)
         for i, a in enumerate(apoios):
             a['ate'] = round(apoios[i + 1]['t'] if i + 1 < len(apoios) else t1 + TR, 4)
+        if LEG:
+            apoios = []                                 # só o ritmo fica; nada de linha cinza na tela
         caps.append({'n': n, 'rotulo': c.get('rotulo'), 'tom': c.get('tom', ['limao', 'ambar', 'petroleo', 'roxo'][n % 4]),
                      'titulo': c['titulo'], 'risca_titulo': c.get('risca_titulo'), 'diagrama': c['diagrama'],
                      't0': round(t0, 4), 't1': round(t1, 4), 'voz_t0': round(v0, 4), 'voz_t1': round(v1, 4),
@@ -130,7 +145,7 @@ def main():
     x = x[: int(round(dur * SR))]
     wavfile.write(os.path.join(AUD, 'voz.wav'), SR, np.round(np.clip(x, -1, 1) * 32767).astype(np.int16))
     json.dump({'episodio': EP, 'titulo': SCRIPT['titulo'], 'marca': SCRIPT.get('marca', '@fazlohospeda'), 'duracao': round(dur, 4), 'tr': TR,
-               'ap_entra': AP_ENTRA, 'ap_leitura': AP_LEITURA, 'capitulos': caps, 'colocacao': coloc},
+               'ap_entra': AP_ENTRA, 'ap_leitura': AP_LEITURA, 'legenda': 'palavras' if LEG else None, 'capitulos': caps, 'colocacao': coloc},
               open(os.path.join(AUD, 'linha.json'), 'w'), ensure_ascii=False, indent=1)
     print(f'{EP}: {len(caps)} capítulos, {dur:.2f} s (60–90 s)')
     for c in caps:

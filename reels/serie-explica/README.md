@@ -74,6 +74,17 @@ A série tem cara própria da FAZLO, sem trilho, sem círculos numerados e sem c
    - Nada importante fora de y 265–1456. Nada (nem a notinha, nem a passagem) em x ≥ 950 entre y 1060 e 1560: o motor recorta essa área.
    - A capa é o quadro 0, nas regras de capa do [`../README.md`](../README.md) (a notinha só aparece no fim da capa).
 
+## Legenda palavra por palavra (episódios novos, decisão de 25/10/2026)
+
+Todo episódio **novo** com narração leva a legenda palavra por palavra, no padrão do reel-09 e da Série Fala (que já a tem: Inter Display 900, branca, palavras-chave em limão com pop, sem painel). Liga-se por episódio, no JSON: `"legenda": "palavras"`. Sem a marca, o episódio fica como era (linha de apoio cinza) — os publicados (explica-01 e explica-02) **não** têm a marca e não são renderizados de novo.
+
+- **Tempos:** os da API (with-timestamps), já alinhados à grafia oficial palavra a palavra (`pronuncia.realinha`): a tela mostra "FAZLO Hospeda" e "WhatsApp", nunca "Hospéda"/"Uátsap"/"Fázlo". A palavra entra no instante em que é falada.
+- **Palavras-chave (limão):** `destaque` (lista de trechos, no capítulo ou em cada item de `fala`), `destaque_global` (no episódio) e, de brinde, o que já vai entre `~…~` no `apoio` da frase. O resto fica em branco.
+- **Posição:** faixa livre de **y 1424–1536**, em **x 150–950**: abaixo dos diagramas (que acabam em y 1412), acima dos 20% de baixo da interface, fora da coluna de botões e da impressorinha. Texto de 52 px, até 2 linhas, centrado. É a mesma em todos os capítulos (capa e fecho incluídos) e some antes da logo do fecho.
+- **Leitura:** páginas de até 2 linhas, fechadas no fim de uma frase quando já duraram ≥ 1,5 s; **cada página fica ≥ 1,5 s na tela** (a última do capítulo segura até 0,9 s depois da fala; o motor puxa palavras da página anterior se for preciso). A linha de apoio cinza não aparece (a legenda a substitui), mas o `apoio` de cada frase continua dando o ritmo do capítulo: os diagramas foram afinados com essa duração (o selo "RESERVA DUPLA", por exemplo, precisa dela antes da troca). Por isso mantenha o `apoio` no JSON.
+- **Revisão (`qa.py`):** mesmas palavras e tempos da narração; páginas ≥ 1,5 s; ≤ 2 linhas; x 150–950 e y ≤ 1536; não cobre nenhum elemento (caixas a cada 0,25 s); sai antes da logo; sorteio de 24 palavras conferidas no vídeo (aparecem no quadro da fala); grafia oficial.
+- **Teste visual:** `teste-legenda/legenda-palavras-grade.jpg` (9 momentos do explica-02 com a legenda, sem voz nova).
+
 ## Fazer o próximo episódio (só pelo JSON)
 
 1. Copie `episodios/explica-01.json` para `episodios/explica-02.json` e troque `id`, `titulo` e os `capitulos` (formato abaixo).
@@ -142,7 +153,7 @@ O **fim da fala** é medido no áudio (último trecho de 10 ms acima de −40 dB
 
 - **Os capítulos:** o **capítulo 0 é a capa** (diagrama `capa`), e o seu `rotulo` vira o chip da capa. Os capítulos 1… ganham o chaveiro "Nº 01"… e uma linha na notinha (o `rotulo`); o último deve ser o `fecho`.
 - **`fala`:** as frases do capítulo, na ordem. O texto falado é a junção delas e vai **inteiro numa geração só**.
-- **`apoio`:** a linha de apoio que entra com a frase (`null` = nenhuma; igual à anterior = continua).
+- **`apoio`:** a linha de apoio que entra com a frase (`null` = nenhuma; igual à anterior = continua). Com `"legenda": "palavras"` no topo do JSON não aparece (a legenda a substitui); o `~…~` do apoio só serve para marcar palavras-chave. `destaque`: lista de trechos da fala em limão na legenda.
 - **`titulo`:** sempre 2 linhas (a 2ª em limão); o tamanho se ajusta à largura. Só na capa o título pode ter 3 linhas, para ficar grande no recorte 3:4 (ex.: "Como nunca vender / o mesmo chalé / duas vezes."). `risca_titulo: { "linha": 2, "em": "fim" }` risca uma linha em limão (em `fim` = perto do fim do capítulo).
 - **`tom`:** `limao`, `ambar`, `petroleo` ou `roxo`.
 - **Tempo do capítulo:** `inicio` é a pausa antes da voz (padrão 0,25 s; capítulo 0: 0,10 s). `segura` é o tempo depois da voz antes da troca (padrão 0,45 s). `min` é a duração mínima. O fecho usa `min` 9, `inicio` 0,05 e `segura` 3,55: precisa de 8–9 s, com a logo nos últimos 3 s, entrando só depois da última palavra. Se a fala do fecho passar de ~5,4 s, encurte a fala, não o fecho. Para caber em 70–85 s, os capítulos 01–08 podem usar `inicio` 0,15 e `segura` 0,30 (como no explica-02); a velocidade da voz nunca muda.
