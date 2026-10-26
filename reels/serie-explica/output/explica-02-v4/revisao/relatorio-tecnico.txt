@@ -1,0 +1,87 @@
+SÉRIE EXPLICA · explica-02-v4 — revisão técnica
+output/explica-02-v4/fazlo-hospeda-explica-02-v4.mp4
+
+FORMATO
+OK     vídeo h264 High yuv420p
+OK     resolução 1080x1920 (9:16)
+OK     60 fps, 5388 quadros
+OK     duração 89.80 s (alvo 60–90 s)
+OK     áudio aac 48000 Hz, 2 canais, 262 kb/s
+OK     vídeo e áudio com a mesma duração (Δ 0 ms)
+       arquivo 22.2 MB, 2.0 Mb/s
+       capítulos: 00 8.0 s · 01 9.6 s · 02 8.9 s · 03 8.3 s · 04 10.9 s · 05 8.7 s · 06 9.2 s · 07 6.1 s · 08 7.4 s · 09 8.1 s · trocas de 0.5 s
+
+SOM
+OK     loudness integrado -14.1 LUFS (alvo −14)
+OK     pico real -1.7 dBTP (limite −1)
+       a voz sozinha, na escala da mixagem: -14.2 LUFS
+       a trilha sozinha, na escala da mixagem: -27.5 LUFS
+       os efeitos sozinhos, na escala da mixagem: -27.7 LUFS
+
+VOZ (uma geração inteira por capítulo, nada emendado)
+OK     capítulo 00: 7.92 s contínuos da geração com seed 300 (arquivo íntegro: sim; diferença máxima vídeo × geração 0.000035; 1 geração(ões) inteiras feitas)
+OK     capítulo 01: 8.98 s contínuos da geração com seed 317 (arquivo íntegro: sim; diferença máxima vídeo × geração 0.000032; 1 geração(ões) inteiras feitas)
+OK     capítulo 02: 9.08 s contínuos da geração com seed 334 (arquivo íntegro: sim; diferença máxima vídeo × geração 0.000033; 1 geração(ões) inteiras feitas)
+OK     capítulo 03: 8.40 s contínuos da geração com seed 1351 (arquivo íntegro: sim; diferença máxima vídeo × geração 0.000035; 2 geração(ões) inteiras feitas)
+OK     capítulo 04: 11.09 s contínuos da geração com seed 1368 (arquivo íntegro: sim; diferença máxima vídeo × geração 0.000033; 2 geração(ões) inteiras feitas)
+OK     capítulo 05: 8.84 s contínuos da geração com seed 385 (arquivo íntegro: sim; diferença máxima vídeo × geração 0.000037; 1 geração(ões) inteiras feitas)
+OK     capítulo 06: 9.35 s contínuos da geração com seed 402 (arquivo íntegro: sim; diferença máxima vídeo × geração 0.000037; 1 geração(ões) inteiras feitas)
+OK     capítulo 07: 6.25 s contínuos da geração com seed 419 (arquivo íntegro: sim; diferença máxima vídeo × geração 0.000032; 1 geração(ões) inteiras feitas)
+OK     capítulo 08: 7.52 s contínuos da geração com seed 436 (arquivo íntegro: sim; diferença máxima vídeo × geração 0.000033; 1 geração(ões) inteiras feitas)
+OK     capítulo 09: 2.72 s contínuos da geração com seed 453 (arquivo íntegro: sim; diferença máxima vídeo × geração 0.000032; 1 geração(ões) inteiras feitas)
+
+LEITURA (legenda palavra a palavra no lugar da linha de apoio)
+OK     sem linha de apoio cinza: a legenda palavra a palavra a substitui
+
+ÁREAS SEGURAS
+OK     conteúdo importante entre y 265 e 1456: 2933 caixas em 312 quadros fora das trocas
+OK     nenhuma caixa na coluna de botões (x ≥ 950, y 1060–1560)
+       faixa usada pelo conteúdo: y 309–1434
+OK     coluna de botões: 0 pixel aceso em 359 quadros amostrados (nem a notinha nem a passagem limão passam por ali)
+OK     sem trechos pretos
+OK     sem imagem congelada por 1,5 s ou mais (o fundo, a notinha e as peças seguem vivos)
+OK     a notinha (e a impressora) não cobre nenhum conteúdo
+OK     o chaveiro não cobre nenhum conteúdo
+OK     a linha de apoio não encosta no diagrama
+OK     nenhum texto passa do cartão que o contém (folga ≥ 12 px): 3181 textos dentro de cartões conferidos
+
+IDENTIDADE (notinha, chaveiro, sineta, fecho com a logo)
+OK     a notinha imprime 9 linhas (uma por capítulo) e carimba um check limão no fim de cada uma
+       notinha: imprime em   7.71 s · "CONTA"
+       notinha: imprime em   8.13 s · "01 · A CENA" · check em 18.03 s
+       notinha: imprime em  18.19 s · "02 · O PROBLEMA" · check em 27.46 s
+       notinha: imprime em  27.62 s · "03 · PASSO 1" · check em 36.29 s
+       notinha: imprime em  36.45 s · "04 · PASSO 2" · check em 47.73 s
+       notinha: imprime em  47.89 s · "05 · PASSO 3" · check em 56.92 s
+       notinha: imprime em  57.08 s · "06 · PASSO 4" · check em 66.62 s
+       notinha: imprime em  66.78 s · "07 · NÃO CONFUNDA" · check em 73.22 s
+       notinha: imprime em  73.38 s · "08 · ANOTA AÍ" · check em 81.09 s
+       notinha: imprime em  81.25 s · "09 · MANDA ESSE" · check em 81.85 s
+       notinha: imprime em  82.10 s · "CONTA FECHADA ✓"
+OK     "CONTA FECHADA ✓" impresso em 82.10 s; a notinha destaca e sobe em 82.65 s
+OK     o chaveiro "Nº NN" aparece em todos os capítulos 01–09
+OK     9 trocas de capítulo, cada uma com a passagem limão e o "ding" da sineta (0.5 s)
+OK     os diagramas descem até y ≈ 1400: 01 1412 · 02 1376 · 03 1404 · 04 1398 · 05 1394 · 06 1406 · 07 1378 · 08 1384
+
+CAPA E FECHO
+OK     a capa é o quadro 0 do vídeo (PSNR 36.2 dB entre capa.png e o 1º quadro)
+OK     regra das capas (revisao/capa.txt): dentro da regra das capas
+OK     fecho de 8.15 s (8–9 s)
+OK     fecho, fase do texto: título, pergunta e notinha fechada parados de 83.40 a 86.45 s (3.05 s, mínimo 3 s); os pixels do texto de 7 caixas iguais (maior diferença média 1.23 de 255)
+       nas caixas inteiras (com o brilho do fundo, que respira por trás): maior diferença média 3.17
+OK     fecho, últimos 3 s: a logo oficial centralizada pousa com a sineta em 86.75 s e fica parada 3.05 s (os pixels da logo, de "FAZLO Hospeda" e do @ iguais entre 86.80 s e o fim; maior diferença média 1.32 de 255)
+       nas caixas inteiras (com o fundo e o anel da sineta em volta): logo final 3.62 · nome final 1.02 · @ final 1.26
+OK     a logo só entra depois da última palavra: a voz do fecho termina em 84.26 s e a passagem para a logo começa em 86.45 s (2.19 s depois)
+
+LEGENDA PALAVRA A PALAVRA
+OK     180 palavras na legenda, as mesmas da narração, na mesma ordem e no tempo da voz (grafia oficial)
+OK     26 páginas de legenda, a mais curta fica 1.84 s na tela (mínimo 1,5 s)
+OK     no máximo 2 linhas por página
+OK     legenda em x 161–939 (dentro de x 150–950, fora da coluna de botões)
+OK     legenda termina em y 1533 (acima dos 20% de baixo, y 1536)
+OK     a legenda não cobre nenhum elemento do quadro (1499 palavras conferidas nos quadros amostrados)
+OK     a última página sai em 85.16 s, antes da logo (86.45 s)
+OK     sincronia voz × legenda no vídeo: 24 palavras sorteadas aparecem no instante da fala (≤ 1 quadro de diferença)
+OK     grafia oficial: nenhuma grafia fonética (Fázlo, Hospéda, Uátsap) na legenda nem no texto do quadro
+
+RESULTADO: aprovado

@@ -1,0 +1,2251 @@
+{
+ "episodio": "explica-02-v4",
+ "titulo": "Como nunca vender o mesmo chalé duas vezes.",
+ "marca": "@fazlohospeda",
+ "duracao": 89.8,
+ "tr": 0.5,
+ "ap_entra": 0.34,
+ "ap_leitura": 1.5,
+ "legenda": "palavras",
+ "capitulos": [
+  {
+   "n": 0,
+   "rotulo": "PRA QUEM TEM POUSADA",
+   "tom": "limao",
+   "titulo": [
+    "Como nunca vender",
+    "o mesmo chalé",
+    "duas vezes."
+   ],
+   "risca_titulo": null,
+   "diagrama": {
+    "tipo": "capa",
+    "faixa": "em 4 passos.",
+    "cadeados": [
+     {
+      "t": "PASSO 1",
+      "em": "quatro"
+     },
+     {
+      "t": "PASSO 2",
+      "em": "quatro"
+     },
+     {
+      "t": "PASSO 3",
+      "em": "passos"
+     },
+     {
+      "t": "PASSO 4",
+      "em": "passos"
+     }
+    ]
+   },
+   "t0": 0.0,
+   "t1": 8.03,
+   "voz_t0": 0.1,
+   "voz_t1": 7.88,
+   "palavras": [
+    {
+     "w": "Dois",
+     "i0": 0,
+     "t0": 0.1,
+     "t1": 0.42,
+     "n": "dois",
+     "chave": false
+    },
+    {
+     "w": "hóspedes,",
+     "i0": 5,
+     "t0": 0.46,
+     "t1": 1.14,
+     "n": "hospedes",
+     "chave": false
+    },
+    {
+     "w": "o",
+     "i0": 15,
+     "t0": 1.34,
+     "t1": 1.38,
+     "n": "o",
+     "chave": false
+    },
+    {
+     "w": "mesmo",
+     "i0": 17,
+     "t0": 1.46,
+     "t1": 1.78,
+     "n": "mesmo",
+     "chave": true
+    },
+    {
+     "w": "chalé,",
+     "i0": 23,
+     "t0": 1.94,
+     "t1": 2.26,
+     "n": "chale",
+     "chave": true
+    },
+    {
+     "w": "o",
+     "i0": 30,
+     "t0": 2.54,
+     "t1": 2.58,
+     "n": "o",
+     "chave": false
+    },
+    {
+     "w": "mesmo",
+     "i0": 32,
+     "t0": 2.74,
+     "t1": 3.06,
+     "n": "mesmo",
+     "chave": false
+    },
+    {
+     "w": "fim",
+     "i0": 38,
+     "t0": 3.14,
+     "t1": 3.3,
+     "n": "fim",
+     "chave": false
+    },
+    {
+     "w": "de",
+     "i0": 42,
+     "t0": 3.34,
+     "t1": 3.38,
+     "n": "de",
+     "chave": false
+    },
+    {
+     "w": "semana.",
+     "i0": 45,
+     "t0": 3.46,
+     "t1": 3.86,
+     "n": "semana",
+     "chave": false
+    },
+    {
+     "w": "Dá",
+     "i0": 53,
+     "t0": 4.26,
+     "t1": 4.42,
+     "n": "da",
+     "chave": false
+    },
+    {
+     "w": "pra",
+     "i0": 56,
+     "t0": 4.5,
+     "t1": 4.58,
+     "n": "pra",
+     "chave": false
+    },
+    {
+     "w": "nunca",
+     "i0": 60,
+     "t0": 4.82,
+     "t1": 5.14,
+     "n": "nunca",
+     "chave": false
+    },
+    {
+     "w": "mais",
+     "i0": 66,
+     "t0": 5.22,
+     "t1": 5.38,
+     "n": "mais",
+     "chave": false
+    },
+    {
+     "w": "passar",
+     "i0": 71,
+     "t0": 5.46,
+     "t1": 5.7,
+     "n": "passar",
+     "chave": false
+    },
+    {
+     "w": "por",
+     "i0": 78,
+     "t0": 5.78,
+     "t1": 5.86,
+     "n": "por",
+     "chave": false
+    },
+    {
+     "w": "isso.",
+     "i0": 82,
+     "t0": 5.94,
+     "t1": 6.26,
+     "n": "isso",
+     "chave": false
+    },
+    {
+     "w": "São",
+     "i0": 88,
+     "t0": 6.66,
+     "t1": 6.9,
+     "n": "sao",
+     "chave": false
+    },
+    {
+     "w": "quatro",
+     "i0": 92,
+     "t0": 6.98,
+     "t1": 7.22,
+     "n": "quatro",
+     "chave": true
+    },
+    {
+     "w": "passos.",
+     "i0": 99,
+     "t0": 7.38,
+     "t1": 7.86,
+     "n": "passos",
+     "chave": true
+    }
+   ],
+   "frases": [
+    {
+     "texto": "Dois hóspedes, o mesmo chalé, o mesmo fim de semana.",
+     "apoio": null,
+     "t0": 0.1,
+     "t1": 3.86
+    },
+    {
+     "texto": "Dá pra nunca mais passar por isso.",
+     "apoio": "Dá pra nunca mais passar por isso.",
+     "t0": 4.26,
+     "t1": 6.26
+    },
+    {
+     "texto": "São quatro passos.",
+     "apoio": null,
+     "t0": 6.66,
+     "t1": 7.86
+    }
+   ],
+   "apoios": []
+  },
+  {
+   "n": 1,
+   "rotulo": "A CENA",
+   "tom": "ambar",
+   "titulo": [
+    "Sábado, 15h.",
+    "Dois carros no portão."
+   ],
+   "risca_titulo": null,
+   "diagrama": {
+    "tipo": "colisao",
+    "semana": {
+     "mes": "NOVEMBRO",
+     "dias": [
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17
+     ],
+     "nomes": [
+      "QUA",
+      "QUI",
+      "SEX",
+      "SÁB",
+      "DOM",
+      "SEG",
+      "TER"
+     ],
+     "alvo": 14,
+     "em": "carros"
+    },
+    "reservas": [
+     {
+      "t": "CHALÉ 3 · SÁB",
+      "origem": "WHATSAPP · 10:12",
+      "icone": "comentar",
+      "em": "WhatsApp"
+     },
+     {
+      "t": "CHALÉ 3 · SÁB",
+      "origem": "SITE DE RESERVAS · 10:47",
+      "icone": "calendario",
+      "em": "site"
+     }
+    ],
+    "confirma": {
+     "t": "CONFIRMADA",
+     "em": "confirmadas"
+    },
+    "selo": {
+     "t": "RESERVA DUPLA"
+    }
+   },
+   "t0": 8.53,
+   "t1": 18.09,
+   "voz_t0": 8.61,
+   "voz_t1": 17.29,
+   "palavras": [
+    {
+     "w": "Dois",
+     "i0": 0,
+     "t0": 8.61,
+     "t1": 8.93,
+     "n": "dois",
+     "chave": false
+    },
+    {
+     "w": "carros",
+     "i0": 5,
+     "t0": 9.01,
+     "t1": 9.33,
+     "n": "carros",
+     "chave": false
+    },
+    {
+     "w": "no",
+     "i0": 12,
+     "t0": 9.41,
+     "t1": 9.49,
+     "n": "no",
+     "chave": false
+    },
+    {
+     "w": "portão",
+     "i0": 15,
+     "t0": 9.65,
+     "t1": 10.13,
+     "n": "portao",
+     "chave": false
+    },
+    {
+     "w": "e",
+     "i0": 22,
+     "t0": 10.21,
+     "t1": 10.29,
+     "n": "e",
+     "chave": false
+    },
+    {
+     "w": "um",
+     "i0": 24,
+     "t0": 10.37,
+     "t1": 10.45,
+     "n": "um",
+     "chave": false
+    },
+    {
+     "w": "chalé",
+     "i0": 27,
+     "t0": 10.53,
+     "t1": 10.85,
+     "n": "chale",
+     "chave": false
+    },
+    {
+     "w": "só.",
+     "i0": 33,
+     "t0": 11.01,
+     "t1": 11.89,
+     "n": "so",
+     "chave": false
+    },
+    {
+     "w": "Uma",
+     "i0": 37,
+     "t0": 11.97,
+     "t1": 12.13,
+     "n": "uma",
+     "chave": false
+    },
+    {
+     "w": "reserva",
+     "i0": 41,
+     "t0": 12.29,
+     "t1": 12.69,
+     "n": "reserva",
+     "chave": false
+    },
+    {
+     "w": "veio",
+     "i0": 49,
+     "t0": 12.77,
+     "t1": 12.93,
+     "n": "veio",
+     "chave": false
+    },
+    {
+     "w": "pelo",
+     "i0": 54,
+     "t0": 13.01,
+     "t1": 13.25,
+     "n": "pelo",
+     "chave": false
+    },
+    {
+     "w": "WhatsApp,",
+     "i0": 59,
+     "t0": 13.29,
+     "t1": 14.13,
+     "n": "whatsapp",
+     "chave": true
+    },
+    {
+     "w": "a",
+     "i0": 69,
+     "t0": 14.21,
+     "t1": 14.29,
+     "n": "a",
+     "chave": false
+    },
+    {
+     "w": "outra",
+     "i0": 71,
+     "t0": 14.37,
+     "t1": 14.61,
+     "n": "outra",
+     "chave": false
+    },
+    {
+     "w": "pelo",
+     "i0": 77,
+     "t0": 14.65,
+     "t1": 14.85,
+     "n": "pelo",
+     "chave": false
+    },
+    {
+     "w": "site.",
+     "i0": 82,
+     "t0": 14.93,
+     "t1": 15.81,
+     "n": "site",
+     "chave": true
+    },
+    {
+     "w": "As",
+     "i0": 88,
+     "t0": 15.89,
+     "t1": 16.13,
+     "n": "as",
+     "chave": false
+    },
+    {
+     "w": "duas",
+     "i0": 91,
+     "t0": 16.21,
+     "t1": 16.45,
+     "n": "duas",
+     "chave": false
+    },
+    {
+     "w": "confirmadas.",
+     "i0": 96,
+     "t0": 16.69,
+     "t1": 17.29,
+     "n": "confirmadas",
+     "chave": true
+    }
+   ],
+   "frases": [
+    {
+     "texto": "Dois carros no portão e um chalé só.",
+     "apoio": "Dois hóspedes e um chalé só.",
+     "t0": 8.61,
+     "t1": 11.89
+    },
+    {
+     "texto": "Uma reserva veio pelo WhatsApp, a outra pelo site.",
+     "apoio": "Uma veio pelo WhatsApp, a outra pelo site.",
+     "t0": 11.97,
+     "t1": 15.81
+    },
+    {
+     "texto": "As duas confirmadas.",
+     "apoio": "E as duas estavam ~confirmadas~.",
+     "t0": 15.89,
+     "t1": 17.29
+    }
+   ],
+   "apoios": []
+  },
+  {
+   "n": 2,
+   "rotulo": "O PROBLEMA",
+   "tom": "roxo",
+   "titulo": [
+    "A agenda morava",
+    "em três lugares."
+   ],
+   "risca_titulo": null,
+   "diagrama": {
+    "tipo": "fontes",
+    "fontes": [
+     {
+      "t": "CADERNO",
+      "icone": "recibo",
+      "ocupados": [
+       11,
+       14,
+       15
+      ],
+      "em": "caderno"
+     },
+     {
+      "t": "WHATSAPP",
+      "icone": "comentar",
+      "ocupados": [
+       12,
+       14
+      ],
+      "em": "WhatsApp"
+     },
+     {
+      "t": "SITE",
+      "icone": "calendario",
+      "ocupados": [
+       14,
+       16
+      ],
+      "em": "site"
+     }
+    ],
+    "quebra": {
+     "em": "sabia"
+    },
+    "alerta": {
+     "em": "vendeu"
+    },
+    "semana": [
+     11,
+     12,
+     13,
+     14,
+     15,
+     16,
+     17
+    ],
+    "destaque": 14
+   },
+   "t0": 18.59,
+   "t1": 27.52,
+   "voz_t0": 18.64,
+   "voz_t1": 27.42,
+   "palavras": [
+    {
+     "w": "O",
+     "i0": 0,
+     "t0": 18.64,
+     "t1": 18.72,
+     "n": "o",
+     "chave": false
+    },
+    {
+     "w": "problema",
+     "i0": 2,
+     "t0": 18.84,
+     "t1": 19.28,
+     "n": "problema",
+     "chave": false
+    },
+    {
+     "w": "não",
+     "i0": 11,
+     "t0": 19.333,
+     "t1": 19.44,
+     "n": "nao",
+     "chave": false
+    },
+    {
+     "w": "foi",
+     "i0": 15,
+     "t0": 19.52,
+     "t1": 19.68,
+     "n": "foi",
+     "chave": false
+    },
+    {
+     "w": "o",
+     "i0": 19,
+     "t0": 19.72,
+     "t1": 19.76,
+     "n": "o",
+     "chave": false
+    },
+    {
+     "w": "hóspede.",
+     "i0": 21,
+     "t0": 19.84,
+     "t1": 20.32,
+     "n": "hospede",
+     "chave": false
+    },
+    {
+     "w": "Foi",
+     "i0": 30,
+     "t0": 20.773,
+     "t1": 20.88,
+     "n": "foi",
+     "chave": false
+    },
+    {
+     "w": "a",
+     "i0": 34,
+     "t0": 20.92,
+     "t1": 20.96,
+     "n": "a",
+     "chave": false
+    },
+    {
+     "w": "agenda",
+     "i0": 36,
+     "t0": 21.2,
+     "t1": 21.44,
+     "n": "agenda",
+     "chave": true
+    },
+    {
+     "w": "espalhada:",
+     "i0": 43,
+     "t0": 21.52,
+     "t1": 22.16,
+     "n": "espalhada",
+     "chave": true
+    },
+    {
+     "w": "caderno,",
+     "i0": 54,
+     "t0": 22.76,
+     "t1": 23.36,
+     "n": "caderno",
+     "chave": false
+    },
+    {
+     "w": "WhatsApp",
+     "i0": 63,
+     "t0": 23.56,
+     "t1": 24.32,
+     "n": "whatsapp",
+     "chave": false
+    },
+    {
+     "w": "e",
+     "i0": 72,
+     "t0": 24.36,
+     "t1": 24.4,
+     "n": "e",
+     "chave": false
+    },
+    {
+     "w": "site.",
+     "i0": 74,
+     "t0": 24.56,
+     "t1": 25.04,
+     "n": "site",
+     "chave": false
+    },
+    {
+     "w": "Um",
+     "i0": 80,
+     "t0": 25.6,
+     "t1": 25.76,
+     "n": "um",
+     "chave": false
+    },
+    {
+     "w": "não",
+     "i0": 83,
+     "t0": 25.84,
+     "t1": 26.0,
+     "n": "nao",
+     "chave": false
+    },
+    {
+     "w": "sabia",
+     "i0": 87,
+     "t0": 26.08,
+     "t1": 26.4,
+     "n": "sabia",
+     "chave": false
+    },
+    {
+     "w": "o",
+     "i0": 93,
+     "t0": 26.44,
+     "t1": 26.48,
+     "n": "o",
+     "chave": false
+    },
+    {
+     "w": "que",
+     "i0": 95,
+     "t0": 26.56,
+     "t1": 26.6,
+     "n": "que",
+     "chave": false
+    },
+    {
+     "w": "o",
+     "i0": 99,
+     "t0": 26.64,
+     "t1": 26.68,
+     "n": "o",
+     "chave": false
+    },
+    {
+     "w": "outro",
+     "i0": 101,
+     "t0": 26.72,
+     "t1": 26.96,
+     "n": "outro",
+     "chave": false
+    },
+    {
+     "w": "vendeu.",
+     "i0": 107,
+     "t0": 27.067,
+     "t1": 27.42,
+     "n": "vendeu",
+     "chave": true
+    }
+   ],
+   "frases": [
+    {
+     "texto": "O problema não foi o hóspede.",
+     "apoio": "O problema não foi o hóspede.",
+     "t0": 18.64,
+     "t1": 20.32
+    },
+    {
+     "texto": "Foi a agenda espalhada: caderno, WhatsApp e site.",
+     "apoio": "Foi a agenda, espalhada em três lugares.",
+     "t0": 20.773,
+     "t1": 25.04
+    },
+    {
+     "texto": "Um não sabia o que o outro vendeu.",
+     "apoio": "Um não sabia o que o outro ~vendeu~.",
+     "t0": 25.6,
+     "t1": 27.42
+    }
+   ],
+   "apoios": []
+  },
+  {
+   "n": 3,
+   "rotulo": "PASSO 1",
+   "tom": "petroleo",
+   "titulo": [
+    "Uma agenda só",
+    "manda em todas."
+   ],
+   "risca_titulo": null,
+   "diagrama": {
+    "tipo": "agenda",
+    "fontes": [
+     {
+      "t": "CADERNO",
+      "icone": "recibo",
+      "dia": 8
+     },
+     {
+      "t": "WHATSAPP",
+      "icone": "comentar",
+      "dia": 18
+     },
+     {
+      "t": "SITE",
+      "icone": "calendario",
+      "dia": 14
+     }
+    ],
+    "mes": "NOVEMBRO",
+    "primeiro_dia_semana": 0,
+    "dias_no_mes": 30,
+    "junta": {
+     "em": "agenda"
+    },
+    "entram": {
+     "em": "reserva"
+    },
+    "chip": {
+     "t": "AGENDA ÚNICA",
+     "em": "nela"
+    },
+    "vaga": {
+     "em": "vaga"
+    },
+    "semana": [
+     11,
+     12,
+     13,
+     14,
+     15,
+     16,
+     17
+    ],
+    "destaque": 14
+   },
+   "t0": 28.02,
+   "t1": 36.35,
+   "voz_t0": 28.07,
+   "voz_t1": 36.17,
+   "palavras": [
+    {
+     "w": "Primeiro:",
+     "i0": 0,
+     "t0": 28.07,
+     "t1": 28.55,
+     "n": "primeiro",
+     "chave": false
+    },
+    {
+     "w": "uma",
+     "i0": 10,
+     "t0": 29.11,
+     "t1": 29.27,
+     "n": "uma",
+     "chave": true
+    },
+    {
+     "w": "agenda",
+     "i0": 14,
+     "t0": 29.51,
+     "t1": 29.75,
+     "n": "agenda",
+     "chave": true
+    },
+    {
+     "w": "só.",
+     "i0": 21,
+     "t0": 29.83,
+     "t1": 30.07,
+     "n": "so",
+     "chave": true
+    },
+    {
+     "w": "Toda",
+     "i0": 25,
+     "t0": 30.71,
+     "t1": 30.95,
+     "n": "toda",
+     "chave": false
+    },
+    {
+     "w": "reserva,",
+     "i0": 30,
+     "t0": 31.11,
+     "t1": 31.75,
+     "n": "reserva",
+     "chave": false
+    },
+    {
+     "w": "venha",
+     "i0": 39,
+     "t0": 31.83,
+     "t1": 32.07,
+     "n": "venha",
+     "chave": false
+    },
+    {
+     "w": "de",
+     "i0": 45,
+     "t0": 32.15,
+     "t1": 32.23,
+     "n": "de",
+     "chave": false
+    },
+    {
+     "w": "onde",
+     "i0": 48,
+     "t0": 32.39,
+     "t1": 32.63,
+     "n": "onde",
+     "chave": false
+    },
+    {
+     "w": "vier,",
+     "i0": 53,
+     "t0": 32.95,
+     "t1": 33.27,
+     "n": "vier",
+     "chave": false
+    },
+    {
+     "w": "entra",
+     "i0": 59,
+     "t0": 33.35,
+     "t1": 33.59,
+     "n": "entra",
+     "chave": false
+    },
+    {
+     "w": "nela.",
+     "i0": 65,
+     "t0": 33.67,
+     "t1": 34.47,
+     "n": "nela",
+     "chave": false
+    },
+    {
+     "w": "E",
+     "i0": 71,
+     "t0": 34.55,
+     "t1": 34.63,
+     "n": "e",
+     "chave": false
+    },
+    {
+     "w": "é",
+     "i0": 73,
+     "t0": 34.71,
+     "t1": 34.79,
+     "n": "e",
+     "chave": false
+    },
+    {
+     "w": "ela",
+     "i0": 75,
+     "t0": 34.95,
+     "t1": 35.11,
+     "n": "ela",
+     "chave": false
+    },
+    {
+     "w": "que",
+     "i0": 79,
+     "t0": 35.19,
+     "t1": 35.27,
+     "n": "que",
+     "chave": false
+    },
+    {
+     "w": "diz",
+     "i0": 83,
+     "t0": 35.35,
+     "t1": 35.43,
+     "n": "diz",
+     "chave": false
+    },
+    {
+     "w": "se",
+     "i0": 87,
+     "t0": 35.51,
+     "t1": 35.59,
+     "n": "se",
+     "chave": false
+    },
+    {
+     "w": "tem",
+     "i0": 90,
+     "t0": 35.67,
+     "t1": 35.75,
+     "n": "tem",
+     "chave": true
+    },
+    {
+     "w": "vaga.",
+     "i0": 94,
+     "t0": 35.83,
+     "t1": 36.17,
+     "n": "vaga",
+     "chave": true
+    }
+   ],
+   "frases": [
+    {
+     "texto": "Primeiro: uma agenda só.",
+     "apoio": "Passo 1: *uma agenda só*.",
+     "t0": 28.07,
+     "t1": 30.07
+    },
+    {
+     "texto": "Toda reserva, venha de onde vier, entra nela.",
+     "apoio": "Venha de onde vier, a reserva entra nela.",
+     "t0": 30.71,
+     "t1": 34.47
+    },
+    {
+     "texto": "E é ela que diz se tem vaga.",
+     "apoio": "É ela que diz se *tem vaga*.",
+     "t0": 34.55,
+     "t1": 36.17
+    }
+   ],
+   "apoios": []
+  },
+  {
+   "n": 4,
+   "rotulo": "PASSO 2",
+   "tom": "ambar",
+   "titulo": [
+    "Pré-reserva",
+    "tem prazo."
+   ],
+   "risca_titulo": null,
+   "diagrama": {
+    "tipo": "prazo",
+    "dia": 14,
+    "semana": "SÁB",
+    "pre": {
+     "t": "PRÉ-RESERVA",
+     "em": "prazo"
+    },
+    "relogio": {
+     "em": "segura",
+     "rotulo": "PRAZO COMBINADO"
+    },
+    "pagou": {
+     "t": "PAGOU O SINAL",
+     "chip": "SINAL ✓",
+     "fim": "CONFIRMADA",
+     "em": "Pagou"
+    },
+    "nao": {
+     "t": "NÃO PAGOU",
+     "fim": "LIVRE",
+     "em": "Não",
+     "em_fim": "livre"
+    }
+   },
+   "t0": 36.85,
+   "t1": 47.79,
+   "voz_t0": 36.9,
+   "voz_t1": 47.69,
+   "palavras": [
+    {
+     "w": "Segundo:",
+     "i0": 0,
+     "t0": 36.9,
+     "t1": 37.46,
+     "n": "segundo",
+     "chave": false
+    },
+    {
+     "w": "pré-reserva",
+     "i0": 9,
+     "t0": 38.02,
+     "t1": 38.74,
+     "n": "prereserva",
+     "chave": false
+    },
+    {
+     "w": "tem",
+     "i0": 21,
+     "t0": 38.82,
+     "t1": 39.06,
+     "n": "tem",
+     "chave": true
+    },
+    {
+     "w": "prazo.",
+     "i0": 25,
+     "t0": 39.14,
+     "t1": 40.18,
+     "n": "prazo",
+     "chave": true
+    },
+    {
+     "w": "A",
+     "i0": 32,
+     "t0": 40.26,
+     "t1": 40.34,
+     "n": "a",
+     "chave": false
+    },
+    {
+     "w": "data",
+     "i0": 34,
+     "t0": 40.42,
+     "t1": 40.66,
+     "n": "data",
+     "chave": false
+    },
+    {
+     "w": "fica",
+     "i0": 39,
+     "t0": 40.74,
+     "t1": 40.98,
+     "n": "fica",
+     "chave": false
+    },
+    {
+     "w": "segura",
+     "i0": 44,
+     "t0": 41.06,
+     "t1": 41.54,
+     "n": "segura",
+     "chave": false
+    },
+    {
+     "w": "pelo",
+     "i0": 51,
+     "t0": 41.62,
+     "t1": 41.78,
+     "n": "pelo",
+     "chave": false
+    },
+    {
+     "w": "prazo",
+     "i0": 56,
+     "t0": 41.86,
+     "t1": 42.1,
+     "n": "prazo",
+     "chave": true
+    },
+    {
+     "w": "que",
+     "i0": 62,
+     "t0": 42.14,
+     "t1": 42.18,
+     "n": "que",
+     "chave": true
+    },
+    {
+     "w": "você",
+     "i0": 66,
+     "t0": 42.26,
+     "t1": 42.5,
+     "n": "voce",
+     "chave": true
+    },
+    {
+     "w": "combinou.",
+     "i0": 71,
+     "t0": 42.58,
+     "t1": 43.46,
+     "n": "combinou",
+     "chave": true
+    },
+    {
+     "w": "Pagou",
+     "i0": 81,
+     "t0": 43.54,
+     "t1": 43.78,
+     "n": "pagou",
+     "chave": false
+    },
+    {
+     "w": "o",
+     "i0": 87,
+     "t0": 43.86,
+     "t1": 43.94,
+     "n": "o",
+     "chave": false
+    },
+    {
+     "w": "sinal,",
+     "i0": 89,
+     "t0": 43.98,
+     "t1": 44.58,
+     "n": "sinal",
+     "chave": false
+    },
+    {
+     "w": "confirma.",
+     "i0": 96,
+     "t0": 44.793,
+     "t1": 45.62,
+     "n": "confirma",
+     "chave": true
+    },
+    {
+     "w": "Não",
+     "i0": 106,
+     "t0": 45.7,
+     "t1": 45.86,
+     "n": "nao",
+     "chave": false
+    },
+    {
+     "w": "pagou,",
+     "i0": 110,
+     "t0": 45.94,
+     "t1": 46.58,
+     "n": "pagou",
+     "chave": false
+    },
+    {
+     "w": "a",
+     "i0": 117,
+     "t0": 46.66,
+     "t1": 46.74,
+     "n": "a",
+     "chave": false
+    },
+    {
+     "w": "data",
+     "i0": 119,
+     "t0": 46.9,
+     "t1": 47.06,
+     "n": "data",
+     "chave": false
+    },
+    {
+     "w": "fica",
+     "i0": 124,
+     "t0": 47.1,
+     "t1": 47.3,
+     "n": "fica",
+     "chave": false
+    },
+    {
+     "w": "livre.",
+     "i0": 129,
+     "t0": 47.46,
+     "t1": 47.69,
+     "n": "livre",
+     "chave": true
+    }
+   ],
+   "frases": [
+    {
+     "texto": "Segundo: pré-reserva tem prazo.",
+     "apoio": "Passo 2: a pré-reserva *tem prazo*.",
+     "t0": 36.9,
+     "t1": 40.18
+    },
+    {
+     "texto": "A data fica segura pelo prazo que você combinou.",
+     "apoio": "A data fica segura pelo *prazo combinado*.",
+     "t0": 40.26,
+     "t1": 43.46
+    },
+    {
+     "texto": "Pagou o sinal, confirma.",
+     "apoio": "Pagou o sinal: *confirmada*.",
+     "t0": 43.54,
+     "t1": 45.62
+    },
+    {
+     "texto": "Não pagou, a data fica livre.",
+     "apoio": "Não pagou: a data fica livre.",
+     "t0": 45.7,
+     "t1": 47.69
+    }
+   ],
+   "apoios": []
+  },
+  {
+   "n": 5,
+   "rotulo": "PASSO 3",
+   "tom": "limao",
+   "titulo": [
+    "Vendeu num lugar,",
+    "fecha em todos."
+   ],
+   "risca_titulo": null,
+   "diagrama": {
+    "tipo": "bloqueio",
+    "reserva": {
+     "t": "CHALÉ 3 · SÁB 14",
+     "sub": "CONFIRMADA · 10:47",
+     "em": "vendeu"
+    },
+    "cadeado": {
+     "em": "fecha"
+    },
+    "canais": [
+     {
+      "t": "WHATSAPP",
+      "icone": "comentar",
+      "em": "bloqueie"
+     },
+     {
+      "t": "SITE",
+      "icone": "calendario",
+      "em": "site"
+     },
+     {
+      "t": "TELEFONE",
+      "icone": "telefone",
+      "em": "canais"
+     }
+    ],
+    "abertos": {
+     "em": "todos"
+    },
+    "hora": "10:47"
+   },
+   "t0": 48.29,
+   "t1": 56.98,
+   "voz_t0": 48.34,
+   "voz_t1": 56.88,
+   "palavras": [
+    {
+     "w": "Terceiro:",
+     "i0": 0,
+     "t0": 48.34,
+     "t1": 48.98,
+     "n": "terceiro",
+     "chave": false
+    },
+    {
+     "w": "vendeu",
+     "i0": 10,
+     "t0": 49.54,
+     "t1": 49.94,
+     "n": "vendeu",
+     "chave": false
+    },
+    {
+     "w": "num",
+     "i0": 17,
+     "t0": 50.02,
+     "t1": 50.1,
+     "n": "num",
+     "chave": false
+    },
+    {
+     "w": "lugar,",
+     "i0": 21,
+     "t0": 50.14,
+     "t1": 50.58,
+     "n": "lugar",
+     "chave": false
+    },
+    {
+     "w": "fecha",
+     "i0": 28,
+     "t0": 51.06,
+     "t1": 51.22,
+     "n": "fecha",
+     "chave": true
+    },
+    {
+     "w": "em",
+     "i0": 34,
+     "t0": 51.34,
+     "t1": 51.46,
+     "n": "em",
+     "chave": true
+    },
+    {
+     "w": "todos.",
+     "i0": 37,
+     "t0": 51.74,
+     "t1": 52.02,
+     "n": "todos",
+     "chave": true
+    },
+    {
+     "w": "Confirmou,",
+     "i0": 44,
+     "t0": 52.74,
+     "t1": 53.14,
+     "n": "confirmou",
+     "chave": false
+    },
+    {
+     "w": "bloqueie",
+     "i0": 55,
+     "t0": 53.58,
+     "t1": 53.94,
+     "n": "bloqueie",
+     "chave": false
+    },
+    {
+     "w": "a",
+     "i0": 64,
+     "t0": 53.98,
+     "t1": 54.02,
+     "n": "a",
+     "chave": false
+    },
+    {
+     "w": "data",
+     "i0": 66,
+     "t0": 54.1,
+     "t1": 54.34,
+     "n": "data",
+     "chave": false
+    },
+    {
+     "w": "no",
+     "i0": 71,
+     "t0": 54.42,
+     "t1": 54.5,
+     "n": "no",
+     "chave": false
+    },
+    {
+     "w": "site",
+     "i0": 74,
+     "t0": 54.58,
+     "t1": 54.98,
+     "n": "site",
+     "chave": false
+    },
+    {
+     "w": "e",
+     "i0": 79,
+     "t0": 55.06,
+     "t1": 55.1,
+     "n": "e",
+     "chave": false
+    },
+    {
+     "w": "nos",
+     "i0": 81,
+     "t0": 55.14,
+     "t1": 55.3,
+     "n": "nos",
+     "chave": false
+    },
+    {
+     "w": "outros",
+     "i0": 85,
+     "t0": 55.38,
+     "t1": 55.7,
+     "n": "outros",
+     "chave": false
+    },
+    {
+     "w": "canais",
+     "i0": 92,
+     "t0": 55.82,
+     "t1": 56.26,
+     "n": "canais",
+     "chave": false
+    },
+    {
+     "w": "na",
+     "i0": 99,
+     "t0": 56.34,
+     "t1": 56.5,
+     "n": "na",
+     "chave": true
+    },
+    {
+     "w": "hora.",
+     "i0": 102,
+     "t0": 56.58,
+     "t1": 56.88,
+     "n": "hora",
+     "chave": true
+    }
+   ],
+   "frases": [
+    {
+     "texto": "Terceiro: vendeu num lugar, fecha em todos.",
+     "apoio": "Passo 3: vendeu num lugar, *fecha em todos*.",
+     "t0": 48.34,
+     "t1": 52.02
+    },
+    {
+     "texto": "Confirmou, bloqueie a data no site e nos outros canais na hora.",
+     "apoio": "Confirmou, a data fecha em todos os canais.",
+     "t0": 52.74,
+     "t1": 56.88
+    }
+   ],
+   "apoios": []
+  },
+  {
+   "n": 6,
+   "rotulo": "PASSO 4",
+   "tom": "petroleo",
+   "titulo": [
+    "Antes do “tem sim”,",
+    "olhe a agenda."
+   ],
+   "risca_titulo": null,
+   "diagrama": {
+    "tipo": "consulta",
+    "pergunta": {
+     "t": "Tem vaga dia 14?",
+     "em": "Quarto"
+    },
+    "semana": {
+     "dias": [
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14
+     ],
+     "nomes": [
+      "D",
+      "S",
+      "T",
+      "Q",
+      "Q",
+      "S",
+      "S"
+     ],
+     "ocupados": [
+      9,
+      10,
+      13
+     ],
+     "alvo": 14
+    },
+    "lupa": {
+     "em": "olhe",
+     "achou": "agenda"
+    },
+    "memoria": {
+     "t": "DE MEMÓRIA",
+     "em": "memória"
+    },
+    "resposta": {
+     "t": "Tem sim! Seguro pra você até amanhã, 18h.",
+     "em": "Dez"
+    }
+   },
+   "t0": 57.48,
+   "t1": 66.68,
+   "voz_t0": 57.53,
+   "voz_t1": 66.58,
+   "palavras": [
+    {
+     "w": "Quarto:",
+     "i0": 0,
+     "t0": 57.53,
+     "t1": 58.01,
+     "n": "quarto",
+     "chave": false
+    },
+    {
+     "w": "antes",
+     "i0": 8,
+     "t0": 58.57,
+     "t1": 58.89,
+     "n": "antes",
+     "chave": false
+    },
+    {
+     "w": "do",
+     "i0": 14,
+     "t0": 58.97,
+     "t1": 59.21,
+     "n": "do",
+     "chave": false
+    },
+    {
+     "w": "\"tem",
+     "i0": 17,
+     "t0": 59.37,
+     "t1": 59.61,
+     "n": "tem",
+     "chave": false
+    },
+    {
+     "w": "sim\",",
+     "i0": 22,
+     "t0": 59.69,
+     "t1": 60.01,
+     "n": "sim",
+     "chave": false
+    },
+    {
+     "w": "olhe",
+     "i0": 28,
+     "t0": 60.49,
+     "t1": 60.69,
+     "n": "olhe",
+     "chave": true
+    },
+    {
+     "w": "a",
+     "i0": 33,
+     "t0": 60.73,
+     "t1": 60.917,
+     "n": "a",
+     "chave": true
+    },
+    {
+     "w": "agenda.",
+     "i0": 35,
+     "t0": 61.103,
+     "t1": 61.29,
+     "n": "agenda",
+     "chave": true
+    },
+    {
+     "w": "Nunca",
+     "i0": 43,
+     "t0": 61.93,
+     "t1": 62.41,
+     "n": "nunca",
+     "chave": false
+    },
+    {
+     "w": "a",
+     "i0": 49,
+     "t0": 62.437,
+     "t1": 62.463,
+     "n": "a",
+     "chave": false
+    },
+    {
+     "w": "memória.",
+     "i0": 51,
+     "t0": 62.49,
+     "t1": 63.69,
+     "n": "memoria",
+     "chave": false
+    },
+    {
+     "w": "Dez",
+     "i0": 60,
+     "t0": 63.77,
+     "t1": 63.93,
+     "n": "dez",
+     "chave": true
+    },
+    {
+     "w": "segundos",
+     "i0": 64,
+     "t0": 64.01,
+     "t1": 64.57,
+     "n": "segundos",
+     "chave": true
+    },
+    {
+     "w": "evitam",
+     "i0": 73,
+     "t0": 64.65,
+     "t1": 64.97,
+     "n": "evitam",
+     "chave": false
+    },
+    {
+     "w": "o",
+     "i0": 80,
+     "t0": 65.05,
+     "t1": 65.13,
+     "n": "o",
+     "chave": false
+    },
+    {
+     "w": "pior",
+     "i0": 82,
+     "t0": 65.17,
+     "t1": 65.61,
+     "n": "pior",
+     "chave": false
+    },
+    {
+     "w": "sábado",
+     "i0": 87,
+     "t0": 65.69,
+     "t1": 66.09,
+     "n": "sabado",
+     "chave": false
+    },
+    {
+     "w": "do",
+     "i0": 94,
+     "t0": 66.17,
+     "t1": 66.25,
+     "n": "do",
+     "chave": false
+    },
+    {
+     "w": "ano.",
+     "i0": 97,
+     "t0": 66.33,
+     "t1": 66.58,
+     "n": "ano",
+     "chave": false
+    }
+   ],
+   "frases": [
+    {
+     "texto": "Quarto: antes do \"tem sim\", olhe a agenda.",
+     "apoio": "Passo 4: antes do “tem sim”, *olhe a agenda*.",
+     "t0": 57.53,
+     "t1": 61.29
+    },
+    {
+     "texto": "Nunca a memória.",
+     "apoio": "Nunca de memória.",
+     "t0": 61.93,
+     "t1": 63.69
+    },
+    {
+     "texto": "Dez segundos evitam o pior sábado do ano.",
+     "apoio": "*10 segundos* evitam o pior sábado do ano.",
+     "t0": 63.77,
+     "t1": 66.58
+    }
+   ],
+   "apoios": []
+  },
+  {
+   "n": 7,
+   "rotulo": "NÃO CONFUNDA",
+   "tom": "roxo",
+   "titulo": [
+    "Pré-reserva",
+    "não é reserva."
+   ],
+   "risca_titulo": null,
+   "diagrama": {
+    "tipo": "pares",
+    "pares": [
+     {
+      "a": {
+       "t": "PRÉ-RESERVA",
+       "sub": "data segura por um prazo",
+       "icone": "relogio",
+       "em": "pré-reserva"
+      },
+      "b": {
+       "t": "CONFIRMADA",
+       "sub": "o sinal já entrou",
+       "icone": "check",
+       "em": "reserva"
+      }
+     },
+     {
+      "a": {
+       "t": "PEDIDO",
+       "sub": "o hóspede quer a data",
+       "icone": "comentar",
+       "em": "reserva#2"
+      },
+      "b": {
+       "t": "SINAL PAGO",
+       "sub": "o dinheiro na conta",
+       "icone": "moedas",
+       "em": "sinal"
+      }
+     }
+    ]
+   },
+   "t0": 67.18,
+   "t1": 73.28,
+   "voz_t0": 67.23,
+   "voz_t1": 73.18,
+   "palavras": [
+    {
+     "w": "Não",
+     "i0": 0,
+     "t0": 67.23,
+     "t1": 67.39,
+     "n": "nao",
+     "chave": false
+    },
+    {
+     "w": "confunda:",
+     "i0": 4,
+     "t0": 67.47,
+     "t1": 68.11,
+     "n": "confunda",
+     "chave": false
+    },
+    {
+     "w": "pré-reserva",
+     "i0": 14,
+     "t0": 68.59,
+     "t1": 69.47,
+     "n": "prereserva",
+     "chave": false
+    },
+    {
+     "w": "não",
+     "i0": 26,
+     "t0": 69.63,
+     "t1": 69.87,
+     "n": "nao",
+     "chave": true
+    },
+    {
+     "w": "é",
+     "i0": 30,
+     "t0": 69.95,
+     "t1": 70.03,
+     "n": "e",
+     "chave": true
+    },
+    {
+     "w": "reserva.",
+     "i0": 32,
+     "t0": 70.11,
+     "t1": 70.67,
+     "n": "reserva",
+     "chave": true
+    },
+    {
+     "w": "Reserva",
+     "i0": 41,
+     "t0": 71.31,
+     "t1": 71.87,
+     "n": "reserva",
+     "chave": false
+    },
+    {
+     "w": "é",
+     "i0": 49,
+     "t0": 71.95,
+     "t1": 72.03,
+     "n": "e",
+     "chave": false
+    },
+    {
+     "w": "quando",
+     "i0": 51,
+     "t0": 72.07,
+     "t1": 72.27,
+     "n": "quando",
+     "chave": false
+    },
+    {
+     "w": "o",
+     "i0": 58,
+     "t0": 72.297,
+     "t1": 72.323,
+     "n": "o",
+     "chave": false
+    },
+    {
+     "w": "sinal",
+     "i0": 60,
+     "t0": 72.35,
+     "t1": 72.67,
+     "n": "sinal",
+     "chave": true
+    },
+    {
+     "w": "entrou.",
+     "i0": 66,
+     "t0": 72.75,
+     "t1": 73.15,
+     "n": "entrou",
+     "chave": true
+    }
+   ],
+   "frases": [
+    {
+     "texto": "Não confunda: pré-reserva não é reserva.",
+     "apoio": "A data segura não é a reserva feita.",
+     "t0": 67.23,
+     "t1": 70.67
+    },
+    {
+     "texto": "Reserva é quando o sinal entrou.",
+     "apoio": "Reserva é quando o *sinal entrou*.",
+     "t0": 71.31,
+     "t1": 73.15
+    }
+   ],
+   "apoios": []
+  },
+  {
+   "n": 8,
+   "rotulo": "ANOTA AÍ",
+   "tom": "limao",
+   "titulo": [
+    "Os quatro passos",
+    "contra a reserva dupla."
+   ],
+   "risca_titulo": null,
+   "diagrama": {
+    "tipo": "passos",
+    "itens": [
+     {
+      "t": "AGENDA ÚNICA",
+      "icone": "calendario",
+      "em": "agenda"
+     },
+     {
+      "t": "PRAZO NA PRÉ-RESERVA",
+      "icone": "relogio",
+      "em": "prazo"
+     },
+     {
+      "t": "BLOQUEIO NA HORA",
+      "icone": "cadeado",
+      "em": "bloqueio"
+     },
+     {
+      "t": "OLHAR ANTES DE RESPONDER",
+      "icone": "lupa",
+      "em": "olhar"
+     }
+    ]
+   },
+   "t0": 73.78,
+   "t1": 81.15,
+   "voz_t0": 73.83,
+   "voz_t1": 81.05,
+   "palavras": [
+    {
+     "w": "Anota",
+     "i0": 0,
+     "t0": 73.83,
+     "t1": 74.15,
+     "n": "anota",
+     "chave": false
+    },
+    {
+     "w": "aí:",
+     "i0": 6,
+     "t0": 74.23,
+     "t1": 74.47,
+     "n": "ai",
+     "chave": false
+    },
+    {
+     "w": "uma",
+     "i0": 10,
+     "t0": 75.03,
+     "t1": 75.19,
+     "n": "uma",
+     "chave": true
+    },
+    {
+     "w": "agenda",
+     "i0": 14,
+     "t0": 75.39,
+     "t1": 75.59,
+     "n": "agenda",
+     "chave": true
+    },
+    {
+     "w": "só,",
+     "i0": 21,
+     "t0": 75.75,
+     "t1": 75.99,
+     "n": "so",
+     "chave": true
+    },
+    {
+     "w": "prazo",
+     "i0": 25,
+     "t0": 76.51,
+     "t1": 76.79,
+     "n": "prazo",
+     "chave": true
+    },
+    {
+     "w": "na",
+     "i0": 31,
+     "t0": 76.87,
+     "t1": 76.95,
+     "n": "na",
+     "chave": true
+    },
+    {
+     "w": "pré-reserva,",
+     "i0": 34,
+     "t0": 77.03,
+     "t1": 77.75,
+     "n": "prereserva",
+     "chave": true
+    },
+    {
+     "w": "bloqueio",
+     "i0": 47,
+     "t0": 78.19,
+     "t1": 78.55,
+     "n": "bloqueio",
+     "chave": true
+    },
+    {
+     "w": "na",
+     "i0": 56,
+     "t0": 78.63,
+     "t1": 78.79,
+     "n": "na",
+     "chave": true
+    },
+    {
+     "w": "hora",
+     "i0": 59,
+     "t0": 78.95,
+     "t1": 79.35,
+     "n": "hora",
+     "chave": true
+    },
+    {
+     "w": "e",
+     "i0": 64,
+     "t0": 79.43,
+     "t1": 79.51,
+     "n": "e",
+     "chave": false
+    },
+    {
+     "w": "olhar",
+     "i0": 66,
+     "t0": 79.59,
+     "t1": 79.99,
+     "n": "olhar",
+     "chave": true
+    },
+    {
+     "w": "antes",
+     "i0": 72,
+     "t0": 80.15,
+     "t1": 80.39,
+     "n": "antes",
+     "chave": true
+    },
+    {
+     "w": "de",
+     "i0": 78,
+     "t0": 80.43,
+     "t1": 80.47,
+     "n": "de",
+     "chave": true
+    },
+    {
+     "w": "responder.",
+     "i0": 81,
+     "t0": 80.55,
+     "t1": 81.05,
+     "n": "responder",
+     "chave": true
+    }
+   ],
+   "frases": [
+    {
+     "texto": "Anota aí: uma agenda só, prazo na pré-reserva, bloqueio na hora e olhar antes de responder.",
+     "apoio": "Um passo de cada vez, nessa ordem.",
+     "t0": 73.83,
+     "t1": 81.05
+    }
+   ],
+   "apoios": []
+  },
+  {
+   "n": 9,
+   "rotulo": "MANDA ESSE",
+   "tom": "roxo",
+   "titulo": [
+    "Manda pra quem",
+    "cuida das reservas."
+   ],
+   "risca_titulo": null,
+   "diagrama": {
+    "tipo": "fecho",
+    "pergunta": {
+     "linhas": [
+      "Manda esse vídeo pra quem",
+      "*cuida das reservas aí.*"
+     ],
+     "em": "+0.8",
+     "icone": "enviar",
+     "digitando": false
+    }
+   },
+   "t0": 81.65,
+   "t1": 89.8,
+   "voz_t0": 81.7,
+   "voz_t1": 84.26,
+   "palavras": [
+    {
+     "w": "Manda",
+     "i0": 0,
+     "t0": 81.7,
+     "t1": 81.94,
+     "n": "manda",
+     "chave": false
+    },
+    {
+     "w": "esse",
+     "i0": 6,
+     "t0": 82.06,
+     "t1": 82.18,
+     "n": "esse",
+     "chave": false
+    },
+    {
+     "w": "vídeo",
+     "i0": 11,
+     "t0": 82.26,
+     "t1": 82.58,
+     "n": "video",
+     "chave": false
+    },
+    {
+     "w": "pra",
+     "i0": 17,
+     "t0": 82.62,
+     "t1": 82.66,
+     "n": "pra",
+     "chave": false
+    },
+    {
+     "w": "quem",
+     "i0": 21,
+     "t0": 82.74,
+     "t1": 82.9,
+     "n": "quem",
+     "chave": true
+    },
+    {
+     "w": "cuida",
+     "i0": 26,
+     "t0": 82.94,
+     "t1": 83.22,
+     "n": "cuida",
+     "chave": true
+    },
+    {
+     "w": "das",
+     "i0": 32,
+     "t0": 83.3,
+     "t1": 83.38,
+     "n": "das",
+     "chave": true
+    },
+    {
+     "w": "reservas",
+     "i0": 36,
+     "t0": 83.5,
+     "t1": 83.94,
+     "n": "reservas",
+     "chave": true
+    },
+    {
+     "w": "aí.",
+     "i0": 45,
+     "t0": 84.02,
+     "t1": 84.26,
+     "n": "ai",
+     "chave": false
+    }
+   ],
+   "frases": [
+    {
+     "texto": "Manda esse vídeo pra quem cuida das reservas aí.",
+     "apoio": "Pra ter à mão antes do próximo “tem vaga?”.",
+     "t0": 81.7,
+     "t1": 84.26
+    }
+   ],
+   "apoios": []
+  }
+ ],
+ "colocacao": [
+  {
+   "cap": 0,
+   "arquivo": "voz/cap-00.wav",
+   "de_s": 0.0,
+   "ate_s": 7.92,
+   "no_video_s": 0.1,
+   "amostras": 380160,
+   "fade_ms": [
+    8,
+    60
+   ]
+  },
+  {
+   "cap": 1,
+   "arquivo": "voz/cap-01.wav",
+   "de_s": 0.0,
+   "ate_s": 8.98,
+   "no_video_s": 8.61,
+   "amostras": 431040,
+   "fade_ms": [
+    8,
+    60
+   ]
+  },
+  {
+   "cap": 2,
+   "arquivo": "voz/cap-02.wav",
+   "de_s": 0.0,
+   "ate_s": 9.08,
+   "no_video_s": 18.64,
+   "amostras": 435840,
+   "fade_ms": [
+    8,
+    60
+   ]
+  },
+  {
+   "cap": 3,
+   "arquivo": "voz/cap-03.wav",
+   "de_s": 0.0,
+   "ate_s": 8.4,
+   "no_video_s": 28.07,
+   "amostras": 403200,
+   "fade_ms": [
+    8,
+    60
+   ]
+  },
+  {
+   "cap": 4,
+   "arquivo": "voz/cap-04.wav",
+   "de_s": 0.0,
+   "ate_s": 11.09,
+   "no_video_s": 36.9,
+   "amostras": 532320,
+   "fade_ms": [
+    8,
+    60
+   ]
+  },
+  {
+   "cap": 5,
+   "arquivo": "voz/cap-05.wav",
+   "de_s": 0.0,
+   "ate_s": 8.84,
+   "no_video_s": 48.34,
+   "amostras": 424320,
+   "fade_ms": [
+    8,
+    60
+   ]
+  },
+  {
+   "cap": 6,
+   "arquivo": "voz/cap-06.wav",
+   "de_s": 0.0,
+   "ate_s": 9.35,
+   "no_video_s": 57.53,
+   "amostras": 448800,
+   "fade_ms": [
+    8,
+    60
+   ]
+  },
+  {
+   "cap": 7,
+   "arquivo": "voz/cap-07.wav",
+   "de_s": 0.0,
+   "ate_s": 6.25,
+   "no_video_s": 67.23,
+   "amostras": 300000,
+   "fade_ms": [
+    8,
+    60
+   ]
+  },
+  {
+   "cap": 8,
+   "arquivo": "voz/cap-08.wav",
+   "de_s": 0.0,
+   "ate_s": 7.52,
+   "no_video_s": 73.83,
+   "amostras": 360960,
+   "fade_ms": [
+    8,
+    60
+   ]
+  },
+  {
+   "cap": 9,
+   "arquivo": "voz/cap-09.wav",
+   "de_s": 0.0,
+   "ate_s": 2.72,
+   "no_video_s": 81.7,
+   "amostras": 130560,
+   "fade_ms": [
+    8,
+    60
+   ]
+  }
+ ]
+}

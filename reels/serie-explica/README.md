@@ -156,6 +156,10 @@ O **fim da fala** é medido no áudio (último trecho de 10 ms acima de −40 dB
 - **`apoio`:** a linha de apoio que entra com a frase (`null` = nenhuma; igual à anterior = continua). Com `"legenda": "palavras"` no topo do JSON não aparece (a legenda a substitui); o `~…~` do apoio só serve para marcar palavras-chave. `destaque`: lista de trechos da fala em limão na legenda.
 - **`titulo`:** sempre 2 linhas (a 2ª em limão); o tamanho se ajusta à largura. Só na capa o título pode ter 3 linhas, para ficar grande no recorte 3:4 (ex.: "Como nunca vender / o mesmo chalé / duas vezes."). `risca_titulo: { "linha": 2, "em": "fim" }` risca uma linha em limão (em `fim` = perto do fim do capítulo).
 - **`tom`:** `limao`, `ambar`, `petroleo` ou `roxo`.
+- **Opções de diagrama (desde o explica-02-v4):**
+  - `prazo` → `relogio.rotulo` (ex.: `"PRAZO COMBINADO"`) troca a contagem de horas por um prazo genérico, sem número na tela. O ramo "não pagou" mostra "PRAZO" → "ACABOU".
+  - `fecho` → `pergunta.icone` (ex.: `"enviar"`, o avião de papel) e `pergunta.digitando: false`, para um balão de envio no lugar do de pergunta.
+  - Sem esses campos, nada muda.
 - **Tempo do capítulo:** `inicio` é a pausa antes da voz (padrão 0,25 s; capítulo 0: 0,10 s). `segura` é o tempo depois da voz antes da troca (padrão 0,45 s). `min` é a duração mínima. O fecho usa `min` 9, `inicio` 0,05 e `segura` 3,55: precisa de 8–9 s, com a logo nos últimos 3 s, entrando só depois da última palavra. Se a fala do fecho passar de ~5,4 s, encurte a fala, não o fecho. Para caber em 70–85 s, os capítulos 01–08 podem usar `inicio` 0,15 e `segura` 0,30 (como no explica-02); a velocidade da voz nunca muda.
 - **`em` (dentro do diagrama):** a palavra da fala que dispara a peça.
   - `"sinal"` dispara na 1ª vez que a palavra aparece; `"sinal#2"`, na 2ª.
