@@ -1459,7 +1459,14 @@
         casa(ctx, X0 + 28, Y0 + 28, 150, d.dia, d.semana, { stroke: C.amber, dash: [8, 7], t, c: C.amber, fill: css(C.amber, 0.08) });
         txt(ctx, d.pre.t, X0 + 206, Y0 + 70, { fam: MONO, size: 28, weight: 800, color: C.amber, ls: 2 });
         const r = p(t, ev.rel, ev.rel + 0.4);
-        if (r > 0) {
+        if (r > 0 && d.relogio.rotulo) {
+          // prazo genérico (relogio.rotulo, ex. "PRAZO COMBINADO"): nenhum número de horas na tela, só o prazo correndo na barra
+          const u = t < ev.pagou ? 1 - 0.12 * Math.max(0, t - ev.rel - 0.4) : 1 - 0.12 * (ev.pagou - ev.rel - 0.4);
+          icon(ctx, 'relogio', X0 + 230, Y0 + 132, 44, C.white, { lw: 2, alpha: r });
+          txt(ctx, d.relogio.rotulo, X0 + 266, Y0 + 146, { fam: MONO, size: 30, weight: 800, color: C.white, alpha: r, ls: 1, box: r >= 1 ? 'relógio' : null });
+          ctx.fillStyle = css(C.white, 0.12 * r); rr(ctx, X0 + 208, Y0 + 176, 360, 8, 4); ctx.fill();
+          ctx.fillStyle = css(C.amber, r); rr(ctx, X0 + 208, Y0 + 176, 360 * clamp(u, 0.15, 1), 8, 4); ctx.fill();
+        } else if (r > 0) {
           const h = t < ev.pagou ? d.relogio.horas - 2.2 * Math.max(0, t - ev.rel - 0.4) : d.relogio.horas - 2.2 * (ev.pagou - ev.rel - 0.4);
           icon(ctx, 'relogio', X0 + 230, Y0 + 132, 44, C.white, { lw: 2, alpha: r });
           txt(ctx, hh(Math.max(0, h)), X0 + 266, Y0 + 152, { size: 64, weight: 900, color: C.white, alpha: r, box: r >= 1 ? 'relógio' : null });
@@ -1490,8 +1497,16 @@
         panel(ctx, bx, by, bw, bh, { r: 26, stroke: css(C.white, 0.16), box: 'ramo: não pagou' });
         txt(ctx, d.nao.t, bx + 26, by + 50, { fam: MONO, size: 24, weight: 800, color: C.gray, ls: 2 });
         casa(ctx, bx + 26, by + 78, 140, d.dia, d.semana, lv > 0 ? { stroke: css(C.white, 0.5), dash: [3, 7], t, c: C.white, fill: css(C.white, 0.04) } : { stroke: C.amber, dash: [8, 7], t, c: C.amber });
-        const h = d.relogio.horas * (1 - E.inOutCubic(p(t, ev.nao + 0.1, ev.livre - 0.05)));
-        txt(ctx, hh(h), bx + 188, by + 134, { fam: MONO, size: 40, weight: 800, color: h <= 0.01 ? C.red : C.amber, box: lv >= 1 ? 'prazo zerado' : null });
+        if (d.relogio.rotulo) {
+          // prazo genérico: a barrinha esvazia até o prazo acabar (sem número)
+          const u = 1 - E.inOutCubic(p(t, ev.nao + 0.1, ev.livre - 0.05));
+          txt(ctx, u <= 0.01 ? 'ACABOU' : 'PRAZO', bx + 188, by + 122, { fam: MONO, size: 30, weight: 800, color: u <= 0.01 ? C.red : C.amber, box: lv >= 1 ? 'prazo zerado' : null });
+          ctx.fillStyle = css(C.white, 0.12); rr(ctx, bx + 188, by + 140, 150, 8, 4); ctx.fill();
+          if (u > 0.01) { ctx.fillStyle = C.amber; rr(ctx, bx + 188, by + 140, 150 * u, 8, 4); ctx.fill(); }
+        } else {
+          const h = d.relogio.horas * (1 - E.inOutCubic(p(t, ev.nao + 0.1, ev.livre - 0.05)));
+          txt(ctx, hh(h), bx + 188, by + 134, { fam: MONO, size: 40, weight: 800, color: h <= 0.01 ? C.red : C.amber, box: lv >= 1 ? 'prazo zerado' : null });
+        }
         if (lv > 0) txt(ctx, d.nao.fim, bx + 188, by + 196, { fam: MONO, size: 25, weight: 800, color: C.white, alpha: E.outCubic(lv), box: lv >= 1 ? 'livre' : null });
       });
     },
@@ -1703,11 +1718,11 @@
         // vivo sem mexer no texto: uma luz limão corre pela borda do balão e alguém está "digitando…" no canto
         ctx.save(); rr(ctx, bx, by, bw, bh, 34); ctx.setLineDash([220, 2 * (bw + bh)]); ctx.lineDashOffset = -(t - ev.balao) * 520;
         ctx.lineWidth = 4.5; ctx.lineCap = 'round'; ctx.strokeStyle = C.lime; ctx.shadowColor = css(C.lime, 0.9); ctx.shadowBlur = 22; ctx.stroke(); ctx.restore();
-        for (let i = 0; i < 3; i++) {
+        if (d.pergunta.digitando !== false) for (let i = 0; i < 3; i++) {
           const ph = (t - ev.balao) * 5 - i * 0.7, up = Math.max(0, Math.sin(ph));
           ctx.beginPath(); ctx.arc(bx + bw - 118 + i * 30, by + 66 - 9 * up, 8, 0, TAU); ctx.fillStyle = css(C.lime, 0.35 + 0.65 * up); ctx.fill();
         }
-        icon(ctx, 'comentar', bx + 70, by + 66, 46, C.lime, { lw: 2.2, fill: css(C.lime, 0.12) });
+        icon(ctx, d.pergunta.icone || 'comentar', bx + 70, by + 66, 46, C.lime, { lw: 2.2, fill: css(C.lime, 0.12) });
         d.pergunta.linhas.forEach((l, i) => {
           let x = bx + 46; const y = by + 104 + 0.78 * S + i * lh;
           runs(l, C.white).forEach((r) => { x += txt(ctx, r.s, x, y, { size: S, weight: 800, color: r.c, ls: -0.01 * S }); });
