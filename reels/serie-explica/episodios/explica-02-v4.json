@@ -50,7 +50,8 @@
       "destaque": [
         "mesmo chalé",
         "quatro passos"
-      ]
+      ],
+      "segura": 0.15
     },
     {
       "rotulo": "A CENA",
@@ -59,8 +60,8 @@
         "Sábado, 15h.",
         "Dois carros no portão."
       ],
-      "inicio": 0.15,
-      "segura": 0.3,
+      "inicio": 0.08,
+      "segura": 0.8,
       "fala": [
         {
           "texto": "Dois carros no portão e um chalé só.",
@@ -135,8 +136,8 @@
         "A agenda morava",
         "em três lugares."
       ],
-      "inicio": 0.15,
-      "segura": 0.3,
+      "inicio": 0.05,
+      "segura": 0.1,
       "fala": [
         {
           "texto": "O problema não foi o hóspede.",
@@ -212,8 +213,8 @@
         "Uma agenda só",
         "manda em todas."
       ],
-      "inicio": 0.15,
-      "segura": 0.3,
+      "inicio": 0.05,
+      "segura": 0.1,
       "fala": [
         {
           "texto": "Primeiro: uma agenda só.",
@@ -286,8 +287,8 @@
         "Pré-reserva",
         "tem prazo."
       ],
-      "inicio": 0.15,
-      "segura": 0.3,
+      "inicio": 0.05,
+      "segura": 0.1,
       "fala": [
         {
           "texto": "Segundo: pré-reserva tem prazo.",
@@ -345,8 +346,8 @@
         "Vendeu num lugar,",
         "fecha em todos."
       ],
-      "inicio": 0.15,
-      "segura": 0.3,
+      "inicio": 0.05,
+      "segura": 0.1,
       "fala": [
         {
           "texto": "Terceiro: vendeu num lugar, fecha em todos.",
@@ -401,8 +402,8 @@
         "Antes do “tem sim”,",
         "olhe a agenda."
       ],
-      "inicio": 0.15,
-      "segura": 0.3,
+      "inicio": 0.05,
+      "segura": 0.1,
       "fala": [
         {
           "texto": "Quarto: antes do \"tem sim\", olhe a agenda.",
@@ -474,8 +475,8 @@
         "Pré-reserva",
         "não é reserva."
       ],
-      "inicio": 0.15,
-      "segura": 0.3,
+      "inicio": 0.05,
+      "segura": 0.1,
       "fala": [
         {
           "texto": "Não confunda: pré-reserva não é reserva.",
@@ -531,8 +532,8 @@
         "Os quatro passos",
         "contra a reserva dupla."
       ],
-      "inicio": 0.15,
-      "segura": 0.3,
+      "inicio": 0.05,
+      "segura": 0.1,
       "fala": [
         {
           "texto": "Anota aí: uma agenda só, prazo na pré-reserva, bloqueio na hora e olhar antes de responder.",
@@ -579,7 +580,7 @@
         "cuida das reservas."
       ],
       "inicio": 0.05,
-      "min": 9.0,
+      "min": 8.15,
       "segura": 3.55,
       "fala": [
         {
@@ -594,7 +595,7 @@
             "Manda esse vídeo pra quem",
             "*cuida das reservas aí.*"
           ],
-          "em": "+1.2",
+          "em": "+0.8",
           "icone": "enviar",
           "digitando": false
         }
