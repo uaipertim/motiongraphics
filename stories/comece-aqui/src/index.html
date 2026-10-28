@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="pt-BR"><head><meta charset="utf-8"><title>FAZLO Hospeda — Comece aqui</title>
+<style>
+  @font-face { font-family: 'FL Display'; src: url('fonts/InterDisplay-ExtraBold.otf') format('opentype'); font-weight: 800; }
+  @font-face { font-family: 'FL Display'; src: url('fonts/InterDisplay-Black.otf') format('opentype'); font-weight: 900; }
+  @font-face { font-family: 'FL Mono'; src: url('fonts/JetBrainsMonoNL-ExtraBold.ttf') format('truetype'); font-weight: 800; }
+  html, body { margin: 0; background: #0A0A0A; } canvas { display: block; }
+</style></head>
+<body><canvas id="c" width="1080" height="1920"></canvas>
+<script src="telas.js"></script>
+<script>
+  const ctx = document.getElementById('c').getContext('2d');
+  window.ready = (async () => {
+    await Promise.all(["900 100px 'FL Display'", "800 100px 'FL Display'", "800 30px 'FL Mono'"].map((f) => document.fonts.load(f)));
+    const img = new Image(); img.src = 'assets/fazlo-hospeda-logo-alpha.png'; await img.decode(); await document.fonts.ready;
+    TELAS.init(img);
+  })();
+  window.tela = (n) => { const caixas = TELAS.render(ctx, n); return { png: ctx.canvas.toDataURL('image/png'), caixas }; };
+</script></body></html>

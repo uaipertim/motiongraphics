@@ -1,0 +1,6 @@
+01.png: pixels acesos de y 312 a 1450; caixas de y 300 a 1453
+02.png: pixels acesos de y 312 a 1380; caixas de y 300 a 1383
+03.png: pixels acesos de y 312 a 1125; caixas de y 300 a 1128
+  faixa y 1150–1450: 0 pixels acesos, caixas dentro: nenhuma
+capa-destaque-comece-aqui.png: pixels acesos de y 608 a 1320; caixas de y 571 a 1349
+APROVADO
