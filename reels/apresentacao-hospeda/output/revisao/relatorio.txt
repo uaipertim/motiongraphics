@@ -1,0 +1,40 @@
+APRESENTAÇÃO FAZLO Hospeda — revisão técnica
+output/fazlo-hospeda-apresentacao.mp4
+
+FORMATO
+OK     vídeo h264 yuv420p 1080x1920 60 fps
+OK     áudio aac 48000 Hz 2 canais
+OK     duração 178.47 s (alvo 2 a 3 min)
+OK     vídeo e áudio com a mesma duração (Δ 0 ms)
+
+SOM
+OK     loudness integrado -14.0 LUFS (alvo −14)
+OK     pico real -1.9 dBTP (limite −1,5)
+OK     a trilha fica 10.4 dB abaixo da voz (voz -13.3 LUFS, trilha -23.7 LUFS; alvo ~10 dB, com ducking)
+
+LEGENDA
+OK     52 páginas; cada uma fica ≥ 1,5 s na tela (a mais curta: 1.74 s)
+OK     a página anterior sai antes da próxima entrar (nenhuma sobreposição)
+OK     chaves em limão: 89 palavras
+OK     legenda dentro de x 130–950 e acima de y 1536 em todos os quadros amostrados
+OK     a legenda não encosta em nenhum elemento da cena
+
+SINCRONIA
+OK     voz × legenda: 86 palavras depois de pausa, a 2 ms em média e 36 ms no máximo (limite 80 ms) · sem silêncio real antes (não medidas): dia., dia, chega,, sai, registra, sinal,, já, só, libera, recebimento, internet, não, não, nada., senha, sem, dias,, mensalidade
+       o -1 · a +0 · o +19 · no +0 · No +0 · quanto -36 · E +0 · o -4 · bate. +0 · O +0 · tudo +0 · Veja +0 · Ao -1 · você +0 · quem -2 · quem -32 · quem -32 · e +0 · quanto -1 · entrou, +0 · por +1 · No -1 · cada +0 · e +11 · cada -1 · E +0 · datas: -14 · ele +0 · Na +0 · e +1 · já -1 · calculado. +0 · Se +0 · você -1 · reter +0 · que +0 · ou +0 · e +0 · Durante +0 · cada +0 · o +0 · quantos +0 · e +0 · No +0 · check-out, -14 · o +0 · claro, -2 · e +0 · tudo -1 · quitado. +0 · O +0 · e +0 · com -1 · No +0 · e +1 · ou +0 · O +0 · como +0 · E +1 · E +14 · o +1 · Você -1 · A +0 · acomodações, +0 · tarifas, -1 · produtos +2 · e -1 · Você +0 · cria +0 · e +0 · E -1 · é +0 · São -2 · Sem +0 · e +0 · compromisso. +0 · Depois +0 · se +0 · a +0 · Sem -1 · e +0 · E +0 · R$ 79,90 -1 · Quer -2 · 30 +0 · É -1
+OK     cada página aparece no quadro da 1ª palavra (atraso em quadros: [1, 1, 1, 1, 0, 1, 1, 0, 0, 1, 1, 0, 1, 1, 1, 0, 0, 0, 1, 1, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 1, 1, 1, 1, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1])
+
+ZONAS SEGURAS E CONTEÚDO
+OK     20% de baixo (y > 1536): nada aceso em 714 quadros
+OK     todas as caixas da cena entre y 265 e 1536
+OK     miniatura (quadro 0): o centro onde fica o play (raio 240 px) está livre (0 pixels acesos)
+OK     15 recortes, todos de hospeda-v2/ e abaixo da faixa "Demonstração · Quero usar"
+OK     15 telas; cada uma fica ≥ 3,5 s na tela (a menor: dayuse 3.58 s)
+       dia 11.3s · calendario 8.2s · duplicada 8.2s · sinal 7.5s · reter 5.9s · devolver 4.9s · comanda 9.0s · checkout 7.4s · caixa 9.0s · fechamento 7.7s · dayuse 3.6s · dayuse-ativo 3.9s · diario 4.4s · acomodacoes 8.4s · revisao 4.5s
+OK     tempo de leitura: a última tela de cada cena fica parada ≥ 2,5 s depois do último foco (dia 3.1s · reservas 5.2s · sinal 3.8s · comanda 3.3s · caixa 3.1s · dayuse 2.6s · comeca 2.8s)
+OK     valores na legenda: ['R$ 99,90', 'R$ 79,90'] (a voz fala por extenso)
+OK     grafia oficial: nenhuma grafia fonética (Fázlo, Hospéda, Uátsap) na legenda nem no quadro
+OK     a logo entra 1.00 s depois da última palavra e fica 3.20 s até o fim
+OK     o vídeo termina com a logo
+
+RESULTADO: aprovado

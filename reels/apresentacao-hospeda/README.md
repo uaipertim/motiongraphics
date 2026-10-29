@@ -4,8 +4,8 @@ Vídeo explicativo de como o sistema funciona na prática, para a pousada que ac
 
 O roteiro aprovado (com os ajustes de 30/10/2026) está em [`ROTEIRO.md`](ROTEIRO.md). **Não publicar antes do OK.**
 
-▶ **Para enviar no WhatsApp:** [`output/fazlo-hospeda-apresentacao-whatsapp.mp4`](output/fazlo-hospeda-apresentacao-whatsapp.mp4) (30 fps, abaixo de 16 MB).
-▶ **Mestre:** [`output/fazlo-hospeda-apresentacao.mp4`](output/fazlo-hospeda-apresentacao.mp4) (60 fps).
+▶ **Para enviar no WhatsApp:** [`output/fazlo-hospeda-apresentacao-whatsapp.mp4`](output/fazlo-hospeda-apresentacao-whatsapp.mp4) (14 MB, 1080×1920, 30 fps, −14 LUFS, pico −1,8 dBTP).
+▶ **Mestre:** [`output/fazlo-hospeda-apresentacao.mp4`](output/fazlo-hospeda-apresentacao.mp4) (45 MB, 60 fps).
 **Revisão técnica:** [`output/revisao/relatorio.txt`](output/revisao/relatorio.txt).
 
 ## Cenas (no tempo da locução)
@@ -50,6 +50,18 @@ O roteiro aprovado (com os ajustes de 30/10/2026) está em [`ROTEIRO.md`](ROTEIR
 - **Legenda:** palavra por palavra no padrão do reel-09 (Inter Display 900, 68 px, chaves em limão, cada página ≥ 1,5 s).
 - **Som** (`scripts/audio.py`): a trilha da Série Explica com ducking, efeitos em cada tela, foco, check e valor, e a sineta da logo. −14 LUFS.
 
+## Revisão (`scripts/qa.py`): aprovado
+
+- **Formato e som:** 178,5 s; −14,0 LUFS; pico −1,9 dBTP; trilha 10,4 dB abaixo da voz.
+- **Legenda:** 52 páginas, todas ≥ 1,5 s. "R$ 99,90" e "R$ 79,90" aparecem assim na legenda.
+- **Sincronia:** 2 ms em média e 36 ms no máximo. Cinco palavras curtas ("o", "e") tinham a marcação da API adiantada até 178 ms; o `linha.py` as acerta pelo início medido no áudio montado.
+- **Telas:**
+  - 15 recortes, todos de `hospeda-v2/` e abaixo da faixa de demonstração;
+  - cada tela fica ≥ 3,5 s;
+  - a última de cada assunto fica parada ≥ 2,5 s depois do último foco.
+- **Miniatura:** o centro do play está livre.
+- **Grafia:** nenhuma grafia fonética na tela.
+
 ## Rodar
 
 ```bash
@@ -61,6 +73,6 @@ node scripts/render.cjs info                        # output/info.json (plano, l
 python3 scripts/audio.py                            # audio/mix.wav
 node scripts/render.cjs video --mix audio/mix.wav   # output/fazlo-hospeda-apresentacao.mp4
 python3 scripts/qa.py                               # output/revisao/relatorio.txt, zonas-seguras.jpg, miniatura.jpg
-ffmpeg -i output/fazlo-hospeda-apresentacao.mp4 -vf fps=30 -c:v libx264 -preset slow -crf 24 -pix_fmt yuv420p \
-  -c:a aac -b:a 160k -movflags +faststart output/fazlo-hospeda-apresentacao-whatsapp.mp4
+ffmpeg -i output/fazlo-hospeda-apresentacao.mp4 -vf fps=30 -c:v libx264 -preset slow -crf 26 -pix_fmt yuv420p \
+  -c:a aac -b:a 128k -movflags +faststart output/fazlo-hospeda-apresentacao-whatsapp.mp4
 ```
