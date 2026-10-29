@@ -1,0 +1,445 @@
+{
+ "id": "institucional-hospeda",
+ "titulo": "FAZLO Hospeda — vídeo institucional",
+ "marca": "@fazlohospeda",
+ "voz": {
+  "modelo": "eleven_v4",
+  "voz": "Raquel - For Conversational (GDzHdQOi6jjf8zaXhCYD)",
+  "stability": 0.5,
+  "similarity_boost": 0.75
+ },
+ "nota": "Institucional para leads no WhatsApp (roteiro aprovado com ajustes em 29/10/2026). Telas: só os PNGs de hospeda-v2/, em recortes sem a faixa 'Demonstração · Quero usar'. Cada item de 'frases' é uma frase da locução; o texto de todos os tokens, na ordem, é exatamente a narração aprovada. 'chave': palavras em limão na legenda; 'id': o instante que dispara a animação; 'pausa_depois': silêncio acrescentado depois da frase (a pausa para entender a tela).",
+ "frases": [
+  {
+   "id": "dor",
+   "pausa_depois": 0.2,
+   "tokens": [
+    {
+     "fala": "Reserva anotada no"
+    },
+    {
+     "fala": "caderno,",
+     "chave": true,
+     "id": "caderno"
+    },
+    {
+     "fala": "consumo no"
+    },
+    {
+     "fala": "papel",
+     "chave": true,
+     "id": "papel"
+    },
+    {
+     "fala": "e, no fim do dia, um caixa que"
+    },
+    {
+     "fala": "não bate.",
+     "chave": true,
+     "id": "bate"
+    }
+   ]
+  },
+  {
+   "id": "virada",
+   "pausa_depois": 0.4,
+   "tokens": [
+    {
+     "fala": "O"
+    },
+    {
+     "fala": "FAZLO Hospeda",
+     "id": "logo"
+    },
+    {
+     "fala": "organiza a sua pousada em"
+    },
+    {
+     "fala": "um só lugar.",
+     "chave": true,
+     "id": "lugar"
+    }
+   ]
+  },
+  {
+   "id": "dia",
+   "pausa_depois": 1.0,
+   "tokens": [
+    {
+     "fala": "Logo cedo, você vê quem"
+    },
+    {
+     "fala": "chega,",
+     "chave": true,
+     "id": "chega"
+    },
+    {
+     "fala": "quem"
+    },
+    {
+     "fala": "sai,",
+     "chave": true,
+     "id": "sai"
+    },
+    {
+     "fala": "quem está"
+    },
+    {
+     "fala": "hospedado",
+     "chave": true,
+     "id": "hospedado"
+    },
+    {
+     "fala": "e quanto já"
+    },
+    {
+     "fala": "entrou.",
+     "chave": true,
+     "id": "entrou"
+    }
+   ]
+  },
+  {
+   "id": "reservas",
+   "pausa_depois": 0.4,
+   "tokens": [
+    {
+     "fala": "As reservas ficam no"
+    },
+    {
+     "fala": "calendário,",
+     "chave": true,
+     "id": "calendario"
+    },
+    {
+     "fala": "com cada acomodação e cada"
+    },
+    {
+     "fala": "data",
+     "id": "data"
+    },
+    {
+     "fala": "à vista."
+    }
+   ]
+  },
+  {
+   "id": "duplicada",
+   "pausa_depois": 1.0,
+   "tokens": [
+    {
+     "fala": "E o"
+    },
+    {
+     "fala": "mesmo chalé",
+     "id": "chale"
+    },
+    {
+     "fala": "não pode ser reservado"
+    },
+    {
+     "fala": "duas vezes",
+     "chave": true,
+     "id": "duas"
+    },
+    {
+     "fala": "nas mesmas datas.",
+     "id": "datas"
+    }
+   ]
+  },
+  {
+   "id": "sinal",
+   "pausa_depois": 0.4,
+   "tokens": [
+    {
+     "fala": "Na reserva, você registra o"
+    },
+    {
+     "fala": "sinal,",
+     "chave": true,
+     "id": "sinal"
+    },
+    {
+     "fala": "e o"
+    },
+    {
+     "fala": "saldo",
+     "chave": true,
+     "id": "saldo"
+    },
+    {
+     "fala": "já fica calculado."
+    }
+   ]
+  },
+  {
+   "id": "cancela",
+   "pausa_depois": 1.0,
+   "tokens": [
+    {
+     "fala": "Se o hóspede"
+    },
+    {
+     "fala": "cancelar,",
+     "id": "cancelar"
+    },
+    {
+     "fala": "você decide:"
+    },
+    {
+     "fala": "reter",
+     "chave": true,
+     "id": "reter"
+    },
+    {
+     "fala": "ou"
+    },
+    {
+     "fala": "devolver",
+     "chave": true,
+     "id": "devolver"
+    },
+    {
+     "fala": "o sinal."
+    }
+   ]
+  },
+  {
+   "id": "comanda",
+   "pausa_depois": 0.3,
+   "tokens": [
+    {
+     "fala": "Durante a estadia, cada"
+    },
+    {
+     "fala": "consumo",
+     "chave": true,
+     "id": "consumo"
+    },
+    {
+     "fala": "vai para a"
+    },
+    {
+     "fala": "comanda",
+     "chave": true,
+     "id": "comanda"
+    },
+    {
+     "fala": "do hóspede."
+    }
+   ]
+  },
+  {
+   "id": "checkout",
+   "pausa_depois": 1.0,
+   "tokens": [
+    {
+     "fala": "No"
+    },
+    {
+     "fala": "check-out,",
+     "id": "checkout"
+    },
+    {
+     "fala": "o"
+    },
+    {
+     "fala": "saldo",
+     "chave": true,
+     "id": "saldo2"
+    },
+    {
+     "fala": "aparece claro, e a saída só"
+    },
+    {
+     "fala": "libera",
+     "id": "libera"
+    },
+    {
+     "fala": "com"
+    },
+    {
+     "fala": "tudo quitado.",
+     "chave": true,
+     "id": "quitado"
+    }
+   ]
+  },
+  {
+   "id": "caixa",
+   "pausa_depois": 1.1,
+   "tokens": [
+    {
+     "fala": "O caixa tem"
+    },
+    {
+     "fala": "abertura",
+     "chave": true,
+     "id": "abertura"
+    },
+    {
+     "fala": "e"
+    },
+    {
+     "fala": "fechamento conferido:",
+     "chave": true,
+     "id": "fechamento"
+    },
+    {
+     "fala": "você"
+    },
+    {
+     "fala": "conta",
+     "id": "conta"
+    },
+    {
+     "fala": "o dinheiro e o Hospeda"
+    },
+    {
+     "fala": "mostra",
+     "id": "mostra"
+    },
+    {
+     "fala": "na hora se"
+    },
+    {
+     "fala": "sobrou ou faltou.",
+     "chave": true,
+     "id": "faltou"
+    }
+   ]
+  },
+  {
+   "id": "dayuse",
+   "pausa_depois": 1.0,
+   "tokens": [
+    {
+     "fala": "O"
+    },
+    {
+     "fala": "Day Use",
+     "chave": true,
+     "id": "dayuse"
+    },
+    {
+     "fala": "entra nas"
+    },
+    {
+     "fala": "mesmas comandas",
+     "chave": true,
+     "id": "comandas"
+    },
+    {
+     "fala": "e no"
+    },
+    {
+     "fala": "mesmo caixa.",
+     "chave": true,
+     "id": "caixa2"
+    }
+   ]
+  },
+  {
+   "id": "dobro",
+   "pausa_depois": 0.8,
+   "tokens": [
+    {
+     "fala": "E se a"
+    },
+    {
+     "fala": "internet cair",
+     "chave": true,
+     "id": "internet"
+    },
+    {
+     "fala": "no meio de um"
+    },
+    {
+     "fala": "recebimento,",
+     "id": "recebimento"
+    },
+    {
+     "fala": "o"
+    },
+    {
+     "fala": "mesmo pagamento",
+     "id": "pagamento"
+    },
+    {
+     "fala": "não é lançado"
+    },
+    {
+     "fala": "duas vezes.",
+     "chave": true,
+     "id": "duas2"
+    }
+   ]
+  },
+  {
+   "id": "config",
+   "pausa_depois": 1.0,
+   "tokens": [
+    {
+     "fala": "Você não começa"
+    },
+    {
+     "fala": "do zero:",
+     "id": "zero"
+    },
+    {
+     "fala": "a FAZLO entrega o sistema"
+    },
+    {
+     "fala": "já configurado,",
+     "chave": true,
+     "id": "configurado"
+    },
+    {
+     "fala": "com"
+    },
+    {
+     "fala": "acomodações,",
+     "id": "acomodacoes"
+    },
+    {
+     "fala": "tarifas,",
+     "id": "tarifas"
+    },
+    {
+     "fala": "produtos",
+     "id": "produtos"
+    },
+    {
+     "fala": "e"
+    },
+    {
+     "fala": "usuários.",
+     "id": "usuarios"
+    }
+   ]
+  },
+  {
+   "id": "cta",
+   "pausa_depois": 0.0,
+   "tokens": [
+    {
+     "fala": "Fale",
+     "id": "fale"
+    },
+    {
+     "fala": "com a gente no"
+    },
+    {
+     "fala": "WhatsApp",
+     "chave": true,
+     "id": "whats"
+    },
+    {
+     "fala": "para conhecer."
+    }
+   ]
+  }
+ ],
+ "narracao": "Reserva anotada no caderno, consumo no papel e, no fim do dia, um caixa que não bate. O FAZLO Hospeda organiza a sua pousada em um só lugar. Logo cedo, você vê quem chega, quem sai, quem está hospedado e quanto já entrou. As reservas ficam no calendário, com cada acomodação e cada data à vista. E o mesmo chalé não pode ser reservado duas vezes nas mesmas datas. Na reserva, você registra o sinal, e o saldo já fica calculado. Se o hóspede cancelar, você decide: reter ou devolver o sinal. Durante a estadia, cada consumo vai para a comanda do hóspede. No check-out, o saldo aparece claro, e a saída só libera com tudo quitado. O caixa tem abertura e fechamento conferido: você conta o dinheiro e o Hospeda mostra na hora se sobrou ou faltou. O Day Use entra nas mesmas comandas e no mesmo caixa. E se a internet cair no meio de um recebimento, o mesmo pagamento não é lançado duas vezes. Você não começa do zero: a FAZLO entrega o sistema já configurado, com acomodações, tarifas, produtos e usuários. Fale com a gente no WhatsApp para conhecer."
+}

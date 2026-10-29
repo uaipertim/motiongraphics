@@ -1,0 +1,39 @@
+INSTITUCIONAL FAZLO Hospeda — revisão técnica
+output/fazlo-hospeda-institucional.mp4
+
+FORMATO
+OK     vídeo h264 yuv420p 1080x1920 60 fps
+OK     áudio aac 48000 Hz 2 canais
+OK     duração 85.12 s (alvo 60–90 s)
+OK     vídeo e áudio com a mesma duração (Δ 7 ms)
+
+SOM
+OK     loudness integrado -14.0 LUFS (alvo −14)
+OK     pico real -2.2 dBTP (limite −1,5)
+OK     a trilha fica 10.5 dB abaixo da voz (voz -13.7 LUFS, trilha -24.2 LUFS; alvo ~10 dB, com ducking)
+
+LEGENDA
+OK     32 páginas; cada uma fica ≥ 1,5 s na tela (a mais curta: 1.50 s)
+OK     a página anterior sai antes da próxima entrar (nenhuma sobreposição)
+OK     chaves em limão: 42 palavras
+OK     legenda dentro de x 130–950 e acima de y 1536 em todos os quadros amostrados
+OK     a legenda não encosta em nenhum elemento da cena
+
+SINCRONIA
+OK     voz × legenda: 38 palavras depois de pausa, a 2 ms em média e 41 ms no máximo (limite 80 ms) · sem silêncio real antes (não medidas): não, organiza, chega,, sai,, chalé, reserva,, nas, internet, recebimento,, não, não
+       consumo +0 · e, +0 · um +0 · caixa -41 · O +0 · Logo +0 · quem -1 · quem -1 · As +0 · com +0 · E +0 · Na +0 · e +0 · Se +0 · você +0 · reter -2 · ou +0 · Durante +0 · cada +0 · No +0 · claro, +0 · e +0 · tudo -1 · quitado. +0 · O +1 · você +0 · ou +0 · O +0 · E +0 · o +0 · Você +0 · a +0 · sistema +0 · com +0 · acomodações, -22 · tarifas, -1 · produtos +0 · Fale -2
+OK     cada página aparece no quadro da 1ª palavra (atraso em quadros: [1, 0, 0, 1, 1, 0, 0, 1, 1, -1, 0, 0, 1, 1, 1, 1, 0, 1, 1, 1, 0, 0, 1, 0, 1, 0, 0, 0, 1, 0, 0, 1])
+
+ZONAS SEGURAS E CONTEÚDO
+OK     20% de baixo (y > 1536): nada aceso em 340 quadros
+OK     todas as caixas da cena entre y 265 e 1536
+OK     miniatura (quadro 0): o centro onde fica o play (raio 240 px) está livre (0 pixels acesos)
+OK     16 recortes, todos de hospeda-v2/ e abaixo da faixa "Demonstração · Quero usar"
+OK     16 telas; cada uma fica ≥ 1,5 s na tela (a menor: dayuse-ativo 1.70 s)
+       dia 6.4s · calendario 5.9s · duplicada 5.6s · sinal 2.9s · resumo 2.8s · reter 3.9s · devolver 2.0s · comanda 4.8s · checkout 6.3s · caixa 3.9s · fechamento 5.3s · dayuse 2.0s · dayuse-ativo 1.7s · diario 2.0s · acomodacoes 7.0s · revisao 2.8s
+OK     pausa para entender: a última tela de cada cena fica parada ≥ 1,2 s depois do último foco (dia 1.3s · reservas 2.8s · sinal 1.9s · comanda 2.6s · caixa 3.4s · dayuse 1.7s · config 1.6s)
+OK     grafia oficial: nenhuma grafia fonética (Fázlo, Hospéda, Uátsap) na legenda nem no quadro
+OK     a logo entra 1.00 s depois da última palavra e fica 3.20 s até o fim
+OK     o vídeo termina com a logo
+
+RESULTADO: aprovado

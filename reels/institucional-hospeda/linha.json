@@ -1,0 +1,1698 @@
+{
+ "provisoria": false,
+ "audio": "audio/voz-montada.wav",
+ "inicio_voz": 0.35,
+ "fim_voz": 80.91,
+ "logo": 81.91,
+ "duracao": 85.11,
+ "marca": "@fazlohospeda",
+ "cortes_s": [
+  6.292,
+  10.106,
+  15.415,
+  20.336,
+  24.707,
+  29.256,
+  34.015,
+  37.872,
+  43.295,
+  50.891,
+  54.606,
+  60.414,
+  68.669
+ ],
+ "frases": [
+  {
+   "id": "dor",
+   "t0": 0.35,
+   "t1": 6.19,
+   "pausa_depois": 0.2,
+   "palavras": [
+    {
+     "w": "Reserva",
+     "chave": false,
+     "id": null,
+     "t0": 0.35,
+     "t1": 0.83
+    },
+    {
+     "w": "anotada",
+     "chave": false,
+     "id": null,
+     "t0": 0.87,
+     "t1": 1.23
+    },
+    {
+     "w": "no",
+     "chave": false,
+     "id": null,
+     "t0": 1.31,
+     "t1": 1.39
+    },
+    {
+     "w": "caderno,",
+     "chave": true,
+     "id": "caderno",
+     "t0": 1.421,
+     "t1": 2.03
+    },
+    {
+     "w": "consumo",
+     "chave": false,
+     "id": null,
+     "t0": 2.232,
+     "t1": 2.71
+    },
+    {
+     "w": "no",
+     "chave": false,
+     "id": null,
+     "t0": 2.75,
+     "t1": 2.83
+    },
+    {
+     "w": "papel",
+     "chave": true,
+     "id": "papel",
+     "t0": 2.87,
+     "t1": 3.39
+    },
+    {
+     "w": "e,",
+     "chave": false,
+     "id": null,
+     "t0": 3.581,
+     "t1": 3.63
+    },
+    {
+     "w": "no",
+     "chave": false,
+     "id": null,
+     "t0": 3.71,
+     "t1": 3.79
+    },
+    {
+     "w": "fim",
+     "chave": false,
+     "id": null,
+     "t0": 3.87,
+     "t1": 3.95
+    },
+    {
+     "w": "do",
+     "chave": false,
+     "id": null,
+     "t0": 4.03,
+     "t1": 4.11
+    },
+    {
+     "w": "dia,",
+     "chave": false,
+     "id": null,
+     "t0": 4.19,
+     "t1": 4.51
+    },
+    {
+     "w": "um",
+     "chave": false,
+     "id": null,
+     "t0": 4.7,
+     "t1": 4.75
+    },
+    {
+     "w": "caixa",
+     "chave": false,
+     "id": null,
+     "t0": 4.949,
+     "t1": 5.23
+    },
+    {
+     "w": "que",
+     "chave": false,
+     "id": null,
+     "t0": 5.31,
+     "t1": 5.39
+    },
+    {
+     "w": "não",
+     "chave": true,
+     "id": "bate",
+     "t0": 5.55,
+     "t1": 5.71
+    },
+    {
+     "w": "bate.",
+     "chave": true,
+     "id": null,
+     "t0": 5.79,
+     "t1": 6.19
+    }
+   ]
+  },
+  {
+   "id": "virada",
+   "t0": 6.906,
+   "t1": 10.23,
+   "pausa_depois": 0.4,
+   "palavras": [
+    {
+     "w": "O",
+     "chave": false,
+     "id": null,
+     "t0": 6.906,
+     "t1": 6.95
+    },
+    {
+     "w": "FAZLO",
+     "chave": false,
+     "id": "logo",
+     "t0": 7.03,
+     "t1": 7.35
+    },
+    {
+     "w": "Hospeda",
+     "chave": false,
+     "id": null,
+     "t0": 7.43,
+     "t1": 7.91
+    },
+    {
+     "w": "organiza",
+     "chave": false,
+     "id": null,
+     "t0": 8.07,
+     "t1": 8.39
+    },
+    {
+     "w": "a",
+     "chave": false,
+     "id": null,
+     "t0": 8.417,
+     "t1": 8.443
+    },
+    {
+     "w": "sua",
+     "chave": false,
+     "id": null,
+     "t0": 8.47,
+     "t1": 8.55
+    },
+    {
+     "w": "pousada",
+     "chave": false,
+     "id": null,
+     "t0": 8.63,
+     "t1": 9.19
+    },
+    {
+     "w": "em",
+     "chave": false,
+     "id": null,
+     "t0": 9.27,
+     "t1": 9.43
+    },
+    {
+     "w": "um",
+     "chave": true,
+     "id": "lugar",
+     "t0": 9.51,
+     "t1": 9.59
+    },
+    {
+     "w": "só",
+     "chave": true,
+     "id": null,
+     "t0": 9.67,
+     "t1": 9.83
+    },
+    {
+     "w": "lugar.",
+     "chave": true,
+     "id": null,
+     "t0": 9.87,
+     "t1": 10.23
+    }
+   ]
+  },
+  {
+   "id": "dia",
+   "t0": 11.095,
+   "t1": 15.99,
+   "pausa_depois": 1.0,
+   "palavras": [
+    {
+     "w": "Logo",
+     "chave": false,
+     "id": null,
+     "t0": 11.095,
+     "t1": 11.35
+    },
+    {
+     "w": "cedo,",
+     "chave": false,
+     "id": null,
+     "t0": 11.43,
+     "t1": 11.75
+    },
+    {
+     "w": "você",
+     "chave": false,
+     "id": null,
+     "t0": 11.803,
+     "t1": 11.99
+    },
+    {
+     "w": "vê",
+     "chave": false,
+     "id": null,
+     "t0": 12.07,
+     "t1": 12.15
+    },
+    {
+     "w": "quem",
+     "chave": false,
+     "id": null,
+     "t0": 12.19,
+     "t1": 12.31
+    },
+    {
+     "w": "chega,",
+     "chave": true,
+     "id": "chega",
+     "t0": 12.47,
+     "t1": 12.79
+    },
+    {
+     "w": "quem",
+     "chave": false,
+     "id": null,
+     "t0": 12.993,
+     "t1": 13.11
+    },
+    {
+     "w": "sai,",
+     "chave": true,
+     "id": "sai",
+     "t0": 13.27,
+     "t1": 13.59
+    },
+    {
+     "w": "quem",
+     "chave": false,
+     "id": null,
+     "t0": 13.811,
+     "t1": 13.91
+    },
+    {
+     "w": "está",
+     "chave": false,
+     "id": null,
+     "t0": 13.99,
+     "t1": 14.177
+    },
+    {
+     "w": "hospedado",
+     "chave": true,
+     "id": "hospedado",
+     "t0": 14.203,
+     "t1": 14.87
+    },
+    {
+     "w": "e",
+     "chave": false,
+     "id": null,
+     "t0": 14.95,
+     "t1": 15.03
+    },
+    {
+     "w": "quanto",
+     "chave": false,
+     "id": null,
+     "t0": 15.11,
+     "t1": 15.43
+    },
+    {
+     "w": "já",
+     "chave": false,
+     "id": null,
+     "t0": 15.51,
+     "t1": 15.643
+    },
+    {
+     "w": "entrou.",
+     "chave": true,
+     "id": "entrou",
+     "t0": 15.697,
+     "t1": 15.99
+    }
+   ]
+  },
+  {
+   "id": "reservas",
+   "t0": 17.457,
+   "t1": 21.95,
+   "pausa_depois": 0.4,
+   "palavras": [
+    {
+     "w": "As",
+     "chave": false,
+     "id": null,
+     "t0": 17.457,
+     "t1": 17.55
+    },
+    {
+     "w": "reservas",
+     "chave": false,
+     "id": null,
+     "t0": 17.63,
+     "t1": 18.11
+    },
+    {
+     "w": "ficam",
+     "chave": false,
+     "id": null,
+     "t0": 18.19,
+     "t1": 18.43
+    },
+    {
+     "w": "no",
+     "chave": false,
+     "id": null,
+     "t0": 18.47,
+     "t1": 18.51
+    },
+    {
+     "w": "calendário,",
+     "chave": true,
+     "id": "calendario",
+     "t0": 18.59,
+     "t1": 19.15
+    },
+    {
+     "w": "com",
+     "chave": false,
+     "id": null,
+     "t0": 19.319,
+     "t1": 19.39
+    },
+    {
+     "w": "cada",
+     "chave": false,
+     "id": null,
+     "t0": 19.47,
+     "t1": 19.71
+    },
+    {
+     "w": "acomodação",
+     "chave": false,
+     "id": null,
+     "t0": 19.83,
+     "t1": 20.51
+    },
+    {
+     "w": "e",
+     "chave": false,
+     "id": null,
+     "t0": 20.59,
+     "t1": 20.67
+    },
+    {
+     "w": "cada",
+     "chave": false,
+     "id": null,
+     "t0": 20.75,
+     "t1": 21.07
+    },
+    {
+     "w": "data",
+     "chave": false,
+     "id": "data",
+     "t0": 21.15,
+     "t1": 21.39
+    },
+    {
+     "w": "à",
+     "chave": false,
+     "id": null,
+     "t0": 21.47,
+     "t1": 21.55
+    },
+    {
+     "w": "vista.",
+     "chave": false,
+     "id": null,
+     "t0": 21.59,
+     "t1": 21.95
+    }
+   ]
+  },
+  {
+   "id": "duplicada",
+   "t0": 22.771,
+   "t1": 26.99,
+   "pausa_depois": 1.0,
+   "palavras": [
+    {
+     "w": "E",
+     "chave": false,
+     "id": null,
+     "t0": 22.771,
+     "t1": 22.83
+    },
+    {
+     "w": "o",
+     "chave": false,
+     "id": null,
+     "t0": 22.87,
+     "t1": 22.91
+    },
+    {
+     "w": "mesmo",
+     "chave": false,
+     "id": "chale",
+     "t0": 22.99,
+     "t1": 23.23
+    },
+    {
+     "w": "chalé",
+     "chave": false,
+     "id": null,
+     "t0": 23.39,
+     "t1": 23.71
+    },
+    {
+     "w": "não",
+     "chave": false,
+     "id": null,
+     "t0": 23.79,
+     "t1": 23.95
+    },
+    {
+     "w": "pode",
+     "chave": false,
+     "id": null,
+     "t0": 24.03,
+     "t1": 24.27
+    },
+    {
+     "w": "ser",
+     "chave": false,
+     "id": null,
+     "t0": 24.35,
+     "t1": 24.43
+    },
+    {
+     "w": "reservado",
+     "chave": false,
+     "id": null,
+     "t0": 24.51,
+     "t1": 25.15
+    },
+    {
+     "w": "duas",
+     "chave": true,
+     "id": "duas",
+     "t0": 25.23,
+     "t1": 25.47
+    },
+    {
+     "w": "vezes",
+     "chave": true,
+     "id": null,
+     "t0": 25.55,
+     "t1": 25.95
+    },
+    {
+     "w": "nas",
+     "chave": false,
+     "id": "datas",
+     "t0": 26.03,
+     "t1": 26.11
+    },
+    {
+     "w": "mesmas",
+     "chave": false,
+     "id": null,
+     "t0": 26.19,
+     "t1": 26.51
+    },
+    {
+     "w": "datas.",
+     "chave": false,
+     "id": null,
+     "t0": 26.59,
+     "t1": 26.99
+    }
+   ]
+  },
+  {
+   "id": "sinal",
+   "t0": 28.46,
+   "t1": 32.31,
+   "pausa_depois": 0.4,
+   "palavras": [
+    {
+     "w": "Na",
+     "chave": false,
+     "id": null,
+     "t0": 28.46,
+     "t1": 28.55
+    },
+    {
+     "w": "reserva,",
+     "chave": false,
+     "id": null,
+     "t0": 28.67,
+     "t1": 29.11
+    },
+    {
+     "w": "você",
+     "chave": false,
+     "id": null,
+     "t0": 29.163,
+     "t1": 29.35
+    },
+    {
+     "w": "registra",
+     "chave": false,
+     "id": null,
+     "t0": 29.43,
+     "t1": 29.83
+    },
+    {
+     "w": "o",
+     "chave": false,
+     "id": null,
+     "t0": 29.857,
+     "t1": 29.883
+    },
+    {
+     "w": "sinal,",
+     "chave": true,
+     "id": "sinal",
+     "t0": 29.91,
+     "t1": 30.31
+    },
+    {
+     "w": "e",
+     "chave": false,
+     "id": null,
+     "t0": 30.502,
+     "t1": 30.55
+    },
+    {
+     "w": "o",
+     "chave": false,
+     "id": null,
+     "t0": 30.59,
+     "t1": 30.63
+    },
+    {
+     "w": "saldo",
+     "chave": true,
+     "id": "saldo",
+     "t0": 30.71,
+     "t1": 31.11
+    },
+    {
+     "w": "já",
+     "chave": false,
+     "id": null,
+     "t0": 31.19,
+     "t1": 31.35
+    },
+    {
+     "w": "fica",
+     "chave": false,
+     "id": null,
+     "t0": 31.43,
+     "t1": 31.59
+    },
+    {
+     "w": "calculado.",
+     "chave": false,
+     "id": null,
+     "t0": 31.67,
+     "t1": 32.31
+    }
+   ]
+  },
+  {
+   "id": "cancela",
+   "t0": 33.105,
+   "t1": 37.35,
+   "pausa_depois": 1.0,
+   "palavras": [
+    {
+     "w": "Se",
+     "chave": false,
+     "id": null,
+     "t0": 33.105,
+     "t1": 33.19
+    },
+    {
+     "w": "o",
+     "chave": false,
+     "id": null,
+     "t0": 33.23,
+     "t1": 33.27
+    },
+    {
+     "w": "hóspede",
+     "chave": false,
+     "id": null,
+     "t0": 33.31,
+     "t1": 33.67
+    },
+    {
+     "w": "cancelar,",
+     "chave": false,
+     "id": "cancelar",
+     "t0": 33.73,
+     "t1": 34.23
+    },
+    {
+     "w": "você",
+     "chave": false,
+     "id": null,
+     "t0": 34.406,
+     "t1": 34.71
+    },
+    {
+     "w": "decide:",
+     "chave": false,
+     "id": null,
+     "t0": 34.79,
+     "t1": 35.35
+    },
+    {
+     "w": "reter",
+     "chave": true,
+     "id": "reter",
+     "t0": 35.601,
+     "t1": 36.07
+    },
+    {
+     "w": "ou",
+     "chave": false,
+     "id": null,
+     "t0": 36.26,
+     "t1": 36.39
+    },
+    {
+     "w": "devolver",
+     "chave": true,
+     "id": "devolver",
+     "t0": 36.51,
+     "t1": 36.87
+    },
+    {
+     "w": "o",
+     "chave": false,
+     "id": null,
+     "t0": 36.95,
+     "t1": 36.99
+    },
+    {
+     "w": "sinal.",
+     "chave": false,
+     "id": null,
+     "t0": 37.03,
+     "t1": 37.35
+    }
+   ]
+  },
+  {
+   "id": "comanda",
+   "t0": 38.817,
+   "t1": 42.27,
+   "pausa_depois": 0.3,
+   "palavras": [
+    {
+     "w": "Durante",
+     "chave": false,
+     "id": null,
+     "t0": 38.817,
+     "t1": 39.15
+    },
+    {
+     "w": "a",
+     "chave": false,
+     "id": null,
+     "t0": 39.177,
+     "t1": 39.203
+    },
+    {
+     "w": "estadia,",
+     "chave": false,
+     "id": null,
+     "t0": 39.23,
+     "t1": 39.79
+    },
+    {
+     "w": "cada",
+     "chave": false,
+     "id": null,
+     "t0": 39.986,
+     "t1": 40.19
+    },
+    {
+     "w": "consumo",
+     "chave": true,
+     "id": "consumo",
+     "t0": 40.27,
+     "t1": 40.83
+    },
+    {
+     "w": "vai",
+     "chave": false,
+     "id": null,
+     "t0": 40.87,
+     "t1": 40.99
+    },
+    {
+     "w": "para",
+     "chave": false,
+     "id": null,
+     "t0": 41.07,
+     "t1": 41.15
+    },
+    {
+     "w": "a",
+     "chave": false,
+     "id": null,
+     "t0": 41.177,
+     "t1": 41.203
+    },
+    {
+     "w": "comanda",
+     "chave": true,
+     "id": "comanda",
+     "t0": 41.23,
+     "t1": 41.63
+    },
+    {
+     "w": "do",
+     "chave": false,
+     "id": null,
+     "t0": 41.71,
+     "t1": 41.75
+    },
+    {
+     "w": "hóspede.",
+     "chave": false,
+     "id": null,
+     "t0": 41.79,
+     "t1": 42.27
+    }
+   ]
+  },
+  {
+   "id": "checkout",
+   "t0": 42.989,
+   "t1": 47.85,
+   "pausa_depois": 1.0,
+   "palavras": [
+    {
+     "w": "No",
+     "chave": false,
+     "id": null,
+     "t0": 42.989,
+     "t1": 43.05
+    },
+    {
+     "w": "check-out,",
+     "chave": false,
+     "id": "checkout",
+     "t0": 43.13,
+     "t1": 43.69
+    },
+    {
+     "w": "o",
+     "chave": false,
+     "id": null,
+     "t0": 43.781,
+     "t1": 43.85
+    },
+    {
+     "w": "saldo",
+     "chave": true,
+     "id": "saldo2",
+     "t0": 43.93,
+     "t1": 44.17
+    },
+    {
+     "w": "aparece",
+     "chave": false,
+     "id": null,
+     "t0": 44.25,
+     "t1": 44.65
+    },
+    {
+     "w": "claro,",
+     "chave": false,
+     "id": null,
+     "t0": 44.835,
+     "t1": 45.21
+    },
+    {
+     "w": "e",
+     "chave": false,
+     "id": null,
+     "t0": 45.407,
+     "t1": 45.45
+    },
+    {
+     "w": "a",
+     "chave": false,
+     "id": null,
+     "t0": 45.49,
+     "t1": 45.53
+    },
+    {
+     "w": "saída",
+     "chave": false,
+     "id": null,
+     "t0": 45.61,
+     "t1": 46.01
+    },
+    {
+     "w": "só",
+     "chave": false,
+     "id": null,
+     "t0": 46.09,
+     "t1": 46.25
+    },
+    {
+     "w": "libera",
+     "chave": false,
+     "id": "libera",
+     "t0": 46.33,
+     "t1": 46.73
+    },
+    {
+     "w": "com",
+     "chave": false,
+     "id": null,
+     "t0": 46.81,
+     "t1": 46.97
+    },
+    {
+     "w": "tudo",
+     "chave": true,
+     "id": "quitado",
+     "t0": 47.139,
+     "t1": 47.37
+    },
+    {
+     "w": "quitado.",
+     "chave": true,
+     "id": null,
+     "t0": 47.556,
+     "t1": 47.85
+    }
+   ]
+  },
+  {
+   "id": "caixa",
+   "t0": 49.354,
+   "t1": 56.61,
+   "pausa_depois": 1.1,
+   "palavras": [
+    {
+     "w": "O",
+     "chave": false,
+     "id": null,
+     "t0": 49.354,
+     "t1": 49.41
+    },
+    {
+     "w": "caixa",
+     "chave": false,
+     "id": null,
+     "t0": 49.49,
+     "t1": 49.89
+    },
+    {
+     "w": "tem",
+     "chave": false,
+     "id": null,
+     "t0": 49.97,
+     "t1": 50.05
+    },
+    {
+     "w": "abertura",
+     "chave": true,
+     "id": "abertura",
+     "t0": 50.13,
+     "t1": 50.61
+    },
+    {
+     "w": "e",
+     "chave": false,
+     "id": null,
+     "t0": 50.637,
+     "t1": 50.663
+    },
+    {
+     "w": "fechamento",
+     "chave": true,
+     "id": "fechamento",
+     "t0": 50.69,
+     "t1": 51.25
+    },
+    {
+     "w": "conferido:",
+     "chave": true,
+     "id": null,
+     "t0": 51.33,
+     "t1": 51.97
+    },
+    {
+     "w": "você",
+     "chave": false,
+     "id": null,
+     "t0": 52.359,
+     "t1": 52.61
+    },
+    {
+     "w": "conta",
+     "chave": false,
+     "id": "conta",
+     "t0": 52.69,
+     "t1": 52.93
+    },
+    {
+     "w": "o",
+     "chave": false,
+     "id": null,
+     "t0": 52.97,
+     "t1": 53.01
+    },
+    {
+     "w": "dinheiro",
+     "chave": false,
+     "id": null,
+     "t0": 53.09,
+     "t1": 53.49
+    },
+    {
+     "w": "e",
+     "chave": false,
+     "id": null,
+     "t0": 53.57,
+     "t1": 53.65
+    },
+    {
+     "w": "o",
+     "chave": false,
+     "id": null,
+     "t0": 53.69,
+     "t1": 53.73
+    },
+    {
+     "w": "Hospeda",
+     "chave": false,
+     "id": null,
+     "t0": 53.81,
+     "t1": 54.21
+    },
+    {
+     "w": "mostra",
+     "chave": false,
+     "id": "mostra",
+     "t0": 54.29,
+     "t1": 54.61
+    },
+    {
+     "w": "na",
+     "chave": false,
+     "id": null,
+     "t0": 54.69,
+     "t1": 54.85
+    },
+    {
+     "w": "hora",
+     "chave": false,
+     "id": null,
+     "t0": 54.93,
+     "t1": 55.17
+    },
+    {
+     "w": "se",
+     "chave": false,
+     "id": null,
+     "t0": 55.25,
+     "t1": 55.41
+    },
+    {
+     "w": "sobrou",
+     "chave": true,
+     "id": "faltou",
+     "t0": 55.45,
+     "t1": 55.89
+    },
+    {
+     "w": "ou",
+     "chave": true,
+     "id": null,
+     "t0": 56.019,
+     "t1": 56.13
+    },
+    {
+     "w": "faltou.",
+     "chave": true,
+     "id": null,
+     "t0": 56.21,
+     "t1": 56.61
+    }
+   ]
+  },
+  {
+   "id": "dayuse",
+   "t0": 58.122,
+   "t1": 61.47,
+   "pausa_depois": 1.0,
+   "palavras": [
+    {
+     "w": "O",
+     "chave": false,
+     "id": null,
+     "t0": 58.122,
+     "t1": 58.19
+    },
+    {
+     "w": "Day",
+     "chave": true,
+     "id": "dayuse",
+     "t0": 58.27,
+     "t1": 58.43
+    },
+    {
+     "w": "Use",
+     "chave": true,
+     "id": null,
+     "t0": 58.51,
+     "t1": 58.83
+    },
+    {
+     "w": "entra",
+     "chave": false,
+     "id": null,
+     "t0": 58.91,
+     "t1": 59.15
+    },
+    {
+     "w": "nas",
+     "chave": false,
+     "id": null,
+     "t0": 59.27,
+     "t1": 59.39
+    },
+    {
+     "w": "mesmas",
+     "chave": true,
+     "id": "comandas",
+     "t0": 59.47,
+     "t1": 59.79
+    },
+    {
+     "w": "comandas",
+     "chave": true,
+     "id": null,
+     "t0": 59.91,
+     "t1": 60.35
+    },
+    {
+     "w": "e",
+     "chave": false,
+     "id": null,
+     "t0": 60.43,
+     "t1": 60.51
+    },
+    {
+     "w": "no",
+     "chave": false,
+     "id": null,
+     "t0": 60.55,
+     "t1": 60.59
+    },
+    {
+     "w": "mesmo",
+     "chave": true,
+     "id": "caixa2",
+     "t0": 60.67,
+     "t1": 60.99
+    },
+    {
+     "w": "caixa.",
+     "chave": true,
+     "id": null,
+     "t0": 61.07,
+     "t1": 61.47
+    }
+   ]
+  },
+  {
+   "id": "dobro",
+   "t0": 62.838,
+   "t1": 68.23,
+   "pausa_depois": 0.8,
+   "palavras": [
+    {
+     "w": "E",
+     "chave": false,
+     "id": null,
+     "t0": 62.838,
+     "t1": 62.87
+    },
+    {
+     "w": "se",
+     "chave": false,
+     "id": null,
+     "t0": 62.91,
+     "t1": 62.95
+    },
+    {
+     "w": "a",
+     "chave": false,
+     "id": null,
+     "t0": 62.99,
+     "t1": 63.03
+    },
+    {
+     "w": "internet",
+     "chave": true,
+     "id": "internet",
+     "t0": 63.27,
+     "t1": 63.51
+    },
+    {
+     "w": "cair",
+     "chave": true,
+     "id": null,
+     "t0": 63.59,
+     "t1": 63.83
+    },
+    {
+     "w": "no",
+     "chave": false,
+     "id": null,
+     "t0": 63.91,
+     "t1": 63.99
+    },
+    {
+     "w": "meio",
+     "chave": false,
+     "id": null,
+     "t0": 64.07,
+     "t1": 64.23
+    },
+    {
+     "w": "de",
+     "chave": false,
+     "id": null,
+     "t0": 64.31,
+     "t1": 64.337
+    },
+    {
+     "w": "um",
+     "chave": false,
+     "id": null,
+     "t0": 64.363,
+     "t1": 64.39
+    },
+    {
+     "w": "recebimento,",
+     "chave": false,
+     "id": "recebimento",
+     "t0": 64.51,
+     "t1": 65.19
+    },
+    {
+     "w": "o",
+     "chave": false,
+     "id": null,
+     "t0": 65.379,
+     "t1": 65.51
+    },
+    {
+     "w": "mesmo",
+     "chave": false,
+     "id": "pagamento",
+     "t0": 65.63,
+     "t1": 65.83
+    },
+    {
+     "w": "pagamento",
+     "chave": false,
+     "id": null,
+     "t0": 65.91,
+     "t1": 66.47
+    },
+    {
+     "w": "não",
+     "chave": false,
+     "id": null,
+     "t0": 66.63,
+     "t1": 66.79
+    },
+    {
+     "w": "é",
+     "chave": false,
+     "id": null,
+     "t0": 66.87,
+     "t1": 66.95
+    },
+    {
+     "w": "lançado",
+     "chave": false,
+     "id": null,
+     "t0": 67.07,
+     "t1": 67.51
+    },
+    {
+     "w": "duas",
+     "chave": true,
+     "id": "duas2",
+     "t0": 67.55,
+     "t1": 67.75
+    },
+    {
+     "w": "vezes.",
+     "chave": true,
+     "id": null,
+     "t0": 67.83,
+     "t1": 68.23
+    }
+   ]
+  },
+  {
+   "id": "config",
+   "t0": 69.427,
+   "t1": 77.27,
+   "pausa_depois": 1.0,
+   "palavras": [
+    {
+     "w": "Você",
+     "chave": false,
+     "id": null,
+     "t0": 69.427,
+     "t1": 69.67
+    },
+    {
+     "w": "não",
+     "chave": false,
+     "id": null,
+     "t0": 69.83,
+     "t1": 69.99
+    },
+    {
+     "w": "começa",
+     "chave": false,
+     "id": null,
+     "t0": 70.001,
+     "t1": 70.39
+    },
+    {
+     "w": "do",
+     "chave": false,
+     "id": "zero",
+     "t0": 70.47,
+     "t1": 70.55
+    },
+    {
+     "w": "zero:",
+     "chave": false,
+     "id": null,
+     "t0": 70.63,
+     "t1": 70.95
+    },
+    {
+     "w": "a",
+     "chave": false,
+     "id": null,
+     "t0": 71.249,
+     "t1": 71.35
+    },
+    {
+     "w": "FAZLO",
+     "chave": false,
+     "id": null,
+     "t0": 71.43,
+     "t1": 71.83
+    },
+    {
+     "w": "entrega",
+     "chave": false,
+     "id": null,
+     "t0": 71.91,
+     "t1": 72.15
+    },
+    {
+     "w": "o",
+     "chave": false,
+     "id": null,
+     "t0": 72.19,
+     "t1": 72.23
+    },
+    {
+     "w": "sistema",
+     "chave": false,
+     "id": null,
+     "t0": 72.458,
+     "t1": 72.71
+    },
+    {
+     "w": "já",
+     "chave": true,
+     "id": "configurado",
+     "t0": 72.79,
+     "t1": 72.95
+    },
+    {
+     "w": "configurado,",
+     "chave": true,
+     "id": null,
+     "t0": 73.03,
+     "t1": 73.67
+    },
+    {
+     "w": "com",
+     "chave": false,
+     "id": null,
+     "t0": 73.924,
+     "t1": 73.99
+    },
+    {
+     "w": "acomodações,",
+     "chave": false,
+     "id": "acomodacoes",
+     "t0": 74.11,
+     "t1": 74.87
+    },
+    {
+     "w": "tarifas,",
+     "chave": false,
+     "id": "tarifas",
+     "t0": 75.052,
+     "t1": 75.67
+    },
+    {
+     "w": "produtos",
+     "chave": false,
+     "id": "produtos",
+     "t0": 75.797,
+     "t1": 76.47
+    },
+    {
+     "w": "e",
+     "chave": false,
+     "id": null,
+     "t0": 76.51,
+     "t1": 76.55
+    },
+    {
+     "w": "usuários.",
+     "chave": false,
+     "id": "usuarios",
+     "t0": 76.63,
+     "t1": 77.27
+    }
+   ]
+  },
+  {
+   "id": "cta",
+   "t0": 78.725,
+   "t1": 80.91,
+   "pausa_depois": 0.0,
+   "palavras": [
+    {
+     "w": "Fale",
+     "chave": false,
+     "id": "fale",
+     "t0": 78.725,
+     "t1": 78.91
+    },
+    {
+     "w": "com",
+     "chave": false,
+     "id": null,
+     "t0": 78.99,
+     "t1": 79.07
+    },
+    {
+     "w": "a",
+     "chave": false,
+     "id": null,
+     "t0": 79.123,
+     "t1": 79.177
+    },
+    {
+     "w": "gente",
+     "chave": false,
+     "id": null,
+     "t0": 79.23,
+     "t1": 79.47
+    },
+    {
+     "w": "no",
+     "chave": false,
+     "id": null,
+     "t0": 79.55,
+     "t1": 79.63
+    },
+    {
+     "w": "WhatsApp",
+     "chave": true,
+     "id": "whats",
+     "t0": 79.67,
+     "t1": 80.19
+    },
+    {
+     "w": "para",
+     "chave": false,
+     "id": null,
+     "t0": 80.27,
+     "t1": 80.35
+    },
+    {
+     "w": "conhecer.",
+     "chave": false,
+     "id": null,
+     "t0": 80.43,
+     "t1": 80.91
+    }
+   ]
+  }
+ ],
+ "inicios_medidos_no_audio": [
+  {
+   "palavra": "consumo",
+   "marcacao_s": 2.43,
+   "audio_s": 2.232
+  },
+  {
+   "palavra": "e,",
+   "marcacao_s": 3.55,
+   "audio_s": 3.581
+  },
+  {
+   "palavra": "um",
+   "marcacao_s": 4.71,
+   "audio_s": 4.7
+  },
+  {
+   "palavra": "caixa",
+   "marcacao_s": 4.91,
+   "audio_s": 4.949
+  },
+  {
+   "palavra": "O",
+   "marcacao_s": 6.87,
+   "audio_s": 6.906
+  },
+  {
+   "palavra": "Logo",
+   "marcacao_s": 11.11,
+   "audio_s": 11.095
+  },
+  {
+   "palavra": "quem",
+   "marcacao_s": 12.99,
+   "audio_s": 12.993
+  },
+  {
+   "palavra": "quem",
+   "marcacao_s": 13.79,
+   "audio_s": 13.811
+  },
+  {
+   "palavra": "As",
+   "marcacao_s": 17.47,
+   "audio_s": 17.457
+  },
+  {
+   "palavra": "com",
+   "marcacao_s": 19.31,
+   "audio_s": 19.319
+  },
+  {
+   "palavra": "E",
+   "marcacao_s": 22.75,
+   "audio_s": 22.771
+  },
+  {
+   "palavra": "Na",
+   "marcacao_s": 28.47,
+   "audio_s": 28.46
+  },
+  {
+   "palavra": "e",
+   "marcacao_s": 30.51,
+   "audio_s": 30.502
+  },
+  {
+   "palavra": "Se",
+   "marcacao_s": 33.11,
+   "audio_s": 33.105
+  },
+  {
+   "palavra": "cancelar,",
+   "marcacao_s": 33.87,
+   "audio_s": 33.73
+  },
+  {
+   "palavra": "você",
+   "marcacao_s": 34.47,
+   "audio_s": 34.406
+  },
+  {
+   "palavra": "reter",
+   "marcacao_s": 35.59,
+   "audio_s": 35.601
+  },
+  {
+   "palavra": "ou",
+   "marcacao_s": 36.23,
+   "audio_s": 36.26
+  },
+  {
+   "palavra": "Durante",
+   "marcacao_s": 38.83,
+   "audio_s": 38.817
+  },
+  {
+   "palavra": "cada",
+   "marcacao_s": 39.99,
+   "audio_s": 39.986
+  },
+  {
+   "palavra": "No",
+   "marcacao_s": 42.97,
+   "audio_s": 42.989
+  },
+  {
+   "palavra": "claro,",
+   "marcacao_s": 44.81,
+   "audio_s": 44.835
+  },
+  {
+   "palavra": "e",
+   "marcacao_s": 45.41,
+   "audio_s": 45.407
+  },
+  {
+   "palavra": "tudo",
+   "marcacao_s": 47.13,
+   "audio_s": 47.139
+  },
+  {
+   "palavra": "O",
+   "marcacao_s": 48.33,
+   "audio_s": 49.354
+  },
+  {
+   "palavra": "você",
+   "marcacao_s": 52.37,
+   "audio_s": 52.359
+  },
+  {
+   "palavra": "ou",
+   "marcacao_s": 56.05,
+   "audio_s": 56.019
+  },
+  {
+   "palavra": "O",
+   "marcacao_s": 58.11,
+   "audio_s": 58.122
+  },
+  {
+   "palavra": "E",
+   "marcacao_s": 62.83,
+   "audio_s": 62.838
+  },
+  {
+   "palavra": "o",
+   "marcacao_s": 65.43,
+   "audio_s": 65.379
+  },
+  {
+   "palavra": "Você",
+   "marcacao_s": 69.55,
+   "audio_s": 69.427
+  },
+  {
+   "palavra": "começa",
+   "marcacao_s": 70.15,
+   "audio_s": 70.001
+  },
+  {
+   "palavra": "a",
+   "marcacao_s": 71.27,
+   "audio_s": 71.249
+  },
+  {
+   "palavra": "sistema",
+   "marcacao_s": 72.39,
+   "audio_s": 72.458
+  },
+  {
+   "palavra": "com",
+   "marcacao_s": 73.91,
+   "audio_s": 73.924
+  },
+  {
+   "palavra": "tarifas,",
+   "marcacao_s": 75.15,
+   "audio_s": 75.052
+  },
+  {
+   "palavra": "produtos",
+   "marcacao_s": 75.91,
+   "audio_s": 75.797
+  },
+  {
+   "palavra": "Fale",
+   "marcacao_s": 78.75,
+   "audio_s": 78.725
+  }
+ ],
+ "inicios_acertados_na_montagem": [
+  {
+   "palavra": "caderno,",
+   "antes_s": 1.51,
+   "audio_s": 1.421
+  },
+  {
+   "palavra": "o",
+   "antes_s": 43.81,
+   "audio_s": 43.781
+  },
+  {
+   "palavra": "quitado.",
+   "antes_s": 47.49,
+   "audio_s": 47.556
+  }
+ ]
+}
