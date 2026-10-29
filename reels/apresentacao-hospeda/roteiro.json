@@ -1,0 +1,689 @@
+{
+ "id": "apresentacao-hospeda",
+ "titulo": "FAZLO Hospeda — apresentação para a pousada abordada",
+ "marca": "@fazlohospeda",
+ "voz": {
+  "modelo": "eleven_v4",
+  "voz": "Raquel - For Conversational (GDzHdQOi6jjf8zaXhCYD)",
+  "stability": 0.5,
+  "similarity_boost": 0.75
+ },
+ "falado": {
+  "R$ 99,90": "noventa e nove reais e noventa centavos",
+  "R$ 79,90": "setenta e nove reais e noventa centavos"
+ },
+ "nota": "Apresentação por WhatsApp para a pousada que aceitou receber o vídeo (roteiro aprovado com ajustes em 30/10/2026). Telas: só os PNGs de hospeda-v2/, em recortes sem a faixa 'Demonstração · Quero usar'. 'falado': como a voz diz os valores (a legenda e a tela mostram a grafia da chave). Cada item de 'frases' é uma frase da locução; o texto de todos os tokens, na ordem, é exatamente a narração aprovada. 'chave': palavras em limão; 'id': o instante que dispara a animação; 'pausa_depois': silêncio acrescentado depois da frase.",
+ "frases": [
+  {
+   "id": "dor1",
+   "pausa_depois": 0.3,
+   "tokens": [
+    {
+     "fala": "Em muita pousada, o dono"
+    },
+    {
+     "fala": "faz tudo:",
+     "chave": true,
+     "id": "dono"
+    },
+    {
+     "fala": "a reserva fica no"
+    },
+    {
+     "fala": "caderno",
+     "chave": true,
+     "id": "caderno"
+    },
+    {
+     "fala": "e no"
+    },
+    {
+     "fala": "WhatsApp,",
+     "chave": true,
+     "id": "whats1"
+    },
+    {
+     "fala": "o consumo, no"
+    },
+    {
+     "fala": "papel.",
+     "chave": true,
+     "id": "papel"
+    }
+   ]
+  },
+  {
+   "id": "dor2",
+   "pausa_depois": 0.3,
+   "tokens": [
+    {
+     "fala": "No check-out, ninguém sabe ao certo"
+    },
+    {
+     "fala": "quanto o hóspede ainda deve.",
+     "chave": true,
+     "id": "deve"
+    }
+   ]
+  },
+  {
+   "id": "dor3",
+   "pausa_depois": 0.8,
+   "tokens": [
+    {
+     "fala": "E no fim do dia, o caixa",
+     "id": "caixa0"
+    },
+    {
+     "fala": "não bate.",
+     "chave": true,
+     "id": "bate"
+    }
+   ]
+  },
+  {
+   "id": "virada",
+   "pausa_depois": 1.0,
+   "tokens": [
+    {
+     "fala": "O"
+    },
+    {
+     "fala": "FAZLO Hospeda",
+     "id": "logo"
+    },
+    {
+     "fala": "junta tudo isso em"
+    },
+    {
+     "fala": "um só lugar.",
+     "chave": true,
+     "id": "lugar"
+    },
+    {
+     "fala": "Veja como fica o"
+    },
+    {
+     "fala": "dia a dia.",
+     "chave": true,
+     "id": "diaadia"
+    }
+   ]
+  },
+  {
+   "id": "dia",
+   "pausa_depois": 2.0,
+   "tokens": [
+    {
+     "fala": "Ao abrir o Hospeda, você vê o dia da pousada: quem está"
+    },
+    {
+     "fala": "hospedado,",
+     "chave": true,
+     "id": "hospedado"
+    },
+    {
+     "fala": "quem"
+    },
+    {
+     "fala": "chega,",
+     "chave": true,
+     "id": "chega"
+    },
+    {
+     "fala": "quem"
+    },
+    {
+     "fala": "sai",
+     "chave": true,
+     "id": "sai"
+    },
+    {
+     "fala": "e quanto já"
+    },
+    {
+     "fala": "entrou,",
+     "chave": true,
+     "id": "entrou"
+    },
+    {
+     "fala": "por"
+    },
+    {
+     "fala": "forma de pagamento.",
+     "id": "formas"
+    }
+   ]
+  },
+  {
+   "id": "calendario",
+   "pausa_depois": 1.2,
+   "tokens": [
+    {
+     "fala": "No"
+    },
+    {
+     "fala": "calendário,",
+     "chave": true,
+     "id": "calendario"
+    },
+    {
+     "fala": "cada"
+    },
+    {
+     "fala": "acomodação",
+     "id": "acomodacao"
+    },
+    {
+     "fala": "tem a sua linha, e cada"
+    },
+    {
+     "fala": "reserva",
+     "id": "reserva"
+    },
+    {
+     "fala": "aparece no período dela."
+    }
+   ]
+  },
+  {
+   "id": "duplicada",
+   "pausa_depois": 2.2,
+   "tokens": [
+    {
+     "fala": "E o Hospeda não deixa vender o"
+    },
+    {
+     "fala": "mesmo chalé",
+     "id": "chale"
+    },
+    {
+     "fala": "duas vezes",
+     "chave": true,
+     "id": "duas"
+    },
+    {
+     "fala": "nas mesmas datas: ele"
+    },
+    {
+     "fala": "avisa na hora.",
+     "chave": true,
+     "id": "avisa"
+    }
+   ]
+  },
+  {
+   "id": "sinal",
+   "pausa_depois": 1.4,
+   "tokens": [
+    {
+     "fala": "Na reserva, você registra o"
+    },
+    {
+     "fala": "sinal,",
+     "chave": true,
+     "id": "sinal"
+    },
+    {
+     "fala": "e o"
+    },
+    {
+     "fala": "saldo",
+     "chave": true,
+     "id": "saldo"
+    },
+    {
+     "fala": "que falta já fica calculado."
+    }
+   ]
+  },
+  {
+   "id": "cancela",
+   "pausa_depois": 2.2,
+   "tokens": [
+    {
+     "fala": "Se o hóspede"
+    },
+    {
+     "fala": "cancelar,",
+     "id": "cancelar"
+    },
+    {
+     "fala": "você decide:"
+    },
+    {
+     "fala": "reter",
+     "chave": true,
+     "id": "reter"
+    },
+    {
+     "fala": "o sinal, que fica com a pousada, ou"
+    },
+    {
+     "fala": "devolver,",
+     "chave": true,
+     "id": "devolver"
+    },
+    {
+     "fala": "e a"
+    },
+    {
+     "fala": "saída",
+     "id": "saida"
+    },
+    {
+     "fala": "já é lançada no caixa."
+    }
+   ]
+  },
+  {
+   "id": "comanda",
+   "pausa_depois": 1.4,
+   "tokens": [
+    {
+     "fala": "Durante a estadia, cada"
+    },
+    {
+     "fala": "consumo",
+     "chave": true,
+     "id": "consumo"
+    },
+    {
+     "fala": "vai para a"
+    },
+    {
+     "fala": "comanda",
+     "chave": true,
+     "id": "comanda"
+    },
+    {
+     "fala": "do hóspede: o que foi,"
+    },
+    {
+     "fala": "quantos e quanto.",
+     "id": "quantos"
+    }
+   ]
+  },
+  {
+   "id": "checkout",
+   "pausa_depois": 2.2,
+   "tokens": [
+    {
+     "fala": "No"
+    },
+    {
+     "fala": "check-out,",
+     "id": "checkout"
+    },
+    {
+     "fala": "o"
+    },
+    {
+     "fala": "saldo",
+     "chave": true,
+     "id": "saldo2"
+    },
+    {
+     "fala": "aparece claro, e a saída só"
+    },
+    {
+     "fala": "libera",
+     "id": "libera"
+    },
+    {
+     "fala": "com"
+    },
+    {
+     "fala": "tudo quitado.",
+     "chave": true,
+     "id": "quitado"
+    }
+   ]
+  },
+  {
+   "id": "caixa",
+   "pausa_depois": 1.4,
+   "tokens": [
+    {
+     "fala": "O caixa abre com o"
+    },
+    {
+     "fala": "dinheiro da gaveta,",
+     "chave": true,
+     "id": "gaveta"
+    },
+    {
+     "fala": "e cada recebimento entra no"
+    },
+    {
+     "fala": "diário,",
+     "chave": true,
+     "id": "diario"
+    },
+    {
+     "fala": "com a"
+    },
+    {
+     "fala": "forma de pagamento.",
+     "id": "forma"
+    }
+   ]
+  },
+  {
+   "id": "fechamento",
+   "pausa_depois": 2.2,
+   "tokens": [
+    {
+     "fala": "No"
+    },
+    {
+     "fala": "fechamento,",
+     "id": "fechamento"
+    },
+    {
+     "fala": "você"
+    },
+    {
+     "fala": "conta",
+     "id": "conta"
+    },
+    {
+     "fala": "o dinheiro, e o Hospeda mostra na hora se"
+    },
+    {
+     "fala": "sobrou ou faltou.",
+     "chave": true,
+     "id": "faltou"
+    }
+   ]
+  },
+  {
+   "id": "dayuse1",
+   "pausa_depois": 1.4,
+   "tokens": [
+    {
+     "fala": "O"
+    },
+    {
+     "fala": "Day Use",
+     "chave": true,
+     "id": "dayuse"
+    },
+    {
+     "fala": "tem a sua própria lista e a sua"
+    },
+    {
+     "fala": "comanda,",
+     "chave": true,
+     "id": "comanda2"
+    },
+    {
+     "fala": "como na hospedagem."
+    }
+   ]
+  },
+  {
+   "id": "dayuse2",
+   "pausa_depois": 2.2,
+   "tokens": [
+    {
+     "fala": "E o pagamento entra no"
+    },
+    {
+     "fala": "mesmo caixa.",
+     "chave": true,
+     "id": "caixa2"
+    }
+   ]
+  },
+  {
+   "id": "dobro",
+   "pausa_depois": 1.8,
+   "tokens": [
+    {
+     "fala": "E se a"
+    },
+    {
+     "fala": "internet cair",
+     "chave": true,
+     "id": "internet"
+    },
+    {
+     "fala": "no meio de um"
+    },
+    {
+     "fala": "recebimento,",
+     "id": "recebimento"
+    },
+    {
+     "fala": "o"
+    },
+    {
+     "fala": "mesmo pagamento",
+     "id": "pagamento"
+    },
+    {
+     "fala": "não é lançado"
+    },
+    {
+     "fala": "duas vezes.",
+     "chave": true,
+     "id": "duas2"
+    }
+   ]
+  },
+  {
+   "id": "comeca1",
+   "pausa_depois": 1.8,
+   "tokens": [
+    {
+     "fala": "Você não precisa"
+    },
+    {
+     "fala": "cadastrar nada.",
+     "chave": true,
+     "id": "nada"
+    },
+    {
+     "fala": "A equipe FAZLO"
+    },
+    {
+     "fala": "configura",
+     "chave": true,
+     "id": "configura"
+    },
+    {
+     "fala": "a sua pousada:"
+    },
+    {
+     "fala": "acomodações,",
+     "id": "acomodacoes"
+    },
+    {
+     "fala": "tarifas,",
+     "id": "tarifas"
+    },
+    {
+     "fala": "produtos da comanda",
+     "id": "produtos"
+    },
+    {
+     "fala": "e"
+    },
+    {
+     "fala": "usuários.",
+     "id": "usuarios"
+    }
+   ]
+  },
+  {
+   "id": "comeca2",
+   "pausa_depois": 0.6,
+   "tokens": [
+    {
+     "fala": "Você recebe o"
+    },
+    {
+     "fala": "convite por e-mail,",
+     "chave": true,
+     "id": "convite"
+    },
+    {
+     "fala": "cria a sua"
+    },
+    {
+     "fala": "senha",
+     "id": "senha"
+    },
+    {
+     "fala": "e já"
+    },
+    {
+     "fala": "começa a usar.",
+     "chave": true,
+     "id": "usar"
+    }
+   ]
+  },
+  {
+   "id": "comeca3",
+   "pausa_depois": 1.6,
+   "tokens": [
+    {
+     "fala": "E qualquer"
+    },
+    {
+     "fala": "dúvida,",
+     "id": "duvida"
+    },
+    {
+     "fala": "é só chamar a gente no"
+    },
+    {
+     "fala": "WhatsApp.",
+     "chave": true,
+     "id": "whats2"
+    }
+   ]
+  },
+  {
+   "id": "teste",
+   "pausa_depois": 1.8,
+   "tokens": [
+    {
+     "fala": "São"
+    },
+    {
+     "fala": "30 dias grátis",
+     "chave": true,
+     "id": "trinta"
+    },
+    {
+     "fala": "para usar o Hospeda na sua pousada."
+    },
+    {
+     "fala": "Sem cartão",
+     "chave": true,
+     "id": "cartao"
+    },
+    {
+     "fala": "e"
+    },
+    {
+     "fala": "sem compromisso.",
+     "chave": true,
+     "id": "compromisso"
+    }
+   ]
+  },
+  {
+   "id": "preco1",
+   "pausa_depois": 1.0,
+   "tokens": [
+    {
+     "fala": "Depois dos 30 dias, se fizer sentido para você, a mensalidade é de",
+     "id": "depois"
+    },
+    {
+     "fala": "R$ 99,90",
+     "chave": true,
+     "id": "preco"
+    },
+    {
+     "fala": "por mês."
+    },
+    {
+     "fala": "Sem taxa por reserva",
+     "chave": true,
+     "id": "taxa"
+    },
+    {
+     "fala": "e"
+    },
+    {
+     "fala": "sem fidelidade.",
+     "chave": true,
+     "id": "fidelidade"
+    }
+   ]
+  },
+  {
+   "id": "preco2",
+   "pausa_depois": 2.0,
+   "tokens": [
+    {
+     "fala": "E as"
+    },
+    {
+     "fala": "10 primeiras pousadas",
+     "chave": true,
+     "id": "dez"
+    },
+    {
+     "fala": "pagam"
+    },
+    {
+     "fala": "R$ 79,90",
+     "chave": true,
+     "id": "promo"
+    },
+    {
+     "fala": "por mês durante os"
+    },
+    {
+     "fala": "primeiros 12 meses.",
+     "chave": true,
+     "id": "doze"
+    }
+   ]
+  },
+  {
+   "id": "cta",
+   "pausa_depois": 0.0,
+   "tokens": [
+    {
+     "fala": "Quer testar",
+     "id": "cta"
+    },
+    {
+     "fala": "30 dias",
+     "chave": true,
+     "id": "cta30"
+    },
+    {
+     "fala": "na sua pousada?"
+    },
+    {
+     "fala": "É só"
+    },
+    {
+     "fala": "responder esta mensagem.",
+     "chave": true,
+     "id": "responder"
+    }
+   ]
+  }
+ ],
+ "narracao": "Em muita pousada, o dono faz tudo: a reserva fica no caderno e no WhatsApp, o consumo, no papel. No check-out, ninguém sabe ao certo quanto o hóspede ainda deve. E no fim do dia, o caixa não bate. O FAZLO Hospeda junta tudo isso em um só lugar. Veja como fica o dia a dia. Ao abrir o Hospeda, você vê o dia da pousada: quem está hospedado, quem chega, quem sai e quanto já entrou, por forma de pagamento. No calendário, cada acomodação tem a sua linha, e cada reserva aparece no período dela. E o Hospeda não deixa vender o mesmo chalé duas vezes nas mesmas datas: ele avisa na hora. Na reserva, você registra o sinal, e o saldo que falta já fica calculado. Se o hóspede cancelar, você decide: reter o sinal, que fica com a pousada, ou devolver, e a saída já é lançada no caixa. Durante a estadia, cada consumo vai para a comanda do hóspede: o que foi, quantos e quanto. No check-out, o saldo aparece claro, e a saída só libera com tudo quitado. O caixa abre com o dinheiro da gaveta, e cada recebimento entra no diário, com a forma de pagamento. No fechamento, você conta o dinheiro, e o Hospeda mostra na hora se sobrou ou faltou. O Day Use tem a sua própria lista e a sua comanda, como na hospedagem. E o pagamento entra no mesmo caixa. E se a internet cair no meio de um recebimento, o mesmo pagamento não é lançado duas vezes. Você não precisa cadastrar nada. A equipe FAZLO configura a sua pousada: acomodações, tarifas, produtos da comanda e usuários. Você recebe o convite por e-mail, cria a sua senha e já começa a usar. E qualquer dúvida, é só chamar a gente no WhatsApp. São 30 dias grátis para usar o Hospeda na sua pousada. Sem cartão e sem compromisso. Depois dos 30 dias, se fizer sentido para você, a mensalidade é de R$ 99,90 por mês. Sem taxa por reserva e sem fidelidade. E as 10 primeiras pousadas pagam R$ 79,90 por mês durante os primeiros 12 meses. Quer testar 30 dias na sua pousada? É só responder esta mensagem."
+}

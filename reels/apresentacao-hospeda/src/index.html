@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>FAZLO Hospeda apresentação</title>
+<style>
+  @font-face { font-family: 'FL Display'; src: url('fonts/InterDisplay-SemiBold.otf') format('opentype'); font-weight: 600; }
+  @font-face { font-family: 'FL Display'; src: url('fonts/InterDisplay-Bold.otf') format('opentype'); font-weight: 700; }
+  @font-face { font-family: 'FL Display'; src: url('fonts/InterDisplay-ExtraBold.otf') format('opentype'); font-weight: 800; }
+  @font-face { font-family: 'FL Display'; src: url('fonts/InterDisplay-Black.otf') format('opentype'); font-weight: 900; }
+  @font-face { font-family: 'FL Mono'; src: url('fonts/JetBrainsMonoNL-Medium.ttf') format('truetype'); font-weight: 500; }
+  @font-face { font-family: 'FL Mono'; src: url('fonts/JetBrainsMonoNL-Bold.ttf') format('truetype'); font-weight: 700; }
+  @font-face { font-family: 'FL Mono'; src: url('fonts/JetBrainsMonoNL-ExtraBold.ttf') format('truetype'); font-weight: 800; }
+  html, body { margin: 0; background: #0A0A0A; }
+  canvas { display: block; width: 1080px; height: 1920px; }
+</style>
+</head>
+<body>
+<canvas id="c" width="1080" height="1920"></canvas>
+<script src="anim.js"></script>
+<script>
+  const ctx = document.getElementById('c').getContext('2d');
+  const q = new URLSearchParams(location.search);
+  window.ready = (async () => {
+    await Promise.all(['900 40px "FL Display"', '800 40px "FL Display"', '700 40px "FL Display"', '600 40px "FL Display"',
+      '800 40px "FL Mono"', '700 40px "FL Mono"', '500 40px "FL Mono"'].map((f) => document.fonts.load(f)));
+    const img = new Image(); img.src = 'assets/fazlo-hospeda-logo-alpha.png'; await img.decode();
+    const linha = await (await fetch('../linha.json?' + Date.now())).json();
+    const telas = await (await fetch('telas.json?' + Date.now())).json(), imgs = {};
+    await Promise.all(Object.keys(telas).map(async (n) => { const im = new Image(); im.src = 'telas/' + n + '.png'; await im.decode(); imgs[n] = im; }));
+    REEL.init(img, linha, telas, imgs, { previa: q.has('previa') });
+    REEL.renderAt(ctx, Number(q.get('t') || 0));
+  })();
+  window.frameAt = (t) => { REEL.renderAt(ctx, t); return ctx.canvas.toDataURL('image/png'); };
+  window.caixas = (t) => REEL.caixas(ctx, t);
+</script>
+</body>
+</html>

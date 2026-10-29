@@ -1,0 +1,407 @@
+{
+ "dia": {
+  "arquivo": "hospeda-v2/01-visao-geral-celular.png",
+  "origem": [
+   36,
+   560,
+   1134,
+   1700
+  ],
+  "w": 1098,
+  "h": 1140,
+  "focos": {
+   "hospedado": [
+    25,
+    795,
+    352,
+    1115
+   ],
+   "chega": [
+    386,
+    795,
+    712,
+    1115
+   ],
+   "sai": [
+    745,
+    795,
+    1073,
+    1115
+   ],
+   "entrou": [
+    25,
+    28,
+    1073,
+    757
+   ],
+   "formas": [
+    64,
+    440,
+    1034,
+    550
+   ]
+  }
+ },
+ "calendario": {
+  "arquivo": "hospeda-v2/02-calendario-celular.png",
+  "origem": [
+   36,
+   600,
+   1134,
+   1700
+  ],
+  "w": 1098,
+  "h": 1100,
+  "focos": {
+   "acomodacoes": [
+    25,
+    333,
+    302,
+    1090
+   ],
+   "reservas": [
+    302,
+    333,
+    1073,
+    1090
+   ]
+  }
+ },
+ "duplicada": {
+  "arquivo": "hospeda-v2/09-reserva-duplicada-computador.png",
+  "origem": [
+   1150,
+   300,
+   2690,
+   1290
+  ],
+  "w": 1540,
+  "h": 990,
+  "focos": {
+   "aviso": [
+    63,
+    689,
+    1477,
+    881
+   ]
+  }
+ },
+ "sinal": {
+  "arquivo": "hospeda-v2/03-nova-reserva-sinal-celular.png",
+  "origem": [
+   50,
+   705,
+   1120,
+   1860
+  ],
+  "w": 1070,
+  "h": 1155,
+  "focos": {
+   "sinal": [
+    58,
+    100,
+    1010,
+    266
+   ],
+   "saldo": [
+    58,
+    961,
+    1010,
+    1132
+   ]
+  }
+ },
+ "reter": {
+  "arquivo": "hospeda-v2/11-cancelamento-sinal-reter-celular.png",
+  "origem": [
+   50,
+   473,
+   1120,
+   1697
+  ],
+  "w": 1070,
+  "h": 1224,
+  "focos": {
+   "reter": [
+    61,
+    746,
+    1010,
+    925
+   ],
+   "info": [
+    61,
+    970,
+    1010,
+    1217
+   ]
+  }
+ },
+ "devolver": {
+  "arquivo": "hospeda-v2/11-cancelamento-sinal-devolver-celular.png",
+  "origem": [
+   50,
+   503,
+   1120,
+   1700
+  ],
+  "w": 1070,
+  "h": 1197,
+  "focos": {
+   "devolver": [
+    61,
+    571,
+    1010,
+    746
+   ],
+   "reter": [
+    61,
+    746,
+    1010,
+    923
+   ],
+   "info": [
+    61,
+    970,
+    1010,
+    1157
+   ]
+  }
+ },
+ "comanda": {
+  "arquivo": "hospeda-v2/05-comanda-aberta-celular.png",
+  "origem": [
+   36,
+   540,
+   1134,
+   2532
+  ],
+  "w": 1098,
+  "h": 1992,
+  "focos": {
+   "topo": [
+    25,
+    5,
+    1073,
+    610
+   ],
+   "saldo": [
+    25,
+    211,
+    1073,
+    599
+   ],
+   "caipirinha": [
+    25,
+    1148,
+    1073,
+    1570
+   ],
+   "qtd": [
+    54,
+    1150,
+    1064,
+    1400
+   ]
+  }
+ },
+ "checkout": {
+  "arquivo": "hospeda-v2/04-hospedagem-checkout-celular.png",
+  "origem": [
+   50,
+   800,
+   1120,
+   1734
+  ],
+  "w": 1070,
+  "h": 934,
+  "focos": {
+   "saldo": [
+    58,
+    412,
+    1010,
+    680
+   ],
+   "libera": [
+    100,
+    580,
+    950,
+    645
+   ]
+  }
+ },
+ "caixa": {
+  "arquivo": "hospeda-v2/06-caixa-aberto-celular.png",
+  "origem": [
+   36,
+   360,
+   1134,
+   4460
+  ],
+  "w": 1098,
+  "h": 4100,
+  "focos": {
+   "abertura": [
+    74,
+    940,
+    1024,
+    1015
+   ],
+   "diario": [
+    64,
+    3170,
+    1034,
+    3840
+   ],
+   "forma": [
+    64,
+    3170,
+    1034,
+    3385
+   ]
+  }
+ },
+ "fechamento": {
+  "arquivo": "hospeda-v2/10-fechamento-caixa-celular.png",
+  "origem": [
+   36,
+   880,
+   1134,
+   1790
+  ],
+  "w": 1098,
+  "h": 910,
+  "focos": {
+   "contado": [
+    25,
+    436,
+    1073,
+    647
+   ],
+   "diferenca": [
+    25,
+    687,
+    1073,
+    880
+   ]
+  }
+ },
+ "dayuse": {
+  "arquivo": "hospeda-v2/12-day-use-celular.png",
+  "origem": [
+   36,
+   360,
+   1134,
+   1690
+  ],
+  "w": 1098,
+  "h": 1330,
+  "focos": {
+   "camila": [
+    25,
+    965,
+    1073,
+    1303
+   ]
+  }
+ },
+ "dayuse-ativo": {
+  "arquivo": "hospeda-v2/12-day-use-ativo-celular.png",
+  "origem": [
+   36,
+   1520,
+   1134,
+   2495
+  ],
+  "w": 1098,
+  "h": 975,
+  "focos": {
+   "consumos": [
+    64,
+    210,
+    1034,
+    405
+   ],
+   "nota": [
+    64,
+    800,
+    1034,
+    920
+   ]
+  }
+ },
+ "diario": {
+  "arquivo": "hospeda-v2/06-caixa-aberto-celular.png",
+  "origem": [
+   36,
+   4480,
+   1134,
+   5100
+  ],
+  "w": 1098,
+  "h": 620,
+  "focos": {
+   "dayuse": [
+    75,
+    228,
+    1073,
+    421
+   ]
+  }
+ },
+ "acomodacoes": {
+  "arquivo": "hospeda-v2/13-nova-pousada-acomodacoes-celular.png",
+  "origem": [
+   36,
+   690,
+   1134,
+   1900
+  ],
+  "w": 1098,
+  "h": 1210,
+  "focos": {
+   "lista": [
+    64,
+    510,
+    1034,
+    1200
+   ],
+   "tarifas": [
+    64,
+    1030,
+    1034,
+    1200
+   ]
+  }
+ },
+ "revisao": {
+  "arquivo": "hospeda-v2/14-nova-pousada-revisao-celular.png",
+  "origem": [
+   36,
+   1990,
+   1134,
+   2940
+  ],
+  "w": 1098,
+  "h": 950,
+  "focos": {
+   "acomodacoes": [
+    64,
+    5,
+    1034,
+    380
+   ],
+   "produtos": [
+    64,
+    430,
+    1034,
+    650
+   ],
+   "usuarios": [
+    64,
+    700,
+    1034,
+    940
+   ]
+  }
+ }
+}
