@@ -1,535 +1,533 @@
 {
  "provisoria": true,
  "audio": null,
+ "audio_original": null,
  "inicio_voz": 0.35,
- "fim_voz": 25.022,
- "logo": 25.322,
- "duracao": 27.622,
+ "fim_voz": 30.674,
+ "logo": 30.974,
+ "duracao": 33.074,
  "marca": "@fazlohospeda",
  "frases": [
   {
    "id": "gancho",
    "t0": 0.35,
-   "t1": 4.991,
+   "t1": 5.024,
+   "respiro": 1.0,
+   "legenda": false,
    "palavras": [
     {
      "frase": 0,
+     "tok": 0,
      "w": "Reserva",
      "fala": "Reserva",
      "chave": false,
      "id": "reserva",
      "t0": 0.35,
-     "t1": 0.869
+     "t1": 0.926
     },
     {
      "frase": 0,
+     "tok": 0,
      "w": "no",
      "fala": "no",
      "chave": false,
      "id": null,
-     "t0": 0.919,
-     "t1": 1.079
+     "t0": 0.976,
+     "t1": 1.141
     },
     {
      "frase": 0,
+     "tok": 1,
      "w": "WhatsApp.",
      "fala": "WhatsApp.",
      "chave": true,
      "id": "whats",
-     "t0": 1.129,
-     "t1": 1.721
+     "t0": 1.191,
+     "t1": 1.849
     },
     {
      "frase": 0,
+     "tok": 2,
      "w": "Sinal",
      "fala": "Sinal",
      "chave": false,
      "id": "sinal0",
-     "t0": 2.071,
-     "t1": 2.441
+     "t0": 2.349,
+     "t1": 2.761
     },
     {
      "frase": 0,
+     "tok": 2,
      "w": "no",
      "fala": "no",
      "chave": false,
      "id": null,
-     "t0": 2.491,
-     "t1": 2.651
+     "t0": 2.811,
+     "t1": 2.975
     },
     {
      "frase": 0,
+     "tok": 3,
      "w": "PIX.",
      "fala": "PIX.",
      "chave": true,
      "id": "pix",
-     "t0": 2.701,
-     "t1": 2.924
+     "t0": 3.025,
+     "t1": 3.272
     },
     {
      "frase": 0,
+     "tok": 4,
      "w": "Saldo",
      "fala": "Saldo",
      "chave": false,
      "id": "saldo0",
-     "t0": 3.274,
-     "t1": 3.644
+     "t0": 3.772,
+     "t1": 4.184
     },
     {
      "frase": 0,
-     "w": "anotado",
-     "fala": "anotado",
-     "chave": false,
-     "id": null,
-     "t0": 3.694,
-     "t1": 4.213
-    },
-    {
-     "frase": 0,
+     "tok": 4,
      "w": "no",
      "fala": "no",
      "chave": false,
      "id": null,
-     "t0": 4.263,
-     "t1": 4.423
+     "t0": 4.234,
+     "t1": 4.398
     },
     {
      "frase": 0,
+     "tok": 5,
      "w": "caderno.",
      "fala": "caderno.",
      "chave": true,
      "id": "caderno",
-     "t0": 4.473,
-     "t1": 4.991
+     "t0": 4.448,
+     "t1": 5.024
     }
    ]
   },
   {
    "id": "problema",
-   "t0": 5.391,
-   "t1": 8.972,
+   "t0": 6.524,
+   "t1": 9.409,
+   "respiro": 1.0,
+   "legenda": false,
    "palavras": [
     {
      "frase": 1,
+     "tok": 6,
      "w": "E",
      "fala": "E",
      "chave": false,
      "id": "eno",
-     "t0": 5.391,
-     "t1": 5.551
+     "t0": 6.524,
+     "t1": 6.684
     },
     {
      "frase": 1,
+     "tok": 6,
      "w": "no",
      "fala": "no",
      "chave": false,
      "id": null,
-     "t0": 5.601,
-     "t1": 5.761
+     "t0": 6.734,
+     "t1": 6.899
     },
     {
      "frase": 1,
-     "w": "check-out,",
-     "fala": "check-out,",
-     "chave": false,
-     "id": "checkout",
-     "t0": 5.811,
-     "t1": 6.404
-    },
-    {
-     "frase": 1,
-     "w": "ninguém",
-     "fala": "ninguém",
-     "chave": false,
-     "id": "ninguem",
-     "t0": 6.624,
-     "t1": 7.142
-    },
-    {
-     "frase": 1,
-     "w": "sabe",
-     "fala": "sabe",
+     "tok": 6,
+     "w": "check-out:",
+     "fala": "check-out:",
      "chave": false,
      "id": null,
-     "t0": 7.192,
-     "t1": 7.489
+     "t0": 6.949,
+     "t1": 7.608
     },
     {
      "frase": 1,
+     "tok": 7,
      "w": "quanto",
      "fala": "quanto",
-     "chave": true,
-     "id": "falta",
-     "t0": 7.539,
-     "t1": 7.983
+     "chave": false,
+     "id": "quanto",
+     "t0": 7.828,
+     "t1": 8.321
     },
     {
      "frase": 1,
+     "tok": 8,
      "w": "falta",
      "fala": "falta",
      "chave": true,
-     "id": null,
-     "t0": 8.033,
-     "t1": 8.403
+     "id": "falta",
+     "t0": 8.371,
+     "t1": 8.783
     },
     {
      "frase": 1,
-     "w": "receber.",
-     "fala": "receber.",
-     "chave": true,
-     "id": null,
-     "t0": 8.453,
-     "t1": 8.972
+     "tok": 9,
+     "w": "receber?",
+     "fala": "receber?",
+     "chave": false,
+     "id": "receber",
+     "t0": 8.833,
+     "t1": 9.409
     }
    ]
   },
   {
    "id": "virada",
-   "t0": 9.472,
-   "t1": 11.684,
+   "t0": 10.909,
+   "t1": 13.327,
+   "respiro": 1.2,
+   "legenda": false,
    "palavras": [
     {
      "frase": 2,
+     "tok": 10,
      "w": "O",
      "fala": "O",
      "chave": false,
      "id": null,
-     "t0": 9.472,
-     "t1": 9.632
+     "t0": 10.909,
+     "t1": 11.069
     },
     {
      "frase": 2,
+     "tok": 11,
      "w": "FAZLO Hospeda",
-     "fala": "Fazlo Hospeda",
+     "fala": "FAZLO Hospeda",
      "chave": false,
      "id": "logo",
-     "t0": 9.682,
-     "t1": 10.571
+     "t0": 11.119,
+     "t1": 12.107
     },
     {
      "frase": 2,
+     "tok": 12,
      "w": "junta",
      "fala": "junta",
      "chave": false,
      "id": "junta",
-     "t0": 10.621,
-     "t1": 10.991
+     "t0": 12.157,
+     "t1": 12.568
     },
     {
      "frase": 2,
+     "tok": 13,
      "w": "tudo",
      "fala": "tudo",
      "chave": true,
      "id": "tudoisso",
-     "t0": 11.041,
-     "t1": 11.337
+     "t0": 12.618,
+     "t1": 12.947
     },
     {
      "frase": 2,
+     "tok": 13,
      "w": "isso:",
      "fala": "isso:",
      "chave": true,
      "id": null,
-     "t0": 11.387,
-     "t1": 11.684
+     "t0": 12.997,
+     "t1": 13.327
     }
    ]
   },
   {
    "id": "modulos",
-   "t0": 12.104,
-   "t1": 15.394,
+   "t0": 14.747,
+   "t1": 18.3,
+   "respiro": 1.0,
+   "legenda": true,
    "palavras": [
     {
      "frase": 3,
+     "tok": 14,
      "w": "reservas,",
      "fala": "reservas,",
      "chave": true,
      "id": "m1",
-     "t0": 12.104,
-     "t1": 12.696
+     "t0": 14.747,
+     "t1": 15.405
     },
     {
      "frase": 3,
+     "tok": 15,
      "w": "sinal,",
      "fala": "sinal,",
      "chave": true,
      "id": "m2",
-     "t0": 12.916,
-     "t1": 13.287
+     "t0": 15.625,
+     "t1": 16.037
     },
     {
      "frase": 3,
+     "tok": 16,
      "w": "check-in,",
      "fala": "check-in,",
      "chave": true,
      "id": "m3",
-     "t0": 13.507,
-     "t1": 14.025
+     "t0": 16.257,
+     "t1": 16.833
     },
     {
      "frase": 3,
+     "tok": 17,
      "w": "comanda",
      "fala": "comanda",
      "chave": true,
      "id": "m4",
-     "t0": 14.245,
-     "t1": 14.764
+     "t0": 17.053,
+     "t1": 17.629
     },
     {
      "frase": 3,
+     "tok": 18,
      "w": "e",
      "fala": "e",
      "chave": false,
      "id": null,
-     "t0": 14.814,
-     "t1": 14.974
+     "t0": 17.679,
+     "t1": 17.839
     },
     {
      "frase": 3,
+     "tok": 19,
      "w": "caixa.",
      "fala": "caixa.",
      "chave": true,
      "id": "m5",
-     "t0": 15.024,
-     "t1": 15.394
+     "t0": 17.889,
+     "t1": 18.3
     }
    ]
   },
   {
    "id": "pedacos",
-   "t0": 15.794,
-   "t1": 21.02,
+   "t0": 19.8,
+   "t1": 23.666,
+   "respiro": 1.2,
+   "legenda": true,
    "palavras": [
     {
      "frase": 4,
+     "tok": 20,
      "w": "Você",
      "fala": "Você",
      "chave": false,
      "id": "ve",
-     "t0": 15.794,
-     "t1": 16.09
+     "t0": 19.8,
+     "t1": 20.13
     },
     {
      "frase": 4,
+     "tok": 20,
      "w": "vê",
      "fala": "vê",
      "chave": false,
      "id": null,
-     "t0": 16.14,
-     "t1": 16.3
+     "t0": 20.18,
+     "t1": 20.344
     },
     {
      "frase": 4,
+     "tok": 21,
      "w": "o",
      "fala": "o",
      "chave": false,
      "id": null,
-     "t0": 16.35,
-     "t1": 16.51
+     "t0": 20.394,
+     "t1": 20.554
     },
     {
      "frase": 4,
+     "tok": 21,
      "w": "que",
      "fala": "que",
      "chave": false,
      "id": null,
-     "t0": 16.56,
-     "t1": 16.783
+     "t0": 20.604,
+     "t1": 20.851
     },
     {
      "frase": 4,
+     "tok": 21,
      "w": "foi",
      "fala": "foi",
      "chave": false,
      "id": null,
-     "t0": 16.833,
-     "t1": 17.055
+     "t0": 20.901,
+     "t1": 21.148
     },
     {
      "frase": 4,
-     "w": "pago,",
-     "fala": "pago,",
+     "tok": 22,
+     "w": "pago",
+     "fala": "pago",
      "chave": true,
      "id": "pago",
-     "t0": 17.105,
-     "t1": 17.401
+     "t0": 21.198,
+     "t1": 21.527
     },
     {
      "frase": 4,
-     "w": "o",
-     "fala": "o",
-     "chave": false,
-     "id": null,
-     "t0": 17.621,
-     "t1": 17.781
-    },
-    {
-     "frase": 4,
-     "w": "que",
-     "fala": "que",
-     "chave": false,
-     "id": null,
-     "t0": 17.831,
-     "t1": 18.053
-    },
-    {
-     "frase": 4,
-     "w": "foi",
-     "fala": "foi",
-     "chave": false,
-     "id": null,
-     "t0": 18.103,
-     "t1": 18.326
-    },
-    {
-     "frase": 4,
-     "w": "consumido",
-     "fala": "consumido",
-     "chave": true,
-     "id": "consumido",
-     "t0": 18.376,
-     "t1": 19.042
-    },
-    {
-     "frase": 4,
+     "tok": 23,
      "w": "e",
      "fala": "e",
      "chave": false,
      "id": null,
-     "t0": 19.092,
-     "t1": 19.252
+     "t0": 21.577,
+     "t1": 21.737
     },
     {
      "frase": 4,
+     "tok": 24,
      "w": "quanto",
      "fala": "quanto",
      "chave": true,
      "id": "falta2",
-     "t0": 19.302,
-     "t1": 19.747
+     "t0": 21.787,
+     "t1": 22.281
     },
     {
      "frase": 4,
+     "tok": 24,
      "w": "falta",
      "fala": "falta",
      "chave": true,
      "id": null,
-     "t0": 19.797,
-     "t1": 20.167
+     "t0": 22.331,
+     "t1": 22.743
     },
     {
      "frase": 4,
+     "tok": 25,
      "w": "no",
      "fala": "no",
      "chave": false,
      "id": "checkout2",
-     "t0": 20.217,
-     "t1": 20.377
+     "t0": 22.793,
+     "t1": 22.957
     },
     {
      "frase": 4,
+     "tok": 25,
      "w": "check-out.",
      "fala": "check-out.",
      "chave": false,
      "id": null,
-     "t0": 20.427,
-     "t1": 21.02
+     "t0": 23.007,
+     "t1": 23.666
     }
    ]
   },
   {
    "id": "fecho",
-   "t0": 21.47,
-   "t1": 22.669,
+   "t0": 25.366,
+   "t1": 26.668,
+   "respiro": 1.5,
+   "legenda": false,
    "palavras": [
     {
      "frase": 5,
+     "tok": 26,
      "w": "Tudo",
      "fala": "Tudo",
      "chave": true,
      "id": "tudo",
-     "t0": 21.47,
-     "t1": 21.766
+     "t0": 25.366,
+     "t1": 25.695
     },
     {
      "frase": 5,
+     "tok": 26,
      "w": "num",
      "fala": "num",
      "chave": true,
      "id": null,
-     "t0": 21.816,
-     "t1": 22.038
+     "t0": 25.745,
+     "t1": 25.992
     },
     {
      "frase": 5,
+     "tok": 26,
      "w": "lugar",
      "fala": "lugar",
      "chave": true,
      "id": null,
-     "t0": 22.088,
-     "t1": 22.459
+     "t0": 26.042,
+     "t1": 26.453
     },
     {
      "frase": 5,
+     "tok": 26,
      "w": "só.",
      "fala": "só.",
      "chave": true,
      "id": null,
-     "t0": 22.509,
-     "t1": 22.669
+     "t0": 26.503,
+     "t1": 26.668
     }
    ]
   },
   {
    "id": "cta",
-   "t0": 23.169,
-   "t1": 25.022,
+   "t0": 28.668,
+   "t1": 30.674,
+   "respiro": 0,
+   "legenda": true,
    "palavras": [
     {
      "frase": 6,
+     "tok": 27,
      "w": "Chame",
      "fala": "Chame",
      "chave": false,
      "id": "chame",
-     "t0": 23.169,
-     "t1": 23.539
+     "t0": 28.668,
+     "t1": 29.079
     },
     {
      "frase": 6,
+     "tok": 27,
      "w": "a",
      "fala": "a",
      "chave": false,
      "id": null,
-     "t0": 23.589,
-     "t1": 23.749
+     "t0": 29.129,
+     "t1": 29.289
     },
     {
      "frase": 6,
+     "tok": 27,
      "w": "gente",
      "fala": "gente",
      "chave": false,
      "id": null,
-     "t0": 23.799,
-     "t1": 24.169
+     "t0": 29.339,
+     "t1": 29.751
     },
     {
      "frase": 6,
+     "tok": 27,
      "w": "no",
      "fala": "no",
      "chave": false,
      "id": null,
-     "t0": 24.219,
-     "t1": 24.379
+     "t0": 29.801,
+     "t1": 29.966
     },
     {
      "frase": 6,
+     "tok": 28,
      "w": "WhatsApp.",
      "fala": "WhatsApp.",
      "chave": true,
      "id": "whats2",
-     "t0": 24.429,
-     "t1": 25.022
+     "t0": 30.016,
+     "t1": 30.674
     }
    ]
   }

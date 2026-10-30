@@ -319,20 +319,18 @@ def sparkle():
 # ------------------------------------------------------------------ os eventos, tirados do plano da animação
 IDS = {w['id']: w['t0'] for f in LN['frases'] for w in f['palavras'] if w.get('id')}
 PL = json.load(open(os.path.join(ROOT, 'output', 'info.json')))['plano']
-CT = {c['cena']: c['t'] for c in PL['cortes']}
+CN = {c['id']: c for c in PL['cenas']}
+ENT = {r['cartao']: r['entra'] for r in PL['rastros']}
 ev = []
-for c in PL['cortes'][1:]:                                            # cada corte: um golpe curto no tempo da trilha
-    ev += [(c['t'], 'cut')]
-ev += [(IDS['whats'], 'slam'), (IDS['pix'], 'slam'), (IDS['caderno'], 'slam'), (IDS['caderno'] + 0.12, 'strike')]
-ev += [(IDS['falta'], 'question')] + [(b['t'], 'cut') for b in PL['batidas'] if b['o'].startswith('pulso')]
-ev += [(IDS['logo'] - 0.15, 'logowipe'), (IDS['logo'] + 0.05, 'shine')]
+for c in PL['cenas'][1:]:                                             # um golpe curto em cada troca de ideia
+    ev += [(c['t0'], 'cut')]
+ev += [(IDS['whats'], 'slam'), (IDS['pix'], 'slam'), (IDS['caderno'], 'slam'), (IDS['caderno'] + 0.5, 'strike')]
+ev += [(IDS['quanto'], 'pop'), (IDS['falta'], 'slam'), (IDS['receber'], 'question')]
+ev += [(max(CN['virada']['t0'] + 0.05, IDS['logo'] - 0.25), 'logowipe'), (IDS['logo'], 'shine'), (IDS['tudoisso'], 'slam')]
 ev += [(m['t'], 'slide') for m in PL['modulos']]
-ev += [(CT['ocupacao'] - 0.3, 'whoosh')]
-for k in ('sinal', 'comanda', 'checkout'):
-    ev += [(CT[k] - 0.3, 'whoosh')]
-ev += [(CT['sinal'] + 0.3, 'coin'), (CT['checkout'] + 0.3, 'coin')]
-ev += [(CT['limao'], 'drop'), (IDS['tudo'] + 0.05, 'strike')] + [(CT['limao'] + 0.25 + 0.12 + k * 0.07, 'pop') for k in range(4)]
-ev += [(CT['chamada'] + 0.25, 'pop'), (IDS['whats2'], 'check'), (LN['fim_voz'] + 0.4, 'bell')]
+ev += [(ENT['sinal'], 'whoosh'), (ENT['sinal'] + 0.3, 'coin'), (ENT['checkout'], 'whoosh'), (ENT['checkout'] + 0.3, 'coin')]
+ev += [(CN['fecho']['t0'], 'drop'), (IDS['tudo'] + 0.05, 'strike')] + [(CN['fecho']['t0'] + 0.15 + 0.3 + k * 0.16, 'pop') for k in range(5)]
+ev += [(CN['chamada']['t0'] + 0.25, 'pop'), (IDS['whats2'], 'check'), (LN['fim_voz'] + 0.4, 'bell')]
 json.dump({'duracao': DUR, 'cues': [{'t': round(t, 4), 'type': ty} for t, ty in sorted(ev)]}, open(os.path.join(AUD, 'cues.json'), 'w'), indent=1)
 CUES = {'cues': [{'t': t, 'type': ty} for t, ty in sorted(ev)]}
 

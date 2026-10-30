@@ -6,7 +6,7 @@
  *        -> output/previa.mp4 (com --previa) ou output/tudo-num-lugar.mp4 (o final, depois da narração)
  *        O áudio entra com -t (a duração exata do vídeo), nunca com -shortest.
  * node scripts/render.cjs info                          -> output/info.json (legenda, plano, caixas a cada 0,25 s)
- * node scripts/render.cjs capa                          -> output/capa.png (o quadro 0, sem o aviso de prévia)
+ * node scripts/render.cjs capa                          -> output/capa.png + revisao/capa-caixas.json (a capa, desenhada à parte)
  */
 const http = require('http'), fs = require('fs'), path = require('path');
 const { spawn, execSync } = require('child_process');
@@ -40,7 +40,14 @@ const decode = (u) => Buffer.from(u.split(',')[1], 'base64');
       const pg = await open(), dir = path.join(OUT, 'stills'); fs.mkdirSync(dir, { recursive: true });
       for (const t of (args[1] || '0').split(',').map(Number)) { const f = path.join(dir, `t${t.toFixed(2).padStart(5, '0')}.png`); fs.writeFileSync(f, decode(await pg.evaluate((t) => window.frameAt(t), t))); console.log(f); }
     } else if (mode === 'capa') {                          // o quadro 0, sempre sem o aviso de prévia -> output/capa.png
-      const pg = await open(); fs.writeFileSync(path.join(OUT, 'capa.png'), decode(await pg.evaluate(() => window.frameAt(0)))); console.log('capa.png');
+      // a capa é desenhada à parte (o gancho montado + a logo pequena + "Tudo num lugar só."), sem o aviso de prévia
+      const pg = await open(), cp = await pg.evaluate(() => window.capa());
+      fs.writeFileSync(path.join(OUT, 'capa.png'), decode(cp.png));
+      const dentro = (b, o) => o !== b && o.x0 <= b.x0 + 1 && o.x1 >= b.x1 - 1 && o.y0 <= b.y0 + 1 && o.y1 >= b.y1 - 1;
+      const cx = cp.caixas.filter((b) => !cp.caixas.some((o) => dentro(b, o)));
+      fs.mkdirSync(path.join(OUT, 'revisao'), { recursive: true });
+      fs.writeFileSync(path.join(OUT, 'revisao', 'capa-caixas.json'), JSON.stringify(Object.fromEntries(cx.map((b) => [b.nome, { x0: b.x0, x1: b.x1, y0: b.y0, y1: b.y1 }])), null, 1));
+      console.log('capa.png');
     } else if (mode === 'info') {
       const pg = await open();
       const info = await pg.evaluate(() => ({ duracao: REEL.DURATION, legenda: REEL.legenda(), cap: REEL.CAP, plano: REEL.plano(), cores: REEL.cores() }));

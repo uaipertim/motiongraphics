@@ -10,7 +10,12 @@ Linha do tempo do reel de marca "Tudo num lugar só" (base: reels/educativo/sald
 
 Sem alinhamento, o áudio é cortado nas pausas reais (energia abaixo de −40 dBFS por ≥ 0,22 s): cada frase do roteiro
 recebe um trecho de fala, e as palavras dentro da frase são distribuídas pelo número de letras faladas.
-A legenda mostra "tela" no lugar da "fala" (ex.: "mil trezentos e cinquenta reais" -> "R$ 1.350").
+A legenda mostra "tela" no lugar da "fala" (ex.: "FAZLO Hospeda" vira uma palavra só).
+
+Cada frase do roteiro é uma ideia (uma cena) e tem um "respiro": o silêncio acrescentado depois dela, para os destaques
+ficarem ≥ 1,2 s parados depois de ditos. Com o áudio, a narração é MONTADA: cortada no ponto mais baixo do silêncio
+entre as frases (fades de 15 ms) e com o respiro de cada frase inserido -> audio/voz-montada.wav (a voz não é acelerada
+nem cortada no meio). Na estimativa, o respiro entra direto na linha do tempo.
 """
 import json, os, re, subprocess, sys, unicodedata
 
@@ -21,9 +26,10 @@ opt = lambda k: args[args.index(k) + 1] if k in args else None
 AUDIO, ALIN = opt('--audio'), opt('--alinhamento')
 
 INI = 0.35          # a voz começa 0,35 s depois do quadro 0 (o quadro 0 é a capa)
-FIM = 2.6           # a chamada final (logo + botão + @fazlohospeda) fica 2,6 s parada depois da última palavra
+FIM = 2.4           # a chamada final (logo + botão + @fazlohospeda) fica 2,4 s parada depois da última palavra
 POS_VOZ = 0.3       # o último pulso do botão, 0,3 s depois da última palavra
-LPS = 13.5          # letras por segundo na estimativa (v4 medido nas locuções do perfil: 11–14 com as pausas)
+LPS = 12.15         # letras por segundo na estimativa: 13,5 do perfil −10% (a voz sai com velocidade 0,9)
+PONTO = 0.5         # a pausa da voz depois de cada ponto ou interrogação (na estimativa)
 
 
 def letras(s):
@@ -32,28 +38,27 @@ def letras(s):
 
 def tokens_palavras():
     """cada token vira 1 palavra de legenda (o "tela") ou várias (as palavras da "fala")"""
-    out = []
+    out, tok = [], 0
     for fi, f in enumerate(R['frases']):
         for t in f['tokens']:
             if 'tela' in t:
-                out.append({'frase': fi, 'w': t['tela'], 'fala': t['fala'], 'chave': t.get('chave', False), 'id': t.get('id')})
+                out.append({'frase': fi, 'tok': tok, 'w': t['tela'], 'fala': t['fala'], 'chave': t.get('chave', False), 'id': t.get('id')})
             else:
                 ws = t['fala'].split()
                 for k, w in enumerate(ws):
-                    out.append({'frase': fi, 'w': w, 'fala': w, 'chave': t.get('chave', False), 'id': t.get('id') if k == 0 else None})
+                    out.append({'frase': fi, 'tok': tok, 'w': w, 'fala': w, 'chave': t.get('chave', False), 'id': t.get('id') if k == 0 else None})
+            tok += 1
     return out
 
 
 def estimar():
     ws, t = tokens_palavras(), INI
     for fi, f in enumerate(R['frases']):
-        fw = [x for x in ws if x['frase'] == fi]
-        for k, w in enumerate(fw):
+        for w in [x for x in ws if x['frase'] == fi]:
             d = max(0.16, letras(w['fala']) / LPS)
             w['t0'], w['t1'] = round(t, 3), round(t + d, 3)
-            meio = k < len(fw) - 1                                   # o fim da frase já tem a "pausa" do roteiro
-            t += d + (0.22 if re.search(r'[,:]$', w['fala']) else 0.35 if meio and re.search(r'[.?!]$', w['fala']) else 0.05)   # a voz respira nos pontos
-        t += f['pausa']
+            t += d + (PONTO if re.search(r'[.?!]$', w['fala']) else 0.22 if re.search(r'[,:]$', w['fala']) else 0.05)
+        t += f.get('respiro', 0)
     return ws
 
 
@@ -139,6 +144,37 @@ def pelo_alinhamento(alin, audio):
     return ws, dur
 
 
+def montar(ws, audio):
+    """a narração montada: cada frase, o seu respiro, a frase seguinte -> audio/voz-montada.wav; desloca as palavras"""
+    import numpy as np
+    from scipy.io import wavfile
+    SR = 48000
+    raw = subprocess.run(['ffmpeg', '-v', 'error', '-i', audio, '-ac', '1', '-ar', str(SR), '-f', 's16le', '-'], capture_output=True, check=True).stdout
+    x = np.frombuffer(raw, np.int16).astype(float) / 32768
+    env = np.sqrt(np.convolve(x ** 2, np.ones(480) / 480, 'same'))
+    nf, partes, desloc, a0, cortes = int(0.015 * SR), [], 0.0, 0, []
+    for fi, f in enumerate(R['frases']):
+        pw = [w for w in ws if w['frase'] == fi]
+        if fi + 1 < len(R['frases']):
+            nx = [w for w in ws if w['frase'] == fi + 1]
+            a, b = int((pw[-1]['t1'] - INI) * SR), int((nx[0]['t0'] - INI) * SR)
+            cut = a + int(np.argmin(env[a:b])) if b > a else (a + b) // 2
+        else:
+            cut = len(x)
+        seg = x[a0:cut].copy()
+        if a0: seg[:nf] *= np.linspace(0, 1, nf)
+        if cut < len(x): seg[-nf:] *= np.linspace(1, 0, nf)
+        partes += [seg, np.zeros(int(round(f.get('respiro', 0) * SR)))]
+        for w in pw:
+            w['t0'], w['t1'] = round(w['t0'] + desloc, 3), round(w['t1'] + desloc, 3)
+        cortes.append(round(cut / SR, 3))
+        desloc += f.get('respiro', 0); a0 = cut
+    v = np.concatenate(partes)
+    wavfile.write(os.path.join(ROOT, 'audio', 'voz-montada.wav'), SR, np.round(np.clip(v, -1, 1) * 32767).astype(np.int16))
+    print(f'  narração montada: cortes em {cortes[:-1]} s do original; respiros somam {desloc:.1f} s -> audio/voz-montada.wav')
+    return 'audio/voz-montada.wav'
+
+
 def main():
     if ALIN:
         ws, dur_audio = pelo_alinhamento(ALIN, AUDIO)
@@ -148,14 +184,15 @@ def main():
         prov = False
     else:
         ws, dur_audio, prov = estimar(), None, True
+    montada = montar(ws, AUDIO) if AUDIO else None
     fim_voz = max(w['t1'] for w in ws)
     frases = []
     for fi, f in enumerate(R['frases']):
         pw = [w for w in ws if w['frase'] == fi]
-        frases.append({'id': f['id'], 't0': pw[0]['t0'], 't1': pw[-1]['t1'], 'palavras': pw})
+        frases.append({'id': f['id'], 't0': pw[0]['t0'], 't1': pw[-1]['t1'], 'respiro': f.get('respiro', 0), 'legenda': f.get('legenda', True), 'palavras': pw})
     logo_t0 = round(fim_voz + POS_VOZ, 3)
     dur = round(fim_voz + FIM, 3)
-    out = {'provisoria': prov, 'audio': os.path.relpath(AUDIO, ROOT) if AUDIO else None, 'inicio_voz': INI, 'fim_voz': round(fim_voz, 3),
+    out = {'provisoria': prov, 'audio': montada, 'audio_original': os.path.relpath(AUDIO, ROOT) if AUDIO else None, 'inicio_voz': INI, 'fim_voz': round(fim_voz, 3),
            'logo': logo_t0, 'duracao': dur, 'marca': R['marca'], 'frases': frases}
     json.dump(out, open(os.path.join(ROOT, 'linha.json'), 'w'), ensure_ascii=False, indent=1)
     print(f'linha.json {"PROVISÓRIA (locução pendente)" if prov else "pelo áudio"}: voz {INI:.2f}–{fim_voz:.2f} s, duração {dur:.2f} s')

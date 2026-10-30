@@ -5,16 +5,17 @@
  "marca": "@fazlohospeda",
  "voz": {
   "gerada_por": "Willian, no ElevenLabs (fora deste repositório)",
-  "sugestao": "eleven_v4, voz Raquel - For Conversational (GDzHdQOi6jjf8zaXhCYD), stability 0,50, similarity 0,75",
-  "texto_para_o_elevenlabs": "Reserva no Uátsap. Sinal no PIX. Saldo anotado no caderno. E no check-out, ninguém sabe quanto falta receber. O Fázlo Hospéda junta tudo isso: reservas, sinal, check-in, comanda e caixa. Você vê o que foi pago, o que foi consumido e quanto falta no check-out. Tudo num lugar só. Chame a gente no Uátsap.",
+  "sugestao": "eleven_v4, voz Raquel - For Conversational (GDzHdQOi6jjf8zaXhCYD), stability 0,50, similarity 0,75, velocidade 0,9",
+  "texto_para_o_elevenlabs": "Reserva no Uátsap. Sinal no PIX. Saldo no caderno. E no check-out: quanto falta receber? O Fázlo Hospéda junta tudo isso: reservas, sinal, check-in, comanda e caixa. Você vê o que foi pago e quanto falta no check-out. Tudo num lugar só. Chame a gente no Uátsap.",
   "pronuncia": "no texto enviado ao ElevenLabs, \"Fázlo Hospéda\" e \"Uátsap\" (o mesmo dicionário de reels/serie-explica/scripts/pronuncia.py); a legenda mostra a grafia oficial"
  },
- "nota": "Vídeo de marca. NÃO mostra a interface do FAZLO Hospeda nem imita o layout dela; não usa dados da demonstração nem nome de hóspede. Os cartões são ilustrativos e abstratos (preto, limão, branco). Valores só R$ 450 (sinal recebido) e R$ 1.020 (no check-out), sempre com o selo 'Exemplo fictício' no mesmo cartão. Cada item de 'frases' é uma frase da locução; 'fala' é o que a voz diz; 'tela' (quando existe) é o que a legenda mostra no lugar daquelas palavras; 'chave': palavras em limão; 'id': o instante que dispara a animação; 'pausa': o respiro estimado depois da frase (só na prévia).",
- "narracao": "Reserva no WhatsApp. Sinal no PIX. Saldo anotado no caderno. E no check-out, ninguém sabe quanto falta receber. O Fazlo Hospeda junta tudo isso: reservas, sinal, check-in, comanda e caixa. Você vê o que foi pago, o que foi consumido e quanto falta no check-out. Tudo num lugar só. Chame a gente no WhatsApp.",
+ "nota": "Vídeo de marca. NÃO mostra a interface do FAZLO Hospeda nem imita o layout dela; não usa dados da demonstração nem nome de hóspede. Os cartões são ilustrativos e abstratos (preto, limão, branco). Valores só R$ 450 (sinal recebido) e R$ 1.020 (no check-out), sempre com o selo 'Exemplo fictício' no mesmo cartão. Cada item de 'frases' é uma ideia (uma cena); 'fala' é o que a voz diz; 'tela' (quando existe) é o que a legenda mostra no lugar daquelas palavras; 'chave': palavras em limão; 'id': o instante que dispara a animação; 'respiro': silêncio acrescentado depois da frase (na estimativa e na montagem da narração), para os destaques ficarem ≥ 1,2 s parados depois de ditos; 'legenda': false onde o texto grande da cena já mostra a frase inteira (a faixa de legenda fica vazia).",
+ "narracao": "Reserva no WhatsApp. Sinal no PIX. Saldo no caderno. E no check-out: quanto falta receber? O FAZLO Hospeda junta tudo isso: reservas, sinal, check-in, comanda e caixa. Você vê o que foi pago e quanto falta no check-out. Tudo num lugar só. Chame a gente no WhatsApp.",
  "frases": [
   {
    "id": "gancho",
-   "pausa": 0.35,
+   "respiro": 1.0,
+   "legenda": false,
    "tokens": [
     {
      "fala": "Reserva no",
@@ -35,7 +36,7 @@
      "id": "pix"
     },
     {
-     "fala": "Saldo anotado no",
+     "fala": "Saldo no",
      "id": "saldo0"
     },
     {
@@ -47,36 +48,38 @@
   },
   {
    "id": "problema",
-   "pausa": 0.45,
+   "respiro": 1.0,
+   "legenda": false,
    "tokens": [
     {
-     "fala": "E no",
+     "fala": "E no check-out:",
      "id": "eno"
     },
     {
-     "fala": "check-out,",
-     "id": "checkout"
+     "fala": "quanto",
+     "id": "quanto"
     },
     {
-     "fala": "ninguém sabe",
-     "id": "ninguem"
-    },
-    {
-     "fala": "quanto falta receber.",
+     "fala": "falta",
      "chave": true,
      "id": "falta"
+    },
+    {
+     "fala": "receber?",
+     "id": "receber"
     }
    ]
   },
   {
    "id": "virada",
-   "pausa": 0.2,
+   "respiro": 1.2,
+   "legenda": false,
    "tokens": [
     {
      "fala": "O"
     },
     {
-     "fala": "Fazlo Hospeda",
+     "fala": "FAZLO Hospeda",
      "tela": "FAZLO Hospeda",
      "id": "logo"
     },
@@ -93,7 +96,8 @@
   },
   {
    "id": "modulos",
-   "pausa": 0.35,
+   "respiro": 1.0,
+   "legenda": true,
    "tokens": [
     {
      "fala": "reservas,",
@@ -127,7 +131,8 @@
   },
   {
    "id": "pedacos",
-   "pausa": 0.4,
+   "respiro": 1.2,
+   "legenda": true,
    "tokens": [
     {
      "fala": "Você vê",
@@ -137,17 +142,9 @@
      "fala": "o que foi"
     },
     {
-     "fala": "pago,",
+     "fala": "pago",
      "chave": true,
      "id": "pago"
-    },
-    {
-     "fala": "o que foi"
-    },
-    {
-     "fala": "consumido",
-     "chave": true,
-     "id": "consumido"
     },
     {
      "fala": "e"
@@ -165,7 +162,8 @@
   },
   {
    "id": "fecho",
-   "pausa": 0.45,
+   "respiro": 1.5,
+   "legenda": false,
    "tokens": [
     {
      "fala": "Tudo num lugar só.",
@@ -176,7 +174,8 @@
   },
   {
    "id": "cta",
-   "pausa": 0,
+   "respiro": 0,
+   "legenda": true,
    "tokens": [
     {
      "fala": "Chame a gente no",
@@ -190,5 +189,5 @@
    ]
   }
  ],
- "legenda_post": "Reserva no WhatsApp, sinal no PIX, saldo anotado no caderno… e no check-out ninguém sabe quanto falta receber.\n\nO FAZLO Hospeda junta tudo isso num lugar só: reservas, sinal, check-in, comanda e caixa.\n\nVocê vê o que foi pago, o que foi consumido e quanto falta no check-out, sem procurar em três lugares diferentes.\n\nQuer ver como fica na sua pousada? Chame a gente no WhatsApp.\n\n#pousada #gestaodepousada #hospedagem"
+ "legenda_post": "Reserva no WhatsApp, sinal no PIX, saldo no caderno… e no check-out, quanto falta receber?\n\nO FAZLO Hospeda junta tudo isso num lugar só: reservas, sinal, check-in, comanda e caixa.\n\nVocê vê o que foi pago e quanto falta no check-out, sem procurar em três lugares diferentes.\n\nQuer ver como fica na sua pousada? Chame a gente no WhatsApp.\n\n#pousada #gestaodepousada #hospedagem"
 }
