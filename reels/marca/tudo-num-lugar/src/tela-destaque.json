@@ -1,0 +1,7 @@
+{
+ "imagem": null,
+ "alinhar_x": 0.5,
+ "alinhar_y": 0.0,
+ "selo_exemplo": true,
+ "nota": "telaDestaque (ato limão). 'imagem': null = composição abstrata; para usar a tela real da V2, ponha o PNG em src/assets/ e escreva o caminho relativo a src/ (ex.: 'assets/tela-destaque.png'). A imagem cobre o retângulo x 150–930, y 820–1376 (780×556) sem distorcer; 'alinhar_x'/'alinhar_y' (0 a 1) escolhem que parte aparece quando ela é maior. 'selo_exemplo': true mostra o selo 'Exemplo fictício' sobre a imagem (obrigatório se a tela tiver valores)."
+}

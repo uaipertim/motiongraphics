@@ -1,0 +1,41 @@
+REEL DE MARCA "Tudo num lugar só" — revisão técnica (prévia: sem voz, tempos estimados)
+output/previa.mp4
+
+FORMATO
+OK     vídeo h264 yuv420p 1080x1920 60 fps
+OK     áudio aac 48000 Hz 2 canais
+OK     duração 27.62 s (linha do tempo: 27.62 s, estimada)
+OK     vídeo e áudio com a mesma duração (Δ 0 ms)
+
+SOM
+OK     prévia sem voz: trilha e efeitos em -22.7 LUFS, o nível em que ficam debaixo da narração (o master com a voz fica em −14)
+OK     pico real -5.2 dBTP (limite −1,5)
+
+RITMO
+OK     27 batidas entre o 1º corte e a chamada; o maior trecho sem batida tem 1.40 s (limite 1,5 s)
+       cortes: capa 0.00 · whatsapp 0.33 · pix 1.96 · caderno 3.26 · eno 5.22 · ninguem 6.52 · falta 7.50 · logo 9.46 · tudoisso 11.09 · modulos 12.06 · ocupacao 15.65 · sinal 16.96 · comanda 18.26 · checkout 19.24 · limao 21.52 · chamada 23.15  (grade da trilha: 0.326 s)
+
+LEGENDA
+OK     9 páginas; cada uma fica ≥ 1,5 s na tela (a mais curta: 1.70 s)
+OK     a página anterior sai antes da próxima entrar
+OK     sem palavra órfã (nenhuma página de uma palavra só, nenhuma linha de uma palavra só ao lado de uma linha cheia)
+       Reserva no WhatsApp. / Sinal no PIX. | Saldo anotado no caderno. | E no check-out, ninguém / sabe quanto falta receber. | O FAZLO Hospeda / junta tudo isso: | reservas, sinal, check-in, / comanda e caixa. | Você vê o que foi pago, | o que foi consumido e / quanto falta no check-out. | Tudo num lugar só. | Chame a gente no WhatsApp.
+OK     legenda dentro da faixa y 1424–1536, x 150–950 em todos os quadros amostrados
+OK     a legenda não encosta em nada da cena
+OK     grafia oficial na legenda ("FAZLO Hospeda", "WhatsApp"): nenhuma grafia fonética
+
+ÁREAS SEGURAS
+OK     coluna de botões (x ≥ 950, y 1060–1560): 0 pixels além do fundo em 110 quadros
+OK     20% de baixo (y > 1536): 0 pixels além do fundo em 110 quadros
+OK     nenhuma caixa da cena nas áreas seguras
+
+CONTEÚDO
+OK     "Exemplo fictício": o selo está no mesmo cartão do valor em todos os 14 quadros amostrados com valor
+OK     todos os cartões aparecem de frente (5 módulos e 4 pedaços)
+OK     valores só nos cartões do sinal (R$ 450) e do check-out (R$ 1.020): ['checkout', 'sinal']
+OK     contraste no ato limão: texto preto sobre o limão 15.6:1 e as chaves (limão na pílula preta) 15.6:1 (mínimo 7:1); o branco não é usado sobre o limão (1.3:1)
+OK     ato limão com 6 quadros amostrados (legenda preta, chaves na pílula)
+OK     nenhuma tela do sistema: só a logo em src/assets (fazlo-hospeda-logo-alpha.png); telaDestaque: composição abstrata
+OK     capa (quadro 0) na regra das capas: dentro da regra das capas
+
+RESULTADO: aprovado

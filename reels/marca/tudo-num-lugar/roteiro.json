@@ -1,0 +1,194 @@
+{
+ "id": "tudo-num-lugar",
+ "titulo": "Tudo num lugar só",
+ "tipo": "reel de marca (vídeo fixado no perfil e anúncio impulsionado)",
+ "marca": "@fazlohospeda",
+ "voz": {
+  "gerada_por": "Willian, no ElevenLabs (fora deste repositório)",
+  "sugestao": "eleven_v4, voz Raquel - For Conversational (GDzHdQOi6jjf8zaXhCYD), stability 0,50, similarity 0,75",
+  "texto_para_o_elevenlabs": "Reserva no Uátsap. Sinal no PIX. Saldo anotado no caderno. E no check-out, ninguém sabe quanto falta receber. O Fázlo Hospéda junta tudo isso: reservas, sinal, check-in, comanda e caixa. Você vê o que foi pago, o que foi consumido e quanto falta no check-out. Tudo num lugar só. Chame a gente no Uátsap.",
+  "pronuncia": "no texto enviado ao ElevenLabs, \"Fázlo Hospéda\" e \"Uátsap\" (o mesmo dicionário de reels/serie-explica/scripts/pronuncia.py); a legenda mostra a grafia oficial"
+ },
+ "nota": "Vídeo de marca. NÃO mostra a interface do FAZLO Hospeda nem imita o layout dela; não usa dados da demonstração nem nome de hóspede. Os cartões são ilustrativos e abstratos (preto, limão, branco). Valores só R$ 450 (sinal recebido) e R$ 1.020 (no check-out), sempre com o selo 'Exemplo fictício' no mesmo cartão. Cada item de 'frases' é uma frase da locução; 'fala' é o que a voz diz; 'tela' (quando existe) é o que a legenda mostra no lugar daquelas palavras; 'chave': palavras em limão; 'id': o instante que dispara a animação; 'pausa': o respiro estimado depois da frase (só na prévia).",
+ "narracao": "Reserva no WhatsApp. Sinal no PIX. Saldo anotado no caderno. E no check-out, ninguém sabe quanto falta receber. O Fazlo Hospeda junta tudo isso: reservas, sinal, check-in, comanda e caixa. Você vê o que foi pago, o que foi consumido e quanto falta no check-out. Tudo num lugar só. Chame a gente no WhatsApp.",
+ "frases": [
+  {
+   "id": "gancho",
+   "pausa": 0.35,
+   "tokens": [
+    {
+     "fala": "Reserva no",
+     "id": "reserva"
+    },
+    {
+     "fala": "WhatsApp.",
+     "chave": true,
+     "id": "whats"
+    },
+    {
+     "fala": "Sinal no",
+     "id": "sinal0"
+    },
+    {
+     "fala": "PIX.",
+     "chave": true,
+     "id": "pix"
+    },
+    {
+     "fala": "Saldo anotado no",
+     "id": "saldo0"
+    },
+    {
+     "fala": "caderno.",
+     "chave": true,
+     "id": "caderno"
+    }
+   ]
+  },
+  {
+   "id": "problema",
+   "pausa": 0.45,
+   "tokens": [
+    {
+     "fala": "E no",
+     "id": "eno"
+    },
+    {
+     "fala": "check-out,",
+     "id": "checkout"
+    },
+    {
+     "fala": "ninguém sabe",
+     "id": "ninguem"
+    },
+    {
+     "fala": "quanto falta receber.",
+     "chave": true,
+     "id": "falta"
+    }
+   ]
+  },
+  {
+   "id": "virada",
+   "pausa": 0.2,
+   "tokens": [
+    {
+     "fala": "O"
+    },
+    {
+     "fala": "Fazlo Hospeda",
+     "tela": "FAZLO Hospeda",
+     "id": "logo"
+    },
+    {
+     "fala": "junta",
+     "id": "junta"
+    },
+    {
+     "fala": "tudo isso:",
+     "chave": true,
+     "id": "tudoisso"
+    }
+   ]
+  },
+  {
+   "id": "modulos",
+   "pausa": 0.35,
+   "tokens": [
+    {
+     "fala": "reservas,",
+     "chave": true,
+     "id": "m1"
+    },
+    {
+     "fala": "sinal,",
+     "chave": true,
+     "id": "m2"
+    },
+    {
+     "fala": "check-in,",
+     "chave": true,
+     "id": "m3"
+    },
+    {
+     "fala": "comanda",
+     "chave": true,
+     "id": "m4"
+    },
+    {
+     "fala": "e"
+    },
+    {
+     "fala": "caixa.",
+     "chave": true,
+     "id": "m5"
+    }
+   ]
+  },
+  {
+   "id": "pedacos",
+   "pausa": 0.4,
+   "tokens": [
+    {
+     "fala": "Você vê",
+     "id": "ve"
+    },
+    {
+     "fala": "o que foi"
+    },
+    {
+     "fala": "pago,",
+     "chave": true,
+     "id": "pago"
+    },
+    {
+     "fala": "o que foi"
+    },
+    {
+     "fala": "consumido",
+     "chave": true,
+     "id": "consumido"
+    },
+    {
+     "fala": "e"
+    },
+    {
+     "fala": "quanto falta",
+     "chave": true,
+     "id": "falta2"
+    },
+    {
+     "fala": "no check-out.",
+     "id": "checkout2"
+    }
+   ]
+  },
+  {
+   "id": "fecho",
+   "pausa": 0.45,
+   "tokens": [
+    {
+     "fala": "Tudo num lugar só.",
+     "chave": true,
+     "id": "tudo"
+    }
+   ]
+  },
+  {
+   "id": "cta",
+   "pausa": 0,
+   "tokens": [
+    {
+     "fala": "Chame a gente no",
+     "id": "chame"
+    },
+    {
+     "fala": "WhatsApp.",
+     "chave": true,
+     "id": "whats2"
+    }
+   ]
+  }
+ ],
+ "legenda_post": "Reserva no WhatsApp, sinal no PIX, saldo anotado no caderno… e no check-out ninguém sabe quanto falta receber.\n\nO FAZLO Hospeda junta tudo isso num lugar só: reservas, sinal, check-in, comanda e caixa.\n\nVocê vê o que foi pago, o que foi consumido e quanto falta no check-out, sem procurar em três lugares diferentes.\n\nQuer ver como fica na sua pousada? Chame a gente no WhatsApp.\n\n#pousada #gestaodepousada #hospedagem"
+}
