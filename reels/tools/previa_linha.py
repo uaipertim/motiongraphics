@@ -5,7 +5,8 @@ Prévia de uma linha da grade do perfil: as capas lado a lado, como o Instagram 
     python3 reels/tools/previa_linha.py reels/reel-06 reels/reel-05 reels/reel-02 --saida reels/grade/linha-2.jpg
 
 Lê <reel>/output/capa.png de cada Reel (na ordem da grade, da esquerda para a direita) e o resultado da
-revisão em <reel>/output/revisao/capa.txt (gerado por revisao_capa.py). Mostra:
+revisão em <reel>/output/revisao/capa.txt (gerado por revisao_capa.py); aceita também a pasta de uma capa avulsa
+com capa.png e revisao/capa.txt (ex.: <reel>/output/grade, de tools/capa_grade.cjs). Mostra:
   - em cima, cada capa 9:16 com o recorte 3:4 (verde), o canto do ícone de play (vermelho), a faixa do
     contador de visualizações (laranja) e a folga de 60 px (tracejado);
   - embaixo, a linha da grade como o perfil mostra: o recorte 3:4 de cada capa, com o ícone de play e um
@@ -70,9 +71,12 @@ def tile(cover, w, h, views):
 covers, names, results = [], [], []
 for r in a.reels:
     R = os.path.abspath(r)
-    covers.append(Image.open(os.path.join(R, 'output', 'capa.png')).convert('RGB'))
-    names.append(os.path.basename(R).replace('reel-', 'REEL '))
-    txt = os.path.join(R, 'output', 'revisao', 'capa.txt')
+    # a pasta do Reel (lê output/capa.png) ou a pasta de uma capa avulsa com capa.png (ex.: <reel>/output/grade)
+    base = R if os.path.exists(os.path.join(R, 'capa.png')) else os.path.join(R, 'output')
+    covers.append(Image.open(os.path.join(base, 'capa.png')).convert('RGB'))
+    nome = R if base == os.path.join(R, 'output') else os.path.dirname(os.path.dirname(R))
+    names.append(os.path.basename(nome).replace('reel-', 'REEL '))
+    txt = os.path.join(base, 'revisao', 'capa.txt')
     res = [ln for ln in open(txt).read().splitlines() if ln.startswith('RESULTADO')] if os.path.exists(txt) else []
     results.append(res[0].replace('RESULTADO: ', '') if res else 'sem revisão')
 

@@ -32,6 +32,7 @@
   })();
   window.frameAt = (t) => { SALDO.renderAt(ctx, t); return ctx.canvas.toDataURL('image/png'); };
   window.caixas = (t) => SALDO.caixas(ctx, t);
+  window.capaGrade = () => { const r = SALDO.capaGrade(ctx); return { ...r, png: ctx.canvas.toDataURL('image/png') }; };
 </script>
 </body>
 </html>

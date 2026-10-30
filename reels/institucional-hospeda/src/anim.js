@@ -558,6 +558,32 @@
     } else fimLogo(c, t);
     avisoPrevia(c);
   }
+  // ---------------------------------------------------------------- capa para a grade do Reel (à parte: o vídeo e a miniatura do WhatsApp não mudam)
+  // a dor do roteiro: o mesmo título do vídeo ("Caderno, papel / e um caixa que / não bate?", a chave em limão) e os três
+  // elementos da cena 1 (caderno, papel, caixa) no estado final; a logo pequena no alto; sem tela do sistema.
+  // O bloco (título + elementos) fica centralizado na vertical do recorte 3:4 (y = 960).
+  function desenhaCapa(c, dy) {
+    c.setTransform(1, 0, 0, 1, 0, 0); c.globalAlpha = 1; c.shadowColor = 'transparent';
+    fundo(c, 0); marca(c);
+    c.save(); c.translate(0, dy);
+    const S = 104, ls = -0.03 * S;
+    txt(c, 'Caderno, papel', 90, 480, { size: S, weight: 900, ls, box: 'título 1' });
+    txt(c, 'e um caixa que', 90, 584, { size: S, weight: 900, ls, box: 'título 2' });
+    txt(c, 'não bate?', 90, 688, { size: S, weight: 900, ls, color: C.lime, box: 'título 3' });
+    const tf = 100;                                            // o estado final das animações da cena 1
+    c.save(); c.translate(225, 930); c.scale(0.78, 0.78); caderno(c, tf, 0); c.restore(); BOX('caderno', 120, 800, 330, 1050);
+    c.save(); c.translate(510, 915); c.scale(0.78, 0.78); papel(c, tf, 0); c.restore(); BOX('papel', 415, 805, 605, 1025);
+    c.save(); c.translate(800, 925); c.scale(0.72, 0.72); caixaRuim(c, tf, 0, 0); c.restore(); BOX('caixa', 650, 879, 950, 971);
+    c.restore();
+  }
+  function capaGrade(c) {
+    BOXES = []; desenhaCapa(c, 0);
+    const bl = BOXES.filter((b) => b.nome !== 'marca'), topo = Math.min(...bl.map((b) => b.y0)), base = Math.max(...bl.map((b) => b.y1));
+    const dy = Math.round(960 - (topo + base) / 2);
+    BOXES = []; desenhaCapa(c, dy);
+    const caixas = BOXES.map((b) => (b.nome === 'marca' ? b : { ...b, y0: b.y0 + dy, y1: b.y1 + dy })); BOXES = null;
+    return { caixas, bloco: { topo: topo + dy, base: base + dy, centro: (topo + base) / 2 + dy }, dy };
+  }
   function renderAt(c, t) { frame(c, clamp(t, 0, DUR - 1e-4)); }
   function init(img, linha, telas, imgs, o = {}) {
     LOGO = img; LN = linha; TEL = telas; IMG = imgs; DUR = linha.duracao; PREVIA = !!o.previa;
@@ -566,7 +592,7 @@
   }
   function caixas(c, t) { BOXES = []; frame(c, t); const out = BOXES; BOXES = null; return out; }
   window.REEL = {
-    init, renderAt, caixas, get DURATION() { return DUR; }, CAP,
+    init, renderAt, caixas, capaGrade, get DURATION() { return DUR; }, CAP,
     legenda: () => PAGES.map((q) => ({ t0: q.t0, t1: q.t1, linhas: q.rows.map(([a, b]) => q.words.slice(a, b).map((x) => x.w).join(' ')),
       palavras: Array.from({ length: q.b - q.a }, (_, i) => ({ w: q.words[q.a + i].w, t0: q.words[q.a + i].t0, chave: !!q.words[q.a + i].chave })) })),
     plano: () => ({ cenas: CENAS.map((s) => ({ id: s.id, t0: s.t0, t1: s.t1, chip: s.chip })),

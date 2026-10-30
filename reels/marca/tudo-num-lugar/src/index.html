@@ -36,6 +36,7 @@
   })();
   window.frameAt = (t) => { REEL.renderAt(ctx, t); return ctx.canvas.toDataURL('image/png'); };
   window.caixas = (t) => REEL.caixas(ctx, t);
+  window.capaGrade = () => { const r = REEL.capaGrade(ctx); return { ...r, png: ctx.canvas.toDataURL('image/png') }; };
   window.capa = () => { const caixas = REEL.capa(ctx); return { png: ctx.canvas.toDataURL('image/png'), caixas }; };
 </script>
 </body>

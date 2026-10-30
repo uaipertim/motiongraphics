@@ -1,0 +1,17 @@
+Capa — regra fixa da série (recorte 3:4, canto do play, faixa do contador, nada cortado ou escondido)
+
+OK     a) recorte 3:4 + folga 60 px: conteúdo em x 92–961, y 315–1473
+       (limite: x 60–1020, y 300–1620)
+OK     b) canto do play (x ≥ 860, y 240–440): 0 px de conteúdo
+OK     c) faixa do contador (y 1560–1680): 0 px de conteúdo
+OK     d) caixas: dentro do recorte, fora do canto do play e da faixa do contador, sem sobreposição
+OK     marca: x 402–678, y 305–355
+OK     fala gancho 0-1: x 100–505, y 446–511
+OK     fala gancho 2-2: x 92–967, y 542–703
+OK     fala gancho 3-4: x 100–409, y 746–811
+OK     fala gancho 5-5: x 92–400, y 842–1003
+OK     fala gancho 6-7: x 100–431, y 1046–1111
+OK     fala gancho 8-8: x 92–774, y 1142–1303
+OK     chamada da capa: x 92–750, y 1356–1474
+OK     bloco centralizado na vertical do recorte 3:4: y 446–1474, centro em 960.0 (centro do recorte: 960)
+RESULTADO: dentro da regra das capas

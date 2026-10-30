@@ -614,18 +614,30 @@
     legenda(c);
     avisoPrevia(c);
   }
-  function capa(c) {                                          // a capa: o gancho montado, a logo pequena e "Tudo num lugar só."
+  function capa(c, dy = 0) {                                  // a capa: o gancho montado, a logo pequena e "Tudo num lugar só." (dy: o bloco desce)
     t = 0; c.setTransform(1, 0, 0, 1, 0, 0); c.globalAlpha = 1; fundo(c, 0);
     const d = 50, nome = tw('FAZLO Hospeda', DISPLAY, 28, 800), x0 = 540 - (d + 14 + nome) / 2, cy = 330;
     c.drawImage(LOGO, x0, cy - d / 2, d, d);
     const w1 = txt(c, 'FAZLO', x0 + d + 14, cy + 10, { size: 28, weight: 800 });
     txt(c, 'Hospeda', x0 + d + 14 + w1 + 6, cy + 10, { size: 28, weight: 800, color: C.lime });
     BOX('marca', x0, cy - d / 2, x0 + d + 14 + nome, cy + d / 2);
-    c.save(); c.translate(0, -40); gancho(c, T.s.gancho, true); c.restore();
+    c.save(); c.translate(0, dy - 40); gancho(c, T.s.gancho, true); c.restore();
     const s = 'Tudo num lugar só.', w = tw(s, DISPLAY, 66, 900, -1.4) + 84;
+    c.save(); c.translate(0, dy);
     rr(c, 92, 1300, w, 118, 59); c.fillStyle = C.lime; c.fill();
     txt(c, s, 92 + 42, 1382, { size: 66, weight: 900, color: C.ink, ls: -1.4 });
+    c.restore();
     BOX('chamada da capa', 92, 1300, 92 + w, 1418);
+  }
+  // a capa para a grade: o mesmo desenho, com o bloco (gancho + "Tudo num lugar só.") no centro do recorte 3:4 (y = 960)
+  function capaGrade(c) {
+    BOXES = []; capa(c, 0);
+    const desl = (b) => (b.nome.startsWith('fala ') ? { ...b, y0: b.y0 - 40, y1: b.y1 - 40 } : b);   // o gancho é desenhado 40 px acima
+    const bl = BOXES.filter((b) => b.nome !== 'marca').map(desl), topo = Math.min(...bl.map((b) => b.y0)), base = Math.max(...bl.map((b) => b.y1));
+    const dy = Math.round(960 - (topo + base) / 2);
+    BOXES = []; capa(c, dy);
+    const caixas = BOXES.map((b) => (b.nome === 'marca' ? b : (({ y0, y1, ...r }) => ({ ...r, y0: y0 + dy, y1: y1 + dy }))(desl(b)))); BOXES = null;
+    return { caixas, bloco: { topo: topo + dy, base: base + dy, centro: (topo + base) / 2 + dy }, dy };
   }
 
   // ---------------------------------------------------------------- o que o QA confere (a partir das próprias poses)
@@ -683,6 +695,7 @@
   window.REEL = {
     init, renderAt, caixas, get DURATION() { return DUR; }, CAP,
     capa: (c) => { BOXES = []; capa(c); const out = BOXES; BOXES = null; return out; },
+    capaGrade,
     legenda: () => PAGES.map((q) => ({ frase: q.frase, t0: q.t0, t1: q.t1, linhas: q.rows.map(([a, b]) => q.words.slice(a, b).map((x) => x.w).join(' ')),
       palavras: Array.from({ length: q.b - q.a }, (_, i) => ({ w: q.words[q.a + i].w, t0: q.words[q.a + i].t0, chave: !!q.words[q.a + i].chave })) })),
     plano: () => ({ cenas: CENAS.map((s) => ({ id: s.id, frase: s.frase, t0: +s.t0.toFixed(3), t1: +s.t1.toFixed(3), legenda: s.legenda })),

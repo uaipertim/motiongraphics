@@ -430,6 +430,22 @@
     c.restore();
     avisoPrevia(c);
   }
+  // ---------------------------------------------------------------- capa para a grade (à parte: o vídeo não muda)
+  // o mesmo quadro 0, com a logo pequena no lugar e o bloco principal deslocado para o centro do recorte 3:4 (y = 960)
+  function desenhaCapa(c, dy) {
+    c.setTransform(1, 0, 0, 1, 0, 0); c.globalAlpha = 1; c.shadowColor = 'transparent';
+    fundo(c, 0);
+    c.save(); c.translate(0, dy); gancho(c, 0); c.restore();
+    marca(c);
+  }
+  function capaGrade(c) {
+    BOXES = []; desenhaCapa(c, 0);
+    const bl = BOXES.filter((b) => b.nome !== 'marca'), topo = Math.min(...bl.map((b) => b.y0)), base = Math.max(...bl.map((b) => b.y1));
+    const dy = Math.round(960 - (topo + base) / 2);
+    BOXES = []; desenhaCapa(c, dy);
+    const caixas = BOXES.map((b) => (b.nome === 'marca' ? b : { ...b, y0: b.y0 + dy, y1: b.y1 + dy })); BOXES = null;
+    return { caixas, bloco: { topo: topo + dy, base: base + dy, centro: (topo + base) / 2 + dy }, dy };
+  }
   function renderAt(c, t) { frame(c, clamp(t, 0, DUR - 1e-4)); }
   function init(img, linha, o = {}) {
     LOGO = img; LN = linha; DUR = linha.duracao; PREVIA = !!o.previa;
@@ -438,7 +454,7 @@
   }
   function caixas(c, t) { BOXES = []; frame(c, t); const out = BOXES; BOXES = null; return out; }
   window.SALDO = {
-    init, renderAt, caixas, get DURATION() { return DUR; }, CAP,
+    init, renderAt, caixas, capaGrade, get DURATION() { return DUR; }, CAP,
     legenda: () => PAGES.map((q) => ({ t0: q.t0, t1: q.t1, linhas: q.rows.map(([a, b]) => q.words.slice(a, b).map((x) => x.w).join(' ')) })),
     tempos: () => T,
   };
