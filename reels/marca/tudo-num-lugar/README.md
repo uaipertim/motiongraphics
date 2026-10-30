@@ -9,15 +9,36 @@ Vídeo de marca de 30 a 34 s, para ser o vídeo fixado no perfil e o anúncio im
 
 ## Estado
 
-Está na prévia para revisão: sem voz, com tempos estimados, trilha e efeitos. Esta versão segue o pedido "novo ritmo + 3D", que substitui a de b903792.
+**Vídeo final pronto para aprovação: 30,25 s, QA aprovado** ([`output/revisao/relatorio-final.txt`](output/revisao/relatorio-final.txt)).
+
+- **Narração:** `audio/voz.mp3`, do ElevenLabs (Raquel, eleven_v4), com 19,6 s de fala.
+  - **Conferência:** foi feita pelos 10 trechos de fala do áudio, que batem com os 10 blocos de pontuação do roteiro e têm duração compatível com o texto de cada um.
+  - **Sem conferência palavra a palavra:** a chave não tem permissão de transcrição e não há reconhecimento de fala instalado aqui.
+- **Montagem:** a narração foi cortada nas pausas entre as frases, com os respiros inseridos (7,8 s no total), e a voz não foi acelerada. Com a voz real, dois respiros subiram:
+  - o do gancho, de 1,0 para 1,2 s ("caderno." parado ≥ 1,2 s);
+  - o dos pedaços, de 1,2 para 1,9 s (R$ 1.020 ≥ 2 s em foco).
 
 | Arquivo | O que é |
 |---|---|
-| [`output/previa.mp4`](output/previa.mp4) | a prévia (com o aviso "PRÉVIA · SEM VOZ · TEMPOS ESTIMADOS" no topo) |
-| [`output/storyboard.jpg`](output/storyboard.jpg) | a capa + um quadro por cena, com o tempo, a duração e a fala |
-| [`output/capa.jpg`](output/capa.jpg) | a capa, desenhada à parte (`node scripts/render.cjs capa`) e conferida pela regra das capas ([`revisao/capa.txt`](output/revisao/capa.txt)) |
-| [`output/revisao/relatorio.txt`](output/revisao/relatorio.txt) | o QA (`scripts/qa.py`) |
-| [`output/revisao/zonas-seguras.jpg`](output/revisao/zonas-seguras.jpg) | um quadro por cena, com as áreas seguras e a faixa da legenda marcadas |
+| [`output/tudo-num-lugar.mp4`](output/tudo-num-lugar.mp4) | o vídeo final (1080×1920, 60 fps, −14,1 LUFS, pico −2,3 dBTP) |
+| [`legenda.txt`](legenda.txt) | a legenda do post |
+| [`output/capa.jpg`](output/capa.jpg) | a capa, desenhada à parte e dentro da regra das capas |
+| [`output/storyboard.jpg`](output/storyboard.jpg) | a capa + um quadro por cena, do vídeo final |
+| [`output/previa.mp4`](output/previa.mp4) | a prévia 2 aprovada (sem voz, tempos estimados) |
+
+**Cenas no vídeo final:**
+
+| Cena | Tempo | Duração |
+|---|---|---|
+| gancho | 0–5,98 s | 5,98 s |
+| problema | 5,98–9,70 s | 3,72 s |
+| virada | 9,70–13,43 s | 3,73 s |
+| módulos | 13,43–18,40 s | 4,97 s |
+| pedaços | 18,40–23,53 s | 5,13 s |
+| fecho limão | 23,53–26,48 s | 2,95 s |
+| chamada | 26,48–30,25 s | 3,77 s |
+
+**Legenda × voz:** o QA mede o início das 10 palavras depois de pausa: 12 ms em média, 43 ms no máximo. Sem o JSON with-timestamps, as palavras no meio de cada trecho são distribuídas pelas letras (±0,2 s).
 
 ## Narração (para o ElevenLabs)
 

@@ -14,7 +14,7 @@
  "frases": [
   {
    "id": "gancho",
-   "respiro": 1.0,
+   "respiro": 1.2,
    "legenda": false,
    "tokens": [
     {
@@ -131,7 +131,7 @@
   },
   {
    "id": "pedacos",
-   "respiro": 1.2,
+   "respiro": 1.9,
    "legenda": true,
    "tokens": [
     {

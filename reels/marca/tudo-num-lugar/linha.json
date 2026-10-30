@@ -1,18 +1,18 @@
 {
- "provisoria": true,
- "audio": null,
- "audio_original": null,
+ "provisoria": false,
+ "audio": "audio/voz-montada.wav",
+ "audio_original": "audio/voz.mp3",
  "inicio_voz": 0.35,
- "fim_voz": 30.674,
- "logo": 30.974,
- "duracao": 33.074,
+ "fim_voz": 27.85,
+ "logo": 28.15,
+ "duracao": 30.25,
  "marca": "@fazlohospeda",
  "frases": [
   {
    "id": "gancho",
-   "t0": 0.35,
-   "t1": 5.024,
-   "respiro": 1.0,
+   "t0": 0.43,
+   "t1": 4.61,
+   "respiro": 1.2,
    "legenda": false,
    "palavras": [
     {
@@ -22,8 +22,8 @@
      "fala": "Reserva",
      "chave": false,
      "id": "reserva",
-     "t0": 0.35,
-     "t1": 0.926
+     "t0": 0.43,
+     "t1": 0.866
     },
     {
      "frase": 0,
@@ -32,8 +32,8 @@
      "fala": "no",
      "chave": false,
      "id": null,
-     "t0": 0.976,
-     "t1": 1.141
+     "t0": 0.866,
+     "t1": 0.991
     },
     {
      "frase": 0,
@@ -42,8 +42,8 @@
      "fala": "WhatsApp.",
      "chave": true,
      "id": "whats",
-     "t0": 1.191,
-     "t1": 1.849
+     "t0": 0.991,
+     "t1": 1.49
     },
     {
      "frase": 0,
@@ -52,8 +52,8 @@
      "fala": "Sinal",
      "chave": false,
      "id": "sinal0",
-     "t0": 2.349,
-     "t1": 2.761
+     "t0": 2.07,
+     "t1": 2.58
     },
     {
      "frase": 0,
@@ -62,8 +62,8 @@
      "fala": "no",
      "chave": false,
      "id": null,
-     "t0": 2.811,
-     "t1": 2.975
+     "t0": 2.58,
+     "t1": 2.784
     },
     {
      "frase": 0,
@@ -72,8 +72,8 @@
      "fala": "PIX.",
      "chave": true,
      "id": "pix",
-     "t0": 3.025,
-     "t1": 3.272
+     "t0": 2.784,
+     "t1": 3.09
     },
     {
      "frase": 0,
@@ -82,8 +82,8 @@
      "fala": "Saldo",
      "chave": false,
      "id": "saldo0",
-     "t0": 3.772,
-     "t1": 4.184
+     "t0": 3.46,
+     "t1": 3.871
     },
     {
      "frase": 0,
@@ -92,8 +92,8 @@
      "fala": "no",
      "chave": false,
      "id": null,
-     "t0": 4.234,
-     "t1": 4.398
+     "t0": 3.871,
+     "t1": 4.035
     },
     {
      "frase": 0,
@@ -102,15 +102,15 @@
      "fala": "caderno.",
      "chave": true,
      "id": "caderno",
-     "t0": 4.448,
-     "t1": 5.024
+     "t0": 4.035,
+     "t1": 4.61
     }
    ]
   },
   {
    "id": "problema",
-   "t0": 6.524,
-   "t1": 9.409,
+   "t0": 6.18,
+   "t1": 8.39,
    "respiro": 1.0,
    "legenda": false,
    "palavras": [
@@ -121,8 +121,8 @@
      "fala": "E",
      "chave": false,
      "id": "eno",
-     "t0": 6.524,
-     "t1": 6.684
+     "t0": 6.18,
+     "t1": 6.261
     },
     {
      "frase": 1,
@@ -131,8 +131,8 @@
      "fala": "no",
      "chave": false,
      "id": null,
-     "t0": 6.734,
-     "t1": 6.899
+     "t0": 6.261,
+     "t1": 6.423
     },
     {
      "frase": 1,
@@ -141,8 +141,8 @@
      "fala": "check-out:",
      "chave": false,
      "id": null,
-     "t0": 6.949,
-     "t1": 7.608
+     "t0": 6.423,
+     "t1": 7.07
     },
     {
      "frase": 1,
@@ -151,8 +151,8 @@
      "fala": "quanto",
      "chave": false,
      "id": "quanto",
-     "t0": 7.828,
-     "t1": 8.321
+     "t0": 7.34,
+     "t1": 7.69
     },
     {
      "frase": 1,
@@ -161,8 +161,8 @@
      "fala": "falta",
      "chave": true,
      "id": "falta",
-     "t0": 8.371,
-     "t1": 8.783
+     "t0": 7.69,
+     "t1": 7.982
     },
     {
      "frase": 1,
@@ -171,15 +171,15 @@
      "fala": "receber?",
      "chave": false,
      "id": "receber",
-     "t0": 8.833,
-     "t1": 9.409
+     "t0": 7.982,
+     "t1": 8.39
     }
    ]
   },
   {
    "id": "virada",
-   "t0": 10.909,
-   "t1": 13.327,
+   "t0": 9.9,
+   "t1": 12.09,
    "respiro": 1.2,
    "legenda": false,
    "palavras": [
@@ -190,8 +190,8 @@
      "fala": "O",
      "chave": false,
      "id": null,
-     "t0": 10.909,
-     "t1": 11.069
+     "t0": 9.9,
+     "t1": 9.984
     },
     {
      "frase": 2,
@@ -200,8 +200,8 @@
      "fala": "FAZLO Hospeda",
      "chave": false,
      "id": "logo",
-     "t0": 11.119,
-     "t1": 12.107
+     "t0": 9.984,
+     "t1": 10.995
     },
     {
      "frase": 2,
@@ -210,8 +210,8 @@
      "fala": "junta",
      "chave": false,
      "id": "junta",
-     "t0": 12.157,
-     "t1": 12.568
+     "t0": 10.995,
+     "t1": 11.416
     },
     {
      "frase": 2,
@@ -220,8 +220,8 @@
      "fala": "tudo",
      "chave": true,
      "id": "tudoisso",
-     "t0": 12.618,
-     "t1": 12.947
+     "t0": 11.416,
+     "t1": 11.753
     },
     {
      "frase": 2,
@@ -230,15 +230,15 @@
      "fala": "isso:",
      "chave": true,
      "id": null,
-     "t0": 12.997,
-     "t1": 13.327
+     "t0": 11.753,
+     "t1": 12.09
     }
    ]
   },
   {
    "id": "modulos",
-   "t0": 14.747,
-   "t1": 18.3,
+   "t0": 13.63,
+   "t1": 17.19,
    "respiro": 1.0,
    "legenda": true,
    "palavras": [
@@ -249,8 +249,8 @@
      "fala": "reservas,",
      "chave": true,
      "id": "m1",
-     "t0": 14.747,
-     "t1": 15.405
+     "t0": 13.63,
+     "t1": 14.493
     },
     {
      "frase": 3,
@@ -259,8 +259,8 @@
      "fala": "sinal,",
      "chave": true,
      "id": "m2",
-     "t0": 15.625,
-     "t1": 16.037
+     "t0": 14.493,
+     "t1": 15.032
     },
     {
      "frase": 3,
@@ -269,8 +269,8 @@
      "fala": "check-in,",
      "chave": true,
      "id": "m3",
-     "t0": 16.257,
-     "t1": 16.833
+     "t0": 15.032,
+     "t1": 15.788
     },
     {
      "frase": 3,
@@ -279,8 +279,8 @@
      "fala": "comanda",
      "chave": true,
      "id": "m4",
-     "t0": 17.053,
-     "t1": 17.629
+     "t0": 15.788,
+     "t1": 16.543
     },
     {
      "frase": 3,
@@ -289,8 +289,8 @@
      "fala": "e",
      "chave": false,
      "id": null,
-     "t0": 17.679,
-     "t1": 17.839
+     "t0": 16.543,
+     "t1": 16.651
     },
     {
      "frase": 3,
@@ -299,16 +299,16 @@
      "fala": "caixa.",
      "chave": true,
      "id": "m5",
-     "t0": 17.889,
-     "t1": 18.3
+     "t0": 16.651,
+     "t1": 17.19
     }
    ]
   },
   {
    "id": "pedacos",
-   "t0": 19.8,
-   "t1": 23.666,
-   "respiro": 1.2,
+   "t0": 18.6,
+   "t1": 21.5,
+   "respiro": 1.9,
    "legenda": true,
    "palavras": [
     {
@@ -318,8 +318,8 @@
      "fala": "Você",
      "chave": false,
      "id": "ve",
-     "t0": 19.8,
-     "t1": 20.13
+     "t0": 18.6,
+     "t1": 18.897
     },
     {
      "frase": 4,
@@ -328,8 +328,8 @@
      "fala": "vê",
      "chave": false,
      "id": null,
-     "t0": 20.18,
-     "t1": 20.344
+     "t0": 18.897,
+     "t1": 19.046
     },
     {
      "frase": 4,
@@ -338,8 +338,8 @@
      "fala": "o",
      "chave": false,
      "id": null,
-     "t0": 20.394,
-     "t1": 20.554
+     "t0": 19.046,
+     "t1": 19.121
     },
     {
      "frase": 4,
@@ -348,8 +348,8 @@
      "fala": "que",
      "chave": false,
      "id": null,
-     "t0": 20.604,
-     "t1": 20.851
+     "t0": 19.121,
+     "t1": 19.344
     },
     {
      "frase": 4,
@@ -358,8 +358,8 @@
      "fala": "foi",
      "chave": false,
      "id": null,
-     "t0": 20.901,
-     "t1": 21.148
+     "t0": 19.344,
+     "t1": 19.567
     },
     {
      "frase": 4,
@@ -368,8 +368,8 @@
      "fala": "pago",
      "chave": true,
      "id": "pago",
-     "t0": 21.198,
-     "t1": 21.527
+     "t0": 19.567,
+     "t1": 19.864
     },
     {
      "frase": 4,
@@ -378,8 +378,8 @@
      "fala": "e",
      "chave": false,
      "id": null,
-     "t0": 21.577,
-     "t1": 21.737
+     "t0": 19.864,
+     "t1": 19.938
     },
     {
      "frase": 4,
@@ -388,8 +388,8 @@
      "fala": "quanto",
      "chave": true,
      "id": "falta2",
-     "t0": 21.787,
-     "t1": 22.281
+     "t0": 19.938,
+     "t1": 20.385
     },
     {
      "frase": 4,
@@ -398,8 +398,8 @@
      "fala": "falta",
      "chave": true,
      "id": null,
-     "t0": 22.331,
-     "t1": 22.743
+     "t0": 20.385,
+     "t1": 20.756
     },
     {
      "frase": 4,
@@ -408,8 +408,8 @@
      "fala": "no",
      "chave": false,
      "id": "checkout2",
-     "t0": 22.793,
-     "t1": 22.957
+     "t0": 20.756,
+     "t1": 20.905
     },
     {
      "frase": 4,
@@ -418,15 +418,15 @@
      "fala": "check-out.",
      "chave": false,
      "id": null,
-     "t0": 23.007,
-     "t1": 23.666
+     "t0": 20.905,
+     "t1": 21.5
     }
    ]
   },
   {
    "id": "fecho",
-   "t0": 25.366,
-   "t1": 26.668,
+   "t0": 23.73,
+   "t1": 24.82,
    "respiro": 1.5,
    "legenda": false,
    "palavras": [
@@ -437,8 +437,8 @@
      "fala": "Tudo",
      "chave": true,
      "id": "tudo",
-     "t0": 25.366,
-     "t1": 25.695
+     "t0": 23.73,
+     "t1": 24.041
     },
     {
      "frase": 5,
@@ -447,8 +447,8 @@
      "fala": "num",
      "chave": true,
      "id": null,
-     "t0": 25.745,
-     "t1": 25.992
+     "t0": 24.041,
+     "t1": 24.275
     },
     {
      "frase": 5,
@@ -457,8 +457,8 @@
      "fala": "lugar",
      "chave": true,
      "id": null,
-     "t0": 26.042,
-     "t1": 26.453
+     "t0": 24.275,
+     "t1": 24.664
     },
     {
      "frase": 5,
@@ -467,15 +467,15 @@
      "fala": "só.",
      "chave": true,
      "id": null,
-     "t0": 26.503,
-     "t1": 26.668
+     "t0": 24.664,
+     "t1": 24.82
     }
    ]
   },
   {
    "id": "cta",
-   "t0": 28.668,
-   "t1": 30.674,
+   "t0": 26.68,
+   "t1": 27.85,
    "respiro": 0,
    "legenda": true,
    "palavras": [
@@ -486,8 +486,8 @@
      "fala": "Chame",
      "chave": false,
      "id": "chame",
-     "t0": 28.668,
-     "t1": 29.079
+     "t0": 26.68,
+     "t1": 26.959
     },
     {
      "frase": 6,
@@ -496,8 +496,8 @@
      "fala": "a",
      "chave": false,
      "id": null,
-     "t0": 29.129,
-     "t1": 29.289
+     "t0": 26.959,
+     "t1": 27.014
     },
     {
      "frase": 6,
@@ -506,8 +506,8 @@
      "fala": "gente",
      "chave": false,
      "id": null,
-     "t0": 29.339,
-     "t1": 29.751
+     "t0": 27.014,
+     "t1": 27.293
     },
     {
      "frase": 6,
@@ -516,8 +516,8 @@
      "fala": "no",
      "chave": false,
      "id": null,
-     "t0": 29.801,
-     "t1": 29.966
+     "t0": 27.293,
+     "t1": 27.404
     },
     {
      "frase": 6,
@@ -526,8 +526,8 @@
      "fala": "WhatsApp.",
      "chave": true,
      "id": "whats2",
-     "t0": 30.016,
-     "t1": 30.674
+     "t0": 27.404,
+     "t1": 27.85
     }
    ]
   }

@@ -1,0 +1,56 @@
+REEL DE MARCA "Tudo num lugar só" — revisão técnica (final)
+output/tudo-num-lugar.mp4
+
+FORMATO
+OK     vídeo h264 yuv420p 1080x1920 60 fps
+OK     áudio aac 48000 Hz 2 canais
+OK     duração 30.25 s (alvo 30–34 s; linha do tempo: 30.25 s)
+OK     vídeo e áudio com a mesma duração (Δ 0 ms)
+
+SOM
+OK     loudness integrado -14.1 LUFS (alvo −14)
+OK     pico real -2.3 dBTP (limite −1,5)
+
+CENAS E LEITURA
+OK     7 cenas, uma por ideia; a mais curta tem 2.95 s (mínimo 2,5 s)
+       gancho 0.00–5.98 (5.98 s) · problema 5.98–9.70 (3.72 s) · virada 9.70–13.43 (3.73 s) · modulos 13.43–18.40 (4.97 s) · pedacos 18.40–23.53 (5.13 s) · fecho 23.53–26.48 (2.95 s) · chamada 26.48–30.25 (3.77 s)
+OK     17 destaques; cada um fica ≥ 1,2 s parado depois de dito (o menor: 1.21 s)
+       WhatsApp. 4.5s · PIX. 2.9s · caderno. 1.4s · quanto 2.0s · falta 1.7s · receber? 1.3s · FAZLO Hospeda 2.4s · tudo isso: 1.3s · Reservas 3.9s · Sinal 3.4s · Check-in 2.6s · Comanda 1.9s · Caixa 1.2s · R$ 450 1.2s · R$ 1.020 2.0s · Tudo isso / num lugar só. 1.7s · Chame no WhatsApp 2.4s
+OK     nenhum desfoque de movimento sobre cartão em leitura
+OK     cartões em leitura inclinados (rotateY −24° a −18°, rotateX 8° a 12°): Reservas y -19.3…-18.2 x 10.9…11.6 · Sinal y -20.1…-18.5 x 11.6…12 · Check-in y -24…-23.1 x 9.3…10.3 · Comanda y -22.9…-21.1 x 8…8.1 · Caixa y -18.5…-18 x 8.8…9.7 · R$ 450 y -18.8…-18 x 11.2…11.8 · R$ 1.020 y -21.4…-19.5 x 11.1…11.8
+OK     desfoque de movimento só nas entradas dos cartões, ≤ 0,3 s cada (m-reservas 0.23 s, m-sinal 0.23 s, m-checkin 0.23 s, m-comanda 0.23 s, m-caixa 0.23 s, sinal 0.23 s, checkout 0.25 s)
+OK     os 5 módulos ficam visíveis juntos 1.50 s no fim da cena (mínimo 1 s)
+OK     pedaços em foco: R$ 450 por 2.36 s, R$ 1.020 por 2.12 s (mínimo 2 s cada)
+
+LEGENDA
+OK     3 páginas; cada uma fica ≥ 1,5 s na tela (a mais curta: 1.97 s)
+OK     a página anterior sai antes da próxima entrar
+OK     sem palavra órfã (nenhuma página de uma palavra só, nenhuma linha de uma palavra só ao lado de uma linha cheia)
+       reservas, sinal, check-in, / comanda e caixa. | Você vê o que foi pago e / quanto falta no check-out. | Chame a gente no WhatsApp.
+OK     legenda dentro da faixa y 1424–1536, x 150–950 em todos os quadros amostrados
+OK     a legenda não encosta em nada da cena
+OK     legenda escondida onde o texto grande já mostra a frase (gancho, problema, virada, fecho)
+OK     nenhuma palavra falada sem aparecer escrita (no texto grande da cena ou na legenda)
+OK     grafia oficial na legenda ("FAZLO Hospeda", "WhatsApp"): nenhuma grafia fonética
+
+SINCRONIA
+OK     voz × texto: 10 palavras depois de pausa, a 12 ms em média e 43 ms no máximo (limite 80 ms)
+       Reserva -11 · Sinal -43 · Saldo -33 · E +0 · quanto -2 · O -1 · reservas, -8 · Você -3 · Tudo -3 · Chame -12
+       (dentro de cada trecho de fala, as palavras são distribuídas pelas letras: sem o JSON with-timestamps do ElevenLabs, a precisão no meio do trecho é de ±0,2 s)
+
+ÁREAS SEGURAS
+OK     faixa da legenda (y 1424–1536, x 150–950) vazia nas cenas sem legenda: 0 pixels além do fundo
+OK     coluna de botões (x ≥ 950, y 1060–1560): 0 pixels além do fundo em 121 quadros
+OK     20% de baixo (y > 1536): 0 pixels além do fundo em 121 quadros
+OK     nenhuma caixa da cena nas áreas seguras
+
+CONTEÚDO
+OK     "Exemplo fictício": o selo está no mesmo cartão do valor em todos os 22 quadros amostrados com valor
+OK     os cartões que aparecem de frente: os 5 módulos e os 2 pedaços (sem ocupação nem comanda)
+OK     valores só nos cartões do sinal (R$ 450) e do check-out (R$ 1.020): ['checkout', 'sinal']
+OK     contraste no ato limão: texto preto sobre o limão 15.6:1 (mínimo 7:1); o branco não é usado sobre o limão (1.3:1)
+OK     ato limão com 11 quadros amostrados: só texto preto sobre o limão (sem legenda)
+OK     nenhuma tela do sistema: só a logo em src/assets (fazlo-hospeda-logo-alpha.png); telaDestaque: composição abstrata
+OK     capa na regra das capas: dentro da regra das capas
+
+RESULTADO: aprovado

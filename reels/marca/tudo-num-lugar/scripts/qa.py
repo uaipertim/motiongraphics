@@ -160,6 +160,28 @@ ok(not faltam and not falta_leg, 'nenhuma palavra falada sem aparecer escrita (n
 fon = [w['w'] for q in PG for w in q['palavras'] if re.search(r'Fázlo|Hospéda|Uátsap', w['w'])]
 ok(not fon, 'grafia oficial na legenda ("FAZLO Hospeda", "WhatsApp"): nenhuma grafia fonética' + ('' if not fon else f': {fon}'))
 
+# ---------------------------------------------------------------- sincronia (só com a narração)
+if FINAL:
+    rep.append(''); rep.append('SINCRONIA')
+    from scipy.io import wavfile
+    sr, x = wavfile.read(os.path.join(ROOT, LN['audio'])); x = x.astype(float) / 32768
+    x = x.mean(axis=1) if x.ndim > 1 else x
+    env = 20 * np.log10(np.sqrt(np.convolve(x ** 2, np.ones(int(0.01 * sr)) / int(0.01 * sr), 'same')) + 1e-12)
+    ref = np.percentile(env[env > -80], 95); lim = ref - 26
+    ws = [w for f in LN['frases'] for w in f['palavras']]
+    med = []
+    for i, w in enumerate(ws):                                    # as palavras depois de pausa (o início medido no áudio)
+        if i and w['t0'] - ws[i - 1]['t1'] < 0.15:
+            continue
+        a0, a1 = int((w['t0'] - LN['inicio_voz'] - 0.25) * sr), int((w['t0'] - LN['inicio_voz'] + 0.25) * sr)
+        seg = env[max(0, a0):a1]; on = np.nonzero(seg > lim)[0]
+        if len(on):
+            med.append((w['w'], round(((max(0, a0) + on[0]) / sr + LN['inicio_voz'] - w['t0']) * 1000)))
+    pior = max(abs(m) for _, m in med)
+    ok(pior <= 80, f'voz × texto: {len(med)} palavras depois de pausa, a {np.mean([abs(m) for _, m in med]):.0f} ms em média e {pior} ms no máximo (limite 80 ms)')
+    rep.append('       ' + ' · '.join(f'{w} {m:+d}' for w, m in med))
+    rep.append('       (dentro de cada trecho de fala, as palavras são distribuídas pelas letras: sem o JSON with-timestamps do ElevenLabs, a precisão no meio do trecho é de ±0,2 s)')
+
 # ---------------------------------------------------------------- áreas seguras (pixels) e caixas
 rep.append(''); rep.append('ÁREAS SEGURAS')
 fz = np.frombuffer(subprocess.run(['ffmpeg', '-loglevel', 'error', '-i', VIDEO, '-vf', 'fps=4', '-f', 'rawvideo', '-pix_fmt', 'rgb24', '-'], capture_output=True).stdout,
