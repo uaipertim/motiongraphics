@@ -58,11 +58,12 @@
   function camera(t) {
     const key = [[0, 1, 462, 1000], [T.vejo - 0.1, 1, 462, 1000], [T.vejo + 0.5, 1.42, 560, 860],
       [T.tela2 - 0.25, 1.42, 560, 860], [T.tela2 + 0.3, 1.0, 462, 1000], [T.mesmo - 0.1, 1.0, 462, 1000], [T.mesmo + 0.5, 1.32, 462, 900],
-      [T.tela3, 1.32, 462, 900], [T.tela3 + 0.5, 1.12, 462, 1050], [T.periodo - 0.1, 1.12, 462, 1050], [T.periodo + 0.5, 1.24, 462, 1130]];
+      [T.tela3, 1.32, 462, 900], [T.tela3 + 0.5, 1.12, 462, 1050], [T.periodo - 0.1, 1.12, 462, 1050], [T.periodo + 0.5, 1.06, 462, 1000, 670]];   // na pausa: o celular inteiro, parado, centralizado entre o topo e a legenda
     let a = key[0], b = key[0];
     for (let i = 0; i < key.length; i++) { if (t >= key[i][0]) { a = key[i]; b = key[i + 1] || key[i]; } }
     const u = b === a ? 0 : E.inOutCubic(p(t, a[0], b[0]));
-    return { z: lerp(a[1], b[1], u), cx: lerp(a[2], b[2], u), cy: lerp(a[3], b[3], u) };
+    const oy = (k) => k[4] ?? (PY + SH / 2 - 40 * (k[1] - 1));     // onde fica o centro do celular no quadro
+    return { z: lerp(a[1], b[1], u), cx: lerp(a[2], b[2], u), cy: lerp(a[3], b[3], u), oy: lerp(oy(a), oy(b), u) };
   }
   function contorno(c, r, t0, t, cor = C.lime) {                  // o contorno limão que se desenha, com o resto escurecido
     const u = E.outCubic(p(t, t0, t0 + 0.4));
@@ -98,8 +99,9 @@
     c.beginPath(); c.rect(0, 0, W, 1352); c.clip();                // o celular nunca desce até a legenda
     c.translate(0, 300 * (1 - ent) - 120 * sai); c.globalAlpha *= clamp(ent * 1.5) * (1 - sai);
     // a câmera: aproxima o ponto (cx, cy) da tela, que vai para o centro do celular
-    const fx = sx(cam.cx), fy = sy(cam.cy), ox = PX + SW / 2, oy = PY + SH / 2 - 40 * (z - 1);
-    c.translate(ox, oy); c.scale(z, z); c.rotate(Math.sin(t * 0.6) * 0.006); c.translate(-fx, -fy);
+    const fx = sx(cam.cx), fy = sy(cam.cy), ox = PX + SW / 2, oy = cam.oy;
+    const balanco = 1 - p(t, T.periodo, T.periodo + 0.5);          // depois que o aviso entra, o celular fica parado
+    c.translate(ox, oy); c.scale(z, z); c.rotate(Math.sin(t * 0.6) * 0.006 * balanco); c.translate(-fx, -fy);
     c.save(); c.shadowColor = 'rgba(0,0,0,0.6)'; c.shadowBlur = 60; c.shadowOffsetY = 24;
     rr(c, PX - BZ, PY - BZ, SW + 2 * BZ, SH + 2 * BZ, 64); c.fillStyle = '#050505'; c.fill(); c.restore();
     rr(c, PX - BZ, PY - BZ, SW + 2 * BZ, SH + 2 * BZ, 64); c.strokeStyle = css(C.lime, 0.35); c.lineWidth = 2.5; c.stroke();
@@ -180,12 +182,14 @@
         }
         const rows = brk >= n ? [[a, b]] : [[a, a + brk], [a + brk, b]], pos = {};
         rows.forEach(([r0, r1], ri) => { let x = CAP.cx - wid(ws, r0, r1) / 2; for (let k = r0; k < r1; k++) { pos[k] = { x, row: ri }; x += tw(ws[k].w + ' ', DISPLAY, CAP.size, 900, -0.02 * CAP.size) - 0.02 * CAP.size; } });
-        PAGES.push({ a, b, rows, pos, nrows: rows.length, t0: ws[a].t0, words: ws, fimFala: ws[b - 1].t1, prox });
+        PAGES.push({ a, b, rows, pos, nrows: rows.length, t0: ws[a].t0, words: ws, fimFala: ws[b - 1].t1, prox, clipe: f.clipe });
       });
     });
     PAGES.forEach((q, i) => {
       const nx = PAGES[i + 1] && PAGES[i + 1].prox === q.prox ? PAGES[i + 1].t0 : q.prox;
       q.t1 = Math.min(nx, Math.max(q.fimFala + CAP.segura, Math.min(q.t0 + CAP.minPag, nx)), LN.logo - 0.05);
+      // a última legenda do meio fica na tela durante toda a pausa, até a faixa da transição para a Dona Maria
+      if (q.clipe === 'meio' && !(PAGES[i + 1] && PAGES[i + 1].clipe === 'meio')) q.t1 = LN.transicao2 + 0.15;
     });
   }
   function legenda(c, t, sobreVideo) {
