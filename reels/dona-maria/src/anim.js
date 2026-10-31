@@ -51,7 +51,7 @@
   const R = {
     andrade: [484, 826, 658, 900], ipe: [50, 797, 870, 930],
     acomodacao: [118, 828, 806, 884], periodo: [118, 894, 806, 952],
-    aviso: [86, 1095, 838, 1343], ocupado: [212, 1122, 494, 1172],
+    aviso: [86, 1095, 838, 1343], ocupado: [219, 1131, 486, 1167, 2],     // só "Período ocupado." (o "O Chalé Ipê" começa em x 495)
   };
   const sx = (x) => PX + x * K, sy = (y) => PY + y * K;
   // a câmera: escala e centro (em pixels da tela) em cada momento
@@ -67,7 +67,7 @@
   function contorno(c, r, t0, t, cor = C.lime) {                  // o contorno limão que se desenha, com o resto escurecido
     const u = E.outCubic(p(t, t0, t0 + 0.4));
     if (u <= 0) return;
-    const [x0, y0, x1, y1] = r, pad = 8, X = sx(x0) - pad, Y = sy(y0) - pad, Wd = (x1 - x0) * K + 2 * pad, Hd = (y1 - y0) * K + 2 * pad;
+    const [x0, y0, x1, y1] = r, pad = r[4] ?? 8, X = sx(x0) - pad, Y = sy(y0) - pad, Wd = (x1 - x0) * K + 2 * pad, Hd = (y1 - y0) * K + 2 * pad;
     c.save(); c.beginPath(); c.rect(PX, PY, SW, SH); c.roundRect(X, Y, Wd, Hd, 12); c.fillStyle = `rgba(10,10,10,${0.38 * u})`; c.fill('evenodd'); c.restore();
     const per = 2 * (Wd + Hd);
     c.save(); rr(c, X, Y, Wd, Hd, 12); c.setLineDash([per * u, per]); c.strokeStyle = cor; c.lineWidth = 5 / 1.3;
@@ -193,8 +193,9 @@
     if (!pg) return;
     const y0 = CAP.y1 + (pg.nrows === 1 ? CAP.lh / 2 : 0), ls = -0.02 * CAP.size;
     if (sobreVideo) {                                             // sobre a Dona Maria: um véu escuro suave atrás da legenda
-      const g = c.createLinearGradient(0, 1330, 0, 1600); g.addColorStop(0, 'rgba(0,0,0,0)'); g.addColorStop(0.35, 'rgba(0,0,0,0.42)'); g.addColorStop(0.75, 'rgba(0,0,0,0.42)'); g.addColorStop(1, 'rgba(0,0,0,0)');
-      c.fillStyle = g; c.fillRect(0, 1330, W, 270);
+      // um véu bem suave e estreito (a legenda se apoia na sombra do próprio texto)
+      const g = c.createLinearGradient(0, 1380, 0, 1550); g.addColorStop(0, 'rgba(0,0,0,0)'); g.addColorStop(0.5, 'rgba(0,0,0,0.2)'); g.addColorStop(1, 'rgba(0,0,0,0)');
+      c.fillStyle = g; c.fillRect(0, 1380, W, 170);
     }
     c.save(); c.shadowColor = 'rgba(0,0,0,0.85)'; c.shadowBlur = 18; c.shadowOffsetY = 2;
     for (let k = pg.a; k < pg.b; k++) {
@@ -203,7 +204,9 @@
       const u = E.outCubic(p(t, w.t0, w.t0 + 0.09)), ps = pg.pos[k], ww = tw(w.w, DISPLAY, CAP.size, 900, ls);
       const pop = w.chave ? 1 + 0.07 * kick(t, w.t0, 0.18) : 1, y = y0 + ps.row * CAP.lh + (1 - u) * 10;
       c.save(); setFont(c, DISPLAY, CAP.size, 900, ls); c.textAlign = 'left'; c.textBaseline = 'alphabetic'; c.globalAlpha = u;
-      c.translate(ps.x + ww / 2, y - CAP.size * 0.3); c.scale(pop, pop); c.fillStyle = w.chave ? C.lime : C.white; c.fillText(w.w, -ww / 2, CAP.size * 0.3); c.restore();
+      c.translate(ps.x + ww / 2, y - CAP.size * 0.3); c.scale(pop, pop); c.fillStyle = w.chave ? C.lime : C.white; c.fillText(w.w, -ww / 2, CAP.size * 0.3);
+      if (sobreVideo) { c.shadowColor = 'rgba(0,0,0,0.9)'; c.shadowBlur = 5; c.shadowOffsetY = 2; c.fillText(w.w, -ww / 2, CAP.size * 0.3); }   // sombra justa no texto, sobre a camisa
+      c.restore();
       if (u > 0.99) BOX('legenda', ps.x, y - CAP.size * 0.76, ps.x + ww, y + CAP.size * 0.22);
     }
     c.restore();

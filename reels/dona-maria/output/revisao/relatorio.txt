@@ -16,7 +16,7 @@ OK     fechamento: 25 quadros repetidos em 143 (esperado 24 + 2 já iguais na fo
 OK     fechamento: a boca acompanha a voz: 94% dos quadros são o da fonte no mesmo instante do áudio (±1 quadro), desvio mediano -20 ms (os outros são instantes de rosto parado, em que dois quadros da fonte são quase iguais)
 
 LEGENDA
-OK     11 páginas; cada uma aparece no quadro da 1ª palavra (atraso em quadros de 33 ms: [1, 0, 0, -1, -1, 0, 1, 0, 0, 0, -1])
+OK     11 páginas; cada uma aparece no quadro da 1ª palavra (atraso em quadros de 33 ms: [1, -1, 0, -1, -1, 0, 1, 0, 0, 0, -1])
 OK     legenda × voz: nos 14 inícios de frase, a palavra entra a 2 ms em média e 4 ms no máximo do início medido na voz (limite 40 ms)
        (no meio de um trecho, os tempos das palavras saem do vale de energia mais próximo: ±0,1 s; sem a transcrição, a chave não tem permissão)
 OK     legenda em y 1388–1531: abaixo da boca e do queixo (queixo em y ≈ 990) e acima dos 20% de baixo
