@@ -1,0 +1,37 @@
+{
+ "duracao": 33.6,
+ "cues": [
+  {
+   "t": 10.6,
+   "type": "logowipe"
+  },
+  {
+   "t": 15.41,
+   "type": "foco"
+  },
+  {
+   "t": 20.07,
+   "type": "foco"
+  },
+  {
+   "t": 21.12,
+   "type": "foco"
+  },
+  {
+   "t": 22.53,
+   "type": "slide"
+  },
+  {
+   "t": 23.0,
+   "type": "foco"
+  },
+  {
+   "t": 26.45,
+   "type": "logowipe"
+  },
+  {
+   "t": 31.89,
+   "type": "bell"
+  }
+ ]
+}

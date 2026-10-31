@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>Dona Maria</title>
+<style>
+  @font-face { font-family: 'FL Display'; src: url('fonts/InterDisplay-Bold.otf') format('opentype'); font-weight: 700; }
+  @font-face { font-family: 'FL Display'; src: url('fonts/InterDisplay-ExtraBold.otf') format('opentype'); font-weight: 800; }
+  @font-face { font-family: 'FL Display'; src: url('fonts/InterDisplay-Black.otf') format('opentype'); font-weight: 900; }
+  @font-face { font-family: 'FL Mono'; src: url('fonts/JetBrainsMonoNL-Bold.ttf') format('truetype'); font-weight: 700; }
+  html, body { margin: 0; background: transparent; }
+  canvas { display: block; width: 1080px; height: 1920px; }
+</style>
+</head>
+<body>
+<canvas id="c" width="1080" height="1920"></canvas>
+<script src="anim.js"></script>
+<script>
+  const ctx = document.getElementById('c').getContext('2d');
+  const carrega = async (s) => { const im = new Image(); im.src = s; await im.decode(); return im; };
+  window.ready = (async () => {
+    await Promise.all(['900 40px "FL Display"', '800 40px "FL Display"', '700 40px "FL Display"', '700 40px "FL Mono"'].map((f) => document.fonts.load(f)));
+    const logo = await carrega('assets/fazlo-hospeda-logo-alpha.png');
+    const telas = await Promise.all(['01-calendario', '02-nova-reserva', '03-periodo-ocupado'].map((n) => carrega('../telas/' + n + '.png')));
+    const linha = await (await fetch('../linha.json?' + Date.now())).json();
+    REEL.init(logo, telas, linha);
+  })();
+  window.frameAt = (t) => { REEL.frame(ctx, t); return ctx.canvas.toDataURL('image/png'); };
+  window.caixas = (t) => REEL.caixas(ctx, t);
+</script>
+</body>
+</html>

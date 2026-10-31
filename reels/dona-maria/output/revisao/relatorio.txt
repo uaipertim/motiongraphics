@@ -1,0 +1,30 @@
+REEL DONA MARIA — revisão técnica
+output/dona-maria.mp4
+
+FORMATO E SOM
+OK     vídeo h264 1080x1920 30/1 fps yuv420p
+OK     áudio aac 48000 Hz 2 canais
+OK     duração 33.60 s (vídeo e áudio Δ 0 ms)
+OK     loudness -14.2 LUFS (alvo −14), pico real -2.3 dBTP (limite −1,5)
+OK     a trilha fica 18.3 dB abaixo da voz (voz -13.8 LUFS, trilha -32.1 LUFS; alvo ~18 dB)
+       limitador do master: age em 0.131% das amostras (só os picos mais altos da voz; o resto da voz passa sem tratamento)
+
+BOCA DA DONA MARIA (25 → 30 fps)
+OK     abertura: 52 quadros repetidos em 314 (esperado 52 + 1 já iguais na fonte), nunca 2 seguidos; cadência de 1 a cada 6 com 2 exceção(ões) (no começo, antes da fala, onde a fonte já repete quadros)
+OK     abertura: a boca acompanha a voz: 96% dos quadros são o da fonte no mesmo instante do áudio (±1 quadro), desvio mediano +0 ms (os outros são instantes de rosto parado, em que dois quadros da fonte são quase iguais)
+OK     fechamento: 25 quadros repetidos em 143 (esperado 24 + 2 já iguais na fonte), nunca 2 seguidos; cadência de 1 a cada 6 com 2 exceção(ões) (no começo, antes da fala, onde a fonte já repete quadros)
+OK     fechamento: a boca acompanha a voz: 94% dos quadros são o da fonte no mesmo instante do áudio (±1 quadro), desvio mediano -20 ms (os outros são instantes de rosto parado, em que dois quadros da fonte são quase iguais)
+
+LEGENDA
+OK     11 páginas; cada uma aparece no quadro da 1ª palavra (atraso em quadros de 33 ms: [1, 0, 0, -1, -1, 0, 1, 0, 0, 0, -1])
+OK     legenda × voz: nos 14 inícios de frase, a palavra entra a 2 ms em média e 4 ms no máximo do início medido na voz (limite 40 ms)
+       (no meio de um trecho, os tempos das palavras saem do vale de energia mais próximo: ±0,1 s; sem a transcrição, a chave não tem permissão)
+OK     legenda em y 1388–1531: abaixo da boca e do queixo (queixo em y ≈ 990) e acima dos 20% de baixo
+OK     grafia: "FAZLO Hospeda" na tela; nenhum "V2", "nova versão" ou "em breve"
+       chaves em limão: FAZLO Hospeda., caderno., caderno?, calendário, chalé, chalé,, deixa., mesmo, não
+
+MEIO
+OK     período ocupado parado 2.75 s depois de "não deixa" (mínimo 2,5 s), sem narração (voz abaixo de −40 dBFS)
+OK     só as 3 telas anexadas: 01-calendario.png, 02-nova-reserva.png, 03-periodo-ocupado.png
+
+RESULTADO: aprovado
