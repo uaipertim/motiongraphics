@@ -1,0 +1,16 @@
+{
+ "id": "dona-maria",
+ "titulo": "Dona Maria: duas famílias no mesmo chalé",
+ "marca": "@fazlohospeda",
+ "nota": "Reel com a personagem Dona Maria (dona de pousada). Vídeos e voz fornecidos; não se mexe na voz nem no vídeo além do corte do silêncio inicial e do upscale. Telas: só as 3 anexadas (telas/). 'chaves': palavras em limão na legenda (grafia oficial na tela: 'FAZLO Hospeda').",
+ "clipes": [
+  {"id": "abertura", "arquivo": "midia/abertura.mp4", "corte_inicio": 0.45,
+   "texto": "Oi! Eu já perdi hóspede por causa de caderno. Marquei duas famílias no mesmo chalé, no mesmo fim de semana. Só descobri quando as duas chegaram."},
+  {"id": "meio", "arquivo": "midia/meio-narracao.mp3", "corte_inicio": 0,
+   "texto": "Hoje toda reserva fica no calendário do Fazlo Hospeda. Eu vejo cada chalé, dia por dia. E se eu tento lançar o mesmo chalé numa data já ocupada, o sistema não deixa."},
+  {"id": "fechamento", "arquivo": "midia/fechamento.mp4", "corte_inicio": 0.3,
+   "texto": "E você, ainda marca reserva no caderno? Me conta aqui."}
+ ],
+ "tela": {"Fazlo Hospeda": "FAZLO Hospeda"},
+ "chaves": ["caderno", "mesmo chalé", "calendário", "Fazlo Hospeda", "não deixa"]
+}
