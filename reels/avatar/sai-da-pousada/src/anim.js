@@ -154,35 +154,38 @@
   }
 
   // ---------------------------------------------------------------- P1: o gancho
-  const P1 = { x: 50, w: 900, y: 800, gap: 14, size: 40 };
+  // V4: uma notificação legível por vez. Cada nova cai no mesmo lugar; a anterior recua para uma borda atrás (pilha do
+  // iOS: menor, mais escura, desfocada, só a beirada aparecendo embaixo) e a pílula conta o total.
+  const P1 = { x: 50, w: 900, y: 820, size: 40 };
   function p1(c, t) {
-    const N = EV.notificacoes, ag = E.inOutCubic(p(t, EV.agrupa, EV.agrupa + 0.5));
-    const h = notificacao(c, 0, 0, P1.w, N[1][1], { medir: true, size: P1.size });
-    const n = N.filter((q) => t >= q[0]).length;
-    // ordem na lista: a mais nova em cima; as antigas descem (mola) — e no agrupamento recuam atrás da mais nova
-    const desenha = [];
+    const N = EV.notificacoes, n = N.filter((q) => t >= q[0]).length;
+    if (!n) return;
+    const h = notificacao(c, 0, 0, P1.w, N[1][1], { medir: true }), cx = P1.x + P1.w / 2;
     for (let i = 0; i < n; i++) {
-      const [t0, msg] = N[i], idade = n - 1 - i;                     // 0 = a mais nova
-      let ySlot = P1.y;                                             // posição na lista, com a mola de cada empurrão
-      for (let j = i + 1; j < n; j++) ySlot += (h + P1.gap) * E.mola(p(t, N[j][0], N[j][0] + 0.55));
-      const yGrupo = P1.y + 14 * idade, sGrupo = 1 - 0.05 * idade;     // no grupo: lâminas logo abaixo da mais nova
-      const y = lerp(ySlot, yGrupo, ag), s = lerp(1, sGrupo, ag), blur = 6 * ag * Math.min(idade, 1) + 2 * ag * Math.max(0, idade - 1);
-      const ent = E.mola(p(t, t0, t0 + 0.55)), yy = y - (1 - ent) * 110;
-      desenha.push({ i, idade, y: yy, s, blur, alpha: clamp(p(t, t0, t0 + 0.18)) * (1 - 0.35 * ag * Math.min(idade, 1)), msg, brilho: 0.78 - 0.18 * ag * Math.min(idade, 1) });
+      const [t0_, msg] = N[i], t0 = i === 0 ? t0_ - 0.45 : t0_;            // a 1ª já chega pousada no quadro 0 (o gancho)
+      const ent = E.mola(p(t, t0 + (i ? 0.1 : 0), t0 + (i ? 0.1 : 0) + 0.55));
+      // quanto esta já recuou (cada notificação nova empurra as anteriores um nível para trás)
+      let recuo = 0; for (let j = i + 1; j < n; j++) recuo += E.inOutCubic(p(t, N[j][0], N[j][0] + 0.4));
+      const nivel = Math.min(recuo, 2);
+      const yy = P1.y - (1 - ent) * 110 + 16 * nivel, s = 1 - 0.05 * nivel, alpha = clamp(p(t, t0 + (i ? 0.1 : 0), t0 + (i ? 0.1 : 0) + 0.18));
+      const novaChegando = i + 1 < n ? clamp(p(t, N[i + 1][0], N[i + 1][0] + 0.12)) : 0;   // o texto antigo some antes do novo aparecer
+      if (recuo >= 2.99) continue;                                     // a 3ª para trás some atrás das outras
+      const f = (cc) => { cc.translate(cx, yy + h); cc.scale(s, s); cc.translate(-cx, -(yy + h));
+        notificacao(cc, P1.x, yy, P1.w, msg, { alpha, brilho: 0.78 - 0.16 * Math.min(nivel, 1), lida: nivel > 0.5, semCaixa: true, semTexto: nivel > 0.02, tinta: nivel > 0.5 ? 'rgba(14,16,18,0.7)' : undefined }); };
+      if (nivel > 0.05) {
+        // atrás: o texto some (fica só a borda do cartão), desfocado
+        desfocado(c, (cc) => { cc.translate(cx, yy + h); cc.scale(s, s); cc.translate(-cx, -(yy + h)); vidro(cc, P1.x, yy, P1.w, h, 34, { alpha, brilho: 0.6, sombra: 0.2, tinta: 'rgba(14,16,18,0.7)' }); }, 4 * Math.min(nivel, 1), 1);
+        if (novaChegando < 1) { c.save(); c.globalAlpha *= 1 - novaChegando; f(c); c.restore(); }
+      } else { c.save(); f(c); c.restore(); if (alpha > 0.5 && ent > 0.85) BOX('notificacao', P1.x, yy, P1.x + P1.w, yy + h, { txt: msg }); }
     }
-    desenha.sort((a, b) => b.idade - a.idade);                       // as antigas atrás
-    for (const d of desenha) {
-      const cx = P1.x + P1.w / 2;
-      const f = (cc) => { cc.translate(cx, d.y); cc.scale(d.s, d.s); cc.translate(-cx, -d.y); notificacao(cc, P1.x, d.y, P1.w, d.msg, { size: P1.size, alpha: d.alpha, brilho: d.brilho, lida: d.idade > 0 && ag > 0.5, semCaixa: true, semTexto: d.idade > 0 && ag > 0.05 }); };
-      if (d.blur > 0.3) desfocado(c, f, d.blur, 1);
-      else { c.save(); f(c); c.restore(); }
-      if (d.alpha > 0.5 && (d.idade === 0 || ag < 0.5)) BOX('notificacao', P1.x, d.y, P1.x + P1.w, d.y + h, { txt: d.msg });
-    }
-    // o contador do grupo
-    const k = E.mola(p(t, EV.agrupa + 0.25, EV.agrupa + 0.75));
-    if (k > 0) {
-      const y = P1.y + h + 44 - (1 - k) * 14, pl = pilula(c, '3 notificações', P1.x + P1.w / 2, y, { alpha: clamp(k * 2) });
-      BOX('contador', pl.x, y, pl.x + pl.w, y + pl.h);
+    // a pílula do total (a partir da 2ª)
+    if (n >= 2) {
+      const tk = N[n - 1][0], k = E.mola(p(t, N[1][0], N[1][0] + 0.45)), pulso = 1 + 0.08 * kick(t, tk, 0.25);
+      const y = P1.y + h + 52 - (1 - k) * 14, s = `${n} notificações`, pcx = P1.x + 170;
+      c.save(); c.translate(pcx, y + 30); c.scale(pulso, pulso); c.translate(-pcx, -(y + 30));
+      const pl = pilula(c, s, pcx, y, { alpha: clamp(k * 2), ponto: true, minW: tw('3 notificações', TEXT, 30, 600, 0.3) + 80 });
+      c.restore();
+      if (k > 0.9) BOX('contador', pl.x, y, pl.x + pl.w, y + pl.h);
     }
   }
 
@@ -371,52 +374,34 @@
     c.beginPath(); c.moveTo(-14, -2); c.lineTo(16, -14); c.lineTo(6, 16); c.lineTo(0, 4); c.closePath(); c.stroke();
     c.beginPath(); c.moveTo(0, 4); c.lineTo(16, -14); c.stroke(); c.restore();
   }
-  // V3: o final sem a personagem — a imagem dela desfoca e escurece até o preto da marca (com brilho limão de fundo)
-  // e o cartão de envio centralizado; o "Enviar" afunda e o avião sai
-  function fundoMarca(c, t, a) {
-    c.fillStyle = `rgba(10,10,10,${a})`; c.fillRect(0, 0, W, H);
-    const pulso = 0.85 + 0.15 * Math.sin(t * 1.6);
-    const g = c.createRadialGradient(540, 940, 0, 540, 940, 760);
-    g.addColorStop(0, `rgba(181,255,46,${0.16 * a * pulso})`); g.addColorStop(0.55, `rgba(181,255,46,${0.05 * a})`); g.addColorStop(1, 'rgba(181,255,46,0)');
-    c.fillStyle = g; c.fillRect(0, 0, W, H);
-  }
-  const FIM = { w: 960 };
+  // V4: o cartão de envio SOBRE a imagem dela, na parte de baixo (acima dos 20 % de baixo, fora da coluna de botões,
+  // abaixo do queixo); vidro fosco; "Enviar" afunda e o avião sai
+  const FIM = { x: 50, w: 900, base: 1528 };
   function cartaoFinal(c, t) {
     const t0 = EV.cartao, e = E.mola(p(t, t0, t0 + 0.7)), a = clamp(p(t, t0, t0 + 0.22));
     if (e <= 0) return;
-    const sz = 50, lh = 60, L = quebra('Manda pra quem não consegue sair da pousada nem por uma tarde.', DISPLAY, sz, 800, FIM.w - 96, -0.6);
-    const h = 40 + 56 + 30 + L.length * lh + 30 + 84 + 40, x = (W - FIM.w) / 2, y = 960 - h / 2 + (1 - e) * 220;
-    // o vidro desfoca o próprio fundo da marca (brilho limão)
-    const o = OFF2.getContext('2d'); o.setTransform(1, 0, 0, 1, 0, 0); o.clearRect(0, 0, W, H); o.filter = 'none'; fundoMarca(o, t, 1);
+    const sz = 44, lh = 54, L = quebra('Manda pra quem não consegue sair da pousada nem por uma tarde.', DISPLAY, sz, 800, FIM.w - 84, -0.5);
+    const h = 30 + 52 + 22 + L.length * lh + 22 + 76 + 30, x = FIM.x, y = FIM.base - h + (1 - e) * 340;
+    vidro(c, x, y, FIM.w, h, 44, { alpha: a, blur: 30, sombra: 0.45, sombraBlur: 60, tinta: 'rgba(14,16,18,0.6)' });
     c.save(); c.globalAlpha *= a;
-    c.save(); c.beginPath(); c.rect(0, 0, W, H); c.roundRect(x, y, FIM.w, h, 48); c.clip('evenodd'); c.shadowColor = 'rgba(0,0,0,0.6)'; c.shadowBlur = 70; c.shadowOffsetY = 24; rr(c, x, y, FIM.w, h, 48); c.fillStyle = '#000'; c.fill(); c.restore();
-    c.save(); rr(c, x, y, FIM.w, h, 48); c.clip(); c.filter = 'blur(30px) saturate(1.4)'; c.drawImage(OFF2, 0, 0); c.filter = 'none';
-    c.fillStyle = 'rgba(28,31,34,0.62)'; c.fillRect(x, y, FIM.w, h);
-    const gg = c.createLinearGradient(0, y, 0, y + h); gg.addColorStop(0, 'rgba(255,255,255,0.10)'); gg.addColorStop(0.4, 'rgba(255,255,255,0.02)'); gg.addColorStop(1, 'rgba(255,255,255,0)'); c.fillStyle = gg; c.fillRect(x, y, FIM.w, h);
-    c.restore();
-    rr(c, x + 0.75, y + 0.75, FIM.w - 1.5, h - 1.5, 47); c.strokeStyle = 'rgba(255,255,255,0.22)'; c.lineWidth = 1.5; c.stroke();
-    // cabeçalho
-    const hy = y + 40 + 28;
-    c.beginPath(); c.arc(x + 48 + 28, hy, 28, 0, TAU); c.fillStyle = 'rgba(181,255,46,0.12)'; c.fill(); c.strokeStyle = 'rgba(181,255,46,0.6)'; c.lineWidth = 1.5; c.stroke();
-    aviao(c, x + 75, hy + 1, 1.05, C.lime);
-    txt(c, 'Enviar para…', x + 48 + 72, hy + 10, { size: 28, weight: 600, color: C.gray, ls: 0.4, papel: 'meta' });
-    c.fillStyle = 'rgba(255,255,255,0.10)'; c.fillRect(x + 40, y + 40 + 56 + 14, FIM.w - 80, 1.5);
-    // o texto
-    const ty = y + 40 + 56 + 30;
-    L.forEach((l, i) => txt(c, l, x + 48, ty + sz * 0.95 + i * lh, { fam: DISPLAY, size: sz, weight: 800, ls: -0.6, papel: 'corpo' }));
-    // a logo, dentro do cartão
-    const by = ty + L.length * lh + 30, D = 64, lx = x + 48;
+    const hy = y + 30 + 26;
+    c.beginPath(); c.arc(x + 42 + 26, hy, 26, 0, TAU); c.fillStyle = 'rgba(181,255,46,0.12)'; c.fill(); c.strokeStyle = 'rgba(181,255,46,0.6)'; c.lineWidth = 1.5; c.stroke();
+    aviao(c, x + 67, hy + 1, 1.0, C.lime);
+    txt(c, 'Enviar para…', x + 42 + 66, hy + 10, { size: 28, weight: 600, color: C.gray, ls: 0.4, papel: 'meta' });
+    c.fillStyle = 'rgba(255,255,255,0.10)'; c.fillRect(x + 36, y + 30 + 52 + 10, FIM.w - 72, 1.5);
+    const ty = y + 30 + 52 + 22;
+    L.forEach((l, i) => txt(c, l, x + 42, ty + sz * 0.95 + i * lh, { fam: DISPLAY, size: sz, weight: 800, ls: -0.5, papel: 'corpo' }));
+    const by = ty + L.length * lh + 22, D = 56, lx = x + 42;
     c.drawImage(LOGO, lx, by + 10, D, D);
-    const w1 = txt(c, 'FAZLO ', lx + D + 14, by + 10 + D / 2 + 12, { fam: DISPLAY, size: 34, weight: 900, ls: -0.4 });
-    txt(c, 'Hospeda', lx + D + 14 + w1, by + 10 + D / 2 + 12, { fam: DISPLAY, size: 34, weight: 700, color: C.lime, ls: -0.4 });
-    // o botão "Enviar": afunda e volta, o avião sai
+    const w1 = txt(c, 'FAZLO ', lx + D + 12, by + 10 + D / 2 + 11, { fam: DISPLAY, size: 30, weight: 900, ls: -0.4 });
+    txt(c, 'Hospeda', lx + D + 12 + w1, by + 10 + D / 2 + 11, { fam: DISPLAY, size: 30, weight: 700, color: C.lime, ls: -0.4 });
     const tp = EV.enviar, pr = p(t, tp, tp + 0.1) * (1 - p(t, tp + 0.1, tp + 0.34)), sent = p(t, tp + 0.12, tp + 0.5);
-    const bw = 236, bh = 84, bx = x + FIM.w - 48 - bw, sc = 1 - 0.07 * pr;
+    const bw = 220, bh = 76, bx = x + FIM.w - 42 - bw, sc = 1 - 0.07 * pr;
     c.save(); c.translate(bx + bw / 2, by + bh / 2); c.scale(sc, sc);
-    c.shadowColor = `rgba(181,255,46,${0.25 + 0.4 * kick(t, tp + 0.1, 0.5)})`; c.shadowBlur = 26 + 34 * kick(t, tp + 0.1, 0.5);
-    rr(c, -bw / 2, -bh / 2, bw, bh, 42); c.fillStyle = C.lime; c.fill(); c.shadowColor = 'transparent';
-    txt(c, 'Enviar', -18, 13, { size: 36, weight: 700, color: C.ink, align: 'center', ls: 0.2 });
-    aviao(c, 64 + 46 * E.inCubic(sent), -30 * E.inCubic(sent), 0.95, `rgba(11,12,13,${1 - sent * 0.9})`);
+    c.shadowColor = `rgba(181,255,46,${0.25 + 0.4 * kick(t, tp + 0.1, 0.5)})`; c.shadowBlur = 24 + 30 * kick(t, tp + 0.1, 0.5);
+    rr(c, -bw / 2, -bh / 2, bw, bh, 38); c.fillStyle = C.lime; c.fill(); c.shadowColor = 'transparent';
+    txt(c, 'Enviar', -16, 12, { size: 34, weight: 700, color: C.ink, align: 'center', ls: 0.2 });
+    aviao(c, 58 + 46 * E.inCubic(sent), -28 * E.inCubic(sent), 0.9, `rgba(11,12,13,${1 - sent * 0.9})`);
     c.restore();
     c.restore();
     if (a > 0.9 && e > 0.97) BOX('cartao', x, y, x + FIM.w, y + h);
@@ -458,7 +443,7 @@
     PAGES.forEach((q, i) => {
       const nx = PAGES[i + 1] && PAGES[i + 1].prox === q.prox ? PAGES[i + 1].t0 : q.prox;
       const fimPlano = PL.find((pl) => q.t0 >= pl.t0 && q.t0 < pl.t1).t1;
-      q.t1 = Math.min(nx, Math.max(q.fimFala + CAP.segura, Math.min(q.t0 + CAP.minPag, nx)), fimPlano - 0.04, q.clipe === 'p5' ? EV.transicao - 0.05 : 1e9);
+      q.t1 = Math.min(nx, Math.max(q.fimFala + CAP.segura, Math.min(q.t0 + CAP.minPag, nx)), fimPlano - 0.04, q.clipe === 'p5' ? EV.cartao - 0.05 : 1e9);
     });
   }
   function legenda(c, t) {
@@ -499,14 +484,12 @@
     c.setTransform(1, 0, 0, 1, 0, 0); c.globalAlpha = 1; c.filter = 'none'; c.shadowColor = 'transparent'; c.clearRect(0, 0, W, H);
     const pl = plano(t).id;
     SHK = pl === 'p1' ? tremor(t) : { x: 0, y: 0, s: 1 };
-    if (pl === 'fim') { c.fillStyle = '#0A0A0A'; c.fillRect(0, 0, W, H); fundoMarca(c, t, 1); cartaoFinal(c, t); return; }
-    const tr = pl === 'p5' ? E.inOutSine(p(t, EV.transicao, PL.find((q) => q.id === 'p5').t1)) : 0;
-    if (FRAME) base(c, tr > 0 ? `blur(${18 * tr}px) brightness(${1 - 0.85 * tr})` : null); else { c.fillStyle = '#000'; c.fillRect(0, 0, W, H); }
-    if (tr > 0) fundoMarca(c, t, tr);
+    if (FRAME) base(c); else { c.fillStyle = '#000'; c.fillRect(0, 0, W, H); }
     if (pl === 'p4') { p4atras(c, t); pessoaNaFrente(c); }
     if (pl === 'p1') p1(c, t);
     else if (pl === 'p2') p2(c, t);
     else if (pl === 'p3') p3(c, t);
+    else if (pl === 'p5') cartaoFinal(c, t);
     relogio(c, t);
     legenda(c, t);
   }

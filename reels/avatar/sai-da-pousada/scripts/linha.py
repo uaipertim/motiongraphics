@@ -12,16 +12,19 @@ PAL = {c['id']: c for c in json.load(open(os.path.join(ROOT, 'audio', 'palavras.
 RAST = json.load(open(os.path.join(ROOT, 'midia', 'rastreio-p2.json')))          # (scripts/rastreio.py: os toques dos polegares)
 R = {c['id']: c for c in json.load(open(os.path.join(ROOT, 'roteiro.json')))['clipes']}
 
-planos = [
-    {'id': 'p1', 't0': 0.0, 't1': 4.6},
-    {'id': 'p2', 't0': 4.6, 't1': 9.1, 'ini': 0.0},
-    {'id': 'p3', 't0': 9.1, 't1': 13.3, 'ini': 0.84},          # V2: 0,54 s mais tarde (a fonte tem 5,04 s; tira o resto de sorriso)
-    {'id': 'p4', 't0': 13.3, 't1': 20.1, 'ini': 0.0},
-    {'id': 'p5', 't0': 20.1, 't1': 26.5, 'ini': 0.0},           # V3: só para a frente, até ~1 s depois da última palavra
-    {'id': 'fim', 't0': 26.5, 't1': 29.3},                      # V3: tela final da marca (fundo preto), sem a personagem
-]
+EM = json.load(open(os.path.join(ROOT, 'midia', 'emenda-p5.json')))                   # (scripts/emenda_p5.py)
+P1_INI = 0.6                                                                            # V4: P1 0,6 s mais tarde (a fala em ~1,0 s)
+_d = [('p1', 5.0 - P1_INI), ('p2', 4.5), ('p3', 4.2), ('p4', 6.8), ('p5', EM['duracao_p5'])]
+planos, _t = [], 0.0
+for pid, d in _d:
+    planos.append({'id': pid, 't0': round(_t, 3), 't1': round(_t + d, 3)}); _t += d
+planos[0]['ini'] = P1_INI                                                               # Seedance até 1,5 s do clipe, Aurora depois
+planos[1]['ini'] = 0.0
+planos[2]['ini'] = 0.84                                                                 # V2: tira o resto de sorriso do começo
+planos[3]['ini'] = 0.0
+planos[4].update({'ini': 0.0, 'emenda': {k: EM[k] for k in ('principal_ate', 'reserva_de', 'reserva_ate', 'fusao_quadros')}})   # V4: principal → reserva
 P = {p['id']: p for p in planos}
-OFF = {'p1': 0.0, 'p4': P['p4']['t0'], 'p5': P['p5']['t0']}      # onde cada fala começa no Reel (a voz é a do próprio clipe)
+OFF = {'p1': -P1_INI, 'p4': P['p4']['t0'], 'p5': P['p5']['t0']}      # onde cada fala começa no Reel (a voz é a do próprio clipe)
 
 # as chaves em limão, por posição da palavra na fala
 CHAVES = {'p1': {1, 2}, 'p4': {5, 15}, 'p5': {3, 4, 5}}
@@ -41,11 +44,11 @@ essas = next(w for w in PAL['p4']['palavras'] if w['w'] == 'essas')['t0'] + OFF[
 p2, p3 = P['p2']['t0'], P['p3']['t0']
 ev = {
     # P1: o gancho — a 1ª notificação já no quadro 0; mais duas em ~1,2 s; as de baixo recuam e viram "3 notificações"
-    'notificacoes': [[0.0, 'O casal do chalé 3 chegou.'], [0.95, 'Ele disse que pagou o sinal. Pagou?'], [1.27, 'As cervejas vão em qual comanda?']],
-    'agrupa': 2.95,
-    'tremor': [0.0, 0.95, 1.27],
-    'relogio': [[0.55, '14:20'], [round(p2 + 0.25, 3), '14:21'], [round(p3 + 0.30, 3), '14:23'], [round(p3 + 2.30 + 6 * 0.16, 3), '14:31']],
-    'relogio_sai': p3 + 4.2,
+    # V4: uma notificação legível por vez; as seguintes substituem a anterior no mesmo lugar (pilha) e a pílula conta
+    'notificacoes': [[0.0, 'O casal do chalé 3 chegou.'], [1.38, 'Ele disse que pagou o sinal. Pagou?'], [2.5, 'As cervejas vão em qual comanda?']],
+    'tremor': [0.0, 1.38, 2.5],
+    'relogio': [[2.0, '14:20'], [round(p2 + 0.25, 3), '14:21'], [round(p3 + 0.30, 3), '14:23'], [round(p3 + 2.30 + 6 * 0.16, 3), '14:31']],
+    'relogio_sai': round(P['p3']['t1'], 3),
     # P2: a conversa dentro do celular (modo claro, teclado) + a notificação de vidro grande ao lado, para a leitura
     'chat_chega': round(p2 + 0.25, 3), 'p2_notif': round(p2 + 0.25, 3),            # a mesma mensagem: no aparelho e, legível, ao lado
     'digitar': [[round(p2 + 0.62, 3), round(p2 + 1.2, 3)], [round(p2 + 2.1, 3), round(p2 + 2.6, 3)]],
@@ -59,7 +62,7 @@ ev = {
     'aqui': round(aqui, 3),
     # P5
     'fim_fala': round(fim_p5, 3),
-    'transicao': round(P['p5']['t1'] - 0.5, 3), 'cartao': P['fim']['t0'], 'enviar': round(P['fim']['t0'] + 1.2, 3),
+    'cartao': round(fim_p5 + 0.5, 3), 'enviar': round(fim_p5 + 0.5 + 1.2, 3),            # V4: o cartão sobre a imagem dela
     'trilha_some': round(P['p5']['t0'] - 0.5, 3),
 }
 LN = {'duracao': planos[-1]['t1'], 'planos': planos, 'offsets': OFF, 'eventos': ev, 'frases': frases}

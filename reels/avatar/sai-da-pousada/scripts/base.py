@@ -16,7 +16,7 @@ celular, para a conversa ficar legível.
 - Upscale lanczos com nitidez leve (unsharp 5×5 0,4), como no Reel da Dona Maria.
 - 24/25 → 30 fps por repetição de quadro: o quadro do Reel no instante t é o quadro da fonte que está na tela nesse
   instante (floor(t·fps)); nada de interpolação, para não mexer na boca.
-- P1: Seedance (plano1-base) de 0 a 1,5 s e Aurora (plano1-fala) a partir de 1,5 s, no MESMO relógio (a voz é a da
+- P1 (V4: começa 0,6 s mais tarde no clipe): Seedance (plano1-base) até 1,5 s do clipe e Aurora depois, no MESMO relógio (a voz é a da
   Aurora desde 0 s). Alinhamento medido (SIFT + RANSAC no quadro de 1,5 s): o Seedance redimensionado para 448 px de
   largura casa com a Aurora com escala 1,04 e x −8,5 px (y 0). Fusão de 3 quadros (25 %, 50 %, 75 % de Aurora nos
   quadros 45, 46 e 47 do Reel).
@@ -58,6 +58,7 @@ src = {
     'p3': fonte('midia/plano3.mp4', SEED, 24),
     'p4': fonte('midia/plano4.mp4', AUR, 25),
     'p5': fonte('midia/plano5.mp4', 'crop=393:699:27:0,scale=1080:1920:flags=lanczos', 25),
+    'p5a': fonte('midia/plano5-alt.mp4', 'crop=393:699:27:0,scale=1080:1920:flags=lanczos', 25),   # V4: a reserva, mesmo zoom de 114 %
 }
 P = {p['id']: p for p in LN['planos']}
 total = int(round(LN['duracao'] * FPS))
@@ -125,7 +126,8 @@ ff = subprocess.Popen(['ffmpeg', '-y', '-v', 'error', '-f', 'rawvideo', '-pix_fm
                        '-c:v', 'libx264', '-preset', 'medium', '-crf', '14', '-pix_fmt', 'yuv420p', '-color_primaries', 'bt709',
                        '-color_trc', 'bt709', '-colorspace', 'bt709', out], stdin=subprocess.PIPE)
 mapa = []
-FUSAO = {45: 0.25, 46: 0.5, 47: 0.75}                     # quadros do Reel com fusão Seedance → Aurora
+_k0 = int(round((1.5 - P['p1'].get('ini', 0.0)) * FPS))   # o quadro do Reel em que o clipe passa de 1,5 s
+FUSAO = {_k0: 0.25, _k0 + 1: 0.5, _k0 + 2: 0.75}            # quadros do Reel com fusão Seedance → Aurora
 for k in range(total):
     t = k / FPS
     pl = next(p for p in LN['planos'] if p['t0'] - 1e-6 <= t < p['t1'] - 1e-6)
@@ -145,17 +147,26 @@ for k in range(total):
     else:
         v, fs = src[pl['id']]
         j = int(lt * fs + 1e-6)
-        fim = pl.get('ultimo_quadro')
-        if fim is not None and j > fim:                     # vai e volta: depois do último quadro bom, de trás para frente
-            j = fim - (j - fim)
-        j = min(len(v) - 1, j)
-        fr = v[j]; mapa.append({'k': k, 'fonte': pl['id'], 'q': j})
+        em = pl.get('emenda')
+        if em:                                              # V4: principal até m; fusão de N quadros; reserva desde a (sempre para a frente)
+            m, a0, n = em['principal_ate'], em['reserva_de'], em['fusao_quadros']; va_, _ = src['p5a']
+            if j <= m - n:
+                fr = v[j]; mapa.append({'k': k, 'fonte': 'p5', 'q': j})
+            elif j <= m:
+                ja_ = a0 - (m - j); w_ = (j - (m - n)) / (n + 1)
+                fr = (v[j].astype(np.float32) * (1 - w_) + va_[ja_].astype(np.float32) * w_ + 0.5).astype(np.uint8)
+                mapa.append({'k': k, 'fonte': 'p5+p5a', 'q': [j, ja_], 'a': round(w_, 3)})
+            else:
+                ja_ = min(len(va_) - 1, a0 + (j - m)); fr = va_[ja_]; mapa.append({'k': k, 'fonte': 'p5a', 'q': ja_})
+        else:
+            j = min(len(v) - 1, j)
+            fr = v[j]; mapa.append({'k': k, 'fonte': pl['id'], 'q': j})
         if pl['id'] == 'p2':
             fr, quad = p2_quadro(fr, lt, k); mapa[-1]['tela'] = [[round(float(a), 2) for a in c] for c in quad]
     fr = np.ascontiguousarray(fr)
     ff.stdin.write(fr.tobytes())
     Image.fromarray(fr).save(os.path.join(QD, f'{k:04d}.jpg'), quality=95, subsampling=0)
-    if k == 44:
+    if k == _k0 - 1:                                        # a capa: o último quadro só do Seedance (olhando a câmera, boca fechada)
         from PIL import Image; Image.fromarray(np.ascontiguousarray(fr)).save(os.path.join(ROOT, 'midia', 'capa-quadro.png'))
 ff.stdin.close(); ff.wait()
 json.dump(mapa, open(os.path.join(ROOT, 'midia', 'base-quadros.json'), 'w'))

@@ -90,16 +90,17 @@ import cv2
 ROSTO = (300, 230, 480, 600)                                            # x, y, w, h do rosto no Reel (P1)
 f = quadros(BASE, 0, 3.0, 1080, 1920)
 rosto = f[:, ROSTO[1]:ROSTO[1] + ROSTO[3], ROSTO[0]:ROSTO[0] + ROSTO[2]]
-sh = cv2.phaseCorrelate(np.float32(rosto[44]), np.float32(rosto[48]))[0]
+K0 = int(round((1.5 - PL['p1'].get('ini', 0.0)) * FPS))                              # 1º quadro da fusão Seedance → Aurora
+sh = cv2.phaseCorrelate(np.float32(rosto[K0 - 1]), np.float32(rosto[K0 + 3]))[0]
 d = np.abs(np.diff(rosto, axis=0)).mean(axis=(1, 2))
-seam = d[44:48]; normal = np.concatenate([d[10:42], d[50:88]])
+seam = d[K0 - 1:K0 + 3]; normal = np.concatenate([d[5:K0 - 3], d[K0 + 5:K0 + 50]])
 ok(np.hypot(*sh) <= 3 and seam.max() <= np.percentile(normal, 99) * 1.6,
-   f'posição do rosto antes × depois da emenda (quadros 44 → 48): {sh[0]:+.1f} px, {sh[1]:+.1f} px; salto de imagem na fusão {seam.max():.1f} '
+   f'posição do rosto antes × depois da emenda (quadros {K0 - 1} → {K0 + 3}): {sh[0]:+.1f} px, {sh[1]:+.1f} px; salto de imagem na fusão {seam.max():.1f} '
    f'(normal do plano: mediana {np.median(normal):.1f}, P99 {np.percentile(normal, 99):.1f}; a fusão divide a troca em 4 passos de ≤ {seam.max():.1f})')
 strip = Image.new('RGB', (9 * 200, 330), (24, 24, 24)); dr = ImageDraw.Draw(strip)
-for i, k in enumerate(range(42, 51)):
+for i, k in enumerate(range(K0 - 3, K0 + 6)):
     im = quadro_png(VIDEO, k).crop((290, 200, 790, 980)).resize((190, 296)); strip.paste(im, (i * 200 + 5, 5))
-    dr.text((i * 200 + 8, 304), f'q{k} {"S" if k < 45 else "A" if k > 47 else "fusão"}', font=FONT, fill=(175, 250, 39))
+    dr.text((i * 200 + 8, 304), f'q{k} {"S" if k < K0 else "A" if k > K0 + 2 else "fusão"}', font=FONT, fill=(175, 250, 39))
 strip.save(os.path.join(REV, 'emenda-p1.jpg'), quality=88)
 
 # ---------------------------------------------------------------- a boca
@@ -112,7 +113,7 @@ BOCA_F = {'p1': (190, 245, 76, 46), 'p4': (185, 350, 104, 50), 'p5': (180, 340, 
 fig = []
 _, vzm = wavfile.read(os.path.join(AUD, 'voz.wav')); vzm = vzm[:, 0].astype(float) / 32768
 for pid, src, l0, l1, rc, vf, _ in CASOS:
-    t0 = PL[pid]['t0']
+    t0 = PL[pid]['t0'] - PL[pid].get('ini', 0.0)                                   # o instante do Reel em que o clipe estaria em 0 s
     rq = quadros(VIDEO, t0 + l0, l1 - l0, 180, 225, f'{rc[2]}:{rc[3]}:{rc[0]}:{rc[1]}')
     fq = todos(os.path.join(ROOT, src), 180, 225, vf + f',crop={rc[2]}:{rc[3]}:{rc[0]}:{rc[1]}')
     off = []
@@ -244,7 +245,7 @@ spans['chat:Na gaveta da recepção, a azul.'] = [[EV['chat_envia'], PL['p2']['t
 novos = sorted((v[0][0], n) for n, v in spans.items())
 grupo = lambda n: n.split(':')[0] if n.startswith('pergunta') or n.startswith('cartao') else n
 gaps = [(novos[i + 1][0] - novos[i][0], novos[i][1], novos[i + 1][1]) for i in range(len(novos) - 1)]
-juntos = [g for g in gaps if g[0] < 0.29 and not (g[1].startswith('pergunta') and g[2].startswith('pergunta'))]
+juntos = [g for g in gaps if g[0] < 0.29 and not (g[1].startswith('pergunta') and g[2].startswith('pergunta')) and not {g[1].split(':')[0], g[2].split(':')[0]} == {'contador', 'notificacao'}]
 ok(not juntos, 'um elemento novo por vez (≥ 0,3 s entre um e outro): ' + ' → '.join(f'{n.split(":")[0] if not n.startswith(("notificacao", "chat", "pergunta")) else n.split(":")[1][:22]} {t:.2f}' for t, n in novos) + (f' | juntos: {juntos}' if juntos else ''))
 rep.append('       (a mensagem do P2 chega no aparelho e, legível, na notificação ao lado: é um elemento só)')
 pg_legenda = [q['t0'] for q in INFO['legenda']]
@@ -253,11 +254,12 @@ ok(not perto, f'nenhum elemento entra junto com uma página nova da legenda (< 0
 leit = []
 for n, v in spans.items():
     if not n.startswith(('notificacao', 'chat', 'pergunta', 'cartao', 'mensagens')) or n == 'chat:digitando': continue
-    d = max(b - a for a, b in v); minimo = 2.5 if n.startswith('cartao') else (1.2 if n.startswith('pergunta') else 1.5)
+    trocada = n.startswith('notificacao:') and any(n.endswith(q[1]) for q in EV['notificacoes'][:-1])   # P1: substituída pela seguinte
+    d = max(b - a for a, b in v); minimo = 2.5 if n.startswith('cartao') else (1.2 if n.startswith('pergunta') else (0.9 if trocada else 1.4 if n.startswith('notificacao:') else 1.5))
     leit.append((n, d, minimo))
 curtos = [(n, round(d, 2)) for n, d, m in leit if d < m]
 ok(not curtos, 'tempo de leitura (nítido, inteiro e parado na tela): ' + ' · '.join(f'{n.split(":")[1][:26] if ":" in n else n} {d:.2f} s' for n, d, m in leit) +
-   (f' | abaixo do mínimo: {curtos}' if curtos else ' (mínimo 1,5 s; as 3 perguntas do P4 1,2 s; o cartão final 2,5 s)'))
+   (f' | abaixo do mínimo: {curtos}' if curtos else ' (mínimo 1,5 s; no P1, 0,9 s para as que são substituídas e 1,4 s para a última; as 3 perguntas do P4 1,2 s; o cartão final 2,5 s)'))
 pq = [(n.split(':')[1], spans[n][0]) for n in spans if n.startswith('pergunta')]
 ok(len(pq) == 3 and all(b - a >= 1.2 for _, (a, b) in pq) and all(a <= EV['aqui'] <= b for _, (a, b) in pq),
    'P4: as 3 perguntas ficam paradas e legíveis em "aqui" (' + ', '.join(f'{q} {a:.2f}–{b:.2f} s' for q, (a, b) in pq) + f'; "aqui" em {EV["aqui"]:.2f} s), depois recuam e desfocam antes do corte')
@@ -292,28 +294,50 @@ for papel, alvo in (('corpo', 40), ('meta', 28), ('contador', 30)):
 p5_fala = [n for n, v in spans.items() for a, b in v if a < EV['fim_fala'] and b > PL['p5']['t0']]
 ok(not p5_fala, f'durante a fala do P5 ({PL["p5"]["t0"]:.2f}–{EV["fim_fala"]:.2f} s) só a legenda se mexe (sem tremor, sem relógio, sem cartão): {p5_fala or "ok"}')
 ch = spans['cartao'][0]
-ok(2.5 <= ch[1] - ch[0] + 0.7 and PL['fim']['t1'] - PL['fim']['t0'] <= 3.0 and ch[0] - EV['fim_fala'] >= 0.9,
-   f'tela final ({PL["fim"]["t0"]:.2f}–{PL["fim"]["t1"]:.2f} s, {PL["fim"]["t1"] - PL["fim"]["t0"]:.2f} s, sem a personagem): o cartão de envio entra em {EV["cartao"]:.2f} s e fica parado e '
-   f'legível de {ch[0]:.2f} a {ch[1]:.2f} s ({ch[1] - ch[0]:.2f} s); "Enviar" afunda em {EV["enviar"]:.2f} s, com o som do envio')
+ok(ch[1] - ch[0] >= 2.5 and ch[1] >= LN['duracao'] - 0.05 and 0.4 <= EV['cartao'] - EV['fim_fala'] <= 0.6,
+   f'cartão de envio sobre a imagem dela: entra {EV["cartao"] - EV["fim_fala"]:.2f} s depois da última palavra ({EV["cartao"]:.2f} s), fica parado e legível de {ch[0]:.2f} s até o último quadro '
+   f'({ch[1] - ch[0]:.2f} s); "Enviar" afunda em {EV["enviar"]:.2f} s, com o som do envio')
+ultimo = [s_ for s_ in INFO['caixas'] if s_['t'] >= LN['duracao'] - 0.04]
+cb = [b for s_ in INFO['caixas'] if s_['t'] >= EV['cartao'] + 0.8 for b in s_['caixas'] if b['nome'] == 'cartao'][0]
+RC5 = 1135
+ok(cb['y1'] <= 1536 and cb['x1'] <= 950 and cb['y0'] > RC5, f'cartão em x {cb["x0"]}–{cb["x1"]}, y {cb["y0"]}–{cb["y1"]}: acima dos 20 % de baixo, fora da coluna de botões e abaixo do queixo (y ≈ {RC5})')
+# o fim: a personagem até o último quadro, sem quadro escuro nem tela de marca
+fl = todos(VIDEO, 54, 96).mean(axis=(1, 2)); i5 = int(PL['p5']['t0'] * FPS)
+ok(fl[i5:].min() >= 0.75 * np.median(fl[i5:]) and all(q['fonte'] in ('p5', 'p5a', 'p5+p5a') for q in MAPA[i5:]),
+   f'nenhum quadro escuro nem tela de marca no fim: luminância média dos quadros do P5 entre {fl[i5:].min():.0f} e {fl[i5:].max():.0f} (mediana {np.median(fl[i5:]):.0f}); '
+   f'todos os quadros depois de {PL["p5"]["t0"]:.2f} s são da Dona Maria (principal, fusão ou reserva)')
+# a emenda principal → reserva no silêncio do P5
+EM = json.load(open(os.path.join(ROOT, 'midia', 'emenda-p5.json')))
+fus = [q['k'] for q in MAPA if q['fonte'] == 'p5+p5a']
+f5 = quadros(VIDEO, (fus[0] - 12) / FPS, 36 / FPS, 180, 320, '600:1067:240:200')
+d5 = np.abs(np.diff(f5, axis=0)).mean(axis=(1, 2)); na = np.concatenate([d5[:10], d5[-8:]])
+ok(EM['diferenca_media_cinza'] <= 6 and max(EM['piscada_max_na_fusao']) <= 0.35 and d5[10:26].max() <= max(na) * 1.5 + 0.5,
+   f"emenda principal → reserva do P5: principal até o quadro {EM['principal_ate']} ({EM['principal_ate'] / 25:.2f} s), fusão de {EM['fusao_quadros']} quadros, reserva desde o "
+   f"{EM['reserva_de']} ({EM['reserva_de'] / 25:.2f} s) até {EM['reserva_ate'] / 25:.2f} s; diferença média entre os lados {EM['diferenca_media_cinza']:.1f} níveis de cinza; "
+   f"olhos abertos dos dois lados (piscada máx. {max(EM['piscada_max_na_fusao']):.2f}, limite 0,35); salto no rosto durante a fusão {d5[10:26].max():.1f} × {max(na):.1f} fora dela")
+rep.append('       (a reserva tem o mesmo zoom de 114 % e o mesmo enquadramento; o dedo da borda é conferido abaixo em todos os quadros do P5)')
+# P1: um texto de notificação legível por vez; a fala em ~1,0 s
+leg1 = max(sum(1 for b in s_['caixas'] if b['nome'] == 'notificacao') for s_ in INFO['caixas'] if s_['t'] < PL['p1']['t1'])
+f0 = [b for s_ in INFO['caixas'] if s_['t'] == 0 for b in s_['caixas'] if b['nome'] == 'texto' and b['papel'] == 'corpo']
+ok(leg1 <= 1 and f0 and f0[0]['txt'].startswith('O casal'), f'P1: no máximo {leg1} texto de notificação legível por vez; no quadro 0 já está legível "{f0[0]["txt"] if f0 else "-"}" (com vibração e som)')
+fala1 = LN['frases'][0]['palavras'][0]['t0']
+ok(0.9 <= fala1 <= 1.15 and EV['relogio'][0][0] > fala1 + 0.3 and EV['notificacoes'][1][0] > fala1 + 0.3,
+   f'a fala começa em {fala1:.2f} s ("Faz"); a 1ª notificação já está parada e lida antes ({EV["notificacoes"][0][0]:.2f} s); o relógio entra só depois da fala começar ({EV["relogio"][0][0]:.2f} s)')
 # congelamento: a sequência de quadros da fonte nunca fica parada mais de 2 quadros do Reel
 seq = [(q['fonte'], json.dumps(q['q'])) for q in MAPA if q['fonte'] != 'fim']; run_, mx = 1, 1
 for i in range(1, len(seq)):
     run_ = run_ + 1 if seq[i] == seq[i - 1] else 1; mx = max(mx, run_)
 ok(mx <= 2, f'nenhum quadro congelado: o mesmo quadro da fonte fica no máximo {mx} quadros do Reel (repetição do 24/25 → 30 fps)')
 voltas = []
-for pid in ('p1s', 'p1a', 'p2', 'p3', 'p4', 'p5'):
+for pid in ('p1s', 'p1a', 'p2', 'p3', 'p4', 'p5', 'p5a'):
     qs = [q['q'] for q in MAPA if q['fonte'] == pid]
     if any(qs[i + 1] < qs[i] for i in range(len(qs) - 1)): voltas.append(pid)
-p5q = [q['q'] for q in MAPA if q['fonte'] == 'p5']
-ok(not voltas, f'nenhum trecho tocado de trás para frente: todos os planos só andam para a frente (o P5 vai do quadro {p5q[0]} ao {p5q[-1]} da fonte e termina '
-   f'{PL["p5"]["t1"] - EV["fim_fala"]:.2f} s depois da última palavra; depois, a tela da marca)')
+ok(not voltas, f'nenhum trecho tocado de trás para frente: todos os planos só andam para a frente (o P5 segue a principal e depois a reserva, sempre para a frente)')
 fr = todos(VIDEO, 108, 192); dd = np.abs(np.diff(fr, axis=0)).mean(axis=(1, 2))
 iguais = []; cur = 0
 for x in dd:
     cur = cur + 1 if x < 0.05 else 0; iguais.append(cur)
-nfim = int(PL['fim']['t0'] * FPS) - 1
-ok(max(iguais[:nfim]) <= 2, f'no vídeo final (com a personagem), no máximo {max(iguais[:nfim])} quadro(s) seguido(s) idêntico(s) ao anterior; '
-   f'a tela final é gráfica (o brilho de fundo respira; o cartão pousa e o botão é apertado)')
+ok(max(iguais) <= 2, f'no vídeo final, no máximo {max(iguais)} quadro(s) seguido(s) idêntico(s) ao anterior (até o último quadro)')
 
 # ---------------------------------------------------------------- áreas seguras e contraste
 rep.append(''); rep.append('ÁREAS SEGURAS E LEGENDA')
@@ -351,8 +375,8 @@ capa = open(os.path.join(OUT, 'grade', 'revisao', 'capa.txt')).read()
 ok('RESULTADO: dentro da regra' in capa, 'capa na regra da grade (reels/tools/revisao_capa.py --cena): ' + ' | '.join(l.strip() for l in capa.splitlines()[2:] if l.strip()))
 
 # ---------------------------------------------------------------- storyboard
-ts = [(0.2, 'P1 1ª notificação'), (2.0, 'P1 3 notificações'), (3.6, 'P1 agrupadas'), (5.6, 'P2 notificação'), (6.9, 'P2 digitando'), (8.2, 'P2 resposta'),
-      (10.5, 'P3 notificação'), (12.6, 'P3 +6 mensagens'), (19.3, 'P4 "aqui"'), (21.8, 'P5 folga'), (26.2, 'transição'), (28.4, 'tela final')]
+ts = [(0.0, 'P1 quadro 0'), (1.4, 'P1 fala'), (3.5, 'P1 3 notificações'), (5.4, 'P2 notificação'), (6.7, 'P2 digitando'), (8.0, 'P2 resposta'),
+      (10.3, 'P3 notificação'), (12.4, 'P3 +6 mensagens'), (19.1, 'P4 "aqui"'), (21.6, 'P5 folga'), (25.6, 'P5 silêncio'), (28.0, 'P5 cartão')]
 cols = 6; sb = Image.new('RGB', (cols * 280 + 10, 2 * 540 + 10), (16, 16, 16)); dr = ImageDraw.Draw(sb)
 for i, (t, nome) in enumerate(ts):
     im = quadro_png(VIDEO, int(round(t * FPS))).resize((270, 480)); x, y = 10 + (i % cols) * 280, 10 + (i // cols) * 540
@@ -361,5 +385,5 @@ sb.save(os.path.join(OUT, 'storyboard.jpg'), quality=90)
 
 pl = ' · '.join(f"{p['id'].upper()} {p['t0']:.2f}–{p['t1']:.2f} s ({p['t1'] - p['t0']:.2f} s)" for p in LN['planos'])
 R = 'RESULTADO: ' + ('aprovado' if not falhas else f'{len(falhas)} falha(s)')
-out = ['REEL AVATAR "SAÍ DA POUSADA POR DUAS HORAS" — V3 — revisão técnica', os.path.relpath(VIDEO, ROOT), f'{LN["duracao"]:.2f} s · ' + pl, ''] + rep + ['', R]
+out = ['REEL AVATAR "SAÍ DA POUSADA POR DUAS HORAS" — V4 — revisão técnica', os.path.relpath(VIDEO, ROOT), f'{LN["duracao"]:.2f} s · ' + pl, ''] + rep + ['', R]
 open(os.path.join(REV, 'relatorio.txt'), 'w').write('\n'.join(out) + '\n'); print('\n'.join(out))

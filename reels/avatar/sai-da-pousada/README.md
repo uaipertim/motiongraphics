@@ -1,19 +1,22 @@
 # Reel avatar — "Saí da pousada por duas horas"
 
-Status: **V3 para aprovação** (nada publicado). A V2 (`a7af091`) tinha textos pequenos demais (~24 px), a tela preta do celular, um "+6" fraco, cartões minúsculos no P4 e o final tocado de trás para frente.
+Status: **V4 para aprovação** (nada publicado). Ajustes do parecer sobre a V3 (`220c032`): a Dona Maria fica até o fim (sem tela preta da marca) e a abertura passa menos informação de uma vez.
 
 ▶ [`output/sai-da-pousada.mp4`](output/sai-da-pousada.mp4) · [`output/storyboard.jpg`](output/storyboard.jpg) · capa [`output/capa-grade.jpg`](output/capa-grade.jpg) · legenda do post [`legenda.txt`](legenda.txt) · revisão [`output/revisao/relatorio.txt`](output/revisao/relatorio.txt) (aprovado)
 
-## V3 (1080×1920, 30 fps, 29,3 s)
+## V4 (1080×1920, 30 fps, 28,86 s)
 
 | Trecho | Reel | O que aparece |
 |---|---|---|
-| P1 | 0,00–4,60 s | quadro 0 já com a 1ª notificação descendo e a imagem tremendo · relógio "14:20" · mais duas notificações (0,95 e 1,27 s) · as antigas recuam e viram "3 notificações" |
-| P2 | 4,60–9,10 s | no celular, o chat em modo claro com teclado (as teclas acendem nos toques medidos dos polegares; o texto aparece no campo e sobe com o check) · ao lado, a notificação de vidro grande com a mensagem, para a leitura · relógio 14:21 |
-| P3 | 9,10–13,30 s | notificação ao lado do rosto (14:23) · duas bordas de cartões empilhados atrás · pílula "+6 mensagens" contando de 1 a 6 com pulso e som · relógio 14:31 |
-| P4 | 13,30–20,10 s | em "essas respostas", 3 cartões ("Qual chave?", "Pagou o sinal?", "Quanto eu cobro?") saem de trás da cabeça; parados e legíveis em "aqui"; recuam e desfocam antes do corte |
-| P5 | 20,10–26,50 s | só a legenda durante a fala; só para a frente, até ~1 s depois da última palavra; nos últimos 0,5 s a imagem desfoca e escurece até o preto da marca |
-| Final | 26,50–29,30 s | sem a personagem: o cartão de envio centralizado (texto em 50 px, logo dentro), "Enviar" afunda com o som do envio, trilha volta suave |
+| P1 | 0,00–4,40 s | começa 0,6 s mais tarde no clipe; quadro 0 com UMA notificação legível ("O casal do chalé 3 chegou.") e a vibração · a fala em 1,06 s · cada nova notificação (1,38 e 2,50 s) substitui a anterior no mesmo lugar (a antiga recua para uma borda atrás) e a pílula conta "2" e "3 notificações" · relógio "14:20" em 2,0 s |
+| P2 | 4,40–8,90 s | como na V3 (chat claro no celular + notificação grande ao lado) |
+| P3 | 8,90–13,10 s | como na V3 (pilha e "+6 mensagens") |
+| P4 | 13,10–19,90 s | como na V3 (3 perguntas atrás da cabeça) |
+| P5 | 19,90–28,86 s | só a legenda durante a fala · silêncio só para a frente: principal até 7,16 s do clipe, fusão de 6 quadros, reserva (`plano5-alt.mp4`, mesmo zoom de 114 %) de 5,84 a 7,60 s · cartão de envio sobre a imagem dela 0,5 s depois da última palavra, até o último quadro (2,9 s) |
+
+- **Emenda do P5:** `scripts/emenda_p5.py` escolhe sozinho o par de quadros.
+  - Diferença média de 3,3 níveis de cinza.
+  - Olhos abertos nos 6 quadros dos dois lados, medidos pela piscada do face landmarker do mediapipe.
 
 - **Tamanhos de texto:**
   - corpo de 40 px, remetente e horário de 28 px, contadores de 30 px;
@@ -47,6 +50,7 @@ Status: **V3 para aprovação** (nada publicado). A V2 (`a7af091`) tinha textos 
 
 ```bash
 python3 scripts/alinha.py && python3 scripts/rastreio.py   # palavras; rastreio e toques do P2
+python3 scripts/emenda_p5.py                             # midia/emenda-p5.json (principal → reserva)
 python3 scripts/linha.py                                 # linha.json
 node scripts/render.cjs telas                            # midia/tela-p2 (a conversa, plana)
 python3 scripts/base.py                                  # midia/quadros (+ base-1080.mp4)

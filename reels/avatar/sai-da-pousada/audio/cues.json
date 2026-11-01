@@ -1,5 +1,5 @@
 {
- "duracao": 29.3,
+ "duracao": 28.86,
  "cues": [
   {
    "t": 0.0,
@@ -10,171 +10,163 @@
    "type": "notificacao"
   },
   {
-   "t": 0.95,
+   "t": 1.38,
    "type": "vibracao"
   },
   {
-   "t": 0.97,
+   "t": 1.4,
    "type": "notificacao"
   },
   {
-   "t": 1.27,
+   "t": 2.5,
    "type": "vibracao"
   },
   {
-   "t": 1.29,
+   "t": 2.52,
    "type": "notificacao"
   },
   {
-   "t": 2.95,
-   "type": "agrupa"
-  },
-  {
-   "t": 4.85,
+   "t": 4.65,
    "type": "relogio"
   },
   {
-   "t": 4.85,
+   "t": 4.65,
    "type": "vibracao"
   },
   {
-   "t": 4.87,
+   "t": 4.67,
    "type": "notificacao"
   },
   {
-   "t": 5.267,
+   "t": 5.067,
    "type": "tecla"
   },
   {
-   "t": 5.35,
+   "t": 5.15,
    "type": "tecla"
   },
   {
-   "t": 5.475,
+   "t": 5.275,
    "type": "tecla"
   },
   {
-   "t": 5.475,
+   "t": 5.275,
    "type": "tecla"
   },
   {
-   "t": 5.6,
+   "t": 5.4,
    "type": "tecla"
   },
   {
-   "t": 5.6,
+   "t": 5.4,
    "type": "tecla"
   },
   {
-   "t": 5.767,
+   "t": 5.567,
    "type": "tecla"
   },
   {
-   "t": 5.767,
+   "t": 5.567,
    "type": "tecla"
   },
   {
-   "t": 6.767,
+   "t": 6.567,
    "type": "tecla"
   },
   {
-   "t": 6.767,
+   "t": 6.567,
    "type": "tecla"
   },
   {
-   "t": 6.933,
+   "t": 6.733,
    "type": "tecla"
   },
   {
-   "t": 6.933,
+   "t": 6.733,
    "type": "tecla"
   },
   {
-   "t": 7.1,
+   "t": 6.9,
    "type": "tecla"
   },
   {
-   "t": 7.35,
+   "t": 7.15,
    "type": "enviada"
   },
   {
-   "t": 7.7,
+   "t": 7.5,
    "type": "lida"
   },
   {
-   "t": 9.4,
+   "t": 9.2,
    "type": "relogio"
   },
   {
-   "t": 9.4,
+   "t": 9.2,
    "type": "vibracao"
   },
   {
-   "t": 9.42,
+   "t": 9.22,
    "type": "notificacao"
   },
   {
-   "t": 11.4,
+   "t": 11.2,
    "type": "pilha"
   },
   {
-   "t": 11.56,
+   "t": 11.36,
    "type": "conta"
   },
   {
-   "t": 11.72,
+   "t": 11.52,
    "type": "conta"
   },
   {
-   "t": 11.88,
+   "t": 11.68,
    "type": "conta"
   },
   {
-   "t": 12.04,
+   "t": 11.84,
    "type": "conta"
   },
   {
-   "t": 12.2,
+   "t": 12.0,
    "type": "conta"
   },
   {
-   "t": 12.36,
+   "t": 12.16,
    "type": "conta"
   },
   {
-   "t": 12.36,
+   "t": 12.16,
    "type": "relogio"
   },
   {
-   "t": 16.945,
+   "t": 16.745,
    "type": "pergunta"
   },
   {
-   "t": 17.345,
+   "t": 17.145,
    "type": "pergunta"
   },
   {
-   "t": 17.745,
+   "t": 17.545,
    "type": "pergunta"
   },
   {
-   "t": 19.74,
+   "t": 19.54,
    "type": "perguntas-saem"
   },
   {
-   "t": 26.0,
-   "type": "transicao"
-  },
-  {
-   "t": 26.5,
+   "t": 25.765,
    "type": "cartao-final"
   },
   {
-   "t": 27.7,
+   "t": 26.965,
    "type": "enviar"
   },
   {
-   "t": 27.82,
+   "t": 27.085,
    "type": "enviado"
   }
  ]

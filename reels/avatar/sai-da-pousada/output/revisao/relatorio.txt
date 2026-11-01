@@ -1,29 +1,29 @@
-REEL AVATAR "SAÍ DA POUSADA POR DUAS HORAS" — V3 — revisão técnica
+REEL AVATAR "SAÍ DA POUSADA POR DUAS HORAS" — V4 — revisão técnica
 output/sai-da-pousada.mp4
-29.30 s · P1 0.00–4.60 s (4.60 s) · P2 4.60–9.10 s (4.50 s) · P3 9.10–13.30 s (4.20 s) · P4 13.30–20.10 s (6.80 s) · P5 20.10–26.50 s (6.40 s) · FIM 26.50–29.30 s (2.80 s)
+28.86 s · P1 0.00–4.40 s (4.40 s) · P2 4.40–8.90 s (4.50 s) · P3 8.90–13.10 s (4.20 s) · P4 13.10–19.90 s (6.80 s) · P5 19.90–28.86 s (8.96 s)
 
 FORMATO E SOM
-OK     vídeo h264 1080x1920 30/1 fps yuv420p, 879 quadros
+OK     vídeo h264 1080x1920 30/1 fps yuv420p, 866 quadros
 OK     áudio aac 48000 Hz 2 canais
-OK     duração 29.30 s (vídeo e áudio Δ 0 ms; mux com -t)
+OK     duração 28.87 s (vídeo e áudio Δ 7 ms; mux com -t)
 OK     loudness -14.0 LUFS (alvo −14), pico real -2.3 dBTP (limite −1,5)
-OK     a trilha fica 18.4 dB abaixo da voz (voz -13.0 LUFS, trilha -31.4 LUFS; alvo ~18 dB)
-OK     trilha com pulso do P1 ao P4 (-34.2 / -35.7 dBFS); some antes da frase do P5 (silêncio); volta suave no cartão final (-34.1 dBFS, só o pad)
-       ambiente de carro parado e rua ao longe: -43.1 LUFS (30 dB abaixo da voz)
-       voz sem tratamento além do ganho geral; o limitador do master só pega os picos: 0.16% das amostras da voz
-       efeitos: vibracao 0.00 s, notificacao 0.02 s, vibracao 0.95 s, notificacao 0.97 s, vibracao 1.27 s, notificacao 1.29 s, agrupa 2.95 s, relogio 4.85 s, vibracao 4.85 s, notificacao 4.87 s, tecla 5.27 s, tecla 5.35 s, tecla 5.47 s, tecla 5.47 s, tecla 5.60 s, tecla 5.60 s, tecla 5.77 s, tecla 5.77 s, tecla 6.77 s, tecla 6.77 s, tecla 6.93 s, tecla 6.93 s, tecla 7.10 s, enviada 7.35 s, lida 7.70 s, relogio 9.40 s, vibracao 9.40 s, notificacao 9.42 s, pilha 11.40 s, conta 11.56 s, conta 11.72 s, conta 11.88 s, conta 12.04 s, conta 12.20 s, conta 12.36 s, relogio 12.36 s, pergunta 16.95 s, pergunta 17.34 s, pergunta 17.75 s, perguntas-saem 19.74 s, transicao 26.00 s, cartao-final 26.50 s, enviar 27.70 s, enviado 27.82 s
+OK     a trilha fica 18.4 dB abaixo da voz (voz -13.2 LUFS, trilha -31.6 LUFS; alvo ~18 dB)
+OK     trilha com pulso do P1 ao P4 (-35.1 / -35.8 dBFS); some antes da frase do P5 (silêncio); volta suave no cartão final (-34.3 dBFS, só o pad)
+       ambiente de carro parado e rua ao longe: -43.2 LUFS (30 dB abaixo da voz)
+       voz sem tratamento além do ganho geral; o limitador do master só pega os picos: 0.14% das amostras da voz
+       efeitos: vibracao 0.00 s, notificacao 0.02 s, vibracao 1.38 s, notificacao 1.40 s, vibracao 2.50 s, notificacao 2.52 s, relogio 4.65 s, vibracao 4.65 s, notificacao 4.67 s, tecla 5.07 s, tecla 5.15 s, tecla 5.28 s, tecla 5.28 s, tecla 5.40 s, tecla 5.40 s, tecla 5.57 s, tecla 5.57 s, tecla 6.57 s, tecla 6.57 s, tecla 6.73 s, tecla 6.73 s, tecla 6.90 s, enviada 7.15 s, lida 7.50 s, relogio 9.20 s, vibracao 9.20 s, notificacao 9.22 s, pilha 11.20 s, conta 11.36 s, conta 11.52 s, conta 11.68 s, conta 11.84 s, conta 12.00 s, conta 12.16 s, relogio 12.16 s, pergunta 16.75 s, pergunta 17.14 s, pergunta 17.55 s, perguntas-saem 19.54 s, cartao-final 25.77 s, enviar 26.96 s, enviado 27.09 s
 
 EMENDA DO P1 (Seedance → Aurora, fusão de 3 quadros em 1,50–1,57 s)
-OK     posição do rosto antes × depois da emenda (quadros 44 → 48): -0.4 px, +0.1 px; salto de imagem na fusão 4.2 (normal do plano: mediana 1.5, P99 10.0; a fusão divide a troca em 4 passos de ≤ 4.2)
+OK     posição do rosto antes × depois da emenda (quadros 26 → 30): -0.4 px, +0.0 px; salto de imagem na fusão 4.2 (normal do plano: mediana 3.3, P99 10.0; a fusão divide a troca em 4 passos de ≤ 4.2)
 
 BOCA × VOZ (quadro a quadro, 25 → 30 fps por repetição)
-OK     p1: 100% dos quadros do Reel são o quadro da fonte no mesmo instante do áudio (±1 quadro; desvio mediano +0 ms) e a voz no vídeo final está a +0.0 ms do áudio do clipe: a sincronia da Aurora fica como veio
+OK     p1: 99% dos quadros do Reel são o quadro da fonte no mesmo instante do áudio (±1 quadro; desvio mediano +0 ms) e a voz no vídeo final está a +0.0 ms do áudio do clipe: a sincronia da Aurora fica como veio
 OK     p4: 100% dos quadros do Reel são o quadro da fonte no mesmo instante do áudio (±1 quadro; desvio mediano +0 ms) e a voz no vídeo final está a +0.0 ms do áudio do clipe: a sincronia da Aurora fica como veio
 OK     p5: 100% dos quadros do Reel são o quadro da fonte no mesmo instante do áudio (±1 quadro; desvio mediano +0 ms) e a voz no vídeo final está a +0.0 ms do áudio do clipe: a sincronia da Aurora fica como veio
 
 P5 (zoom no rosto)
 OK     o dedo aparece na fonte nos quadros [15, 16, 17, 18, 19, 20, 30, 31, 32, 33, 34, 35, 36, 37, 38, 70, 71, 72] (x ≥ 377, y ≥ 688); a janela do zoom (x 27–420, y 0–699 da fonte) não tem nenhum pixel dele
-OK     nenhum quadro do P5 no Reel mostra pele no canto inferior direito (x ≥ 860, y ≥ 1600; 192 quadros; máximo 0 px de pele)
+OK     nenhum quadro do P5 no Reel mostra pele no canto inferior direito (x ≥ 860, y ≥ 1600; 269 quadros; máximo 0 px de pele)
 
 P2: A CONVERSA DENTRO DO CELULAR
 OK     rastreio dos 4 cantos da tela, quadro a quadro: erro médio 0.23 px; P95 de cada quadro ≤ 1.13 px em 95 % dos quadros (limite 2 px); pior ponto isolado 3.07 px (medido nas bordas visíveis: cima, esquerda, direita)
@@ -36,27 +36,33 @@ OK     o rosto nunca é coberto: no P4 os cartões ficam atrás da personagem (r
        recorte: mediapipe (multiclasse) + guided filter + descontaminação da cor da borda; largura média da borda suave 14.0 px (cabelo)
 
 ELEMENTOS NA TELA
-OK     um elemento novo por vez (≥ 0,3 s entre um e outro): O casal do chalé 3 che 0.10 → relogio 0.57 → Ele disse que pagou o  1.07 → As cervejas vão em qua 1.37 → contador 3.23 → O casal do chalé 3 che 4.85 → digitando 5.22 → Na gaveta da recepção, 7.35 → Quanto eu cobro do pes 9.50 → mensagens 11.50 → Qual chave? 17.10 → Pagou o sinal? 17.50 → Quanto eu cobro? 17.90 → cartao 26.70
+OK     um elemento novo por vez (≥ 0,3 s entre um e outro): O casal do chalé 3 che 0.00 → contador 1.47 → Ele disse que pagou o  1.60 → relogio 2.00 → As cervejas vão em qua 2.70 → O casal do chalé 3 che 4.65 → digitando 5.02 → Na gaveta da recepção, 7.15 → Quanto eu cobro do pes 9.30 → mensagens 11.30 → Qual chave? 16.90 → Pagou o sinal? 17.30 → Quanto eu cobro? 17.70 → cartao 25.97
        (a mensagem do P2 chega no aparelho e, legível, na notificação ao lado: é um elemento só)
 OK     nenhum elemento entra junto com uma página nova da legenda (< 0,25 s): ok
-OK     tempo de leitura (nítido, inteiro e parado na tela): O casal do chalé 3 chegou. 3.10 s · Ele disse que pagou o sina 2.13 s · As cervejas vão em qual co 3.23 s · O casal do chalé 3 chegou. 4.25 s · Quanto eu cobro do pessoal 3.80 s · +6 mensagens 1.80 s · Qual chave? 2.70 s · Pagou o sinal? 2.30 s · Quanto eu cobro? 1.90 s · cartao 2.60 s · Na gaveta da recepção, a a 1.75 s (mínimo 1,5 s; as 3 perguntas do P4 1,2 s; o cartão final 2,5 s)
-OK     P4: as 3 perguntas ficam paradas e legíveis em "aqui" (Qual chave? 17.10–19.80 s, Pagou o sinal? 17.50–19.80 s, Quanto eu cobro? 17.90–19.80 s; "aqui" em 19.14 s), depois recuam e desfocam antes do corte
+OK     tempo de leitura (nítido, inteiro e parado na tela): O casal do chalé 3 chegou. 1.50 s · Ele disse que pagou o sina 1.00 s · As cervejas vão em qual co 1.70 s · O casal do chalé 3 chegou. 4.25 s · Quanto eu cobro do pessoal 3.80 s · +6 mensagens 1.80 s · Qual chave? 2.70 s · Pagou o sinal? 2.30 s · Quanto eu cobro? 1.90 s · cartao 2.90 s · Na gaveta da recepção, a a 1.75 s (mínimo 1,5 s; no P1, 0,9 s para as que são substituídas e 1,4 s para a última; as 3 perguntas do P4 1,2 s; o cartão final 2,5 s)
+OK     P4: as 3 perguntas ficam paradas e legíveis em "aqui" (Qual chave? 16.90–19.60 s, Pagou o sinal? 17.30–19.60 s, Quanto eu cobro? 17.70–19.60 s; "aqui" em 18.93 s), depois recuam e desfocam antes do corte
 
 TAMANHO DOS TEXTOS DE INTERFACE (altura-x medida no quadro final)
-OK     corpo: menor altura-x medida 22 px ("As cervejas vão em qual coma") ≈ corpo 40 px (mínimo 40 px → altura-x ≥ 22); 16 textos, corpo desenhado de 40 a 50 px
+OK     corpo: menor altura-x medida 22 px ("As cervejas vão em qual coma") ≈ corpo 40 px (mínimo 40 px → altura-x ≥ 22); 16 textos, corpo desenhado de 40 a 44 px
 OK     meta: menor altura-x medida 15 px ("Enviar para…") ≈ corpo 27 px (mínimo 28 px → altura-x ≥ 15); 3 textos, corpo desenhado de 28 a 28 px
-OK     contador: menor altura-x medida 16 px ("+6 mensagens") ≈ corpo 29 px (mínimo 30 px → altura-x ≥ 16); 7 textos, corpo desenhado de 30 a 32 px
-OK     durante a fala do P5 (20.10–25.46 s) só a legenda se mexe (sem tremor, sem relógio, sem cartão): ok
-OK     tela final (26.50–29.30 s, 2.80 s, sem a personagem): o cartão de envio entra em 26.50 s e fica parado e legível de 26.70 a 29.30 s (2.60 s); "Enviar" afunda em 27.70 s, com o som do envio
+OK     contador: menor altura-x medida 16 px ("+6 mensagens") ≈ corpo 29 px (mínimo 30 px → altura-x ≥ 16); 8 textos, corpo desenhado de 30 a 32 px
+OK     durante a fala do P5 (19.90–25.27 s) só a legenda se mexe (sem tremor, sem relógio, sem cartão): ok
+OK     cartão de envio sobre a imagem dela: entra 0.50 s depois da última palavra (25.77 s), fica parado e legível de 25.97 s até o último quadro (2.90 s); "Enviar" afunda em 26.96 s, com o som do envio
+OK     cartão em x 50–950, y 1188–1528: acima dos 20 % de baixo, fora da coluna de botões e abaixo do queixo (y ≈ 1135)
+OK     nenhum quadro escuro nem tela de marca no fim: luminância média dos quadros do P5 entre 100 e 108 (mediana 103); todos os quadros depois de 19.90 s são da Dona Maria (principal, fusão ou reserva)
+OK     emenda principal → reserva do P5: principal até o quadro 179 (7.16 s), fusão de 6 quadros, reserva desde o 146 (5.84 s) até 7.60 s; diferença média entre os lados 3.3 níveis de cinza; olhos abertos dos dois lados (piscada máx. 0.17, limite 0,35); salto no rosto durante a fusão 0.9 × 1.1 fora dela
+       (a reserva tem o mesmo zoom de 114 % e o mesmo enquadramento; o dedo da borda é conferido abaixo em todos os quadros do P5)
+OK     P1: no máximo 1 texto de notificação legível por vez; no quadro 0 já está legível "O casal do chalé 3 chegou." (com vibração e som)
+OK     a fala começa em 1.06 s ("Faz"); a 1ª notificação já está parada e lida antes (0.00 s); o relógio entra só depois da fala começar (2.00 s)
 OK     nenhum quadro congelado: o mesmo quadro da fonte fica no máximo 2 quadros do Reel (repetição do 24/25 → 30 fps)
-OK     nenhum trecho tocado de trás para frente: todos os planos só andam para a frente (o P5 vai do quadro 0 ao 159 da fonte e termina 1.04 s depois da última palavra; depois, a tela da marca)
-OK     no vídeo final (com a personagem), no máximo 1 quadro(s) seguido(s) idêntico(s) ao anterior; a tela final é gráfica (o brilho de fundo respira; o cartão pousa e o botão é apertado)
+OK     nenhum trecho tocado de trás para frente: todos os planos só andam para a frente (o P5 segue a principal e depois a reserva, sempre para a frente)
+OK     no vídeo final, no máximo 1 quadro(s) seguido(s) idêntico(s) ao anterior (até o último quadro)
 
 ÁREAS SEGURAS E LEGENDA
 OK     todos os elementos entre y 200 e 1536 (fora da barra de cima e dos 20 % de baixo) e dentro das bordas: ok
 OK     legenda em x 91–949, y 1368–1527: abaixo do queixo, acima dos 20 % de baixo e fora da coluna de botões (x > 950)
 OK     chaves em limão: vinte · minutos · equipe · aqui. · não · tira · folga.
-OK     contraste da legenda sem faixa, sobre a imagem real: mínimo 5.2:1 (em 15.1 s), mediana 9.1:1 (texto × o fundo real a 3–10 px das letras, P90 — o mais claro —, já com a sombra difusa; alvo ≥ 4,5:1)
+OK     contraste da legenda sem faixa, sobre a imagem real: mínimo 5.2:1 (em 14.9 s), mediana 9.1:1 (texto × o fundo real a 3–10 px das letras, P90 — o mais claro —, já com a sombra difusa; alvo ≥ 4,5:1)
 
 CAPA
 OK     capa na regra da grade (reels/tools/revisao_capa.py --cena): cena de fundo de ponta a ponta: a, c e d conferidos pelas caixas dos elementos | (pixels da cena no canto do play: 17728; na faixa do contador: 0) | OK     a, c, d) caixas: dentro do recorte, fora do canto do play e da faixa do contador, sem sobreposição | OK     notificacao: x 110–970, y 758–898 | OK     titulo: x 174–906, y 944–1162 | OK     bloco centralizado na vertical do recorte 3:4: y 758–1162, centro em 960.0 (centro do recorte: 960) | RESULTADO: dentro da regra das capas
