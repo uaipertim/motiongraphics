@@ -38,3 +38,7 @@ Transcrição de conferência não feita — a chave não tem permissão `speech
   - Reserva: `midia/plano1-fala-alt.mp4`.
   - **Montagem:** usar o Seedance de 0 a 1,5 s e a Aurora a partir de 1,5 s, com fusão de 3 quadros. As poses batem: a Aurora fica alinhada com escala 1,04 e deslocamento x −8 px sobre o Seedance redimensionado para 448 de largura (conferido no quadro de 1,5 s). O áudio é sempre o da Aurora (`B-1-sync`).
 - **Plano 2** (01/11): `midia/plano2.mp4`, Seedance 2.5, 480×854, 24 fps, 5,04 s. Câmera parada (a maçaneta da porta não se mexe). O celular desliza para a direita no 1º segundo e depois fica quase parado; a tela continua clara e sem texto. O balão precisa acompanhar o celular. Reserva: `midia/plano2-alt.mp4`.
+- **Plano 3** (01/11): `midia/plano3.mp4` (gerado às 14:14:59), Seedance 2.5, 5,04 s. Ela lê o celular com expressão contida e solta o ar devagar. Na reserva (`midia/plano3-alt.mp4`) a boca se mexe como se ela falasse, o que confunde num plano sem fala.
+- **Áudios para os closes** (a Aurora anima a partir da imagem 6 do 1º lote):
+  - `audio/sync/B-2-sync.mp3`: 0,3 s de silêncio antes da fala.
+  - `audio/sync/B-3-sync.mp3`: 0,3 s antes e ~2,2 s depois, para o olhar em silêncio no fim.
