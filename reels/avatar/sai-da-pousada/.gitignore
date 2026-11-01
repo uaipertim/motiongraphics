@@ -1,5 +1,9 @@
 midia/base-1080.mp4
 midia/capa-quadro.png
+midia/quadros/
+midia/tela-p2/
+midia/recorte-p4/
+midia/modelos/
 audio/*.wav
 output/stills/
 audio/.medida.wav

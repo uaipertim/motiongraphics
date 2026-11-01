@@ -5,11 +5,12 @@ Revisão técnica do Reel "Saí da pousada" (depois de `render.cjs video`, `rend
     python3 scripts/qa.py  ->  output/revisao/relatorio.txt · output/revisao/emenda-p1.jpg · output/revisao/boca.jpg
                                output/storyboard.jpg
 
-Confere: formato e som (−14 LUFS, pico ≤ −1,5 dBTP, trilha ~18 dB abaixo da voz, trilha baixa no P5 até a chamada);
+Confere: formato e som (−14 LUFS, pico ≤ −1,5 dBTP, trilha ~18 dB abaixo da voz, trilha some no P5 e volta no cartão);
 a emenda do P1 (posição medida por correlação de fase no rosto e salto de imagem na fusão × o normal do plano); a boca
 sincronizada com a voz em P1, P4 e P5 (quadro a quadro: o quadro do Reel é o da fonte no mesmo instante do áudio, e a
 abertura da boca acompanha a energia da voz); nenhum quadro do P5 com o dedo; um elemento novo por vez; balões ≥ 2 s;
-nada se movendo além da legenda durante a fala do P5; chamada ≥ 2,5 s; nenhum quadro congelado; áreas seguras;
+o rastreio da tela do P2 (erro em px); o recorte do P4 (sem halo, sem cobrir o rosto); tempo de leitura de cada
+notificação/cartão; nada se movendo além da legenda durante a fala do P5; cartão final ≥ 2,5 s; nenhum quadro congelado; áreas seguras;
 contraste da legenda; a capa na regra da grade.
 """
 import io, json, os, re, subprocess
@@ -23,6 +24,7 @@ LN = json.load(open(os.path.join(ROOT, 'linha.json'))); EV = LN['eventos']; PL =
 INFO = json.load(open(os.path.join(OUT, 'info.json'))); MAPA = json.load(open(os.path.join(ROOT, 'midia', 'base-quadros.json')))
 FPS = 30; rep, falhas = [], []
 FONT = ImageFont.truetype(os.path.join(ROOT, 'src', 'fonts', 'JetBrainsMonoNL-Bold.ttf'), 22)
+FONT_SB = ImageFont.truetype(os.path.join(ROOT, 'src', 'fonts', 'JetBrainsMonoNL-Bold.ttf'), 15)
 
 
 def ok(c, m):
@@ -72,8 +74,10 @@ ok(15 <= Iv - Im <= 22, f'a trilha fica {Iv - Im:.1f} dB abaixo da voz (voz {Iv:
 from scipy.io import wavfile
 _, mus = wavfile.read(os.path.join(AUD, 'musica.wav')); mus = mus[:, 0].astype(float) / 32768
 rms = lambda a, b: 20 * np.log10(np.sqrt(np.mean(mus[int(a * 48000):int(b * 48000)] ** 2)) + 1e-9)
-r_p4, r_p5, r_cta = rms(PL['p4']['t0'] + 0.5, PL['p4']['t1'] - 0.8), rms(PL['p5']['t0'] + 0.3, EV['fim_fala']), rms(EV['chamada'] + 0.9, LN['duracao'] - 1.3)
-ok(r_p5 <= r_p4 - 8 and r_cta >= r_p5 + 8, f'trilha: P4 {r_p4:.1f} dBFS → baixa antes da frase do P5 ({r_p5:.1f} dBFS) → volta na chamada ({r_cta:.1f} dBFS)')
+r_p1, r_p4, r_p5, r_cta = rms(0.5, PL['p1']['t1']), rms(PL['p4']['t0'] + 0.5, PL['p4']['t1'] - 0.8), rms(PL['p5']['t0'] + 0.3, EV['fim_fala']), rms(EV['cartao'] + 1.0, LN['duracao'] - 1.3)
+ok(r_p5 < -90 and r_cta >= r_p4 - 12, f'trilha com pulso do P1 ao P4 ({r_p1:.1f} / {r_p4:.1f} dBFS); some antes da frase do P5 ({"silêncio" if r_p5 < -90 else f"{r_p5:.1f} dBFS"}); volta suave no cartão final ({r_cta:.1f} dBFS, só o pad)')
+Ia, _ = lufs(os.path.join(AUD, 'ambiente.wav'))
+rep.append(f'       ambiente de carro parado e rua ao longe: {Ia:.1f} LUFS ({Iv - Ia:.0f} dB abaixo da voz)')
 _, vz = wavfile.read(os.path.join(AUD, 'voz.wav'))
 ativo = np.mean(np.abs(vz[:, 0].astype(float)) > 10 ** (-2.4 / 20) * 32767 * 0.98) * 100
 rep.append(f'       voz sem tratamento além do ganho geral; o limitador do master só pega os picos: {ativo:.2f}% das amostras da voz')
@@ -171,41 +175,81 @@ br = rq[:, 400:, 215:]                                                    # cant
 pele = ((br[..., 0] > br[..., 1] + 22) & (br[..., 0] > br[..., 2] + 35) & (br[..., 0] > 110)).sum(axis=(1, 2))
 ok(int(pele.max()) <= 3, f'nenhum quadro do P5 no Reel mostra pele no canto inferior direito (x ≥ 860, y ≥ 1600; {len(rq)} quadros; máximo {int(pele.max())} px de pele)')
 
+# ---------------------------------------------------------------- P2: a conversa na tela do celular
+rep.append(''); rep.append('P2: A CONVERSA DENTRO DO CELULAR')
+RA = json.load(open(os.path.join(ROOT, 'midia', 'rastreio-p2.json')))['erro_px_reel']
+p95q = np.percentile([q[1] for q in RA['por_quadro']], 95)
+ok(RA['medio'] <= 1.0 and p95q <= 2.0, f"rastreio dos 4 cantos da tela, quadro a quadro: erro médio {RA['medio']:.2f} px; P95 de cada quadro ≤ {p95q:.2f} px "
+   f"em 95 % dos quadros (limite 2 px); pior ponto isolado {RA['max']:.2f} px (medido nas bordas visíveis: cima, esquerda, direita)")
+rep.append('       a conversa só troca o branco da tela: os polegares (segmentação de pele) e o recorte da câmera ficam na frente; a luz da tela real continua por cima')
+
+# ---------------------------------------------------------------- P4: o recorte
+rep.append(''); rep.append('P4: AS PERGUNTAS ATRÁS DA CABEÇA')
+RC = json.load(open(os.path.join(ROOT, 'midia', 'recorte-p4.json')))
+caixa_t = {round(s_['t'], 3): s_['caixas'] for s_ in INFO['caixas']}
+halo, cobre = [], []
+from scipy import ndimage as ndi
+for k in range(int(EV['perguntas'][1][0] * FPS) + 6, int(EV['aqui'] * FPS), 6):
+    cards = [b for b in caixa_t[round(k / FPS, 3)] if b['nome'] == 'pergunta']
+    if not cards: continue
+    al = np.asarray(Image.open(os.path.join(ROOT, 'midia', 'recorte-p4', f'{k:04d}.png')))[..., 3] / 255.0
+    im = np.asarray(quadro_png(VIDEO, k)).astype(float) @ np.array([0.299, 0.587, 0.114])
+    dentro = al > 0.5; anel = ndi.binary_dilation(dentro, iterations=4) & ~ndi.binary_dilation(dentro, iterations=1)
+    for b in cards:
+        m = np.zeros_like(dentro); m[b['y0'] + 6:b['y1'] - 6, b['x0'] + 6:b['x1'] - 6] = True
+        borda = anel & m; longe = m & ~ndi.binary_dilation(dentro, iterations=12)
+        if borda.sum() > 20 and longe.sum() > 200: halo.append(float(np.percentile(im[borda], 90) - np.percentile(im[longe], 90)))
+    rx0, ry0, rx1, ry1 = RC[str(k)]['rosto']
+    for b in caixa_t[round(k / FPS, 3)]:
+        if b.get('atras') or b['nome'] == 'legenda': continue
+        if b['x0'] < rx1 and b['x1'] > rx0 and b['y0'] < ry1 and b['y1'] > ry0: cobre.append((k, b['nome']))
+ok(halo and max(halo) <= 12, f'recorte sem halo: na borda do cabelo sobre os cartões, a luz fica {np.median(halo):+.1f} (pior {max(halo):+.1f}) em relação ao próprio cartão '
+   '(0–255, P90; um halo claro da janela apareceria como +30 ou mais)')
+fora_rosto = [b for s_ in INFO['caixas'] if PL['p4']['t0'] <= s_['t'] < PL['p4']['t1'] for b in s_['caixas'] if not b.get('atras') and b['nome'] != 'legenda']
+ok(not cobre and not fora_rosto, f'o rosto nunca é coberto: no P4 os cartões e a luz ficam atrás da personagem (recortada) e só a legenda fica na frente, abaixo do queixo')
+bp = [RC[k]['borda_px'] for k in RC]
+rep.append(f'       recorte: mediapipe (multiclasse) + guided filter + descontaminação da cor da borda; largura média da borda suave {np.median(bp):.1f} px (cabelo)')
+
 # ---------------------------------------------------------------- elementos
 rep.append(''); rep.append('ELEMENTOS NA TELA')
-pres = {}
-for s in INFO['caixas']:
-    for b in s['caixas']:
-        nome = b['nome'] if not b['nome'].startswith('legenda') else 'legenda'
-        pres.setdefault(nome, []).append(s['t'])
 spans = {}
-for nome, ts in pres.items():
+for s_ in INFO['caixas']:
+    for b in s_['caixas']:
+        if b['nome'] == 'legenda': continue
+        nome = b['nome'] + (':' + b['txt'] if b.get('txt') else '')
+        spans.setdefault(nome, []).append(s_['t'])
+for nome, ts in list(spans.items()):
     ts = sorted(set(ts)); seg = [[ts[0], ts[0]]]
     for t in ts[1:]:
         if t - seg[-1][1] > 0.05: seg.append([t, t])
         else: seg[-1][1] = t
     spans[nome] = [[a, b + 1 / FPS] for a, b in seg]
-graf = sorted((sp[0], nome) for nome, s in spans.items() if nome != 'legenda' for sp in s if nome not in ('anel',))
-graf += [(EV['vibra'][1], 'anel (2º pulso)')]; graf += [(spans['anel'][0][0], 'anel')]
-graf = sorted(set(graf))
-gaps = [(graf[i + 1][0] - graf[i][0], graf[i][1], graf[i + 1][1]) for i in range(len(graf) - 1)]
-juntos = [g for g in gaps if g[0] < 0.3 and not {g[1], g[2]} <= {'chamada', 'logo'} and not (g[1].startswith('icone') and g[2].startswith('icone'))]
-ok(not juntos, 'um elemento novo por vez: ' + ' → '.join(f'{n} {t:.2f}' for t, n in graf))
-rep.append('       (juntos de propósito: a chamada e a logo; os três ícones entram em sequência de 0,06 s, como um só grupo, na palavra "aqui")')
+spans['chat:O casal do chalé 3 chegou. Qual chave eu entrego?'] = [[EV['chat_chega'], PL['p2']['t1']]]
+spans['chat:digitando'] = [[EV['chat_digita'], EV['chat_envia']]]
+spans['chat:Na gaveta da recepção, a azul.'] = [[EV['chat_envia'], PL['p2']['t1']]]
+novos = sorted((v[0][0], n) for n, v in spans.items() if not n.startswith('luz'))
+novos.append((EV['aqui'] + 0.25, 'luz'))
+novos = sorted(novos)
+grupo = lambda n: n.split(':')[0] if n.startswith('pergunta') or n.startswith('cartao') else n
+gaps = [(novos[i + 1][0] - novos[i][0], novos[i][1], novos[i + 1][1]) for i in range(len(novos) - 1)]
+juntos = [g for g in gaps if g[0] < 0.29 and not (g[1].startswith('pergunta') and g[2].startswith('pergunta'))]
+ok(not juntos, 'um elemento novo por vez (≥ 0,3 s entre um e outro): ' + ' → '.join(f'{n.split(":")[0] if not n.startswith(("notificacao", "chat", "pergunta")) else n.split(":")[1][:22]} {t:.2f}' for t, n in novos) + (f' | juntos: {juntos}' if juntos else ''))
+rep.append('       (as 5 perguntas do P4 entram como um grupo, uma a cada 0,18 s, em "essas respostas")')
 pg_legenda = [q['t0'] for q in INFO['legenda']]
-perto = [(n, t, l) for t, n in graf for l in pg_legenda if 0 < abs(t - l) < 0.25 and not n.startswith('icone')]
-ok(not perto, f'nenhum gráfico entra junto com uma página nova da legenda (< 0,25 s): {perto or "ok"}')
-for nome in ('balao1', 'balao2'):
-    a, b = spans[nome][0]; leg = b - (a + 0.45)
-    ok(leg >= 2.0, f'{nome}: na tela de {a:.2f} a {b:.2f} s; legível (depois da entrada) por {leg:.2f} s (mínimo 2 s)')
-a2 = spans['balao2'][0][0]
-ok(spans['selo'][0][0] - (a2 + 0.45) >= 1.5, f'selo "+6 mensagens" entra {spans["selo"][0][0] - (a2 + 0.45):.2f} s depois de o balão 2 ficar legível (mínimo 1,5 s) e conta de 1 a 6')
-ic = [spans[n][0] for n in spans if n.startswith('icone')]
-ok(min(x[0] for x in ic) >= EV['aqui'] - 0.01 and max(x[1] for x in ic) <= PL['p4']['t1'], f'ícones (chave, comanda, moeda) de {min(x[0] for x in ic):.2f} a {max(x[1] for x in ic):.2f} s: entram em "aqui" ({EV["aqui"]:.2f} s) e somem antes do corte ({PL["p4"]["t1"]:.2f} s)')
-p5_fala = [n for n, s in spans.items() for a, b in s if a < EV['fim_fala'] and b > PL['p5']['t0'] and n != 'legenda']
-ok(not p5_fala, f'durante a fala do P5 ({PL["p5"]["t0"]:.2f}–{EV["fim_fala"]:.2f} s) só a legenda se mexe na camada: {p5_fala or "nenhum outro elemento"}')
-ch = spans['chamada'][0]
-ok(ch[1] - ch[0] >= 2.5 and ch[0] - EV['fim_fala'] >= 0.9, f'chamada + logo de {ch[0]:.2f} a {ch[1]:.2f} s: {ch[1] - ch[0]:.2f} s de leitura (mínimo 2,5), {ch[0] - EV["fim_fala"]:.2f} s depois da última palavra')
+perto = [(n, round(t, 2), round(l, 2)) for t, n in novos for l in pg_legenda if 0 < abs(t - l) < 0.25 and not n.startswith('pergunta')]
+ok(not perto, f'nenhum elemento entra junto com uma página nova da legenda (< 0,25 s): {perto or "ok"}')
+leit = []
+for n, v in spans.items():
+    if not n.startswith(('notificacao', 'chat', 'pergunta', 'cartao')) or n == 'chat:digitando': continue
+    d = max(b - a for a, b in v); minimo = 2.5 if n.startswith('cartao') else (1.0 if n.endswith('+6') else 1.5)
+    leit.append((n, d, minimo))
+curtos = [(n, round(d, 2)) for n, d, m in leit if d < m]
+ok(not curtos, 'tempo de leitura (nítido e inteiro na tela): ' + ' · '.join(f'{n.split(":")[1][:26] if ":" in n else n} {d:.2f} s' for n, d, m in leit) +
+   (f' | abaixo do mínimo: {curtos}' if curtos else ' (mínimo 1,5 s; o cartão final 2,5 s; o "+6", só um número, 1 s)'))
+p5_fala = [n for n, v in spans.items() for a, b in v if a < EV['fim_fala'] and b > PL['p5']['t0']]
+ok(not p5_fala, f'durante a fala do P5 ({PL["p5"]["t0"]:.2f}–{EV["fim_fala"]:.2f} s) só a legenda se mexe (sem tremor, sem relógio, sem cartão): {p5_fala or "ok"}')
+ch = spans['cartao'][0]
+ok(ch[1] - ch[0] >= 2.5 and ch[0] - EV['fim_fala'] >= 0.9, f'cartão de envio legível de {ch[0]:.2f} a {ch[1]:.2f} s: {ch[1] - ch[0]:.2f} s (mínimo 2,5), sobe {EV["cartao"] - EV["fim_fala"]:.2f} s depois da última palavra; "Enviar" afunda em {EV["enviar"]:.2f} s')
 # congelamento: a sequência de quadros da fonte nunca fica parada mais de 2 quadros do Reel
 seq = [(q['fonte'], json.dumps(q['q'])) for q in MAPA]; run_, mx = 1, 1
 for i in range(1, len(seq)):
@@ -223,10 +267,10 @@ ok(max(iguais) <= 2, f'no vídeo final, no máximo {max(iguais)} quadro(s) segui
 # ---------------------------------------------------------------- áreas seguras e contraste
 rep.append(''); rep.append('ÁREAS SEGURAS E LEGENDA')
 allb = [(s['t'], b) for s in INFO['caixas'] for b in s['caixas']]
-fora = [(round(t, 2), b['nome']) for t, b in allb if b['y0'] < 200 or b['y1'] > 1536 or b['x0'] < 30 or b['x1'] > 1050]
+fora = [(round(t, 2), b['nome']) for t, b in allb if b['nome'] != 'luz' and (b['y0'] < 200 or b['y1'] > 1536 or b['x0'] < 30 or b['x1'] > 1050)]   # (a luz é fundo, atrás da cabeça)
 ok(not fora, f'todos os elementos entre y 200 e 1536 (fora da barra de cima e dos 20 % de baixo) e dentro das bordas: {fora[:5] or "ok"}')
 cx = [b for t, b in allb if b['nome'] == 'legenda']
-ok(min(b['y0'] for b in cx) >= 1380 and max(b['y1'] for b in cx) <= 1536 and min(b['x0'] for b in cx) >= 100 and max(b['x1'] for b in cx) <= 940,
+ok(min(b['y0'] for b in cx) >= 1360 and max(b['y1'] for b in cx) <= 1536 and min(b['x0'] for b in cx) >= 80 and max(b['x1'] for b in cx) <= 950,
    f'legenda em x {min(b["x0"] for b in cx)}–{max(b["x1"] for b in cx)}, y {min(b["y0"] for b in cx)}–{max(b["y1"] for b in cx)}: abaixo do queixo, '
    'acima dos 20 % de baixo e fora da coluna de botões (x > 950)')
 txt = ' '.join(w['w'] for q in INFO['legenda'] for w in q['palavras'])
@@ -242,13 +286,13 @@ for q in INFO['legenda']:
     for b in bxs:
         reg = im[b['y0']:b['y1'], b['x0']:b['x1']]
         texto = (reg.min(axis=2) > 225) | ((reg[..., 1] > 225) & (reg[..., 2] < 90))
-        fundo = ~ndimage.binary_dilation(texto, iterations=3)
+        fundo = ndimage.binary_dilation(texto, iterations=10) & ~ndimage.binary_dilation(texto, iterations=3)   # o fundo logo em volta das letras
         if fundo.sum() < 50 or texto.sum() < 30: continue
         Lb = np.percentile(lum(reg[fundo]), 90); Lt = np.median(lum(reg[texto]))
         contr.append(((Lt + 0.05) / (Lb + 0.05), round(t, 1)))
 cmin = min(contr)
-ok(cmin[0] >= 3.0, f'contraste da legenda sobre a imagem: mínimo {cmin[0]:.1f}:1 (em {cmin[1]} s), mediana {np.median([c for c, _ in contr]):.1f}:1 '
-   '(texto × o fundo mais claro entre as letras, P90; texto grande em negrito pede ≥ 3:1)')
+ok(cmin[0] >= 4.5, f'contraste da legenda sem faixa, sobre a imagem real: mínimo {cmin[0]:.1f}:1 (em {cmin[1]} s), mediana {np.median([c for c, _ in contr]):.1f}:1 '
+   '(texto × o fundo real a 3–10 px das letras, P90 — o mais claro —, já com a sombra difusa; alvo ≥ 4,5:1)')
 
 # ---------------------------------------------------------------- capa
 rep.append(''); rep.append('CAPA')
@@ -256,15 +300,15 @@ capa = open(os.path.join(OUT, 'grade', 'revisao', 'capa.txt')).read()
 ok('RESULTADO: dentro da regra' in capa, 'capa na regra da grade (reels/tools/revisao_capa.py --cena): ' + ' | '.join(l.strip() for l in capa.splitlines()[2:] if l.strip()))
 
 # ---------------------------------------------------------------- storyboard
-ts = [(0.5, 'P1 vibração'), (1.4, 'P1 14:20'), (3.6, 'P1 fala'), (5.6, 'P2 balão 1'), (7.0, 'P2 digitando'), (10.4, 'P3 balão 2'),
-      (12.3, 'P3 +6'), (15.2, 'P4 fala'), (19.75, 'P4 "aqui"'), (21.8, 'P5 folga'), (24.5, 'P5 fala'), (27.8, 'P5 chamada')]
+ts = [(0.15, 'P1 1ª notificação'), (1.8, 'P1 3 notificações'), (3.6, 'P1 agrupadas'), (5.6, 'P2 mensagem'), (7.0, 'P2 digitando'), (8.2, 'P2 resposta'),
+      (10.4, 'P3 notificação'), (12.6, 'P3 +6 · 14:31'), (18.4, 'P4 perguntas'), (19.6, 'P4 "aqui"'), (21.8, 'P5 folga'), (28.2, 'P5 cartão')]
 cols = 6; sb = Image.new('RGB', (cols * 280 + 10, 2 * 540 + 10), (16, 16, 16)); dr = ImageDraw.Draw(sb)
 for i, (t, nome) in enumerate(ts):
     im = quadro_png(VIDEO, int(round(t * FPS))).resize((270, 480)); x, y = 10 + (i % cols) * 280, 10 + (i // cols) * 540
-    sb.paste(im, (x, y)); dr.text((x, y + 488), f'{t:.2f} s · {nome}', font=FONT, fill=(175, 250, 39))
+    sb.paste(im, (x, y)); dr.text((x, y + 490), f'{t:.2f} s · {nome}', font=FONT_SB, fill=(175, 250, 39))
 sb.save(os.path.join(OUT, 'storyboard.jpg'), quality=90)
 
 pl = ' · '.join(f"{p['id'].upper()} {p['t0']:.2f}–{p['t1']:.2f} s ({p['t1'] - p['t0']:.2f} s)" for p in LN['planos'])
 R = 'RESULTADO: ' + ('aprovado' if not falhas else f'{len(falhas)} falha(s)')
-out = ['REEL AVATAR "SAÍ DA POUSADA POR DUAS HORAS" — revisão técnica', os.path.relpath(VIDEO, ROOT), f'{LN["duracao"]:.2f} s · ' + pl, ''] + rep + ['', R]
+out = ['REEL AVATAR "SAÍ DA POUSADA POR DUAS HORAS" — V2 da camada de motion — revisão técnica', os.path.relpath(VIDEO, ROOT), f'{LN["duracao"]:.2f} s · ' + pl, ''] + rep + ['', R]
 open(os.path.join(REV, 'relatorio.txt'), 'w').write('\n'.join(out) + '\n'); print('\n'.join(out))

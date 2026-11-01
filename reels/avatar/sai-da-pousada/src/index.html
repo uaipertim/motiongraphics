@@ -7,7 +7,9 @@
   @font-face { font-family: 'FL Display'; src: url('fonts/InterDisplay-Bold.otf') format('opentype'); font-weight: 700; }
   @font-face { font-family: 'FL Display'; src: url('fonts/InterDisplay-ExtraBold.otf') format('opentype'); font-weight: 800; }
   @font-face { font-family: 'FL Display'; src: url('fonts/InterDisplay-Black.otf') format('opentype'); font-weight: 900; }
-  @font-face { font-family: 'FL Mono'; src: url('fonts/JetBrainsMonoNL-Bold.ttf') format('truetype'); font-weight: 700; }
+  @font-face { font-family: 'FL Text'; src: url('fonts/Inter-Medium.otf') format('opentype'); font-weight: 500; }
+  @font-face { font-family: 'FL Text'; src: url('fonts/Inter-SemiBold.otf') format('opentype'); font-weight: 600 650; }
+  @font-face { font-family: 'FL Text'; src: url('fonts/Inter-Bold.otf') format('opentype'); font-weight: 700; }
   html, body { margin: 0; background: transparent; }
   canvas { display: block; width: 1080px; height: 1920px; }
 </style>
@@ -19,13 +21,23 @@
   const ctx = document.getElementById('c').getContext('2d');
   const carrega = async (s) => { const im = new Image(); im.src = s; await im.decode(); return im; };
   window.ready = (async () => {
-    await Promise.all(['900 40px "FL Display"', '800 40px "FL Display"', '700 40px "FL Display"', '700 40px "FL Mono"'].map((f) => document.fonts.load(f)));
+    await Promise.all(['900 40px "FL Display"', '800 40px "FL Display"', '700 40px "FL Display"', '500 40px "FL Text"', '600 40px "FL Text"', '700 40px "FL Text"'].map((f) => document.fonts.load(f)));
     const logo = await carrega('assets/fazlo-hospeda-logo-alpha.png');
     const linha = await (await fetch('../linha.json?' + Date.now())).json();
-    REEL.init(logo, linha);
+    window.REEL_LN = linha; REEL.init(logo, linha);
   })();
-  window.frameAt = (t) => { REEL.frame(ctx, t); return ctx.canvas.toDataURL('image/png'); };
-  window.caixas = (t) => REEL.caixas(ctx, t);
+  // o quadro-base k (midia/quadros) e, no P4, o recorte da personagem (midia/recorte-p4)
+  const nome = (k) => String(k).padStart(4, '0');
+  const fontes = async (t) => {
+    const k = Math.round(t * 30), img = await carrega('../midia/quadros/' + nome(k) + '.jpg');
+    const p4 = REEL_LN.planos[3], mask = t >= p4.t0 && t < p4.t1 ? await carrega('../midia/recorte-p4/' + nome(k) + '.png') : null;
+    return [img, mask];
+  };
+  window.frameAt = async (t) => { const [img, mask] = await fontes(t); REEL.frame(ctx, t, img, mask); return ctx.canvas.toDataURL('image/png'); };
+  window.caixas = async (t) => { const [img, mask] = await fontes(t); return REEL.caixas(ctx, t, img, mask); };
+  // a tela do chat do P2, plana (scripts/base.py a põe na tela do celular em perspectiva)
+  const tela = document.createElement('canvas'); tela.width = 600; tela.height = 1272;
+  window.telaAt = (t) => { REEL.telaP2(tela.getContext('2d'), t); return tela.toDataURL('image/png'); };
   // capa da grade (reels/tools/capa_grade.cjs): o quadro 44 do Reel (1,47 s: ela olha a câmera, boca fechada, com o celular)
   window.capaGrade = async () => { const img = await carrega('../midia/capa-quadro.png'); const r = REEL.capaGrade(ctx, img); return { ...r, png: ctx.canvas.toDataURL('image/png') }; };
 </script>

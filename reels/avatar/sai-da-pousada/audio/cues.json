@@ -1,29 +1,129 @@
 {
- "duracao": 29.3,
+ "duracao": 29.6,
  "cues": [
   {
-   "t": 0.35,
+   "t": 0.0,
    "type": "vibracao"
   },
   {
-   "t": 0.85,
+   "t": 0.02,
+   "type": "notificacao"
+  },
+  {
+   "t": 1.1,
    "type": "vibracao"
+  },
+  {
+   "t": 1.12,
+   "type": "notificacao"
+  },
+  {
+   "t": 1.4,
+   "type": "vibracao"
+  },
+  {
+   "t": 1.42,
+   "type": "notificacao"
+  },
+  {
+   "t": 2.95,
+   "type": "agrupa"
   },
   {
    "t": 4.95,
-   "type": "balao"
+   "type": "mensagem"
+  },
+  {
+   "t": 4.95,
+   "type": "relogio"
   },
   {
    "t": 6.65,
    "type": "toques"
   },
   {
-   "t": 8.8,
-   "type": "toques"
+   "t": 7.35,
+   "type": "enviada"
+  },
+  {
+   "t": 7.7,
+   "type": "lida"
   },
   {
    "t": 9.4,
-   "type": "balao"
+   "type": "relogio"
+  },
+  {
+   "t": 9.4,
+   "type": "vibracao"
+  },
+  {
+   "t": 9.42,
+   "type": "notificacao"
+  },
+  {
+   "t": 11.4,
+   "type": "pilha"
+  },
+  {
+   "t": 11.52,
+   "type": "pilha"
+  },
+  {
+   "t": 11.64,
+   "type": "pilha"
+  },
+  {
+   "t": 11.76,
+   "type": "pilha"
+  },
+  {
+   "t": 11.88,
+   "type": "pilha"
+  },
+  {
+   "t": 12.0,
+   "type": "pilha"
+  },
+  {
+   "t": 12.15,
+   "type": "relogio"
+  },
+  {
+   "t": 16.945,
+   "type": "cartao"
+  },
+  {
+   "t": 17.125,
+   "type": "cartao"
+  },
+  {
+   "t": 17.305,
+   "type": "cartao"
+  },
+  {
+   "t": 17.485,
+   "type": "cartao"
+  },
+  {
+   "t": 17.665,
+   "type": "cartao"
+  },
+  {
+   "t": 19.335,
+   "type": "luz"
+  },
+  {
+   "t": 26.465,
+   "type": "cartao-final"
+  },
+  {
+   "t": 27.715,
+   "type": "enviar"
+  },
+  {
+   "t": 27.865,
+   "type": "enviado"
   }
  ]
 }

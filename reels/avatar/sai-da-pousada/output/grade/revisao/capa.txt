@@ -1,8 +1,9 @@
 Capa — regra fixa da série (recorte 3:4, canto do play, faixa do contador, nada cortado ou escondido)
 
        cena de fundo de ponta a ponta: a, c e d conferidos pelas caixas dos elementos
-       (pixels da cena no canto do play: 10213; na faixa do contador: 0)
+       (pixels da cena no canto do play: 17883; na faixa do contador: 0)
 OK     a, c, d) caixas: dentro do recorte, fora do canto do play e da faixa do contador, sem sobreposição
-OK     titulo: x 174–906, y 851–1069
-OK     bloco centralizado na vertical do recorte 3:4: y 851–1069, centro em 960.0 (centro do recorte: 960)
+OK     notificacao: x 140–940, y 760–896
+OK     titulo: x 174–906, y 942–1160
+OK     bloco centralizado na vertical do recorte 3:4: y 760–1160, centro em 960.0 (centro do recorte: 960)
 RESULTADO: dentro da regra das capas

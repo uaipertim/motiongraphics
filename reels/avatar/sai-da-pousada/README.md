@@ -1,34 +1,48 @@
 # Reel avatar — "Saí da pousada por duas horas"
 
-Status: **edição completa para aprovação** (nada publicado).
+Status: **V2 da camada de motion para aprovação** (nada publicado). A V1 (`308ad8f`) foi reprovada: sem gancho, fria, tela do celular vazia, faixa escura na legenda, elementos infantis, final fraco.
 
 ▶ [`output/sai-da-pousada.mp4`](output/sai-da-pousada.mp4) · [`output/storyboard.jpg`](output/storyboard.jpg) · capa [`output/capa-grade.jpg`](output/capa-grade.jpg) · legenda do post [`legenda.txt`](legenda.txt) · revisão [`output/revisao/relatorio.txt`](output/revisao/relatorio.txt) (aprovado)
 
-## Edição (1080×1920, 30 fps, 29,3 s)
+## V2 (1080×1920, 30 fps, 29,6 s)
 
-| Plano | Reel | Fonte | O que aparece |
-|---|---|---|---|
-| P1 | 0,00–4,60 s | Seedance 0–1,5 s + Aurora 1,5–4,6 s (fusão de 3 quadros) | chip "Personagem criada com IA" (0–3 s) · anel limão nas 2 vibrações (0,35 e 0,85 s) · chip "14:20 · fora da pousada" (1,25 s) · "Faz vinte minutos que eu saí da pousada." |
-| P2 | 4,60–9,10 s | `plano2.mp4` 0–4,5 s | balão 1 sai da tela e segue o celular (14:21; 4,95 s) · "digitando…" na tela quando os polegares se mexem (6,65 s) |
-| P3 | 9,10–13,30 s | `plano3.mp4` 0,3–4,5 s | balão 2 (14:23; 9,40 s) · selo "+6 mensagens" contando de 1 a 6 (11,45 s) |
-| P4 | 13,30–20,10 s | `plano4.mp4` inteiro | fala · chave, comanda e moeda em traço limão na palavra "aqui" (19,14 s), somem antes do corte |
-| P5 | 20,10–29,30 s | `plano5.mp4` até o quadro 193 + 1,44 s de trás para frente (silêncio) | zoom fixo 114 % · só a legenda se mexe na fala · chamada + logo pequena de 26,47 a 29,30 s (2,83 s) |
+| Plano | Reel | O que aparece |
+|---|---|---|
+| P1 | 0,00–4,60 s | quadro 0 já com a 1ª notificação de vidro descendo e a imagem tremendo · relógio "14:20" (0,55 s) · mais duas notificações (0,95 e 1,27 s), cada uma com vibração · em 2,95 s as antigas recuam, desfocam e viram "3 notificações" |
+| P2 | 4,60–9,10 s | a conversa DENTRO da tela do celular, em perspectiva: chega a mensagem (14:21), ela digita (os pontinhos quando os polegares se mexem), a resposta "Na gaveta da recepção, a azul." vai com o check; aproximação lenta de 8 % |
+| P3 | 9,10–13,30 s | (começa 0,54 s mais tarde na fonte) notificação de vidro ao lado do rosto (14:23) · 1,55 s depois, outras empilham atrás e viram "+6" (14:31) |
+| P4 | 13,30–20,10 s | em "essas respostas" as 5 perguntas saem de trás da cabeça (a personagem recortada fica na frente) · em "aqui" se fecham num ponto de luz limão atrás da cabeça, que some antes do corte |
+| P5 | 20,10–29,60 s | só a legenda durante a fala · 1 s depois, sobe o cartão de envio (avião de papel, texto, logo, "Enviar" com pressão), 3,0 s legível; o fim toca de trás para frente (1,74 s) |
 
-- **Base** (`scripts/base.py` → `midia/base-1080.mp4`, fora do git):
-  - upscale lanczos e `unsharp` leve;
-  - 24/25 → 30 fps por repetição de quadro, sem interpolação;
-  - emenda do P1 medida de novo (SIFT + RANSAC no quadro de 1,5 s): o Seedance em 448 px casa com a Aurora com escala 1,04 e x −8,5 px, y 0. No Reel, o rosto fica a 0,4 px entre os dois lados da emenda.
-- **Zoom do P5: 114 %, e não 112 %.** Medido em todos os quadros da fonte: o dedo aparece 3 vezes (0,6, 1,3 e 2,8 s), em x ≥ 377 e y ≥ 688. Com 112 % e o rosto centrado, a janela pega a ponta do dedo. 114 % é o menor zoom centrado que fica livre dele.
-- **Fim do P5:** os quadros 194–197 da fonte repetem e pulam. Por isso o plano vai até o 193 e volta de trás para frente até o 157, para dar 2,8 s de chamada sem congelar.
-- **Legenda:** tempos das palavras alinhados por energia (`scripts/alinha.py`): ±10 ms no início de cada frase, ±0,1 s no meio. A chave do ElevenLabs não tem permissão de alinhamento forçado. Véu escuro um pouco mais forte que o da Dona Maria, por causa da camisa branca: contraste mínimo 4,0:1.
+- **Linguagem:**
+  - vidro fosco que desfoca o fundo de verdade (a página desenha o quadro inteiro, não só uma camada);
+  - Inter (texto) e Inter Display (títulos);
+  - limão só como acento;
+  - mola com leve overshoot;
+  - app genérico: remetente "Recepção", avatar "R", sem marca de app real.
+- **P2:**
+  - `scripts/rastreio.py` mede as bordas visíveis da tela (cima, esquerda, direita) quadro a quadro: erro médio 0,23 px e P95 1,1 px.
+  - `scripts/base.py` troca só o branco da tela pela conversa.
+  - As mãos ficam na frente, pela segmentação de pele (mediapipe) com a borda refinada por guided filter; a luz da tela real continua por cima.
+- **P4:**
+  - `scripts/recorte.py` recorta a personagem com o mediapipe multiclasse e refina a borda com guided filter.
+  - A cor da borda é descontaminada do fundo, então não sobra halo claro sobre os cartões.
+  - Os cartões ficam nos cantos de cima, onde o fundo aparece em volta da cabeça.
+  - O rosto nunca é coberto.
+- **Legenda:** sem faixa; 76 px; halo escuro que acompanha cada letra. Contraste mínimo de 5,2:1 contra o fundo real a 3–10 px das letras.
 - **Som:**
-  - voz dos próprios clipes, só com ganho geral (o limitador pega 0,12 % das amostras);
-  - cama da Dona Maria a 72 BPM, 18 dB abaixo da voz; baixa 12 dB antes da frase do P5 e volta na chamada;
-  - −14,0 LUFS, −2,2 dBTP.
+  - notificação genérica de vidro sempre com a vibração; digitação; envio; relógio; pilha do "+6"; cartões; luz; cartão final e botão;
+  - ambiente de carro parado e rua ao longe;
+  - trilha a 84 BPM com bumbo e chocalho do P1 ao P4; some antes do P5 e volta só com o pad no cartão final;
+  - −14,0 LUFS, −2,2 dBTP; a voz só com o ganho geral.
+- **Fora do git, gerados pelos scripts:** `midia/quadros`, `midia/tela-p2`, `midia/recorte-p4`, `midia/modelos` (o modelo do mediapipe é baixado na primeira vez).
 
 ```bash
 python3 scripts/alinha.py && python3 scripts/linha.py   # palavras e linha.json
-python3 scripts/base.py                                  # midia/base-1080.mp4
+python3 scripts/rastreio.py                              # midia/rastreio-p2.json
+node scripts/render.cjs telas                            # midia/tela-p2 (a conversa, plana)
+python3 scripts/base.py                                  # midia/quadros (+ base-1080.mp4)
+python3 scripts/recorte.py                               # midia/recorte-p4
 python3 scripts/audio.py                                 # audio/mix.wav
 node scripts/render.cjs video && node scripts/render.cjs info
 node ../../tools/capa_grade.cjs . && python3 ../../tools/revisao_capa.py . --saida output/grade --cena
