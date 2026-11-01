@@ -42,3 +42,7 @@ Transcrição de conferência não feita — a chave não tem permissão `speech
 - **Áudios para os closes** (a Aurora anima a partir da imagem 6 do 1º lote):
   - `audio/sync/B-2-sync.mp3`: 0,3 s de silêncio antes da fala.
   - `audio/sync/B-3-sync.mp3`: 0,3 s antes e ~2,2 s depois, para o olhar em silêncio no fim.
+- **Plano 4, 1ª rodada reprovada** (`midia/reprovados/plano4-t*.mp4`):
+  - sorriso aberto em "trabalhar" e em "aqui", com o tom de quem anuncia, e não de quem desabafa;
+  - uma mão entrando pela borda direita entre 0,7 e 1,3 s.
+  - **2ª rodada:** prompt mais rígido contra o sorriso. Um teste com `B-2-sync` e outro com `A-2-sync` (a versão A, mais estável, pode deixar a expressão mais séria).
