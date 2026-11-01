@@ -20,10 +20,10 @@ celular, para a conversa ficar legível.
   Aurora desde 0 s). Alinhamento medido (SIFT + RANSAC no quadro de 1,5 s): o Seedance redimensionado para 448 px de
   largura casa com a Aurora com escala 1,04 e x −8,5 px (y 0). Fusão de 3 quadros (25 %, 50 %, 75 % de Aurora nos
   quadros 45, 46 e 47 do Reel).
+- Fim (V3): depois do P5 (só para a frente, até ~1 s depois da última palavra), a tela da marca: fundo preto.
 - P5: zoom fixo de 114 % no rosto (janela 393×699 da fonte, x 27, y 0): é o menor zoom centrado que deixa de fora
   todos os quadros com o dedo no canto inferior direito (x ≥ 380, y ≥ 688 na fonte; ver output/revisao/relatorio.txt).
-  Depois do quadro 193 (7,72 s; os seguintes da fonte repetem e pulam), o trecho em silêncio toca de trás para frente
-  até o fim do plano (sem pulo e sem quadro congelado).
+  V3: o P5 só anda para a frente (nada de trecho de trás para frente); ele termina ~1 s depois da última palavra.
 """
 import json, os, subprocess
 import numpy as np
@@ -87,7 +87,7 @@ def p2_quadro(fr, lt, k):
     """a aproximação lenta e a conversa na tela do celular (tempo local lt do plano 2, quadro k do Reel)"""
     j = min(len(RAST['quadros']) - 1, int(lt * 24 + 1e-6))
     q = np.array(RAST['quadros'][j], np.float64) * 2.2506 - np.array([0, 1.0])          # fonte → Reel (scale 1080:1922, crop y 1)
-    z = 1.0 + 0.08 * (0.5 - 0.5 * np.cos(np.pi * min(1, lt / 4.5)))                     # 1,00 → 1,08, suave
+    z = 1.0                                                                               # V3: sem a aproximação (a leitura vai para a notificação ao lado)
     cx, cy = 735.0, 760.0                                                                 # o centro do celular no Reel
     A = np.array([[z, 0, cx * (1 - z)], [0, z, cy * (1 - z)]])
     fr = cv2.warpAffine(fr, A, (W, H), flags=cv2.INTER_LANCZOS4, borderMode=cv2.BORDER_REFLECT)
@@ -140,6 +140,8 @@ for k in range(total):
             fr = vs[js]; mapa.append({'k': k, 'fonte': 'p1s', 'q': js})
         else:
             fr = va[ja]; mapa.append({'k': k, 'fonte': 'p1a', 'q': ja})
+    elif pl['id'] == 'fim':                                 # V3: a tela final da marca (o fundo preto; o resto é da página)
+        fr = np.full((H, W, 3), 10, np.uint8); mapa.append({'k': k, 'fonte': 'fim', 'q': None})
     else:
         v, fs = src[pl['id']]
         j = int(lt * fs + 1e-6)

@@ -1,18 +1,26 @@
 # Reel avatar — "Saí da pousada por duas horas"
 
-Status: **V2 da camada de motion para aprovação** (nada publicado). A V1 (`308ad8f`) foi reprovada: sem gancho, fria, tela do celular vazia, faixa escura na legenda, elementos infantis, final fraco.
+Status: **V3 para aprovação** (nada publicado). A V2 (`a7af091`) tinha textos pequenos demais (~24 px), a tela preta do celular, um "+6" fraco, cartões minúsculos no P4 e o final tocado de trás para frente.
 
 ▶ [`output/sai-da-pousada.mp4`](output/sai-da-pousada.mp4) · [`output/storyboard.jpg`](output/storyboard.jpg) · capa [`output/capa-grade.jpg`](output/capa-grade.jpg) · legenda do post [`legenda.txt`](legenda.txt) · revisão [`output/revisao/relatorio.txt`](output/revisao/relatorio.txt) (aprovado)
 
-## V2 (1080×1920, 30 fps, 29,6 s)
+## V3 (1080×1920, 30 fps, 29,3 s)
 
-| Plano | Reel | O que aparece |
+| Trecho | Reel | O que aparece |
 |---|---|---|
-| P1 | 0,00–4,60 s | quadro 0 já com a 1ª notificação de vidro descendo e a imagem tremendo · relógio "14:20" (0,55 s) · mais duas notificações (0,95 e 1,27 s), cada uma com vibração · em 2,95 s as antigas recuam, desfocam e viram "3 notificações" |
-| P2 | 4,60–9,10 s | a conversa DENTRO da tela do celular, em perspectiva: chega a mensagem (14:21), ela digita (os pontinhos quando os polegares se mexem), a resposta "Na gaveta da recepção, a azul." vai com o check; aproximação lenta de 8 % |
-| P3 | 9,10–13,30 s | (começa 0,54 s mais tarde na fonte) notificação de vidro ao lado do rosto (14:23) · 1,55 s depois, outras empilham atrás e viram "+6" (14:31) |
-| P4 | 13,30–20,10 s | em "essas respostas" as 5 perguntas saem de trás da cabeça (a personagem recortada fica na frente) · em "aqui" se fecham num ponto de luz limão atrás da cabeça, que some antes do corte |
-| P5 | 20,10–29,60 s | só a legenda durante a fala · 1 s depois, sobe o cartão de envio (avião de papel, texto, logo, "Enviar" com pressão), 3,0 s legível; o fim toca de trás para frente (1,74 s) |
+| P1 | 0,00–4,60 s | quadro 0 já com a 1ª notificação descendo e a imagem tremendo · relógio "14:20" · mais duas notificações (0,95 e 1,27 s) · as antigas recuam e viram "3 notificações" |
+| P2 | 4,60–9,10 s | no celular, o chat em modo claro com teclado (as teclas acendem nos toques medidos dos polegares; o texto aparece no campo e sobe com o check) · ao lado, a notificação de vidro grande com a mensagem, para a leitura · relógio 14:21 |
+| P3 | 9,10–13,30 s | notificação ao lado do rosto (14:23) · duas bordas de cartões empilhados atrás · pílula "+6 mensagens" contando de 1 a 6 com pulso e som · relógio 14:31 |
+| P4 | 13,30–20,10 s | em "essas respostas", 3 cartões ("Qual chave?", "Pagou o sinal?", "Quanto eu cobro?") saem de trás da cabeça; parados e legíveis em "aqui"; recuam e desfocam antes do corte |
+| P5 | 20,10–26,50 s | só a legenda durante a fala; só para a frente, até ~1 s depois da última palavra; nos últimos 0,5 s a imagem desfoca e escurece até o preto da marca |
+| Final | 26,50–29,30 s | sem a personagem: o cartão de envio centralizado (texto em 50 px, logo dentro), "Enviar" afunda com o som do envio, trilha volta suave |
+
+- **Tamanhos de texto:**
+  - corpo de 40 px, remetente e horário de 28 px, contadores de 30 px;
+  - o QA mede a altura-x de cada texto no quadro final: 22 px no corpo (= 40 px).
+- **P4:**
+  - o texto de cada pergunta fica no lado de fora do cartão, e só a margem passa atrás do cabelo;
+  - o QA confere quadro a quadro que o texto nunca fica coberto.
 
 - **Linguagem:**
   - vidro fosco que desfoca o fundo de verdade (a página desenha o quadro inteiro, não só uma camada);
@@ -20,26 +28,26 @@ Status: **V2 da camada de motion para aprovação** (nada publicado). A V1 (`308
   - limão só como acento;
   - mola com leve overshoot;
   - app genérico: remetente "Recepção", avatar "R", sem marca de app real.
-- **P2:**
+- **P2 (desde a V2):**
   - `scripts/rastreio.py` mede as bordas visíveis da tela (cima, esquerda, direita) quadro a quadro: erro médio 0,23 px e P95 1,1 px.
   - `scripts/base.py` troca só o branco da tela pela conversa.
   - As mãos ficam na frente, pela segmentação de pele (mediapipe) com a borda refinada por guided filter; a luz da tela real continua por cima.
-- **P4:**
+- **Recorte do P4 (desde a V2):**
   - `scripts/recorte.py` recorta a personagem com o mediapipe multiclasse e refina a borda com guided filter.
   - A cor da borda é descontaminada do fundo, então não sobra halo claro sobre os cartões.
-  - Os cartões ficam nos cantos de cima, onde o fundo aparece em volta da cabeça.
+  - Os cartões ficam em volta do topo da cabeça, onde o fundo aparece (vagas medidas no pior quadro).
   - O rosto nunca é coberto.
 - **Legenda:** sem faixa; 76 px; halo escuro que acompanha cada letra. Contraste mínimo de 5,2:1 contra o fundo real a 3–10 px das letras.
 - **Som:**
-  - notificação genérica de vidro sempre com a vibração; digitação; envio; relógio; pilha do "+6"; cartões; luz; cartão final e botão;
+  - notificação genérica de vidro sempre com a vibração; uma tecla em cada toque dos polegares; envio; relógio; contagem do "+6 mensagens"; perguntas; transição; envio no aperto do botão;
   - ambiente de carro parado e rua ao longe;
-  - trilha a 84 BPM com bumbo e chocalho do P1 ao P4; some antes do P5 e volta só com o pad no cartão final;
-  - −14,0 LUFS, −2,2 dBTP; a voz só com o ganho geral.
+  - trilha a 84 BPM com bumbo e chocalho do P1 ao P4; some antes do P5 e volta só com o pad na tela final;
+  - −14,0 LUFS, −2,3 dBTP; a voz só com o ganho geral.
 - **Fora do git, gerados pelos scripts:** `midia/quadros`, `midia/tela-p2`, `midia/recorte-p4`, `midia/modelos` (o modelo do mediapipe é baixado na primeira vez).
 
 ```bash
-python3 scripts/alinha.py && python3 scripts/linha.py   # palavras e linha.json
-python3 scripts/rastreio.py                              # midia/rastreio-p2.json
+python3 scripts/alinha.py && python3 scripts/rastreio.py   # palavras; rastreio e toques do P2
+python3 scripts/linha.py                                 # linha.json
 node scripts/render.cjs telas                            # midia/tela-p2 (a conversa, plana)
 python3 scripts/base.py                                  # midia/quadros (+ base-1080.mp4)
 python3 scripts/recorte.py                               # midia/recorte-p4

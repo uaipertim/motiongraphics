@@ -1,5 +1,5 @@
 {
- "duracao": 29.6,
+ "duracao": 29.3,
  "cues": [
   {
    "t": 0.0,
@@ -10,19 +10,19 @@
    "type": "notificacao"
   },
   {
-   "t": 1.1,
+   "t": 0.95,
    "type": "vibracao"
   },
   {
-   "t": 1.12,
+   "t": 0.97,
    "type": "notificacao"
   },
   {
-   "t": 1.4,
+   "t": 1.27,
    "type": "vibracao"
   },
   {
-   "t": 1.42,
+   "t": 1.29,
    "type": "notificacao"
   },
   {
@@ -30,16 +30,68 @@
    "type": "agrupa"
   },
   {
-   "t": 4.95,
-   "type": "mensagem"
-  },
-  {
-   "t": 4.95,
+   "t": 4.85,
    "type": "relogio"
   },
   {
-   "t": 6.65,
-   "type": "toques"
+   "t": 4.85,
+   "type": "vibracao"
+  },
+  {
+   "t": 4.87,
+   "type": "notificacao"
+  },
+  {
+   "t": 5.267,
+   "type": "tecla"
+  },
+  {
+   "t": 5.35,
+   "type": "tecla"
+  },
+  {
+   "t": 5.475,
+   "type": "tecla"
+  },
+  {
+   "t": 5.475,
+   "type": "tecla"
+  },
+  {
+   "t": 5.6,
+   "type": "tecla"
+  },
+  {
+   "t": 5.6,
+   "type": "tecla"
+  },
+  {
+   "t": 5.767,
+   "type": "tecla"
+  },
+  {
+   "t": 5.767,
+   "type": "tecla"
+  },
+  {
+   "t": 6.767,
+   "type": "tecla"
+  },
+  {
+   "t": 6.767,
+   "type": "tecla"
+  },
+  {
+   "t": 6.933,
+   "type": "tecla"
+  },
+  {
+   "t": 6.933,
+   "type": "tecla"
+  },
+  {
+   "t": 7.1,
+   "type": "tecla"
   },
   {
    "t": 7.35,
@@ -66,63 +118,63 @@
    "type": "pilha"
   },
   {
-   "t": 11.52,
-   "type": "pilha"
+   "t": 11.56,
+   "type": "conta"
   },
   {
-   "t": 11.64,
-   "type": "pilha"
-  },
-  {
-   "t": 11.76,
-   "type": "pilha"
+   "t": 11.72,
+   "type": "conta"
   },
   {
    "t": 11.88,
-   "type": "pilha"
+   "type": "conta"
   },
   {
-   "t": 12.0,
-   "type": "pilha"
+   "t": 12.04,
+   "type": "conta"
   },
   {
-   "t": 12.15,
+   "t": 12.2,
+   "type": "conta"
+  },
+  {
+   "t": 12.36,
+   "type": "conta"
+  },
+  {
+   "t": 12.36,
    "type": "relogio"
   },
   {
    "t": 16.945,
-   "type": "cartao"
+   "type": "pergunta"
   },
   {
-   "t": 17.125,
-   "type": "cartao"
+   "t": 17.345,
+   "type": "pergunta"
   },
   {
-   "t": 17.305,
-   "type": "cartao"
+   "t": 17.745,
+   "type": "pergunta"
   },
   {
-   "t": 17.485,
-   "type": "cartao"
+   "t": 19.74,
+   "type": "perguntas-saem"
   },
   {
-   "t": 17.665,
-   "type": "cartao"
+   "t": 26.0,
+   "type": "transicao"
   },
   {
-   "t": 19.335,
-   "type": "luz"
-  },
-  {
-   "t": 26.465,
+   "t": 26.5,
    "type": "cartao-final"
   },
   {
-   "t": 27.715,
+   "t": 27.7,
    "type": "enviar"
   },
   {
-   "t": 27.865,
+   "t": 27.82,
    "type": "enviado"
   }
  ]

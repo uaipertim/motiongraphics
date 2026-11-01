@@ -6,10 +6,10 @@ geral do master) + trilha com mais pulso + ambiente de rua e carro parado + efei
     python3 scripts/audio.py   -> audio/mix.wav (48 kHz, estéreo) + audio/voz.wav, musica.wav, sfx.wav, ambiente.wav (para o QA)
 
 - Efeitos genéricos e suaves (nenhum som de app real): a notificação é um "tlim" de vidro de duas notas, sempre com
-  a vibração do celular; toques de digitação; o "enviar"; o tique do relógio; a pilha do "+6"; o sopro dos cartões;
-  o brilho do ponto de luz; o cartão final subindo e a pressão do botão.
+  a vibração do celular; uma tecla em cada toque dos polegares (P2); o "enviar"; o tique do relógio; a contagem do
+  "+6 mensagens"; o sopro das perguntas; a transição para a tela da marca; o cartão final e o envio no aperto.
 - Trilha: a cama da Dona Maria com pulso (bumbo macio em cada tempo e chocalho em colcheias) do P1 ao P4, ~18 dB
-  abaixo da voz; some antes da frase do P5 e volta suave, só o pad, no cartão final.
+  abaixo da voz; some antes da frase do P5 e volta suave, só o pad, na tela final.
 - Ambiente: carro parado com a janela fechada (grave abafado) e a rua ao longe (passagens de carro, passarinhos).
 - Master em −14 LUFS, limitador de pico real em −2,4 dBTP (pico ≤ −1,5 dBTP depois do AAC).
 """
@@ -139,19 +139,23 @@ def pressao():
 
 sfx = np.zeros((2, N)); ev = []
 def poe(sig, t, g, pan, nome): place(sfx, sig, t, g, pan); ev.append((t, nome))
+def tecla():
+    return click(0.03, 2600 + 900 * rng.random(), 0.0018) * 0.7 + wood(1500 + 300 * rng.random(), 0.03, 0.004) * 0.25
 for t0, _ in EV['notificacoes']:
     poe(vibra(), t0, 0.5, -0.1, 'vibracao'); poe(tlim(), t0 + 0.02, 0.4, 0.15, 'notificacao')
 poe(sopro(0.5, 300, 1600), EV['agrupa'], 0.22, 0.0, 'agrupa')
-for t0, _ in EV['relogio'][1:]: poe(tique(), t0, 0.25, 0.0, 'relogio')
-poe(tlim(), EV['chat_chega'], 0.25, 0.2, 'mensagem')
-for a_, b_ in EV['toques']: poe(toques(b_ - a_), a_, 0.22, 0.2, 'toques')
+for t0, _ in EV['relogio'][1:]: poe(tique(), t0, 0.22, 0.0, 'relogio')
+poe(vibra(), EV['p2_notif'], 0.4, 0.2, 'vibracao'); poe(tlim(), EV['p2_notif'] + 0.02, 0.38, 0.1, 'notificacao')
+for t0, lado in EV['teclas']: poe(tecla(), t0, 0.32, -0.25 if lado == 'e' else 0.3, 'tecla')
 poe(enviar(), EV['chat_envia'], 0.3, 0.3, 'enviada'); poe(tique(), EV['chat_lido'], 0.18, 0.3, 'lida')
 poe(vibra(), EV['p3_notif'], 0.45, 0.2, 'vibracao'); poe(tlim(), EV['p3_notif'] + 0.02, 0.38, 0.3, 'notificacao')
-for k in range(6): poe(tique(), EV['p3_pilha'] + k * 0.12, 0.16 + 0.02 * k, 0.3, 'pilha')
-for t0, _ in EV['perguntas']: poe(sopro(0.35, 700, 3000), t0, 0.13, 0.0, 'cartao')
-poe(brilho(), EV['aqui'] + 0.2, 0.3, 0.0, 'luz')
-poe(sopro(0.6, 250, 1800), EV['cartao'], 0.3, 0.0, 'cartao-final')
-poe(pressao(), EV['enviar'], 0.4, 0.2, 'enviar'); poe(enviar(), EV['enviar'] + 0.15, 0.3, 0.4, 'enviado')
+poe(sopro(0.4, 400, 2000), EV['p3_pilha'], 0.15, 0.2, 'pilha')
+for k, t0 in enumerate(EV['p3_conta']): poe(tique(), t0, 0.15 + 0.02 * k, 0.25, 'conta')
+for t0, _ in EV['perguntas']: poe(sopro(0.4, 600, 2800), t0, 0.16, 0.0, 'pergunta')
+poe(sopro(0.45, 300, 1500), EV['perguntas_saem'], 0.14, 0.0, 'perguntas-saem')
+poe(sopro(0.7, 200, 1200), EV['transicao'], 0.22, 0.0, 'transicao')
+poe(sopro(0.6, 250, 1800), EV['cartao'], 0.26, 0.0, 'cartao-final')
+poe(pressao(), EV['enviar'], 0.4, 0.2, 'enviar'); poe(enviar(), EV['enviar'] + 0.12, 0.34, 0.4, 'enviado')
 sfx *= 10 ** (-16 / 20) * VOZ_RMS / 0.11
 json.dump({'duracao': DUR, 'cues': [{'t': round(t, 3), 'type': ty} for t, ty in sorted(ev)]}, open(os.path.join(AUD, 'cues.json'), 'w'), indent=1)
 

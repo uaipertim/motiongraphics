@@ -43,7 +43,9 @@
     const fam = o.fam || TEXT, size = o.size || 30, weight = o.weight || 600, ls = o.ls ?? 0.2;
     const w = tw(s, fam, size, weight, ls), x0 = o.align === 'center' ? x - w / 2 : o.align === 'right' ? x - w : x;
     c.save(); setFont(c, fam, size, weight, ls); c.textAlign = 'left'; c.textBaseline = 'alphabetic';
-    c.globalAlpha *= o.alpha ?? 1; c.fillStyle = o.color || C.white; c.fillText(s, x0, y); c.restore();
+    c.globalAlpha *= o.alpha ?? 1; c.fillStyle = o.color || C.white; c.fillText(s, x0, y);
+    if (o.papel && BOXES && c.globalAlpha > 0.9) { const m = c.getTransform(); BOX('texto', m.a * x0 + m.e, m.d * (y - size * 0.75) + m.f, m.a * (x0 + w) + m.e, m.d * y + m.f, { papel: o.papel, size: size * m.d, txt: s, base: m.d * y + m.f }); }
+    c.restore();
     return w;
   }
   function quebra(s, fam, size, weight, maxW, ls = 0.2) {
@@ -94,20 +96,32 @@
     txt(c, 'R', cx, cy + r * 0.36, { fam: TEXT, size: r * 1.0, weight: 700, align: 'center', ls: 0 });
     if (o.ponto) { c.beginPath(); c.arc(cx + r * 0.72, cy - r * 0.72, r * 0.24, 0, TAU); c.fillStyle = C.lime; c.fill(); c.strokeStyle = 'rgba(14,16,18,0.9)'; c.lineWidth = 3; c.stroke(); }
   }
-  // a notificação de vidro (genérica): avatar R, "Recepção", "agora", a mensagem
+  // a notificação de vidro (genérica): avatar R, "Recepção", "agora", a mensagem. V3: corpo 40 px, remetente/horário 28 px
+  const NT = { corpo: 40, meta: 28, padX: 28, padT: 26, padB: 24, av: 36, lh: 1.27 };
   function notificacao(c, x, y, w, msg, o = {}) {
-    const sz = o.size || 30, padX = 26, av = 30, tx = x + padX + av * 2 + 20, maxW = x + w - padX - tx;
-    const linhas = quebra(msg, TEXT, sz, 500, maxW), h = 40 + 32 + linhas.length * (sz * 1.28) + 18;
+    const sz = o.size || NT.corpo, tx = x + NT.padX + NT.av * 2 + 22, maxW = x + w - NT.padX - tx;
+    const linhas = quebra(msg, TEXT, sz, 500, maxW), topoCorpo = NT.padT + NT.meta * 1.25 + 4;
+    const h = topoCorpo + linhas.length * sz * NT.lh + NT.padB;
     if (o.medir) return h;
-    vidro(c, x, y, w, h, 30, o);
+    const papel = o.semTexto ? null : (o.papel ?? 'corpo');
+    vidro(c, x, y, w, h, 34, o);
     c.save(); c.globalAlpha *= o.alpha ?? 1;
-    avatarR(c, x + padX + av, y + h / 2, av, { ponto: !o.lida });
-    txt(c, 'Recepção', tx, y + 52, { size: 25, weight: 700, ls: 0.3 });
-    txt(c, o.quando || 'agora', x + w - padX, y + 52, { size: 22, weight: 500, color: C.gray, align: 'right', ls: 0.4 });
-    linhas.forEach((s, i) => txt(c, s, tx, y + 52 + 14 + (i + 1) * sz * 1.28, { size: sz, weight: 500, color: 'rgba(255,255,255,0.94)', ls: 0.1 }));
+    avatarR(c, x + NT.padX + NT.av, y + NT.padT + NT.av + 2, NT.av, { ponto: !o.lida });
+    txt(c, 'Recepção', tx, y + NT.padT + NT.meta, { size: NT.meta, weight: 700, ls: 0.2, papel: papel && 'meta' });
+    txt(c, o.quando || 'agora', x + w - NT.padX, y + NT.padT + NT.meta, { size: NT.meta, weight: 500, color: C.gray, align: 'right', ls: 0.3, papel: papel && 'meta' });
+    linhas.forEach((s, i) => txt(c, s, tx, y + topoCorpo + sz * 0.98 + i * sz * NT.lh, { size: sz, weight: 500, color: 'rgba(255,255,255,0.96)', ls: 0, papel }));
     c.restore();
     if ((o.alpha ?? 1) > 0.5 && !o.semCaixa) BOX(o.nome || 'notificacao', x, y, x + w, y + h, { txt: msg });
     return h;
+  }
+  function pilula(c, s, cx, y, o = {}) {                         // pílula de vidro com texto de 30 px (os contadores)
+    const sz = 30, w = Math.max(o.minW || 0, tw(s, TEXT, sz, 600, 0.3) + 52), h = 60, x = cx - w / 2;
+    vidro(c, x, y, w, h, 30, { alpha: o.alpha ?? 1, blur: 20, sombra: 0.28 });
+    c.save(); c.globalAlpha *= o.alpha ?? 1;
+    if (o.ponto) { c.beginPath(); c.arc(x + 30, y + h / 2, 7, 0, TAU); c.fillStyle = C.lime; c.fill(); }
+    txt(c, s, cx + (o.ponto ? 10 : 0), y + h / 2 + sz * 0.36, { size: sz, weight: 600, align: 'center', ls: 0.3, color: 'rgba(255,255,255,0.95)', papel: 'contador' });
+    c.restore();
+    return { x, w, h };
   }
   function desfocado(c, f, blur, alpha = 1) {            // desenha f(c2) numa camada e põe com desfoque (profundidade)
     const o = OFF.getContext('2d'); o.setTransform(1, 0, 0, 1, 0, 0); o.clearRect(0, 0, W, H); o.filter = 'none'; o.globalAlpha = 1;
@@ -140,7 +154,7 @@
   }
 
   // ---------------------------------------------------------------- P1: o gancho
-  const P1 = { x: 110, w: 860, y: 846, gap: 14, size: 35 };
+  const P1 = { x: 50, w: 900, y: 800, gap: 14, size: 40 };
   function p1(c, t) {
     const N = EV.notificacoes, ag = E.inOutCubic(p(t, EV.agrupa, EV.agrupa + 0.5));
     const h = notificacao(c, 0, 0, P1.w, N[1][1], { medir: true, size: P1.size });
@@ -159,7 +173,7 @@
     desenha.sort((a, b) => b.idade - a.idade);                       // as antigas atrás
     for (const d of desenha) {
       const cx = P1.x + P1.w / 2;
-      const f = (cc) => { cc.translate(cx, d.y); cc.scale(d.s, d.s); cc.translate(-cx, -d.y); notificacao(cc, P1.x, d.y, P1.w, d.msg, { size: P1.size, alpha: d.alpha, brilho: d.brilho, lida: d.idade > 0 && ag > 0.5, semCaixa: true }); };
+      const f = (cc) => { cc.translate(cx, d.y); cc.scale(d.s, d.s); cc.translate(-cx, -d.y); notificacao(cc, P1.x, d.y, P1.w, d.msg, { size: P1.size, alpha: d.alpha, brilho: d.brilho, lida: d.idade > 0 && ag > 0.5, semCaixa: true, semTexto: d.idade > 0 && ag > 0.05 }); };
       if (d.blur > 0.3) desfocado(c, f, d.blur, 1);
       else { c.save(); f(c); c.restore(); }
       if (d.alpha > 0.5 && (d.idade === 0 || ag < 0.5)) BOX('notificacao', P1.x, d.y, P1.x + P1.w, d.y + h, { txt: d.msg });
@@ -167,150 +181,181 @@
     // o contador do grupo
     const k = E.mola(p(t, EV.agrupa + 0.25, EV.agrupa + 0.75));
     if (k > 0) {
-      const s = '3 notificações', w = tw(s, TEXT, 24, 600, 0.4) + 40, x = 540 - w / 2, y = P1.y + h + 40 - (1 - k) * 14;
-      vidro(c, x, y, w, 48, 24, { alpha: clamp(k * 2), blur: 20, sombra: 0.25 });
-      txt(c, s, 540, y + 32, { size: 24, weight: 600, align: 'center', alpha: clamp(k * 2), ls: 0.4, color: 'rgba(255,255,255,0.86)' });
-      BOX('contador', x, y, x + w, y + 48);
+      const y = P1.y + h + 44 - (1 - k) * 14, pl = pilula(c, '3 notificações', P1.x + P1.w / 2, y, { alpha: clamp(k * 2) });
+      BOX('contador', pl.x, y, pl.x + pl.w, y + pl.h);
     }
   }
 
   // ---------------------------------------------------------------- P2: a tela do chat (desenhada plana; base.py põe na tela em perspectiva)
   const TELA = { w: 600, h: 1272 };
+  const RESP = 'Na gaveta da recepção, a azul.';
+  const TECLADO = ['qwertyuiop', 'asdfghjkl', 'zxcvbnm'];
+  function digitado(t) {                                          // quantos caracteres da resposta já estão no campo
+    const D = EV.digitar, tot = D.reduce((a, [x, y]) => a + (y - x), 0); let feito = 0;
+    for (const [x, y] of D) feito += clamp(t - x, 0, y - x);
+    return Math.round(RESP.length * feito / tot);
+  }
   function telaP2(c, t) {
-    const w = TELA.w, h = TELA.h;
+    const w = TELA.w, h = TELA.h, INK = '#121416', CINZA = '#6B7178';
     c.setTransform(1, 0, 0, 1, 0, 0); c.clearRect(0, 0, w, h); c.filter = 'none'; c.globalAlpha = 1;
     c.save();                                                      // retângulo cheio: quem recorta é o branco da tela real
-    const g = c.createLinearGradient(0, 0, 0, h); g.addColorStop(0, '#15181B'); g.addColorStop(1, '#0C0E10'); c.fillStyle = g; c.fillRect(0, 0, w, h);
+    c.fillStyle = '#F3F4F6'; c.fillRect(0, 0, w, h);
     // barra de status
-    txt(c, t >= EV.chat_chega ? '14:21' : '14:20', 56, 58, { size: 26, weight: 700, ls: 0.3 });
-    c.save(); c.strokeStyle = 'rgba(255,255,255,0.85)'; c.lineWidth = 2.2;
-    rr(c, w - 98, 38, 44, 22, 6); c.stroke(); c.fillStyle = 'rgba(255,255,255,0.85)'; c.fillRect(w - 94, 42, 30, 14); c.fillRect(w - 52, 45, 3, 8);
+    txt(c, t >= EV.chat_chega ? '14:21' : '14:20', 56, 58, { size: 26, weight: 700, ls: 0.3, color: INK });
+    c.save(); c.strokeStyle = INK; c.fillStyle = INK; c.lineWidth = 2.2;
+    rr(c, w - 98, 38, 44, 22, 6); c.stroke(); c.fillRect(w - 94, 42, 30, 14); c.fillRect(w - 52, 45, 3, 8);
     for (let k = 0; k < 4; k++) c.fillRect(w - 160 + k * 9, 56 - 5 - k * 4, 6, 5 + k * 4);
     c.restore();
-    // cabeçalho: voltar, avatar R, "Recepção", "online"
-    c.save(); c.strokeStyle = 'rgba(255,255,255,0.75)'; c.lineWidth = 3.4; c.lineCap = 'round'; c.lineJoin = 'round';
+    // cabeçalho
+    c.fillStyle = '#FFFFFF'; c.fillRect(0, 80, w, 112); c.fillStyle = 'rgba(0,0,0,0.08)'; c.fillRect(0, 191, w, 1.5);
+    c.save(); c.strokeStyle = INK; c.lineWidth = 3.4; c.lineCap = 'round'; c.lineJoin = 'round';
     c.beginPath(); c.moveTo(48, 118); c.lineTo(34, 134); c.lineTo(48, 150); c.stroke(); c.restore();
     avatarR(c, 100, 134, 30);
-    txt(c, 'Recepção', 146, 128, { size: 30, weight: 700, ls: 0.2 });
-    c.beginPath(); c.arc(152, 150, 5, 0, TAU); c.fillStyle = C.lime; c.fill();
-    txt(c, 'online', 164, 158, { size: 21, weight: 500, color: C.gray, ls: 0.5 });
-    c.fillStyle = 'rgba(255,255,255,0.08)'; c.fillRect(0, 190, w, 1.5);
-    // mensagens (sobem quando chega uma nova): a de baixo fica em ~ 58 % da altura (os polegares cobrem o resto)
-    const msgs = [];
-    const chega = E.mola(p(t, EV.chat_chega, EV.chat_chega + 0.5));
-    msgs.push({ lado: 'e', txt: 'O casal do chalé 3 chegou. Qual chave eu entrego?', hora: '14:21', u: chega, t0: EV.chat_chega });
-    const dig = p(t, EV.chat_digita, EV.chat_digita + 0.25), env = p(t, EV.chat_envia, EV.chat_envia + 0.4);
-    if (dig > 0 && env < 1) msgs.push({ lado: 'd', digitando: true, u: E.mola(dig) * (1 - E.outCubic(env)) });
-    if (env > 0) msgs.push({ lado: 'd', txt: 'Na gaveta da recepção, a azul.', hora: '14:21', u: E.mola(env), t0: EV.chat_envia, lido: p(t, EV.chat_lido, EV.chat_lido + 0.2) });
-    // data
-    txt(c, 'Hoje', w / 2, 236, { size: 20, weight: 600, color: 'rgba(255,255,255,0.45)', align: 'center', ls: 1.2 });
-    const SZ = 34, LH = 42, maxW = 400;
-    const alt = (m) => (m.digitando ? 70 : quebra(m.txt, TEXT, SZ, 500, maxW).length * LH + 60);
-    let base_ = 740; const hs = msgs.map(alt);
-    let tot = 0; msgs.forEach((m, i) => { tot += (hs[i] + 16) * clamp(m.u * 1.4); });
-    let y = base_ - tot;
-    msgs.forEach((m, i) => {
-      const hh = hs[i], u = m.u; if (u <= 0.001) return;
-      const ls = m.digitando ? [] : quebra(m.txt, TEXT, SZ, 500, maxW), bw = m.digitando ? 112 : Math.max(...ls.map((s) => tw(s, TEXT, SZ, 500))) + 48 + (m.lado === 'd' ? 0 : 0);
-      const bx = m.lado === 'e' ? 34 : w - 34 - bw;
+    txt(c, 'Recepção', 146, 128, { size: 30, weight: 700, ls: 0.2, color: INK });
+    c.beginPath(); c.arc(152, 150, 5, 0, TAU); c.fillStyle = '#5BA300'; c.fill();
+    txt(c, 'online', 164, 158, { size: 21, weight: 500, color: CINZA, ls: 0.5 });
+    txt(c, 'Hoje', w / 2, 236, { size: 20, weight: 600, color: '#9AA0A6', align: 'center', ls: 1.2 });
+    // mensagens (acima do teclado; sobem quando a resposta é enviada)
+    const SZ = 32, LH = 40, maxW = 400, K0 = 700;                 // K0: topo do campo de digitar
+    const chega = E.mola(p(t, EV.chat_chega, EV.chat_chega + 0.5)), env = E.mola(p(t, EV.chat_envia, EV.chat_envia + 0.45));
+    const msgs = [{ lado: 'e', txt: 'O casal do chalé 3 chegou. Qual chave eu entrego?', u: chega }];
+    if (env > 0) msgs.push({ lado: 'd', txt: RESP, u: env, lido: p(t, EV.chat_lido, EV.chat_lido + 0.2) });
+    const alt = (m) => quebra(m.txt, TEXT, SZ, 500, maxW).length * LH + 58;
+    let tot = 0; msgs.forEach((m) => { tot += (alt(m) + 14) * clamp(m.u * 1.4); });
+    let y = K0 - 20 - tot;
+    msgs.forEach((m) => {
+      const hh = alt(m), u = m.u; if (u <= 0.001) return;
+      const ls = quebra(m.txt, TEXT, SZ, 500, maxW), bw = Math.max(...ls.map((x) => tw(x, TEXT, SZ, 500))) + 46, bx = m.lado === 'e' ? 30 : w - 30 - bw;
       c.save(); c.globalAlpha *= clamp(u * 2);
-      const ox = m.lado === 'e' ? bx : bx + bw, oy = y + hh; c.translate(ox, oy); c.scale(lerp(0.7, 1, u), lerp(0.7, 1, u)); c.translate(-ox, -oy);
-      rr(c, bx, y, bw, hh, 30);
-      if (m.lado === 'e') { c.fillStyle = '#23272B'; c.fill(); }
-      else { const gg = c.createLinearGradient(bx, y, bx + bw, y + hh); gg.addColorStop(0, '#2C3A16'); gg.addColorStop(1, '#22300F'); c.fillStyle = gg; c.fill(); c.strokeStyle = 'rgba(181,255,46,0.35)'; c.lineWidth = 1.5; c.stroke(); }
-      if (m.digitando) {
-        for (let k = 0; k < 3; k++) { const ph = (t - EV.chat_digita) * 2.6 - k * 0.17, b = Math.max(0, Math.sin(ph * TAU)); c.beginPath(); c.arc(bx + 32 + k * 24, y + hh / 2 - 6 * b, 7.5, 0, TAU); c.fillStyle = `rgba(181,255,46,${0.45 + 0.55 * b})`; c.fill(); }
-      } else {
-        ls.forEach((s, k) => txt(c, s, bx + 24, y + 46 + k * LH, { size: SZ, weight: 500, ls: 0.1 }));
-        const hx = bx + bw - 22 - (m.lado === 'd' ? 34 : 0);
-        txt(c, m.hora, hx, y + hh - 16, { size: 19, weight: 500, color: 'rgba(255,255,255,0.5)', align: 'right', ls: 0.4 });
-        if (m.lado === 'd') {                                   // o check (e o segundo, quando lida), finos e limão
-          c.save(); c.strokeStyle = m.lido > 0 ? C.lime : 'rgba(255,255,255,0.6)'; c.lineWidth = 2.6; c.lineCap = 'round'; c.lineJoin = 'round';
-          const cx = bx + bw - 44, cy = y + hh - 24;
-          c.beginPath(); c.moveTo(cx, cy); c.lineTo(cx + 6, cy + 6); c.lineTo(cx + 17, cy - 6); c.stroke();
-          if (m.lido > 0) { c.globalAlpha *= m.lido; c.beginPath(); c.moveTo(cx + 9, cy + 6); c.lineTo(cx + 26, cy - 6); c.stroke(); }
-          c.restore();
-        }
+      const ox = m.lado === 'e' ? bx : bx + bw, oy = y + hh; c.translate(ox, oy); c.scale(lerp(0.75, 1, u), lerp(0.75, 1, u)); c.translate(-ox, -oy);
+      rr(c, bx, y, bw, hh, 28); c.fillStyle = m.lado === 'e' ? '#E3E6EA' : '#D9F7A0'; c.fill();
+      ls.forEach((x, k) => txt(c, x, bx + 23, y + 44 + k * LH, { size: SZ, weight: 500, color: INK, ls: 0 }));
+      txt(c, '14:21', bx + bw - 20 - (m.lado === 'd' ? 32 : 0), y + hh - 14, { size: 18, weight: 500, color: CINZA, align: 'right', ls: 0.3 });
+      if (m.lado === 'd') {
+        c.save(); c.strokeStyle = m.lido > 0 ? '#4C8A00' : CINZA; c.lineWidth = 2.6; c.lineCap = 'round'; c.lineJoin = 'round';
+        const cx = bx + bw - 44, cy = y + hh - 22;
+        c.beginPath(); c.moveTo(cx, cy); c.lineTo(cx + 6, cy + 6); c.lineTo(cx + 17, cy - 6); c.stroke();
+        if (m.lido > 0) { c.globalAlpha *= m.lido; c.beginPath(); c.moveTo(cx + 9, cy + 6); c.lineTo(cx + 26, cy - 6); c.stroke(); }
+        c.restore();
       }
       c.restore();
-      y += (hh + 16) * clamp(u * 1.4);
+      y += (hh + 14) * clamp(u * 1.4);
     });
-    // a barra de digitar (fica sob os polegares)
-    rr(c, 28, 1150, w - 56, 70, 35); c.fillStyle = '#1E2226'; c.fill();
-    txt(c, 'Mensagem', 64, 1196, { size: 26, weight: 500, color: 'rgba(255,255,255,0.4)' });
+    // o campo de digitar: o texto dela aparece aos poucos (some quando é enviado)
+    c.fillStyle = '#FFFFFF'; c.fillRect(0, K0, w, 86); c.fillStyle = 'rgba(0,0,0,0.08)'; c.fillRect(0, K0, w, 1.5);
+    rr(c, 22, K0 + 14, w - 110, 58, 29); c.fillStyle = '#F0F1F3'; c.fill();
+    const n = t < EV.chat_envia ? digitado(t) : 0, campo = RESP.slice(0, n);
+    c.save(); rr(c, 22, K0 + 14, w - 110, 58, 29); c.clip();
+    const tw_ = tw(campo, TEXT, 26, 500), tx0 = Math.min(44, w - 110 - 16 - tw_);
+    if (n > 0) txt(c, campo, tx0, K0 + 52, { size: 26, weight: 500, color: INK, ls: 0 });
+    else txt(c, 'Mensagem', 44, K0 + 52, { size: 26, weight: 500, color: '#A0A5AB' });
+    if (n > 0 && Math.floor(t * 2.2) % 2 === 0) { c.fillStyle = '#4C8A00'; c.fillRect(tx0 + tw_ + 3, K0 + 28, 2.5, 30); }
     c.restore();
+    c.beginPath(); c.arc(w - 50, K0 + 43, 27, 0, TAU); c.fillStyle = n > 0 ? '#9BE01F' : '#DADDE1'; c.fill();
+    aviao(c, w - 51, K0 + 44, 0.85, n > 0 ? INK : '#FFFFFF');
+    // o teclado claro: as teclas acendem no ritmo dos polegares (teclas do lado de cada polegar)
+    const KY = K0 + 86; c.fillStyle = '#D5D8DD'; c.fillRect(0, KY, w, h - KY);
+    const kw = (w - 20) / 10, kh = 86, gap = 8;
+    const prox = EV.teclas.filter(([tt0]) => t >= tt0 && t < tt0 + 0.14);
+    TECLADO.forEach((linha, r) => {
+      const off = r === 0 ? 10 : r === 1 ? 10 + kw / 2 : 10 + kw * 1.5;
+      [...linha].forEach((ch, i) => {
+        const x = off + i * kw + gap / 2, yy = KY + 16 + r * (kh + 14);
+        const lado = x + kw / 2 < w / 2 ? 'e' : 'd';
+        // a tecla da próxima letra digitada acende quando o polegar daquele lado toca
+        const alvo = RESP[Math.max(0, digitado(t) - 1)]?.toLowerCase(), aceso = prox.some(([, l]) => l === lado) && ch === alvo;
+        rr(c, x, yy, kw - gap, kh, 10); c.fillStyle = aceso ? '#E9FBC4' : '#FFFFFF'; c.fill();
+        if (aceso) { c.strokeStyle = 'rgba(91,163,0,0.5)'; c.lineWidth = 2; c.stroke(); }
+        txt(c, ch, x + (kw - gap) / 2, yy + kh / 2 + 11, { size: 30, weight: 500, color: INK, align: 'center', ls: 0 });
+      });
+    });
+    const by = KY + 16 + 3 * (kh + 14), bAceso = prox.length && RESP[Math.max(0, digitado(t) - 1)] === ' ';
+    rr(c, 10 + kw * 2.5 + gap / 2, by, kw * 5 - gap, kh, 10); c.fillStyle = bAceso ? '#E9FBC4' : '#FFFFFF'; c.fill();
+    txt(c, 'espaço', w / 2, by + kh / 2 + 9, { size: 24, weight: 500, color: CINZA, align: 'center' });
+    rr(c, 14, by, kw * 2.3, kh, 10); c.fillStyle = '#B9BEC5'; c.fill(); txt(c, '123', 14 + kw * 1.15, by + kh / 2 + 9, { size: 24, weight: 600, color: INK, align: 'center' });
+    rr(c, w - 14 - kw * 2.3, by, kw * 2.3, kh, 10); c.fillStyle = '#B9BEC5'; c.fill(); txt(c, 'enviar', w - 14 - kw * 1.15, by + kh / 2 + 9, { size: 22, weight: 600, color: INK, align: 'center' });
+    c.restore();
+  }
+  // P2: a notificação de vidro grande ao lado do celular (a leitura fica aqui)
+  function p2(c, t) {
+    const t0 = EV.p2_notif, e = E.mola(p(t, t0, t0 + 0.55));
+    if (e <= 0) return;
+    const x = 40, w = 1000, y = 300 - (1 - e) * 90;
+    notificacao(c, x, y, w, 'O casal do chalé 3 chegou. Qual chave eu entrego?', { alpha: clamp(p(t, t0, t0 + 0.18)), nome: 'notificacao-p2', semCaixa: e < 0.95 });
   }
 
   // ---------------------------------------------------------------- P3: a notificação ao lado do rosto e o "+6"
-  const P3 = { x: 560, w: 480, y: 884 };
+  const P3 = { x: 470, w: 570, y: 884 };
   function p3(c, t) {
     const t0 = EV.p3_notif, e = E.mola(p(t, t0, t0 + 0.55));
     if (e <= 0) return;
-    const msg = 'Quanto eu cobro do pessoal que está saindo?', h = notificacao(c, 0, 0, P3.w, msg, { medir: true, size: 31 });
-    // a pilha atrás: 6 cartões que entram um a um (recuados, desfocados) e viram o "+6"
-    const tp = EV.p3_pilha, n = Math.min(6, Math.floor((t - tp) / 0.12) + 1);
-    if (t >= tp) {
-      const vira = E.inOutCubic(p(t, EV.p3_mais6 - 0.1, EV.p3_mais6 + 0.35));
-      for (let k = Math.min(n, 3) - 1; k >= 0; k--) {          // só 3 lâminas visíveis atrás (as outras ficam no número)
-        const u = E.mola(p(t, tp + k * 0.12, tp + k * 0.12 + 0.4)), d = k + 1;
-        const s = 1 - 0.05 * d, y = P3.y - (12 + 13 * d) * u * (1 - 0.4 * vira), cx = P3.x + P3.w / 2;
-        desfocado(c, (cc) => { cc.translate(cx, y + h / 2); cc.scale(s, s); cc.translate(-cx, -(y + h / 2)); vidro(cc, P3.x, y, P3.w, h, 30, { alpha: 0.9, brilho: 0.62 - 0.06 * d, sombra: 0.2 }); }, 2.5 + 1.5 * d, clamp(u * 2));
-      }
-      // o número: conta de +1 a +6 e fica
-      const sz = 30, s = `+${n}`, w = Math.max(64, tw('+6', DISPLAY, sz, 800) + 34), cx = P3.x + P3.w - 46, cy = P3.y - 4;
-      const k = E.mola(p(t, tp, tp + 0.4)) * (1 + 0.1 * kick(t, tp + (n - 1) * 0.12, 0.14));
-      c.save(); c.translate(cx, cy); c.scale(k, k);
-      c.shadowColor = 'rgba(0,0,0,0.35)'; c.shadowBlur = 18; c.shadowOffsetY = 6; rr(c, -w / 2, -24, w, 48, 24); c.fillStyle = C.lime; c.fill(); c.shadowColor = 'transparent';
-      txt(c, s, 0, 11, { fam: DISPLAY, size: sz, weight: 800, color: C.ink, align: 'center', ls: 0 });
-      c.restore(); BOX('mais6', cx - w / 2, cy - 24, cx + w / 2, cy + 24);
+    const msg = 'Quanto eu cobro do pessoal que está saindo?', h = notificacao(c, 0, 0, P3.w, msg, { medir: true });
+    const yy = P3.y + (1 - e) * 60, cx = P3.x + P3.w / 2;
+    // a pilha (como no iOS): duas bordas de cartões atrás, aparecendo embaixo da notificação
+    const pil = E.mola(p(t, EV.p3_pilha, EV.p3_pilha + 0.5));
+    for (let k = 2; k >= 1; k--) {
+      const u = clamp(pil * 1.2 - (k - 1) * 0.2), s = 1 - 0.05 * k, yk = yy + 15 * k * u;
+      if (u <= 0) continue;
+      c.save(); c.translate(cx, yk + h); c.scale(s, s); c.translate(-cx, -(yk + h));
+      vidro(c, P3.x, yk, P3.w, h, 34, { alpha: 0.95 * clamp(u * 2), brilho: 0.6 - 0.05 * k, sombra: 0.22, tinta: 'rgba(14,16,18,0.6)' });
+      c.restore();
     }
-    c.save(); const cx = P3.x + P3.w / 2, yy = P3.y + (1 - e) * 60; c.translate(cx, yy + h / 2); c.scale(lerp(0.9, 1, e), lerp(0.9, 1, e)); c.translate(-cx, -(yy + h / 2));
-    notificacao(c, P3.x, yy, P3.w, msg, { size: 31, alpha: clamp(p(t, t0, t0 + 0.2)), nome: 'notificacao-p3', semCaixa: true });
+    c.save(); c.translate(cx, yy + h / 2); c.scale(lerp(0.9, 1, e), lerp(0.9, 1, e)); c.translate(-cx, -(yy + h / 2));
+    notificacao(c, P3.x, yy, P3.w, msg, { alpha: clamp(p(t, t0, t0 + 0.2)), semCaixa: true, papel: e > 0.95 ? 'corpo' : null });
     c.restore();
-    if (e > 0.6) BOX('notificacao-p3', P3.x, P3.y, P3.x + P3.w, P3.y + h, { txt: msg });
+    if (e > 0.95) BOX('notificacao-p3', P3.x, P3.y, P3.x + P3.w, P3.y + h, { txt: msg });
+    // a pílula "+N mensagens" embaixo: conta de 1 a 6 com um leve pulso em cada número
+    if (t >= EV.p3_pilha) {
+      const C6 = EV.p3_conta, n = Math.max(1, C6.filter((x) => t >= x).length), pulso = 1 + 0.07 * kick(t, C6[n - 1], 0.22);
+      const k = E.mola(p(t, EV.p3_pilha, EV.p3_pilha + 0.45)), py = P3.y + h + 52 - (1 - k) * 16, s = `+${n} ${n === 1 ? 'mensagem' : 'mensagens'}`;
+      const pcx = P3.x + 150;
+      c.save(); c.translate(pcx, py + 30); c.scale(pulso, pulso); c.translate(-pcx, -(py + 30));
+      const pl = pilula(c, s, pcx, py, { alpha: clamp(k * 2), ponto: true, minW: tw('+6 mensagens', TEXT, 30, 600, 0.3) + 80 });
+      c.restore();
+      if (k > 0.9) BOX('mensagens', pl.x, py, pl.x + pl.w, py + pl.h, { txt: '+6 mensagens' });
+    }
   }
 
   // ---------------------------------------------------------------- P4: as perguntas atrás da cabeça
   // posições finais (o centro de cada cartão) nos cantos de cima, onde o fundo aparece em volta da cabeça; a borda de
   // dentro de cada cartão fica um pouco atrás do cabelo. Profundidade: z 0 (perto) a 1 (longe) → escala, desfoque, parallax.
-  // vagas medidas no recorte (scripts/recorte.py): o fundo aparece inteiro nos cantos de cima, em volta do topo da cabeça.
-  // Cada cartão SAI DE TRÁS da cabeça (começa encoberto pelo cabelo) e para na sua vaga, inteiro e legível.
-  // Profundidade: z 0 (perto: maior, nítido) a 1 (longe: menor, levemente desfocado, parallax menor).
+  // V3: 3 cartões grandes (corpo 40 px). Vagas medidas no recorte (pior caso de todos os quadros): o fundo só aparece
+  // inteiro em volta do topo da cabeça. Dois à esquerda, um à direita; o texto fica no lado de fora e só a margem do
+  // cartão passa atrás do cabelo (a personagem recortada fica na frente). Entram em sequência a partir de "essas
+  // respostas", param (legíveis) e, antes do corte, recuam e desfocam até sumir.
   const PERG = [
-    { x: 44, y: 236, z: 0.1, lado: 'e' }, { x: 1036, y: 236, z: 0.1, lado: 'd' }, { x: 44, y: 300, z: 0.4, lado: 'e' },
-    { x: 1038, y: 300, z: 0.4, lado: 'd' }, { x: 1000, y: 366, z: 0.75, lado: 'd' },
+    { linhas: ['Qual', 'chave?'], x: 30, y: 200, lado: 'e', z: 0.2 },
+    { linhas: ['Pagou o', 'sinal?'], x: 30, y: 344, lado: 'e', z: 0.5 },
+    { linhas: ['Quanto eu', 'cobro?'], x: 1050, y: 200, lado: 'd', z: 0.0 },
   ];
-  const LUZ = { x: 540, y: 290 };
   function p4atras(c, t) {
-    const Q = EV.perguntas, aq = EV.aqui, fim = PL[3].t1;
-    const fecha = E.inOutCubic(p(t, aq + 0.02, aq + 0.5));
-    Q.forEach(([t0, s], i) => {
+    const Q = EV.perguntas, sai = E.inOutCubic(p(t, EV.perguntas_saem, EV.perguntas_saem + 0.32)), param = EV.perguntas_param;
+    Q.forEach(([t0, nome], i) => {
       if (t < t0) return;
-      const P = PERG[i], e = E.mola(p(t, t0, t0 + 0.65)), sc = 1 - 0.12 * P.z, sg = P.lado === 'e' ? 1 : -1;
-      const sz = s === '+6' ? 30 : (P.z > 0.3 ? 26 : 27), w = tw(s, TEXT, sz, 650, 0.2) + 36, h = 54;
-      const cx0 = P.lado === 'e' ? P.x + w / 2 : P.x - w / 2;          // a vaga (borda de fora encostada na margem)
-      const drift = Math.sin((t - t0) * 0.9) * (4 - 3 * P.z) * -sg;      // parallax leve (para fora, nunca para o cabelo)
-      let x = cx0 + sg * (1 - e) * 170 + drift, y = P.y + (1 - e) * 18;        // sai de trás da cabeça para fora
-      x = lerp(x, LUZ.x, fecha); y = lerp(y, LUZ.y, fecha);
-      const k = sc * lerp(lerp(0.88, 1, e), 0.2, fecha), a = clamp(p(t, t0, t0 + 0.12)) * (1 - p(fecha, 0.65, 1));
-      const blur = 0.9 * P.z * (1 - fecha) + 3 * fecha;
+      const P = PERG[i], sg = P.lado === 'e' ? 1 : -1, e = E.mola(p(t, t0, t0 + 0.6));
+      const sz = 40, padX = 26, padY = 18, lh = 48, wt = Math.max(...P.linhas.map((x) => tw(x, TEXT, sz, 600, 0))), extra = 70;   // margem que passa atrás do cabelo
+      const w = wt + 2 * padX + extra, h = padY * 2 + P.linhas.length * lh + 4;
+      const x0 = P.lado === 'e' ? P.x : P.x - w;
+      const deriva = (1 - p(t, t0 + 0.6, param)) * Math.sin((t - t0) * 2.2) * (5 - 4 * P.z) * 0 + (1 - E.outCubic(p(t, t0, param))) * 10 * sg * (1 - P.z);  // parallax leve até parar
+      const dx = sg * (1 - Math.min(e, 1)) * 150 + deriva;            // sai de trás da cabeça para fora (sem passar da vaga)
+      const k = lerp(1, 0.84, sai), blur = 9 * sai + 0.6 * P.z * (1 - sai), a = clamp(p(t, t0, t0 + 0.14)) * (1 - p(sai, 0.55, 1));
+      const ox = P.lado === 'e' ? x0 + w : x0, oy = P.y + h / 2;     // recua em direção à cabeça
       const desenha = (cc) => {
-        vidro(cc, -w / 2, -h / 2, w, h, 20, { alpha: a, blur: 18, sombra: 0.3, brilho: 0.72, tinta: 'rgba(14,16,18,0.56)' });
-        txt(cc, s, 0, sz * 0.36, { size: sz, weight: 650, align: 'center', alpha: a, color: s === '+6' ? C.lime : C.white, ls: 0.2 });
+        cc.translate(dx, (1 - e) * 14); cc.translate(ox, oy); cc.scale(k, k); cc.translate(-ox, -oy);
+        vidro(cc, x0, P.y, w, h, 26, { alpha: a, blur: 20, sombra: 0.32, brilho: 0.72 - 0.08 * P.z, tinta: 'rgba(14,16,18,0.58)' });
+        P.linhas.forEach((l, j) => txt(cc, l, P.lado === 'e' ? x0 + padX : x0 + w - padX, P.y + padY + 2 + sz * 0.95 + j * lh,
+          { size: sz, weight: 600, align: P.lado === 'e' ? 'left' : 'right', alpha: a, ls: 0, papel: a > 0.95 && sai < 0.01 && e > 0.97 ? 'corpo' : null }));
       };
-      if (blur > 0.4) desfocado(c, (cc) => { cc.translate(x, y); cc.scale(k, k); desenha(cc); }, blur, 1);
-      else { c.save(); c.translate(x, y); c.scale(k, k); desenha(c); c.restore(); }
-      if (a > 0.5 && fecha < 0.05) BOX('pergunta', x - w * k / 2, y - h * k / 2, x + w * k / 2, y + h * k / 2, { txt: s, atras: true });
+      if (blur > 0.4) desfocado(c, desenha, blur, 1);
+      else { c.save(); desenha(c); c.restore(); }
+      if (a > 0.9 && sai < 0.01 && e > 0.97) {
+        const linhasTx = P.linhas.map((l, j) => {                    // o retângulo de cada linha de texto (para o QA)
+          const lw = tw(l, TEXT, 40, 600, 0), lx = P.lado === 'e' ? x0 + padX : x0 + w - padX - lw, by = P.y + padY + 2 + 40 * 0.95 + j * lh;
+          return [lx + dx, by - 30, lx + lw + dx, by + 2];
+        });
+        BOX('pergunta', x0 + dx, P.y, x0 + w + dx, P.y + h, { txt: nome, atras: true, texto: linhasTx });
+      }
     });
-    // o ponto de luz limão atrás da cabeça (vira um contorno de luz no cabelo) — some antes do corte
-    const lz = p(t, aq + 0.25, aq + 0.55) * (1 - p(t, fim - 0.45, fim - 0.12));
-    if (lz > 0) {
-      const r = lerp(60, 470, E.outCubic(p(t, aq + 0.25, aq + 0.75)));
-      const g = c.createRadialGradient(LUZ.x, LUZ.y, 0, LUZ.x, LUZ.y, r);
-      g.addColorStop(0, `rgba(235,255,190,${0.9 * lz})`); g.addColorStop(0.35, `rgba(150,230,30,${0.45 * lz})`); g.addColorStop(0.7, `rgba(120,200,20,${0.14 * lz})`); g.addColorStop(1, 'rgba(181,255,46,0)');
-      c.save(); c.globalCompositeOperation = 'lighter'; c.fillStyle = g; c.fillRect(LUZ.x - r, LUZ.y - r, 2 * r, 2 * r); c.restore();   // luz (soma), não tinta
-      BOX('luz', LUZ.x - r, LUZ.y - r, LUZ.x + r, LUZ.y + r, { atras: true });
-    }
   }
   function pessoaNaFrente(c) {                                       // o recorte da personagem por cima do que ficou atrás
     if (!MASK) return;
@@ -326,37 +371,55 @@
     c.beginPath(); c.moveTo(-14, -2); c.lineTo(16, -14); c.lineTo(6, 16); c.lineTo(0, 4); c.closePath(); c.stroke();
     c.beginPath(); c.moveTo(0, 4); c.lineTo(16, -14); c.stroke(); c.restore();
   }
-  function p5(c, t) {
-    const t0 = EV.cartao, e = E.mola(p(t, t0, t0 + 0.7));
+  // V3: o final sem a personagem — a imagem dela desfoca e escurece até o preto da marca (com brilho limão de fundo)
+  // e o cartão de envio centralizado; o "Enviar" afunda e o avião sai
+  function fundoMarca(c, t, a) {
+    c.fillStyle = `rgba(10,10,10,${a})`; c.fillRect(0, 0, W, H);
+    const pulso = 0.85 + 0.15 * Math.sin(t * 1.6);
+    const g = c.createRadialGradient(540, 940, 0, 540, 940, 760);
+    g.addColorStop(0, `rgba(181,255,46,${0.16 * a * pulso})`); g.addColorStop(0.55, `rgba(181,255,46,${0.05 * a})`); g.addColorStop(1, 'rgba(181,255,46,0)');
+    c.fillStyle = g; c.fillRect(0, 0, W, H);
+  }
+  const FIM = { w: 960 };
+  function cartaoFinal(c, t) {
+    const t0 = EV.cartao, e = E.mola(p(t, t0, t0 + 0.7)), a = clamp(p(t, t0, t0 + 0.22));
     if (e <= 0) return;
-    const x = 64, w = 952, h = 392, y = 1140 + (1 - e) * 460, a = clamp(p(t, t0, t0 + 0.2));
-    vidro(c, x, y, w, h, 44, { alpha: a, blur: 30, sombra: 0.42, sombraBlur: 60, tinta: 'rgba(14,16,18,0.56)' });
+    const sz = 50, lh = 60, L = quebra('Manda pra quem não consegue sair da pousada nem por uma tarde.', DISPLAY, sz, 800, FIM.w - 96, -0.6);
+    const h = 40 + 56 + 30 + L.length * lh + 30 + 84 + 40, x = (W - FIM.w) / 2, y = 960 - h / 2 + (1 - e) * 220;
+    // o vidro desfoca o próprio fundo da marca (brilho limão)
+    const o = OFF2.getContext('2d'); o.setTransform(1, 0, 0, 1, 0, 0); o.clearRect(0, 0, W, H); o.filter = 'none'; fundoMarca(o, t, 1);
     c.save(); c.globalAlpha *= a;
+    c.save(); c.beginPath(); c.rect(0, 0, W, H); c.roundRect(x, y, FIM.w, h, 48); c.clip('evenodd'); c.shadowColor = 'rgba(0,0,0,0.6)'; c.shadowBlur = 70; c.shadowOffsetY = 24; rr(c, x, y, FIM.w, h, 48); c.fillStyle = '#000'; c.fill(); c.restore();
+    c.save(); rr(c, x, y, FIM.w, h, 48); c.clip(); c.filter = 'blur(30px) saturate(1.4)'; c.drawImage(OFF2, 0, 0); c.filter = 'none';
+    c.fillStyle = 'rgba(28,31,34,0.62)'; c.fillRect(x, y, FIM.w, h);
+    const gg = c.createLinearGradient(0, y, 0, y + h); gg.addColorStop(0, 'rgba(255,255,255,0.10)'); gg.addColorStop(0.4, 'rgba(255,255,255,0.02)'); gg.addColorStop(1, 'rgba(255,255,255,0)'); c.fillStyle = gg; c.fillRect(x, y, FIM.w, h);
+    c.restore();
+    rr(c, x + 0.75, y + 0.75, FIM.w - 1.5, h - 1.5, 47); c.strokeStyle = 'rgba(255,255,255,0.22)'; c.lineWidth = 1.5; c.stroke();
     // cabeçalho
-    c.beginPath(); c.arc(x + 58, y + 58, 26, 0, TAU); c.fillStyle = 'rgba(181,255,46,0.12)'; c.fill(); c.strokeStyle = 'rgba(181,255,46,0.55)'; c.lineWidth = 1.5; c.stroke();
-    aviao(c, x + 57, y + 59, 1.0, C.lime);
-    txt(c, 'Enviar para…', x + 98, y + 67, { size: 25, weight: 600, color: C.gray, ls: 0.6 });
-    c.fillStyle = 'rgba(255,255,255,0.10)'; c.fillRect(x + 32, y + 104, w - 64, 1.5);
+    const hy = y + 40 + 28;
+    c.beginPath(); c.arc(x + 48 + 28, hy, 28, 0, TAU); c.fillStyle = 'rgba(181,255,46,0.12)'; c.fill(); c.strokeStyle = 'rgba(181,255,46,0.6)'; c.lineWidth = 1.5; c.stroke();
+    aviao(c, x + 75, hy + 1, 1.05, C.lime);
+    txt(c, 'Enviar para…', x + 48 + 72, hy + 10, { size: 28, weight: 600, color: C.gray, ls: 0.4, papel: 'meta' });
+    c.fillStyle = 'rgba(255,255,255,0.10)'; c.fillRect(x + 40, y + 40 + 56 + 14, FIM.w - 80, 1.5);
     // o texto
-    const L = ['Manda pra quem não consegue', 'sair da pousada nem por uma tarde.'];
-    L.forEach((s, i) => txt(c, s, x + 40, y + 168 + i * 56, { fam: DISPLAY, size: 46, weight: 800, ls: -0.6 }));
+    const ty = y + 40 + 56 + 30;
+    L.forEach((l, i) => txt(c, l, x + 48, ty + sz * 0.95 + i * lh, { fam: DISPLAY, size: sz, weight: 800, ls: -0.6, papel: 'corpo' }));
     // a logo, dentro do cartão
-    const D = 46, ly = y + h - 40 - D, lx = x + 40;
-    c.drawImage(LOGO, lx, ly, D, D);
-    const w1 = txt(c, 'FAZLO ', lx + D + 12, ly + D / 2 + 10, { fam: DISPLAY, size: 28, weight: 900, ls: -0.4 });
-    txt(c, 'Hospeda', lx + D + 12 + w1, ly + D / 2 + 10, { fam: DISPLAY, size: 28, weight: 700, color: C.lime, ls: -0.4 });
-    // o botão "Enviar": pressão (afunda e volta) e o avião sai
-    const tp = EV.enviar, pr = p(t, tp, tp + 0.12) * (1 - p(t, tp + 0.12, tp + 0.36)), sent = p(t, tp + 0.15, tp + 0.5);
-    const bw = 196, bh = 64, bx = x + w - 40 - bw, by = y + h - 40 - bh + 4, sc = 1 - 0.06 * pr;
+    const by = ty + L.length * lh + 30, D = 64, lx = x + 48;
+    c.drawImage(LOGO, lx, by + 10, D, D);
+    const w1 = txt(c, 'FAZLO ', lx + D + 14, by + 10 + D / 2 + 12, { fam: DISPLAY, size: 34, weight: 900, ls: -0.4 });
+    txt(c, 'Hospeda', lx + D + 14 + w1, by + 10 + D / 2 + 12, { fam: DISPLAY, size: 34, weight: 700, color: C.lime, ls: -0.4 });
+    // o botão "Enviar": afunda e volta, o avião sai
+    const tp = EV.enviar, pr = p(t, tp, tp + 0.1) * (1 - p(t, tp + 0.1, tp + 0.34)), sent = p(t, tp + 0.12, tp + 0.5);
+    const bw = 236, bh = 84, bx = x + FIM.w - 48 - bw, sc = 1 - 0.07 * pr;
     c.save(); c.translate(bx + bw / 2, by + bh / 2); c.scale(sc, sc);
-    c.shadowColor = `rgba(181,255,46,${0.25 + 0.35 * kick(t, tp + 0.12, 0.5)})`; c.shadowBlur = 24 + 30 * kick(t, tp + 0.12, 0.5);
-    rr(c, -bw / 2, -bh / 2, bw, bh, 32); c.fillStyle = C.lime; c.fill(); c.shadowColor = 'transparent';
-    txt(c, 'Enviar', -14, 11, { fam: TEXT, size: 28, weight: 700, color: C.ink, align: 'center', ls: 0.3 });
-    aviao(c, 50 + 40 * E.inCubic(sent), -26 * E.inCubic(sent), 0.75, `rgba(11,12,13,${1 - sent * 0.9})`);
+    c.shadowColor = `rgba(181,255,46,${0.25 + 0.4 * kick(t, tp + 0.1, 0.5)})`; c.shadowBlur = 26 + 34 * kick(t, tp + 0.1, 0.5);
+    rr(c, -bw / 2, -bh / 2, bw, bh, 42); c.fillStyle = C.lime; c.fill(); c.shadowColor = 'transparent';
+    txt(c, 'Enviar', -18, 13, { size: 36, weight: 700, color: C.ink, align: 'center', ls: 0.2 });
+    aviao(c, 64 + 46 * E.inCubic(sent), -30 * E.inCubic(sent), 0.95, `rgba(11,12,13,${1 - sent * 0.9})`);
     c.restore();
-    if (sent > 0.6) { c.beginPath(); c.arc(bx + bw - 24, by - 16, 0, 0, 0); }
     c.restore();
-    if (a > 0.5 && e > 0.9) BOX('cartao', x, y, x + w, y + h);
+    if (a > 0.9 && e > 0.97) BOX('cartao', x, y, x + FIM.w, y + h);
   }
 
   // ---------------------------------------------------------------- legenda (sem faixa): branca, sombra difusa, chaves em limão
@@ -395,7 +458,7 @@
     PAGES.forEach((q, i) => {
       const nx = PAGES[i + 1] && PAGES[i + 1].prox === q.prox ? PAGES[i + 1].t0 : q.prox;
       const fimPlano = PL.find((pl) => q.t0 >= pl.t0 && q.t0 < pl.t1).t1;
-      q.t1 = Math.min(nx, Math.max(q.fimFala + CAP.segura, Math.min(q.t0 + CAP.minPag, nx)), fimPlano - 0.04, q.clipe === 'p5' ? EV.cartao - 0.25 : 1e9);
+      q.t1 = Math.min(nx, Math.max(q.fimFala + CAP.segura, Math.min(q.t0 + CAP.minPag, nx)), fimPlano - 0.04, q.clipe === 'p5' ? EV.transicao - 0.05 : 1e9);
     });
   }
   function legenda(c, t) {
@@ -434,13 +497,16 @@
   function frame(c, t, img, mask) {
     FRAME = img; MASK = mask;
     c.setTransform(1, 0, 0, 1, 0, 0); c.globalAlpha = 1; c.filter = 'none'; c.shadowColor = 'transparent'; c.clearRect(0, 0, W, H);
-    SHK = plano(t).id === 'p1' ? tremor(t) : { x: 0, y: 0, s: 1 };
-    if (FRAME) base(c); else { c.fillStyle = '#000'; c.fillRect(0, 0, W, H); }
     const pl = plano(t).id;
+    SHK = pl === 'p1' ? tremor(t) : { x: 0, y: 0, s: 1 };
+    if (pl === 'fim') { c.fillStyle = '#0A0A0A'; c.fillRect(0, 0, W, H); fundoMarca(c, t, 1); cartaoFinal(c, t); return; }
+    const tr = pl === 'p5' ? E.inOutSine(p(t, EV.transicao, PL.find((q) => q.id === 'p5').t1)) : 0;
+    if (FRAME) base(c, tr > 0 ? `blur(${18 * tr}px) brightness(${1 - 0.85 * tr})` : null); else { c.fillStyle = '#000'; c.fillRect(0, 0, W, H); }
+    if (tr > 0) fundoMarca(c, t, tr);
     if (pl === 'p4') { p4atras(c, t); pessoaNaFrente(c); }
     if (pl === 'p1') p1(c, t);
+    else if (pl === 'p2') p2(c, t);
     else if (pl === 'p3') p3(c, t);
-    else if (pl === 'p5') p5(c, t);
     relogio(c, t);
     legenda(c, t);
   }
@@ -453,10 +519,10 @@
     const g = c.createLinearGradient(0, 600, 0, 1500); g.addColorStop(0, 'rgba(10,10,10,0)'); g.addColorStop(0.35, 'rgba(10,10,10,0.55)'); g.addColorStop(1, 'rgba(10,10,10,0.75)');
     c.fillStyle = g; c.fillRect(0, 600, W, 1320);
     const L = [['Saí da pousada', C.white], ['por duas horas.', C.lime]], size = 104, lh = 116;
-    const msg = 'O casal do chalé 3 chegou.', nh = notificacao(c, 0, 0, 800, msg, { medir: true, size: 36 });
+    const msg = 'O casal do chalé 3 chegou.', nh = notificacao(c, 0, 0, 860, msg, { medir: true });
     const gap = 46, altT = (L.length - 1) * lh + size * 0.98, alt = nh + gap + altT, topo = 960 - alt / 2;
     BOXES = [];
-    notificacao(c, 140, topo, 800, msg, { size: 36, nome: 'notificacao' });
+    notificacao(c, 110, topo, 860, msg, { nome: 'notificacao' });
     const ty = topo + nh + gap;
     c.save(); c.shadowColor = 'rgba(0,0,0,0.6)'; c.shadowBlur = 30;
     L.forEach(([s, cor], i) => {

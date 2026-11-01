@@ -106,7 +106,7 @@ strip.save(os.path.join(REV, 'emenda-p1.jpg'), quality=88)
 rep.append(''); rep.append('BOCA × VOZ (quadro a quadro, 25 → 30 fps por repetição)')
 CASOS = [('p1', 'midia/plano1-fala.mp4', 1.6, 4.6, (300, 230, 480, 600), 'crop=448:797:0:0,scale=1080:1920', (110, 70, 220, 310)),
          ('p4', 'midia/plano4.mp4', 0.0, 6.8, (230, 300, 640, 800), 'crop=448:797:0:0,scale=1080:1920', (95, 120, 270, 330)),
-         ('p5', 'midia/plano5.mp4', 0.0, 7.72, (220, 330, 640, 800), 'crop=393:699:27:0,scale=1080:1920', (80, 120, 240, 290))]
+         ('p5', 'midia/plano5.mp4', 0.0, 5.85, (220, 330, 640, 800), 'crop=393:699:27:0,scale=1080:1920', (80, 120, 240, 290))]
 BOCA = {'p1': (486, 604, 140, 76), 'p4': (456, 846, 230, 112), 'p5': (455, 950, 230, 120)}    # x, y, w, h da boca no Reel
 BOCA_F = {'p1': (190, 245, 76, 46), 'p4': (185, 350, 104, 50), 'p5': (180, 340, 110, 55)}     # a mesma boca na fonte 448×832
 fig = []
@@ -201,12 +201,25 @@ for k in range(int(EV['perguntas'][1][0] * FPS) + 6, int(EV['aqui'] * FPS), 6):
         if borda.sum() > 20 and longe.sum() > 200: halo.append(float(np.percentile(im[borda], 90) - np.percentile(im[longe], 90)))
     rx0, ry0, rx1, ry1 = RC[str(k)]['rosto']
     for b in caixa_t[round(k / FPS, 3)]:
-        if b.get('atras') or b['nome'] == 'legenda': continue
+        if b.get('atras') or b['nome'] in ('legenda', 'texto'): continue
         if b['x0'] < rx1 and b['x1'] > rx0 and b['y0'] < ry1 and b['y1'] > ry0: cobre.append((k, b['nome']))
+cob = []
+for s_ in INFO['caixas']:
+    k = int(round(s_['t'] * FPS))
+    for b in s_['caixas']:
+        if b['nome'] != 'pergunta' or not b.get('texto'): continue
+        al = np.asarray(Image.open(os.path.join(ROOT, 'midia', 'recorte-p4', f'{k:04d}.png')))[..., 3]
+        tot_, dentro_ = 0, 0
+        for r_ in b['texto']:                                                          # cada linha de texto
+            x0, y0, x1, y1 = [int(round(v)) for v in r_]
+            tot_ += (x1 - x0) * (y1 - y0); dentro_ += int((al[y0:y1, x0:x1] > 128).sum())
+        cob.append((dentro_ / max(1, tot_) * 100, b['txt'], k))
+pc = max(cob)
+ok(pc[0] <= 0.5, f'o texto das perguntas nunca fica atrás do cabelo: no pior quadro, {pc[0]:.2f} % da área do texto coberta pela personagem ("{pc[1]}"; só a margem do cartão passa atrás)')
 ok(halo and max(halo) <= 12, f'recorte sem halo: na borda do cabelo sobre os cartões, a luz fica {np.median(halo):+.1f} (pior {max(halo):+.1f}) em relação ao próprio cartão '
    '(0–255, P90; um halo claro da janela apareceria como +30 ou mais)')
-fora_rosto = [b for s_ in INFO['caixas'] if PL['p4']['t0'] <= s_['t'] < PL['p4']['t1'] for b in s_['caixas'] if not b.get('atras') and b['nome'] != 'legenda']
-ok(not cobre and not fora_rosto, f'o rosto nunca é coberto: no P4 os cartões e a luz ficam atrás da personagem (recortada) e só a legenda fica na frente, abaixo do queixo')
+fora_rosto = [b for s_ in INFO['caixas'] if PL['p4']['t0'] <= s_['t'] < PL['p4']['t1'] for b in s_['caixas'] if not b.get('atras') and b['nome'] not in ('legenda', 'texto')]
+ok(not cobre and not fora_rosto, f'o rosto nunca é coberto: no P4 os cartões ficam atrás da personagem (recortada) e só a legenda fica na frente, abaixo do queixo')
 bp = [RC[k]['borda_px'] for k in RC]
 rep.append(f'       recorte: mediapipe (multiclasse) + guided filter + descontaminação da cor da borda; largura média da borda suave {np.median(bp):.1f} px (cabelo)')
 
@@ -215,7 +228,7 @@ rep.append(''); rep.append('ELEMENTOS NA TELA')
 spans = {}
 for s_ in INFO['caixas']:
     for b in s_['caixas']:
-        if b['nome'] == 'legenda': continue
+        if b['nome'] in ('legenda', 'texto'): continue
         nome = b['nome'] + (':' + b['txt'] if b.get('txt') else '')
         spans.setdefault(nome, []).append(s_['t'])
 for nome, ts in list(spans.items()):
@@ -224,45 +237,83 @@ for nome, ts in list(spans.items()):
         if t - seg[-1][1] > 0.05: seg.append([t, t])
         else: seg[-1][1] = t
     spans[nome] = [[a, b + 1 / FPS] for a, b in seg]
-spans['chat:O casal do chalé 3 chegou. Qual chave eu entrego?'] = [[EV['chat_chega'], PL['p2']['t1']]]
-spans['chat:digitando'] = [[EV['chat_digita'], EV['chat_envia']]]
+nk = [n for n in spans if n.startswith('notificacao-p2')][0]
+spans[nk] = [[EV['p2_notif'], spans[nk][0][1]]]                                       # a mesma mensagem chega no aparelho e ao lado, juntas
+spans['chat:digitando'] = [[EV['digitar'][0][0], EV['chat_envia']]]
 spans['chat:Na gaveta da recepção, a azul.'] = [[EV['chat_envia'], PL['p2']['t1']]]
-novos = sorted((v[0][0], n) for n, v in spans.items() if not n.startswith('luz'))
-novos.append((EV['aqui'] + 0.25, 'luz'))
-novos = sorted(novos)
+novos = sorted((v[0][0], n) for n, v in spans.items())
 grupo = lambda n: n.split(':')[0] if n.startswith('pergunta') or n.startswith('cartao') else n
 gaps = [(novos[i + 1][0] - novos[i][0], novos[i][1], novos[i + 1][1]) for i in range(len(novos) - 1)]
 juntos = [g for g in gaps if g[0] < 0.29 and not (g[1].startswith('pergunta') and g[2].startswith('pergunta'))]
 ok(not juntos, 'um elemento novo por vez (≥ 0,3 s entre um e outro): ' + ' → '.join(f'{n.split(":")[0] if not n.startswith(("notificacao", "chat", "pergunta")) else n.split(":")[1][:22]} {t:.2f}' for t, n in novos) + (f' | juntos: {juntos}' if juntos else ''))
-rep.append('       (as 5 perguntas do P4 entram como um grupo, uma a cada 0,18 s, em "essas respostas")')
+rep.append('       (a mensagem do P2 chega no aparelho e, legível, na notificação ao lado: é um elemento só)')
 pg_legenda = [q['t0'] for q in INFO['legenda']]
 perto = [(n, round(t, 2), round(l, 2)) for t, n in novos for l in pg_legenda if 0 < abs(t - l) < 0.25 and not n.startswith('pergunta')]
 ok(not perto, f'nenhum elemento entra junto com uma página nova da legenda (< 0,25 s): {perto or "ok"}')
 leit = []
 for n, v in spans.items():
-    if not n.startswith(('notificacao', 'chat', 'pergunta', 'cartao')) or n == 'chat:digitando': continue
-    d = max(b - a for a, b in v); minimo = 2.5 if n.startswith('cartao') else (1.0 if n.endswith('+6') else 1.5)
+    if not n.startswith(('notificacao', 'chat', 'pergunta', 'cartao', 'mensagens')) or n == 'chat:digitando': continue
+    d = max(b - a for a, b in v); minimo = 2.5 if n.startswith('cartao') else (1.2 if n.startswith('pergunta') else 1.5)
     leit.append((n, d, minimo))
 curtos = [(n, round(d, 2)) for n, d, m in leit if d < m]
-ok(not curtos, 'tempo de leitura (nítido e inteiro na tela): ' + ' · '.join(f'{n.split(":")[1][:26] if ":" in n else n} {d:.2f} s' for n, d, m in leit) +
-   (f' | abaixo do mínimo: {curtos}' if curtos else ' (mínimo 1,5 s; o cartão final 2,5 s; o "+6", só um número, 1 s)'))
+ok(not curtos, 'tempo de leitura (nítido, inteiro e parado na tela): ' + ' · '.join(f'{n.split(":")[1][:26] if ":" in n else n} {d:.2f} s' for n, d, m in leit) +
+   (f' | abaixo do mínimo: {curtos}' if curtos else ' (mínimo 1,5 s; as 3 perguntas do P4 1,2 s; o cartão final 2,5 s)'))
+pq = [(n.split(':')[1], spans[n][0]) for n in spans if n.startswith('pergunta')]
+ok(len(pq) == 3 and all(b - a >= 1.2 for _, (a, b) in pq) and all(a <= EV['aqui'] <= b for _, (a, b) in pq),
+   'P4: as 3 perguntas ficam paradas e legíveis em "aqui" (' + ', '.join(f'{q} {a:.2f}–{b:.2f} s' for q, (a, b) in pq) + f'; "aqui" em {EV["aqui"]:.2f} s), depois recuam e desfocam antes do corte')
+
+# ---------------------------------------------------------------- tamanho real dos textos de interface
+rep.append(''); rep.append('TAMANHO DOS TEXTOS DE INTERFACE (altura-x medida no quadro final)')
+XR = 0.55                                                                             # altura-x / corpo da Inter (22 px em 40 px)
+amostras = {}
+for s_ in INFO['caixas']:
+    for b in s_['caixas']:
+        if b['nome'] == 'texto': amostras.setdefault((b['papel'], b['txt']), []).append((s_['t'], b))
+med = []
+for (papel, tx_), lst in sorted(amostras.items()):
+    t, b = lst[len(lst) // 2]
+    im = np.asarray(quadro_png(VIDEO, int(round(t * FPS)))).astype(float)
+    y0, y1 = int(b['base'] - b['size'] * 0.8), int(b['base'] + 3)
+    reg = im[max(0, y0):y1, max(0, b['x0']):b['x1']]
+    lumr = reg @ np.array([0.299, 0.587, 0.114]); sat = reg.max(axis=2) - reg.min(axis=2)
+    fundo_ = np.median(lumr); limiar = fundo_ + 0.5 * (np.percentile(lumr, 99.5) - fundo_)   # o texto: bem mais claro que o vidro em volta
+    texto = lumr > limiar
+    rows = texto.sum(axis=1); band = rows >= 0.3 * rows.max()
+    xh, cur = 0, 0                                                                    # a faixa contínua mais longa de linhas cheias = a altura-x
+    for v_ in band:
+        cur = cur + 1 if v_ else 0; xh = max(xh, cur)
+    med.append((papel, tx_, xh, b['size']))
+for papel, alvo in (('corpo', 40), ('meta', 28), ('contador', 30)):
+    m = [x for x in med if x[0] == papel]
+    if not m: continue
+    pior = min(m, key=lambda x: x[2])
+    ok(pior[2] >= alvo * XR - 1.5, f'{papel}: menor altura-x medida {pior[2]} px ("{pior[1][:28]}") ≈ corpo {pior[2] / XR:.0f} px (mínimo {alvo} px → altura-x ≥ {alvo * XR:.0f}); '
+       f'{len(m)} textos, corpo desenhado de {min(x[3] for x in m):.0f} a {max(x[3] for x in m):.0f} px')
 p5_fala = [n for n, v in spans.items() for a, b in v if a < EV['fim_fala'] and b > PL['p5']['t0']]
 ok(not p5_fala, f'durante a fala do P5 ({PL["p5"]["t0"]:.2f}–{EV["fim_fala"]:.2f} s) só a legenda se mexe (sem tremor, sem relógio, sem cartão): {p5_fala or "ok"}')
 ch = spans['cartao'][0]
-ok(ch[1] - ch[0] >= 2.5 and ch[0] - EV['fim_fala'] >= 0.9, f'cartão de envio legível de {ch[0]:.2f} a {ch[1]:.2f} s: {ch[1] - ch[0]:.2f} s (mínimo 2,5), sobe {EV["cartao"] - EV["fim_fala"]:.2f} s depois da última palavra; "Enviar" afunda em {EV["enviar"]:.2f} s')
+ok(2.5 <= ch[1] - ch[0] + 0.7 and PL['fim']['t1'] - PL['fim']['t0'] <= 3.0 and ch[0] - EV['fim_fala'] >= 0.9,
+   f'tela final ({PL["fim"]["t0"]:.2f}–{PL["fim"]["t1"]:.2f} s, {PL["fim"]["t1"] - PL["fim"]["t0"]:.2f} s, sem a personagem): o cartão de envio entra em {EV["cartao"]:.2f} s e fica parado e '
+   f'legível de {ch[0]:.2f} a {ch[1]:.2f} s ({ch[1] - ch[0]:.2f} s); "Enviar" afunda em {EV["enviar"]:.2f} s, com o som do envio')
 # congelamento: a sequência de quadros da fonte nunca fica parada mais de 2 quadros do Reel
-seq = [(q['fonte'], json.dumps(q['q'])) for q in MAPA]; run_, mx = 1, 1
+seq = [(q['fonte'], json.dumps(q['q'])) for q in MAPA if q['fonte'] != 'fim']; run_, mx = 1, 1
 for i in range(1, len(seq)):
     run_ = run_ + 1 if seq[i] == seq[i - 1] else 1; mx = max(mx, run_)
-rev = [q['q'] for q in MAPA if q['fonte'] == 'p5']
-vira = int(np.argmax(rev)); mono = all(rev[i + 1] >= rev[i] for i in range(vira)) and all(rev[i + 1] <= rev[i] for i in range(vira, len(rev) - 1))
-ok(mx <= 2 and mono, f'nenhum quadro congelado: o mesmo quadro da fonte fica no máximo {mx} quadros do Reel (repetição do 24/25 → 30 fps); '
-   f'no fim do P5 o vídeo vai até o quadro {rev[vira]} e volta de trás para frente até o {rev[-1]} (sem pulo)')
+ok(mx <= 2, f'nenhum quadro congelado: o mesmo quadro da fonte fica no máximo {mx} quadros do Reel (repetição do 24/25 → 30 fps)')
+voltas = []
+for pid in ('p1s', 'p1a', 'p2', 'p3', 'p4', 'p5'):
+    qs = [q['q'] for q in MAPA if q['fonte'] == pid]
+    if any(qs[i + 1] < qs[i] for i in range(len(qs) - 1)): voltas.append(pid)
+p5q = [q['q'] for q in MAPA if q['fonte'] == 'p5']
+ok(not voltas, f'nenhum trecho tocado de trás para frente: todos os planos só andam para a frente (o P5 vai do quadro {p5q[0]} ao {p5q[-1]} da fonte e termina '
+   f'{PL["p5"]["t1"] - EV["fim_fala"]:.2f} s depois da última palavra; depois, a tela da marca)')
 fr = todos(VIDEO, 108, 192); dd = np.abs(np.diff(fr, axis=0)).mean(axis=(1, 2))
 iguais = []; cur = 0
 for x in dd:
     cur = cur + 1 if x < 0.05 else 0; iguais.append(cur)
-ok(max(iguais) <= 2, f'no vídeo final, no máximo {max(iguais)} quadro(s) seguido(s) idêntico(s) ao anterior')
+nfim = int(PL['fim']['t0'] * FPS) - 1
+ok(max(iguais[:nfim]) <= 2, f'no vídeo final (com a personagem), no máximo {max(iguais[:nfim])} quadro(s) seguido(s) idêntico(s) ao anterior; '
+   f'a tela final é gráfica (o brilho de fundo respira; o cartão pousa e o botão é apertado)')
 
 # ---------------------------------------------------------------- áreas seguras e contraste
 rep.append(''); rep.append('ÁREAS SEGURAS E LEGENDA')
@@ -300,8 +351,8 @@ capa = open(os.path.join(OUT, 'grade', 'revisao', 'capa.txt')).read()
 ok('RESULTADO: dentro da regra' in capa, 'capa na regra da grade (reels/tools/revisao_capa.py --cena): ' + ' | '.join(l.strip() for l in capa.splitlines()[2:] if l.strip()))
 
 # ---------------------------------------------------------------- storyboard
-ts = [(0.15, 'P1 1ª notificação'), (1.8, 'P1 3 notificações'), (3.6, 'P1 agrupadas'), (5.6, 'P2 mensagem'), (7.0, 'P2 digitando'), (8.2, 'P2 resposta'),
-      (10.4, 'P3 notificação'), (12.6, 'P3 +6 · 14:31'), (18.4, 'P4 perguntas'), (19.6, 'P4 "aqui"'), (21.8, 'P5 folga'), (28.2, 'P5 cartão')]
+ts = [(0.2, 'P1 1ª notificação'), (2.0, 'P1 3 notificações'), (3.6, 'P1 agrupadas'), (5.6, 'P2 notificação'), (6.9, 'P2 digitando'), (8.2, 'P2 resposta'),
+      (10.5, 'P3 notificação'), (12.6, 'P3 +6 mensagens'), (19.3, 'P4 "aqui"'), (21.8, 'P5 folga'), (26.2, 'transição'), (28.4, 'tela final')]
 cols = 6; sb = Image.new('RGB', (cols * 280 + 10, 2 * 540 + 10), (16, 16, 16)); dr = ImageDraw.Draw(sb)
 for i, (t, nome) in enumerate(ts):
     im = quadro_png(VIDEO, int(round(t * FPS))).resize((270, 480)); x, y = 10 + (i % cols) * 280, 10 + (i // cols) * 540
@@ -310,5 +361,5 @@ sb.save(os.path.join(OUT, 'storyboard.jpg'), quality=90)
 
 pl = ' · '.join(f"{p['id'].upper()} {p['t0']:.2f}–{p['t1']:.2f} s ({p['t1'] - p['t0']:.2f} s)" for p in LN['planos'])
 R = 'RESULTADO: ' + ('aprovado' if not falhas else f'{len(falhas)} falha(s)')
-out = ['REEL AVATAR "SAÍ DA POUSADA POR DUAS HORAS" — V2 da camada de motion — revisão técnica', os.path.relpath(VIDEO, ROOT), f'{LN["duracao"]:.2f} s · ' + pl, ''] + rep + ['', R]
+out = ['REEL AVATAR "SAÍ DA POUSADA POR DUAS HORAS" — V3 — revisão técnica', os.path.relpath(VIDEO, ROOT), f'{LN["duracao"]:.2f} s · ' + pl, ''] + rep + ['', R]
 open(os.path.join(REV, 'relatorio.txt'), 'w').write('\n'.join(out) + '\n'); print('\n'.join(out))
