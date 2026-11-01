@@ -52,3 +52,7 @@ Transcrição de conferência não feita — a chave não tem permissão `speech
   - Os lábios esticados em "aqui" vêm do som do "i", não de sorriso: os olhos e as bochechas continuam sérios.
   - Nenhuma mão entra no quadro.
   - Reserva: `midia/plano4-alt.mp4`.
+- **Plano 5** (01/11): `midia/plano5.mp4`, Aurora a partir do close sério com `B-3-sync`, 448×832, 7,8 s.
+  - Fala de 0,35 a 5,37 s. Depois ela fica em silêncio, de boca fechada e olhando a câmera, até 7,7 s.
+  - Problema: um dedo aparece no canto inferior direito por 1 ou 2 quadros, em ~2,73 s (x > 400, y > 740 na fonte). Na edição, o zoom de ~112% no rosto tira esse canto do quadro.
+  - Reserva: `midia/plano5-alt.mp4` (mesmo problema).
