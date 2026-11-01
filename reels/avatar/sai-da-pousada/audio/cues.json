@@ -1,0 +1,29 @@
+{
+ "duracao": 29.3,
+ "cues": [
+  {
+   "t": 0.35,
+   "type": "vibracao"
+  },
+  {
+   "t": 0.85,
+   "type": "vibracao"
+  },
+  {
+   "t": 4.95,
+   "type": "balao"
+  },
+  {
+   "t": 6.65,
+   "type": "toques"
+  },
+  {
+   "t": 8.8,
+   "type": "toques"
+  },
+  {
+   "t": 9.4,
+   "type": "balao"
+  }
+ ]
+}

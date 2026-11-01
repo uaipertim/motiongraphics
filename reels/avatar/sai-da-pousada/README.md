@@ -1,6 +1,41 @@
 # Reel avatar — "Saí da pousada por duas horas"
 
-Status: **amostra de voz para aprovação** (sem vídeo, nada publicado).
+Status: **edição completa para aprovação** (nada publicado).
+
+▶ [`output/sai-da-pousada.mp4`](output/sai-da-pousada.mp4) · [`output/storyboard.jpg`](output/storyboard.jpg) · capa [`output/capa-grade.jpg`](output/capa-grade.jpg) · legenda do post [`legenda.txt`](legenda.txt) · revisão [`output/revisao/relatorio.txt`](output/revisao/relatorio.txt) (aprovado)
+
+## Edição (1080×1920, 30 fps, 29,3 s)
+
+| Plano | Reel | Fonte | O que aparece |
+|---|---|---|---|
+| P1 | 0,00–4,60 s | Seedance 0–1,5 s + Aurora 1,5–4,6 s (fusão de 3 quadros) | chip "Personagem criada com IA" (0–3 s) · anel limão nas 2 vibrações (0,35 e 0,85 s) · chip "14:20 · fora da pousada" (1,25 s) · "Faz vinte minutos que eu saí da pousada." |
+| P2 | 4,60–9,10 s | `plano2.mp4` 0–4,5 s | balão 1 sai da tela e segue o celular (14:21; 4,95 s) · "digitando…" na tela quando os polegares se mexem (6,65 s) |
+| P3 | 9,10–13,30 s | `plano3.mp4` 0,3–4,5 s | balão 2 (14:23; 9,40 s) · selo "+6 mensagens" contando de 1 a 6 (11,45 s) |
+| P4 | 13,30–20,10 s | `plano4.mp4` inteiro | fala · chave, comanda e moeda em traço limão na palavra "aqui" (19,14 s), somem antes do corte |
+| P5 | 20,10–29,30 s | `plano5.mp4` até o quadro 193 + 1,44 s de trás para frente (silêncio) | zoom fixo 114 % · só a legenda se mexe na fala · chamada + logo pequena de 26,47 a 29,30 s (2,83 s) |
+
+- **Base** (`scripts/base.py` → `midia/base-1080.mp4`, fora do git):
+  - upscale lanczos e `unsharp` leve;
+  - 24/25 → 30 fps por repetição de quadro, sem interpolação;
+  - emenda do P1 medida de novo (SIFT + RANSAC no quadro de 1,5 s): o Seedance em 448 px casa com a Aurora com escala 1,04 e x −8,5 px, y 0. No Reel, o rosto fica a 0,4 px entre os dois lados da emenda.
+- **Zoom do P5: 114 %, e não 112 %.** Medido em todos os quadros da fonte: o dedo aparece 3 vezes (0,6, 1,3 e 2,8 s), em x ≥ 377 e y ≥ 688. Com 112 % e o rosto centrado, a janela pega a ponta do dedo. 114 % é o menor zoom centrado que fica livre dele.
+- **Fim do P5:** os quadros 194–197 da fonte repetem e pulam. Por isso o plano vai até o 193 e volta de trás para frente até o 157, para dar 2,8 s de chamada sem congelar.
+- **Legenda:** tempos das palavras alinhados por energia (`scripts/alinha.py`): ±10 ms no início de cada frase, ±0,1 s no meio. A chave do ElevenLabs não tem permissão de alinhamento forçado. Véu escuro um pouco mais forte que o da Dona Maria, por causa da camisa branca: contraste mínimo 4,0:1.
+- **Som:**
+  - voz dos próprios clipes, só com ganho geral (o limitador pega 0,12 % das amostras);
+  - cama da Dona Maria a 72 BPM, 18 dB abaixo da voz; baixa 12 dB antes da frase do P5 e volta na chamada;
+  - −14,0 LUFS, −2,2 dBTP.
+
+```bash
+python3 scripts/alinha.py && python3 scripts/linha.py   # palavras e linha.json
+python3 scripts/base.py                                  # midia/base-1080.mp4
+python3 scripts/audio.py                                 # audio/mix.wav
+node scripts/render.cjs video && node scripts/render.cjs info
+node ../../tools/capa_grade.cjs . && python3 ../../tools/revisao_capa.py . --saida output/grade --cena
+python3 scripts/qa.py                                    # relatório, storyboard
+```
+
+## Amostra de voz (aprovada)
 
 ## Voz
 - Nome: **Dona Maria** (Voice Design, pt)

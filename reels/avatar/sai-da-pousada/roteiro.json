@@ -1,0 +1,7 @@
+{
+ "clipes": [
+  {"id": "p1", "arquivo": "midia/plano1-fala.mp4", "corte_inicio": 0.0, "texto": "Faz vinte minutos que eu saí da pousada.", "chaves": ["vinte", "minutos"]},
+  {"id": "p4", "arquivo": "midia/plano4.mp4", "corte_inicio": 0.0, "texto": "E não é que a equipe não saiba trabalhar. É que essas respostas só existem aqui.", "chaves": ["equipe", "aqui."]},
+  {"id": "p5", "arquivo": "midia/plano5.mp4", "corte_inicio": 0.0, "texto": "Aí a gente não tira folga. Só muda o lugar de onde atende a pousada.", "chaves": ["não", "tira", "folga."], "chave_frase": [0]}
+ ]
+}

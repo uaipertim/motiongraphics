@@ -1,0 +1,49 @@
+REEL AVATAR "SAÍ DA POUSADA POR DUAS HORAS" — revisão técnica
+output/sai-da-pousada.mp4
+29.30 s · P1 0.00–4.60 s (4.60 s) · P2 4.60–9.10 s (4.50 s) · P3 9.10–13.30 s (4.20 s) · P4 13.30–20.10 s (6.80 s) · P5 20.10–29.30 s (9.20 s)
+
+FORMATO E SOM
+OK     vídeo h264 1080x1920 30/1 fps yuv420p, 879 quadros
+OK     áudio aac 48000 Hz 2 canais
+OK     duração 29.30 s (vídeo e áudio Δ 0 ms; mux com -t)
+OK     loudness -14.0 LUFS (alvo −14), pico real -2.2 dBTP (limite −1,5)
+OK     a trilha fica 18.0 dB abaixo da voz (voz -13.4 LUFS, trilha -31.4 LUFS; alvo ~18 dB)
+OK     trilha: P4 -36.2 dBFS → baixa antes da frase do P5 (-48.3 dBFS) → volta na chamada (-32.3 dBFS)
+       voz sem tratamento além do ganho geral; o limitador do master só pega os picos: 0.12% das amostras da voz
+       efeitos: vibracao 0.35 s, vibracao 0.85 s, balao 4.95 s, toques 6.65 s, toques 8.80 s, balao 9.40 s
+
+EMENDA DO P1 (Seedance → Aurora, fusão de 3 quadros em 1,50–1,57 s)
+OK     posição do rosto antes × depois da emenda (quadros 44 → 48): -0.4 px, +0.1 px; salto de imagem na fusão 4.2 (normal do plano: mediana 1.5, P99 10.0; a fusão divide a troca em 4 passos de ≤ 4.2)
+
+BOCA × VOZ (quadro a quadro, 25 → 30 fps por repetição)
+OK     p1: 100% dos quadros do Reel são o quadro da fonte no mesmo instante do áudio (±1 quadro; desvio mediano +0 ms) e a voz no vídeo final está a +0.0 ms do áudio do clipe: a sincronia da Aurora fica como veio
+OK     p4: 100% dos quadros do Reel são o quadro da fonte no mesmo instante do áudio (±1 quadro; desvio mediano +0 ms) e a voz no vídeo final está a +0.0 ms do áudio do clipe: a sincronia da Aurora fica como veio
+OK     p5: 97% dos quadros do Reel são o quadro da fonte no mesmo instante do áudio (±1 quadro; desvio mediano +0 ms) e a voz no vídeo final está a +0.0 ms do áudio do clipe: a sincronia da Aurora fica como veio
+
+P5 (zoom no rosto)
+OK     o dedo aparece na fonte nos quadros [15, 16, 17, 18, 19, 20, 30, 31, 32, 33, 34, 35, 36, 37, 38, 70, 71, 72] (x ≥ 377, y ≥ 688); a janela do zoom (x 27–420, y 0–699 da fonte) não tem nenhum pixel dele
+OK     nenhum quadro do P5 no Reel mostra pele no canto inferior direito (x ≥ 860, y ≥ 1600; 276 quadros; máximo 0 px de pele)
+
+ELEMENTOS NA TELA
+OK     um elemento novo por vez: chip-ia 0.03 → anel 0.37 → anel (2º pulso) 0.85 → chip-relogio 1.27 → balao1 4.97 → digitando 6.67 → balao2 9.43 → selo 11.47 → icone-chave 19.17 → icone-comanda 19.20 → icone-moeda 19.27 → chamada 26.47 → logo 26.47
+       (juntos de propósito: a chamada e a logo; os três ícones entram em sequência de 0,06 s, como um só grupo, na palavra "aqui")
+OK     nenhum gráfico entra junto com uma página nova da legenda (< 0,25 s): ok
+OK     balao1: na tela de 4.97 a 9.10 s; legível (depois da entrada) por 3.68 s (mínimo 2 s)
+OK     balao2: na tela de 9.43 a 13.30 s; legível (depois da entrada) por 3.42 s (mínimo 2 s)
+OK     selo "+6 mensagens" entra 1.58 s depois de o balão 2 ficar legível (mínimo 1,5 s) e conta de 1 a 6
+OK     ícones (chave, comanda, moeda) de 19.17 a 20.07 s: entram em "aqui" (19.14 s) e somem antes do corte (20.10 s)
+OK     durante a fala do P5 (20.10–25.46 s) só a legenda se mexe na camada: nenhum outro elemento
+OK     chamada + logo de 26.47 a 29.30 s: 2.83 s de leitura (mínimo 2,5), 1.00 s depois da última palavra
+OK     nenhum quadro congelado: o mesmo quadro da fonte fica no máximo 2 quadros do Reel (repetição do 24/25 → 30 fps); no fim do P5 o vídeo vai até o quadro 193 e volta de trás para frente até o 157 (sem pulo)
+OK     no vídeo final, no máximo 1 quadro(s) seguido(s) idêntico(s) ao anterior
+
+ÁREAS SEGURAS E LEGENDA
+OK     todos os elementos entre y 200 e 1536 (fora da barra de cima e dos 20 % de baixo) e dentro das bordas: ok
+OK     legenda em x 136–904, y 1388–1531: abaixo do queixo, acima dos 20 % de baixo e fora da coluna de botões (x > 950)
+OK     chaves em limão: vinte · minutos · equipe · aqui. · não · tira · folga.
+OK     contraste da legenda sobre a imagem: mínimo 4.0:1 (em 15.1 s), mediana 7.8:1 (texto × o fundo mais claro entre as letras, P90; texto grande em negrito pede ≥ 3:1)
+
+CAPA
+OK     capa na regra da grade (reels/tools/revisao_capa.py --cena): cena de fundo de ponta a ponta: a, c e d conferidos pelas caixas dos elementos | (pixels da cena no canto do play: 10213; na faixa do contador: 0) | OK     a, c, d) caixas: dentro do recorte, fora do canto do play e da faixa do contador, sem sobreposição | OK     titulo: x 174–906, y 851–1069 | OK     bloco centralizado na vertical do recorte 3:4: y 851–1069, centro em 960.0 (centro do recorte: 960) | RESULTADO: dentro da regra das capas
+
+RESULTADO: aprovado
