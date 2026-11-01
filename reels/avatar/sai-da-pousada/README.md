@@ -46,3 +46,4 @@ Transcrição de conferência não feita — a chave não tem permissão `speech
   - sorriso aberto em "trabalhar" e em "aqui", com o tom de quem anuncia, e não de quem desabafa;
   - uma mão entrando pela borda direita entre 0,7 e 1,3 s.
   - **2ª rodada:** prompt mais rígido contra o sorriso. Um teste com `B-2-sync` e outro com `A-2-sync` (a versão A, mais estável, pode deixar a expressão mais séria).
+- **Close sério** (`imagens/close-serio.png`, a 3ª de 4 geradas no GPT Image 2.5 a partir do close original): o sorriso leve da imagem original fazia a Aurora sorrir aberto. Esta é a nova origem dos planos 4 e 5.
