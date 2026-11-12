@@ -1,0 +1,3479 @@
+{
+ "g_recebido": {
+  "id": "g_recebido",
+  "arquivo": "telas/01-visao-geral/tela.html",
+  "png": "pecas/g_recebido.png",
+  "dpr": 6,
+  "w": 334,
+  "h": 108,
+  "src": {
+   "x": 28,
+   "y": 176,
+   "pagina": 390
+  },
+  "minFont": 14,
+  "textos": [
+   {
+    "t": "Recebido hoje",
+    "px": 14
+   },
+   {
+    "t": "R$ 1.525,00",
+    "px": 38
+   }
+  ],
+  "holes": [
+   {
+    "texto": "R$ 1.525,00",
+    "input": false,
+    "x": 12,
+    "y": 51.59375,
+    "w": 242.453125,
+    "h": 43,
+    "fam": "Geist Mono",
+    "px": 38,
+    "peso": "700",
+    "cor": "rgb(175, 250, 39)",
+    "ls": "-0.76px",
+    "align": "left",
+    "fundo": "rgb(10, 10, 10)"
+   }
+  ],
+  "bars": [],
+  "tile": {
+   "fundo": "rgb(10, 10, 10)",
+   "borda": null,
+   "r": 22,
+   "sombra": null
+  },
+  "chip": false,
+  "btn": false
+ },
+ "g_hospedados": {
+  "id": "g_hospedados",
+  "arquivo": "telas/01-visao-geral/tela.html",
+  "png": "pecas/g_hospedados.png",
+  "dpr": 6,
+  "w": 110,
+  "h": 106,
+  "src": {
+   "x": 20,
+   "y": 416.25,
+   "pagina": 390
+  },
+  "minFont": 12.5,
+  "textos": [
+   {
+    "t": "Hospedados",
+    "px": 13
+   },
+   {
+    "t": "10",
+    "px": 30
+   },
+   {
+    "t": "h\u00f3spedes",
+    "px": 12.5
+   }
+  ],
+  "holes": [],
+  "bars": [],
+  "tile": {
+   "fundo": "rgb(255, 255, 255)",
+   "borda": "1px solid rgb(231, 231, 226)",
+   "r": 18,
+   "sombra": null
+  },
+  "chip": false,
+  "btn": false
+ },
+ "g_saidas": {
+  "id": "g_saidas",
+  "arquivo": "telas/01-visao-geral/tela.html",
+  "png": "pecas/g_saidas.png",
+  "dpr": 6,
+  "w": 110,
+  "h": 106,
+  "src": {
+   "x": 260,
+   "y": 416.25,
+   "pagina": 390
+  },
+  "minFont": 12.5,
+  "textos": [
+   {
+    "t": "Sa\u00eddas",
+    "px": 13
+   },
+   {
+    "t": "2",
+    "px": 30
+   },
+   {
+    "t": "1 conclu\u00edda",
+    "px": 12.5
+   }
+  ],
+  "holes": [],
+  "bars": [],
+  "tile": {
+   "fundo": "rgb(255, 255, 255)",
+   "borda": "1px solid rgb(231, 231, 226)",
+   "r": 18,
+   "sombra": null
+  },
+  "chip": false,
+  "btn": false
+ },
+ "g_atencao": {
+  "id": "g_atencao",
+  "arquivo": "telas/01-visao-geral/tela.html",
+  "png": "pecas/g_atencao.png",
+  "dpr": 6,
+  "w": 214.75,
+  "h": 42,
+  "src": {
+   "x": 6,
+   "y": 541.25,
+   "pagina": 390
+  },
+  "minFont": 12.5,
+  "textos": [
+   {
+    "t": "Precisa de aten\u00e7\u00e3o",
+    "px": 17
+   },
+   {
+    "t": "1",
+    "px": 12.5
+   }
+  ],
+  "holes": [],
+  "bars": [],
+  "tile": {
+   "fundo": "#F4F4F0",
+   "borda": null,
+   "r": 14
+  },
+  "chip": false,
+  "btn": false
+ },
+ "r_cal_base": {
+  "id": "r_cal_base",
+  "arquivo": "telas/02-calendario/tela-computador.html",
+  "png": "pecas/r_cal_base.png",
+  "dpr": 4,
+  "w": 968,
+  "h": 629,
+  "src": {
+   "x": 272,
+   "y": 200.25,
+   "pagina": 1280
+  },
+  "minFont": 11.5,
+  "textos": [
+   {
+    "t": "Acomoda\u00e7\u00e3o",
+    "px": 12.5
+   },
+   {
+    "t": "Ter",
+    "px": 11.5
+   },
+   {
+    "t": "13",
+    "px": 13.5
+   },
+   {
+    "t": "Qua",
+    "px": 11.5
+   },
+   {
+    "t": "14",
+    "px": 13.5
+   },
+   {
+    "t": "Qui",
+    "px": 11.5
+   },
+   {
+    "t": "15",
+    "px": 13.5
+   },
+   {
+    "t": "Hoje",
+    "px": 11.5
+   },
+   {
+    "t": "16",
+    "px": 13.5
+   },
+   {
+    "t": "S\u00e1b",
+    "px": 11.5
+   },
+   {
+    "t": "17",
+    "px": 13.5
+   },
+   {
+    "t": "Dom",
+    "px": 11.5
+   },
+   {
+    "t": "18",
+    "px": 13.5
+   },
+   {
+    "t": "Seg",
+    "px": 11.5
+   },
+   {
+    "t": "19",
+    "px": 13.5
+   },
+   {
+    "t": "Ter",
+    "px": 11.5
+   },
+   {
+    "t": "20",
+    "px": 13.5
+   },
+   {
+    "t": "Qua",
+    "px": 11.5
+   },
+   {
+    "t": "21",
+    "px": 13.5
+   },
+   {
+    "t": "Qui",
+    "px": 11.5
+   },
+   {
+    "t": "22",
+    "px": 13.5
+   },
+   {
+    "t": "Sex",
+    "px": 11.5
+   },
+   {
+    "t": "23",
+    "px": 13.5
+   },
+   {
+    "t": "S\u00e1b",
+    "px": 11.5
+   },
+   {
+    "t": "24",
+    "px": 13.5
+   },
+   {
+    "t": "Dom",
+    "px": 11.5
+   },
+   {
+    "t": "25",
+    "px": 13.5
+   },
+   {
+    "t": "Seg",
+    "px": 11.5
+   },
+   {
+    "t": "26",
+    "px": 13.5
+   },
+   {
+    "t": "Chal\u00e9 de Pedra 04",
+    "px": 13.5
+   },
+   {
+    "t": "Chal\u00e9 \u00b7 4 pessoas",
+    "px": 12
+   },
+   {
+    "t": "Chal\u00e9 de Pedra 05",
+    "px": 13.5
+   },
+   {
+    "t": "Chal\u00e9 \u00b7 4 pessoas",
+    "px": 12
+   },
+   {
+    "t": "Chal\u00e9 de Pedra 06",
+    "px": 13.5
+   },
+   {
+    "t": "Chal\u00e9 \u00b7 4 pessoas",
+    "px": 12
+   },
+   {
+    "t": "Chal\u00e9 Ip\u00ea",
+    "px": 13.5
+   },
+   {
+    "t": "Chal\u00e9 \u00b7 3 pessoas",
+    "px": 12
+   },
+   {
+    "t": "Chal\u00e9 Jatob\u00e1",
+    "px": 13.5
+   },
+   {
+    "t": "Chal\u00e9 \u00b7 4 pessoas",
+    "px": 12
+   },
+   {
+    "t": "Chal\u00e9 Manac\u00e1",
+    "px": 13.5
+   },
+   {
+    "t": "Chal\u00e9 \u00b7 4 pessoas",
+    "px": 12
+   },
+   {
+    "t": "Bloqueada \u00b7 Manuten\u00e7\u00e3o",
+    "px": 12.5
+   },
+   {
+    "t": "Su\u00edte Mirante",
+    "px": 13.5
+   },
+   {
+    "t": "Su\u00edte \u00b7 2 pessoas",
+    "px": 12
+   },
+   {
+    "t": "Su\u00edte Jardim",
+    "px": 13.5
+   },
+   {
+    "t": "Su\u00edte \u00b7 2 pessoas",
+    "px": 12
+   },
+   {
+    "t": "Quarto Brom\u00e9lia",
+    "px": 13.5
+   },
+   {
+    "t": "Quarto \u00b7 2 pessoas",
+    "px": 12
+   },
+   {
+    "t": "Quarto Orqu\u00eddea",
+    "px": 13.5
+   },
+   {
+    "t": "Quarto \u00b7 2 pessoas",
+    "px": 12
+   },
+   {
+    "t": "Hoje:",
+    "px": 13
+   },
+   {
+    "t": "5",
+    "px": 13
+   },
+   {
+    "t": "de",
+    "px": 13
+   },
+   {
+    "t": "10",
+    "px": 13
+   },
+   {
+    "t": "ocupadas \u00b7 ponto \u00e2mbar: hosped",
+    "px": 13
+   },
+   {
+    "t": "Clique numa reserva para abrir",
+    "px": 13
+   }
+  ],
+  "holes": [],
+  "bars": [
+   {
+    "texto": "Thiago M.",
+    "x": 173,
+    "y": 67.9375,
+    "w": 83.0625,
+    "h": 32,
+    "px": 12.5
+   },
+   {
+    "texto": "Gustavo R.",
+    "x": 430.203125,
+    "y": 67.9375,
+    "w": 109.4375,
+    "h": 32,
+    "px": 12.5
+   },
+   {
+    "texto": "Vin\u00edcius Ara\u00fajo",
+    "x": 600.34375,
+    "y": 120.9375,
+    "w": 166.15625,
+    "h": 32,
+    "px": 12.5
+   },
+   {
+    "texto": "Lucas M.",
+    "x": 173,
+    "y": 173.9375,
+    "w": 141.78125,
+    "h": 32,
+    "px": 12.5
+   },
+   {
+    "texto": "atraso",
+    "x": 314.78125,
+    "y": 173.9375,
+    "w": 54.71875,
+    "h": 32,
+    "px": 12
+   },
+   {
+    "texto": "Patr\u00edcia Almeida",
+    "x": 203.34375,
+    "y": 226.9375,
+    "w": 166.15625,
+    "h": 32,
+    "px": 12.5
+   },
+   {
+    "texto": "Fernanda Lima",
+    "x": 430.203125,
+    "y": 226.9375,
+    "w": 166.140625,
+    "h": 32,
+    "px": 12.5
+   },
+   {
+    "texto": "Rafael Souza",
+    "x": 316.78125,
+    "y": 279.9375,
+    "w": 222.859375,
+    "h": 32,
+    "px": 12.5
+   },
+   {
+    "texto": "Marcos Teixeira",
+    "x": 713.78125,
+    "y": 279.9375,
+    "w": 166.140625,
+    "h": 32,
+    "px": 12.5
+   },
+   {
+    "texto": "Ana Beatriz F.",
+    "x": 827.203125,
+    "y": 332.9375,
+    "w": 139.796875,
+    "h": 32,
+    "px": 12.5
+   },
+   {
+    "texto": "Mariana Costa",
+    "x": 260.0625,
+    "y": 385.9375,
+    "w": 222.859375,
+    "h": 32,
+    "px": 12.5
+   },
+   {
+    "texto": "Camila Rocha",
+    "x": 486.921875,
+    "y": 385.9375,
+    "w": 166.140625,
+    "h": 32,
+    "px": 12.5
+   },
+   {
+    "texto": "Beatriz Nogueira",
+    "x": 203.34375,
+    "y": 438.9375,
+    "w": 166.15625,
+    "h": 32,
+    "px": 12.5
+   },
+   {
+    "texto": "Ot\u00e1vio Lins",
+    "x": 770.5,
+    "y": 438.9375,
+    "w": 166.140625,
+    "h": 32,
+    "px": 12.5
+   },
+   {
+    "texto": "Helena D.",
+    "x": 316.78125,
+    "y": 491.9375,
+    "w": 109.421875,
+    "h": 32,
+    "px": 12.5
+   },
+   {
+    "texto": "Bruna C.",
+    "x": 543.640625,
+    "y": 491.9375,
+    "w": 109.421875,
+    "h": 32,
+    "px": 12.5
+   },
+   {
+    "texto": "Jo\u00e3o Pedro A.",
+    "x": 770.5,
+    "y": 544.9375,
+    "w": 109.421875,
+    "h": 32,
+    "px": 12.5
+   }
+  ],
+  "tile": {
+   "fundo": "rgb(255, 255, 255)",
+   "borda": "1px solid rgb(231, 231, 226)",
+   "r": 18,
+   "sombra": null
+  },
+  "chip": false,
+  "btn": false
+ },
+ "r_bar00": {
+  "id": "r_bar00",
+  "arquivo": "telas/02-calendario/tela-computador.html",
+  "png": "pecas/r_bar00.png",
+  "dpr": 4,
+  "w": 83,
+  "h": 32,
+  "src": {
+   "x": 445,
+   "y": 268.25,
+   "pagina": 1280
+  },
+  "minFont": 12.5,
+  "textos": [
+   {
+    "t": "Thiago M.",
+    "px": 12.5
+   }
+  ],
+  "holes": [],
+  "bars": [],
+  "tile": {
+   "fundo": null,
+   "borda": null,
+   "r": 0
+  },
+  "chip": false,
+  "btn": false,
+  "rel": {
+   "x": 173,
+   "y": 68
+  }
+ },
+ "r_bar01": {
+  "id": "r_bar01",
+  "arquivo": "telas/02-calendario/tela-computador.html",
+  "png": "pecas/r_bar01.png",
+  "dpr": 4,
+  "w": 109.5,
+  "h": 32,
+  "src": {
+   "x": 702.25,
+   "y": 268.25,
+   "pagina": 1280
+  },
+  "minFont": 12.5,
+  "textos": [
+   {
+    "t": "Gustavo R.",
+    "px": 12.5
+   }
+  ],
+  "holes": [],
+  "bars": [],
+  "tile": {
+   "fundo": null,
+   "borda": null,
+   "r": 0
+  },
+  "chip": false,
+  "btn": false,
+  "rel": {
+   "x": 430.25,
+   "y": 68
+  }
+ },
+ "r_bar02": {
+  "id": "r_bar02",
+  "arquivo": "telas/02-calendario/tela-computador.html",
+  "png": "pecas/r_bar02.png",
+  "dpr": 4,
+  "w": 166.25,
+  "h": 32,
+  "src": {
+   "x": 872.25,
+   "y": 321.25,
+   "pagina": 1280
+  },
+  "minFont": 12.5,
+  "textos": [
+   {
+    "t": "Vin\u00edcius Ara\u00fajo",
+    "px": 12.5
+   }
+  ],
+  "holes": [],
+  "bars": [],
+  "tile": {
+   "fundo": null,
+   "borda": null,
+   "r": 0
+  },
+  "chip": false,
+  "btn": false,
+  "rel": {
+   "x": 600.25,
+   "y": 121
+  }
+ },
+ "r_bar03": {
+  "id": "r_bar03",
+  "arquivo": "telas/02-calendario/tela-computador.html",
+  "png": "pecas/r_bar03.png",
+  "dpr": 4,
+  "w": 141.75,
+  "h": 32,
+  "src": {
+   "x": 445,
+   "y": 374.25,
+   "pagina": 1280
+  },
+  "minFont": 12.5,
+  "textos": [
+   {
+    "t": "Lucas M.",
+    "px": 12.5
+   }
+  ],
+  "holes": [],
+  "bars": [],
+  "tile": {
+   "fundo": null,
+   "borda": null,
+   "r": 0
+  },
+  "chip": false,
+  "btn": false,
+  "rel": {
+   "x": 173,
+   "y": 174
+  }
+ },
+ "r_bar04": {
+  "id": "r_bar04",
+  "arquivo": "telas/02-calendario/tela-computador.html",
+  "png": "pecas/r_bar04.png",
+  "dpr": 4,
+  "w": 54.75,
+  "h": 32,
+  "src": {
+   "x": 586.75,
+   "y": 374.25,
+   "pagina": 1280
+  },
+  "minFont": 12,
+  "textos": [
+   {
+    "t": "atraso",
+    "px": 12
+   }
+  ],
+  "holes": [],
+  "bars": [],
+  "tile": {
+   "fundo": null,
+   "borda": null,
+   "r": 0
+  },
+  "chip": false,
+  "btn": false,
+  "rel": {
+   "x": 314.75,
+   "y": 174
+  }
+ },
+ "r_bar05": {
+  "id": "r_bar05",
+  "arquivo": "telas/02-calendario/tela-computador.html",
+  "png": "pecas/r_bar05.png",
+  "dpr": 4,
+  "w": 166.25,
+  "h": 32,
+  "src": {
+   "x": 475.25,
+   "y": 427.25,
+   "pagina": 1280
+  },
+  "minFont": 12.5,
+  "textos": [
+   {
+    "t": "Patr\u00edcia Almeida",
+    "px": 12.5
+   }
+  ],
+  "holes": [],
+  "bars": [],
+  "tile": {
+   "fundo": null,
+   "borda": null,
+   "r": 0
+  },
+  "chip": false,
+  "btn": false,
+  "rel": {
+   "x": 203.25,
+   "y": 227
+  }
+ },
+ "r_bar06": {
+  "id": "r_bar06",
+  "arquivo": "telas/02-calendario/tela-computador.html",
+  "png": "pecas/r_bar06.png",
+  "dpr": 4,
+  "w": 166.25,
+  "h": 32,
+  "src": {
+   "x": 702.25,
+   "y": 427.25,
+   "pagina": 1280
+  },
+  "minFont": 12.5,
+  "textos": [
+   {
+    "t": "Fernanda Lima",
+    "px": 12.5
+   }
+  ],
+  "holes": [],
+  "bars": [],
+  "tile": {
+   "fundo": null,
+   "borda": null,
+   "r": 0
+  },
+  "chip": false,
+  "btn": false,
+  "rel": {
+   "x": 430.25,
+   "y": 227
+  }
+ },
+ "r_bar07": {
+  "id": "r_bar07",
+  "arquivo": "telas/02-calendario/tela-computador.html",
+  "png": "pecas/r_bar07.png",
+  "dpr": 4,
+  "w": 222.75,
+  "h": 32,
+  "src": {
+   "x": 588.75,
+   "y": 480.25,
+   "pagina": 1280
+  },
+  "minFont": 12.5,
+  "textos": [
+   {
+    "t": "Rafael Souza",
+    "px": 12.5
+   }
+  ],
+  "holes": [],
+  "bars": [],
+  "tile": {
+   "fundo": null,
+   "borda": null,
+   "r": 0
+  },
+  "chip": false,
+  "btn": false,
+  "rel": {
+   "x": 316.75,
+   "y": 280
+  }
+ },
+ "r_bar08": {
+  "id": "r_bar08",
+  "arquivo": "telas/02-calendario/tela-computador.html",
+  "png": "pecas/r_bar08.png",
+  "dpr": 4,
+  "w": 166.25,
+  "h": 32,
+  "src": {
+   "x": 985.75,
+   "y": 480.25,
+   "pagina": 1280
+  },
+  "minFont": 12.5,
+  "textos": [
+   {
+    "t": "Marcos Teixeira",
+    "px": 12.5
+   }
+  ],
+  "holes": [],
+  "bars": [],
+  "tile": {
+   "fundo": null,
+   "borda": null,
+   "r": 0
+  },
+  "chip": false,
+  "btn": false,
+  "rel": {
+   "x": 713.75,
+   "y": 280
+  }
+ },
+ "r_bar09": {
+  "id": "r_bar09",
+  "arquivo": "telas/02-calendario/tela-computador.html",
+  "png": "pecas/r_bar09.png",
+  "dpr": 4,
+  "w": 139.75,
+  "h": 32,
+  "src": {
+   "x": 1099.25,
+   "y": 533.25,
+   "pagina": 1280
+  },
+  "minFont": 12.5,
+  "textos": [
+   {
+    "t": "Ana Beatriz F.",
+    "px": 12.5
+   }
+  ],
+  "holes": [],
+  "bars": [],
+  "tile": {
+   "fundo": null,
+   "borda": null,
+   "r": 0
+  },
+  "chip": false,
+  "btn": false,
+  "rel": {
+   "x": 827.25,
+   "y": 333
+  }
+ },
+ "r_bar10": {
+  "id": "r_bar10",
+  "arquivo": "telas/02-calendario/tela-computador.html",
+  "png": "pecas/r_bar10.png",
+  "dpr": 4,
+  "w": 222.75,
+  "h": 32,
+  "src": {
+   "x": 532,
+   "y": 586.25,
+   "pagina": 1280
+  },
+  "minFont": 12.5,
+  "textos": [
+   {
+    "t": "Mariana Costa",
+    "px": 12.5
+   }
+  ],
+  "holes": [],
+  "bars": [],
+  "tile": {
+   "fundo": null,
+   "borda": null,
+   "r": 0
+  },
+  "chip": false,
+  "btn": false,
+  "rel": {
+   "x": 260,
+   "y": 386
+  }
+ },
+ "r_bar11": {
+  "id": "r_bar11",
+  "arquivo": "telas/02-calendario/tela-computador.html",
+  "png": "pecas/r_bar11.png",
+  "dpr": 4,
+  "w": 166.25,
+  "h": 32,
+  "src": {
+   "x": 759,
+   "y": 586.25,
+   "pagina": 1280
+  },
+  "minFont": 12.5,
+  "textos": [
+   {
+    "t": "Camila Rocha",
+    "px": 12.5
+   }
+  ],
+  "holes": [],
+  "bars": [],
+  "tile": {
+   "fundo": null,
+   "borda": null,
+   "r": 0
+  },
+  "chip": false,
+  "btn": false,
+  "rel": {
+   "x": 487,
+   "y": 386
+  }
+ },
+ "r_bar12": {
+  "id": "r_bar12",
+  "arquivo": "telas/02-calendario/tela-computador.html",
+  "png": "pecas/r_bar12.png",
+  "dpr": 4,
+  "w": 166.25,
+  "h": 32,
+  "src": {
+   "x": 475.25,
+   "y": 639.25,
+   "pagina": 1280
+  },
+  "minFont": 12.5,
+  "textos": [
+   {
+    "t": "Beatriz Nogueira",
+    "px": 12.5
+   }
+  ],
+  "holes": [],
+  "bars": [],
+  "tile": {
+   "fundo": null,
+   "borda": null,
+   "r": 0
+  },
+  "chip": false,
+  "btn": false,
+  "rel": {
+   "x": 203.25,
+   "y": 439
+  }
+ },
+ "r_bar13": {
+  "id": "r_bar13",
+  "arquivo": "telas/02-calendario/tela-computador.html",
+  "png": "pecas/r_bar13.png",
+  "dpr": 4,
+  "w": 166.25,
+  "h": 32,
+  "src": {
+   "x": 1042.5,
+   "y": 639.25,
+   "pagina": 1280
+  },
+  "minFont": 12.5,
+  "textos": [
+   {
+    "t": "Ot\u00e1vio Lins",
+    "px": 12.5
+   }
+  ],
+  "holes": [],
+  "bars": [],
+  "tile": {
+   "fundo": null,
+   "borda": null,
+   "r": 0
+  },
+  "chip": false,
+  "btn": false,
+  "rel": {
+   "x": 770.5,
+   "y": 439
+  }
+ },
+ "r_bar14": {
+  "id": "r_bar14",
+  "arquivo": "telas/02-calendario/tela-computador.html",
+  "png": "pecas/r_bar14.png",
+  "dpr": 4,
+  "w": 109.5,
+  "h": 32,
+  "src": {
+   "x": 588.75,
+   "y": 692.25,
+   "pagina": 1280
+  },
+  "minFont": 12.5,
+  "textos": [
+   {
+    "t": "Helena D.",
+    "px": 12.5
+   }
+  ],
+  "holes": [],
+  "bars": [],
+  "tile": {
+   "fundo": null,
+   "borda": null,
+   "r": 0
+  },
+  "chip": false,
+  "btn": false,
+  "rel": {
+   "x": 316.75,
+   "y": 492
+  }
+ },
+ "r_bar15": {
+  "id": "r_bar15",
+  "arquivo": "telas/02-calendario/tela-computador.html",
+  "png": "pecas/r_bar15.png",
+  "dpr": 4,
+  "w": 109.5,
+  "h": 32,
+  "src": {
+   "x": 815.75,
+   "y": 692.25,
+   "pagina": 1280
+  },
+  "minFont": 12.5,
+  "textos": [
+   {
+    "t": "Bruna C.",
+    "px": 12.5
+   }
+  ],
+  "holes": [],
+  "bars": [],
+  "tile": {
+   "fundo": null,
+   "borda": null,
+   "r": 0
+  },
+  "chip": false,
+  "btn": false,
+  "rel": {
+   "x": 543.75,
+   "y": 492
+  }
+ },
+ "r_bar16": {
+  "id": "r_bar16",
+  "arquivo": "telas/02-calendario/tela-computador.html",
+  "png": "pecas/r_bar16.png",
+  "dpr": 4,
+  "w": 109.5,
+  "h": 32,
+  "src": {
+   "x": 1042.5,
+   "y": 745.25,
+   "pagina": 1280
+  },
+  "minFont": 12.5,
+  "textos": [
+   {
+    "t": "Jo\u00e3o Pedro A.",
+    "px": 12.5
+   }
+  ],
+  "holes": [],
+  "bars": [],
+  "tile": {
+   "fundo": null,
+   "borda": null,
+   "r": 0
+  },
+  "chip": false,
+  "btn": false,
+  "rel": {
+   "x": 770.5,
+   "y": 545
+  }
+ },
+ "r_cal_bruno": {
+  "id": "r_cal_bruno",
+  "arquivo": "telas/02-calendario/tela-computador.html",
+  "png": "pecas/r_cal_bruno.png",
+  "dpr": 6,
+  "w": 166.25,
+  "h": 32,
+  "src": {
+   "x": 985.75,
+   "y": 692.25,
+   "pagina": 1280
+  },
+  "minFont": 12.5,
+  "textos": [
+   {
+    "t": "Bruno T.",
+    "px": 12.5
+   }
+  ],
+  "holes": [],
+  "bars": [],
+  "tile": {
+   "fundo": "rgb(255, 255, 255)",
+   "borda": "1px solid rgb(10, 10, 10)",
+   "r": 8,
+   "sombra": null
+  },
+  "chip": false,
+  "btn": false,
+  "rel": {
+   "x": 713.75,
+   "y": 492
+  }
+ },
+ "r_cal_dias": {
+  "id": "r_cal_dias",
+  "arquivo": "telas/02-calendario/tela-computador.html",
+  "png": "pecas/r_cal_dias.png",
+  "dpr": 6,
+  "w": 226.75,
+  "h": 56,
+  "src": {
+   "x": 955.5,
+   "y": 201.25,
+   "pagina": 1280
+  },
+  "minFont": 11.5,
+  "textos": [
+   {
+    "t": "Qui",
+    "px": 11.5
+   },
+   {
+    "t": "22",
+    "px": 13.5
+   },
+   {
+    "t": "Sex",
+    "px": 11.5
+   },
+   {
+    "t": "23",
+    "px": 13.5
+   },
+   {
+    "t": "S\u00e1b",
+    "px": 11.5
+   },
+   {
+    "t": "24",
+    "px": 13.5
+   },
+   {
+    "t": "Dom",
+    "px": 11.5
+   },
+   {
+    "t": "25",
+    "px": 13.5
+   }
+  ],
+  "holes": [],
+  "bars": [],
+  "tile": {
+   "fundo": "#FAFAF8",
+   "borda": null,
+   "r": 12
+  },
+  "chip": false,
+  "btn": false,
+  "rel": {
+   "x": 683.5,
+   "y": 1
+  }
+ },
+ "r_cal_linha": {
+  "id": "r_cal_linha",
+  "arquivo": "telas/02-calendario/tela-computador.html",
+  "png": "pecas/r_cal_linha.png",
+  "dpr": 6,
+  "w": 226.75,
+  "h": 53,
+  "src": {
+   "x": 955.5,
+   "y": 681.25,
+   "pagina": 1280
+  },
+  "minFont": null,
+  "textos": [],
+  "holes": [],
+  "bars": [],
+  "tile": {
+   "fundo": "#FFFFFF",
+   "borda": null,
+   "r": 12
+  },
+  "chip": false,
+  "btn": false,
+  "rel": {
+   "x": 683.5,
+   "y": 481
+  }
+ },
+ "r_cal_quarto": {
+  "id": "r_cal_quarto",
+  "arquivo": "telas/02-calendario/tela-computador.html",
+  "png": "pecas/r_cal_quarto.png",
+  "dpr": 6,
+  "w": 135,
+  "h": 55,
+  "src": {
+   "x": 275,
+   "y": 680.25,
+   "pagina": 1280
+  },
+  "minFont": 12,
+  "textos": [
+   {
+    "t": "Quarto Brom\u00e9lia",
+    "px": 13.5
+   },
+   {
+    "t": "Quarto \u00b7 2 pessoas",
+    "px": 12
+   }
+  ],
+  "holes": [],
+  "bars": [],
+  "tile": {
+   "fundo": "#FFFFFF",
+   "borda": null,
+   "r": 12
+  },
+  "chip": false,
+  "btn": false
+ },
+ "r_entrada": {
+  "id": "r_entrada",
+  "arquivo": "telas/03-nova-reserva/estados/01-datas-e-acomodacao.html",
+  "png": "pecas/r_entrada.png",
+  "dpr": 6,
+  "w": 154,
+  "h": 67,
+  "src": {
+   "x": 36,
+   "y": 167,
+   "pagina": 390
+  },
+  "minFont": 13,
+  "textos": [
+   {
+    "t": "Entrada",
+    "px": 13
+   }
+  ],
+  "holes": [],
+  "bars": [],
+  "tile": {
+   "fundo": "#FFFFFF",
+   "borda": null,
+   "r": 0
+  },
+  "chip": false,
+  "btn": false
+ },
+ "r_saida": {
+  "id": "r_saida",
+  "arquivo": "telas/03-nova-reserva/estados/01-datas-e-acomodacao.html",
+  "png": "pecas/r_saida.png",
+  "dpr": 6,
+  "w": 154,
+  "h": 67,
+  "src": {
+   "x": 200,
+   "y": 167,
+   "pagina": 390
+  },
+  "minFont": 13,
+  "textos": [
+   {
+    "t": "Sa\u00edda",
+    "px": 13
+   }
+  ],
+  "holes": [],
+  "bars": [],
+  "tile": {
+   "fundo": "#FFFFFF",
+   "borda": null,
+   "r": 0
+  },
+  "chip": false,
+  "btn": false
+ },
+ "r_livres": {
+  "id": "r_livres",
+  "arquivo": "telas/03-nova-reserva/estados/01-datas-e-acomodacao.html",
+  "png": "pecas/r_livres.png",
+  "dpr": 6,
+  "w": 188.25,
+  "h": 35,
+  "src": {
+   "x": 22,
+   "y": 389,
+   "pagina": 390
+  },
+  "minFont": 13,
+  "textos": [
+   {
+    "t": "Livres no per\u00edodo \u00b7",
+    "px": 13
+   },
+   {
+    "t": "5",
+    "px": 13
+   },
+   {
+    "t": "de",
+    "px": 13
+   },
+   {
+    "t": "10",
+    "px": 13
+   }
+  ],
+  "holes": [],
+  "bars": [],
+  "tile": {
+   "fundo": "#FFFFFF",
+   "borda": null,
+   "r": 12
+  },
+  "chip": false,
+  "btn": false
+ },
+ "r_lista": {
+  "id": "r_lista",
+  "arquivo": "telas/03-nova-reserva/estados/08-aviso-periodo-ocupado.html",
+  "png": "pecas/r_lista.png",
+  "dpr": 6,
+  "w": 318,
+  "h": 266,
+  "src": {
+   "x": 36,
+   "y": 482.25,
+   "pagina": 390
+  },
+  "minFont": 12,
+  "textos": [
+   {
+    "t": "Chal\u00e9 de Pedra 04",
+    "px": 14.5
+   },
+   {
+    "t": "Chal\u00e9 \u00b7 at\u00e9 4 pessoas",
+    "px": 12.5
+   },
+   {
+    "t": "R$ 490,00",
+    "px": 14
+   },
+   {
+    "t": "por di\u00e1ria",
+    "px": 12
+   },
+   {
+    "t": "Chal\u00e9 de Pedra 06",
+    "px": 14.5
+   },
+   {
+    "t": "Chal\u00e9 \u00b7 at\u00e9 4 pessoas",
+    "px": 12.5
+   },
+   {
+    "t": "R$ 490,00",
+    "px": 14
+   },
+   {
+    "t": "por di\u00e1ria",
+    "px": 12
+   },
+   {
+    "t": "Chal\u00e9 Ip\u00ea",
+    "px": 14.5
+   },
+   {
+    "t": "Chal\u00e9 \u00b7 at\u00e9 3 pessoas",
+    "px": 12.5
+   },
+   {
+    "t": "R$ 520,00",
+    "px": 14
+   },
+   {
+    "t": "por di\u00e1ria",
+    "px": 12
+   },
+   {
+    "t": "Su\u00edte Mirante",
+    "px": 14.5
+   },
+   {
+    "t": "Su\u00edte \u00b7 at\u00e9 2 pessoas",
+    "px": 12.5
+   },
+   {
+    "t": "R$ 610,00",
+    "px": 14
+   },
+   {
+    "t": "por di\u00e1ria",
+    "px": 12
+   },
+   {
+    "t": "Quarto Brom\u00e9lia",
+    "px": 14.5
+   },
+   {
+    "t": "Quarto \u00b7 at\u00e9 2 pessoas",
+    "px": 12.5
+   },
+   {
+    "t": "R$ 320,00",
+    "px": 14
+   },
+   {
+    "t": "por di\u00e1ria",
+    "px": 12
+   }
+  ],
+  "holes": [],
+  "bars": [],
+  "tile": {
+   "fundo": "rgba(0, 0, 0, 0)",
+   "borda": "1px solid rgb(231, 231, 226)",
+   "r": 16,
+   "sombra": null
+  },
+  "chip": false,
+  "btn": false
+ },
+ "r_brom_off": {
+  "id": "r_brom_off",
+  "arquivo": "telas/03-nova-reserva/estados/08-aviso-periodo-ocupado.html",
+  "png": "pecas/r_brom_off.png",
+  "dpr": 6,
+  "w": 292,
+  "h": 53,
+  "src": {
+   "x": 49,
+   "y": 694.25,
+   "pagina": 390
+  },
+  "minFont": 12,
+  "textos": [
+   {
+    "t": "Quarto Brom\u00e9lia",
+    "px": 14.5
+   },
+   {
+    "t": "Quarto \u00b7 at\u00e9 2 pessoas",
+    "px": 12.5
+   },
+   {
+    "t": "R$ 320,00",
+    "px": 14
+   },
+   {
+    "t": "por di\u00e1ria",
+    "px": 12
+   }
+  ],
+  "holes": [],
+  "bars": [],
+  "tile": {
+   "fundo": "#FFFFFF",
+   "borda": null,
+   "r": 14
+  },
+  "chip": false,
+  "btn": false
+ },
+ "r_brom_on": {
+  "id": "r_brom_on",
+  "arquivo": "telas/03-nova-reserva/estados/01-datas-e-acomodacao.html",
+  "png": "pecas/r_brom_on.png",
+  "dpr": 6,
+  "w": 292,
+  "h": 53,
+  "src": {
+   "x": 49,
+   "y": 635,
+   "pagina": 390
+  },
+  "minFont": 12,
+  "textos": [
+   {
+    "t": "Quarto Brom\u00e9lia",
+    "px": 14.5
+   },
+   {
+    "t": "Quarto \u00b7 at\u00e9 2 pessoas",
+    "px": 12.5
+   },
+   {
+    "t": "R$ 320,00",
+    "px": 14
+   },
+   {
+    "t": "por di\u00e1ria",
+    "px": 12
+   }
+  ],
+  "holes": [],
+  "bars": [],
+  "tile": {
+   "fundo": "#F7F7F3",
+   "borda": null,
+   "r": 14
+  },
+  "chip": false,
+  "btn": false
+ },
+ "r_aviso": {
+  "id": "r_aviso",
+  "arquivo": "telas/03-nova-reserva/estados/08-aviso-periodo-ocupado.html",
+  "png": "pecas/r_aviso.png",
+  "dpr": 6,
+  "w": 318,
+  "h": 104.25,
+  "src": {
+   "x": 36,
+   "y": 340,
+   "pagina": 390
+  },
+  "minFont": 13.5,
+  "textos": [
+   {
+    "t": "Per\u00edodo ocupado.",
+    "px": 13.5
+   },
+   {
+    "t": "O Chal\u00e9 de Pedra 05 tem reserv",
+    "px": 13.5
+   },
+   {
+    "t": "20/10",
+    "px": 13.5
+   },
+   {
+    "t": "a",
+    "px": 13.5
+   },
+   {
+    "t": "23/10",
+    "px": 13.5
+   },
+   {
+    "t": ". Escolha uma acomoda\u00e7\u00e3o livre",
+    "px": 13.5
+   }
+  ],
+  "holes": [],
+  "bars": [],
+  "tile": {
+   "fundo": "rgb(255, 247, 227)",
+   "borda": "1px solid rgb(242, 230, 197)",
+   "r": 14,
+   "sombra": null
+  },
+  "chip": false,
+  "btn": false
+ },
+ "s_gustavo": {
+  "id": "s_gustavo",
+  "arquivo": "telas/04-detalhe-reserva/estados/01-pre-reserva.html",
+  "png": "pecas/s_gustavo.png",
+  "dpr": 6,
+  "w": 272.25,
+  "h": 99.25,
+  "src": {
+   "x": 4,
+   "y": 142,
+   "pagina": 390
+  },
+  "minFont": 12.5,
+  "textos": [
+   {
+    "t": "Gustavo Ribeiro",
+    "px": 28
+   },
+   {
+    "t": "Pr\u00e9-reserva",
+    "px": 12.5
+   },
+   {
+    "t": "Chal\u00e9 de Pedra 04",
+    "px": 14
+   },
+   {
+    "t": "sem sinal",
+    "px": 13
+   }
+  ],
+  "holes": [],
+  "bars": [],
+  "tile": {
+   "fundo": "#F4F4F0",
+   "borda": null,
+   "r": 16
+  },
+  "chip": false,
+  "btn": false
+ },
+ "s_chip_pre": {
+  "id": "s_chip_pre",
+  "arquivo": "telas/04-detalhe-reserva/estados/01-pre-reserva.html",
+  "png": "pecas/s_chip_pre.png",
+  "dpr": 8,
+  "w": 110,
+  "h": 26,
+  "src": {
+   "x": 20,
+   "y": 184.25,
+   "pagina": 390
+  },
+  "minFont": 12.5,
+  "textos": [
+   {
+    "t": "Pr\u00e9-reserva",
+    "px": 12.5
+   }
+  ],
+  "holes": [],
+  "bars": [],
+  "tile": {
+   "fundo": "rgb(255, 247, 227)",
+   "borda": "1px solid rgb(242, 230, 197)",
+   "r": 999,
+   "sombra": null
+  },
+  "chip": true,
+  "btn": false
+ },
+ "s_chip_conf": {
+  "id": "s_chip_conf",
+  "arquivo": "telas/04-detalhe-reserva/estados/02-confirmada.html",
+  "png": "pecas/s_chip_conf.png",
+  "dpr": 8,
+  "w": 103.75,
+  "h": 26,
+  "src": {
+   "x": 20,
+   "y": 184.25,
+   "pagina": 390
+  },
+  "minFont": 12.5,
+  "textos": [
+   {
+    "t": "Confirmada",
+    "px": 12.5
+   }
+  ],
+  "holes": [],
+  "bars": [],
+  "tile": {
+   "fundo": "rgb(255, 255, 255)",
+   "borda": "1px solid rgb(207, 207, 200)",
+   "r": 999,
+   "sombra": null
+  },
+  "chip": true,
+  "btn": false
+ },
+ "s_btn_registrar": {
+  "id": "s_btn_registrar",
+  "arquivo": "telas/04-detalhe-reserva/estados/01-pre-reserva.html",
+  "png": "pecas/s_btn_registrar.png",
+  "dpr": 6,
+  "w": 316,
+  "h": 48,
+  "src": {
+   "x": 37,
+   "y": 491.5,
+   "pagina": 390
+  },
+  "minFont": 15,
+  "textos": [
+   {
+    "t": "Registrar sinal",
+    "px": 15
+   }
+  ],
+  "holes": [],
+  "bars": [],
+  "tile": {
+   "fundo": "rgb(255, 255, 255)",
+   "borda": "1px solid rgb(10, 10, 10)",
+   "r": 12,
+   "sombra": null
+  },
+  "chip": false,
+  "btn": true
+ },
+ "s_campo_sinal": {
+  "id": "s_campo_sinal",
+  "arquivo": "telas/05-registrar-pagamento/estados/04-sinal-antes.html",
+  "png": "pecas/s_campo_sinal.png",
+  "dpr": 6,
+  "w": 318,
+  "h": 79,
+  "src": {
+   "x": 36,
+   "y": 276,
+   "pagina": 390
+  },
+  "minFont": 13,
+  "textos": [
+   {
+    "t": "Sinal",
+    "px": 13
+   },
+   {
+    "t": "R$",
+    "px": 17
+   }
+  ],
+  "holes": [
+   {
+    "texto": "315,00",
+    "input": true,
+    "x": 43.40625,
+    "y": 35.40625,
+    "w": 265.59375,
+    "h": 31,
+    "fam": "Geist Mono",
+    "px": 24,
+    "peso": "600",
+    "cor": "rgb(10, 10, 10)",
+    "ls": "normal",
+    "align": "left",
+    "fundo": "rgb(255, 255, 255)"
+   }
+  ],
+  "bars": [],
+  "tile": {
+   "fundo": "#FFFFFF",
+   "borda": null,
+   "r": 0
+  },
+  "chip": false,
+  "btn": false
+ },
+ "s_depois": {
+  "id": "s_depois",
+  "arquivo": "telas/05-registrar-pagamento/estados/04-sinal-antes.html",
+  "png": "pecas/s_depois.png",
+  "dpr": 6,
+  "w": 318,
+  "h": 57.75,
+  "src": {
+   "x": 36,
+   "y": 584,
+   "pagina": 390
+  },
+  "minFont": 13.5,
+  "textos": [
+   {
+    "t": "Depois: reserva confirmada \u00b7 s",
+    "px": 13.5
+   },
+   {
+    "t": "R$ 735,00",
+    "px": 13.5
+   }
+  ],
+  "holes": [],
+  "bars": [],
+  "tile": {
+   "fundo": "rgb(244, 244, 240)",
+   "borda": null,
+   "r": 12,
+   "sombra": null
+  },
+  "chip": false,
+  "btn": false
+ },
+ "s_btn_confirmar": {
+  "id": "s_btn_confirmar",
+  "arquivo": "telas/05-registrar-pagamento/estados/04-sinal-antes.html",
+  "png": "pecas/s_btn_confirmar.png",
+  "dpr": 6,
+  "w": 318,
+  "h": 48,
+  "src": {
+   "x": 36,
+   "y": 657.75,
+   "pagina": 390
+  },
+  "minFont": 15,
+  "textos": [
+   {
+    "t": "Registrar sinal e confirmar",
+    "px": 15
+   }
+  ],
+  "holes": [],
+  "bars": [],
+  "tile": {
+   "fundo": "rgb(10, 10, 10)",
+   "borda": null,
+   "r": 12,
+   "sombra": null
+  },
+  "chip": false,
+  "btn": true
+ },
+ "s_fernanda": {
+  "id": "s_fernanda",
+  "arquivo": "telas/04-detalhe-reserva/estados/02-confirmada.html",
+  "png": "pecas/s_fernanda.png",
+  "dpr": 6,
+  "w": 225.75,
+  "h": 97.25,
+  "src": {
+   "x": 4,
+   "y": 138,
+   "pagina": 390
+  },
+  "minFont": 12.5,
+  "textos": [
+   {
+    "t": "Fernanda Lima",
+    "px": 28
+   },
+   {
+    "t": "Confirmada",
+    "px": 12.5
+   },
+   {
+    "t": "Chal\u00e9 Ip\u00ea",
+    "px": 14
+   },
+   {
+    "t": "sinal pago",
+    "px": 13
+   }
+  ],
+  "holes": [],
+  "bars": [],
+  "tile": {
+   "fundo": "#F4F4F0",
+   "borda": null,
+   "r": 16
+  },
+  "chip": false,
+  "btn": false
+ },
+ "s_total": {
+  "id": "s_total",
+  "arquivo": "telas/04-detalhe-reserva/estados/02-confirmada.html",
+  "png": "pecas/s_total.png",
+  "dpr": 6,
+  "w": 316,
+  "h": 23,
+  "src": {
+   "x": 37,
+   "y": 262.25,
+   "pagina": 390
+  },
+  "minFont": 14,
+  "textos": [
+   {
+    "t": "Total da reserva",
+    "px": 14
+   },
+   {
+    "t": "R$ 1.640,00",
+    "px": 14
+   }
+  ],
+  "holes": [
+   {
+    "texto": "R$ 1.640,00",
+    "input": false,
+    "x": 223.59375,
+    "y": 2.9375,
+    "w": 92.40625,
+    "h": 16,
+    "fam": "Geist Mono",
+    "px": 14,
+    "peso": "400",
+    "cor": "rgb(10, 10, 10)",
+    "ls": "normal",
+    "align": "left",
+    "fundo": "rgb(255, 255, 255)"
+   }
+  ],
+  "bars": [],
+  "tile": {
+   "fundo": "#FFFFFF",
+   "borda": null,
+   "r": 12
+  },
+  "chip": false,
+  "btn": false
+ },
+ "s_sinalpago": {
+  "id": "s_sinalpago",
+  "arquivo": "telas/04-detalhe-reserva/estados/02-confirmada.html",
+  "png": "pecas/s_sinalpago.png",
+  "dpr": 6,
+  "w": 316,
+  "h": 23,
+  "src": {
+   "x": 37,
+   "y": 289.25,
+   "pagina": 390
+  },
+  "minFont": 14,
+  "textos": [
+   {
+    "t": "Sinal pago",
+    "px": 14
+   },
+   {
+    "t": "\u2212 R$ 780,00",
+    "px": 14
+   }
+  ],
+  "holes": [
+   {
+    "texto": "\u2212 R$ 780,00",
+    "input": false,
+    "x": 223.59375,
+    "y": 2.9375,
+    "w": 92.40625,
+    "h": 16,
+    "fam": "Geist Mono",
+    "px": 14,
+    "peso": "400",
+    "cor": "rgb(10, 10, 10)",
+    "ls": "normal",
+    "align": "left",
+    "fundo": "rgb(255, 255, 255)"
+   }
+  ],
+  "bars": [],
+  "tile": {
+   "fundo": "#FFFFFF",
+   "borda": null,
+   "r": 12
+  },
+  "chip": false,
+  "btn": false
+ },
+ "s_saldo": {
+  "id": "s_saldo",
+  "arquivo": "telas/04-detalhe-reserva/estados/02-confirmada.html",
+  "png": "pecas/s_saldo.png",
+  "dpr": 6,
+  "w": 203,
+  "h": 92,
+  "src": {
+   "x": 36,
+   "y": 324.25,
+   "pagina": 390
+  },
+  "minFont": 14,
+  "textos": [
+   {
+    "t": "Saldo em aberto",
+    "px": 14
+   },
+   {
+    "t": "R$ 860,00",
+    "px": 32
+   }
+  ],
+  "holes": [
+   {
+    "texto": "R$ 860,00",
+    "input": false,
+    "x": 18,
+    "y": 39.9375,
+    "w": 167.046875,
+    "h": 36,
+    "fam": "Geist Mono",
+    "px": 32,
+    "peso": "700",
+    "cor": "rgb(10, 10, 10)",
+    "ls": "-0.64px",
+    "align": "left",
+    "fundo": "rgb(255, 247, 227)"
+   }
+  ],
+  "bars": [],
+  "icones": [],
+  "tile": {
+   "fundo": "rgb(255, 247, 227)",
+   "borda": "1px solid rgb(242, 230, 197)",
+   "r": 16,
+   "sombra": null
+  },
+  "chip": false,
+  "btn": false
+ },
+ "c_dados": {
+  "id": "c_dados",
+  "arquivo": "telas/06-check-in/estados/01-modal-check-in.html",
+  "png": "pecas/c_dados.png",
+  "dpr": 6,
+  "w": 295.5,
+  "h": 156,
+  "src": {
+   "x": 35,
+   "y": 220.25,
+   "pagina": 390
+  },
+  "minFont": 12.5,
+  "textos": [
+   {
+    "t": "H\u00f3spede",
+    "px": 12.5
+   },
+   {
+    "t": "Fernanda Lima",
+    "px": 14
+   },
+   {
+    "t": "CPF",
+    "px": 12.5
+   },
+   {
+    "t": "***.903.118-**",
+    "px": 13.5
+   },
+   {
+    "t": "Telefone",
+    "px": 12.5
+   },
+   {
+    "t": "(35) 98804-7712",
+    "px": 13.5
+   },
+   {
+    "t": "H\u00f3spedes",
+    "px": 12.5
+   },
+   {
+    "t": "2 adultos",
+    "px": 14
+   },
+   {
+    "t": "Acomoda\u00e7\u00e3o",
+    "px": 12.5
+   },
+   {
+    "t": "Chal\u00e9 Ip\u00ea",
+    "px": 14
+   },
+   {
+    "t": "Per\u00edodo",
+    "px": 12.5
+   },
+   {
+    "t": "17/10 \u2192 20/10",
+    "px": 13.5
+   }
+  ],
+  "holes": [],
+  "bars": [],
+  "tile": {
+   "fundo": "rgba(0, 0, 0, 0)",
+   "borda": "1px solid rgb(231, 231, 226)",
+   "r": 16,
+   "sombra": null
+  },
+  "chip": false,
+  "btn": false
+ },
+ "c_btn": {
+  "id": "c_btn",
+  "arquivo": "telas/06-check-in/estados/01-modal-check-in.html",
+  "png": "pecas/c_btn.png",
+  "dpr": 6,
+  "w": 210,
+  "h": 48,
+  "src": {
+   "x": 144,
+   "y": 658.75,
+   "pagina": 390
+  },
+  "minFont": 15,
+  "textos": [
+   {
+    "t": "Fazer check-in",
+    "px": 15
+   }
+  ],
+  "holes": [],
+  "bars": [],
+  "tile": {
+   "fundo": "rgb(10, 10, 10)",
+   "borda": null,
+   "r": 12,
+   "sombra": null
+  },
+  "chip": false,
+  "btn": true
+ },
+ "c_chip_hosp": {
+  "id": "c_chip_hosp",
+  "arquivo": "telas/06-check-in/estados/04-hospedagens-ativas.html",
+  "png": "pecas/c_chip_hosp.png",
+  "dpr": 8,
+  "w": 99.5,
+  "h": 24,
+  "src": {
+   "x": 253.5,
+   "y": 632.75,
+   "pagina": 390
+  },
+  "minFont": 12.5,
+  "textos": [
+   {
+    "t": "Hospedada",
+    "px": 12.5
+   }
+  ],
+  "holes": [],
+  "bars": [],
+  "tile": {
+   "fundo": "rgb(10, 10, 10)",
+   "borda": null,
+   "r": 999,
+   "sombra": null
+  },
+  "chip": true,
+  "btn": false
+ },
+ "c_feito": {
+  "id": "c_feito",
+  "arquivo": "telas/06-check-in/estados/03-check-in-feito.html",
+  "png": "pecas/c_feito.png",
+  "dpr": 6,
+  "w": 247,
+  "h": 67,
+  "src": {
+   "x": 20,
+   "y": 196.5,
+   "pagina": 390
+  },
+  "minFont": 14,
+  "textos": [
+   {
+    "t": "Check-in feito",
+    "px": 20
+   },
+   {
+    "t": "Fernanda Lima \u00b7 Chal\u00e9 Ip\u00ea",
+    "px": 14
+   }
+  ],
+  "holes": [],
+  "bars": [],
+  "tile": {
+   "fundo": "#FFFFFF",
+   "borda": null,
+   "r": 14
+  },
+  "chip": false,
+  "btn": false
+ },
+ "c_recibo": {
+  "id": "c_recibo",
+  "arquivo": "telas/06-check-in/estados/03-check-in-feito.html",
+  "png": "pecas/c_recibo.png",
+  "dpr": 6,
+  "w": 316,
+  "h": 103,
+  "src": {
+   "x": 37,
+   "y": 267.5,
+   "pagina": 390
+  },
+  "minFont": 13,
+  "textos": [
+   {
+    "t": "Recibo de check-in",
+    "px": 14
+   },
+   {
+    "t": "FHZ-U6EKQE",
+    "px": 13
+   },
+   {
+    "t": "Entrada",
+    "px": 14
+   },
+   {
+    "t": "s\u00e1bado,",
+    "px": 14
+   },
+   {
+    "t": "17/10 \u00b7 14:05",
+    "px": 14
+   },
+   {
+    "t": "Sa\u00edda prevista",
+    "px": 14
+   },
+   {
+    "t": "20/10",
+    "px": 14
+   },
+   {
+    "t": ", at\u00e9",
+    "px": 14
+   },
+   {
+    "t": "12:00",
+    "px": 14
+   }
+  ],
+  "holes": [],
+  "bars": [],
+  "icones": [],
+  "tile": {
+   "fundo": "rgba(0, 0, 0, 0)",
+   "borda": "1px solid rgb(231, 231, 226)",
+   "r": 16,
+   "sombra": null
+  },
+  "chip": false,
+  "btn": false
+ },
+ "c_hospedagens": {
+  "id": "c_hospedagens",
+  "arquivo": "telas/06-check-in/estados/04-hospedagens-ativas.html",
+  "png": "pecas/c_hospedagens.png",
+  "dpr": 6,
+  "w": 216.5,
+  "h": 72.25,
+  "src": {
+   "x": 6,
+   "y": 82,
+   "pagina": 390
+  },
+  "minFont": 14,
+  "textos": [
+   {
+    "t": "Hospedagens",
+    "px": 28
+   },
+   {
+    "t": "5 em andamento \u00b7 hoje, 16/10",
+    "px": 14
+   }
+  ],
+  "holes": [],
+  "bars": [],
+  "tile": {
+   "fundo": "#F4F4F0",
+   "borda": null,
+   "r": 14
+  },
+  "chip": false,
+  "btn": false
+ },
+ "c_mariana": {
+  "id": "c_mariana",
+  "arquivo": "telas/06-check-in/estados/04-hospedagens-ativas.html",
+  "png": "pecas/c_mariana.png",
+  "dpr": 6,
+  "w": 300,
+  "h": 71,
+  "src": {
+   "x": 69,
+   "y": 605.25,
+   "pagina": 390
+  },
+  "minFont": 12.5,
+  "textos": [
+   {
+    "t": "Mariana Costa",
+    "px": 15
+   },
+   {
+    "t": "Su\u00edte Mirante \u00b7 2 h\u00f3spedes",
+    "px": 13
+   },
+   {
+    "t": "Hospedada",
+    "px": 12.5
+   }
+  ],
+  "holes": [],
+  "bars": [],
+  "tile": {
+   "fundo": "rgb(255, 255, 255)",
+   "borda": "1px solid rgb(231, 231, 226)",
+   "r": 16,
+   "sombra": null
+  },
+  "chip": false,
+  "btn": false
+ },
+ "m_nome": {
+  "id": "m_nome",
+  "arquivo": "telas/08-comanda/estados/02-com-itens.html",
+  "png": "pecas/m_nome.png",
+  "dpr": 6,
+  "w": 220.75,
+  "h": 72.25,
+  "src": {
+   "x": 6,
+   "y": 140,
+   "pagina": 390
+  },
+  "minFont": 14,
+  "textos": [
+   {
+    "t": "Mariana Costa",
+    "px": 28
+   },
+   {
+    "t": "Su\u00edte Mirante \u00b7 Hospedagem",
+    "px": 14
+   }
+  ],
+  "holes": [],
+  "bars": [],
+  "tile": {
+   "fundo": "#F4F4F0",
+   "borda": null,
+   "r": 14
+  },
+  "chip": false,
+  "btn": false
+ },
+ "m_chip": {
+  "id": "m_chip",
+  "arquivo": "telas/08-comanda/estados/02-com-itens.html",
+  "png": "pecas/m_chip.png",
+  "dpr": 8,
+  "w": 72.75,
+  "h": 24,
+  "src": {
+   "x": 297.25,
+   "y": 154,
+   "pagina": 390
+  },
+  "minFont": 12.5,
+  "textos": [
+   {
+    "t": "Aberta",
+    "px": 12.5
+   }
+  ],
+  "holes": [],
+  "bars": [],
+  "tile": {
+   "fundo": "rgb(10, 10, 10)",
+   "borda": null,
+   "r": 999,
+   "sombra": null
+  },
+  "chip": true,
+  "btn": false
+ },
+ "m_total": {
+  "id": "m_total",
+  "arquivo": "telas/08-comanda/estados/02-com-itens.html",
+  "png": "pecas/m_total.png",
+  "dpr": 6,
+  "w": 316,
+  "h": 23,
+  "src": {
+   "x": 37,
+   "y": 231.25,
+   "pagina": 390
+  },
+  "minFont": 14.5,
+  "textos": [
+   {
+    "t": "Total",
+    "px": 14.5
+   },
+   {
+    "t": "R$ 287,00",
+    "px": 14.5
+   }
+  ],
+  "holes": [
+   {
+    "texto": "R$ 287,00",
+    "input": false,
+    "x": 237.6875,
+    "y": 2.9375,
+    "w": 78.3125,
+    "h": 16,
+    "fam": "Geist Mono",
+    "px": 14.5,
+    "peso": "400",
+    "cor": "rgb(10, 10, 10)",
+    "ls": "normal",
+    "align": "left",
+    "fundo": "rgb(255, 255, 255)"
+   }
+  ],
+  "bars": [],
+  "tile": {
+   "fundo": "#FFFFFF",
+   "borda": null,
+   "r": 14
+  },
+  "chip": false,
+  "btn": false
+ },
+ "m_item1": {
+  "id": "m_item1",
+  "arquivo": "telas/08-comanda/estados/02-com-itens.html",
+  "png": "pecas/m_item1.png",
+  "dpr": 6,
+  "w": 316,
+  "h": 17,
+  "src": {
+   "x": 37,
+   "y": 540.25,
+   "pagina": 390
+  },
+  "minFont": 15,
+  "textos": [
+   {
+    "t": "Caipirinha",
+    "px": 15
+   },
+   {
+    "t": "R$ 66,00",
+    "px": 15
+   }
+  ],
+  "holes": [],
+  "bars": [],
+  "icones": [],
+  "tile": {
+   "fundo": "#FFFFFF",
+   "borda": null,
+   "r": 12
+  },
+  "chip": false,
+  "btn": false
+ },
+ "m_item2": {
+  "id": "m_item2",
+  "arquivo": "telas/08-comanda/estados/02-com-itens.html",
+  "png": "pecas/m_item2.png",
+  "dpr": 6,
+  "w": 316,
+  "h": 17,
+  "src": {
+   "x": 37,
+   "y": 695.25,
+   "pagina": 390
+  },
+  "minFont": 15,
+  "textos": [
+   {
+    "t": "\u00c1gua sem g\u00e1s",
+    "px": 15
+   },
+   {
+    "t": "R$ 12,00",
+    "px": 15
+   }
+  ],
+  "holes": [],
+  "bars": [],
+  "icones": [],
+  "tile": {
+   "fundo": "#FFFFFF",
+   "borda": null,
+   "r": 12
+  },
+  "chip": false,
+  "btn": false
+ },
+ "m_item3": {
+  "id": "m_item3",
+  "arquivo": "telas/08-comanda/estados/02-com-itens.html",
+  "png": "pecas/m_item3.png",
+  "dpr": 6,
+  "w": 316,
+  "h": 17,
+  "src": {
+   "x": 37,
+   "y": 850.25,
+   "pagina": 390
+  },
+  "minFont": 15,
+  "textos": [
+   {
+    "t": "Cerveja long neck",
+    "px": 15
+   },
+   {
+    "t": "R$ 56,00",
+    "px": 15
+   }
+  ],
+  "holes": [],
+  "bars": [],
+  "icones": [],
+  "tile": {
+   "fundo": "#FFFFFF",
+   "borda": null,
+   "r": 12
+  },
+  "chip": false,
+  "btn": false
+ },
+ "m_item4": {
+  "id": "m_item4",
+  "arquivo": "telas/08-comanda/estados/02-com-itens.html",
+  "png": "pecas/m_item4.png",
+  "dpr": 6,
+  "w": 316,
+  "h": 17,
+  "src": {
+   "x": 37,
+   "y": 1005.25,
+   "pagina": 390
+  },
+  "minFont": 15,
+  "textos": [
+   {
+    "t": "Risoto de cogumelos",
+    "px": 15
+   },
+   {
+    "t": "R$ 136,00",
+    "px": 15
+   }
+  ],
+  "holes": [],
+  "bars": [],
+  "icones": [],
+  "tile": {
+   "fundo": "#FFFFFF",
+   "borda": null,
+   "r": 12
+  },
+  "chip": false,
+  "btn": false
+ },
+ "m_item5": {
+  "id": "m_item5",
+  "arquivo": "telas/08-comanda/estados/02-com-itens.html",
+  "png": "pecas/m_item5.png",
+  "dpr": 6,
+  "w": 316,
+  "h": 17,
+  "src": {
+   "x": 37,
+   "y": 1160.25,
+   "pagina": 390
+  },
+  "minFont": 15,
+  "textos": [
+   {
+    "t": "Suco de laranja",
+    "px": 15
+   },
+   {
+    "t": "R$ 17,00",
+    "px": 15
+   }
+  ],
+  "holes": [],
+  "bars": [],
+  "icones": [],
+  "tile": {
+   "fundo": "#FFFFFF",
+   "borda": null,
+   "r": 12
+  },
+  "chip": false,
+  "btn": false
+ },
+ "o_diarias": {
+  "id": "o_diarias",
+  "arquivo": "telas/07-ficha-hospedagem/tela.html",
+  "png": "pecas/o_diarias.png",
+  "dpr": 6,
+  "w": 316,
+  "h": 17,
+  "src": {
+   "x": 37,
+   "y": 243.25,
+   "pagina": 390
+  },
+  "minFont": 14,
+  "textos": [
+   {
+    "t": "Di\u00e1rias contratadas",
+    "px": 14
+   },
+   {
+    "t": "R$ 2.440,00",
+    "px": 14
+   }
+  ],
+  "holes": [
+   {
+    "texto": "R$ 2.440,00",
+    "input": false,
+    "x": 223.59375,
+    "y": -0.0625,
+    "w": 92.40625,
+    "h": 16,
+    "fam": "Geist Mono",
+    "px": 14,
+    "peso": "400",
+    "cor": "rgb(10, 10, 10)",
+    "ls": "normal",
+    "align": "left",
+    "fundo": "rgb(255, 255, 255)"
+   }
+  ],
+  "bars": [],
+  "tile": {
+   "fundo": "#FFFFFF",
+   "borda": null,
+   "r": 12
+  },
+  "chip": false,
+  "btn": false
+ },
+ "o_consumos": {
+  "id": "o_consumos",
+  "arquivo": "telas/07-ficha-hospedagem/tela.html",
+  "png": "pecas/o_consumos.png",
+  "dpr": 6,
+  "w": 316,
+  "h": 23,
+  "src": {
+   "x": 37,
+   "y": 284.25,
+   "pagina": 390
+  },
+  "minFont": 14,
+  "textos": [
+   {
+    "t": "Consumos",
+    "px": 14
+   },
+   {
+    "t": "R$ 287,00",
+    "px": 14
+   }
+  ],
+  "holes": [
+   {
+    "texto": "R$ 287,00",
+    "input": false,
+    "x": 240.390625,
+    "y": 2.9375,
+    "w": 75.609375,
+    "h": 16,
+    "fam": "Geist Mono",
+    "px": 14,
+    "peso": "400",
+    "cor": "rgb(10, 10, 10)",
+    "ls": "normal",
+    "align": "left",
+    "fundo": "rgb(255, 255, 255)"
+   }
+  ],
+  "bars": [],
+  "tile": {
+   "fundo": "#FFFFFF",
+   "borda": null,
+   "r": 12
+  },
+  "chip": false,
+  "btn": false
+ },
+ "o_descontos": {
+  "id": "o_descontos",
+  "arquivo": "telas/07-ficha-hospedagem/tela.html",
+  "png": "pecas/o_descontos.png",
+  "dpr": 6,
+  "w": 316,
+  "h": 17,
+  "src": {
+   "x": 37,
+   "y": 314.25,
+   "pagina": 390
+  },
+  "minFont": 14,
+  "textos": [
+   {
+    "t": "Descontos e cortesias",
+    "px": 14
+   },
+   {
+    "t": "\u2212 R$ 157,00",
+    "px": 14
+   }
+  ],
+  "holes": [
+   {
+    "texto": "\u2212 R$ 157,00",
+    "input": false,
+    "x": 223.59375,
+    "y": -0.0625,
+    "w": 92.40625,
+    "h": 16,
+    "fam": "Geist Mono",
+    "px": 14,
+    "peso": "400",
+    "cor": "rgb(10, 10, 10)",
+    "ls": "normal",
+    "align": "left",
+    "fundo": "rgb(255, 255, 255)"
+   }
+  ],
+  "bars": [],
+  "tile": {
+   "fundo": "#FFFFFF",
+   "borda": null,
+   "r": 12
+  },
+  "chip": false,
+  "btn": false
+ },
+ "o_total": {
+  "id": "o_total",
+  "arquivo": "telas/07-ficha-hospedagem/tela.html",
+  "png": "pecas/o_total.png",
+  "dpr": 6,
+  "w": 316,
+  "h": 23,
+  "src": {
+   "x": 37,
+   "y": 366.25,
+   "pagina": 390
+  },
+  "minFont": 14,
+  "textos": [
+   {
+    "t": "Total da estadia",
+    "px": 14
+   },
+   {
+    "t": "R$ 2.570,00",
+    "px": 14
+   }
+  ],
+  "holes": [
+   {
+    "texto": "R$ 2.570,00",
+    "input": false,
+    "x": 223.59375,
+    "y": 2.9375,
+    "w": 92.40625,
+    "h": 16,
+    "fam": "Geist Mono",
+    "px": 14,
+    "peso": "600",
+    "cor": "rgb(10, 10, 10)",
+    "ls": "normal",
+    "align": "left",
+    "fundo": "rgb(255, 255, 255)"
+   }
+  ],
+  "bars": [],
+  "tile": {
+   "fundo": "#FFFFFF",
+   "borda": null,
+   "r": 12
+  },
+  "chip": false,
+  "btn": false
+ },
+ "o_pagos": {
+  "id": "o_pagos",
+  "arquivo": "telas/07-ficha-hospedagem/tela.html",
+  "png": "pecas/o_pagos.png",
+  "dpr": 6,
+  "w": 316,
+  "h": 23,
+  "src": {
+   "x": 37,
+   "y": 393.25,
+   "pagina": 390
+  },
+  "minFont": 14,
+  "textos": [
+   {
+    "t": "Pagamentos confirmados",
+    "px": 14
+   },
+   {
+    "t": "\u2212 R$ 2.158,00",
+    "px": 14
+   }
+  ],
+  "holes": [
+   {
+    "texto": "\u2212 R$ 2.158,00",
+    "input": false,
+    "x": 206.796875,
+    "y": 2.9375,
+    "w": 109.203125,
+    "h": 16,
+    "fam": "Geist Mono",
+    "px": 14,
+    "peso": "400",
+    "cor": "rgb(10, 10, 10)",
+    "ls": "normal",
+    "align": "left",
+    "fundo": "rgb(255, 255, 255)"
+   }
+  ],
+  "bars": [],
+  "tile": {
+   "fundo": "#FFFFFF",
+   "borda": null,
+   "r": 12
+  },
+  "chip": false,
+  "btn": false
+ },
+ "o_saldo": {
+  "id": "o_saldo",
+  "arquivo": "telas/07-ficha-hospedagem/tela.html",
+  "png": "pecas/o_saldo.png",
+  "dpr": 6,
+  "w": 213.5,
+  "h": 96,
+  "src": {
+   "x": 36,
+   "y": 428.25,
+   "pagina": 390
+  },
+  "minFont": 14,
+  "textos": [
+   {
+    "t": "Saldo em aberto",
+    "px": 14
+   },
+   {
+    "t": "R$ 412,00",
+    "px": 34
+   }
+  ],
+  "holes": [
+   {
+    "texto": "R$ 412,00",
+    "input": false,
+    "x": 18,
+    "y": 41.9375,
+    "w": 177.484375,
+    "h": 38,
+    "fam": "Geist Mono",
+    "px": 34,
+    "peso": "700",
+    "cor": "rgb(10, 10, 10)",
+    "ls": "-0.68px",
+    "align": "left",
+    "fundo": "rgb(255, 247, 227)"
+   }
+  ],
+  "bars": [],
+  "icones": [],
+  "tile": {
+   "fundo": "rgb(255, 247, 227)",
+   "borda": "1px solid rgb(242, 230, 197)",
+   "r": 16,
+   "sombra": null
+  },
+  "chip": false,
+  "btn": false
+ },
+ "o_btn_lock": {
+  "id": "o_btn_lock",
+  "arquivo": "telas/07-ficha-hospedagem/tela.html",
+  "png": "pecas/o_btn_lock.png",
+  "dpr": 6,
+  "w": 316,
+  "h": 48,
+  "src": {
+   "x": 37,
+   "y": 599.5,
+   "pagina": 390
+  },
+  "minFont": 15,
+  "textos": [
+   {
+    "t": "Fazer check-out",
+    "px": 15
+   }
+  ],
+  "holes": [],
+  "bars": [],
+  "icones": [
+   {
+    "x": 86.734375,
+    "y": 16.078125,
+    "w": 16,
+    "h": 16
+   }
+  ],
+  "tile": {
+   "fundo": "rgb(239, 239, 234)",
+   "borda": null,
+   "r": 12,
+   "sombra": null
+  },
+  "chip": false,
+  "btn": true
+ },
+ "o_regra": {
+  "id": "o_regra",
+  "arquivo": "telas/07-ficha-hospedagem/tela.html",
+  "png": "pecas/o_regra.png",
+  "dpr": 6,
+  "w": 155.5,
+  "h": 31,
+  "src": {
+   "x": 117.25,
+   "y": 647.5,
+   "pagina": 390
+  },
+  "minFont": 12.5,
+  "textos": [
+   {
+    "t": "Libera com saldo zero",
+    "px": 12.5
+   }
+  ],
+  "holes": [],
+  "bars": [],
+  "tile": {
+   "fundo": "#FFFFFF",
+   "borda": null,
+   "r": 10
+  },
+  "chip": false,
+  "btn": false
+ },
+ "o_pix": {
+  "id": "o_pix",
+  "arquivo": "telas/05-registrar-pagamento/estados/01-pagamento-antes.html",
+  "png": "pecas/o_pix.png",
+  "dpr": 6,
+  "w": 155,
+  "h": 44,
+  "src": {
+   "x": 36,
+   "y": 339.25,
+   "pagina": 390
+  },
+  "minFont": 14,
+  "textos": [
+   {
+    "t": "PIX",
+    "px": 14
+   }
+  ],
+  "holes": [],
+  "bars": [],
+  "tile": {
+   "fundo": "rgb(10, 10, 10)",
+   "borda": null,
+   "r": 12,
+   "sombra": null
+  },
+  "chip": false,
+  "btn": true
+ },
+ "o_confirmar": {
+  "id": "o_confirmar",
+  "arquivo": "telas/05-registrar-pagamento/estados/01-pagamento-antes.html",
+  "png": "pecas/o_confirmar.png",
+  "dpr": 6,
+  "w": 210,
+  "h": 48,
+  "src": {
+   "x": 144,
+   "y": 682.75,
+   "pagina": 390
+  },
+  "minFont": 15,
+  "textos": [
+   {
+    "t": "Confirmar",
+    "px": 15
+   },
+   {
+    "t": "R$ 412,00",
+    "px": 15
+   }
+  ],
+  "holes": [],
+  "bars": [],
+  "tile": {
+   "fundo": "rgb(10, 10, 10)",
+   "borda": null,
+   "r": 12,
+   "sombra": null
+  },
+  "chip": false,
+  "btn": true
+ },
+ "o_quitado": {
+  "id": "o_quitado",
+  "arquivo": "telas/05-registrar-pagamento/estados/02-pagamento-depois.html",
+  "png": "pecas/o_quitado.png",
+  "dpr": 6,
+  "w": 303,
+  "h": 96.5,
+  "src": {
+   "x": 38,
+   "y": 434.75,
+   "pagina": 390
+  },
+  "minFont": 12.5,
+  "textos": [
+   {
+    "t": "Saldo",
+    "px": 14
+   },
+   {
+    "t": "Quitado",
+    "px": 12.5
+   },
+   {
+    "t": "R$ 0,00",
+    "px": 34
+   }
+  ],
+  "holes": [
+   {
+    "texto": "R$ 0,00",
+    "input": false,
+    "x": 16,
+    "y": 44.4375,
+    "w": 138.046875,
+    "h": 38,
+    "fam": "Geist Mono",
+    "px": 34,
+    "peso": "700",
+    "cor": "rgb(10, 10, 10)",
+    "ls": "-0.68px",
+    "align": "left",
+    "fundo": "rgb(244, 251, 224)"
+   }
+  ],
+  "bars": [],
+  "tile": {
+   "fundo": "rgb(244, 251, 224)",
+   "borda": "1px solid rgb(220, 239, 166)",
+   "r": 16,
+   "sombra": null
+  },
+  "chip": false,
+  "btn": false
+ },
+ "o_btn_livre": {
+  "id": "o_btn_livre",
+  "arquivo": "telas/05-registrar-pagamento/estados/02-pagamento-depois.html",
+  "png": "pecas/o_btn_livre.png",
+  "dpr": 6,
+  "w": 316,
+  "h": 52,
+  "src": {
+   "x": 37,
+   "y": 548.5,
+   "pagina": 390
+  },
+  "minFont": 15.5,
+  "textos": [
+   {
+    "t": "Fazer check-out",
+    "px": 15.5
+   }
+  ],
+  "holes": [],
+  "bars": [],
+  "icones": [
+   {
+    "x": 84.265625,
+    "y": 17.578125,
+    "w": 17,
+    "h": 17
+   }
+  ],
+  "tile": {
+   "fundo": "rgb(10, 10, 10)",
+   "borda": null,
+   "r": 12,
+   "sombra": null
+  },
+  "chip": false,
+  "btn": true
+ },
+ "x_recebido": {
+  "id": "x_recebido",
+  "arquivo": "telas/10-caixa/estados/03-aberto-com-lancamentos.html",
+  "png": "pecas/x_recebido.png",
+  "dpr": 6,
+  "w": 224.25,
+  "h": 56,
+  "src": {
+   "x": 41,
+   "y": 507.25,
+   "pagina": 390
+  },
+  "minFont": 14,
+  "textos": [
+   {
+    "t": "Recebido por forma de pagament",
+    "px": 14
+   },
+   {
+    "t": "R$ 1.525,00",
+    "px": 20
+   }
+  ],
+  "holes": [
+   {
+    "texto": "R$ 1.525,00",
+    "input": false,
+    "x": 0,
+    "y": 29.9375,
+    "w": 132,
+    "h": 22,
+    "fam": "Geist Mono",
+    "px": 20,
+    "peso": "700",
+    "cor": "rgb(10, 10, 10)",
+    "ls": "normal",
+    "align": "left",
+    "fundo": "rgb(255, 255, 255)"
+   }
+  ],
+  "bars": [],
+  "tile": {
+   "fundo": "#FFFFFF",
+   "borda": null,
+   "r": 12
+  },
+  "chip": false,
+  "btn": false
+ },
+ "x_pix": {
+  "id": "x_pix",
+  "arquivo": "telas/10-caixa/estados/03-aberto-com-lancamentos.html",
+  "png": "pecas/x_pix.png",
+  "dpr": 6,
+  "w": 308,
+  "h": 29,
+  "src": {
+   "x": 41,
+   "y": 566.25,
+   "pagina": 390
+  },
+  "minFont": 14,
+  "textos": [
+   {
+    "t": "PIX",
+    "px": 14
+   },
+   {
+    "t": "R$ 900,00",
+    "px": 14
+   }
+  ],
+  "holes": [],
+  "bars": [],
+  "tile": {
+   "fundo": "#FFFFFF",
+   "borda": null,
+   "r": 10
+  },
+  "chip": false,
+  "btn": false
+ },
+ "x_dinheiro": {
+  "id": "x_dinheiro",
+  "arquivo": "telas/10-caixa/estados/03-aberto-com-lancamentos.html",
+  "png": "pecas/x_dinheiro.png",
+  "dpr": 6,
+  "w": 308,
+  "h": 29,
+  "src": {
+   "x": 41,
+   "y": 598.25,
+   "pagina": 390
+  },
+  "minFont": 14,
+  "textos": [
+   {
+    "t": "Dinheiro",
+    "px": 14
+   },
+   {
+    "t": "R$ 125,00",
+    "px": 14
+   }
+  ],
+  "holes": [],
+  "bars": [],
+  "tile": {
+   "fundo": "#FFFFFF",
+   "borda": null,
+   "r": 10
+  },
+  "chip": false,
+  "btn": false
+ },
+ "x_credito": {
+  "id": "x_credito",
+  "arquivo": "telas/10-caixa/estados/03-aberto-com-lancamentos.html",
+  "png": "pecas/x_credito.png",
+  "dpr": 6,
+  "w": 308,
+  "h": 29,
+  "src": {
+   "x": 41,
+   "y": 630.25,
+   "pagina": 390
+  },
+  "minFont": 14,
+  "textos": [
+   {
+    "t": "Cart\u00e3o de cr\u00e9dito",
+    "px": 14
+   },
+   {
+    "t": "R$ 380,00",
+    "px": 14
+   }
+  ],
+  "holes": [],
+  "bars": [],
+  "tile": {
+   "fundo": "#FFFFFF",
+   "borda": null,
+   "r": 10
+  },
+  "chip": false,
+  "btn": false
+ },
+ "x_debito": {
+  "id": "x_debito",
+  "arquivo": "telas/10-caixa/estados/03-aberto-com-lancamentos.html",
+  "png": "pecas/x_debito.png",
+  "dpr": 6,
+  "w": 308,
+  "h": 29,
+  "src": {
+   "x": 41,
+   "y": 662.25,
+   "pagina": 390
+  },
+  "minFont": 14,
+  "textos": [
+   {
+    "t": "Cart\u00e3o de d\u00e9bito",
+    "px": 14
+   },
+   {
+    "t": "R$ 120,00",
+    "px": 14
+   }
+  ],
+  "holes": [],
+  "bars": [],
+  "tile": {
+   "fundo": "#FFFFFF",
+   "borda": null,
+   "r": 10
+  },
+  "chip": false,
+  "btn": false
+ },
+ "x_esperado": {
+  "id": "x_esperado",
+  "arquivo": "telas/10-caixa/estados/03-aberto-com-lancamentos.html",
+  "png": "pecas/x_esperado.png",
+  "dpr": 6,
+  "w": 221.5,
+  "h": 102,
+  "src": {
+   "x": 20,
+   "y": 291.25,
+   "pagina": 390
+  },
+  "minFont": 14,
+  "textos": [
+   {
+    "t": "Esperado em dinheiro",
+    "px": 14
+   },
+   {
+    "t": "R$ 285,00",
+    "px": 34
+   }
+  ],
+  "holes": [
+   {
+    "texto": "R$ 285,00",
+    "input": false,
+    "x": 22,
+    "y": 45.9375,
+    "w": 177.484375,
+    "h": 38,
+    "fam": "Geist Mono",
+    "px": 34,
+    "peso": "700",
+    "cor": "rgb(244, 244, 240)",
+    "ls": "-0.68px",
+    "align": "left",
+    "fundo": "rgb(10, 10, 10)"
+   }
+  ],
+  "bars": [],
+  "icones": [],
+  "tile": {
+   "fundo": "rgb(10, 10, 10)",
+   "borda": null,
+   "r": 22,
+   "sombra": null
+  },
+  "chip": false,
+  "btn": false
+ },
+ "x_contado_rot": {
+  "id": "x_contado_rot",
+  "arquivo": "telas/10-caixa/estados/06-conferencia-e-fechamento.html",
+  "png": "pecas/x_contado_rot.png",
+  "dpr": 6,
+  "w": 110.25,
+  "h": 31,
+  "src": {
+   "x": 8,
+   "y": 431,
+   "pagina": 390
+  },
+  "minFont": 13,
+  "textos": [
+   {
+    "t": "Valor contado",
+    "px": 13
+   }
+  ],
+  "holes": [],
+  "bars": [],
+  "tile": {
+   "fundo": "#FFFFFF",
+   "borda": null,
+   "r": 10
+  },
+  "chip": false,
+  "btn": false
+ },
+ "x_contado": {
+  "id": "x_contado",
+  "arquivo": "telas/10-caixa/estados/06-conferencia-e-fechamento.html",
+  "png": "pecas/x_contado.png",
+  "dpr": 6,
+  "w": 113,
+  "h": 45,
+  "src": {
+   "x": 19,
+   "y": 462.5,
+   "pagina": 390
+  },
+  "minFont": 15,
+  "textos": [
+   {
+    "t": "R$ 270,00",
+    "px": 15
+   }
+  ],
+  "holes": [
+   {
+    "texto": "R$ 270,00",
+    "input": false,
+    "x": 16,
+    "y": 13.875,
+    "w": 81.015625,
+    "h": 17,
+    "fam": "Geist Mono",
+    "px": 15,
+    "peso": "400",
+    "cor": "rgb(10, 10, 10)",
+    "ls": "normal",
+    "align": "left",
+    "fundo": "rgb(255, 255, 255)"
+   }
+  ],
+  "bars": [],
+  "tile": {
+   "fundo": "rgb(255, 255, 255)",
+   "borda": "1px solid rgb(10, 10, 10)",
+   "r": 12,
+   "sombra": null
+  },
+  "chip": false,
+  "btn": false
+ },
+ "x_falta": {
+  "id": "x_falta",
+  "arquivo": "telas/10-caixa/estados/06-conferencia-e-fechamento.html",
+  "png": "pecas/x_falta.png",
+  "dpr": 6,
+  "w": 305,
+  "h": 63.5,
+  "src": {
+   "x": 21,
+   "y": 523,
+   "pagina": 390
+  },
+  "minFont": 13.5,
+  "textos": [
+   {
+    "t": "Diferen\u00e7a:",
+    "px": 13.5
+   },
+   {
+    "t": "falta R$ 15,00 em rela\u00e7\u00e3o ao e",
+    "px": 13.5
+   }
+  ],
+  "holes": [],
+  "bars": [],
+  "tile": {
+   "fundo": "rgb(255, 247, 227)",
+   "borda": "1px solid rgb(242, 230, 197)",
+   "r": 14,
+   "sombra": null
+  },
+  "chip": false,
+  "btn": false
+ }
+}

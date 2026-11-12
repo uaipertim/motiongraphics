@@ -1,0 +1,541 @@
+{
+ "duracao": 60,
+ "E": {
+  "g": 0,
+  "r": 4.5,
+  "s": 14,
+  "c": 22.5,
+  "m": 30.5,
+  "o": 38,
+  "x": 47.5,
+  "f": 55
+ },
+ "eventos": [
+  {
+   "t": 0.25,
+   "tipo": "whoosh"
+  },
+  {
+   "t": 0.55,
+   "tipo": "conta",
+   "dur": 0.8,
+   "digitos": 4
+  },
+  {
+   "t": 1.2,
+   "tipo": "pop"
+  },
+  {
+   "t": 1.32,
+   "tipo": "pop"
+  },
+  {
+   "t": 1.35,
+   "tipo": "conta_fim"
+  },
+  {
+   "t": 2.1,
+   "tipo": "pop"
+  },
+  {
+   "t": 5.05,
+   "tipo": "barra",
+   "i": 0
+  },
+  {
+   "t": 5.1,
+   "tipo": "barra",
+   "i": 1
+  },
+  {
+   "t": 5.15,
+   "tipo": "barra",
+   "i": 2
+  },
+  {
+   "t": 5.2,
+   "tipo": "barra",
+   "i": 3
+  },
+  {
+   "t": 5.25,
+   "tipo": "barra",
+   "i": 4
+  },
+  {
+   "t": 5.3,
+   "tipo": "barra",
+   "i": 5
+  },
+  {
+   "t": 5.35,
+   "tipo": "barra",
+   "i": 6
+  },
+  {
+   "t": 5.4,
+   "tipo": "barra",
+   "i": 7
+  },
+  {
+   "t": 5.45,
+   "tipo": "barra",
+   "i": 8
+  },
+  {
+   "t": 5.5,
+   "tipo": "barra",
+   "i": 9
+  },
+  {
+   "t": 5.55,
+   "tipo": "barra",
+   "i": 10
+  },
+  {
+   "t": 5.6,
+   "tipo": "barra",
+   "i": 11
+  },
+  {
+   "t": 5.65,
+   "tipo": "barra",
+   "i": 12
+  },
+  {
+   "t": 5.7,
+   "tipo": "barra",
+   "i": 13
+  },
+  {
+   "t": 5.75,
+   "tipo": "barra",
+   "i": 14
+  },
+  {
+   "t": 5.8,
+   "tipo": "barra",
+   "i": 15
+  },
+  {
+   "t": 5.85,
+   "tipo": "barra",
+   "i": 16
+  },
+  {
+   "t": 7.97,
+   "tipo": "toque"
+  },
+  {
+   "t": 10.06,
+   "tipo": "impacto"
+  },
+  {
+   "t": 12.05,
+   "tipo": "alerta"
+  },
+  {
+   "t": 13.55,
+   "tipo": "linha",
+   "dur": 0.8999999999999986
+  },
+  {
+   "t": 15.65,
+   "tipo": "toque"
+  },
+  {
+   "t": 16.25,
+   "tipo": "conta",
+   "dur": 0.5,
+   "digitos": 3
+  },
+  {
+   "t": 16.75,
+   "tipo": "conta_fim"
+  },
+  {
+   "t": 18,
+   "tipo": "toque"
+  },
+  {
+   "t": 18.82,
+   "tipo": "status"
+  },
+  {
+   "t": 19.35,
+   "tipo": "conta",
+   "dur": 0.3500000000000014,
+   "digitos": 4
+  },
+  {
+   "t": 19.47,
+   "tipo": "conta",
+   "dur": 0.379999999999999,
+   "digitos": 3
+  },
+  {
+   "t": 19.7,
+   "tipo": "conta_fim"
+  },
+  {
+   "t": 19.75,
+   "tipo": "conta",
+   "dur": 0.4499999999999993,
+   "digitos": 3
+  },
+  {
+   "t": 19.85,
+   "tipo": "conta_fim"
+  },
+  {
+   "t": 20.2,
+   "tipo": "conta_fim"
+  },
+  {
+   "t": 22.05,
+   "tipo": "linha",
+   "dur": 0.8999999999999986
+  },
+  {
+   "t": 24.85,
+   "tipo": "toque"
+  },
+  {
+   "t": 25.47,
+   "tipo": "status"
+  },
+  {
+   "t": 26,
+   "tipo": "recibo"
+  },
+  {
+   "t": 30.05,
+   "tipo": "linha",
+   "dur": 0.8999999999999986
+  },
+  {
+   "t": 31.6,
+   "tipo": "item"
+  },
+  {
+   "t": 32.02,
+   "tipo": "pop"
+  },
+  {
+   "t": 32.05,
+   "tipo": "conta",
+   "dur": 0.3999999999999986,
+   "digitos": 2
+  },
+  {
+   "t": 32.45,
+   "tipo": "conta_fim"
+  },
+  {
+   "t": 32.52,
+   "tipo": "item"
+  },
+  {
+   "t": 32.94,
+   "tipo": "pop"
+  },
+  {
+   "t": 32.97,
+   "tipo": "conta",
+   "dur": 0.3999999999999986,
+   "digitos": 2
+  },
+  {
+   "t": 33.37,
+   "tipo": "conta_fim"
+  },
+  {
+   "t": 33.44,
+   "tipo": "item"
+  },
+  {
+   "t": 33.86,
+   "tipo": "pop"
+  },
+  {
+   "t": 33.89,
+   "tipo": "conta",
+   "dur": 0.3999999999999986,
+   "digitos": 3
+  },
+  {
+   "t": 34.29,
+   "tipo": "conta_fim"
+  },
+  {
+   "t": 34.36,
+   "tipo": "item"
+  },
+  {
+   "t": 34.78,
+   "tipo": "pop"
+  },
+  {
+   "t": 34.81,
+   "tipo": "conta",
+   "dur": 0.3999999999999986,
+   "digitos": 3
+  },
+  {
+   "t": 35.21,
+   "tipo": "conta_fim"
+  },
+  {
+   "t": 35.28,
+   "tipo": "item"
+  },
+  {
+   "t": 35.7,
+   "tipo": "pop"
+  },
+  {
+   "t": 35.73,
+   "tipo": "conta",
+   "dur": 0.3999999999999986,
+   "digitos": 3
+  },
+  {
+   "t": 36.13,
+   "tipo": "conta_fim"
+  },
+  {
+   "t": 37.55,
+   "tipo": "linha",
+   "dur": 0.9000000000000057
+  },
+  {
+   "t": 38.5,
+   "tipo": "conta",
+   "dur": 0.45000000000000284,
+   "digitos": 4
+  },
+  {
+   "t": 38.72,
+   "tipo": "conta",
+   "dur": 0.45000000000000284,
+   "digitos": 3
+  },
+  {
+   "t": 38.94,
+   "tipo": "conta",
+   "dur": 0.45000000000000284,
+   "digitos": 3
+  },
+  {
+   "t": 38.95,
+   "tipo": "conta_fim"
+  },
+  {
+   "t": 39.16,
+   "tipo": "conta",
+   "dur": 0.45000000000000284,
+   "digitos": 4
+  },
+  {
+   "t": 39.17,
+   "tipo": "conta_fim"
+  },
+  {
+   "t": 39.38,
+   "tipo": "conta",
+   "dur": 0.45000000000000284,
+   "digitos": 4
+  },
+  {
+   "t": 39.39,
+   "tipo": "conta_fim"
+  },
+  {
+   "t": 39.61,
+   "tipo": "conta_fim"
+  },
+  {
+   "t": 39.83,
+   "tipo": "conta_fim"
+  },
+  {
+   "t": 39.85,
+   "tipo": "conta",
+   "dur": 0.5,
+   "digitos": 3
+  },
+  {
+   "t": 40.35,
+   "tipo": "conta_fim"
+  },
+  {
+   "t": 42.25,
+   "tipo": "cadeado"
+  },
+  {
+   "t": 43.3,
+   "tipo": "toque"
+  },
+  {
+   "t": 43.75,
+   "tipo": "toque"
+  },
+  {
+   "t": 43.9,
+   "tipo": "pago"
+  },
+  {
+   "t": 44.7,
+   "tipo": "conta",
+   "dur": 0.45000000000000284,
+   "digitos": 1
+  },
+  {
+   "t": 45.15,
+   "tipo": "conta_fim"
+  },
+  {
+   "t": 45.27,
+   "tipo": "status"
+  },
+  {
+   "t": 45.55,
+   "tipo": "cadeado_abre"
+  },
+  {
+   "t": 47.05,
+   "tipo": "linha",
+   "dur": 0.9000000000000057
+  },
+  {
+   "t": 48.35,
+   "tipo": "conta",
+   "dur": 0.3200000000000003,
+   "digitos": 3
+  },
+  {
+   "t": 48.35,
+   "tipo": "moeda",
+   "i": 0
+  },
+  {
+   "t": 48.65,
+   "tipo": "conta",
+   "dur": 0.3200000000000003,
+   "digitos": 4
+  },
+  {
+   "t": 48.65,
+   "tipo": "moeda",
+   "i": 1
+  },
+  {
+   "t": 48.67,
+   "tipo": "conta_fim"
+  },
+  {
+   "t": 48.95,
+   "tipo": "conta",
+   "dur": 0.3200000000000003,
+   "digitos": 4
+  },
+  {
+   "t": 48.95,
+   "tipo": "moeda",
+   "i": 2
+  },
+  {
+   "t": 48.97,
+   "tipo": "conta_fim"
+  },
+  {
+   "t": 49.25,
+   "tipo": "conta",
+   "dur": 0.3200000000000003,
+   "digitos": 4
+  },
+  {
+   "t": 49.25,
+   "tipo": "moeda",
+   "i": 3
+  },
+  {
+   "t": 49.27,
+   "tipo": "conta_fim"
+  },
+  {
+   "t": 49.57,
+   "tipo": "conta_fim"
+  },
+  {
+   "t": 51.3,
+   "tipo": "gaveta"
+  },
+  {
+   "t": 51.5,
+   "tipo": "conta",
+   "dur": 0.3999999999999986,
+   "digitos": 3
+  },
+  {
+   "t": 51.9,
+   "tipo": "conta_fim"
+  },
+  {
+   "t": 52.2,
+   "tipo": "conta",
+   "dur": 0.3999999999999986,
+   "digitos": 3
+  },
+  {
+   "t": 52.6,
+   "tipo": "conta_fim"
+  },
+  {
+   "t": 53.1,
+   "tipo": "falta"
+  },
+  {
+   "t": 55.35,
+   "tipo": "anel"
+  },
+  {
+   "t": 55.45,
+   "tipo": "no",
+   "i": 0
+  },
+  {
+   "t": 55.61,
+   "tipo": "no",
+   "i": 1
+  },
+  {
+   "t": 55.77,
+   "tipo": "no",
+   "i": 2
+  },
+  {
+   "t": 55.93,
+   "tipo": "no",
+   "i": 3
+  },
+  {
+   "t": 56.09,
+   "tipo": "no",
+   "i": 4
+  },
+  {
+   "t": 56.25,
+   "tipo": "no",
+   "i": 5
+  },
+  {
+   "t": 56.45,
+   "tipo": "logo"
+  },
+  {
+   "t": 57.2,
+   "tipo": "pilula"
+  }
+ ]
+}

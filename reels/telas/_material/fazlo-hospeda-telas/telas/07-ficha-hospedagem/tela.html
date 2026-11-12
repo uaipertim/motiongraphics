@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=390">
+<title>FAZLO Hospeda · Ficha da hospedagem</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700;800&family=Geist+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+html,body{margin:0;padding:0}
+body{background:#F4F4F0;-webkit-font-smoothing:antialiased}
+#tela{width:390px;position:relative}
+</style>
+</head>
+<body>
+<!-- Tela: Ficha da hospedagem. Dados fictícios. Blocos com id/classe para animação: .card, .status-chip, .valor, .btn, .modal, .toast, .aviso, .linha, .item-comanda, #cabecalho, #barra-inferior, #menu-lateral. -->
+<div id="tela" data-tela="telas/07-ficha-hospedagem" data-estado="tela">
+<div style="position: relative; width: 390px; height: auto; min-height: 844px; overflow: hidden; box-sizing: border-box; background: #F4F4F0; font-family: 'Geist', ui-sans-serif, system-ui, sans-serif; color: #0A0A0A; display: flex; flex-direction: column">
+
+
+
+<header style="height: 72px; flex-shrink: 0; box-sizing: border-box; padding: 0 16px 0 20px; background: #FFFFFF; border-bottom: 1px solid #E7E7E2; display: flex; align-items: center; justify-content: space-between" id="cabecalho" data-componente="cabecalho">
+<div style="display: flex; align-items: center; gap: 8px">
+<span style="font-size: 20px; font-weight: 800; letter-spacing: -0.02em">FAZLO</span>
+<span style="background: #AFFA27; color: #0A0A0A; font-size: 12px; font-weight: 600; padding: 3px 9px; border-radius: 999px" class="status-chip" id="status-chip-hospeda" data-componente="chip-hospeda">Hospeda</span>
+</div>
+<div style="display: flex; align-items: center; gap: 6px">
+<button aria-label="Notificações" style="position: relative; width: 44px; height: 44px; padding: 0; border: 0; background: transparent; color: #0A0A0A; display: flex; align-items: center; justify-content: center" id="btn-notificacoes" class="btn"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 16v-5a6 6 0 1 1 12 0v5l1.5 2h-15z"></path><path d="M10 20.5a2 2 0 0 0 4 0"></path></svg><span style="position: absolute; top: 9px; right: 10px; width: 8px; height: 8px; border-radius: 999px; background: #E8A317; border: 2px solid #FFFFFF"></span></button>
+<span style="width: 40px; height: 40px; border-radius: 999px; background: #0A0A0A; color: #AFFA27; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700">AD</span>
+</div>
+</header>
+
+<main style="box-sizing: border-box; padding: 6px 20px 112px; display: flex; flex-direction: column">
+
+<a href="#" style="height: 44px; display: flex; align-items: center; gap: 4px; margin-left: -4px; color: #0A0A0A; font-size: 14.5px; font-weight: 500; text-decoration: none; align-self: flex-start"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 6-6 6 6 6"></path></svg>Hospedagens</a>
+<div style="display: flex; flex-direction: column; gap: 4px">
+<span style="font-size: 13.5px; color: #5E5E5A">reserva <span style="font-family: 'Geist Mono', ui-monospace, monospace">FHZ-QB5VD9</span> · <span style="font-family: 'Geist Mono', ui-monospace, monospace">14/10 → 18/10</span> · 4 noites</span>
+<h1 style="margin: 0; font-size: 28px; line-height: 1.15; font-weight: 700; letter-spacing: -0.025em" id="titulo-mariana-costa" class="titulo">Mariana Costa</h1>
+<div style="margin-top: 6px; display: flex; align-items: center; gap: 10px">
+<span style="display: flex; align-items: center; gap: 6px; height: 26px; padding: 0 10px; border-radius: 999px; background: #0A0A0A; color: #FFFFFF; font-size: 12.5px; font-weight: 500" class="status-chip" id="status-chip-hospedada" data-componente="chip-hospedada"><span style="width: 6px; height: 6px; border-radius: 999px; background: #AFFA27"></span>Hospedada</span>
+<span style="font-size: 14px; color: #2A2A27">Suíte Mirante · 2 adultos</span>
+</div>
+</div>
+
+<section aria-label="Resumo financeiro" style="margin-top: 16px; background: #FFFFFF; border: 1px solid #E7E7E2; border-radius: 18px; padding: 16px; display: flex; flex-direction: column; gap: 14px" class="card" id="card-diarias-contratadas" data-componente="card-diarias-contratadas">
+<div style="display: flex; flex-direction: column; gap: 10px">
+<div style="display: flex; align-items: flex-start; justify-content: space-between; gap: 12px"><div style="display: flex; flex-direction: column; gap: 1px"><span style="font-size: 14px">Diárias contratadas</span><span style="font-size: 12.5px; color: #5E5E5A"><span style="font-family: 'Geist Mono', ui-monospace, monospace">4</span> × <span style="font-family: 'Geist Mono', ui-monospace, monospace" class="valor" id="valor-4">R$ 610,00</span></span></div><span style="font-family: 'Geist Mono', ui-monospace, monospace; font-size: 14px" class="valor" id="valor-diarias-contratadas">R$ 2.440,00</span></div>
+<div style="display: flex; align-items: center; justify-content: space-between; gap: 12px"><span style="font-size: 14px">Consumos</span><span style="font-family: 'Geist Mono', ui-monospace, monospace; font-size: 14px" class="valor" id="valor-consumos">R$ 287,00</span></div>
+<div style="display: flex; align-items: flex-start; justify-content: space-between; gap: 12px"><div style="display: flex; flex-direction: column; gap: 1px"><span style="font-size: 14px">Descontos e cortesias</span><span style="font-size: 12.5px; color: #5E5E5A">Diárias e vinho de boas-vindas</span></div><span style="font-family: 'Geist Mono', ui-monospace, monospace; font-size: 14px; white-space: nowrap" class="valor" id="valor-descontos-e-cortesias">− R$ 157,00</span></div>
+<div style="display: flex; align-items: center; justify-content: space-between; gap: 12px; padding-top: 10px; border-top: 1px solid #EFEFEA"><span style="font-size: 14px; font-weight: 600">Total da estadia</span><span style="font-family: 'Geist Mono', ui-monospace, monospace; font-size: 14px; font-weight: 600" class="valor" id="valor-total-da-estadia">R$ 2.570,00</span></div>
+
+<div style="display: flex; align-items: center; justify-content: space-between; gap: 12px"><span style="font-size: 14px">Pagamentos confirmados</span><span style="font-family: 'Geist Mono', ui-monospace, monospace; font-size: 14px" class="valor" id="valor-pagamentos-confirmados">− R$ 2.158,00</span></div>
+
+
+</div>
+
+
+<div style="background: #FFF7E3; border: 1px solid #F2E6C5; border-radius: 16px; padding: 16px; display: flex; flex-direction: column; gap: 10px">
+<div style="display: flex; align-items: center; justify-content: space-between"><span style="font-size: 14px; font-weight: 600; color: #5A4000">Saldo em aberto</span><span style="font-size: 12.5px; color: #6B5320">saída em <span style="font-family: 'Geist Mono', ui-monospace, monospace">18/10</span></span></div>
+<span style="font-family: 'Geist Mono', ui-monospace, monospace; font-size: 34px; line-height: 1.1; font-weight: 700; letter-spacing: -0.02em" class="valor" id="valor-saldo-em-aberto">R$ 412,00</span>
+</div>
+<div style="display: flex; flex-direction: column; gap: 8px">
+<button style="height: 52px; border: 0; border-radius: 12px; background: #0A0A0A; color: #FFFFFF; font-family: inherit; font-size: 15.5px; font-weight: 600; display: flex; align-items: center; justify-content: center; gap: 8px" id="btn-receber" class="btn" data-componente="btn-receber"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="6" width="19" height="12" rx="2.5"></rect><circle cx="12" cy="12" r="2.5"></circle></svg>Receber <span style="font-family: 'Geist Mono', ui-monospace, monospace" class="valor" id="valor-diarias-contratadas-2">R$ 412,00</span></button>
+<button disabled="" aria-describedby="regra-checkout-m" style="height: 48px; border: 0; border-radius: 12px; background: #EFEFEA; color: #7A7A74; font-family: inherit; font-size: 15px; font-weight: 600; display: flex; align-items: center; justify-content: center; gap: 8px; cursor: not-allowed" id="btn-fazer-check-out" class="btn"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="10.5" width="14" height="10" rx="2.5"></rect><path d="M8 10.5V8a4 4 0 0 1 8 0v2.5"></path></svg>Fazer check-out</button>
+<span id="regra-checkout-m" style="text-align: center; font-size: 12.5px; color: #5E5E5A">Libera com saldo zero</span>
+</div>
+
+
+</section>
+
+<div style="margin-top: 12px; display: flex; flex-direction: column; gap: 10px">
+<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px">
+<button style="height: 48px; border-radius: 12px; border: 1px solid #D6D6CF; background: #FFFFFF; color: #0A0A0A; font-family: inherit; font-size: 14.5px; font-weight: 600; display: flex; align-items: center; justify-content: center; gap: 7px" id="btn-lancar-consumo" class="btn" data-componente="btn-lancar-consumo"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12h14"></path></svg>Lançar consumo</button>
+<button style="height: 48px; border-radius: 12px; border: 1px solid #D6D6CF; background: #FFFFFF; color: #0A0A0A; font-family: inherit; font-size: 14.5px; font-weight: 600; display: flex; align-items: center; justify-content: center; gap: 7px" id="btn-desconto" class="btn" data-componente="btn-desconto"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.5 12V4.5h7.5l9.5 9.5-7.5 7.5z"></path><circle cx="7.8" cy="8.8" r="1.3"></circle></svg>Desconto</button>
+</div>
+</div>
+
+<section aria-label="Descontos e cortesias" style="margin-top: 28px; display: flex; flex-direction: column; gap: 12px">
+<div style="height: 24px; display: flex; align-items: center; justify-content: space-between"><h2 style="margin: 0; font-size: 17px; font-weight: 600" id="titulo-descontos-e-cortesias" class="titulo">Descontos e cortesias</h2><span style="font-family: 'Geist Mono', ui-monospace, monospace; font-size: 14px; font-weight: 600" class="valor" id="valor-descontos-e-cortesias-2">− R$ 157,00</span></div>
+<div style="background: #FFFFFF; border: 1px solid #E7E7E2; border-radius: 18px; overflow: hidden" class="card" id="card-desconto-nas-diarias" data-componente="card-desconto-nas-diarias">
+<div style="padding: 12px 16px; display: flex; flex-direction: column; gap: 8px">
+<div style="display: flex; align-items: flex-start; justify-content: space-between; gap: 12px"><div style="display: flex; flex-direction: column; gap: 2px; min-width: 0"><span style="font-size: 14.5px; font-weight: 500">Desconto nas diárias</span><span style="font-size: 12.5px; color: #5E5E5A"><span style="font-family: 'Geist Mono', ui-monospace, monospace">14/10</span> · hóspede frequente</span></div><span style="font-family: 'Geist Mono', ui-monospace, monospace; font-size: 14px; white-space: nowrap" class="valor" id="valor-desconto-nas-diarias">− R$ 122,00</span></div>
+<button style="align-self: flex-start; height: 36px; padding: 0 12px; border-radius: 10px; border: 1px solid #DEDED7; background: #FFFFFF; color: #0A0A0A; font-family: inherit; font-size: 13.5px; font-weight: 600" id="btn-cancelar-desconto" class="btn" data-componente="btn-cancelar-desconto">Cancelar desconto</button>
+</div>
+<div style="border-top: 1px solid #F2F2EE; padding: 12px 16px; display: flex; flex-direction: column; gap: 8px">
+<div style="display: flex; align-items: flex-start; justify-content: space-between; gap: 12px"><div style="display: flex; flex-direction: column; gap: 2px; min-width: 0"><span style="font-size: 14.5px; font-weight: 500">Desconto: vinho de boas-vindas</span><span style="font-size: 12.5px; color: #5E5E5A"><span style="font-family: 'Geist Mono', ui-monospace, monospace">14/10</span> · aniversário</span></div><span style="font-family: 'Geist Mono', ui-monospace, monospace; font-size: 14px; white-space: nowrap" class="valor" id="valor-desconto-vinho-de-boas-vindas">− R$ 35,00</span></div>
+<button style="align-self: flex-start; height: 36px; padding: 0 12px; border-radius: 10px; border: 1px solid #DEDED7; background: #FFFFFF; color: #0A0A0A; font-family: inherit; font-size: 13.5px; font-weight: 600" id="btn-cancelar-desconto-2" class="btn" data-componente="btn-cancelar-desconto">Cancelar desconto</button>
+</div>
+
+</div>
+</section>
+
+<section aria-label="Hóspede e estadia" style="margin-top: 28px; display: flex; flex-direction: column; gap: 12px">
+<h2 style="margin: 0; font-size: 17px; font-weight: 600" id="titulo-hospede-e-estadia" class="titulo">Hóspede e estadia</h2>
+<div style="background: #FFFFFF; border: 1px solid #E7E7E2; border-radius: 18px; padding: 16px; display: flex; flex-direction: column; gap: 14px" class="card" id="card-entrada" data-componente="card-entrada">
+<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px 12px">
+<div style="display: flex; flex-direction: column; gap: 3px"><span style="font-size: 12.5px; color: #5E5E5A">Entrada</span><span style="font-family: 'Geist Mono', ui-monospace, monospace; font-size: 14px; font-weight: 600">14/10 · 14:20</span></div>
+<div style="display: flex; flex-direction: column; gap: 3px"><span style="font-size: 12.5px; color: #5E5E5A">Saída prevista</span><span style="font-family: 'Geist Mono', ui-monospace, monospace; font-size: 14px; font-weight: 600">18/10 · 12:00</span></div>
+<div style="display: flex; flex-direction: column; gap: 3px"><span style="font-size: 12.5px; color: #5E5E5A">Telefone</span><span style="font-family: 'Geist Mono', ui-monospace, monospace; font-size: 14px; font-weight: 600">(35) 99812-4410</span></div>
+<div style="display: flex; flex-direction: column; gap: 3px"><span style="font-size: 12.5px; color: #5E5E5A">CPF</span><span style="font-family: 'Geist Mono', ui-monospace, monospace; font-size: 14px; font-weight: 600">***.482.107-**</span></div>
+<div style="grid-column: span 2; display: flex; flex-direction: column; gap: 3px"><span style="font-size: 12.5px; color: #5E5E5A">E-mail</span><span style="font-size: 14.5px; font-weight: 600">mariana.costa@email.com</span></div>
+</div>
+<div style="display: flex; align-items: flex-start; gap: 10px; padding: 10px 12px; border-radius: 12px; background: #F4F4F0; font-size: 13.5px; line-height: 1.45; color: #2A2A27">
+<svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#5E5E5A" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink: 0; margin-top: 1px"><circle cx="12" cy="12" r="8.5"></circle><path d="M12 11v5M12 8h.01"></path></svg>
+<span>Aniversário de casamento hoje, <span style="font-family: 'Geist Mono', ui-monospace, monospace">16/10</span>. Cozinha avisada.</span>
+</div>
+</div>
+</section>
+
+<section aria-label="Comanda" style="margin-top: 28px; display: flex; flex-direction: column; gap: 12px">
+<div style="height: 24px; display: flex; align-items: center; justify-content: space-between"><h2 style="margin: 0; font-size: 17px; font-weight: 600" id="titulo-comanda" class="titulo">Comanda</h2><span style="font-family: 'Geist Mono', ui-monospace, monospace; font-size: 14px; font-weight: 600" class="valor" id="valor-comanda">R$ 287,00</span></div>
+<div style="background: #FFFFFF; border: 1px solid #E7E7E2; border-radius: 18px; overflow: hidden" class="card" id="card-lavanderia" data-componente="card-lavanderia">
+<div style="display: flex; align-items: center; gap: 12px; padding: 12px 16px" class="linha" id="linha-1" data-componente="linha-caixa-1"><div style="flex: 1; display: flex; flex-direction: column; gap: 1px"><span style="font-size: 14.5px; font-weight: 500">Lavanderia</span><span style="font-size: 12.5px; color: #5E5E5A"><span style="font-family: 'Geist Mono', ui-monospace, monospace">16/10 09:10</span> · <span style="font-family: 'Geist Mono', ui-monospace, monospace">1×</span></span></div><span style="font-family: 'Geist Mono', ui-monospace, monospace; font-size: 14px" class="valor" id="valor-lavanderia">R$ 18,00</span></div>
+<div style="display: flex; align-items: center; gap: 12px; padding: 12px 16px; border-top: 1px solid #F2F2EE" class="linha" id="linha-2" data-componente="linha-caixa-2"><div style="flex: 1; display: flex; flex-direction: column; gap: 1px"><span style="font-size: 14.5px; font-weight: 500">Caipirinha</span><span style="font-size: 12.5px; color: #5E5E5A"><span style="font-family: 'Geist Mono', ui-monospace, monospace">15/10 21:30</span> · <span style="font-family: 'Geist Mono', ui-monospace, monospace">2×</span></span></div><span style="font-family: 'Geist Mono', ui-monospace, monospace; font-size: 14px" class="valor" id="valor-caipirinha">R$ 44,00</span></div>
+<div style="display: flex; align-items: center; gap: 12px; padding: 12px 16px; border-top: 1px solid #F2F2EE" class="linha" id="linha-3" data-componente="linha-caixa-3"><div style="flex: 1; display: flex; flex-direction: column; gap: 1px"><span style="font-size: 14.5px; font-weight: 500">Porção de mandioca</span><span style="font-size: 12.5px; color: #5E5E5A"><span style="font-family: 'Geist Mono', ui-monospace, monospace">15/10 17:30</span> · <span style="font-family: 'Geist Mono', ui-monospace, monospace">1×</span></span></div><span style="font-family: 'Geist Mono', ui-monospace, monospace; font-size: 14px" class="valor" id="valor-porcao-de-mandioca">R$ 38,00</span></div>
+<a href="#" style="height: 48px; display: flex; align-items: center; justify-content: space-between; padding: 0 16px; border-top: 1px solid #EFEFEA; background: #FAFAF8; color: #0A0A0A; font-size: 14px; font-weight: 600; text-decoration: none"><span>Ver comanda completa · <span style="font-family: 'Geist Mono', ui-monospace, monospace; font-weight: 500">6</span> itens</span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="margin-left: auto"><path d="m9 6 6 6-6 6"></path></svg></a>
+</div>
+</section>
+
+<section aria-label="Pagamentos" style="margin-top: 28px; display: flex; flex-direction: column; gap: 12px">
+<h2 style="margin: 0; font-size: 17px; font-weight: 600" id="titulo-pagamentos" class="titulo">Pagamentos</h2>
+<div style="background: #FFFFFF; border: 1px solid #E7E7E2; border-radius: 18px; overflow: hidden" class="card" id="card-check-in-cartao-de-credito" data-componente="card-check-in-cartao-de-credito">
+
+
+<div style="display: flex; align-items: center; gap: 8px; padding: 8px 6px 8px 16px"><div style="flex: 1; display: flex; flex-direction: column; gap: 1px"><span style="font-size: 14.5px; font-weight: 500">Check-in · Cartão de crédito</span><span style="font-size: 12.5px; color: #5E5E5A"><span style="font-family: 'Geist Mono', ui-monospace, monospace">14/10</span> · confirmado</span></div><span style="font-family: 'Geist Mono', ui-monospace, monospace; font-size: 14px" class="valor" id="valor-check-in-cartao-de-credito">R$ 938,00</span><button aria-label="Mais ações do pagamento" style="width: 44px; height: 44px; flex-shrink: 0; padding: 0; border: 0; border-radius: 10px; background: transparent; color: #5E5E5A; display: flex; align-items: center; justify-content: center" id="btn-mais-acoes-do-pagamento" class="btn"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="5.5" cy="12" r="1.6"></circle><circle cx="12" cy="12" r="1.6"></circle><circle cx="18.5" cy="12" r="1.6"></circle></svg></button></div>
+
+
+<div style="display: flex; align-items: center; gap: 8px; padding: 8px 6px 8px 16px; border-top: 1px solid #F2F2EE"><div style="flex: 1; display: flex; flex-direction: column; gap: 1px"><span style="font-size: 14.5px; font-weight: 500">Sinal · PIX</span><span style="font-size: 12.5px; color: #5E5E5A"><span style="font-family: 'Geist Mono', ui-monospace, monospace">20/09</span> · confirmado</span></div><span style="font-family: 'Geist Mono', ui-monospace, monospace; font-size: 14px" class="valor" id="valor-sinal-pix">R$ 1.220,00</span><button aria-label="Mais ações do pagamento" style="width: 44px; height: 44px; flex-shrink: 0; padding: 0; border: 0; border-radius: 10px; background: transparent; color: #5E5E5A; display: flex; align-items: center; justify-content: center" id="btn-mais-acoes-do-pagamento-2" class="btn"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="5.5" cy="12" r="1.6"></circle><circle cx="12" cy="12" r="1.6"></circle><circle cx="18.5" cy="12" r="1.6"></circle></svg></button></div>
+</div>
+</section>
+
+</main>
+
+<nav aria-label="Navegação" style="position: absolute; left: 0; right: 0; bottom: 0; height: 84px; box-sizing: border-box; padding: 8px 4px 14px; background: #FFFFFF; border-top: 1px solid #E7E7E2; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr))" id="barra-inferior" data-componente="barra-inferior">
+<a href="#" aria-current="page" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; color: #0A0A0A; font-size: 12px; font-weight: 600; text-decoration: none"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none"><path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8"></path> <path d="M3 10a2 2 0 0 1 .709-1.528l7-6a2 2 0 0 1 2.582 0l7 6A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path></svg>Início</a>
+<a href="#" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; color: #5E5E5A; font-size: 12px; font-weight: 500; text-decoration: none"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none"><path d="M8 2v3"></path> <path d="M16 2v3"></path> <rect x="3" y="3" width="18" height="18" rx="2"></rect> <path d="M3 9h18"></path></svg>Calendário</a>
+<div style="display: flex; justify-content: center"><button aria-label="Nova reserva" style="margin-top: -30px; width: 56px; height: 56px; padding: 0; border: 0; border-radius: 999px; background: #AFFA27; color: #0A0A0A; box-shadow: 0 0 0 6px #F4F4F0; display: flex; align-items: center; justify-content: center" id="btn-nova-reserva" class="btn"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12h14"></path></svg></button></div>
+<a href="#" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; color: #5E5E5A; font-size: 12px; font-weight: 500; text-decoration: none"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none"><path d="M13 16H8"></path> <path d="M14 8H8"></path> <path d="M16 12H8"></path> <path d="M4 3a1 1 0 0 1 1-1 1.3 1.3 0 0 1 .7.2l.933.6a1.3 1.3 0 0 0 1.4 0l.934-.6a1.3 1.3 0 0 1 1.4 0l.933.6a1.3 1.3 0 0 0 1.4 0l.933-.6a1.3 1.3 0 0 1 1.4 0l.934.6a1.3 1.3 0 0 0 1.4 0l.933-.6A1.3 1.3 0 0 1 19 2a1 1 0 0 1 1 1v18a1 1 0 0 1-1 1 1.3 1.3 0 0 1-.7-.2l-.933-.6a1.3 1.3 0 0 0-1.4 0l-.934.6a1.3 1.3 0 0 1-1.4 0l-.933-.6a1.3 1.3 0 0 0-1.4 0l-.933.6a1.3 1.3 0 0 1-1.4 0l-.934-.6a1.3 1.3 0 0 0-1.4 0l-.933.6a1.3 1.3 0 0 1-.7.2 1 1 0 0 1-1-1z"></path></svg>Comandas</a>
+<a href="#" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; color: #5E5E5A; font-size: 12px; font-weight: 500; text-decoration: none"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none"><path d="M4 5h16"></path> <path d="M4 12h16"></path> <path d="M4 19h16"></path></svg>Mais</a>
+</nav>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+</div>
+</body>
+</html>

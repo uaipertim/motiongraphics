@@ -1,0 +1,63 @@
+UM DIA INTEIRO DA POUSADA — revisão técnica
+output/um-dia-inteiro.mp4
+
+FORMATO E SOM
+OK     vídeo h264 yuv420p 1080x1920 60 fps
+OK     áudio aac 48000 Hz 2 canais · sem voz (trilha e efeitos sintetizados)
+OK     duração 60.00 s (alvo ~55–60 s)
+OK     loudness integrado -14.1 LUFS (alvo −14)
+OK     pico real -2.7 dBTP (limite −1,5)
+
+ETAPAS
+OK     1 Reserva: 9.5 s (mínimo 7 s)
+OK     2 Sinal: 8.5 s (mínimo 7 s)
+OK     3 Check-in: 8.0 s (mínimo 7 s)
+OK     4 Comanda: 7.5 s (mínimo 7 s)
+OK     5 Check-out: 9.5 s (mínimo 7 s)
+OK     6 Caixa: 7.5 s (mínimo 7 s)
+       Gancho 0.0–4.5 s (4.5 s) · 1 Reserva 4.5–14.0 s (9.5 s) · 2 Sinal 14.0–22.5 s (8.5 s) · 3 Check-in 22.5–30.5 s (8.0 s) · 4 Comanda 30.5–38.0 s (7.5 s) · 5 Check-out 38.0–47.5 s (9.5 s) · 6 Caixa 47.5–55.0 s (7.5 s) · Fecho 55.0–60.0 s (5.0 s)
+
+ÁREAS SEGURAS
+OK     20% de baixo (y > 1536): nenhuma caixa em 1800 quadros
+OK     coluna de botões (x > 940, y > 1000): livre
+OK     nada importante no alto: o primeiro elemento começa em y 160 (etiqueta, 4.63 s)
+OK     pixels do vídeo (4 quadros/s, 1/16 da área): 20% de baixo apagado (máx. 0 px acesos num quadro)
+OK     pixels do vídeo: coluna de botões apagada (máx. 3 px acesos num quadro)
+
+TEXTOS
+OK     textos explicativos em Inter Display 900, corpo 66–70 px (mínimo 56)
+       Sexta-feira, 16/10. Pousada Vale Sereno. | Tudo o que acontece hoje, numa tela só. | Só aparece o que está livre. | O saldo já fica calculado. | Confere, confirma e pronto. | O consumo vai direto para a conta da estadia. | O check-out só libera com o saldo zerado. | Contou o dinheiro? Ele mostra se bateu. | Da reserva ao caixa, tudo conectado.
+OK     palavra-chave em limão em cada texto
+
+DESTAQUES E LEGIBILIDADE
+OK     um destaque por vez: 29 destaques em sequência, sem sobreposição
+OK     texto das peças em destaque ≥ 40 px no quadro (menor corpo de cada peça × escala no quadro)
+       menor corpo por peça em destaque: s_campo_sinal 40.0 · c_recibo 40.0 · o_quitado 40.0 · x_esperado 40.0 · x_falta 40.1 · g_recebido 40.3 · r_livres 40.3 · m_total 40.3 …
+OK     cada valor fica parado e legível ≥ 1,5 s (nítido, inteiro, ≥ 40 px, acima dos 20% de baixo)
+       R$ 1.525,00 3.6s · 10 / 2 2.8s · 10 / 2 2.8s · 1 2.0s · 5 de 10 2.0s · R$ 320,00 1.8s · Bruno T. 2.2s · R$ 315,00 / R$ 735,00 2.0s · R$ 860,00 2.7s · R$ 287,00 6.4s · R$ 412,00 5.6s · R$ 0,00 2.2s · R$ 1.525,00 3.2s · R$ 285,00 3.2s · R$ 270,00 2.8s · Falta R$ 15,00 1.8s
+OK     nenhuma peça em destaque cortada pela borda ou borrada
+
+VALORES (conferidos com o LEIA-ME e com as telas do pacote)
+OK     valores que contam = valores das telas: R$ 1.525,00, R$ 2.440,00, R$ 287,00, − R$ 157,00, R$ 2.570,00, − R$ 2.158,00, R$ 412,00, R$ 0,00, R$ 1.640,00, − R$ 780,00, R$ 860,00, R$ 287,00, R$ 1.525,00, R$ 285,00, R$ 270,00, 315,00
+OK     Recebido hoje R$ 1.525,00 (LEIA-ME: recebido no dia R$ 1.525,00)
+OK     Mariana Costa: diárias 2.440 + consumos 287 − descontos 157 = 2.570 (LEIA-ME)
+OK     pagos 1.220 + 938 = 2.158 · saldo 2.570 − 2.158 = R$ 412,00 → R$ 0,00 depois do PIX
+OK     comanda: 66 + 12 + 56 + 136 + 17 = R$ 287,00 (o total sobe item a item)
+OK     caixa: PIX 900 + Dinheiro 125 + Crédito 380 + Débito 120 = R$ 1.525,00
+OK     esperado em dinheiro 200 + 125 − 40 = R$ 285,00 · contado R$ 270,00 → falta R$ 15,00
+OK     Fernanda Lima: 1.640 − sinal 780 = saldo R$ 860,00 (confirmada, LEIA-ME)
+OK     Gustavo Ribeiro: pré-reserva R$ 1.050,00, sinal R$ 315,00 → saldo R$ 735,00 (janela "Confirmar reserva")
+OK     nova reserva: Bruno Teixeira, Quarto Bromélia, 22/10 → 25/10, nasce Confirmada (barra "Bruno T." no calendário de 14 dias)
+
+REGRAS DE CONTEÚDO
+OK     sem Day Use, Booking ou Airbnb (textos de todas as peças e da animação)
+OK     sem "versão nova" nem V2
+OK     nome da pousada com inicial maiúscula ("Pousada Vale Sereno", nunca em caixa alta)
+OK     a linha do diário com o sinal do Gustavo (FHZ-UDVKU5) não aparece: nenhuma peça do caixa usa o diário
+OK     calendário só na visão de 14 dias (o seletor Dia/Semana/Mês não aparece)
+OK     80 peças, todas recortadas dos HTML do pacote (src/pecas.json guarda arquivo e posição de cada uma)
+
+CAPA
+OK     capa na regra (reels/tools/revisao_capa.py): 960.2 de centro (alvo y = 960)
+
+RESULTADO: aprovado
