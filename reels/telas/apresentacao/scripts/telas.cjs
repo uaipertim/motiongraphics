@@ -59,6 +59,52 @@ const S = [
   ['cx_fechado', '10-caixa/estados/07-fechado-resumo.html'],
 ];
 
+// elementos que a lupa amplia e o contorno destaca: o bloco inteiro do HTML (getBoundingClientRect), com o raio
+const J = "'[data-janela]'";
+const EL = {
+  vg: { recebido: `q('#valor-recebido-hoje')`, hospedados: `caixa(T('Hospedados'))`, saidas: `caixa(T('1 concluída'))`, atencao: `comum(T('Check-out em atraso'), T('Saída prevista ontem'))` },
+  cal: { gustavo: `barra('Gustavo')`, rafael: `barra('Rafael')`, helena: `barra('Helena')`, fernanda: `barra('Fernanda')`, manutencao: `T('Manutenção', '#card-hoje').closest('[aria-label]')` },
+  nr1: { livres: `T('Livres no período')` },
+  nr6: { total: `comum(T('Total da reserva', ${J}), q('#valor-total-da-reserva'))` },
+  gus: { chip: `q('#status-chip-pre-reserva')` },
+  sinal: { campo: `q('#campo-sinal input').parentElement`, depois: `comum(T('Depois: reserva confirmada'), q('#valor-chale-de-pedra-04'))` },
+  ci: { hospede: `comum(T('Hóspede', ${J}), T('Fernanda Lima', ${J}))`, telefone: `comum(T('Telefone', ${J}), T('(35) 98804-7712', ${J}))`,
+        periodo: `comum(T('Período', ${J}), T('17/10 → 20/10', ${J}))`, acomodacao: `comum(T('Acomodação', ${J}), T('Chalé Ipê', ${J}))` },
+  ci_feito: { recibo: `comum(T('Entrada', ${J}), T('Saída prevista', ${J}))` },
+  ativas: { chip: `q('#status-chip-hospedada-3')` },
+  cmd: { total: `comum(T('Total'), q('#valor-total'))` },
+  cmd_add: { agua: `T('Água sem gás', ${J}).parentElement.parentElement`, agua_qtd: `T('Água sem gás', ${J}).parentElement.parentElement.lastElementChild`,
+             caipirinha: `T('Caipirinha', ${J}).parentElement.parentElement`, caipirinha_qtd: `T('Caipirinha', ${J}).parentElement.parentElement.lastElementChild` },
+  cmd_ok: { total: `comum(T('Total'), q('#valor-total'))` },
+  ficha: { saldo: `q('#valor-saldo-em-aberto')`, botao: `q('#btn-fazer-check-out')` },
+  receber: { confirmar: `q('#btn-confirmar')` },
+  quitado: { chip: `q('#status-chip-quitado')`, saldo: `q('#valor-saldo')` },
+  recibo: { titulo: `T('Recibo da estadia')` },
+  cx: { formas: `comum(T('Recebido por forma de pagamento'), q('#valor-recebido-por-forma-de-pagamento'))` },
+  cx_fechar: { falta: `comum(T('Diferença:'), T('falta R$ 15,00'))` },
+  cx_fechado: { diferenca: `q('#valor-diferenca')` },
+};
+const HELP = `
+window.q = (s) => document.querySelector(s);
+window.T = (txt, dentro) => { const raiz = dentro ? document.querySelector(dentro) : document.body; const tw = document.createTreeWalker(raiz, NodeFilter.SHOW_TEXT); let n;
+  const vis = (n) => { const e = n.parentElement; const b = e.getBoundingClientRect(); const top = document.elementFromPoint(b.x + b.width / 2, b.y + b.height / 2); return top && (e.contains(top) || top.contains(e)); };
+  const ns = []; while ((n = tw.nextNode())) ns.push(n); const norm = (n) => n.textContent.replace(/\\s+/g, ' ').trim();
+  const a = ns.find((n) => norm(n) === txt && vis(n)) || ns.find((n) => norm(n).startsWith(txt) && vis(n)); if (a) return a.parentElement; throw new Error('sem texto ' + txt); };
+window.comum = (a, b) => { let e = a; while (e && !e.contains(b)) e = e.parentElement; return e; };
+window.caixa = (e) => { e = e.parentElement; while (e && e !== document.body) { const cs = getComputedStyle(e); if ((cs.backgroundColor !== 'rgba(0, 0, 0, 0)' || parseFloat(cs.borderTopWidth) > 0) && parseFloat(cs.borderTopLeftRadius) > 0) return e; e = e.parentElement; } return null; };
+window.barra = (txt) => { const e = T(txt, '#card-hoje'); return e.closest('a') || caixa(e) || e; };
+window.linha = (e) => { while (e.parentElement && e.parentElement.getBoundingClientRect().height < e.getBoundingClientRect().height * 1.8) e = e.parentElement; return e; };
+window.passo = (e) => { let r = e; while (!r.querySelector('button')) r = r.parentElement; const bs = r.querySelectorAll('button'); return comum(bs[0], bs[bs.length - 1]); };
+window.conteudo = (e) => { const cs = getComputedStyle(e); if (cs.backgroundColor !== 'rgba(0, 0, 0, 0)' || parseFloat(cs.borderTopWidth) > 0) return e.getBoundingClientRect();
+  const rs = []; const tw = document.createTreeWalker(e, NodeFilter.SHOW_TEXT); let n; while ((n = tw.nextNode())) { if (!n.textContent.trim()) continue; const rg = document.createRange(); rg.selectNodeContents(n); const b = rg.getBoundingClientRect(); if (b.width) rs.push(b); }
+  e.querySelectorAll('svg, img, input').forEach((c) => { const b = c.getBoundingClientRect(); if (b.width) rs.push(b); });
+  e.querySelectorAll('*').forEach((c) => { const ccs = getComputedStyle(c); if (ccs.backgroundColor !== 'rgba(0, 0, 0, 0)' || parseFloat(ccs.borderTopWidth) > 0) { const b = c.getBoundingClientRect(); if (b.width) rs.push(b); } });
+  if (!rs.length) return e.getBoundingClientRect(); const x0 = Math.min(...rs.map((r) => r.left)), y0 = Math.min(...rs.map((r) => r.top)), x1 = Math.max(...rs.map((r) => r.right)), y1 = Math.max(...rs.map((r) => r.bottom)); return { left: x0, top: y0, width: x1 - x0, height: y1 - y0 }; };
+window.info = (e) => { const b = e.getBoundingClientRect(), cs = getComputedStyle(e), c = conteudo(e); return { cx: c.left + scrollX, cy: c.top + scrollY, cw: c.width, ch: c.height, x: b.x + scrollX, y: b.y + scrollY, w: b.width, h: b.height, raio: parseFloat(cs.borderTopLeftRadius) || 0, janela: !!e.closest('[data-janela]'), tag: e.tagName, texto: e.innerText.replace(/\\s+/g, ' ').trim().slice(0, 80) }; };
+`;
+// campos digitados no próprio HTML: um quadro da tela por letra, com o cursor no fim
+const DIG = { nr2: ['#campo-nome input', 'Bruno Teixeira'], sinal: ['#campo-sinal input', '315,00'] };
+
 const INFO = `(() => {
   const out = { ids: {}, textos: [], H: document.documentElement.scrollHeight };
   document.querySelectorAll('[id]').forEach((e) => { const b = e.getBoundingClientRect(); if (b.width) out.ids[e.id] = { x: b.x + scrollX, y: b.y + scrollY, w: b.width, h: b.height, t: (e.innerText || '').replace(/\\s+/g, ' ').trim().slice(0, 60) }; });
@@ -87,6 +133,7 @@ const INFO = `(() => {
     await page.route('https://fonts.local/*', (r) => r.fulfill({ contentType: 'font/woff2', body: fs.readFileSync(path.join(FONTS, path.basename(r.request().url()))) }));
     await page.goto('file://' + path.join(T, file));
     await page.evaluate(() => document.fonts.ready);
+    await page.addScriptTag({ content: HELP });
     const H0 = await page.evaluate(() => document.documentElement.scrollHeight);
     if (H0 > 844 && !janela) await page.setViewportSize({ width: 390, height: H0 });   // para medir o que está coberto na página toda
     const info = await page.evaluate(INFO);
@@ -96,8 +143,8 @@ const INFO = `(() => {
     // furos: o campo é fotografado vazio e o vídeo digita o valor por cima, na mesma fonte
     if (furos) m.furos = await page.evaluate((sels) => sels.map((s) => { const i = document.querySelector(s); const b = i.getBoundingClientRect(); const cs = getComputedStyle(i);
       return { sel: s, valor: i.value, x: b.x + parseFloat(cs.paddingLeft), y: b.y, w: b.width, h: b.height, font: `${cs.fontWeight} ${cs.fontSize} 'Geist Mono'`, fam: cs.fontFamily, px: parseFloat(cs.fontSize), peso: cs.fontWeight, cor: cs.color }; }), furos);
-    if (furos) await page.evaluate((sels) => sels.forEach((s) => { document.querySelector(s).style.color = 'transparent'; document.querySelector(s).style.caretColor = 'transparent'; }), furos);
     if (!janela) {
+      if (EL[id]) { if (H > 844) await page.setViewportSize({ width: 390, height: H }); m.elementos = await page.evaluate((ex) => Object.fromEntries(Object.entries(ex).map(([k, e]) => [k, info(eval(e))])), EL[id]); if (H > 844) await page.setViewportSize({ width: 390, height: 844 }); }
       await page.screenshot({ path: path.join(OUT, id + '.jpg'), type: 'jpeg', quality: 93, fullPage: true });
     } else {
       // estado completo (referência), a janela sozinha e o fundo sem ela
@@ -109,6 +156,22 @@ const INFO = `(() => {
         if (fundo !== j) fundo.setAttribute('data-escuro', '1');
         return { x: b.x, y: b.y, w: b.width, h: b.height, escuro: fundo !== j ? getComputedStyle(fundo).backgroundColor : null, raio: getComputedStyle(j).borderTopLeftRadius }; }, janela);
       m.janela = { ...jb, png: `telas/${id}-janela.png` };
+      if (DIG[id]) {
+        const [sel, valor] = DIG[id]; m.digita = { sel, valor, quadros: [] };
+        await page.evaluate(({ sel }) => { const i = document.querySelector(sel); i.style.color = ''; i.style.caretColor = ''; }, { sel });
+        for (let k = 0; k <= valor.length + 1; k++) {
+          const txt = valor.slice(0, Math.min(k, valor.length)), cursor = k <= valor.length;
+          await page.evaluate(({ sel, txt, cursor }) => { const i = document.querySelector(sel); i.value = txt; document.querySelectorAll('.cursor-digitacao').forEach((c) => c.remove());
+            if (!cursor) return; const cs = getComputedStyle(i), b = i.getBoundingClientRect(); const cv = document.createElement('canvas').getContext('2d'); cv.font = `${cs.fontWeight} ${cs.fontSize} ${cs.fontFamily}`;
+            const w = cv.measureText(txt).width, fs = parseFloat(cs.fontSize); const c = document.createElement('div'); c.className = 'cursor-digitacao';
+            Object.assign(c.style, { position: 'fixed', left: (b.x + parseFloat(cs.paddingLeft) + w + 1) + 'px', top: (b.y + (b.height - fs * 1.2) / 2) + 'px', width: '2px', height: (fs * 1.2) + 'px', background: '#0A0A0A', zIndex: 99999 }); document.body.appendChild(c); }, { sel, txt, cursor });
+          const f = `telas/${id}-dig-${String(k).padStart(2, '0')}.jpg`;
+          await page.screenshot({ path: path.join(ROOT, 'src', f), type: 'jpeg', quality: 90 });
+          m.digita.quadros.push({ k, txt, cursor, img: f });
+        }
+        await page.evaluate(({ sel, valor }) => { document.querySelectorAll('.cursor-digitacao').forEach((c) => c.remove()); document.querySelector(sel).value = valor; }, { sel, valor });
+      }
+      if (EL[id]) m.elementos = await page.evaluate((ex) => Object.fromEntries(Object.entries(ex).map(([k, e]) => [k, info(eval(e))])), EL[id]);
       await page.screenshot({ path: path.join(OUT, id + '-estado.jpg'), type: 'jpeg', quality: 80, fullPage: true });
       await page.addStyleTag({ content: `html,body{background:transparent!important} body *{visibility:hidden!important} [data-janela], [data-janela] *{visibility:visible!important}` });
       await page.screenshot({ path: path.join(OUT, id + '-janela.png'), omitBackground: true, clip: { x: jb.x, y: jb.y, width: jb.w, height: jb.h } });
