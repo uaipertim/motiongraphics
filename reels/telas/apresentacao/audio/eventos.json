@@ -1,0 +1,478 @@
+{
+ "duracao": 87.6,
+ "E": {
+  "Abertura": 0,
+  "Visão geral": 5,
+  "Calendário": 13,
+  "Nova reserva": 21,
+  "Sinal": 33,
+  "Check-in": 41.3,
+  "Comanda": 50.4,
+  "Check-out": 59.4,
+  "Caixa": 71.9,
+  "Final": 80.6,
+  "fim": 87.6
+ },
+ "eventos": [
+  {
+   "t": -1,
+   "tipo": "troca"
+  },
+  {
+   "t": 2.25,
+   "tipo": "troca"
+  },
+  {
+   "t": 2.25,
+   "tipo": "carregou"
+  },
+  {
+   "t": 5,
+   "tipo": "secao"
+  },
+  {
+   "t": 5.65,
+   "tipo": "conta",
+   "dur": 0.7
+  },
+  {
+   "t": 8.2,
+   "tipo": "rotulo"
+  },
+  {
+   "t": 9.95,
+   "tipo": "rola",
+   "dur": 0.5
+  },
+  {
+   "t": 10.6,
+   "tipo": "rotulo"
+  },
+  {
+   "t": 12.3,
+   "tipo": "rola",
+   "dur": 0.29999999999999893
+  },
+  {
+   "t": 12.75,
+   "tipo": "toque"
+  },
+  {
+   "t": 12.95,
+   "tipo": "tela"
+  },
+  {
+   "t": 13,
+   "tipo": "secao"
+  },
+  {
+   "t": 13.9,
+   "tipo": "rotulo"
+  },
+  {
+   "t": 16.15,
+   "tipo": "rotulo"
+  },
+  {
+   "t": 16.6,
+   "tipo": "rotulo"
+  },
+  {
+   "t": 18.65,
+   "tipo": "rotulo"
+  },
+  {
+   "t": 20.85,
+   "tipo": "toque"
+  },
+  {
+   "t": 21,
+   "tipo": "secao"
+  },
+  {
+   "t": 21.05,
+   "tipo": "janela"
+  },
+  {
+   "t": 21.6,
+   "tipo": "toque"
+  },
+  {
+   "t": 21.78,
+   "tipo": "janela_fecha"
+  },
+  {
+   "t": 21.8,
+   "tipo": "troca"
+  },
+  {
+   "t": 21.8,
+   "tipo": "janela"
+  },
+  {
+   "t": 23.25,
+   "tipo": "rotulo"
+  },
+  {
+   "t": 25.3,
+   "tipo": "toque"
+  },
+  {
+   "t": 25.5,
+   "tipo": "passo"
+  },
+  {
+   "t": 25.81,
+   "tipo": "tecla"
+  },
+  {
+   "t": 25.87,
+   "tipo": "tecla"
+  },
+  {
+   "t": 25.93,
+   "tipo": "tecla"
+  },
+  {
+   "t": 25.99,
+   "tipo": "tecla"
+  },
+  {
+   "t": 26.05,
+   "tipo": "tecla"
+  },
+  {
+   "t": 26.11,
+   "tipo": "tecla"
+  },
+  {
+   "t": 26.17,
+   "tipo": "tecla"
+  },
+  {
+   "t": 26.23,
+   "tipo": "tecla"
+  },
+  {
+   "t": 26.29,
+   "tipo": "tecla"
+  },
+  {
+   "t": 26.35,
+   "tipo": "tecla"
+  },
+  {
+   "t": 26.41,
+   "tipo": "tecla"
+  },
+  {
+   "t": 26.47,
+   "tipo": "tecla"
+  },
+  {
+   "t": 26.53,
+   "tipo": "tecla"
+  },
+  {
+   "t": 26.59,
+   "tipo": "tecla"
+  },
+  {
+   "t": 26.85,
+   "tipo": "toque"
+  },
+  {
+   "t": 27.05,
+   "tipo": "passo"
+  },
+  {
+   "t": 27.85,
+   "tipo": "toque"
+  },
+  {
+   "t": 28.05,
+   "tipo": "passo"
+  },
+  {
+   "t": 28.85,
+   "tipo": "toque"
+  },
+  {
+   "t": 29.05,
+   "tipo": "passo"
+  },
+  {
+   "t": 29.85,
+   "tipo": "rotulo"
+  },
+  {
+   "t": 32.55,
+   "tipo": "toque"
+  },
+  {
+   "t": 32.85,
+   "tipo": "janela_fecha"
+  },
+  {
+   "t": 32.95,
+   "tipo": "tela"
+  },
+  {
+   "t": 33,
+   "tipo": "secao"
+  },
+  {
+   "t": 35.85,
+   "tipo": "toque"
+  },
+  {
+   "t": 36.05,
+   "tipo": "janela"
+  },
+  {
+   "t": 36.56,
+   "tipo": "tecla"
+  },
+  {
+   "t": 36.67,
+   "tipo": "tecla"
+  },
+  {
+   "t": 36.78,
+   "tipo": "tecla"
+  },
+  {
+   "t": 36.89,
+   "tipo": "tecla"
+  },
+  {
+   "t": 37,
+   "tipo": "tecla"
+  },
+  {
+   "t": 37.11,
+   "tipo": "tecla"
+  },
+  {
+   "t": 39.51,
+   "tipo": "rotulo"
+  },
+  {
+   "t": 39.61,
+   "tipo": "conta",
+   "dur": 0.7
+  },
+  {
+   "t": 41.25,
+   "tipo": "janela_fecha"
+  },
+  {
+   "t": 41.3,
+   "tipo": "secao"
+  },
+  {
+   "t": 41.3,
+   "tipo": "tela"
+  },
+  {
+   "t": 41.6,
+   "tipo": "janela"
+  },
+  {
+   "t": 42.35,
+   "tipo": "rotulo"
+  },
+  {
+   "t": 44.75,
+   "tipo": "toque"
+  },
+  {
+   "t": 44.95,
+   "tipo": "passo"
+  },
+  {
+   "t": 45.6,
+   "tipo": "rotulo"
+  },
+  {
+   "t": 47.45,
+   "tipo": "janela_fecha"
+  },
+  {
+   "t": 47.5,
+   "tipo": "tela"
+  },
+  {
+   "t": 48.65,
+   "tipo": "rotulo"
+  },
+  {
+   "t": 50.4,
+   "tipo": "secao"
+  },
+  {
+   "t": 50.45,
+   "tipo": "tela"
+  },
+  {
+   "t": 51.45,
+   "tipo": "conta",
+   "dur": 0.7
+  },
+  {
+   "t": 53.55,
+   "tipo": "toque"
+  },
+  {
+   "t": 53.75,
+   "tipo": "janela"
+  },
+  {
+   "t": 56.55,
+   "tipo": "toque"
+  },
+  {
+   "t": 56.75,
+   "tipo": "janela_fecha"
+  },
+  {
+   "t": 56.8,
+   "tipo": "troca"
+  },
+  {
+   "t": 57.5,
+   "tipo": "rotulo"
+  },
+  {
+   "t": 57.6,
+   "tipo": "conta",
+   "dur": 0.6
+  },
+  {
+   "t": 59.4,
+   "tipo": "secao"
+  },
+  {
+   "t": 59.45,
+   "tipo": "tela"
+  },
+  {
+   "t": 60.3,
+   "tipo": "rotulo"
+  },
+  {
+   "t": 60.4,
+   "tipo": "cadeado"
+  },
+  {
+   "t": 62.55,
+   "tipo": "toque"
+  },
+  {
+   "t": 62.75,
+   "tipo": "janela"
+  },
+  {
+   "t": 65.55,
+   "tipo": "toque"
+  },
+  {
+   "t": 65.75,
+   "tipo": "janela_fecha"
+  },
+  {
+   "t": 65.8,
+   "tipo": "troca"
+  },
+  {
+   "t": 65.95,
+   "tipo": "cadeado_abre"
+  },
+  {
+   "t": 66.65,
+   "tipo": "conta",
+   "dur": 0.6
+  },
+  {
+   "t": 68.45,
+   "tipo": "toque"
+  },
+  {
+   "t": 68.65,
+   "tipo": "janela"
+  },
+  {
+   "t": 69.1,
+   "tipo": "toque"
+  },
+  {
+   "t": 69.3,
+   "tipo": "janela_fecha"
+  },
+  {
+   "t": 69.35,
+   "tipo": "tela"
+  },
+  {
+   "t": 71.9,
+   "tipo": "secao"
+  },
+  {
+   "t": 71.95,
+   "tipo": "tela"
+  },
+  {
+   "t": 74.75,
+   "tipo": "toque"
+  },
+  {
+   "t": 74.95,
+   "tipo": "janela"
+  },
+  {
+   "t": 75.7,
+   "tipo": "rotulo"
+  },
+  {
+   "t": 77.85,
+   "tipo": "toque"
+  },
+  {
+   "t": 78.05,
+   "tipo": "janela_fecha"
+  },
+  {
+   "t": 78.1,
+   "tipo": "troca"
+  },
+  {
+   "t": 78.15,
+   "tipo": "gaveta"
+  },
+  {
+   "t": 78.95,
+   "tipo": "conta",
+   "dur": 0.5
+  },
+  {
+   "t": 81,
+   "tipo": "fila"
+  },
+  {
+   "t": 82.3,
+   "tipo": "troca"
+  },
+  {
+   "t": 82.9,
+   "tipo": "texto"
+  },
+  {
+   "t": 84.3,
+   "tipo": "marca"
+  },
+  {
+   "t": 84.8,
+   "tipo": "pilula"
+  }
+ ]
+}

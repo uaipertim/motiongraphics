@@ -1,0 +1,78 @@
+APRESENTAÇÃO FAZLO HOSPEDA (telas inteiras) — revisão técnica
+output/apresentacao-hospeda.mp4
+
+FORMATO E SOM
+OK     vídeo h264 yuv420p 1080x1920 60 fps
+OK     áudio aac 48000 Hz · sem voz (trilha e efeitos sintetizados)
+OK     duração 87.60 s (alvo 80–90 s)
+OK     loudness integrado -14.0 LUFS (alvo −14)
+OK     pico real -3.3 dBTP (limite −1,5)
+
+SEÇÕES
+       Abertura 0.0–5.0 s (5.0 s) · Visão geral 5.0–13.0 s (8.0 s) · Calendário 13.0–21.0 s (8.0 s) · Nova reserva 21.0–33.0 s (12.0 s) · Sinal 33.0–41.3 s (8.3 s) · Check-in 41.3–50.4 s (9.1 s) · Comanda 50.4–59.4 s (9.0 s) · Check-out 59.4–71.9 s (12.5 s) · Caixa 71.9–80.6 s (8.7 s) · Final 80.6–87.6 s (7.0 s)
+
+TELAS INTEIRAS, NADA RECORTADO SOLTO
+OK     25 estados do pacote, sempre a tela inteira dentro do celular (fundo do estado + a janela/folha do próprio estado na posição original): ativas, cal, ci, ci_feito, cmd, cmd_add, cmd_ok, criar, cx, cx_fechado, cx_fechar, encerrar, ficha, gus, nr1, nr2, nr3, nr4, nr6, quitado, receber, recibo, sinal, vg, vg_load
+OK     nenhuma peça recortada: o motor não usa recortes (src/pecas); fora do celular só há a fila do final, com telas inteiras, e a capa com o celular
+OK     18 toques nos botões reais (posição pelos ids/textos do HTML), com onda limão e o botão afundando
+
+LEGIBILIDADE DAS INFORMAÇÕES-CHAVE
+OK     25 informações-chave, cada uma parada e legível ≥ 1,8 s
+OK     em todos os quadros desses momentos, o menor texto da tela na região tem ≥ 40 px e a região está inteira no quadro, acima dos 20% de baixo
+       Recebido hoje R$ 1.525,00: 2.2 s, texto da tela ≥ 109 px (corpo 38 px × zoom 2.00)
+       Hospedados 10 · Saídas 2: 1.9 s, texto da tela ≥ 41 px (corpo 13 px × zoom 2.17)
+       Precisa de atenção · Check-out em atraso: 1.8 s, texto da tela ≥ 41 px (corpo 12.5 px × zoom 2.26)
+       Calendário: Pré-reserva (Gustavo): 1.8 s, texto da tela ≥ 40 px (corpo 11.5 px × zoom 2.45)
+       Calendário: Hospedada (Rafael) · Confirmada (Fernanda): 2.1 s, texto da tela ≥ 40 px (corpo 11.5 px × zoom 2.45)
+       Calendário: Bloqueada (Manutenção): 1.8 s, texto da tela ≥ 40 px (corpo 11.5 px × zoom 2.45)
+       Livres no período · 5 de 10: 1.9 s, texto da tela ≥ 42 px (corpo 13 px × zoom 2.25)
+       Resumo com sinal: total R$ 972,00 · sinal R$ 324,00 · saldo R$ 648,00: 2.4 s, texto da tela ≥ 42 px (corpo 14 px × zoom 2.10)
+       Gustavo Ribeiro · Pré-reserva · saldo R$ 1.050,00: 1.9 s, texto da tela ≥ 41 px (corpo 12.5 px × zoom 2.26)
+       Sinal R$ 315,00: 1.9 s, texto da tela ≥ 52 px (corpo 17 px × zoom 2.15)
+       Depois: reserva confirmada · saldo R$ 735,00: 1.8 s, texto da tela ≥ 44 px (corpo 13.5 px × zoom 2.25)
+       Conferência: Fernanda Lima · telefone · Chalé Ipê · 17/10 → 20/10: 2.0 s, texto da tela ≥ 41 px (corpo 12.5 px × zoom 2.26)
+       Check-in feito · recibo: entrada 17/10 14:05, saída prevista 20/10 12:00: 1.9 s, texto da tela ≥ 41 px (corpo 13 px × zoom 2.17)
+       Hospedagens · Hospedada: 1.9 s, texto da tela ≥ 41 px (corpo 12.5 px × zoom 2.26)
+       Comanda: total R$ 287,00: 2.0 s, texto da tela ≥ 43 px (corpo 14.5 px × zoom 2.05)
+       Lançar consumo: Água sem gás 2: 1.8 s, texto da tela ≥ 40 px (corpo 14.5 px × zoom 1.93)
+       Lançar consumo: Caipirinha 1: 1.8 s, texto da tela ≥ 40 px (corpo 14.5 px × zoom 1.93)
+       Produto adicionado: total atualizado R$ 321,00: 2.0 s, texto da tela ≥ 43 px (corpo 14.5 px × zoom 2.05)
+       Saldo em aberto R$ 412,00 · Fazer check-out bloqueado: 2.0 s, texto da tela ≥ 43 px (corpo 15 px × zoom 2.00)
+       Receber R$ 412,00 no PIX: 1.8 s, texto da tela ≥ 40 px (corpo 13 px × zoom 2.15)
+       Saldo R$ 0,00 · Quitado · check-out liberado: 1.8 s, texto da tela ≥ 41 px (corpo 12.5 px × zoom 2.26)
+       Recibo da estadia: 1.9 s, texto da tela ≥ 41 px (corpo 12.5 px × zoom 2.26)
+       Recebido por forma de pagamento R$ 1.525,00: 1.8 s, texto da tela ≥ 41 px (corpo 14 px × zoom 2.02)
+       Diferença: falta R$ 15,00 (valor contado R$ 270,00): 1.9 s, texto da tela ≥ 41 px (corpo 13.5 px × zoom 2.09)
+       Caixa fechado · Diferença: falta R$ 15,00: 1.8 s, texto da tela ≥ 41 px (corpo 14 px × zoom 2.02)
+
+RÓTULOS, VALORES, CHIP E TEXTOS
+OK     rótulos com ≥ 52 px (54 px, Inter Display 800)
+OK     rótulos com no máximo 5 palavras: 10 hospedados | Check-out em atraso | Pré-reserva | Hospedada | Confirmada | Bloqueada | Só o que está livre | Resumo com sinal | Saldo calculado | Confere com o hóspede | Recibo de check-in | Hospedada | Consumo na conta | Só libera com saldo zero. | Mostra se o dinheiro bateu.
+OK     nenhum rótulo, valor ou chip cobre a região que está sendo lida
+OK     respiro ≥ 56 px da borda (rótulos, valores, chip)
+OK     respiro ≥ 56 px entre rótulos
+OK     áreas seguras: rótulos, valores, chip, textos, marca e pílula fora dos 20% de baixo (y > 1536) e da coluna de botões (x > 985, y > 1060)
+       o celular (contexto) passa da área segura quando a câmera aproxima; as regiões lidas nesses momentos ficam acima de y 1536 (item anterior)
+
+VALORES (LEIA-ME e telas do pacote)
+OK     Visão geral: recebido hoje R$ 1.525,00; 10 hospedados; 2 saídas; check-out em atraso (Lucas Martins, Chalé de Pedra 06)
+OK     Nova reserva (Bruno Teixeira, Quarto Bromélia): livres 5 de 10; resumo total R$ 972,00, sinal R$ 324,00, saldo R$ 648,00
+OK     Sinal (Gustavo Ribeiro): pré-reserva R$ 1.050,00, sinal R$ 315,00 → saldo R$ 735,00
+OK     Check-in (Fernanda Lima, Chalé Ipê, 17/10 → 20/10): recibo com entrada 17/10 14:05 e saída prevista 20/10 12:00
+OK     Comanda (Mariana Costa): total R$ 287,00 → lançar consumo de R$ 34,00 → total R$ 321,00 (o estado "produto adicionado" do pacote)
+OK     Check-out (Mariana Costa): saldo R$ 412,00 com "Fazer check-out" bloqueado → PIX → R$ 0,00 quitado → recibo da estadia R$ 2.570,00
+OK     Caixa: recebido por forma R$ 1.525,00; contado R$ 270,00 × esperado R$ 285,00 → falta R$ 15,00; caixa fechado
+OK     a linha do diário com o sinal do Gustavo fica abaixo da área visível do caixa (y 1262 > 844) e a tela do caixa nunca rola
+OK     nenhuma rolagem no caixa
+
+REGRAS DE CONTEÚDO E VISUAL
+OK     sem Day Use, Booking ou Airbnb (textos visíveis das telas usadas e da animação)
+OK     sem "versão nova" nem V2
+OK     nome da pousada com inicial maiúscula
+OK     calendário só na visão de 14 dias (02-calendario, "14 dias" selecionado; a troca de visão não aparece)
+OK     nada do visual do v2: sem anel de etapas, sem órbita, sem a logo circular nem a composição final dele; final próprio (fila de telas atrás do celular, volta à Visão geral, marca e pílula)
+
+CAPA
+OK     capa na regra (reels/tools/revisao_capa.py), bloco centrado em y = 960.4
+
+RESULTADO: aprovado

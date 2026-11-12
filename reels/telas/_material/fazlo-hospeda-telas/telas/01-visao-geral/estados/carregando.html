@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=390">
+<title>FAZLO Hospeda · Visão geral · carregando</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700;800&family=Geist+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+html,body{margin:0;padding:0}
+body{background:#F4F4F0;-webkit-font-smoothing:antialiased}
+#tela{width:390px;position:relative}
+</style>
+</head>
+<body>
+<!-- Tela: Visão geral · carregando. Dados fictícios. Blocos com id/classe para animação: .card, .status-chip, .valor, .btn, .modal, .toast, .aviso, .linha, .item-comanda, #cabecalho, #barra-inferior, #menu-lateral. -->
+<div id="tela" data-tela="telas/01-visao-geral/estados" data-estado="carregando">
+<div style="position: relative; width: 390px; height: 844px; min-height: 844px; overflow: hidden; box-sizing: border-box; background: #F4F4F0; font-family: 'Geist', ui-sans-serif, system-ui, sans-serif; color: #0A0A0A; display: flex; flex-direction: column">
+
+
+
+<header style="height: 72px; flex-shrink: 0; box-sizing: border-box; padding: 0 16px 0 20px; background: #FFFFFF; border-bottom: 1px solid #E7E7E2; display: flex; align-items: center; justify-content: space-between" id="cabecalho" data-componente="cabecalho">
+<div style="display: flex; align-items: center; gap: 8px">
+<span style="font-size: 20px; font-weight: 800; letter-spacing: -0.02em">FAZLO</span>
+<span style="background: #AFFA27; color: #0A0A0A; font-size: 12px; font-weight: 600; padding: 3px 9px; border-radius: 999px" class="status-chip" id="status-chip-hospeda" data-componente="chip-hospeda">Hospeda</span>
+</div>
+<div style="display: flex; align-items: center; gap: 6px">
+<button aria-label="Notificações" style="position: relative; width: 44px; height: 44px; padding: 0; border: 0; background: transparent; color: #0A0A0A; display: flex; align-items: center; justify-content: center" id="btn-notificacoes" class="btn"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 16v-5a6 6 0 1 1 12 0v5l1.5 2h-15z"></path><path d="M10 20.5a2 2 0 0 0 4 0"></path></svg><span style="position: absolute; top: 9px; right: 10px; width: 8px; height: 8px; border-radius: 999px; background: #E8A317; border: 2px solid #FFFFFF"></span></button>
+<span style="width: 40px; height: 40px; border-radius: 999px; background: #0A0A0A; color: #AFFA27; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700">AD</span>
+</div>
+</header>
+
+<main style="box-sizing: border-box; padding: 20px 20px 112px; display: flex; flex-direction: column">
+
+
+
+<div style="display: flex; flex-direction: column; gap: 4px">
+<span style="font-size: 14px; color: #5E5E5A">Sexta-feira, 16 de outubro</span>
+<h1 style="margin: 0; font-size: 28px; line-height: 1.2; font-weight: 700; letter-spacing: -0.025em" id="titulo-hoje-na-pousada" class="titulo">Hoje na pousada</h1>
+</div>
+
+
+
+
+<div aria-busy="true" style="margin-top: 16px; display: flex; flex-direction: column">
+<div role="status" style="display: flex; align-items: center; gap: 8px; font-size: 13px; color: #5E5E5A; padding-bottom: 12px" id="aviso-carregando-o-dia-na-pousada" class="aviso" data-componente="aviso-carregando-o-dia-na-pousada"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M12 3a9 9 0 1 0 9 9" opacity="0.9"></path></svg>Carregando o dia na pousada…</div>
+<div style="background: #0A0A0A; border-radius: 22px; padding: 20px; display: flex; flex-direction: column">
+<div style="display: flex; align-items: center; justify-content: space-between"><span style="width: 104px; height: 12px; border-radius: 6px; background: #2A2A27"></span><span style="width: 150px; height: 28px; border-radius: 999px; background: #1F1F1D"></span></div>
+<span style="margin-top: 20px; width: 230px; height: 36px; border-radius: 10px; background: #2A2A27"></span>
+<span style="margin-top: 20px; height: 5px; border-radius: 999px; background: #1F1F1D"></span>
+<div style="margin-top: 12px; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px"><span style="height: 28px; border-radius: 8px; background: #1F1F1D"></span><span style="height: 28px; border-radius: 8px; background: #1F1F1D"></span><span style="height: 28px; border-radius: 8px; background: #1F1F1D"></span><span style="height: 28px; border-radius: 8px; background: #1F1F1D"></span></div>
+<div style="margin-top: 16px; padding-top: 14px; border-top: 1px solid #2A2A27; display: flex; justify-content: space-between"><span style="width: 96px; height: 12px; border-radius: 6px; background: #2A2A27"></span><span style="width: 120px; height: 12px; border-radius: 6px; background: #2A2A27"></span></div>
+</div>
+<div style="margin-top: 12px; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px">
+<div style="height: 104px; box-sizing: border-box; background: #FFFFFF; border: 1px solid #E7E7E2; border-radius: 18px; padding: 14px; display: flex; flex-direction: column; gap: 10px"><span style="width: 70%; height: 10px; border-radius: 5px; background: #EFEFEA"></span><span style="width: 40%; height: 26px; border-radius: 8px; background: #EFEFEA"></span><span style="width: 55%; height: 10px; border-radius: 5px; background: #EFEFEA"></span></div>
+<div style="height: 104px; box-sizing: border-box; background: #FFFFFF; border: 1px solid #E7E7E2; border-radius: 18px; padding: 14px; display: flex; flex-direction: column; gap: 10px"><span style="width: 70%; height: 10px; border-radius: 5px; background: #EFEFEA"></span><span style="width: 40%; height: 26px; border-radius: 8px; background: #EFEFEA"></span><span style="width: 55%; height: 10px; border-radius: 5px; background: #EFEFEA"></span></div>
+<div style="height: 104px; box-sizing: border-box; background: #FFFFFF; border: 1px solid #E7E7E2; border-radius: 18px; padding: 14px; display: flex; flex-direction: column; gap: 10px"><span style="width: 70%; height: 10px; border-radius: 5px; background: #EFEFEA"></span><span style="width: 40%; height: 26px; border-radius: 8px; background: #EFEFEA"></span><span style="width: 55%; height: 10px; border-radius: 5px; background: #EFEFEA"></span></div>
+</div>
+<span style="margin-top: 28px; width: 150px; height: 14px; border-radius: 7px; background: #E4E4DE"></span>
+<div style="margin-top: 14px; background: #FFFFFF; border: 1px solid #E7E7E2; border-radius: 18px; display: flex; flex-direction: column" class="card" id="card-cartao" data-componente="card-cartao">
+<div style="display: flex; align-items: center; gap: 12px; padding: 14px 16px"><span style="width: 40px; height: 40px; border-radius: 999px; background: #EFEFEA"></span><div style="flex: 1; display: flex; flex-direction: column; gap: 8px"><span style="width: 45%; height: 12px; border-radius: 6px; background: #EFEFEA"></span><span style="width: 30%; height: 10px; border-radius: 5px; background: #F4F4F0"></span></div><span style="width: 92px; height: 34px; border-radius: 999px; background: #F4F4F0"></span></div>
+<div style="display: flex; align-items: center; gap: 12px; padding: 14px 16px; border-top: 1px solid #EFEFEA"><span style="width: 40px; height: 40px; border-radius: 999px; background: #EFEFEA"></span><div style="flex: 1; display: flex; flex-direction: column; gap: 8px"><span style="width: 40%; height: 12px; border-radius: 6px; background: #EFEFEA"></span><span style="width: 34%; height: 10px; border-radius: 5px; background: #F4F4F0"></span></div><span style="width: 92px; height: 34px; border-radius: 999px; background: #F4F4F0"></span></div>
+</div>
+</div>
+
+
+</main>
+
+<nav aria-label="Navegação" style="position: absolute; left: 0; right: 0; bottom: 0; height: 84px; box-sizing: border-box; padding: 8px 4px 14px; background: #FFFFFF; border-top: 1px solid #E7E7E2; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr))" id="barra-inferior" data-componente="barra-inferior">
+<a href="#" aria-current="page" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; color: #0A0A0A; font-size: 12px; font-weight: 600; text-decoration: none"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none"><path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8"></path> <path d="M3 10a2 2 0 0 1 .709-1.528l7-6a2 2 0 0 1 2.582 0l7 6A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path></svg>Início</a>
+<a href="#" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; color: #5E5E5A; font-size: 12px; font-weight: 500; text-decoration: none"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none"><path d="M8 2v3"></path> <path d="M16 2v3"></path> <rect x="3" y="3" width="18" height="18" rx="2"></rect> <path d="M3 9h18"></path></svg>Calendário</a>
+<div style="display: flex; justify-content: center">
+<button aria-label="Nova reserva" style="margin-top: -30px; width: 56px; height: 56px; padding: 0; border: 0; border-radius: 999px; background: #AFFA27; color: #0A0A0A; box-shadow: 0 0 0 6px #F4F4F0; display: flex; align-items: center; justify-content: center" id="btn-nova-reserva" class="btn"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12h14"></path></svg></button>
+
+</div>
+<a href="#" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; color: #5E5E5A; font-size: 12px; font-weight: 500; text-decoration: none"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none"><path d="M13 16H8"></path> <path d="M14 8H8"></path> <path d="M16 12H8"></path> <path d="M4 3a1 1 0 0 1 1-1 1.3 1.3 0 0 1 .7.2l.933.6a1.3 1.3 0 0 0 1.4 0l.934-.6a1.3 1.3 0 0 1 1.4 0l.933.6a1.3 1.3 0 0 0 1.4 0l.933-.6a1.3 1.3 0 0 1 1.4 0l.934.6a1.3 1.3 0 0 0 1.4 0l.933-.6A1.3 1.3 0 0 1 19 2a1 1 0 0 1 1 1v18a1 1 0 0 1-1 1 1.3 1.3 0 0 1-.7-.2l-.933-.6a1.3 1.3 0 0 0-1.4 0l-.934.6a1.3 1.3 0 0 1-1.4 0l-.933-.6a1.3 1.3 0 0 0-1.4 0l-.933.6a1.3 1.3 0 0 1-1.4 0l-.934-.6a1.3 1.3 0 0 0-1.4 0l-.933.6a1.3 1.3 0 0 1-.7.2 1 1 0 0 1-1-1z"></path></svg>Comandas</a>
+<a href="#" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; color: #5E5E5A; font-size: 12px; font-weight: 500; text-decoration: none"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none"><path d="M4 5h16"></path> <path d="M4 12h16"></path> <path d="M4 19h16"></path></svg>Mais</a>
+</nav>
+
+
+
+
+
+</div>
+</div>
+</body>
+</html>

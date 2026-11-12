@@ -1,0 +1,24 @@
+#!/usr/bin/env python3
+"""Storyboard: um quadro por etapa, tirado do MP4 final.   python3 scripts/storyboard.py -> output/storyboard.jpg"""
+import os
+import subprocess
+from PIL import Image, ImageDraw, ImageFont
+
+ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+MP4 = os.path.join(ROOT, 'output', 'apresentacao-hospeda.mp4')
+QUADROS = [(3.0, 'ABERTURA'), (6.4, 'VISÃO GERAL'), (16.8, 'CALENDÁRIO'), (24.0, 'NOVA RESERVA'), (40.8, 'SINAL'), (46.6, 'CHECK-IN'), (58.4, 'COMANDA'), (67.4, 'CHECK-OUT'), (76.6, 'CAIXA'), (86.5, 'FINAL')]
+W, H = 360, 640
+font = ImageFont.truetype(os.path.join(ROOT, 'src', 'fonts', 'JetBrainsMonoNL-ExtraBold.ttf'), 26)
+sheet = Image.new('RGB', (5 * W + 6 * 16, 2 * (H + 60) + 16), (10, 10, 10))
+d = ImageDraw.Draw(sheet)
+for i, (t, nome) in enumerate(QUADROS):
+    png = subprocess.run(['ffmpeg', '-v', 'error', '-ss', str(t), '-i', MP4, '-frames:v', '1', '-f', 'image2pipe', '-c:v', 'png', '-'], capture_output=True).stdout
+    tmp = os.path.join(ROOT, 'output', '.sb.png')
+    open(tmp, 'wb').write(png)
+    im = Image.open(tmp).convert('RGB').resize((W, H), Image.LANCZOS)
+    x, y = 16 + (i % 5) * (W + 16), 16 + (i // 5) * (H + 60)
+    sheet.paste(im, (x, y))
+    d.text((x, y + H + 12), f'{t:05.2f}s  {nome}', font=font, fill=(175, 250, 39))
+    os.remove(tmp)
+sheet.save(os.path.join(ROOT, 'output', 'storyboard.jpg'), quality=90)
+print('ok -> output/storyboard.jpg')

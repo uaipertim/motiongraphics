@@ -1,4 +1,4 @@
-# Pacote completo extraído do .zip (fazlo-hospeda-telas.zip). Só vai para o git o que os reels "um-dia-inteiro" e "parte-1-chegada" usam.
+# Pacote completo extraído do .zip (fazlo-hospeda-telas.zip). Só vai para o git o que os reels "um-dia-inteiro" e "parte-1-chegada" usam (e a apresentação).
 *
 !*/
 !.gitignore
@@ -42,3 +42,16 @@
 !fazlo-hospeda-telas/marca/icones/caixa.svg
 !fazlo-hospeda-telas/marca/icones/cadeado.svg
 !fazlo-hospeda-telas/telas/02-calendario/tela.html
+!fazlo-hospeda-telas/telas/01-visao-geral/estados/carregando.html
+!fazlo-hospeda-telas/telas/01-visao-geral/estados/menu-criar.html
+!fazlo-hospeda-telas/telas/03-nova-reserva/estados/02-hospede.html
+!fazlo-hospeda-telas/telas/03-nova-reserva/estados/03-valores.html
+!fazlo-hospeda-telas/telas/03-nova-reserva/estados/04-sinal.html
+!fazlo-hospeda-telas/telas/03-nova-reserva/estados/06-resumo-com-sinal.html
+!fazlo-hospeda-telas/telas/08-comanda/estados/03-adicionando-produto.html
+!fazlo-hospeda-telas/telas/08-comanda/estados/04-produto-adicionado.html
+!fazlo-hospeda-telas/telas/09-check-out/estados/02-recebimento.html
+!fazlo-hospeda-telas/telas/09-check-out/estados/03-saldo-quitado.html
+!fazlo-hospeda-telas/telas/09-check-out/estados/04-encerrar-check-out.html
+!fazlo-hospeda-telas/telas/09-check-out/estados/06-recibo-da-estadia.html
+!fazlo-hospeda-telas/telas/10-caixa/estados/07-fechado-resumo.html
