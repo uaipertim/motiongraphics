@@ -1,4 +1,4 @@
-# Pacote completo extraído do .zip (fazlo-hospeda-telas.zip). Só vai para o git o que o reel "um-dia-inteiro" usa.
+# Pacote completo extraído do .zip (fazlo-hospeda-telas.zip). Só vai para o git o que os reels "um-dia-inteiro" e "parte-1-chegada" usam.
 *
 !*/
 !.gitignore
@@ -41,3 +41,4 @@
 !fazlo-hospeda-telas/marca/icones/saida.svg
 !fazlo-hospeda-telas/marca/icones/caixa.svg
 !fazlo-hospeda-telas/marca/icones/cadeado.svg
+!fazlo-hospeda-telas/telas/02-calendario/tela.html

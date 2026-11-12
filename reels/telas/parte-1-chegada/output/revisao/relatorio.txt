@@ -1,0 +1,74 @@
+PARTE 1 · A CHEGADA — revisão técnica
+output/parte-1-chegada.mp4
+
+FORMATO E SOM
+OK     vídeo h264 yuv420p 1080x1920 60 fps
+OK     áudio aac 48000 Hz 2 canais · sem voz (trilha e efeitos sintetizados)
+OK     duração 59.36 s (pedido: ~55 s)
+OK     loudness integrado -14.0 LUFS (alvo −14)
+OK     pico real -3.7 dBTP (limite −1,5)
+
+ETAPAS
+OK     1 Reserva: 15.3 s (mínimo 14 s)
+OK     2 Sinal: 16.9 s (mínimo 14 s)
+OK     3 Check-in: 18.3 s (mínimo 14 s)
+       Gancho 0.0–4.1 s (4.1 s) · 1 Reserva 4.1–19.4 s (15.3 s) · 2 Sinal 19.4–36.3 s (16.9 s) · 3 Check-in 36.3–54.6 s (18.3 s) · Final 54.6–59.4 s (4.8 s)
+
+RITMO
+OK     no máximo 2 peças na tela ao mesmo tempo (máximo medido: 2, em [4.77, 4.8, 4.83] s)
+OK     cada peça fica parada e legível ≥ 2,5 s depois de terminar de entrar
+       c_btn 2.8s · g_cal 2.9s · c_dados 3.3s · c_recibo 3.3s · r_saida 3.3s · c_feito 3.4s · c_titulo 3.4s · r_entrada 3.4s · r_lista 3.9s · r_livres 4.0s · s_conta 4.0s · s_gustavo 4.1s · r_cal_linha 4.2s · c_fernanda 4.2s · r_cal_full 4.3s · c_hospedagens 4.4s · s_campo 4.5s · s_depois 4.5s · s_gustavo_conf 4.6s · s_titulo 4.6s
+OK     cada valor importante fica legível ≥ 3 s (do fim da contagem/digitação até a saída)
+       Entrada 22/10/2026 3.3s · Saída 25/10/2026 3.2s · Livres no período · 5 de 10 4.0s · Quarto Bromélia R$ 320,00 3.8s · Bruno T. (Quarto Bromélia 22 → 25) 3.2s · Total R$ 1.050,00 · saldo R$ 1.050,00 3.2s · Pré-reserva · sem sinal 4.1s · Sinal R$ 315,00 3.2s · Saldo R$ 735,00 3.7s · Confirmada 3.2s · Fernanda Lima · (35) 98804-7712 · 17/10 → 20/10 · Chalé Ipê 3.2s · Recibo: entrada sábado, 17/10 · 14:05 / saída prevista 20/10, até 12:00 3.2s · Hospedada 3.2s
+OK     respiro entre ideias ≥ 0,4 s (menor: 0.40 s, entre "conferência" e "o toque e o check-in feito"; 10 ideias)
+
+ESPAÇO
+OK     distância entre peças ≥ 56 px (menor: 56 px, r_livres × r_lista)
+OK     margem lateral ≥ 80 px (menor: 80 px, r_lista em 9.80 s)
+OK     conteúdo centrado na altura útil (y 200–1536, centro 868): o centro do conteúdo fica entre y 771 e 867 (tolerância ±120)
+OK     terço de baixo ocupado: o conteúdo sempre desce até pelo menos y 1301 (o terço de baixo começa em y 1091)
+OK     nada nos 20% de baixo (y > 1536), pelas caixas de todos os quadros
+OK     coluna de botões (x > 985, y > 1060) livre, pelas caixas
+OK     pixels do vídeo: 20% de baixo apagado (máx. 0 px acesos num quadro, 4 quadros/s)
+OK     pixels do vídeo: coluna de botões apagada (máx. 0 px acesos num quadro)
+
+TEXTOS
+OK     textos explicativos com no máximo 2 linhas e corpo ≥ 64 px (Inter Display 900, 64 px)
+OK     palavra-chave em limão em cada texto
+       Do pedido de reserva ao hóspede no chalé. | Só aparece o que está livre. | Registrou o sinal, o saldo já fica calculado. | Confere com o hóspede e faz o check-in. | Na Parte 2: da comanda ao caixa.
+OK     em cada etapa o texto entra antes da primeira peça e fica até o fim da etapa
+       1 Reserva: texto 4.25 s, 1ª peça 4.60 s · 2 Sinal: texto 19.53 s, 1ª peça 19.88 s · 3 Check-in: texto 36.42 s, 1ª peça 36.77 s
+
+LEGIBILIDADE
+OK     texto das peças ≥ 40 px no quadro (menor corpo de texto de cada peça × escala), em todos os quadros em que a peça está firme
+       menores corpos: s_conta 40.0 · c_recibo 40.0 · r_lista 40.1 · r_lista_sel 40.1 · c_dados 40.1 · s_gustavo 40.5
+       panorama (o calendário inteiro, para ver as barras e o lugar da barra nova; não é para ler): g_cal, r_cal_full
+OK     um destaque por vez: 12 destaques em sequência
+OK     nenhuma peça cortada pela borda; peças firmes sem desfoque
+
+VISUAL PRÓPRIO (nada do v2)
+OK     sem anel de etapas e sem órbita (o código da animação não tem anel nem órbita)
+OK     final próprio: lista vertical com checks (Reserva · Sinal · Check-in), "Na Parte 2", a marca FAZLO Hospeda do pacote e a pílula; sem a logo circular do v2 nem a composição dele
+OK     sem a tela inundada de limão nem a assinatura do v2
+
+VALORES (conferidos com o LEIA-ME e com as telas do pacote)
+OK     valores que contam = valores das telas: total e saldo R$ 1.050,00 (Gustavo, sem sinal), sinal 315,00, saldo depois R$ 735,00
+OK     período: Entrada 22/10/2026, Saída 25/10/2026 (nova reserva do pacote, Bruno Teixeira, 22/10 → 25/10)
+OK     Livres no período · 5 de 10; Quarto Bromélia R$ 320,00 por diária
+OK     barra "Bruno T." no Quarto Bromélia, de 22 a 25, onde o calendário está livre (Bruna C. sai no dia 21)
+OK     Gustavo Ribeiro (FHZ-UDVKU5): R$ 1.050,00 sem sinal → sinal R$ 315,00 → saldo R$ 735,00, Pré-reserva → Confirmada
+OK     Fernanda Lima: telefone (35) 98804-7712, Chalé Ipê, 17/10 → 20/10 (janela Fazer check-in)
+OK     recibo: entrada sábado, 17/10 · 14:05; saída prevista 20/10, até 12:00
+
+REGRAS DE CONTEÚDO
+OK     sem Day Use, Booking ou Airbnb
+OK     sem "versão nova" nem V2
+OK     nome da pousada com inicial maiúscula
+OK     Sinal só com o Gustavo Ribeiro (sem a Fernanda nesta etapa): s_gustavo, s_conta, s_titulo, s_campo, s_gustavo_conf, s_depois
+OK     sem o aviso de período ocupado nesta parte
+OK     38 peças, todas recortadas dos HTML do pacote (src/pecas.json)
+
+CAPA
+OK     capa na regra (reels/tools/revisao_capa.py), bloco centrado em y = 960.2 (alvo 960)
+
+RESULTADO: aprovado

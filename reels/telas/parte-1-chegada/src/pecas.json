@@ -1,0 +1,2249 @@
+{
+ "g_cal": {
+  "id": "g_cal",
+  "arquivo": "telas/02-calendario/tela.html",
+  "png": "pecas/g_cal.png",
+  "dpr": 5,
+  "w": 350,
+  "h": 540,
+  "src": {
+   "x": 20,
+   "y": 285,
+   "pagina": 390
+  },
+  "minFont": 10.5,
+  "textos": [
+   {
+    "t": "Hoje",
+    "px": 10.5
+   },
+   {
+    "t": "16",
+    "px": 12.5
+   },
+   {
+    "t": "Sáb",
+    "px": 10.5
+   },
+   {
+    "t": "17",
+    "px": 12.5
+   },
+   {
+    "t": "Dom",
+    "px": 10.5
+   },
+   {
+    "t": "18",
+    "px": 12.5
+   },
+   {
+    "t": "Seg",
+    "px": 10.5
+   },
+   {
+    "t": "19",
+    "px": 12.5
+   },
+   {
+    "t": "Ter",
+    "px": 10.5
+   },
+   {
+    "t": "20",
+    "px": 12.5
+   },
+   {
+    "t": "Qua",
+    "px": 10.5
+   },
+   {
+    "t": "21",
+    "px": 12.5
+   },
+   {
+    "t": "Qui",
+    "px": 10.5
+   },
+   {
+    "t": "22",
+    "px": 12.5
+   },
+   {
+    "t": "Chalé",
+    "px": 11
+   },
+   {
+    "t": "Pedra 04",
+    "px": 13
+   },
+   {
+    "t": "Chalé",
+    "px": 11
+   },
+   {
+    "t": "Pedra 05",
+    "px": 13
+   },
+   {
+    "t": "Chalé",
+    "px": 11
+   },
+   {
+    "t": "Pedra 06",
+    "px": 13
+   },
+   {
+    "t": "Chalé",
+    "px": 11
+   },
+   {
+    "t": "Ipê",
+    "px": 13
+   },
+   {
+    "t": "Chalé",
+    "px": 11
+   },
+   {
+    "t": "Jatobá",
+    "px": 13
+   },
+   {
+    "t": "Chalé",
+    "px": 11
+   },
+   {
+    "t": "Manacá",
+    "px": 13
+   },
+   {
+    "t": "Manutenção",
+    "px": 11.5
+   },
+   {
+    "t": "Suíte",
+    "px": 11
+   },
+   {
+    "t": "Mirante",
+    "px": 13
+   },
+   {
+    "t": "Suíte",
+    "px": 11
+   },
+   {
+    "t": "Jardim",
+    "px": 13
+   },
+   {
+    "t": "Quarto",
+    "px": 11
+   },
+   {
+    "t": "Bromélia",
+    "px": 13
+   },
+   {
+    "t": "Quarto",
+    "px": 11
+   },
+   {
+    "t": "Orquídea",
+    "px": 13
+   }
+  ],
+  "holes": [],
+  "bars": [
+   {
+    "texto": "Gustavo",
+    "x": 149.84375,
+    "y": 60,
+    "w": 69.15625,
+    "h": 28,
+    "px": 11.5
+   },
+   {
+    "texto": "Vinícius",
+    "x": 259.5625,
+    "y": 109,
+    "w": 89.4375,
+    "h": 28,
+    "px": 11.5
+   },
+   {
+    "texto": "",
+    "x": 93,
+    "y": 158,
+    "w": 34.5625,
+    "h": 28,
+    "px": 16
+   },
+   {
+    "texto": "",
+    "x": 93,
+    "y": 207,
+    "w": 16.28125,
+    "h": 28,
+    "px": 16
+   },
+   {
+    "texto": "Fernanda",
+    "x": 149.84375,
+    "y": 207,
+    "w": 105.71875,
+    "h": 28,
+    "px": 11.5
+   },
+   {
+    "texto": "Rafael",
+    "x": 93,
+    "y": 256,
+    "w": 126,
+    "h": 28,
+    "px": 11.5
+   },
+   {
+    "texto": "",
+    "x": 332.703125,
+    "y": 256,
+    "w": 16.296875,
+    "h": 28,
+    "px": 16
+   },
+   {
+    "texto": "Mariana",
+    "x": 93,
+    "y": 354,
+    "w": 89.421875,
+    "h": 28,
+    "px": 11.5
+   },
+   {
+    "texto": "Camila",
+    "x": 186.421875,
+    "y": 354,
+    "w": 105.71875,
+    "h": 28,
+    "px": 11.5
+   },
+   {
+    "texto": "",
+    "x": 93,
+    "y": 403,
+    "w": 16.28125,
+    "h": 28,
+    "px": 16
+   },
+   {
+    "texto": "Helena",
+    "x": 93,
+    "y": 452,
+    "w": 52.84375,
+    "h": 28,
+    "px": 11.5
+   },
+   {
+    "texto": "Bruna",
+    "x": 223,
+    "y": 452,
+    "w": 69.140625,
+    "h": 28,
+    "px": 11.5
+   }
+  ],
+  "icones": [
+   {
+    "x": 103.28125,
+    "y": 165,
+    "w": 14,
+    "h": 14
+   },
+   {
+    "x": 138.5625,
+    "y": 312.5,
+    "w": 13,
+    "h": 13
+   }
+  ],
+  "marcas": {},
+  "tile": {
+   "fundo": "rgb(255, 255, 255)",
+   "borda": "1px solid rgb(231, 231, 226)",
+   "r": 18,
+   "sombra": null
+  },
+  "chip": false,
+  "btn": false
+ },
+ "g_bar00": {
+  "id": "g_bar00",
+  "arquivo": "telas/02-calendario/tela.html",
+  "png": "pecas/g_bar00.png",
+  "dpr": 5,
+  "w": 69.25,
+  "h": 28,
+  "src": {
+   "x": 169.75,
+   "y": 345,
+   "pagina": 390
+  },
+  "minFont": 11.5,
+  "textos": [
+   {
+    "t": "Gustavo",
+    "px": 11.5
+   }
+  ],
+  "holes": [],
+  "bars": [],
+  "icones": [],
+  "marcas": {},
+  "tile": {
+   "fundo": null,
+   "borda": null,
+   "r": 0
+  },
+  "chip": false,
+  "btn": false,
+  "rel": {
+   "x": 149.75,
+   "y": 60
+  }
+ },
+ "g_bar01": {
+  "id": "g_bar01",
+  "arquivo": "telas/02-calendario/tela.html",
+  "png": "pecas/g_bar01.png",
+  "dpr": 5,
+  "w": 89.5,
+  "h": 28,
+  "src": {
+   "x": 279.5,
+   "y": 394,
+   "pagina": 390
+  },
+  "minFont": 11.5,
+  "textos": [
+   {
+    "t": "Vinícius",
+    "px": 11.5
+   }
+  ],
+  "holes": [],
+  "bars": [],
+  "icones": [],
+  "marcas": {},
+  "tile": {
+   "fundo": null,
+   "borda": null,
+   "r": 0
+  },
+  "chip": false,
+  "btn": false,
+  "rel": {
+   "x": 259.5,
+   "y": 109
+  }
+ },
+ "g_bar02": {
+  "id": "g_bar02",
+  "arquivo": "telas/02-calendario/tela.html",
+  "png": "pecas/g_bar02.png",
+  "dpr": 5,
+  "w": 34.5,
+  "h": 28,
+  "src": {
+   "x": 113,
+   "y": 443,
+   "pagina": 390
+  },
+  "minFont": null,
+  "textos": [],
+  "holes": [],
+  "bars": [],
+  "icones": [
+   {
+    "x": 10.28125,
+    "y": 7,
+    "w": 14,
+    "h": 14
+   }
+  ],
+  "marcas": {},
+  "tile": {
+   "fundo": null,
+   "borda": null,
+   "r": 0
+  },
+  "chip": false,
+  "btn": false,
+  "rel": {
+   "x": 93,
+   "y": 158
+  }
+ },
+ "g_bar03": {
+  "id": "g_bar03",
+  "arquivo": "telas/02-calendario/tela.html",
+  "png": "pecas/g_bar03.png",
+  "dpr": 5,
+  "w": 16.25,
+  "h": 28,
+  "src": {
+   "x": 113,
+   "y": 492,
+   "pagina": 390
+  },
+  "minFont": null,
+  "textos": [],
+  "holes": [],
+  "bars": [],
+  "icones": [],
+  "marcas": {},
+  "tile": {
+   "fundo": null,
+   "borda": null,
+   "r": 0
+  },
+  "chip": false,
+  "btn": false,
+  "rel": {
+   "x": 93,
+   "y": 207
+  }
+ },
+ "g_bar04": {
+  "id": "g_bar04",
+  "arquivo": "telas/02-calendario/tela.html",
+  "png": "pecas/g_bar04.png",
+  "dpr": 5,
+  "w": 105.75,
+  "h": 28,
+  "src": {
+   "x": 169.75,
+   "y": 492,
+   "pagina": 390
+  },
+  "minFont": 11.5,
+  "textos": [
+   {
+    "t": "Fernanda",
+    "px": 11.5
+   }
+  ],
+  "holes": [],
+  "bars": [],
+  "icones": [],
+  "marcas": {},
+  "tile": {
+   "fundo": null,
+   "borda": null,
+   "r": 0
+  },
+  "chip": false,
+  "btn": false,
+  "rel": {
+   "x": 149.75,
+   "y": 207
+  }
+ },
+ "g_bar05": {
+  "id": "g_bar05",
+  "arquivo": "telas/02-calendario/tela.html",
+  "png": "pecas/g_bar05.png",
+  "dpr": 5,
+  "w": 126,
+  "h": 28,
+  "src": {
+   "x": 113,
+   "y": 541,
+   "pagina": 390
+  },
+  "minFont": 11.5,
+  "textos": [
+   {
+    "t": "Rafael",
+    "px": 11.5
+   }
+  ],
+  "holes": [],
+  "bars": [],
+  "icones": [],
+  "marcas": {},
+  "tile": {
+   "fundo": null,
+   "borda": null,
+   "r": 0
+  },
+  "chip": false,
+  "btn": false,
+  "rel": {
+   "x": 93,
+   "y": 256
+  }
+ },
+ "g_bar06": {
+  "id": "g_bar06",
+  "arquivo": "telas/02-calendario/tela.html",
+  "png": "pecas/g_bar06.png",
+  "dpr": 5,
+  "w": 16.25,
+  "h": 28,
+  "src": {
+   "x": 352.75,
+   "y": 541,
+   "pagina": 390
+  },
+  "minFont": null,
+  "textos": [],
+  "holes": [],
+  "bars": [],
+  "icones": [],
+  "marcas": {},
+  "tile": {
+   "fundo": null,
+   "borda": null,
+   "r": 0
+  },
+  "chip": false,
+  "btn": false,
+  "rel": {
+   "x": 332.75,
+   "y": 256
+  }
+ },
+ "g_bar07": {
+  "id": "g_bar07",
+  "arquivo": "telas/02-calendario/tela.html",
+  "png": "pecas/g_bar07.png",
+  "dpr": 5,
+  "w": 89.5,
+  "h": 28,
+  "src": {
+   "x": 113,
+   "y": 639,
+   "pagina": 390
+  },
+  "minFont": 11.5,
+  "textos": [
+   {
+    "t": "Mariana",
+    "px": 11.5
+   }
+  ],
+  "holes": [],
+  "bars": [],
+  "icones": [],
+  "marcas": {},
+  "tile": {
+   "fundo": null,
+   "borda": null,
+   "r": 0
+  },
+  "chip": false,
+  "btn": false,
+  "rel": {
+   "x": 93,
+   "y": 354
+  }
+ },
+ "g_bar08": {
+  "id": "g_bar08",
+  "arquivo": "telas/02-calendario/tela.html",
+  "png": "pecas/g_bar08.png",
+  "dpr": 5,
+  "w": 105.75,
+  "h": 28,
+  "src": {
+   "x": 206.5,
+   "y": 639,
+   "pagina": 390
+  },
+  "minFont": 11.5,
+  "textos": [
+   {
+    "t": "Camila",
+    "px": 11.5
+   }
+  ],
+  "holes": [],
+  "bars": [],
+  "icones": [],
+  "marcas": {},
+  "tile": {
+   "fundo": null,
+   "borda": null,
+   "r": 0
+  },
+  "chip": false,
+  "btn": false,
+  "rel": {
+   "x": 186.5,
+   "y": 354
+  }
+ },
+ "g_bar09": {
+  "id": "g_bar09",
+  "arquivo": "telas/02-calendario/tela.html",
+  "png": "pecas/g_bar09.png",
+  "dpr": 5,
+  "w": 16.25,
+  "h": 28,
+  "src": {
+   "x": 113,
+   "y": 688,
+   "pagina": 390
+  },
+  "minFont": null,
+  "textos": [],
+  "holes": [],
+  "bars": [],
+  "icones": [],
+  "marcas": {},
+  "tile": {
+   "fundo": null,
+   "borda": null,
+   "r": 0
+  },
+  "chip": false,
+  "btn": false,
+  "rel": {
+   "x": 93,
+   "y": 403
+  }
+ },
+ "g_bar10": {
+  "id": "g_bar10",
+  "arquivo": "telas/02-calendario/tela.html",
+  "png": "pecas/g_bar10.png",
+  "dpr": 5,
+  "w": 52.75,
+  "h": 28,
+  "src": {
+   "x": 113,
+   "y": 737,
+   "pagina": 390
+  },
+  "minFont": 11.5,
+  "textos": [
+   {
+    "t": "Helena",
+    "px": 11.5
+   }
+  ],
+  "holes": [],
+  "bars": [],
+  "icones": [],
+  "marcas": {},
+  "tile": {
+   "fundo": null,
+   "borda": null,
+   "r": 0
+  },
+  "chip": false,
+  "btn": false,
+  "rel": {
+   "x": 93,
+   "y": 452
+  }
+ },
+ "g_bar11": {
+  "id": "g_bar11",
+  "arquivo": "telas/02-calendario/tela.html",
+  "png": "pecas/g_bar11.png",
+  "dpr": 5,
+  "w": 69.25,
+  "h": 28,
+  "src": {
+   "x": 243,
+   "y": 737,
+   "pagina": 390
+  },
+  "minFont": 11.5,
+  "textos": [
+   {
+    "t": "Bruna",
+    "px": 11.5
+   }
+  ],
+  "holes": [],
+  "bars": [],
+  "icones": [],
+  "marcas": {},
+  "tile": {
+   "fundo": null,
+   "borda": null,
+   "r": 0
+  },
+  "chip": false,
+  "btn": false,
+  "rel": {
+   "x": 223,
+   "y": 452
+  }
+ },
+ "r_entrada": {
+  "id": "r_entrada",
+  "arquivo": "telas/03-nova-reserva/estados/01-datas-e-acomodacao.html",
+  "png": "pecas/r_entrada.png",
+  "dpr": 6,
+  "w": 154,
+  "h": 67,
+  "src": {
+   "x": 36,
+   "y": 167,
+   "pagina": 390
+  },
+  "minFont": 13,
+  "textos": [
+   {
+    "t": "Entrada",
+    "px": 13
+   }
+  ],
+  "holes": [],
+  "bars": [],
+  "icones": [],
+  "marcas": {},
+  "tile": {
+   "fundo": "#FFFFFF",
+   "borda": null,
+   "r": 0
+  },
+  "chip": false,
+  "btn": false
+ },
+ "r_saida": {
+  "id": "r_saida",
+  "arquivo": "telas/03-nova-reserva/estados/01-datas-e-acomodacao.html",
+  "png": "pecas/r_saida.png",
+  "dpr": 6,
+  "w": 154,
+  "h": 67,
+  "src": {
+   "x": 200,
+   "y": 167,
+   "pagina": 390
+  },
+  "minFont": 13,
+  "textos": [
+   {
+    "t": "Saída",
+    "px": 13
+   }
+  ],
+  "holes": [],
+  "bars": [],
+  "icones": [],
+  "marcas": {},
+  "tile": {
+   "fundo": "#FFFFFF",
+   "borda": null,
+   "r": 0
+  },
+  "chip": false,
+  "btn": false
+ },
+ "r_livres": {
+  "id": "r_livres",
+  "arquivo": "telas/03-nova-reserva/estados/01-datas-e-acomodacao.html",
+  "png": "pecas/r_livres.png",
+  "dpr": 6,
+  "w": 188.25,
+  "h": 35,
+  "src": {
+   "x": 22,
+   "y": 389,
+   "pagina": 390
+  },
+  "minFont": 13,
+  "textos": [
+   {
+    "t": "Livres no período ·",
+    "px": 13
+   },
+   {
+    "t": "5",
+    "px": 13
+   },
+   {
+    "t": "de",
+    "px": 13
+   },
+   {
+    "t": "10",
+    "px": 13
+   }
+  ],
+  "holes": [],
+  "bars": [],
+  "icones": [],
+  "marcas": {},
+  "tile": {
+   "fundo": "#FFFFFF",
+   "borda": null,
+   "r": 12
+  },
+  "chip": false,
+  "btn": false
+ },
+ "r_lista": {
+  "id": "r_lista",
+  "arquivo": "telas/03-nova-reserva/estados/08-aviso-periodo-ocupado.html",
+  "png": "pecas/r_lista.png",
+  "dpr": 6,
+  "w": 262,
+  "h": 265,
+  "src": {
+   "x": 79,
+   "y": 482.25,
+   "pagina": 390
+  },
+  "minFont": 12,
+  "textos": [
+   {
+    "t": "Chalé de Pedra 04",
+    "px": 14.5
+   },
+   {
+    "t": "Chalé · até 4 pessoas",
+    "px": 12.5
+   },
+   {
+    "t": "R$ 490,00",
+    "px": 14
+   },
+   {
+    "t": "por diária",
+    "px": 12
+   },
+   {
+    "t": "Chalé de Pedra 06",
+    "px": 14.5
+   },
+   {
+    "t": "Chalé · até 4 pessoas",
+    "px": 12.5
+   },
+   {
+    "t": "R$ 490,00",
+    "px": 14
+   },
+   {
+    "t": "por diária",
+    "px": 12
+   },
+   {
+    "t": "Chalé Ipê",
+    "px": 14.5
+   },
+   {
+    "t": "Chalé · até 3 pessoas",
+    "px": 12.5
+   },
+   {
+    "t": "R$ 520,00",
+    "px": 14
+   },
+   {
+    "t": "por diária",
+    "px": 12
+   },
+   {
+    "t": "Suíte Mirante",
+    "px": 14.5
+   },
+   {
+    "t": "Suíte · até 2 pessoas",
+    "px": 12.5
+   },
+   {
+    "t": "R$ 610,00",
+    "px": 14
+   },
+   {
+    "t": "por diária",
+    "px": 12
+   },
+   {
+    "t": "Quarto Bromélia",
+    "px": 14.5
+   },
+   {
+    "t": "Quarto · até 2 pessoas",
+    "px": 12.5
+   },
+   {
+    "t": "R$ 320,00",
+    "px": 14
+   },
+   {
+    "t": "por diária",
+    "px": 12
+   }
+  ],
+  "holes": [],
+  "bars": [],
+  "icones": [],
+  "marcas": {
+   "brom": {
+    "x": -42,
+    "y": 211.875,
+    "w": 316,
+    "h": 53
+   }
+  },
+  "tile": {
+   "fundo": "#FFFFFF",
+   "borda": null,
+   "r": 8
+  },
+  "chip": false,
+  "btn": false
+ },
+ "r_lista_sel": {
+  "id": "r_lista_sel",
+  "arquivo": "telas/03-nova-reserva/estados/01-datas-e-acomodacao.html",
+  "png": "pecas/r_lista_sel.png",
+  "dpr": 6,
+  "w": 262,
+  "h": 265,
+  "src": {
+   "x": 79,
+   "y": 423,
+   "pagina": 390
+  },
+  "minFont": 12,
+  "textos": [
+   {
+    "t": "Chalé de Pedra 04",
+    "px": 14.5
+   },
+   {
+    "t": "Chalé · até 4 pessoas",
+    "px": 12.5
+   },
+   {
+    "t": "R$ 490,00",
+    "px": 14
+   },
+   {
+    "t": "por diária",
+    "px": 12
+   },
+   {
+    "t": "Chalé de Pedra 06",
+    "px": 14.5
+   },
+   {
+    "t": "Chalé · até 4 pessoas",
+    "px": 12.5
+   },
+   {
+    "t": "R$ 490,00",
+    "px": 14
+   },
+   {
+    "t": "por diária",
+    "px": 12
+   },
+   {
+    "t": "Chalé Ipê",
+    "px": 14.5
+   },
+   {
+    "t": "Chalé · até 3 pessoas",
+    "px": 12.5
+   },
+   {
+    "t": "R$ 520,00",
+    "px": 14
+   },
+   {
+    "t": "por diária",
+    "px": 12
+   },
+   {
+    "t": "Suíte Mirante",
+    "px": 14.5
+   },
+   {
+    "t": "Suíte · até 2 pessoas",
+    "px": 12.5
+   },
+   {
+    "t": "R$ 610,00",
+    "px": 14
+   },
+   {
+    "t": "por diária",
+    "px": 12
+   },
+   {
+    "t": "Quarto Bromélia",
+    "px": 14.5
+   },
+   {
+    "t": "Quarto · até 2 pessoas",
+    "px": 12.5
+   },
+   {
+    "t": "R$ 320,00",
+    "px": 14
+   },
+   {
+    "t": "por diária",
+    "px": 12
+   }
+  ],
+  "holes": [],
+  "bars": [],
+  "icones": [
+   {
+    "x": 184,
+    "y": 24.5,
+    "w": 13,
+    "h": 13
+   }
+  ],
+  "marcas": {
+   "brom": {
+    "x": -42,
+    "y": 212,
+    "w": 316,
+    "h": 53
+   }
+  },
+  "tile": {
+   "fundo": "#FFFFFF",
+   "borda": null,
+   "r": 8
+  },
+  "chip": false,
+  "btn": false
+ },
+ "r_cal_dias": {
+  "id": "r_cal_dias",
+  "arquivo": "telas/02-calendario/tela-computador.html",
+  "png": "pecas/r_cal_dias.png",
+  "dpr": 6,
+  "w": 226.75,
+  "h": 56,
+  "src": {
+   "x": 955.5,
+   "y": 201.25,
+   "pagina": 1280
+  },
+  "minFont": 11.5,
+  "textos": [
+   {
+    "t": "Qui",
+    "px": 11.5
+   },
+   {
+    "t": "22",
+    "px": 13.5
+   },
+   {
+    "t": "Sex",
+    "px": 11.5
+   },
+   {
+    "t": "23",
+    "px": 13.5
+   },
+   {
+    "t": "Sáb",
+    "px": 11.5
+   },
+   {
+    "t": "24",
+    "px": 13.5
+   },
+   {
+    "t": "Dom",
+    "px": 11.5
+   },
+   {
+    "t": "25",
+    "px": 13.5
+   }
+  ],
+  "holes": [],
+  "bars": [],
+  "icones": [],
+  "marcas": {},
+  "tile": {
+   "fundo": "#FAFAF8",
+   "borda": null,
+   "r": 12
+  },
+  "chip": false,
+  "btn": false
+ },
+ "r_cal_linha": {
+  "id": "r_cal_linha",
+  "arquivo": "telas/02-calendario/tela-computador.html",
+  "png": "pecas/r_cal_linha.png",
+  "dpr": 6,
+  "w": 226.75,
+  "h": 53,
+  "src": {
+   "x": 955.5,
+   "y": 681.25,
+   "pagina": 1280
+  },
+  "minFont": null,
+  "textos": [],
+  "holes": [],
+  "bars": [],
+  "icones": [],
+  "marcas": {},
+  "tile": {
+   "fundo": "#FFFFFF",
+   "borda": null,
+   "r": 12
+  },
+  "chip": false,
+  "btn": false
+ },
+ "r_cal_bruno": {
+  "id": "r_cal_bruno",
+  "arquivo": "telas/02-calendario/tela-computador.html",
+  "png": "pecas/r_cal_bruno.png",
+  "dpr": 6,
+  "w": 166.25,
+  "h": 32,
+  "src": {
+   "x": 985.75,
+   "y": 692.25,
+   "pagina": 1280
+  },
+  "minFont": 12.5,
+  "textos": [
+   {
+    "t": "Bruno T.",
+    "px": 12.5
+   }
+  ],
+  "holes": [],
+  "bars": [],
+  "icones": [],
+  "marcas": {},
+  "tile": {
+   "fundo": "rgb(255, 255, 255)",
+   "borda": "1px solid rgb(10, 10, 10)",
+   "r": 8,
+   "sombra": null
+  },
+  "chip": false,
+  "btn": false,
+  "rel": {
+   "x": 30.25,
+   "y": 11
+  }
+ },
+ "s_gustavo": {
+  "id": "s_gustavo",
+  "arquivo": "telas/04-detalhe-reserva/estados/01-pre-reserva.html",
+  "png": "pecas/s_gustavo.png",
+  "dpr": 6,
+  "w": 272.25,
+  "h": 99.25,
+  "src": {
+   "x": 4,
+   "y": 142,
+   "pagina": 390
+  },
+  "minFont": 12.5,
+  "textos": [
+   {
+    "t": "Gustavo Ribeiro",
+    "px": 28
+   },
+   {
+    "t": "Pré-reserva",
+    "px": 12.5
+   },
+   {
+    "t": "Chalé de Pedra 04",
+    "px": 14
+   },
+   {
+    "t": "sem sinal",
+    "px": 13
+   }
+  ],
+  "holes": [],
+  "bars": [],
+  "icones": [
+   {
+    "x": 27,
+    "y": 49.1875,
+    "w": 12,
+    "h": 12
+   }
+  ],
+  "marcas": {},
+  "tile": {
+   "fundo": "#F4F4F0",
+   "borda": null,
+   "r": 16
+  },
+  "chip": false,
+  "btn": false
+ },
+ "s_gustavo_conf": {
+  "id": "s_gustavo_conf",
+  "arquivo": "telas/04-detalhe-reserva/estados/01-pre-reserva.html",
+  "png": "pecas/s_gustavo_conf.png",
+  "dpr": 6,
+  "w": 272.25,
+  "h": 71.25,
+  "src": {
+   "x": 4,
+   "y": 142,
+   "pagina": 390
+  },
+  "minFont": 14,
+  "textos": [
+   {
+    "t": "Gustavo Ribeiro",
+    "px": 28
+   },
+   {
+    "t": "Chalé de Pedra 04",
+    "px": 14
+   }
+  ],
+  "holes": [],
+  "bars": [],
+  "icones": [
+   {
+    "x": 27,
+    "y": 49.1875,
+    "w": 12,
+    "h": 12
+   }
+  ],
+  "marcas": {
+   "chip": {
+    "x": 16,
+    "y": 42.1875,
+    "w": 109.921875,
+    "h": 26
+   }
+  },
+  "tile": {
+   "fundo": "#F4F4F0",
+   "borda": null,
+   "r": 16
+  },
+  "chip": false,
+  "btn": false
+ },
+ "s_conta": {
+  "id": "s_conta",
+  "arquivo": "telas/04-detalhe-reserva/estados/01-pre-reserva.html",
+  "png": "pecas/s_conta.png",
+  "dpr": 6,
+  "w": 316,
+  "h": 160.25,
+  "src": {
+   "x": 37,
+   "y": 261.25,
+   "pagina": 390
+  },
+  "minFont": 14,
+  "textos": [
+   {
+    "t": "Total da reserva",
+    "px": 14
+   },
+   {
+    "t": "R$ 1.050,00",
+    "px": 14
+   },
+   {
+    "t": "Sinal pago",
+    "px": 14
+   },
+   {
+    "t": "R$ 0,00",
+    "px": 14
+   },
+   {
+    "t": "Saldo em aberto",
+    "px": 14
+   },
+   {
+    "t": "R$ 1.050,00",
+    "px": 32
+   }
+  ],
+  "holes": [
+   {
+    "texto": "R$ 1.050,00",
+    "input": false,
+    "x": 223.59375,
+    "y": 3.9375,
+    "w": 92.40625,
+    "h": 16,
+    "fam": "Geist Mono",
+    "px": 14,
+    "peso": "400",
+    "cor": "rgb(10, 10, 10)",
+    "ls": "normal",
+    "align": "left",
+    "fundo": "rgb(255, 255, 255)"
+   },
+   {
+    "texto": "R$ 1.050,00",
+    "input": false,
+    "x": 17,
+    "y": 102.9375,
+    "w": 204.171875,
+    "h": 36,
+    "fam": "Geist Mono",
+    "px": 32,
+    "peso": "700",
+    "cor": "rgb(10, 10, 10)",
+    "ls": "-0.64px",
+    "align": "left",
+    "fundo": "rgb(255, 247, 227)"
+   }
+  ],
+  "bars": [],
+  "icones": [],
+  "marcas": {},
+  "tile": {
+   "fundo": "#FFFFFF",
+   "borda": null,
+   "r": 14
+  },
+  "chip": false,
+  "btn": false
+ },
+ "s_chip_pre": {
+  "id": "s_chip_pre",
+  "arquivo": "telas/04-detalhe-reserva/estados/01-pre-reserva.html",
+  "png": "pecas/s_chip_pre.png",
+  "dpr": 8,
+  "w": 110,
+  "h": 26,
+  "src": {
+   "x": 20,
+   "y": 184.25,
+   "pagina": 390
+  },
+  "minFont": 12.5,
+  "textos": [
+   {
+    "t": "Pré-reserva",
+    "px": 12.5
+   }
+  ],
+  "holes": [],
+  "bars": [],
+  "icones": [
+   {
+    "x": 11,
+    "y": 6.9375,
+    "w": 12,
+    "h": 12
+   }
+  ],
+  "marcas": {},
+  "tile": {
+   "fundo": "rgb(255, 247, 227)",
+   "borda": "1px solid rgb(242, 230, 197)",
+   "r": 999,
+   "sombra": null
+  },
+  "chip": true,
+  "btn": false
+ },
+ "s_chip_conf": {
+  "id": "s_chip_conf",
+  "arquivo": "telas/04-detalhe-reserva/estados/02-confirmada.html",
+  "png": "pecas/s_chip_conf.png",
+  "dpr": 8,
+  "w": 103.75,
+  "h": 26,
+  "src": {
+   "x": 20,
+   "y": 184.25,
+   "pagina": 390
+  },
+  "minFont": 12.5,
+  "textos": [
+   {
+    "t": "Confirmada",
+    "px": 12.5
+   }
+  ],
+  "holes": [],
+  "bars": [],
+  "icones": [],
+  "marcas": {},
+  "tile": {
+   "fundo": "rgb(255, 255, 255)",
+   "borda": "1px solid rgb(207, 207, 200)",
+   "r": 999,
+   "sombra": null
+  },
+  "chip": true,
+  "btn": false
+ },
+ "s_titulo": {
+  "id": "s_titulo",
+  "arquivo": "telas/05-registrar-pagamento/estados/04-sinal-antes.html",
+  "png": "pecas/s_titulo.png",
+  "dpr": 6,
+  "w": 230.75,
+  "h": 67,
+  "src": {
+   "x": 20,
+   "y": 70.25,
+   "pagina": 390
+  },
+  "minFont": 14,
+  "textos": [
+   {
+    "t": "Confirmar reserva",
+    "px": 20
+   },
+   {
+    "t": "Gustavo Ribeiro · FHZ-UDVKU5",
+    "px": 14
+   }
+  ],
+  "holes": [],
+  "bars": [],
+  "icones": [],
+  "marcas": {},
+  "tile": {
+   "fundo": "#FFFFFF",
+   "borda": null,
+   "r": 14
+  },
+  "chip": false,
+  "btn": false
+ },
+ "s_campo": {
+  "id": "s_campo",
+  "arquivo": "telas/05-registrar-pagamento/estados/04-sinal-antes.html",
+  "png": "pecas/s_campo.png",
+  "dpr": 6,
+  "w": 318,
+  "h": 56,
+  "src": {
+   "x": 36,
+   "y": 299,
+   "pagina": 390
+  },
+  "minFont": 17,
+  "textos": [
+   {
+    "t": "R$",
+    "px": 17
+   }
+  ],
+  "holes": [
+   {
+    "texto": "315,00",
+    "input": true,
+    "x": 43.40625,
+    "y": 12.40625,
+    "w": 265.59375,
+    "h": 31,
+    "fam": "Geist Mono",
+    "px": 24,
+    "peso": "600",
+    "cor": "rgb(10, 10, 10)",
+    "ls": "normal",
+    "align": "left",
+    "fundo": "rgb(255, 255, 255)"
+   }
+  ],
+  "bars": [],
+  "icones": [],
+  "marcas": {},
+  "tile": {
+   "fundo": "rgba(0, 0, 0, 0)",
+   "borda": "1px solid rgb(10, 10, 10)",
+   "r": 12,
+   "sombra": null
+  },
+  "chip": false,
+  "btn": false
+ },
+ "s_depois": {
+  "id": "s_depois",
+  "arquivo": "telas/05-registrar-pagamento/estados/04-sinal-antes.html",
+  "png": "pecas/s_depois.png",
+  "dpr": 6,
+  "w": 271.5,
+  "h": 58,
+  "src": {
+   "x": 38.5,
+   "y": 583,
+   "pagina": 390
+  },
+  "minFont": 13.5,
+  "textos": [
+   {
+    "t": "Depois: reserva confirmada · s",
+    "px": 13.5
+   },
+   {
+    "t": "R$ 735,00",
+    "px": 13.5
+   }
+  ],
+  "holes": [
+   {
+    "texto": "R$ 735,00",
+    "input": false,
+    "x": 41.5,
+    "y": 30.796875,
+    "w": 72.90625,
+    "h": 15,
+    "fam": "Geist Mono",
+    "px": 13.5,
+    "peso": "600",
+    "cor": "rgb(42, 42, 39)",
+    "ls": "normal",
+    "align": "left",
+    "fundo": "rgb(244, 244, 240)"
+   }
+  ],
+  "bars": [],
+  "icones": [
+   {
+    "x": 14,
+    "y": 23.296875,
+    "w": 13,
+    "h": 13
+   }
+  ],
+  "marcas": {},
+  "tile": {
+   "fundo": "rgb(244, 244, 240)",
+   "borda": null,
+   "r": 12,
+   "sombra": null
+  },
+  "chip": false,
+  "btn": false
+ },
+ "c_titulo": {
+  "id": "c_titulo",
+  "arquivo": "telas/06-check-in/estados/01-modal-check-in.html",
+  "png": "pecas/c_titulo.png",
+  "dpr": 6,
+  "w": 223.75,
+  "h": 67,
+  "src": {
+   "x": 20,
+   "y": 125.25,
+   "pagina": 390
+  },
+  "minFont": 14,
+  "textos": [
+   {
+    "t": "Fazer check-in",
+    "px": 20
+   },
+   {
+    "t": "Fernanda Lima · FHZ-U6EKQE",
+    "px": 14
+   }
+  ],
+  "holes": [],
+  "bars": [],
+  "icones": [],
+  "marcas": {},
+  "tile": {
+   "fundo": "#FFFFFF",
+   "borda": null,
+   "r": 14
+  },
+  "chip": false,
+  "btn": false
+ },
+ "c_dados": {
+  "id": "c_dados",
+  "arquivo": "telas/06-check-in/estados/01-modal-check-in.html",
+  "png": "pecas/c_dados.png",
+  "dpr": 6,
+  "w": 271.5,
+  "h": 148,
+  "src": {
+   "x": 47,
+   "y": 224.25,
+   "pagina": 390
+  },
+  "minFont": 12.5,
+  "textos": [
+   {
+    "t": "Hóspede",
+    "px": 12.5
+   },
+   {
+    "t": "Fernanda Lima",
+    "px": 14
+   },
+   {
+    "t": "CPF",
+    "px": 12.5
+   },
+   {
+    "t": "***.903.118-**",
+    "px": 13.5
+   },
+   {
+    "t": "Telefone",
+    "px": 12.5
+   },
+   {
+    "t": "(35) 98804-7712",
+    "px": 13.5
+   },
+   {
+    "t": "Hóspedes",
+    "px": 12.5
+   },
+   {
+    "t": "2 adultos",
+    "px": 14
+   },
+   {
+    "t": "Acomodação",
+    "px": 12.5
+   },
+   {
+    "t": "Chalé Ipê",
+    "px": 14
+   },
+   {
+    "t": "Período",
+    "px": 12.5
+   },
+   {
+    "t": "17/10 → 20/10",
+    "px": 13.5
+   }
+  ],
+  "holes": [],
+  "bars": [],
+  "icones": [],
+  "marcas": {
+   "hospede": {
+    "x": -4,
+    "y": 3.90625,
+    "w": 115.734375,
+    "h": 46
+   },
+   "telefone": {
+    "x": -4,
+    "y": 50.90625,
+    "w": 137.5,
+    "h": 45
+   },
+   "periodo": {
+    "x": 146,
+    "y": 97.90625,
+    "w": 121.3125,
+    "h": 45
+   },
+   "acomodacao": {
+    "x": -4,
+    "y": 97.90625,
+    "w": 91.765625,
+    "h": 46
+   }
+  },
+  "tile": {
+   "fundo": "rgba(0, 0, 0, 0)",
+   "borda": "1px solid rgb(231, 231, 226)",
+   "r": 16,
+   "sombra": null
+  },
+  "chip": false,
+  "btn": false
+ },
+ "c_btn": {
+  "id": "c_btn",
+  "arquivo": "telas/06-check-in/estados/01-modal-check-in.html",
+  "png": "pecas/c_btn.png",
+  "dpr": 6,
+  "w": 210,
+  "h": 48,
+  "src": {
+   "x": 144,
+   "y": 658.75,
+   "pagina": 390
+  },
+  "minFont": 15,
+  "textos": [
+   {
+    "t": "Fazer check-in",
+    "px": 15
+   }
+  ],
+  "holes": [],
+  "bars": [],
+  "icones": [],
+  "marcas": {},
+  "tile": {
+   "fundo": "rgb(10, 10, 10)",
+   "borda": null,
+   "r": 12,
+   "sombra": null
+  },
+  "chip": false,
+  "btn": true
+ },
+ "c_feito": {
+  "id": "c_feito",
+  "arquivo": "telas/06-check-in/estados/03-check-in-feito.html",
+  "png": "pecas/c_feito.png",
+  "dpr": 6,
+  "w": 247,
+  "h": 67,
+  "src": {
+   "x": 20,
+   "y": 196.5,
+   "pagina": 390
+  },
+  "minFont": 14,
+  "textos": [
+   {
+    "t": "Check-in feito",
+    "px": 20
+   },
+   {
+    "t": "Fernanda Lima · Chalé Ipê",
+    "px": 14
+   }
+  ],
+  "holes": [],
+  "bars": [],
+  "icones": [
+   {
+    "x": 25,
+    "y": 25,
+    "w": 18,
+    "h": 18
+   }
+  ],
+  "marcas": {},
+  "tile": {
+   "fundo": "#FFFFFF",
+   "borda": null,
+   "r": 14
+  },
+  "chip": false,
+  "btn": false
+ },
+ "c_recibo": {
+  "id": "c_recibo",
+  "arquivo": "telas/06-check-in/estados/03-check-in-feito.html",
+  "png": "pecas/c_recibo.png",
+  "dpr": 6,
+  "w": 286,
+  "h": 101,
+  "src": {
+   "x": 52,
+   "y": 269.5,
+   "pagina": 390
+  },
+  "minFont": 13,
+  "textos": [
+   {
+    "t": "Recibo de check-in",
+    "px": 14
+   },
+   {
+    "t": "FHZ-U6EKQE",
+    "px": 13
+   },
+   {
+    "t": "Entrada",
+    "px": 14
+   },
+   {
+    "t": "sábado,",
+    "px": 14
+   },
+   {
+    "t": "17/10 · 14:05",
+    "px": 14
+   },
+   {
+    "t": "Saída prevista",
+    "px": 14
+   },
+   {
+    "t": "20/10",
+    "px": 14
+   },
+   {
+    "t": ", até",
+    "px": 14
+   },
+   {
+    "t": "12:00",
+    "px": 14
+   }
+  ],
+  "holes": [],
+  "bars": [],
+  "icones": [],
+  "marcas": {},
+  "tile": {
+   "fundo": "rgba(0, 0, 0, 0)",
+   "borda": "1px solid rgb(231, 231, 226)",
+   "r": 16,
+   "sombra": null
+  },
+  "chip": false,
+  "btn": false
+ },
+ "c_hospedagens": {
+  "id": "c_hospedagens",
+  "arquivo": "telas/06-check-in/estados/04-hospedagens-ativas.html",
+  "png": "pecas/c_hospedagens.png",
+  "dpr": 6,
+  "w": 209.5,
+  "h": 38.25,
+  "src": {
+   "x": 6,
+   "y": 88,
+   "pagina": 390
+  },
+  "minFont": 28,
+  "textos": [
+   {
+    "t": "Hospedagens",
+    "px": 28
+   }
+  ],
+  "holes": [],
+  "bars": [],
+  "icones": [],
+  "marcas": {},
+  "tile": {
+   "fundo": "#F4F4F0",
+   "borda": null,
+   "r": 14
+  },
+  "chip": false,
+  "btn": false
+ },
+ "c_fernanda": {
+  "id": "c_fernanda",
+  "arquivo": "telas/06-check-in/estados/04-hospedagens-ativas.html",
+  "png": "pecas/c_fernanda.png",
+  "dpr": 6,
+  "w": 272,
+  "h": 51,
+  "src": {
+   "x": 83,
+   "y": 607.25,
+   "pagina": 390
+  },
+  "minFont": 13,
+  "textos": [
+   {
+    "t": "Fernanda Lima",
+    "px": 15
+   },
+   {
+    "t": "Chalé Ipê · 2 hóspedes",
+    "px": 13
+   }
+  ],
+  "holes": [],
+  "bars": [],
+  "icones": [],
+  "marcas": {
+   "chip": {
+    "x": 170.484375,
+    "y": 17.4375,
+    "w": 99.515625,
+    "h": 24
+   }
+  },
+  "tile": {
+   "fundo": "rgb(255, 255, 255)",
+   "borda": "1px solid rgb(231, 231, 226)",
+   "r": 16,
+   "sombra": null
+  },
+  "chip": false,
+  "btn": false
+ },
+ "c_chip_hosp": {
+  "id": "c_chip_hosp",
+  "arquivo": "telas/06-check-in/estados/04-hospedagens-ativas.html",
+  "png": "pecas/c_chip_hosp.png",
+  "dpr": 8,
+  "w": 99.5,
+  "h": 24,
+  "src": {
+   "x": 253.5,
+   "y": 632.75,
+   "pagina": 390
+  },
+  "minFont": 12.5,
+  "textos": [
+   {
+    "t": "Hospedada",
+    "px": 12.5
+   }
+  ],
+  "holes": [],
+  "bars": [],
+  "icones": [],
+  "marcas": {},
+  "tile": {
+   "fundo": "rgb(10, 10, 10)",
+   "borda": null,
+   "r": 999,
+   "sombra": null
+  },
+  "chip": true,
+  "btn": false
+ },
+ "r_cal_full": {
+  "id": "r_cal_full",
+  "arquivo": "telas/02-calendario/tela-computador.html",
+  "png": "pecas/r_cal_full.png",
+  "dpr": 4,
+  "w": 968,
+  "h": 629,
+  "src": {
+   "x": 272,
+   "y": 200.25,
+   "pagina": 1280
+  },
+  "minFont": 11.5,
+  "textos": [
+   {
+    "t": "Acomodação",
+    "px": 12.5
+   },
+   {
+    "t": "Ter",
+    "px": 11.5
+   },
+   {
+    "t": "13",
+    "px": 13.5
+   },
+   {
+    "t": "Qua",
+    "px": 11.5
+   },
+   {
+    "t": "14",
+    "px": 13.5
+   },
+   {
+    "t": "Qui",
+    "px": 11.5
+   },
+   {
+    "t": "15",
+    "px": 13.5
+   },
+   {
+    "t": "Hoje",
+    "px": 11.5
+   },
+   {
+    "t": "16",
+    "px": 13.5
+   },
+   {
+    "t": "Sáb",
+    "px": 11.5
+   },
+   {
+    "t": "17",
+    "px": 13.5
+   },
+   {
+    "t": "Dom",
+    "px": 11.5
+   },
+   {
+    "t": "18",
+    "px": 13.5
+   },
+   {
+    "t": "Seg",
+    "px": 11.5
+   },
+   {
+    "t": "19",
+    "px": 13.5
+   },
+   {
+    "t": "Ter",
+    "px": 11.5
+   },
+   {
+    "t": "20",
+    "px": 13.5
+   },
+   {
+    "t": "Qua",
+    "px": 11.5
+   },
+   {
+    "t": "21",
+    "px": 13.5
+   },
+   {
+    "t": "Qui",
+    "px": 11.5
+   },
+   {
+    "t": "22",
+    "px": 13.5
+   },
+   {
+    "t": "Sex",
+    "px": 11.5
+   },
+   {
+    "t": "23",
+    "px": 13.5
+   },
+   {
+    "t": "Sáb",
+    "px": 11.5
+   },
+   {
+    "t": "24",
+    "px": 13.5
+   },
+   {
+    "t": "Dom",
+    "px": 11.5
+   },
+   {
+    "t": "25",
+    "px": 13.5
+   },
+   {
+    "t": "Seg",
+    "px": 11.5
+   },
+   {
+    "t": "26",
+    "px": 13.5
+   },
+   {
+    "t": "Chalé de Pedra 04",
+    "px": 13.5
+   },
+   {
+    "t": "Chalé · 4 pessoas",
+    "px": 12
+   },
+   {
+    "t": "Thiago M.",
+    "px": 12.5
+   },
+   {
+    "t": "Gustavo R.",
+    "px": 12.5
+   },
+   {
+    "t": "Chalé de Pedra 05",
+    "px": 13.5
+   },
+   {
+    "t": "Chalé · 4 pessoas",
+    "px": 12
+   },
+   {
+    "t": "Vinícius Araújo",
+    "px": 12.5
+   },
+   {
+    "t": "Chalé de Pedra 06",
+    "px": 13.5
+   },
+   {
+    "t": "Chalé · 4 pessoas",
+    "px": 12
+   },
+   {
+    "t": "Lucas M.",
+    "px": 12.5
+   },
+   {
+    "t": "atraso",
+    "px": 12
+   },
+   {
+    "t": "Chalé Ipê",
+    "px": 13.5
+   },
+   {
+    "t": "Chalé · 3 pessoas",
+    "px": 12
+   },
+   {
+    "t": "Patrícia Almeida",
+    "px": 12.5
+   },
+   {
+    "t": "Fernanda Lima",
+    "px": 12.5
+   },
+   {
+    "t": "Chalé Jatobá",
+    "px": 13.5
+   },
+   {
+    "t": "Chalé · 4 pessoas",
+    "px": 12
+   },
+   {
+    "t": "Rafael Souza",
+    "px": 12.5
+   },
+   {
+    "t": "Marcos Teixeira",
+    "px": 12.5
+   },
+   {
+    "t": "Chalé Manacá",
+    "px": 13.5
+   },
+   {
+    "t": "Chalé · 4 pessoas",
+    "px": 12
+   },
+   {
+    "t": "Ana Beatriz F.",
+    "px": 12.5
+   },
+   {
+    "t": "Bloqueada · Manutenção",
+    "px": 12.5
+   },
+   {
+    "t": "Suíte Mirante",
+    "px": 13.5
+   },
+   {
+    "t": "Suíte · 2 pessoas",
+    "px": 12
+   },
+   {
+    "t": "Mariana Costa",
+    "px": 12.5
+   },
+   {
+    "t": "Camila Rocha",
+    "px": 12.5
+   },
+   {
+    "t": "Suíte Jardim",
+    "px": 13.5
+   },
+   {
+    "t": "Suíte · 2 pessoas",
+    "px": 12
+   },
+   {
+    "t": "Beatriz Nogueira",
+    "px": 12.5
+   },
+   {
+    "t": "Otávio Lins",
+    "px": 12.5
+   },
+   {
+    "t": "Quarto Bromélia",
+    "px": 13.5
+   },
+   {
+    "t": "Quarto · 2 pessoas",
+    "px": 12
+   },
+   {
+    "t": "Helena D.",
+    "px": 12.5
+   },
+   {
+    "t": "Bruna C.",
+    "px": 12.5
+   },
+   {
+    "t": "Quarto Orquídea",
+    "px": 13.5
+   },
+   {
+    "t": "Quarto · 2 pessoas",
+    "px": 12
+   },
+   {
+    "t": "João Pedro A.",
+    "px": 12.5
+   },
+   {
+    "t": "Hoje:",
+    "px": 13
+   },
+   {
+    "t": "5",
+    "px": 13
+   },
+   {
+    "t": "de",
+    "px": 13
+   },
+   {
+    "t": "10",
+    "px": 13
+   },
+   {
+    "t": "ocupadas · ponto âmbar: hosped",
+    "px": 13
+   },
+   {
+    "t": "Clique numa reserva para abrir",
+    "px": 13
+   }
+  ],
+  "holes": [],
+  "bars": [],
+  "icones": [
+   {
+    "x": 410.84375,
+    "y": 342.4375,
+    "w": 13,
+    "h": 13
+   }
+  ],
+  "marcas": {},
+  "tile": {
+   "fundo": "rgb(255, 255, 255)",
+   "borda": "1px solid rgb(231, 231, 226)",
+   "r": 18,
+   "sombra": null
+  },
+  "chip": false,
+  "btn": false
+ }
+}
