@@ -9,8 +9,19 @@ function iniciaGeometriaB(ctx) {
     const frente = Math.abs(i) <= 4 && j < 16;
     G.grade.push({ i, j, frente, fx: 540 + i * 100, fy: 210 + j * 100, X: i * 120, Z: 300 + (15 - j) * 125, d: Math.hypot(i * 100, 210 + j * 100 - 900) });
   }
-  // jornada
-  G.R = 1600;
+  // jornada: o trilho é o contorno da casa (mundo = (tela - C) * K), começando na base e indo para a esquerda
+  const ry = (x) => 650 + (x - 540) * (280 / 330);
+  G.K = 6; G.C = [540, 990];
+  G.cam = [[620, 1330], [210, 1330], [210, 930], [540, 650], [735, ry(735)], [735, 725], [800, 725], [800, ry(800)], [870, 930], [870, 1330], [620, 1330]];
+  G.camL = [0];
+  for (let i = 1; i < G.cam.length; i++) G.camL.push(G.camL[i - 1] + Math.hypot(G.cam[i][0] - G.cam[i - 1][0], G.cam[i][1] - G.cam[i - 1][1]));
+  const Lc = G.camL;
+  // estações como pontos do contorno: base, parede esquerda, telhado esquerdo, telhado direito, parede direita; S5 = fecha a casa
+  G.S = [0, Lc[1] + 200, (Lc[2] + Lc[3]) / 2, (Lc[3] + Lc[4]) / 2, Lc[8] + 200, Lc[10]];
+  const segDe = (sv) => { let i = 0; while (i < G.cam.length - 2 && Lc[i + 1] <= sv + 1e-6) i++; return i; };
+  const bruto = G.S.map((sv, k) => { const i = k === 5 ? G.cam.length - 2 : segDe(sv); return Math.atan2(G.cam[i + 1][1] - G.cam[i][1], G.cam[i + 1][0] - G.cam[i][0]); });
+  G.H = [bruto[0]];
+  for (let k = 1; k < bruto.length; k++) { let d = bruto[k] - bruto[k - 1]; d = ((d + Math.PI) % (Math.PI * 2) + Math.PI * 2) % (Math.PI * 2) - Math.PI; G.H.push(G.H[k - 1] + d); }
   G.est = [
     { nome: 'Reserva', ax: 540, ay: 1180, rot: 0, z: 1, fundo: 'off' },
     { nome: 'Chegada', ax: 540, ay: 960, rot: 24, z: 1, fundo: 'tinta' },
@@ -18,13 +29,9 @@ function iniciaGeometriaB(ctx) {
     { nome: 'Saída', ax: 540, ay: 930, rot: -36, z: 1, fundo: 'tinta' },
     { nome: 'Caixa', ax: 540, ay: 1070, rot: 0, z: 1, fundo: 'off' },
   ];
-  G.estAng = [0, 1, 2, 3, 4, 5].map((k) => (-90 + 72 * k) * Math.PI / 180);
-  // morph anel -> casa -> "O"
+  // casa amostrada (para o morph casa -> "O" do logo)
   const N = 240;
-  const circ = [];
-  for (let i = 0; i < N; i++) { const a = -Math.PI / 2 + (i / N) * Math.PI * 2; circ.push([540 + Math.cos(a) * 360, 960 + Math.sin(a) * 360]); }
-  G.mAnel = circ;
-  G.mCasa = alinhaPontos(circ, amostraPath(polyPath(G.casa), N));
+  G.mCasa = amostraPath(polyPath(G.casa), N);
   // geometria do logo (SVG 416x72 escalado 2x, origem 124,828)
   G.logo = { s: 2, x: 124, y: 828 };
   fonte(ctx, 800, 128, 'Geist', -0.02);
@@ -45,9 +52,12 @@ function iniciaGeometriaB(ctx) {
   for (let y = 1290, r = 0; y > 690; y -= 52, r++) {
     for (let x = 236, c = 0; x < 860; x += 52, c++) {
       if (!dentroPoligono(x, y, G.casa) || distBorda(x, y, G.casa) < 25) continue;
-      G.fileiras.push({ x, y, r, c, branca: rr() < 0.24, rad: 15, s: rr() * 10, dx: rr() - 0.5, dy: -0.5 - rr() * 0.5, d: 0.5 + rr() });
+      G.fileiras.push({ x, y, r, c, branca: rr() < 0.24, rad: 15, s: rr() * 10, dx: rr() - 0.5, dy: -0.5 - rr() * 0.5, d: 0.5 + rr(), base: -1 });
     }
   }
+  const baixo = G.fileiras.filter((b) => b.r <= 2).sort((a, b) => a.x - b.x || a.r - b.r);
+  baixo.forEach((b, i) => { b.base = i; });
+  G.nBase = baixo.length;
 }
 
 // ================================================================ DROP — TUDO NUM LUGAR SÓ.
@@ -110,44 +120,73 @@ const PAL = {
   limao: { fundo: COR.limao, trilho: COR.tinta, ponto: COR.tinta, texto: COR.tinta, icone: COR.tinta, icone2: COR.tinta, acento: COR.tinta, apagado: 'rgba(10,10,10,0.25)' },
 };
 function tEst(k) { return bar(15 + k); }
-function anguloHospede(t) {
-  let a = G.estAng[0];
-  for (let k = 0; k < 5; k++) a += (72 * Math.PI / 180) * E.ioC(prog(t, tEst(k) + 0.76 * BAR, tEst(k + 1)));
-  // continua girando no ciclo
-  a += Math.max(0, t - tEst(5)) * (Math.PI * 2) / (2 * BAR) * E.inQ(prog(t, tEst(5), tEst(5) + 0.6));
-  return a;
+// aproximação lenta da casa já fechada; desfaz-se no começo da volta (continuidade sem corte)
+function escalaCasa(t) {
+  const sobe = E.ioSine(prog(t, tEst(5) + 1.2, bar(22)));
+  const desce = E.ioSine(prog(t, bar(22), bar(22) + 0.75));
+  return 1 + 0.07 * sobe * (1 - desce);
 }
-// parâmetros de câmera da jornada
+// fim de cada viagem; a última (Caixa -> fecha a casa) é mais lenta e termina no 3º tempo do compasso 21
+function tFimViagem(k) { return k < 4 ? tEst(k + 1) : tEst(5) + 3 * BEAT; }
+const T_FECHA = () => tFimViagem(4);
+function pesoViagem(t, k) { return E.ioC(prog(t, tEst(k) + 0.76 * BAR, tFimViagem(k))); }
+// posição do hóspede ao longo do contorno (unidades de tela da casa)
+function sHospede(t) {
+  let sv = G.S[0];
+  for (let k = 0; k < 5; k++) sv += (G.S[k + 1] - G.S[k]) * pesoViagem(t, k);
+  return sv;
+}
+function pontoCaminho(sv) {
+  const L = G.camL;
+  sv = clamp(sv, 0, L[L.length - 1]);
+  let i = 0;
+  while (i < G.cam.length - 2 && L[i + 1] < sv) i++;
+  const f = (sv - L[i]) / (L[i + 1] - L[i] || 1);
+  return [lerp(G.cam[i][0], G.cam[i + 1][0], f), lerp(G.cam[i][1], G.cam[i + 1][1], f)];
+}
+function mundoDe(p) { return [(p[0] - G.C[0]) * G.K, (p[1] - G.C[1]) * G.K]; }
+function estMundo(k) { return mundoDe(pontoCaminho(G.S[k])); }
+// traça o contorno percorrido de s0 a s1 (em coordenadas do mundo)
+function tracaCaminho(ctx, s0, s1) {
+  const L = G.camL;
+  ctx.beginPath();
+  const a = mundoDe(pontoCaminho(s0));
+  ctx.moveTo(a[0], a[1]);
+  for (let i = 1; i < G.cam.length; i++) if (L[i] > s0 && L[i] < s1) { const q = mundoDe(G.cam[i]); ctx.lineTo(q[0], q[1]); }
+  const b = mundoDe(pontoCaminho(s1));
+  ctx.lineTo(b[0], b[1]);
+}
+// parâmetros de câmera da jornada (segue o hóspede; a rotação acompanha a direção do trecho da estação)
 function camJornada(t) {
   let k = 0;
   for (let i = 0; i < 5; i++) if (t >= tEst(i) + 0.76 * BAR) k = i;
   const a = G.est[k], b = G.est[(k + 1) % 5];
-  const w = E.ioC(prog(t, tEst(k) + 0.76 * BAR, tEst(k + 1)));
-  const alfa = anguloHospede(t);
-  const dot = [Math.cos(alfa) * G.R, Math.sin(alfa) * G.R];
+  const w = pesoViagem(t, k);
+  let hc = G.H[0];
+  for (let i = 0; i < 5; i++) hc += (G.H[i + 1] - G.H[i]) * pesoViagem(t, i);
+  const sv = sHospede(t);
+  const dot = mundoDe(pontoCaminho(sv));
   let c = {
     wf: dot, sf: [lerp(a.ax, b.ax, w), lerp(a.ay, b.ay, w)],
-    rot: -(alfa + Math.PI / 2) + (lerp(a.rot, k === 4 ? 0 : b.rot, w) * Math.PI) / 180,
-    z: 1 + 0.3 * Math.sin(Math.PI * w), alfa, dot,
+    rot: -hc + (lerp(a.rot, k === 4 ? 0 : b.rot, w) * Math.PI) / 180,
+    z: 1 + 0.3 * Math.sin(Math.PI * w), s: sv, dot,
   };
   // deriva lenta de câmera enquanto o hóspede está parado na estação (nada fica congelado)
   let kd = 0;
   for (let i = 0; i < 5; i++) if (t >= tEst(i)) kd = i;
   const pd = prog(t, tEst(kd), tEst(kd) + 0.76 * BAR);
-  const wk = E.ioC(prog(t, tEst(kd) + 0.76 * BAR, tEst(kd + 1)));
-  const df = E.ioSine(pd) * (1 - wk);
+  const df = E.ioSine(pd) * (1 - pesoViagem(t, kd));
   c.z *= 1 + 0.07 * df;
   c.rot += 0.04 * df * (kd % 2 ? -1 : 1);
-  // recuo para ver o ciclo inteiro
+  // recuo: a casa inteira aparece em pé, exatamente onde fica a casa da volta
   const wp = E.ioC(prog(t, tEst(5) - 0.1, tEst(5) + 1.2));
   if (wp > 0) {
-    const zf = 360 / G.R;
-    const deriva = Math.max(0, t - (tEst(5) + 1.2)) * 0.05;
+    const resp = escalaCasa(t);
     c = {
       wf: [lerp(dot[0], 0, wp), lerp(dot[1], 0, wp)],
-      sf: [lerp(c.sf[0], 540, wp), lerp(c.sf[1], 960, wp)],
-      rot: lerp(c.rot, -Math.PI * 2 + deriva * 0, wp) + deriva * wp,
-      z: Math.exp(lerp(0, Math.log(zf), wp)), alfa, dot,
+      sf: [lerp(c.sf[0], G.C[0], wp), lerp(c.sf[1], G.C[1], wp)],
+      rot: lerp(c.rot, -Math.PI * 2, wp),
+      z: Math.exp(lerp(Math.log(c.z), Math.log(1 / G.K), wp)) * resp, s: sv, dot,
     };
   }
   return c;
@@ -160,26 +199,28 @@ function telaDe(c, p) {
   const cs = Math.cos(c.rot), sn = Math.sin(c.rot);
   return [c.sf[0] + dx * cs - dy * sn, c.sf[1] + dx * sn + dy * cs];
 }
-// desenha o mundo (trilho, estações, hóspede)
+// desenha o mundo (contorno da casa como trilho, estações, hóspede)
 function mundoJornada(ctx, t, c, pal, lwTela = 16) {
   ctx.save();
   aplicaCam(ctx, c);
   const lw = lwTela / c.z;
-  // trilho inteiro apagado
-  ctx.strokeStyle = pal.apagado; ctx.lineWidth = lw; ctx.lineCap = 'round';
+  ctx.lineCap = 'round'; ctx.lineJoin = 'round';
+  // caminho ainda por percorrer: pontilhado andando
+  ctx.strokeStyle = pal.apagado; ctx.lineWidth = lw;
   ctx.setLineDash([lw * 0.01, lw * 2.2]);
   ctx.lineDashOffset = -t * 90 / c.z;
-  circulo(ctx, 0, 0, G.R); ctx.stroke();
+  tracaCaminho(ctx, c.s, G.camL[G.camL.length - 1]); ctx.stroke();
   ctx.lineDashOffset = 0;
   ctx.setLineDash([]);
-  // trilho percorrido
-  ctx.strokeStyle = pal.trilho; ctx.lineWidth = lw * (1 + 0.25 * pulso(t, 0.12));
-  ctx.beginPath(); ctx.arc(0, 0, G.R, G.estAng[0] - 0.9, c.alfa); ctx.stroke();
+  // caminho percorrido: o traço que vai desenhando a casa
+  if (c.s > 0.5) {
+    ctx.strokeStyle = pal.trilho; ctx.lineWidth = lw * (1 + 0.25 * pulso(t, 0.12));
+    tracaCaminho(ctx, 0, c.s); ctx.stroke();
+  }
   // estações
   for (let k = 0; k < 5; k++) {
-    const a = G.estAng[k];
-    const p = [Math.cos(a) * G.R, Math.sin(a) * G.R];
-    const visit = c.alfa >= a - 0.01 || (k === 0);
+    const p = estMundo(k);
+    const visit = c.s >= G.S[k] - 0.5;
     ctx.fillStyle = visit ? pal.trilho : pal.fundo;
     ctx.strokeStyle = pal.trilho; ctx.lineWidth = lw * 0.55;
     circulo(ctx, p[0], p[1], 26 / c.z * Math.min(1, c.z * 1.4)); ctx.fill(); ctx.stroke();
@@ -197,9 +238,8 @@ function mundoJornada(ctx, t, c, pal, lwTela = 16) {
 // transforma para o "quadro da estação k" (layout desenhado em coordenadas de tela do momento parado)
 function quadroEstacao(ctx, c, k) {
   const e = G.est[k];
-  const a = G.estAng[k];
-  const P = [Math.cos(a) * G.R, Math.sin(a) * G.R];
-  const rotK = -(a + Math.PI / 2) + (e.rot * Math.PI) / 180;
+  const P = estMundo(k);
+  const rotK = -G.H[k] + (e.rot * Math.PI) / 180;
   aplicaCam(ctx, c);
   ctx.translate(P[0], P[1]); ctx.rotate(-rotK); ctx.scale(1 / e.z, 1 / e.z); ctx.translate(-e.ax, -e.ay);
 }
@@ -334,48 +374,61 @@ function raioWipe(t, tk) { return E.outC(prog(t, tk - 0.1, tk + 0.32)) * 2300; }
 
 // ================================================================ CICLO (recuo)
 const ICONES_EST = ['reservas', 'chegada', 'comandas', 'saida', 'caixa'];
-function cenaCiclo(ctx, t, comFundo = true, comAnel = true) {
+function cenaCiclo(ctx, t, comFundo = true, comCasa = true) {
   const t0 = tEst(5);
   const c = camJornada(t);
   const pal = PAL.tinta;
   if (comFundo) { ctx.fillStyle = pal.fundo; ctx.fillRect(-20, -20, W + 40, H + 40); }
   const wp = E.ioC(prog(t, t0 - 0.1, t0 + 1.2));
   const saida = E.ioC(prog(t, bar(22) - 0.25, bar(22) + 0.1));
-  // trilho completo
-  if (comAnel) {
-  ctx.save();
-  aplicaCam(ctx, c);
-  const lwT = lerp(16, 13, wp) * (1 + 0.3 * pulso(t, 0.12));
-  ctx.strokeStyle = pal.trilho; ctx.lineWidth = lwT / c.z; ctx.lineCap = 'round';
-  ctx.beginPath(); ctx.arc(0, 0, G.R, G.estAng[0] - 0.9, Math.max(c.alfa, G.estAng[0] - 0.9 + 0.01)); ctx.stroke();
-  ctx.globalAlpha = wp; circulo(ctx, 0, 0, G.R); ctx.stroke(); ctx.globalAlpha = 1;
-  ctx.restore();
+  const tf = T_FECHA();
+  const fecho = t >= tf ? Math.exp(-(t - tf) / 0.22) : 0;
+  const Ltot = G.camL[G.camL.length - 1];
+  // contorno da casa: pontilhado do que falta + traço percorrido; no 3º tempo o traço fecha a casa
+  if (comCasa) {
+    ctx.save();
+    aplicaCam(ctx, c);
+    ctx.lineCap = 'round'; ctx.lineJoin = 'round';
+    const lwT = lerp(16, 14, wp) * (1 + 0.35 * pulso(t, 0.12) * wp);
+    if (c.s < Ltot - 0.5) {
+      ctx.strokeStyle = pal.apagado; ctx.lineWidth = lwT / c.z;
+      ctx.setLineDash([lwT * 0.01 / c.z, lwT * 2.2 / c.z]); ctx.lineDashOffset = -t * 90 / c.z;
+      tracaCaminho(ctx, c.s, Ltot); ctx.stroke();
+      ctx.setLineDash([]); ctx.lineDashOffset = 0;
+    }
+    ctx.strokeStyle = pal.trilho; ctx.lineWidth = lwT * (1 + 0.5 * fecho) / c.z;
+    if (c.s >= Ltot - 0.5) { tracaPts(ctx, G.casa.map(mundoDe)); } else tracaCaminho(ctx, 0, c.s);
+    ctx.stroke();
+    // lampejo dentro da casa quando o contorno fecha
+    if (fecho > 0.01) { ctx.fillStyle = pal.trilho; ctx.globalAlpha = 0.14 * fecho; tracaPts(ctx, G.casa.map(mundoDe)); ctx.fill(); ctx.globalAlpha = 1; }
+    ctx.restore();
   }
-  // estações com ícones
+  // estações = pontos do contorno, com os ícones da marca
   for (let k = 0; k < 5; k++) {
-    const a = G.estAng[k];
-    const s = telaDe(c, [Math.cos(a) * G.R, Math.sin(a) * G.R]);
+    const sc = telaDe(c, estMundo(k));
     const pi = E.outBack(prog(t, t0 + 0.55 + k * 0.08, t0 + 0.9 + k * 0.08), 2) * (1 - saida);
-    const rn = lerp(26, 58, clamp(pi));
-    ctx.fillStyle = pal.fundo; ctx.strokeStyle = pal.trilho; ctx.lineWidth = 7;
-    circulo(ctx, s[0], s[1], rn * (pi > 0 ? 1 : 1 - saida)); ctx.fill(); ctx.stroke();
-    if (pi > 0) desenhaIcone(ctx, ICONES_EST[k], s[0], s[1], 58 * pi, 1, pal.icone2, 1.9);
+    const rn = lerp(26, 50, clamp(pi)) * (1 + 0.12 * fecho);
+    ctx.fillStyle = pal.fundo; ctx.strokeStyle = pal.trilho; ctx.lineWidth = 6;
+    circulo(ctx, sc[0], sc[1], rn * (pi > 0 ? 1 : 1 - saida)); ctx.fill(); ctx.stroke();
+    if (pi > 0) desenhaIcone(ctx, ICONES_EST[k], sc[0], sc[1], 52 * pi, 1, pal.icone2, 1.9);
   }
-  // hóspede
+  // hóspede: termina o caminho de volta na Reserva e se funde ao ponto
   const hs = telaDe(c, c.dot);
-  ctx.fillStyle = pal.ponto; circulo(ctx, hs[0], hs[1], lerp(24, 20, wp) * (1 - saida)); ctx.fill();
-  ctx.fillStyle = pal.fundo; circulo(ctx, hs[0], hs[1], lerp(9, 7, wp) * (1 - saida)); ctx.fill();
-  // texto central
+  const funde = 1 - E.inC(prog(t, tf, tf + 0.3));
+  if (funde > 0) {
+    ctx.fillStyle = pal.ponto; circulo(ctx, hs[0], hs[1], lerp(24, 20, wp) * funde); ctx.fill();
+    ctx.fillStyle = pal.fundo; circulo(ctx, hs[0], hs[1], lerp(9, 7, wp) * funde); ctx.fill();
+  }
+  // texto dentro da casa
   ctx.save();
-  camera(ctx, 540, 960, 1 + 0.03 * E.ioSine(prog(t, t0, bar(22))) + 0.008 * pulso(t, 0.1), 0);
-  const tam = tamanhoQueCabe(ctx, ['Do início', 'ao fim.'], 800, 124, 540);
+  camera(ctx, 540, 1040, 1 + 0.03 * E.ioSine(prog(t, t0, bar(22))) + 0.008 * pulso(t, 0.1), 0, 540, 1040);
+  const tam = tamanhoQueCabe(ctx, ['Do início', 'ao fim.'], 800, 112, 480);
   blocoTexto(ctx, t, {
-    id: 'ciclo.frase', linhas: ['Do início', 'ao fim.'], tam, x: 540, y: 948, alinha: 'center', cor: COR.branco, lh: 1.1,
+    id: 'ciclo.frase', linhas: ['Do início', 'ao fim.'], tam, x: 540, y: 1000, alinha: 'center', cor: COR.branco, lh: 1.1,
     entra: [t0 + 0.55, t0 + 0.65, t0 + 0.78, t0 + 0.88], sai: bar(22) - 0.3,
   });
   ctx.restore();
 }
-
 
 // posição das bolinhas da volta (fileiras -> partículas do logo); compartilhada pelas duas cenas
 function particulaVolta(b, t) {
@@ -386,18 +439,43 @@ function particulaVolta(b, t) {
   const yq = lerp(b.y - 300, b.y, E.outBack(p, 1.3));
   let x = b.x, y = yq + 3 * Math.sin(t * 3 + b.c * 0.6) * clamp(p * 2);
   let r = b.rad, al = clamp(p * 2.5);
-  const pf = prog(t, bar(24) - 0.5, bar(24) + 3.5);
-  if (pf > 0) {
-    const e = E.outC(pf);
-    const ang = Math.atan2(b.y - 1000, b.x - 540);
-    x += Math.cos(ang) * 520 * e * b.d + b.dx * 200 * e + Math.sin(t * 0.8 + b.s) * 30 * b.d * e;
-    y += Math.sin(ang) * 520 * e * b.d - 120 * e - Math.max(0, t - bar(24)) * 42 * b.d + Math.cos(t * 0.9 + b.s) * 22 * e;
-    const q = E.outC(prog(t, bar(24) - 0.5, bar(24) + 0.5));
-    r = lerp(b.rad, b.rad * (0.35 + 0.42 * b.d), q);
-    al *= lerp(1, 0.35 + 0.3 * b.d, q);
-    // abre espaço para o logo
-    const dl = Math.max(0, Math.abs(x - 540) - 440) + Math.max(0, Math.abs(y - 940) - 170);
-    al *= lerp(1, clamp(dl / 60), q);
+  const ini = bar(24) - 0.5;
+  if (t > ini) {
+    if (b.base >= 0) {
+      // assenta numa linha de base, abaixo da assinatura
+      const d = b.base / (G.nBase - 1);
+      const atraso = Math.abs(d - 0.5) * 0.5;
+      const q = E.ioC(prog(t, ini + atraso, ini + 1.3 + atraso));
+      x = lerp(x, 150 + d * 780, q);
+      y = lerp(y, 1262, q) - Math.sin(Math.PI * q) * 90;
+      r = lerp(b.rad, 7.5, q);
+      // a linha respira: onda lenta + pulinho que corre do centro para as pontas a cada batida
+      const as = prog(t, ini + 1.3 + atraso, ini + 1.7 + atraso);
+      let onda = 8 * Math.sin(t * 5.2 - d * 10);
+      for (let k = 0; k < 10; k++) {
+        const tb = bar(24) + BEAT + k * BEAT;
+        if (t < tb || tb > bar(26) + 0.01) continue;
+        const forte = Math.abs(tb - bar(26)) < 0.01 ? 2.2 : 1;
+        const fr = (t - tb) * 1100;
+        onda -= forte * 12 * Math.exp(-(((Math.abs(d - 0.5) * 780 - fr) / 70) ** 2)) * Math.exp(-(t - tb) / 0.5);
+      }
+      y += as * onda;
+      // depois do último acorde a linha se dissolve para os lados, do centro para as pontas
+      const sd = E.inQ(prog(t, bar(26) + 0.15 + (0.5 - Math.abs(d - 0.5)) * 0.4, TEMPO.duracao + 0.3));
+      if (sd > 0) { x += (d < 0.5 ? -1 : 1) * sd * 520; al *= 1 - sd; }
+    } else {
+      // as demais se dissolvem para os lados
+      const lado = b.x < 540 ? -1 : 1;
+      const q = E.inC(prog(t, ini + b.d * 0.25, ini + 1.5 + b.d * 0.25));
+      x += lado * q * (650 + 300 * b.d);
+      y += (b.dy * 140 - 60) * q;
+      r *= 1 - 0.5 * q;
+      al *= 1 - q;
+      // abre espaço para o logo
+      const ql = E.outC(prog(t, ini, ini + 0.6));
+      const dl = Math.max(0, Math.abs(x - 540) - 440) + Math.max(0, Math.abs(y - 900) - 110);
+      al *= lerp(1, clamp(dl / 60), ql);
+    }
   }
   return { x, y, r, al };
 }
@@ -416,7 +494,9 @@ function pilulaCabeca(t) {
 function cenaVolta(ctx, t) {
   const t0 = bar(22), tau = t - t0;
   ctx.fillStyle = COR.tinta; ctx.fillRect(0, 0, W, H);
-  const pm = E.ioC(prog(t, t0 - 0.08, t0 + 0.55));
+  ctx.save();
+  const ec = escalaCasa(t);
+  ctx.translate(G.C[0], G.C[1]); ctx.scale(ec, ec); ctx.translate(-G.C[0], -G.C[1]);
   const po = E.ioC(prog(t, bar(24) - 0.42, bar(24) - 0.02));
   const pf = prog(t, bar(24) - 0.5, bar(24) + 3.5);   // dispersão em partículas
   // bolinhas em fileiras
@@ -428,13 +508,14 @@ function cenaVolta(ctx, t) {
     circulo(ctx, q.x, q.y, q.r); ctx.fill();
   }
   ctx.globalAlpha = 1;
-  // contorno: anel -> casa -> "O"
-  let pts = morphPts(G.mAnel, G.mCasa, pm);
-  if (po > 0) pts = morphPts(pts, G.mO, po);
+  // contorno: casa (desenhada pelo trilho) -> "O" de FAZLO
+  let pts = G.mCasa;
+  if (po > 0) pts = morphPts(G.mCasa, G.mO, po);
   ctx.strokeStyle = po > 0.5 ? COR.branco : COR.limao;
-  ctx.lineWidth = lerp(lerp(13, 14, pm), G.oTraco, po);
+  ctx.lineWidth = lerp(14 * (1 + 0.35 * pulso(t, 0.12) * (1 - prog(t, bar(22) + 0.4, bar(22) + 1.2))), G.oTraco, po);
   ctx.lineJoin = 'round';
   tracaPts(ctx, pts); ctx.stroke();
+  ctx.restore();
   // título igual ao do gancho
   ctx.save();
   camera(ctx, 540, 960, 1 + 0.02 * E.ioSine(prog(tau, 0, BAR * 2)), 0);
@@ -471,65 +552,34 @@ function pilulaVolta(ctx, t) {
 function cenaLogo(ctx, t) {
   const t0 = bar(24), tau = t - t0;
   ctx.fillStyle = COR.tinta; ctx.fillRect(0, 0, W, H);
-  const zoom = 1 + 0.045 * E.ioSine(prog(t, t0, TEMPO.duracao)) + 0.006 * pulso(t, 0.12);
-  // partículas (as bolinhas da casa, agora flutuando)
-  ctx.save();
-  camera(ctx, 540, 960, 1 + 0.08 * E.ioSine(prog(t, t0, TEMPO.duracao)), 0);
+  // respiração: aproximação lenta + leve escala na batida e numa onda de 2 compassos
+  const resp = 1 + 0.012 * Math.sin(Math.PI * 2 * tau / BAR);
+  const zoom = (1 + 0.035 * E.ioSine(prog(t, t0, TEMPO.duracao)) + 0.04 * E.inQ(prog(t, bar(26), TEMPO.duracao)) + 0.014 * pulso(t, 0.14)) * resp;
+  // bolinhas: linha de base + as que se dissolvem para os lados (nada gira em volta do logo)
   for (const b of G.fileiras) {
     const q = particulaVolta(b, t);
-    if (!q) continue;
-    const al = q.al * (1 + 0.6 * pulso(t, 0.15) * (b.c % 3 === 0 ? 1 : 0));
-    if (al <= 0.01) continue;
-    ctx.globalAlpha = clamp(al);
+    if (!q || q.al <= 0.01) continue;
+    ctx.globalAlpha = clamp(q.al);
     ctx.fillStyle = b.branca ? COR.branco : COR.limao;
     circulo(ctx, q.x, q.y, q.r); ctx.fill();
   }
   ctx.globalAlpha = 1;
-  ctx.restore();
 
   ctx.save();
   camera(ctx, 540, 940, zoom, 0, 540, 940);
-  // o ciclo continua: o hóspede orbita a marca (passa atrás em cima, na frente embaixo)
-  const orb = (fase) => {
-    const pr = E.ioC(prog(t, t0 + 0.35, t0 + 1.0));
-    if (pr <= 0) return;
-    ctx.save();
-    ctx.strokeStyle = COR.limao; ctx.lineWidth = 3; ctx.globalAlpha = 0.32;
-    ctx.beginPath();
-    const a0 = fase === 'tras' ? Math.PI : 0;
-    ctx.ellipse(540, 905, 520, 175, 0, a0, a0 + Math.PI * pr);
-    ctx.stroke();
-    ctx.globalAlpha = 1;
-    const th = -Math.PI / 2 + (t - t0) * Math.PI * 2 / (2 * BAR);
-    const sn = Math.sin(th);
-    if ((fase === 'tras') === (sn < 0)) {
-      for (let i = 6; i >= 0; i--) {
-        const a = th - i * 0.05;
-        ctx.globalAlpha = pr * (i === 0 ? 1 : 0.25 * (1 - i / 7));
-        ctx.fillStyle = COR.limao;
-        circulo(ctx, 540 + Math.cos(a) * 520, 905 + Math.sin(a) * 175, (sn < 0 ? 9 : 14) * (1 - i * 0.08)); ctx.fill();
-      }
-      ctx.globalAlpha = 1;
-    }
-    ctx.restore();
-  };
-  orb('tras');
-  // anel final
-  for (const tr of [bar(26)]) {
-    const d = t - tr;
-    if (d > 0 && d < 1.4) { ctx.strokeStyle = COR.limao; ctx.globalAlpha = 0.5 * (1 - d / 1.4); ctx.lineWidth = 5; circulo(ctx, 540, 900, 120 + E.outC(d / 1.4) * 900); ctx.stroke(); ctx.globalAlpha = 1; }
-  }
-  // pílula Hospeda
+  // pílula Hospeda (brilha na batida)
   const pl = { x: 572, y: 848, w: 376, h: 104 };
   ctx.fillStyle = COR.limao; retRed(ctx, pl.x, pl.y, pl.w, pl.h, pl.h / 2); ctx.fill();
   ctx.save(); retRed(ctx, pl.x, pl.y, pl.w, pl.h, pl.h / 2); ctx.clip();
+  const brilho = 0.16 * pulso(t, 0.16) * prog(t, t0 + 0.4, t0 + 0.6);
+  if (brilho > 0.005) { ctx.fillStyle = 'rgba(255,255,255,' + brilho.toFixed(3) + ')'; ctx.fillRect(pl.x, pl.y, pl.w, pl.h); }
   const ph = E.outQt(prog(t, t0, t0 + 0.32));
   fonte(ctx, 600, 68, 'Geist', 0);
   ctx.fillStyle = COR.tinta; ctx.textAlign = 'center';
   ctx.fillText('Hospeda', 760, 924 + (1 - ph) * 110);
   registra(ctx, 'logo.marca', 2, 'Hospeda', 760 - largura(ctx, 'Hospeda') / 2, 924, ph > 0.9);
   ctx.textAlign = 'left';
-  // brilho
+  // varredura de luz na pílula
   for (const tg of [bar(24) + 1.9, bar(25) + 1.3]) {
     const g = prog(t, tg, tg + 0.6);
     if (g > 0 && g < 1) {
@@ -540,7 +590,7 @@ function cenaLogo(ctx, t) {
     }
   }
   ctx.restore();
-  // FAZLO: o "O" já está lá (veio do anel/casa); FAZL sobem da máscara
+  // FAZLO: o "O" já está lá (veio da casa); FAZL sobem da máscara
   fonte(ctx, 800, 128, 'Geist', -0.02);
   ctx.fillStyle = COR.branco;
   const letras = layoutLetras(ctx, 'FAZLO');
@@ -554,20 +604,20 @@ function cenaLogo(ctx, t) {
   });
   ctx.restore();
   registra(ctx, 'logo.marca', 2, 'FAZLO', 124, 947, t > t0 + 0.8);
-  orb('frente');
-  // @fazlohospeda
+  // @fazlohospeda (respira no brilho)
   const handle = '@fazlohospeda';
   fonte(ctx, 500, 50, 'mono', 0);
   const wh = largura(ctx, handle);
   const xh = 540 - wh / 2;
   ctx.fillStyle = COR.off;
+  const aResp = 0.8 + 0.12 * Math.sin(Math.PI * 2 * tau / (2 * BAR) + 1) + 0.08 * pulso(t, 0.2);
   for (let i = 0; i < handle.length; i++) {
     const p = E.outC(prog(t, t0 + 0.75 + i * 0.03, t0 + 0.95 + i * 0.03));
     if (p <= 0) continue;
-    ctx.globalAlpha = 0.88 * p;
-    ctx.fillText(handle[i], xh + largura(ctx, handle.slice(0, i)), 1166 + (1 - p) * 18);
+    ctx.globalAlpha = clamp(aResp * p);
+    ctx.fillText(handle[i], xh + largura(ctx, handle.slice(0, i)), 1072 + (1 - p) * 18);
   }
   ctx.globalAlpha = 1;
-  registra(ctx, 'logo.arroba', 1, handle, xh, 1166, t > t0 + 1.4);
+  registra(ctx, 'logo.arroba', 1, handle, xh, 1072, t > t0 + 1.4);
   ctx.restore();
 }

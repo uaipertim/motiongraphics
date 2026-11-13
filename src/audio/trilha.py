@@ -641,10 +641,16 @@ def compoe():
         sfx.add(sfx_tique(2400 + 300 * i, 0.025), bar(19) + 0.3 + i * BEAT / 4, 0.28, -0.4 + 0.16 * i)
     sfx.add(sfx_sino(1568, 1.8, 3.0), bar(19) + 1.0, 0.24)                 # caixa bateu ✓
     sfx.add(sfx_sino(2093, 1.4, 2.0), bar(19) + 1.06, 0.12)
-    # recuo e ícones no anel
-    sfx.add(sfx_whoosh(1.0, 300, 2500, 0.4, 0.8), bar(20) - 0.1, 0.25)
+    # recuo e ícones nos pontos do contorno da casa
+    sfx.add(sfx_whoosh(1.0, 300, 2500, 0.4, 0.8), bar(20) - 0.1, 0.25)  # recuo: a casa aparece
     for k, m in enumerate([72, 74, 76, 79, 81]):
         sfx.add(sfx_pop(mtof(m) * 2, 0.07), bar(20) + 0.55 + k * 0.08, 0.1)
+    # o traço termina de desenhar a casa e fecha no 3º tempo do compasso 21
+    tf = bar(20) + 3 * BEAT
+    sfx.add(sfx_whoosh(1.9, 250, 1800, 0.85, 1.2), tf - 1.9, 0.14)
+    sfx.add(sfx_tique(1800, 0.04), tf, 0.4)
+    sfx.add(sfx_pop(520, 0.12), tf, 0.25)
+    sfx.add(sfx_sino(1047, 1.2, 1.2), tf, 0.1)
     # volta: fileiras de bolinhas = escala subindo
     escala = [60, 62, 64, 65, 67, 69, 71, 72, 74, 76, 77, 79, 81]
     for r in range(12):
@@ -657,6 +663,9 @@ def compoe():
         sfx.add(sfx_tique(3200, 0.02), bar(24) + i * BEAT / 4, 0.14)
     for i in range(13):
         sfx.add(sfx_tique(6500, 0.006), bar(24) + 0.75 + i * 0.03, 0.05)
+    # bolinhas assentando na linha de base (do centro para as pontas)
+    for i in range(8):
+        sfx.add(sfx_tique(4800 - 300 * i, 0.012), bar(24) + 0.8 + i * 0.035, 0.07, (-1) ** i * 0.1 * i)
     for tg in (bar(24) + 1.9, bar(25) + 1.3):
         for i, m in enumerate([84, 88, 91, 96]):
             sfx.add(sfx_sino(mtof(m), 0.7, 1.0), tg + i * 0.04, 0.035, -0.5 + 0.3 * i)

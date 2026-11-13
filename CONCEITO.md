@@ -17,7 +17,7 @@ Reel vertical de **51,6 s**, sem narração, feito só com elementos gráficos, 
 O vídeo tem duas metades que se espelham:
 
 1. **O caos (antes do drop).** Uma casa estufada de hóspedes, que são bolinhas espremidas dentro do contorno, e um relógio que dispara de sexta às 18h até domingo à noite. Uma sequência de perguntas que todo dono já ouviu: *Tem vaga pro sábado?*, *Quarto 4 já liberou?*, *Põe na conta do 6.*, *O caixa bateu?* Cada pergunta corresponde a um pilar do produto (reservas, hospedagens, comanda e caixa), mas o vídeo nunca diz isso. Ele só mostra a situação.
-2. **A ordem (depois do drop).** Tudo é sugado num vórtice, a música para e aparece uma palavra: **Respira.** No drop, as mesmas bolinhas explodem e encaixam numa grade perfeita (*Tudo num lugar só*). Em seguida a câmera acompanha um hóspede pelo trilho de uma estadia: **Reserva → Chegada → Comanda → Saída → Caixa**. O trilho se revela um círculo (*Do início ao fim*), o círculo vira a casa de novo e a casa fecha a história: **Casa cheia. Cabeça leve.**
+2. **A ordem (depois do drop).** Tudo é sugado num vórtice, a música para e aparece uma palavra: **Respira.** No drop, as mesmas bolinhas explodem e encaixam numa grade perfeita (*Tudo num lugar só*). Em seguida a câmera acompanha um hóspede pelo trilho de uma estadia: **Reserva → Chegada → Comanda → Saída → Caixa**. Esse trilho, visto de longe, é o próprio contorno da casa: o hóspede desenha parede, telhado e chaminé, e em *Do início ao fim* o traço fecha a casa. Ela se enche de novo, agora em fileiras, e fecha a história: **Casa cheia. Cabeça leve.**
 
 A frase final repete a primeira, na mesma posição e no mesmo tamanho. Só a segunda linha muda, de *E agora?* para *Cabeça leve.* Esse callback é a promessa do produto, dita sem nenhum número e sem nenhuma tela.
 
@@ -26,7 +26,7 @@ A frase final repete a primeira, na mesma posição e no mesmo tamanho. Só a se
 - **O quadro 0 já é uma imagem completa e estranha:** uma casa estufando no ritmo do bumbo, com hóspedes saindo pela chaminé. Quem rola o feed entende em meio segundo ("casa cheia") e fica com a pergunta ("e agora?").
 - **Identificação imediata.** As frases são as que o dono de pousada ouve no WhatsApp e no balcão. O público-alvo se reconhece antes de saber que é propaganda.
 - **Tensão e alívio de verdade.** A metade do caos é construída para cansar: perguntas que se acumulam, relógio correndo, caça-níquel que não para. A quebra em silêncio ("Respira.") e o drop dão alívio físico, porque a música e a imagem mudam no mesmo quadro.
-- **Continuidade em vez de slides.** As bolinhas do gancho atravessam o vídeo inteiro: explodem, viram os ponteiros do relógio, viram a grade do drop e voltam a encher a casa, desta vez em fileiras. O hóspede da jornada termina orbitando o logo. Quem assiste sente que é uma história só.
+- **Continuidade em vez de slides.** As bolinhas do gancho atravessam o vídeo inteiro: explodem, viram os ponteiros do relógio, viram a grade do drop e voltam a encher a casa, desta vez em fileiras. O trilho da jornada *é* a casa do começo, redesenhada passo a passo. Quem assiste sente que é uma história só.
 - **Pagamento visual das perguntas.** O caça-níquel do *O caixa bateu?* reaparece na estação Caixa e agora **para** no valor, com um ✓ e um "ding".
 
 ---
@@ -45,10 +45,10 @@ A frase final repete a primeira, na mesma posição e no mesmo tamanho. Só a se
 | 6 | 19,35–23,23 | 11–12 | off-white | **O caixa bateu?** (com "?" âmbar) | Chicote horizontal com faixa limão. Seis janelas de caça-níquel giram sem parar e o ponto âmbar pisca (único uso do âmbar no vídeo). DOM 23:50. No build, tudo, inclusive detritos das cenas anteriores, é sugado num vórtice até virar um ponto. | whip pan com motion blur, vórtice por camadas com velocidades diferentes |
 | 7 | 23,23–25,16 | 13 | off-white | **Respira.** | Silêncio na trilha. O ponto inspira e expira com ondas concêntricas e o espaçamento das letras respira junto. | quebra, respiração como animação |
 | 8 | 25,16–29,03 | 14–15 | tinta | **Tudo num lugar só.** | DROP: impacto, flash curto e tremor. O ponto explode numa grade perfeita, a grade tomba e vira um chão de pontos em perspectiva com ondas a cada bumbo, depois se fecha numa única linha. | morph grade → chão 2.5D, câmera avançando |
-| 9 | 29,03–38,71 | 16–20 | alterna | **Reserva · Chegada · Comanda · Saída · Caixa** | A câmera segue um hóspede por um trilho. A cada compasso o fundo abre em círculo a partir dele (off-white, tinta, limão, tinta, off-white) e o ícone da marca se desenha. Cada estação tem uma composição diferente. Na estação Caixa as janelas agora param em 4.871,30 com ✓. | câmera que gira com o trilho, wipes radiais na batida, ícones desenhando (dash), deriva contínua |
-| 10 | 38,71–42,58 | 21–22 | tinta | **Do início ao fim.** | A câmera recua e o trilho se revela um círculo fechado com os 5 ícones. O hóspede continua girando. | pull-back com interpolação de câmera |
-| 11 | 42,58–46,45 | 23–24 | tinta | **Casa cheia.** / **Cabeça leve.** | O círculo vira a casa. As bolinhas caem em fileiras perfeitas, linha a linha, cada uma com uma nota de uma escala subindo. É o mesmo layout do quadro 0, agora em ordem. | morph círculo → casa, callback de composição |
-| 12 | 46,45–51,60 | 25–26 | tinta | **FAZLO Hospeda** + **@fazlohospeda** | A pílula "Cabeça leve." viaja e vira a pílula "Hospeda". A casa vira o "O" de FAZLO e "FAZL" sobe em semicolcheias. As bolinhas viram partículas e o hóspede passa a orbitar a marca, atrás em cima e na frente embaixo. Brilho na pílula e anel final no último acorde. | match cut de forma (pílula → pílula, casa → "O"), órbita 2.5D |
+| 9 | 29,03–38,71 | 16–20 | alterna | **Reserva · Chegada · Comanda · Saída · Caixa** | A câmera segue um hóspede por um trilho que é o contorno da casa em escala 6× (base → parede esquerda → telhado esquerdo → telhado direito → parede direita), e o traço percorrido vai desenhando a casa. A cada compasso o fundo abre em círculo a partir dele (off-white, tinta, limão, tinta, off-white) e o ícone da marca se desenha. Cada estação tem uma composição diferente. Na estação Caixa as janelas agora param em 4.871,30 com ✓. | câmera que segue o trilho e gira com a direção de cada trecho, wipes radiais na batida, ícones desenhando (dash), deriva contínua |
+| 10 | 38,71–42,58 | 21–22 | tinta | **Do início ao fim.** | A câmera recua e endireita a imagem: o trilho é a casa. O hóspede vira a parede direita, percorre a base e, no 3º tempo do compasso 21 (40,16 s), o traço **fecha a casa** de volta na Reserva, com clique, sino e um lampejo dentro dela. Os 5 ícones ficam como pontos do contorno, e o texto fica dentro da casa. O contorno pulsa no bumbo e a câmera se aproxima devagar. | pull-back com interpolação de câmera, traço desenhando o contorno |
+| 11 | 42,58–46,45 | 23–24 | tinta | **Casa cheia.** / **Cabeça leve.** | É a mesma casa desenhada pelo trilho, na mesma posição: os ícones saem e a aproximação se desfaz. As bolinhas caem em fileiras perfeitas, linha a linha, cada uma com uma nota de uma escala subindo. É o mesmo layout do quadro 0, agora em ordem. | continuidade exata recuo → volta, callback de composição |
+| 12 | 46,45–51,60 | 25–26 | tinta | **FAZLO Hospeda** + **@fazlohospeda** | A pílula "Cabeça leve." viaja e vira a pílula "Hospeda". A casa vira o "O" de FAZLO e "FAZL" sobe em semicolcheias. As bolinhas das fileiras de baixo assentam numa linha de base pontilhada sob o @fazlohospeda; as demais se dissolvem para os lados. Nada gira em volta do logo: o logo e o @ respiram (escala leve no compasso e na batida, brilho na pílula e no @). A linha de base ondula, dá um pulinho do centro para as pontas a cada batida, salta no último acorde e depois se dissolve para os lados. | match cut de forma (pílula → pílula, casa → "O"), respiração na batida |
 
 **Regras de conteúdo:** não há cliente, depoimento, estatística ou resultado prometido. O "R$ 4.871,30" é cenográfico: é o valor do caixa da cena, e não uma afirmação sobre o produto. Não há tela de aplicativo, celular, print ou imitação de interface. Day Use não é citado.
 
@@ -75,8 +75,8 @@ A chave do ElevenLabs disponível nos Segredos de rede respondeu **401 (sem perm
 - **Grid musical compartilhado** (`src/tempo.json`): vídeo e áudio leem o mesmo BPM e os mesmos compassos. Bojo da casa, ondas no chão, pulsos e brilhos usam o mesmo envelope do bumbo.
 - **Tipografia cinética:** revelação por palavra com máscara, tremida por letra no bumbo, letter-spacing que respira, auto-ajuste de tamanho para caber nas zonas seguras e pílula de destaque herdada da pílula "Hospeda" do logo.
 - **Ícones da marca desenhando** (`marca/icones`): os caminhos SVG originais, animados por comprimento de traço.
-- **Morph de formas:** amostragem de caminhos com alinhamento de ponto inicial (círculo → casa → "O" de FAZLO), mais grade → chão em perspectiva → linha.
-- **2.5D:** chão de pontos com projeção perspectiva e câmera avançando, giros 3D falsos, paralaxe de fundo e órbita com ordem de profundidade (passa atrás e na frente do logo).
+- **Morph de formas:** amostragem de caminhos com alinhamento de ponto inicial (casa → "O" de FAZLO), mais grade → chão em perspectiva → linha. O trilho da jornada é um caminho poligonal (o contorno da casa) percorrido por comprimento de arco.
+- **2.5D:** chão de pontos com projeção perspectiva e câmera avançando, giros 3D falsos e paralaxe de fundo.
 - **Câmera:** push-ins, zoom-through num glifo, whip pan, câmera que segue o trilho com rotação pela tangente e pull-back final. Durante a jornada há uma deriva contínua para nada congelar.
 - **Motion blur** por acumulação de subquadros (5 a 7 amostras) só nas janelas rápidas: zoom, chicote, vórtice, drop e viagens.
 - **Transições com impacto:** a forma vira o fundo (pílula → tela limão), wipes radiais a partir do hóspede, cortes casados por giro e por forma, tremor de câmera nos impactos.
@@ -89,18 +89,18 @@ Como aqui não dá para ouvir nem ver em tempo real, o vídeo e a trilha foram r
 
 | verificação | ferramenta | resultado no `output/experimento.mp4` |
 |---|---|---|
-| Movimento (diferença média entre quadros a 10 fps, escala 0–255) | `src/ferramentas/analise.py` | **mediana 3,05** (meta ≥ 1,0); mínimo 0,46; pior janela de 0,5 s com média 0,75 |
-| Trechos parados (diferença < 0,5) | idem | **maior trecho: 0,1 s** (meta ≤ 0,5 s) |
+| Movimento (diferença média entre quadros a 10 fps, escala 0–255) | `src/ferramentas/analise.py` | **mediana 2,90** (meta ≥ 1,0); mínimo 0,23; pior janela de 0,5 s com média 0,59 |
+| Trechos parados (diferença < 0,5) | idem | **maior trecho: 0,2 s** (meta ≤ 0,5 s) |
 | Folha de contato, 2 quadros por segundo | idem | `output/folha-contato.jpg` |
 | Tempo de leitura de cada texto (1,2 s + 0,3 s/palavra) | `src/ferramentas/qa_textos.py` (o motor registra a caixa de cada palavra em cada quadro) | **todos os 32 blocos aprovados** |
 | Zonas seguras (y 200–1536, coluna x>940 & y>1000), texto cortado ou encostado (margem de 24 px, blocos sem se tocar) | idem | **0 ocorrências** com texto assentado |
-| Loudness e pico real **depois do AAC** | `ffmpeg ebur128=peak=true` | **−14,1 LUFS · −2,0 dBTP** (meta −14 / ≤ −1,5) |
+| Loudness e pico real **depois do AAC** | `ffmpeg ebur128=peak=true` | **−14,1 LUFS · −2,2 dBTP** (meta −14 / ≤ −1,5) |
 | Equilíbrio de frequências (para alto-falante de celular) | análise por oitavas | drop com 2 kHz em −2,8 dB e 4 kHz em −5,5 dB em relação a 500 Hz |
 | Capa da grade | `render.cjs capa` | bloco do título até a pílula centralizado em y 960, dentro da área 3:4 (y 240–1680); o centro (botão de play) cai sobre as bolinhas, sem texto |
 
 As medições mudaram o vídeo nestes pontos:
 - As estações da jornada congelavam por até 1 s. A correção foi a deriva de câmera mais o tracejado correndo.
-- A assinatura final ficava parada. Entraram a órbita e partículas com paralaxe.
+- A assinatura final ficava parada. Entraram a linha de base que ondula na batida e a respiração do logo.
 - Duas frases estavam ~0,1 s abaixo do tempo de leitura e foram ajustadas.
 - "sábado?" invadia a coluna de botões e a frase subiu.
 - As comandas caíam por cima do título e passaram a ser arremessadas pelas laterais.
@@ -133,4 +133,15 @@ As fontes ficam em `fontes/` (Geist e Geist Mono, licença OFL, pacote npm `geis
 3. **Versões curtas** (15 s e 30 s) reaproveitando o mesmo motor: só o caos → drop → logo.
 4. **Motion blur em todos os quadros** (obturador de 180°) e um leve grão para dar textura. Hoje o blur só existe nos trechos rápidos, para o render ficar em ~3 min.
 5. **Legendas de acessibilidade e texto alternativo** para o post, e uma versão com contraste reforçado da nuvem de perguntas (hoje ela está a 50% de opacidade, de propósito, como textura).
-6. **Loop perfeito:** fazer o último quadro (o hóspede orbitando) encaixar no primeiro (a casa), para quem assiste duas vezes.
+6. **Loop perfeito:** fazer o último quadro (a linha de base se dissolvendo) encaixar no primeiro (a casa), para quem assiste duas vezes.
+
+---
+
+## Revisão 2: trecho final sem círculo e sem órbita
+
+Pedido: o final lembrava um vídeo antigo da marca. Mudou só o trecho da jornada até o logo; cenas, tempos, textos, trilha e capa continuam iguais.
+
+- **Sem círculo nem anel.** O trilho da jornada deixou de ser um círculo. Agora é o contorno da casa do gancho, e as 5 estações são pontos dele: a base (Reserva), a parede esquerda (Chegada), o telhado esquerdo (Comanda), o telhado direito (Saída) e a parede direita (Caixa). As composições de cada estação foram mantidas. No recuo, a casa aparece em pé e o traço a fecha em "Do início ao fim." (40,16 s). Ela fica exatamente na posição da casa do callback, então não há mais morph de círculo para casa.
+- **Sem órbita no logo.** Saíram a elipse, o hóspede orbitando e o anel do acorde final. As bolinhas assentam numa linha de base ou se dissolvem para os lados; o logo e o @fazlohospeda respiram (escala e brilho).
+- **Efeitos sonoros do trecho novo**, sincronizados: o traço correndo até fechar a casa (whoosh longo), o clique, o pop e o sino no fecho (40,16 s) e os tiques das bolinhas assentando na linha de base (47,25 s).
+- **Medido de novo no arquivo final:** movimento com mediana 2,90 e nenhum trecho abaixo de 0,5 por mais de 0,2 s. Os 32 blocos de texto passam em tempo de leitura e zonas seguras, sem nada cortado ou encostado. Áudio: −14,1 LUFS e −2,2 dBTP depois do AAC.
