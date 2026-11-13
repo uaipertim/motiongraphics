@@ -1,0 +1,121 @@
+{
+ "duracao": 31.3,
+ "cues": [
+  {
+   "t": 1.07,
+   "type": "drawer"
+  },
+  {
+   "t": 3.329,
+   "type": "whoosh"
+  },
+  {
+   "t": 3.579,
+   "type": "drop"
+  },
+  {
+   "t": 4.815,
+   "type": "slide"
+  },
+  {
+   "t": 5.55,
+   "type": "check"
+  },
+  {
+   "t": 7.309,
+   "type": "slide"
+  },
+  {
+   "t": 8.91,
+   "type": "check"
+  },
+  {
+   "t": 9.76,
+   "type": "slide"
+  },
+  {
+   "t": 10.35,
+   "type": "check"
+  },
+  {
+   "t": 11.745,
+   "type": "slide"
+  },
+  {
+   "t": 12.91,
+   "type": "check"
+  },
+  {
+   "t": 12.91,
+   "type": "shine"
+  },
+  {
+   "t": 14.697,
+   "type": "whoosh"
+  },
+  {
+   "t": 15.147,
+   "type": "pop"
+  },
+  {
+   "t": 15.297,
+   "type": "pop"
+  },
+  {
+   "t": 15.95,
+   "type": "strike"
+  },
+  {
+   "t": 16.3,
+   "type": "whoosh"
+  },
+  {
+   "t": 17.107,
+   "type": "drop"
+  },
+  {
+   "t": 17.55,
+   "type": "buzz"
+  },
+  {
+   "t": 19.064,
+   "type": "slide"
+  },
+  {
+   "t": 19.55,
+   "type": "coin"
+  },
+  {
+   "t": 20.1,
+   "type": "check"
+  },
+  {
+   "t": 21.27,
+   "type": "alert"
+  },
+  {
+   "t": 22.096,
+   "type": "pen"
+  },
+  {
+   "t": 24.35,
+   "type": "stamp"
+  },
+  {
+   "t": 24.98,
+   "type": "whoosh"
+  },
+  {
+   "t": 25.1,
+   "type": "fly"
+  },
+  {
+   "t": 28.1,
+   "type": "logowipe"
+  },
+  {
+   "t": 28.4,
+   "type": "bell"
+  }
+ ]
+}

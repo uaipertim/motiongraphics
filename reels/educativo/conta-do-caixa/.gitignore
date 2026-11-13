@@ -1,0 +1,7 @@
+output/*-previa.mp4
+output/stills/
+output/info.json
+output/render.log
+output/.video-only.mp4
+audio/*.wav
+!audio/voz.wav

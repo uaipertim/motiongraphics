@@ -1,0 +1,288 @@
+{
+ "id": "conta-do-caixa",
+ "titulo": "Vai fechar o caixa? Faça esta conta antes.",
+ "marca": "@fazlohospeda",
+ "voz": {
+  "modelo": "eleven_v4",
+  "voz": "Raquel - For Conversational (GDzHdQOi6jjf8zaXhCYD)",
+  "stability": 0.5,
+  "similarity_boost": 0.75
+ },
+ "nota": "Conteúdo educativo. Não é demonstração do FAZLO Hospeda: sem interface, sem nome de hóspede; valores ilustrativos e o selo 'Exemplo fictício' em todo quadro com dado. Cada item de 'frases' é uma frase da locução; o texto de todos os tokens, na ordem, é exatamente a narração aprovada. 'chave': palavras em limão na legenda; 'id': o instante do gesto. 'legenda': a divisão das páginas e linhas da legenda (quebras só em pausa ou pontuação).",
+ "frases": [
+  {
+   "id": "gancho",
+   "tokens": [
+    {
+     "fala": "Vai fechar o"
+    },
+    {
+     "fala": "caixa",
+     "chave": true,
+     "id": "caixa"
+    },
+    {
+     "fala": "da pousada?"
+    }
+   ]
+  },
+  {
+   "id": "conta",
+   "tokens": [
+    {
+     "fala": "Antes,"
+    },
+    {
+     "fala": "faça esta conta.",
+     "chave": true,
+     "id": "conta"
+    }
+   ]
+  },
+  {
+   "id": "troco",
+   "tokens": [
+    {
+     "fala": "Comece pelo"
+    },
+    {
+     "fala": "troco",
+     "chave": true,
+     "id": "troco"
+    },
+    {
+     "fala": "que abriu a gaveta."
+    }
+   ]
+  },
+  {
+   "id": "entrou",
+   "tokens": [
+    {
+     "fala": "Some tudo o que entrou em"
+    },
+    {
+     "fala": "dinheiro.",
+     "chave": true,
+     "id": "dinheiro"
+    }
+   ]
+  },
+  {
+   "id": "saiu",
+   "tokens": [
+    {
+     "fala": "Tire o que"
+    },
+    {
+     "fala": "saiu",
+     "chave": true,
+     "id": "saiu"
+    },
+    {
+     "fala": "da gaveta."
+    }
+   ]
+  },
+  {
+   "id": "deveria",
+   "tokens": [
+    {
+     "fala": "Esse é o valor que"
+    },
+    {
+     "fala": "deveria estar",
+     "chave": true,
+     "id": "deveria"
+    },
+    {
+     "fala": "no caixa."
+    }
+   ]
+  },
+  {
+   "id": "pix",
+   "tokens": [
+    {
+     "fala": "Pix e cartão",
+     "chave": true,
+     "id": "pix"
+    },
+    {
+     "fala": "ficam"
+    },
+    {
+     "fala": "fora dessa conta:",
+     "chave": true,
+     "id": "fora"
+    },
+    {
+     "fala": "eles"
+    },
+    {
+     "fala": "não estão na gaveta.",
+     "id": "naoestao"
+    }
+   ]
+  },
+  {
+   "id": "contado",
+   "tokens": [
+    {
+     "fala": "Agora"
+    },
+    {
+     "fala": "conte o dinheiro.",
+     "chave": true,
+     "id": "conte"
+    }
+   ]
+  },
+  {
+   "id": "diferenca",
+   "tokens": [
+    {
+     "fala": "Se der"
+    },
+    {
+     "fala": "diferença,",
+     "chave": true,
+     "id": "diferenca"
+    },
+    {
+     "fala": "anote o motivo",
+     "chave": true,
+     "id": "anote"
+    },
+    {
+     "fala": "na hora, enquanto ainda"
+    },
+    {
+     "fala": "lembra.",
+     "id": "lembra"
+    }
+   ]
+  },
+  {
+   "id": "cta",
+   "tokens": [
+    {
+     "fala": "Mande",
+     "chave": true,
+     "id": "mande"
+    },
+    {
+     "fala": "para quem fecha o caixa da sua pousada."
+    }
+   ]
+  }
+ ],
+ "narracao": "Vai fechar o caixa da pousada? Antes, faça esta conta. Comece pelo troco que abriu a gaveta. Some tudo o que entrou em dinheiro. Tire o que saiu da gaveta. Esse é o valor que deveria estar no caixa. Pix e cartão ficam fora dessa conta: eles não estão na gaveta. Agora conte o dinheiro. Se der diferença, anote o motivo na hora, enquanto ainda lembra. Mande para quem fecha o caixa da sua pousada.",
+ "legenda": [
+  [
+   "Vai fechar o caixa",
+   "da pousada?"
+  ],
+  [
+   "Antes, faça esta conta."
+  ],
+  [
+   "Comece pelo troco",
+   "que abriu a gaveta."
+  ],
+  [
+   "Some tudo o que entrou",
+   "em dinheiro."
+  ],
+  [
+   "Tire o que saiu",
+   "da gaveta."
+  ],
+  [
+   "Esse é o valor",
+   "que deveria estar no caixa."
+  ],
+  [
+   "Pix e cartão ficam",
+   "fora dessa conta:"
+  ],
+  [
+   "eles não estão",
+   "na gaveta."
+  ],
+  [
+   "Agora conte o dinheiro.",
+   "Se der diferença,"
+  ],
+  [
+   "anote o motivo na hora,",
+   "enquanto ainda lembra."
+  ],
+  [
+   "Mande para quem fecha",
+   "o caixa da sua pousada."
+  ]
+ ],
+ "exemplo": {
+  "ficha": [
+   {
+    "id": "troco",
+    "sinal": "",
+    "rotulo": "Troco de abertura",
+    "valor": "R$ 200,00"
+   },
+   {
+    "id": "dinheiro",
+    "sinal": "+",
+    "rotulo": "Entradas em dinheiro",
+    "valor": "R$ 125,00"
+   },
+   {
+    "id": "saiu",
+    "sinal": "−",
+    "rotulo": "Saídas da gaveta",
+    "valor": "R$ 40,00"
+   },
+   {
+    "id": "deveria",
+    "sinal": "=",
+    "rotulo": "Deveria ter",
+    "valor": "R$ 285,00",
+    "total": true
+   },
+   {
+    "id": "conte",
+    "sinal": "",
+    "rotulo": "Contado",
+    "valor": "R$ 270,00"
+   },
+   {
+    "id": "diferenca",
+    "sinal": "",
+    "rotulo": "Diferença",
+    "valor": "falta R$ 15,00",
+    "ambar": true
+   }
+  ],
+  "motivo": "Motivo: troco devolvido sem registro",
+  "fora": [
+   {
+    "id": "pix",
+    "txt": "PIX · R$ 900,00"
+   },
+   {
+    "id": "cartao",
+    "txt": "CARTÃO · R$ 500,00"
+   }
+  ],
+  "conta": {
+   "troco": 200,
+   "entradas": 125,
+   "saidas": 40,
+   "deveria": 285,
+   "contado": 270,
+   "falta": 15
+  }
+ },
+ "legenda_post": "Vai fechar o caixa da pousada? Antes, faça esta conta:\n\n1. Comece pelo troco que abriu a gaveta.\n2. Some tudo o que entrou em dinheiro.\n3. Tire o que saiu da gaveta.\n4. Esse é o valor que deveria estar no caixa.\n\nPix e cartão ficam fora dessa conta: eles não estão na gaveta.\n\nAgora conte o dinheiro. Se der diferença, anote o motivo na hora, enquanto ainda lembra.\n\nMande para quem fecha o caixa da sua pousada.\n\n#pousada #gestaodepousada #hospedagem"
+}

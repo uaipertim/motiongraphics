@@ -1,0 +1,799 @@
+{
+ "provisoria": false,
+ "audio": "audio/voz.wav",
+ "inicio_voz": 0.35,
+ "fim_voz": 27.4,
+ "logo": 28.1,
+ "duracao": 31.3,
+ "marca": "@fazlohospeda",
+ "exemplo": {
+  "ficha": [
+   {
+    "id": "troco",
+    "sinal": "",
+    "rotulo": "Troco de abertura",
+    "valor": "R$ 200,00"
+   },
+   {
+    "id": "dinheiro",
+    "sinal": "+",
+    "rotulo": "Entradas em dinheiro",
+    "valor": "R$ 125,00"
+   },
+   {
+    "id": "saiu",
+    "sinal": "−",
+    "rotulo": "Saídas da gaveta",
+    "valor": "R$ 40,00"
+   },
+   {
+    "id": "deveria",
+    "sinal": "=",
+    "rotulo": "Deveria ter",
+    "valor": "R$ 285,00",
+    "total": true
+   },
+   {
+    "id": "conte",
+    "sinal": "",
+    "rotulo": "Contado",
+    "valor": "R$ 270,00"
+   },
+   {
+    "id": "diferenca",
+    "sinal": "",
+    "rotulo": "Diferença",
+    "valor": "falta R$ 15,00",
+    "ambar": true
+   }
+  ],
+  "motivo": "Motivo: troco devolvido sem registro",
+  "fora": [
+   {
+    "id": "pix",
+    "txt": "PIX · R$ 900,00"
+   },
+   {
+    "id": "cartao",
+    "txt": "CARTÃO · R$ 500,00"
+   }
+  ],
+  "conta": {
+   "troco": 200,
+   "entradas": 125,
+   "saidas": 40,
+   "deveria": 285,
+   "contado": 270,
+   "falta": 15
+  }
+ },
+ "legenda": [
+  [
+   "Vai fechar o caixa",
+   "da pousada?"
+  ],
+  [
+   "Antes, faça esta conta."
+  ],
+  [
+   "Comece pelo troco",
+   "que abriu a gaveta."
+  ],
+  [
+   "Some tudo o que entrou",
+   "em dinheiro."
+  ],
+  [
+   "Tire o que saiu",
+   "da gaveta."
+  ],
+  [
+   "Esse é o valor",
+   "que deveria estar no caixa."
+  ],
+  [
+   "Pix e cartão ficam",
+   "fora dessa conta:"
+  ],
+  [
+   "eles não estão",
+   "na gaveta."
+  ],
+  [
+   "Agora conte o dinheiro.",
+   "Se der diferença,"
+  ],
+  [
+   "anote o motivo na hora,",
+   "enquanto ainda lembra."
+  ],
+  [
+   "Mande para quem fecha",
+   "o caixa da sua pousada."
+  ]
+ ],
+ "frases": [
+  {
+   "id": "gancho",
+   "t0": 0.35,
+   "t1": 2.03,
+   "palavras": [
+    {
+     "w": "Vai",
+     "chave": false,
+     "id": null,
+     "t0": 0.35,
+     "t1": 0.51
+    },
+    {
+     "w": "fechar",
+     "chave": false,
+     "id": null,
+     "t0": 0.59,
+     "t1": 0.91
+    },
+    {
+     "w": "o",
+     "chave": false,
+     "id": null,
+     "t0": 0.95,
+     "t1": 0.99
+    },
+    {
+     "w": "caixa",
+     "chave": true,
+     "id": "caixa",
+     "t0": 1.07,
+     "t1": 1.31
+    },
+    {
+     "w": "da",
+     "chave": false,
+     "id": null,
+     "t0": 1.35,
+     "t1": 1.39
+    },
+    {
+     "w": "pousada?",
+     "chave": false,
+     "id": null,
+     "t0": 1.47,
+     "t1": 2.03
+    }
+   ]
+  },
+  {
+   "id": "conta",
+   "t0": 2.548,
+   "t1": 4.27,
+   "palavras": [
+    {
+     "w": "Antes,",
+     "chave": false,
+     "id": null,
+     "t0": 2.548,
+     "t1": 3.07
+    },
+    {
+     "w": "faça",
+     "chave": true,
+     "id": "conta",
+     "t0": 3.379,
+     "t1": 3.63
+    },
+    {
+     "w": "esta",
+     "chave": true,
+     "id": null,
+     "t0": 3.786,
+     "t1": 3.87
+    },
+    {
+     "w": "conta.",
+     "chave": true,
+     "id": null,
+     "t0": 3.913,
+     "t1": 4.27
+    }
+   ]
+  },
+  {
+   "id": "troco",
+   "t0": 4.865,
+   "t1": 6.91,
+   "palavras": [
+    {
+     "w": "Comece",
+     "chave": false,
+     "id": null,
+     "t0": 4.865,
+     "t1": 5.23
+    },
+    {
+     "w": "pelo",
+     "chave": false,
+     "id": null,
+     "t0": 5.27,
+     "t1": 5.47
+    },
+    {
+     "w": "troco",
+     "chave": true,
+     "id": "troco",
+     "t0": 5.55,
+     "t1": 5.95
+    },
+    {
+     "w": "que",
+     "chave": false,
+     "id": null,
+     "t0": 5.99,
+     "t1": 6.03
+    },
+    {
+     "w": "abriu",
+     "chave": false,
+     "id": null,
+     "t0": 6.11,
+     "t1": 6.297
+    },
+    {
+     "w": "a",
+     "chave": false,
+     "id": null,
+     "t0": 6.323,
+     "t1": 6.35
+    },
+    {
+     "w": "gaveta.",
+     "chave": false,
+     "id": null,
+     "t0": 6.43,
+     "t1": 6.91
+    }
+   ]
+  },
+  {
+   "id": "entrou",
+   "t0": 7.359,
+   "t1": 9.31,
+   "palavras": [
+    {
+     "w": "Some",
+     "chave": false,
+     "id": null,
+     "t0": 7.359,
+     "t1": 7.71
+    },
+    {
+     "w": "tudo",
+     "chave": false,
+     "id": null,
+     "t0": 7.939,
+     "t1": 8.19
+    },
+    {
+     "w": "o",
+     "chave": false,
+     "id": null,
+     "t0": 8.23,
+     "t1": 8.27
+    },
+    {
+     "w": "que",
+     "chave": false,
+     "id": null,
+     "t0": 8.35,
+     "t1": 8.39
+    },
+    {
+     "w": "entrou",
+     "chave": false,
+     "id": null,
+     "t0": 8.43,
+     "t1": 8.67
+    },
+    {
+     "w": "em",
+     "chave": false,
+     "id": null,
+     "t0": 8.75,
+     "t1": 8.83
+    },
+    {
+     "w": "dinheiro.",
+     "chave": true,
+     "id": "dinheiro",
+     "t0": 8.91,
+     "t1": 9.31
+    }
+   ]
+  },
+  {
+   "id": "saiu",
+   "t0": 9.81,
+   "t1": 11.31,
+   "palavras": [
+    {
+     "w": "Tire",
+     "chave": false,
+     "id": null,
+     "t0": 9.81,
+     "t1": 10.11
+    },
+    {
+     "w": "o",
+     "chave": false,
+     "id": null,
+     "t0": 10.15,
+     "t1": 10.19
+    },
+    {
+     "w": "que",
+     "chave": false,
+     "id": null,
+     "t0": 10.23,
+     "t1": 10.27
+    },
+    {
+     "w": "saiu",
+     "chave": true,
+     "id": "saiu",
+     "t0": 10.35,
+     "t1": 10.67
+    },
+    {
+     "w": "da",
+     "chave": false,
+     "id": null,
+     "t0": 10.71,
+     "t1": 10.75
+    },
+    {
+     "w": "gaveta.",
+     "chave": false,
+     "id": null,
+     "t0": 10.83,
+     "t1": 11.31
+    }
+   ]
+  },
+  {
+   "id": "deveria",
+   "t0": 11.795,
+   "t1": 14.19,
+   "palavras": [
+    {
+     "w": "Esse",
+     "chave": false,
+     "id": null,
+     "t0": 11.795,
+     "t1": 12.11
+    },
+    {
+     "w": "é",
+     "chave": false,
+     "id": null,
+     "t0": 12.27,
+     "t1": 12.35
+    },
+    {
+     "w": "o",
+     "chave": false,
+     "id": null,
+     "t0": 12.39,
+     "t1": 12.43
+    },
+    {
+     "w": "valor",
+     "chave": false,
+     "id": null,
+     "t0": 12.59,
+     "t1": 12.75
+    },
+    {
+     "w": "que",
+     "chave": false,
+     "id": null,
+     "t0": 12.79,
+     "t1": 12.83
+    },
+    {
+     "w": "deveria",
+     "chave": true,
+     "id": "deveria",
+     "t0": 12.91,
+     "t1": 13.31
+    },
+    {
+     "w": "estar",
+     "chave": true,
+     "id": null,
+     "t0": 13.43,
+     "t1": 13.55
+    },
+    {
+     "w": "no",
+     "chave": false,
+     "id": null,
+     "t0": 13.63,
+     "t1": 13.71
+    },
+    {
+     "w": "caixa.",
+     "chave": false,
+     "id": null,
+     "t0": 13.79,
+     "t1": 14.19
+    }
+   ]
+  },
+  {
+   "id": "pix",
+   "t0": 14.697,
+   "t1": 18.59,
+   "palavras": [
+    {
+     "w": "Pix",
+     "chave": true,
+     "id": "pix",
+     "t0": 14.697,
+     "t1": 14.91
+    },
+    {
+     "w": "e",
+     "chave": true,
+     "id": null,
+     "t0": 14.937,
+     "t1": 14.963
+    },
+    {
+     "w": "cartão",
+     "chave": true,
+     "id": null,
+     "t0": 14.99,
+     "t1": 15.47
+    },
+    {
+     "w": "ficam",
+     "chave": false,
+     "id": null,
+     "t0": 15.55,
+     "t1": 15.87
+    },
+    {
+     "w": "fora",
+     "chave": true,
+     "id": "fora",
+     "t0": 15.95,
+     "t1": 16.19
+    },
+    {
+     "w": "dessa",
+     "chave": true,
+     "id": null,
+     "t0": 16.23,
+     "t1": 16.43
+    },
+    {
+     "w": "conta:",
+     "chave": true,
+     "id": null,
+     "t0": 16.51,
+     "t1": 16.91
+    },
+    {
+     "w": "eles",
+     "chave": false,
+     "id": null,
+     "t0": 17.187,
+     "t1": 17.47
+    },
+    {
+     "w": "não",
+     "chave": false,
+     "id": "naoestao",
+     "t0": 17.55,
+     "t1": 17.71
+    },
+    {
+     "w": "estão",
+     "chave": false,
+     "id": null,
+     "t0": 17.923,
+     "t1": 18.03
+    },
+    {
+     "w": "na",
+     "chave": false,
+     "id": null,
+     "t0": 18.07,
+     "t1": 18.11
+    },
+    {
+     "w": "gaveta.",
+     "chave": false,
+     "id": null,
+     "t0": 18.15,
+     "t1": 18.59
+    }
+   ]
+  },
+  {
+   "id": "contado",
+   "t0": 19.114,
+   "t1": 20.43,
+   "palavras": [
+    {
+     "w": "Agora",
+     "chave": false,
+     "id": null,
+     "t0": 19.114,
+     "t1": 19.47
+    },
+    {
+     "w": "conte",
+     "chave": true,
+     "id": "conte",
+     "t0": 19.55,
+     "t1": 19.87
+    },
+    {
+     "w": "o",
+     "chave": true,
+     "id": null,
+     "t0": 19.91,
+     "t1": 19.95
+    },
+    {
+     "w": "dinheiro.",
+     "chave": true,
+     "id": null,
+     "t0": 20.03,
+     "t1": 20.43
+    }
+   ]
+  },
+  {
+   "id": "diferenca",
+   "t0": 20.835,
+   "t1": 24.67,
+   "palavras": [
+    {
+     "w": "Se",
+     "chave": false,
+     "id": null,
+     "t0": 20.835,
+     "t1": 20.99
+    },
+    {
+     "w": "der",
+     "chave": false,
+     "id": null,
+     "t0": 21.07,
+     "t1": 21.23
+    },
+    {
+     "w": "diferença,",
+     "chave": true,
+     "id": "diferenca",
+     "t0": 21.27,
+     "t1": 21.95
+    },
+    {
+     "w": "anote",
+     "chave": true,
+     "id": "anote",
+     "t0": 22.096,
+     "t1": 22.51
+    },
+    {
+     "w": "o",
+     "chave": true,
+     "id": null,
+     "t0": 22.55,
+     "t1": 22.59
+    },
+    {
+     "w": "motivo",
+     "chave": true,
+     "id": null,
+     "t0": 22.71,
+     "t1": 22.99
+    },
+    {
+     "w": "na",
+     "chave": false,
+     "id": null,
+     "t0": 23.07,
+     "t1": 23.23
+    },
+    {
+     "w": "hora,",
+     "chave": false,
+     "id": null,
+     "t0": 23.31,
+     "t1": 23.55
+    },
+    {
+     "w": "enquanto",
+     "chave": false,
+     "id": null,
+     "t0": 23.87,
+     "t1": 24.03
+    },
+    {
+     "w": "ainda",
+     "chave": false,
+     "id": null,
+     "t0": 24.11,
+     "t1": 24.27
+    },
+    {
+     "w": "lembra.",
+     "chave": false,
+     "id": "lembra",
+     "t0": 24.35,
+     "t1": 24.67
+    }
+   ]
+  },
+  {
+   "id": "cta",
+   "t0": 25.1,
+   "t1": 27.39,
+   "palavras": [
+    {
+     "w": "Mande",
+     "chave": true,
+     "id": "mande",
+     "t0": 25.1,
+     "t1": 25.47
+    },
+    {
+     "w": "para",
+     "chave": false,
+     "id": null,
+     "t0": 25.55,
+     "t1": 25.63
+    },
+    {
+     "w": "quem",
+     "chave": false,
+     "id": null,
+     "t0": 25.67,
+     "t1": 25.87
+    },
+    {
+     "w": "fecha",
+     "chave": false,
+     "id": null,
+     "t0": 25.99,
+     "t1": 26.11
+    },
+    {
+     "w": "o",
+     "chave": false,
+     "id": null,
+     "t0": 26.15,
+     "t1": 26.19
+    },
+    {
+     "w": "caixa",
+     "chave": false,
+     "id": null,
+     "t0": 26.27,
+     "t1": 26.51
+    },
+    {
+     "w": "da",
+     "chave": false,
+     "id": null,
+     "t0": 26.59,
+     "t1": 26.63
+    },
+    {
+     "w": "sua",
+     "chave": false,
+     "id": null,
+     "t0": 26.67,
+     "t1": 26.83
+    },
+    {
+     "w": "pousada.",
+     "chave": false,
+     "id": null,
+     "t0": 26.91,
+     "t1": 27.39
+    }
+   ]
+  }
+ ],
+ "inicios_medidos_no_audio": [
+  {
+   "palavra": "Antes,",
+   "marcacao_s": 2.51,
+   "audio_s": 2.548
+  },
+  {
+   "palavra": "faça",
+   "marcacao_s": 3.31,
+   "audio_s": 3.379
+  },
+  {
+   "palavra": "esta",
+   "marcacao_s": 3.75,
+   "audio_s": 3.786
+  },
+  {
+   "palavra": "conta.",
+   "marcacao_s": 4.03,
+   "audio_s": 3.913
+  },
+  {
+   "palavra": "Comece",
+   "marcacao_s": 4.83,
+   "audio_s": 4.865
+  },
+  {
+   "palavra": "Some",
+   "marcacao_s": 7.39,
+   "audio_s": 7.359
+  },
+  {
+   "palavra": "tudo",
+   "marcacao_s": 7.87,
+   "audio_s": 7.939
+  },
+  {
+   "palavra": "Tire",
+   "marcacao_s": 9.79,
+   "audio_s": 9.81
+  },
+  {
+   "palavra": "Esse",
+   "marcacao_s": 11.79,
+   "audio_s": 11.795
+  },
+  {
+   "palavra": "Pix",
+   "marcacao_s": 14.67,
+   "audio_s": 14.697
+  },
+  {
+   "palavra": "eles",
+   "marcacao_s": 17.19,
+   "audio_s": 17.187
+  },
+  {
+   "palavra": "estão",
+   "marcacao_s": 17.83,
+   "audio_s": 17.923
+  },
+  {
+   "palavra": "Agora",
+   "marcacao_s": 19.15,
+   "audio_s": 19.114
+  },
+  {
+   "palavra": "Se",
+   "marcacao_s": 20.83,
+   "audio_s": 20.835
+  },
+  {
+   "palavra": "anote",
+   "marcacao_s": 22.11,
+   "audio_s": 22.096
+  },
+  {
+   "palavra": "enquanto",
+   "marcacao_s": 23.79,
+   "audio_s": 23.87
+  },
+  {
+   "palavra": "Mande",
+   "marcacao_s": 25.15,
+   "audio_s": 25.1
+  }
+ ]
+}
