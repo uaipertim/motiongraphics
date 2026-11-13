@@ -1,0 +1,245 @@
+{
+ "duracao": 32.01,
+ "cues": [
+  {
+   "t": 0,
+   "type": "texto"
+  },
+  {
+   "t": 0.9,
+   "type": "pulso"
+  },
+  {
+   "t": 2.2,
+   "type": "pulso"
+  },
+  {
+   "t": 3.65,
+   "type": "texto"
+  },
+  {
+   "t": 3.7,
+   "type": "etiqueta"
+  },
+  {
+   "t": 3.9,
+   "type": "voo"
+  },
+  {
+   "t": 5.75,
+   "type": "texto"
+  },
+  {
+   "t": 6.7,
+   "type": "queda"
+  },
+  {
+   "t": 9.05,
+   "type": "entra"
+  },
+  {
+   "t": 9.45,
+   "type": "texto"
+  },
+  {
+   "t": 9.8,
+   "type": "aterra"
+  },
+  {
+   "t": 10.05,
+   "type": "aterra"
+  },
+  {
+   "t": 10.12,
+   "type": "rola"
+  },
+  {
+   "t": 10.2,
+   "type": "voo"
+  },
+  {
+   "t": 10.35,
+   "type": "voo"
+  },
+  {
+   "t": 10.75,
+   "type": "aterra"
+  },
+  {
+   "t": 11,
+   "type": "aterra"
+  },
+  {
+   "t": 11.25,
+   "type": "aterra"
+  },
+  {
+   "t": 11.5,
+   "type": "aterra"
+  },
+  {
+   "t": 11.6,
+   "type": "texto"
+  },
+  {
+   "t": 12,
+   "type": "tela"
+  },
+  {
+   "t": 12.05,
+   "type": "rola"
+  },
+  {
+   "t": 12.7,
+   "type": "salto"
+  },
+  {
+   "t": 13,
+   "type": "conta"
+  },
+  {
+   "t": 14.75,
+   "type": "volta"
+  },
+  {
+   "t": 15.17,
+   "type": "encaixa"
+  },
+  {
+   "t": 15.25,
+   "type": "texto"
+  },
+  {
+   "t": 15.25,
+   "type": "toque"
+  },
+  {
+   "t": 15.4,
+   "type": "folha"
+  },
+  {
+   "t": 16.45,
+   "type": "toque"
+  },
+  {
+   "t": 16.6,
+   "type": "folha_fecha"
+  },
+  {
+   "t": 16.7,
+   "type": "tela"
+  },
+  {
+   "t": 17.05,
+   "type": "salto"
+  },
+  {
+   "t": 18,
+   "type": "troca"
+  },
+  {
+   "t": 19.1,
+   "type": "volta"
+  },
+  {
+   "t": 19.25,
+   "type": "salto"
+  },
+  {
+   "t": 19.52,
+   "type": "encaixa"
+  },
+  {
+   "t": 20.2,
+   "type": "troca"
+  },
+  {
+   "t": 21.3,
+   "type": "volta"
+  },
+  {
+   "t": 21.45,
+   "type": "salto"
+  },
+  {
+   "t": 21.72,
+   "type": "encaixa"
+  },
+  {
+   "t": 21.75,
+   "type": "conta"
+  },
+  {
+   "t": 23.5,
+   "type": "volta"
+  },
+  {
+   "t": 23.85,
+   "type": "rola"
+  },
+  {
+   "t": 23.92,
+   "type": "encaixa"
+  },
+  {
+   "t": 23.95,
+   "type": "texto"
+  },
+  {
+   "t": 24.45,
+   "type": "salto"
+  },
+  {
+   "t": 26.5,
+   "type": "volta"
+  },
+  {
+   "t": 26.92,
+   "type": "encaixa"
+  },
+  {
+   "t": 26.97,
+   "type": "rola"
+  },
+  {
+   "t": 27.07,
+   "type": "texto"
+  },
+  {
+   "t": 27.52,
+   "type": "salto"
+  },
+  {
+   "t": 27.64,
+   "type": "salto"
+  },
+  {
+   "t": 29.57,
+   "type": "volta"
+  },
+  {
+   "t": 29.69,
+   "type": "volta"
+  },
+  {
+   "t": 29.99,
+   "type": "encaixa"
+  },
+  {
+   "t": 30.11,
+   "type": "encaixa"
+  },
+  {
+   "t": 30.21,
+   "type": "afasta"
+  },
+  {
+   "t": 30.66,
+   "type": "logo"
+  },
+  {
+   "t": 30.91,
+   "type": "bell"
+  }
+ ]
+}

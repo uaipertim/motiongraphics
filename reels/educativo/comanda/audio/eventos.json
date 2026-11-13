@@ -1,0 +1,274 @@
+{
+ "duracao": 32.01,
+ "eventos": [
+  {
+   "t": -1,
+   "tipo": "tela"
+  },
+  {
+   "t": 0,
+   "tipo": "texto"
+  },
+  {
+   "t": 0.9,
+   "tipo": "pulso"
+  },
+  {
+   "t": 2.2,
+   "tipo": "pulso"
+  },
+  {
+   "t": 3.65,
+   "tipo": "texto"
+  },
+  {
+   "t": 3.7,
+   "tipo": "etiqueta"
+  },
+  {
+   "t": 3.9,
+   "tipo": "voo"
+  },
+  {
+   "t": 5.75,
+   "tipo": "texto"
+  },
+  {
+   "t": 6.7,
+   "tipo": "queda"
+  },
+  {
+   "t": 9.05,
+   "tipo": "entra"
+  },
+  {
+   "t": 9.45,
+   "tipo": "texto"
+  },
+  {
+   "t": 9.8,
+   "tipo": "aterra"
+  },
+  {
+   "t": 10.05,
+   "tipo": "aterra"
+  },
+  {
+   "t": 10.12,
+   "tipo": "rola",
+   "dur": 0.5
+  },
+  {
+   "t": 10.2,
+   "tipo": "voo"
+  },
+  {
+   "t": 10.35,
+   "tipo": "voo"
+  },
+  {
+   "t": 10.75,
+   "tipo": "aterra"
+  },
+  {
+   "t": 11,
+   "tipo": "aterra"
+  },
+  {
+   "t": 11.25,
+   "tipo": "aterra"
+  },
+  {
+   "t": 11.5,
+   "tipo": "aterra"
+  },
+  {
+   "t": 11.6,
+   "tipo": "texto"
+  },
+  {
+   "t": 12,
+   "tipo": "tela"
+  },
+  {
+   "t": 12.05,
+   "tipo": "rola",
+   "dur": 0.5499999999999989
+  },
+  {
+   "t": 12.7,
+   "tipo": "salto",
+   "id": "total"
+  },
+  {
+   "t": 13,
+   "tipo": "conta",
+   "dur": 0.8
+  },
+  {
+   "t": 14.75,
+   "tipo": "volta",
+   "id": "total"
+  },
+  {
+   "t": 15.17,
+   "tipo": "encaixa",
+   "id": "total"
+  },
+  {
+   "t": 15.25,
+   "tipo": "toque"
+  },
+  {
+   "t": 15.25,
+   "tipo": "texto"
+  },
+  {
+   "t": 15.4,
+   "tipo": "folha"
+  },
+  {
+   "t": 16.45,
+   "tipo": "toque"
+  },
+  {
+   "t": 16.6,
+   "tipo": "folha_fecha"
+  },
+  {
+   "t": 16.7,
+   "tipo": "tela"
+  },
+  {
+   "t": 17.05,
+   "tipo": "salto",
+   "id": "caipirinha"
+  },
+  {
+   "t": 18,
+   "tipo": "troca",
+   "id": "caipirinha"
+  },
+  {
+   "t": 19.1,
+   "tipo": "volta",
+   "id": "caipirinha"
+  },
+  {
+   "t": 19.25,
+   "tipo": "salto",
+   "id": "agua"
+  },
+  {
+   "t": 19.52,
+   "tipo": "encaixa",
+   "id": "caipirinha"
+  },
+  {
+   "t": 20.2,
+   "tipo": "troca",
+   "id": "agua"
+  },
+  {
+   "t": 21.3,
+   "tipo": "volta",
+   "id": "agua"
+  },
+  {
+   "t": 21.45,
+   "tipo": "salto",
+   "id": "total-321"
+  },
+  {
+   "t": 21.72,
+   "tipo": "encaixa",
+   "id": "agua"
+  },
+  {
+   "t": 21.75,
+   "tipo": "conta",
+   "dur": 0.7
+  },
+  {
+   "t": 23.5,
+   "tipo": "volta",
+   "id": "total-321"
+  },
+  {
+   "t": 23.85,
+   "tipo": "rola",
+   "dur": 0.5
+  },
+  {
+   "t": 23.92,
+   "tipo": "encaixa",
+   "id": "total-321"
+  },
+  {
+   "t": 23.95,
+   "tipo": "texto"
+  },
+  {
+   "t": 24.45,
+   "tipo": "salto",
+   "id": "cancelado"
+  },
+  {
+   "t": 26.5,
+   "tipo": "volta",
+   "id": "cancelado"
+  },
+  {
+   "t": 26.92,
+   "tipo": "encaixa",
+   "id": "cancelado"
+  },
+  {
+   "t": 26.97,
+   "tipo": "rola",
+   "dur": 0.5
+  },
+  {
+   "t": 27.07,
+   "tipo": "texto"
+  },
+  {
+   "t": 27.52,
+   "tipo": "salto",
+   "id": "saldo"
+  },
+  {
+   "t": 27.64,
+   "tipo": "salto",
+   "id": "receber"
+  },
+  {
+   "t": 29.57,
+   "tipo": "volta",
+   "id": "saldo"
+  },
+  {
+   "t": 29.69,
+   "tipo": "volta",
+   "id": "receber"
+  },
+  {
+   "t": 29.99,
+   "tipo": "encaixa",
+   "id": "saldo"
+  },
+  {
+   "t": 30.11,
+   "tipo": "encaixa",
+   "id": "receber"
+  },
+  {
+   "t": 30.21,
+   "tipo": "afasta"
+  },
+  {
+   "t": 30.66,
+   "tipo": "logo"
+  }
+ ]
+}
