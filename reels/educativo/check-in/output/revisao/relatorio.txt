@@ -1,0 +1,67 @@
+EDUCATIVO check-in ("O hóspede chegou? Confira isto no check-in.") — revisão técnica
+output/check-in.mp4
+
+FORMATO
+OK     vídeo h264 yuv420p 1080x1920 60 fps
+OK     áudio aac 48000 Hz 2 canais
+OK     duração 32.45 s (alvo 30–40 s)
+OK     vídeo e áudio com a mesma duração (Δ 0 ms)
+
+SOM
+OK     loudness integrado -14.0 LUFS (alvo −14)
+OK     pico real -2.3 dBTP (limite −1,5)
+OK     a trilha fica 10.3 dB abaixo da voz (voz -14.0 LUFS, trilha -24.3 LUFS; alvo ~10 dB, com ducking)
+
+LEGENDA
+OK     9 páginas; cada uma fica ≥ 1,5 s na tela (a mais curta: 1.59 s)
+OK     a página anterior sai antes da próxima entrar (nenhuma sobreposição)
+OK     chaves em limão: 16 palavras
+OK     legenda dentro de x 130–950 (as linhas até x 936; a coluna de botões começa em x > 940) e acima de y 1536 em todos os quadros amostrados
+OK     a legenda não encosta em nenhum elemento da cena
+
+SINCRONIA
+OK     voz × legenda: 18 palavras depois de pausa, a 5 ms em média e 40 ms no máximo (limite 80 ms) · sem silêncio real antes (não medidas): data, chave
+       o +0 · tem +0 · Quantas +0 · adultos, +0 · crianças -31 · e -1 · pet. -1 · A +1 · combinados -4 · E +16 · quanto +0 · e +0 · quando: -40 · agora -1 · ou +0 · check-out. -1 · Com -1 · a +0
+OK     cada página aparece no quadro da 1ª palavra (atraso em quadros: [0, 0, 0, 1, 1, 1, 0, 1, 1])
+
+ZONAS SEGURAS E CONTEÚDO
+OK     coluna de botões (x > 940, y > 1000): 0 pixel aceso em 130 quadros
+OK     20% de baixo (y > 1536): nada aceso em 130 quadros
+OK     todas as caixas da cena entre y 200 e 1536 e fora da coluna de botões
+OK     grafia oficial: nenhuma grafia fonética (Fázlo, Hospéda, Uátsap) na legenda nem no quadro
+OK     "Exemplo fictício" visível em todos os 92 quadros amostrados que mostram dado
+OK     a logo entra 0.70 s depois da última palavra e fica 3.20 s até o fim
+OK     o vídeo termina com a logo
+
+DIVISÃO DA LEGENDA (quebras só em pausa ou pontuação; nenhuma linha termina em artigo, preposição ou conjunção)
+OK     sem legenda nas frases que a cena já mostra como texto principal (regra da série): "O hóspede chegou?" 0.35–1.79 s; "Antes de entregar a chave, confira quatro coisas." 1.79–5.29 s; "Mande para quem faz o check-in na sua pousada." 26.28–32.45 s
+       a legenda começa em 5.29 s ("Documento com foto:…") e a última página sai em 26.28 s
+
+SINCRONIA GESTO × PALAVRA (início do movimento medido nos pixels da região do gesto, a 60 fps; tolerância 80 ms)
+       "hóspede"  0.470 s → a chave dá um tranco (e "chegou?" pulsa):  0.483 s (+13 ms)
+       "chave,"  2.670 s → a chave brilha em limão:  2.683 s (+13 ms)
+       "confira"  3.273 s → o título encolhe e sobe; a ficha "CHECK-IN" entra:  3.267 s (-6 ms)
+       "quatro"  3.790 s → as casas 01–04 aparecem (medida na casa 01):  3.817 s (+27 ms)
+       "reserva."  8.510 s → check em "01 Documento com foto":  8.517 s (+7 ms)
+       "pet." 13.685 s → check em "02 Pessoas": 13.700 s (+15 ms)
+       "voz" 17.150 s → check em "03 Saída": 17.167 s (+17 ms)
+       "check-out." 21.925 s → check em "04 Saldo": 21.933 s (+8 ms)
+       "conferido," 23.230 s → carimbo "CONFERIDO": 23.250 s (+20 ms)
+       "mão" 25.110 s → a chave sai da ficha, em limão, com brilho: 25.117 s (+7 ms)
+       "Mande" 26.281 s → "Mande" e o avião deslizam para dentro: 26.300 s (+19 ms)
+OK     11 gestos, cada um a ≤ 80 ms da palavra (pior: 27 ms)
+
+VARREDURA DE TEXTO (caixas do motor a cada 0,25 s)
+OK     nenhum texto encosta em outro (respiro ≥ 4 px) em 130 quadros amostrados
+OK     nenhum texto cortado: os da ficha ficam ≥ 20 px dentro do papel; nada sai do quadro (fora as transições)
+
+DADOS CONFERIDOS COM O ROTEIRO DO reserva-whatsapp (a mesma hóspede, exemplo fictício)
+OK     nome: "Ana Lima" (reserva: "Ana Lima · (00) 90000-0000" · check-in: "Ana Lima · documento conferido")
+OK     nenhum número de documento na tela: só "documento conferido"
+OK     pessoas: "2 adultos · 1 criança · sem pet" = reserva "2 adultos · 1 criança · sem pet"
+OK     saída: "seg 16/11 · até 12:00" — reserva "14/11 → 16/11 · 2 noites"; 16/11/2026 cai em seg (calendário)
+OK     acomodação e valor: "Chalé 3 · R$ 900,00"; a chave é do "Chalé 3"
+OK     saldo: R$ 900,00 − sinal R$ 450,00 = R$ 450,00 → "R$ 450,00 · no check-out" (sinal na reserva: "R$ 450,00 · Pix · comprovante ok")
+OK     capa (quadro 0) na regra das capas: dentro da regra das capas
+
+RESULTADO: aprovado
