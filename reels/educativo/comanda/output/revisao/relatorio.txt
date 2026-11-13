@@ -9,7 +9,7 @@ OK     mix -13.9 LUFS (alvo −14), pico real -3.5 dBTP (limite −1,5); trilha 
 QA DE MOVIMENTO (obrigatório: reels/tools/qa_movimento.py)
        medida                                    v2 (referência)   este vídeo   alvo
        ----------------------------------------------------------------------------------
-       movimento mediano (dif. média, 0–255)               1.151        2.483   ≥ 1,0
+       movimento mediano (dif. média, 0–255)               1.151         2.25   ≥ 1,0
        tempo parado total (s)                                2.0          0.0   ≤ 1,5
        maior trecho parado (s)                               0.8          0.0   ≤ 0,5
        parado no fim / logo (s)                              0.0          0.0   ≤ 0.8
@@ -55,6 +55,13 @@ ZONAS SEGURAS E RESPIROS (fora das transições de ±0,4 s, inclusive os cortes 
 OK     nada acima de y 200 nem abaixo de y 1536
 OK     nada na coluna de botões (x > 940, y > 1000)
 OK     respiro ≥ 24 px entre a manchete e os elementos
+
+TEXTO ENCOSTADO OU CORTADO (varredura em todos os quadros a 30 fps)
+OK     cada texto inteiro dentro da sua caixa (cartão, chip, barra, bilhete), com margem ≥ 4 px
+OK     nenhum texto por cima de outro na mesma caixa (o selo "CANCELADO", carimbado de propósito, e os bilhetes girados ficam de fora)
+OK     nenhum texto cortado pela borda do quadro (salvo o que entra ou sai de propósito: o bilhete que escapa, os deslizes da câmera na cena 2 e a Cerveja voltando pela lateral)
+OK     barra do Total (cena 4): respiro entre "Total" e o valor contando ≥ 16 px em todos os 74 quadros da contagem (menor: 38.9 px em 11.60 s); o valor tem a largura de "R$ 287,00" reservada e o pulso é de no máximo 6 %
+OK     cartão da Cerveja cancelada (cena 6): "1 × R$ 14,00" inteiro dentro do cartão, com a mesma margem interna do nome, em todos os 74 quadros do risco e do selo (margem esquerda do valor 62–68 px × nome 62–68 px; o risco começa na mesma margem)
 
 SÓ ELEMENTOS (regra 11) E NADA DA V2 (regra 10)
 OK     zero telas, zero recortes do HTML, zero celular; a única imagem é a marca (marca/logo, versão para fundo escuro)

@@ -62,7 +62,7 @@
  "video": {
   "video": "output/comanda.mp4",
   "duracao_s": 30.0,
-  "movimento_mediano": 2.483,
+  "movimento_mediano": 2.25,
   "parado_total_s": 0.0,
   "maior_trecho_parado_s": 0.0,
   "parado_final_s": 0.0,
