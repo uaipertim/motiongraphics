@@ -2,7 +2,12 @@ FALTOU DINHEIRO NO CAIXA? — educativo FAZLO Hospeda · revisão técnica
 output/fechar-caixa.mp4
 
 FORMATO E SOM
-FALHA  output/fechar-caixa.mp4 não encontrado
+OK     vídeo h264 yuv420p 1080×1920 60 fps
+OK     áudio aac 48000 Hz 2 canais
+OK     duração 41.68 s (segue a voz: fala 0.60–39.09 s + a marca)
+OK     loudness integrado -14.0 LUFS (alvo −14)
+OK     pico real -2.2 dBTP (limite −1,5)
+OK     trilha 10.4 dB abaixo da voz, com ducking enquanto ela fala; efeitos sutis nos saltos (whoosh e clique)
 
 NARRAÇÃO (ElevenLabs)
 OK     eleven_v4 · Raquel - For Conversational (GDzHdQOi6jjf8zaXhCYD) · voice_settings só stability 0,50 e similarity_boost 0,75 · seed 1311
@@ -55,6 +60,6 @@ OK     16 páginas, palavra por palavra (Inter Display 900, 64 px, branca, chave
 OK     cada palavra aparece no tempo dela (marcação da API, início medido no áudio depois de pausa)
 
 CAPA
-FALHA  capa da grade "Faltou dinheiro no caixa?" na regra (reels/tools/revisao_capa.py), bloco centrado em y = ?
+OK     capa da grade "Faltou dinheiro no caixa?" na regra (reels/tools/revisao_capa.py), bloco centrado em y = 959.7
 
-RESULTADO: 2 item(ns) a corrigir
+RESULTADO: aprovado
