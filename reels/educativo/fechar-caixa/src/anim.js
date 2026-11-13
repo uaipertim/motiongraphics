@@ -203,7 +203,17 @@
     PAGES = [];
     const wid = (ws, a, b) => tw(ws.slice(a, b).map((x) => x.tela).join(' '), CAP.size);
     const lim = LN.duracao - 0.05;
-    LN.frases.forEach((f, fi) => {
+    if (LN.legenda) {
+      // a divisão fixada no roteiro: telas e linhas, palavra a palavra na ordem da fala; cada linha centralizada pelo texto final dela
+      const todas = LN.frases.flatMap((f) => f.palavras); let k = 0;
+      for (const pg of LN.legenda) {
+        const a = k, rows = [], pos = {};
+        pg.forEach((ln) => { const r0 = k; for (const w of ln.split(' ')) { if (!todas[k] || todas[k].tela !== w) throw new Error(`legenda: "${w}" × "${todas[k] && todas[k].tela}"`); k++; } rows.push([r0, k]); });
+        rows.forEach(([r0, r1], ri) => { const lw = wid(todas, r0, r1); let x = Math.min(CAP.cx - lw / 2, 932 - lw); /* centralizada; a linha mais larga encosta só até x 932 (coluna de botões em x > 940) */ for (let j = r0; j < r1; j++) { pos[j] = { x, row: ri }; x += tw(todas[j].tela + ' ', CAP.size) - 0.02 * CAP.size; } });
+        PAGES.push({ a, b: k, rows, pos, nrows: rows.length, t0: todas[a].t0, words: todas, fimFala: todas[k - 1].t1 });
+      }
+      if (k !== todas.length) throw new Error('legenda: sobram palavras');
+    } else LN.frases.forEach((f, fi) => {
       const ws = f.palavras, pages = [];
       const prox = LN.frases[fi + 1] ? LN.frases[fi + 1].palavras[0].t0 : lim;
       let i = 0;
@@ -465,34 +475,82 @@
     return { caixas: out, cam: camEm(t), escala: camEm(t).Z / ZB, pagina: (PAGES.find((q) => t >= q.t0 && t < q.t1) || {}).t0 ?? null };
   }
 
-  // ---------------- capa da grade: "Faltou dinheiro no caixa?" + o aviso real ----------------
-  function capaGrade() {
-    const cv = document.createElement('canvas'); cv.width = W; cv.height = H; const c = cv.getContext('2d');
-    const g = c.createRadialGradient(540, 900, 40, 540, 900, 1150); g.addColorStop(0, '#191B17'); g.addColorStop(0.6, '#0C0D0B'); g.addColorStop(1, '#060606'); c.fillStyle = g; c.fillRect(0, 0, W, H);
-    const av = new Image(); av.src = M.s06.recortes.aviso.img;
-    const r = M.s06.recortes.aviso, aw = 900, ah = aw * r.h / r.w;
-    const desenha = (c, dy, cx) => {
-      c.save(); c.translate(0, dy);
-      c.textBaseline = 'alphabetic'; c.font = `900 118px ID`; if (c.letterSpacing !== undefined) c.letterSpacing = '-3px';
-      const l = ['Faltou dinheiro', 'no caixa?'];
-      c.fillStyle = C.branco; c.fillText(l[0], 90, 110); const w1 = c.measureText(l[0]).width;
-      c.fillStyle = C.limao; c.fillText(l[1], 90, 232); const w2 = c.measureText(l[1]).width;
-      cx.push({ nome: 'título', x0: 90, y0: dy + 22, x1: 90 + Math.max(w1, w2), y1: dy + 258 });
-      // o aviso real da tela de fechamento, saltando com sombra e brilho âmbar
-      const x = 90, y = 320;
-      c.save(); c.translate(x + aw / 2, y + ah / 2); c.rotate(-2.5 * Math.PI / 180);
-      c.shadowColor = 'rgba(232,163,23,.45)'; c.shadowBlur = 70;
-      c.beginPath(); c.roundRect(-aw / 2, -ah / 2, aw, ah, 14 * aw / r.w); c.fillStyle = '#FFF7E3'; c.fill(); c.shadowColor = 'transparent';
-      if (av.complete) c.drawImage(av, -aw / 2, -ah / 2, aw, ah);
-      c.lineWidth = 5; c.strokeStyle = C.ambar; c.stroke(); c.restore();
-      const ext = Math.sin(2.5 * Math.PI / 180) * aw / 2;
-      cx.push({ nome: 'aviso', x0: x, y0: dy + y - ext, x1: x + aw, y1: dy + y + ah + ext });
-      c.restore();
+  // ---------------- capa (capa.jpg e capa da grade): o melhor do vídeo num quadro ----------------
+  // O celular com a tela real do gancho (03 + a folha "Fechar caixa" da 06: "Esperado em dinheiro R$ 285,00", "Valor contado
+  // R$ 270,00"), grande, com leve inclinação 3D e sombra; o aviso "Diferença: falta R$ 15,00…" SALTANDO da tela (1,7×), por
+  // cima da borda do celular, e o lugar dele marcado com o tracejado limão, como no vídeo. Título acima, ≥ 40 px de respiro.
+  async function capaGrade() {
+    const carrega = async (src) => { const i = new Image(); i.src = src; await i.decode(); return i; };
+    const [tela, painel, aviso] = await Promise.all([carrega(M.s03.tela), carrega(M.s06.paineis.C.img), carrega(M.s06.recortes.aviso.img)]);
+    const PC = M.s06.paineis.C.el, rp = PC.painel, ra = PC.aviso;
+    // 1) o celular plano: a tela de y 0 a 700 (px CSS), 1,28 px por px CSS
+    const k = 1.21, CSS_H = 700, sw = 390 * k, sh = CSS_H * k, bz = 14, fw = sw + 2 * bz, fh = sh + 2 * bz;
+    const F = document.createElement('canvas'); F.width = Math.ceil(fw); F.height = Math.ceil(fh); const f = F.getContext('2d');
+    const grad = f.createLinearGradient(0, 0, fw, fh); grad.addColorStop(0, '#2a2a2a'); grad.addColorStop(0.4, '#121212'); grad.addColorStop(1, '#0c0c0c');
+    f.beginPath(); f.roundRect(0, 0, fw, fh, 62); f.fillStyle = grad; f.fill(); f.lineWidth = 2; f.strokeStyle = 'rgba(255,255,255,.12)'; f.stroke();
+    f.save(); f.beginPath(); f.roundRect(bz, bz, sw, sh, 48); f.clip(); f.translate(bz, bz);
+    const meia = (img, w, h) => { const t = document.createElement('canvas'); t.width = Math.round(w); t.height = Math.round(h); const x = t.getContext('2d'); x.imageSmoothingQuality = 'high'; x.drawImage(img, 0, 0, t.width, t.height); return t; };
+    f.imageSmoothingQuality = 'high';
+    const t2 = meia(tela, tela.naturalWidth / 2, tela.naturalHeight / 2), p2 = meia(painel, painel.naturalWidth / 2, painel.naturalHeight / 2);
+    f.drawImage(t2, 0, 0, t2.width, t2.width * CSS_H / 390, 0, 0, sw, sh);
+    f.fillStyle = M.s06.dim; f.fillRect(0, 0, sw, sh);
+    f.drawImage(p2, rp.x * k, rp.y * k, rp.w * k, rp.h * k);
+    // o lugar do aviso: vazio na cor da folha, contorno tracejado limão
+    f.beginPath(); f.roundRect((ra.x - 3) * k, (ra.y - 3) * k, (ra.w + 6) * k, (ra.h + 6) * k, (ra.raio + 4) * k); f.fillStyle = '#FFFFFF'; f.fill();
+    f.setLineDash([11, 8]); f.lineWidth = 3.5; f.strokeStyle = C.limao; f.stroke(); f.setLineDash([]);
+    f.restore();
+    // 2) o quadro (desenhado duas vezes: a 1ª mede o bloco, a 2ª o centraliza em y 960)
+    const desenha = (c, DY) => {
+      const g = c.createRadialGradient(540, 980, 40, 540, 980, 1200); g.addColorStop(0, '#191B17'); g.addColorStop(0.58, '#0C0D0B'); g.addColorStop(1, '#060606'); c.fillStyle = g; c.fillRect(0, 0, W, H);
+    const luz = c.createRadialGradient(560, 1000, 10, 560, 1000, 640); luz.addColorStop(0, 'rgba(175,250,39,0.10)'); luz.addColorStop(1, 'rgba(175,250,39,0)'); c.fillStyle = luz; c.fillRect(0, 0, W, H);
+    const TIT = { px: 104, l1: 'Faltou dinheiro', l2: 'no caixa?' }, titH = TIT.px * 2.05;
+    const avW = ra.w * k * 1.7, avH = ra.h * k * 1.7;
+    // alturas: título, 44 px, celular; o aviso sai abaixo do lugar dele e passa da borda do celular
+    const slotY = bz + (ra.y + ra.h / 2) * k;                   // centro do lugar, em px do celular
+    const avDy = slotY + 118;                                    // centro do aviso, logo abaixo do lugar
+    const ty = 300 + DY, py = ty + titH + 72, px = 540 - fw / 2 - 16;
+    // título (a mesma tipografia: Inter Display Black, "no caixa?" em limão)
+    c.textBaseline = 'alphabetic'; c.font = `900 ${TIT.px}px ID`; if (c.letterSpacing !== undefined) c.letterSpacing = '-2.6px';
+    c.fillStyle = C.branco; c.fillText(TIT.l1, 90, ty + TIT.px * 0.82); const w1 = c.measureText(TIT.l1).width;
+    c.fillStyle = C.limao; c.fillText(TIT.l2, 90, ty + TIT.px * 1.84); const w2 = c.measureText(TIT.l2).width;
+    const caixas = [{ nome: 'título', x0: 90, y0: ty, x1: 90 + Math.max(w1, w2), y1: ty + titH }];
+    // sombra do celular
+    c.save(); c.filter = 'blur(38px)'; c.fillStyle = 'rgba(0,0,0,.75)'; c.beginPath(); c.roundRect(px + 40, py + 60, fw - 40, fh - 20, 60); c.fill(); c.restore();
+    // o celular em perspectiva (girado ~10° em Y, um pouco em Z): fatias verticais, cada uma com a escala da profundidade dela
+    const th = -10 * Math.PI / 180, P = 1500, cx0 = px + fw / 2, cy0 = py + fh / 2;
+    let bx0 = 1e9, bx1 = -1e9, by0 = 1e9, by1 = -1e9;
+    c.save(); c.translate(cx0, cy0); c.rotate(-1.6 * Math.PI / 180);
+    const tira = 2;
+    for (let x = 0; x < fw; x += tira) {
+      const u = x - fw / 2, z = u * Math.sin(th), s = P / (P + z), X = u * Math.cos(th) * s, X2 = (u + tira) * Math.cos(th) * (P / (P + (u + tira) * Math.sin(th)));
+      const hh = fh * s;
+      c.drawImage(F, x, 0, Math.min(tira + 2, fw - x), fh, X, -hh / 2, (X2 - X) * Math.min(tira + 2, fw - x) / tira, hh);
+      bx0 = Math.min(bx0, X); bx1 = Math.max(bx1, X2); by0 = Math.min(by0, -hh / 2); by1 = Math.max(by1, hh / 2);
+    }
+    c.restore();
+    const cel = { nome: 'celular', x0: cx0 + bx0 - 14, y0: cy0 + by0 - 14, x1: cx0 + bx1 + 14, y1: cy0 + by1 + 14 };
+    // o aviso saltando: 1,7× o tamanho dele no celular, inclinado, com sombra e o brilho âmbar
+    const ax = 540 + 70, ay = py + avDy;
+    c.save(); c.translate(ax, ay); c.rotate(-3.5 * Math.PI / 180);
+    c.shadowColor = 'rgba(0,0,0,.6)'; c.shadowBlur = 60; c.shadowOffsetY = 30;
+    c.beginPath(); c.roundRect(-avW / 2, -avH / 2, avW, avH, ra.raio * k * 1.7); c.fillStyle = '#FFF7E3'; c.fill();
+    c.shadowColor = 'rgba(232,163,23,.55)'; c.shadowBlur = 56; c.shadowOffsetY = 0; c.fill();
+    c.shadowColor = 'transparent';
+    c.drawImage(aviso, -avW / 2, -avH / 2, avW, avH);
+    c.beginPath(); c.roundRect(-avW / 2, -avH / 2, avW, avH, ra.raio * k * 1.7); c.lineWidth = 4; c.strokeStyle = C.ambar; c.stroke();
+    c.restore();
+    const ext = Math.sin(3.5 * Math.PI / 180) * avW / 2;
+    const av = { nome: 'aviso', x0: ax - avW / 2 - 6, y0: ay - avH / 2 - ext - 6, x1: ax + avW / 2 + 6, y1: ay + avH / 2 + ext + 6 };
+    // celular e aviso são uma peça só (o aviso salta do celular)
+    caixas.push({ nome: 'celular com o aviso', x0: Math.min(cel.x0, av.x0), y0: Math.min(cel.y0, av.y0), x1: Math.max(cel.x1, av.x1), y1: Math.max(cel.y1, av.y1) });
+    return { caixas, cel, av };
     };
-    const c0 = []; desenha(document.createElement('canvas').getContext('2d'), 0, c0);
-    const topo = Math.min(...c0.map((b) => b.y0)), base_ = Math.max(...c0.map((b) => b.y1)), dy = Math.round(960 - (topo + base_) / 2);
-    const cx = []; desenha(c, dy, cx);
-    return { png: cv.toDataURL('image/png'), caixas: cx, bloco: { topo: topo + dy, base: base_ + dy, centro: (topo + base_) / 2 + dy } };
+    const m = desenha(document.createElement('canvas').getContext('2d'), 0);
+    const dy = Math.round(960 - (Math.min(...m.caixas.map((b) => b.y0)) + Math.max(...m.caixas.map((b) => b.y1))) / 2);
+    const cv = document.createElement('canvas'); cv.width = W; cv.height = H; const c = cv.getContext('2d');
+    const r = desenha(c, dy), caixas = r.caixas;
+    const bloco = { topo: Math.min(...caixas.map((b) => b.y0)), base: Math.max(...caixas.map((b) => b.y1)) }; bloco.centro = (bloco.topo + bloco.base) / 2;
+    return { png: cv.toDataURL('image/png'), caixas, bloco, detalhe: { celular: r.cel, aviso: r.av, escala_aviso: 1.7 } };
   }
 
   window.REEL = {

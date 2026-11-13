@@ -2,31 +2,285 @@
  "id": "fechar-caixa",
  "titulo": "Faltou dinheiro no caixa?",
  "marca": "@fazlohospeda",
- "voz": { "modelo": "eleven_v4", "voz": "Raquel - For Conversational (GDzHdQOi6jjf8zaXhCYD)", "stability": 0.5, "similarity_boost": 0.75 },
+ "voz": {
+  "modelo": "eleven_v4",
+  "voz": "Raquel - For Conversational (GDzHdQOi6jjf8zaXhCYD)",
+  "stability": 0.5,
+  "similarity_boost": 0.75
+ },
  "nota": "Educativo com as telas reais do caixa (10-caixa: 03, 06 e 07). Cada item de 'frases' é uma frase da locução; o texto de todos os tokens, na ordem, é exatamente o texto enviado à API. 'tela': como a palavra aparece na legenda (Fazlo → FAZLO). 'chave': palavras em limão na legenda; 'id': o instante que dispara a animação.",
  "frases": [
-  { "id": "gancho", "tokens": [
-   { "fala": "Fechou o caixa..." }, { "fala": "e" }, { "fala": "faltou dinheiro", "chave": true, "id": "faltou" }, { "fala": "na gaveta?" } ] },
-  { "id": "dor", "tokens": [
-   { "fala": "Quando o controle fica no" }, { "fala": "caderno,", "chave": true, "id": "caderno" },
-   { "fala": "ninguém sabe quanto deveria ter... nem onde a conta se" }, { "fala": "perdeu.", "chave": true, "id": "perdeu" } ] },
-  { "id": "abre", "tokens": [
-   { "fala": "No" }, { "fala": "Fazlo", "tela": "FAZLO", "id": "fazlo" }, { "fala": "Hospeda, o caixa" }, { "fala": "abre", "id": "abre" },
-   { "fala": "com o" }, { "fala": "dinheiro da gaveta,", "chave": true, "id": "gaveta" }, { "fala": "e cada" }, { "fala": "entrada", "id": "entrada" },
-   { "fala": "fica registrada, separada por" }, { "fala": "forma de pagamento.", "chave": true, "id": "forma" } ] },
-  { "id": "fechar", "tokens": [
-   { "fala": "Na hora de" }, { "fala": "fechar,", "id": "fechar" }, { "fala": "ele já calcula" },
-   { "fala": "quanto deveria ter em dinheiro", "chave": true, "id": "deveria" }, { "fala": "na gaveta." } ] },
-  { "id": "conta", "tokens": [
-   { "fala": "Você" }, { "fala": "conta,", "id": "conta" }, { "fala": "digita", "id": "digita" }, { "fala": "o valor... e a" },
-   { "fala": "diferença", "chave": true, "id": "diferenca" }, { "fala": "aparece na hora." } ] },
-  { "id": "obs", "tokens": [
-   { "fala": "Com diferença, a" }, { "fala": "observação", "chave": true, "id": "obs" }, { "fala": "é obrigatória." },
-   { "fala": "O" }, { "fala": "motivo", "id": "motivo" }, { "fala": "fica registrado, junto com" },
-   { "fala": "quem fechou", "chave": true, "id": "quem" }, { "fala": "e a" }, { "fala": "que horas.", "chave": true, "id": "horas" } ] },
-  { "id": "fim", "tokens": [
-   { "fala": "Caixa fechado,", "id": "fechado" }, { "fala": "e" }, { "fala": "tudo explicado.", "chave": true, "id": "explicado" },
-   { "fala": "Fazlo", "tela": "FAZLO", "id": "marca" }, { "fala": "Hospeda." } ] }
+  {
+   "id": "gancho",
+   "tokens": [
+    {
+     "fala": "Fechou o caixa..."
+    },
+    {
+     "fala": "e"
+    },
+    {
+     "fala": "faltou dinheiro",
+     "chave": true,
+     "id": "faltou"
+    },
+    {
+     "fala": "na gaveta?"
+    }
+   ]
+  },
+  {
+   "id": "dor",
+   "tokens": [
+    {
+     "fala": "Quando o controle fica no"
+    },
+    {
+     "fala": "caderno,",
+     "chave": true,
+     "id": "caderno"
+    },
+    {
+     "fala": "ninguém sabe quanto deveria ter... nem onde a conta se"
+    },
+    {
+     "fala": "perdeu.",
+     "chave": true,
+     "id": "perdeu"
+    }
+   ]
+  },
+  {
+   "id": "abre",
+   "tokens": [
+    {
+     "fala": "No"
+    },
+    {
+     "fala": "Fazlo",
+     "tela": "FAZLO",
+     "id": "fazlo"
+    },
+    {
+     "fala": "Hospeda, o caixa"
+    },
+    {
+     "fala": "abre",
+     "id": "abre"
+    },
+    {
+     "fala": "com o"
+    },
+    {
+     "fala": "dinheiro da gaveta,",
+     "chave": true,
+     "id": "gaveta"
+    },
+    {
+     "fala": "e cada"
+    },
+    {
+     "fala": "entrada",
+     "id": "entrada"
+    },
+    {
+     "fala": "fica registrada, separada por"
+    },
+    {
+     "fala": "forma de pagamento.",
+     "chave": true,
+     "id": "forma"
+    }
+   ]
+  },
+  {
+   "id": "fechar",
+   "tokens": [
+    {
+     "fala": "Na hora de"
+    },
+    {
+     "fala": "fechar,",
+     "id": "fechar"
+    },
+    {
+     "fala": "ele já calcula"
+    },
+    {
+     "fala": "quanto deveria ter em dinheiro",
+     "chave": true,
+     "id": "deveria"
+    },
+    {
+     "fala": "na gaveta."
+    }
+   ]
+  },
+  {
+   "id": "conta",
+   "tokens": [
+    {
+     "fala": "Você"
+    },
+    {
+     "fala": "conta,",
+     "id": "conta"
+    },
+    {
+     "fala": "digita",
+     "id": "digita"
+    },
+    {
+     "fala": "o valor... e a"
+    },
+    {
+     "fala": "diferença",
+     "chave": true,
+     "id": "diferenca"
+    },
+    {
+     "fala": "aparece na hora."
+    }
+   ]
+  },
+  {
+   "id": "obs",
+   "tokens": [
+    {
+     "fala": "Com diferença, a"
+    },
+    {
+     "fala": "observação",
+     "chave": true,
+     "id": "obs"
+    },
+    {
+     "fala": "é obrigatória."
+    },
+    {
+     "fala": "O"
+    },
+    {
+     "fala": "motivo",
+     "id": "motivo"
+    },
+    {
+     "fala": "fica registrado, junto com"
+    },
+    {
+     "fala": "quem fechou",
+     "chave": true,
+     "id": "quem"
+    },
+    {
+     "fala": "e a"
+    },
+    {
+     "fala": "que horas.",
+     "chave": true,
+     "id": "horas"
+    }
+   ]
+  },
+  {
+   "id": "fim",
+   "tokens": [
+    {
+     "fala": "Caixa fechado,",
+     "id": "fechado"
+    },
+    {
+     "fala": "e"
+    },
+    {
+     "fala": "tudo explicado.",
+     "chave": true,
+     "id": "explicado"
+    },
+    {
+     "fala": "Fazlo",
+     "tela": "FAZLO",
+     "id": "marca"
+    },
+    {
+     "fala": "Hospeda."
+    }
+   ]
+  }
  ],
- "narracao": "Fechou o caixa... e faltou dinheiro na gaveta? Quando o controle fica no caderno, ninguém sabe quanto deveria ter... nem onde a conta se perdeu. No Fazlo Hospeda, o caixa abre com o dinheiro da gaveta, e cada entrada fica registrada, separada por forma de pagamento. Na hora de fechar, ele já calcula quanto deveria ter em dinheiro na gaveta. Você conta, digita o valor... e a diferença aparece na hora. Com diferença, a observação é obrigatória. O motivo fica registrado, junto com quem fechou e a que horas. Caixa fechado, e tudo explicado. Fazlo Hospeda."
+ "narracao": "Fechou o caixa... e faltou dinheiro na gaveta? Quando o controle fica no caderno, ninguém sabe quanto deveria ter... nem onde a conta se perdeu. No Fazlo Hospeda, o caixa abre com o dinheiro da gaveta, e cada entrada fica registrada, separada por forma de pagamento. Na hora de fechar, ele já calcula quanto deveria ter em dinheiro na gaveta. Você conta, digita o valor... e a diferença aparece na hora. Com diferença, a observação é obrigatória. O motivo fica registrado, junto com quem fechou e a que horas. Caixa fechado, e tudo explicado. Fazlo Hospeda.",
+ "legenda_nota": "Divisão da legenda (telas e linhas), fixada à mão: a tela só troca na pontuação ou numa pausa da fala; nenhuma linha termina em artigo, preposição ou conjunção, e verbo e complemento ficam juntos. Cada linha é centralizada pelo texto final dela.",
+ "legenda": [
+  [
+   "Fechou o caixa..."
+  ],
+  [
+   "e faltou dinheiro",
+   "na gaveta?"
+  ],
+  [
+   "Quando o controle",
+   "fica no caderno,"
+  ],
+  [
+   "ninguém sabe",
+   "quanto deveria ter..."
+  ],
+  [
+   "nem onde",
+   "a conta se perdeu."
+  ],
+  [
+   "No FAZLO Hospeda,"
+  ],
+  [
+   "o caixa abre",
+   "com o dinheiro da gaveta,"
+  ],
+  [
+   "e cada entrada",
+   "fica registrada,"
+  ],
+  [
+   "separada",
+   "por forma de pagamento."
+  ],
+  [
+   "Na hora de fechar,",
+   "ele já calcula"
+  ],
+  [
+   "quanto deveria ter",
+   "em dinheiro na gaveta."
+  ],
+  [
+   "Você conta,",
+   "digita o valor..."
+  ],
+  [
+   "e a diferença",
+   "aparece na hora."
+  ],
+  [
+   "Com diferença,"
+  ],
+  [
+   "a observação",
+   "é obrigatória."
+  ],
+  [
+   "O motivo fica registrado,"
+  ],
+  [
+   "junto com quem fechou",
+   "e a que horas."
+  ],
+  [
+   "Caixa fechado,",
+   "e tudo explicado."
+  ],
+  [
+   "FAZLO Hospeda."
+  ]
+ ]
 }

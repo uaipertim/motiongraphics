@@ -1,11 +1,11 @@
 Capa — regra fixa da série (recorte 3:4, canto do play, faixa do contador, nada cortado ou escondido)
 
-OK     a) recorte 3:4 + folga 60 px: conteúdo em x 85–994, y 713–1207
+OK     a) recorte 3:4 + folga 60 px: conteúdo em x 94–973, y 374–1545
        (limite: x 60–1020, y 300–1620)
 OK     b) canto do play (x ≥ 860, y 240–440): 0 px de conteúdo
 OK     c) faixa do contador (y 1560–1680): 0 px de conteúdo
 OK     d) caixas: dentro do recorte, fora do canto do play e da faixa do contador, sem sobreposição
-OK     título: x 90–907, y 712–948
-OK     aviso: x 90–990, y 990–1207
-OK     bloco centralizado na vertical do recorte 3:4: y 712–1207, centro em 959.7 (centro do recorte: 960)
+OK     título: x 90–810, y 366–579
+OK     celular com o aviso: x 244–976, y 624–1553
+OK     bloco centralizado na vertical do recorte 3:4: y 366–1553, centro em 959.6 (centro do recorte: 960)
 RESULTADO: dentro da regra das capas

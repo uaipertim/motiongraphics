@@ -6,6 +6,79 @@
  "logo": 39.09,
  "duracao": 41.69,
  "marca": "@fazlohospeda",
+ "legenda": [
+  [
+   "Fechou o caixa..."
+  ],
+  [
+   "e faltou dinheiro",
+   "na gaveta?"
+  ],
+  [
+   "Quando o controle",
+   "fica no caderno,"
+  ],
+  [
+   "ninguém sabe",
+   "quanto deveria ter..."
+  ],
+  [
+   "nem onde",
+   "a conta se perdeu."
+  ],
+  [
+   "No FAZLO Hospeda,"
+  ],
+  [
+   "o caixa abre",
+   "com o dinheiro da gaveta,"
+  ],
+  [
+   "e cada entrada",
+   "fica registrada,"
+  ],
+  [
+   "separada",
+   "por forma de pagamento."
+  ],
+  [
+   "Na hora de fechar,",
+   "ele já calcula"
+  ],
+  [
+   "quanto deveria ter",
+   "em dinheiro na gaveta."
+  ],
+  [
+   "Você conta,",
+   "digita o valor..."
+  ],
+  [
+   "e a diferença",
+   "aparece na hora."
+  ],
+  [
+   "Com diferença,"
+  ],
+  [
+   "a observação",
+   "é obrigatória."
+  ],
+  [
+   "O motivo fica registrado,"
+  ],
+  [
+   "junto com quem fechou",
+   "e a que horas."
+  ],
+  [
+   "Caixa fechado,",
+   "e tudo explicado."
+  ],
+  [
+   "FAZLO Hospeda."
+  ]
+ ],
  "frases": [
   {
    "id": "gancho",

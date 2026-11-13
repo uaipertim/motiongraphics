@@ -7,10 +7,51 @@ O vídeo mostra o fechamento de caixa com as **telas reais** do pacote (`10-caix
 **Não publicar antes do OK.**
 
 ▶ **Vídeo:** [`output/fechar-caixa.mp4`](output/fechar-caixa.mp4)
-- Capa da grade: [`output/capa-grade.jpg`](output/capa-grade.jpg) · conferência: [`output/grade/revisao/capa-no-feed.jpg`](output/grade/revisao/capa-no-feed.jpg)
+- Capa: [`output/capa.jpg`](output/capa.jpg) (9:16) e [`output/capa-grade.jpg`](output/capa-grade.jpg) · prévia da linha da grade com as vizinhas: [`output/revisao/previa-grade.jpg`](output/revisao/previa-grade.jpg)
 - Folha de contato (1 quadro por segundo + o pico de cada salto): [`output/revisao/folha-contato.jpg`](output/revisao/folha-contato.jpg)
 - Revisão técnica: [`output/revisao/relatorio.txt`](output/revisao/relatorio.txt)
 - Legenda do post: [`legenda.txt`](legenda.txt)
+
+## Ajustes depois da aprovação (base 342d5bc)
+
+Cenas, tempos, saltos, voz e som não mudaram. Só mudaram estas duas coisas:
+
+1. **Legenda: quebras nos lugares certos.** A divisão agora é fixada à mão no [`roteiro.json`](roteiro.json) (campo `legenda`), em vez de calculada pela largura.
+   - A tela só troca na pontuação ou numa pausa da fala.
+   - Nenhuma linha termina em artigo, preposição ou conjunção.
+   - "deveria ter", "digita o valor" e "e faltou" ficam juntos.
+   - Cada linha é centralizada pelo texto final dela, e as palavras entram já no lugar final.
+   - A legenda vai de x 162 a 917, sem encostar na lateral.
+
+   | # | Tempo | Tela da legenda |
+   |---|---|---|
+   | 1 | 0,60–2,29 s | Fechou o caixa... |
+   | 2 | 2,29–4,47 s | e faltou dinheiro / na gaveta? |
+   | 3 | 4,47–6,33 s | Quando o controle / fica no caderno, |
+   | 4 | 6,33–8,67 s | ninguém sabe / quanto deveria ter... |
+   | 5 | 8,67–10,67 s | nem onde / a conta se perdeu. |
+   | 6 | 10,67–11,92 s | No FAZLO Hospeda, |
+   | 7 | 11,92–14,44 s | o caixa abre / com o dinheiro da gaveta, |
+   | 8 | 14,44–16,72 s | e cada entrada / fica registrada, |
+   | 9 | 16,72–18,76 s | separada / por forma de pagamento. |
+   | 10 | 18,76–21,04 s | Na hora de fechar, / ele já calcula (troca na pausa de 0,20 s) |
+   | 11 | 21,04–23,47 s | quanto deveria ter / em dinheiro na gaveta. |
+   | 12 | 23,47–25,84 s | Você conta, / digita o valor... |
+   | 13 | 25,84–28,16 s | e a diferença / aparece na hora. |
+   | 14 | 28,16–29,14 s | Com diferença, |
+   | 15 | 29,14–31,15 s | a observação / é obrigatória. |
+   | 16 | 31,15–32,82 s | O motivo fica registrado, |
+   | 17 | 32,82–35,41 s | junto com quem fechou / e a que horas. |
+   | 18 | 35,41–38,09 s | Caixa fechado, / e tudo explicado. |
+   | 19 | 38,09–39,88 s | FAZLO Hospeda. |
+
+2. **Capa nova** (`capaGrade()` em `src/anim.js`, a mesma para `capa.jpg` e `capa-grade.jpg`):
+   - **Celular:** a tela real do gancho (03 + a folha "Fechar caixa" da 06, com "Esperado em dinheiro R$ 285,00" e "Valor contado R$ 270,00"), grande, girado ~10° em perspectiva, com sombra.
+   - **Aviso:** o aviso real "Diferença: falta R$ 15,00…" salta da tela a 1,7×, passa por cima das duas bordas do celular e tem brilho âmbar. O lugar de onde ele saiu fica marcado com o tracejado limão, como no vídeo.
+   - **Título:** "Faltou dinheiro / no caixa?" acima, com a mesma tipografia e cores. Ficou com 104 px (antes 118 px) para não entrar no canto do play. O respiro até o celular é de 45 px.
+   - **Fundo:** o fundo escuro com o brilho suave do vídeo.
+   - **Posição:** o conjunto fica centrado em y 959,6, de y 366 a 1553 (dentro de 240–1680), com margens laterais de 90 e 104 px.
+   - **Revisão:** `revisao_capa.py` diz "dentro da regra". A prévia da linha da grade, com o reserva-whatsapp e a apresentação ao lado, está em [`output/revisao/previa-grade.jpg`](output/revisao/previa-grade.jpg).
 
 ## Cenas (no tempo da locução)
 
@@ -53,7 +94,7 @@ O vídeo mostra o fechamento de caixa com as **telas reais** do pacote (`10-caix
   - Os tempos de cada palavra vêm da API.
   - O início das palavras depois de pausa é medido no áudio.
   - Cada salto está amarrado ao `id` da palavra em [`roteiro.json`](roteiro.json).
-- **Legenda:** o padrão dos educativos (palavra por palavra, Inter Display 900, branca, chaves em limão, sem faixa), a 64 px, com linhas em y 1442/1516, para caber abaixo do celular.
+- **Legenda:** o padrão dos educativos (palavra por palavra, Inter Display 900, branca, chaves em limão, sem faixa), a 64 px, com linhas em y 1442/1516, para caber abaixo do celular. A divisão em telas e linhas é a do campo `legenda` do roteiro (veja acima).
 - **Som** (`scripts/audio.py`):
   - voz + a trilha dos educativos com ducking;
   - efeitos sutis vindos de `audio/eventos.json` (whoosh suave no salto, clique leve no encaixe, toques, teclas, tiques da contagem, ping do aviso, a sineta da marca);
@@ -70,7 +111,7 @@ node scripts/render.cjs dados --fps 30       # eventos do som + dados do QA
 python3 scripts/audio.py                     # audio/mix.wav
 node scripts/render.cjs video --workers 4    # output/fechar-caixa.mp4
 cd ../../.. && node reels/tools/capa_grade.cjs reels/educativo/fechar-caixa \
-  && python3 reels/tools/revisao_capa.py reels/educativo/fechar-caixa --saida reels/educativo/fechar-caixa/output/grade --vizinhos reels/educativo/reserva-whatsapp/output/grade
-cd reels/educativo/fechar-caixa && cp output/grade/capa.jpg output/capa-grade.jpg
+  && python3 reels/tools/revisao_capa.py reels/educativo/fechar-caixa --saida reels/educativo/fechar-caixa/output/grade --vizinhos reels/educativo/reserva-whatsapp/output/grade reels/telas/apresentacao/output/grade
+cd reels/educativo/fechar-caixa && cp output/grade/capa.jpg output/capa-grade.jpg && cp output/grade/capa.jpg output/capa.jpg && cp output/grade/revisao/capa-no-feed.jpg output/revisao/previa-grade.jpg
 python3 scripts/folha.py && python3 scripts/qa.py
 ```

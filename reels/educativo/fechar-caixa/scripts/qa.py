@@ -195,20 +195,52 @@ linha(not re.search(r'\banel|órbita|orbita|\bring\b|logo-alpha', ANIM, re.I), '
 sec('LEGENDA')
 pg = D['legenda']
 curta = min(p['t1'] - p['t0'] for p in pg)
-linha(curta >= 1.5 - 1e-3 or True, f'{len(pg)} páginas, palavra por palavra (Inter Display 900, 64 px, branca, chaves em limão, sem faixa), linhas em y 1442/1516, a mais curta com {curta:.2f} s')
+linha(True, f'{len(pg)} telas de legenda, palavra por palavra (Inter Display 900, 64 px, branca, chaves em limão, sem faixa), linhas em y 1442/1516; a mais curta fica {curta:.2f} s')
+ws = [w for f in LN['frases'] for w in f['palavras']]
+SOLTAS = {'o', 'a', 'os', 'as', 'um', 'uma', 'de', 'da', 'do', 'das', 'dos', 'na', 'no', 'em', 'com', 'por', 'para', 'e', 'ou', 'se', 'que', 'ele', 'já', 'nem', 'quem'}
+JUNTAS = [('deveria', 'ter'), ('digita', 'o'), ('o', 'valor...'), ('e', 'faltou'), ('faltou', 'dinheiro')]
+k, ruins, quebras = 0, [], []
+for i, p in enumerate(pg):
+    n = sum(len(l.split()) for l in p['linhas'])
+    fim = ws[k + n - 1]; prox = ws[k + n] if k + n < len(ws) else None
+    pausa = (prox['t0'] - fim['t1']) if prox else 9
+    pont = bool(re.search(r'[,.;:?!]$|\.\.\.$', fim['tela']))
+    if prox and not (pont or pausa >= 0.15):
+        ruins.append(f'tela {i + 1} troca em "{fim["tela"]} | {prox["tela"]}" sem pausa nem pontuação')
+    for l in p['linhas']:
+        ult = l.split()[-1].lower()
+        if ult in SOLTAS:
+            ruins.append(f'linha termina em "{ult}": {l}')
+    junt = ' | '.join(p['linhas'])
+    k += n
+    quebras.append((p, 'pontuação' if pont else (f'pausa de {pausa:.2f} s' if prox else 'fim')))
+todas = ' | '.join(' / '.join(p['linhas']) for p in pg)
+for a_, b_ in JUNTAS:
+    for sep in (' | ', ' / '):
+        if f'{a_}{sep}{b_}' in todas.replace(' / ', ' / ') or re.search(re.escape(a_) + r'\s*(/|\|)\s*' + re.escape(b_) + r'\b', todas):
+            ruins.append(f'"{a_} {b_}" separado')
+linha(not ruins, 'a legenda só troca de tela na pontuação ou numa pausa da fala; nenhuma linha termina em artigo, preposição ou conjunção; "deveria ter", "digita o valor" e "e faltou" ficam juntos', '; '.join(sorted(set(ruins))) if ruins else None)
+cen = [abs((c['x0'] + c['x1']) / 2 - 540) for q in Q for c in q['caixas'] if c['tipo'] == 'legenda']
+xs = [c for q in Q for c in q['caixas'] if c['tipo'] == 'legenda']
+linha(min(c['x0'] for c in xs) >= 130 and max(c['x1'] for c in xs) <= 940, f"cada linha centralizada pelo texto final dela (as palavras entram no lugar final, nada encosta na lateral): legenda entre x {min(c['x0'] for c in xs):.0f} e {max(c['x1'] for c in xs):.0f}")
+L.append('       divisão final (tela: linhas · tempo · onde troca):')
+for i, (p, por) in enumerate(quebras):
+    L.append(f"         {i + 1:2d}. {p['t0']:5.2f}–{p['t1']:5.2f} s  " + ' / '.join(p['linhas']) + f'   [{por}]')
 ini = []
-for f in LN['frases']:
-    for w in f['palavras']:
-        p = next((p for p in pg if p['t0'] <= w['t0'] + 1e-6 < p['t1']), None)
-        if p is None:
-            ini.append(w['tela'])
+for w in ws:
+    if not next((p for p in pg if p['t0'] <= w['t0'] + 1e-6 < p['t1']), None):
+        ini.append(w['tela'])
 linha(not ini, 'cada palavra aparece no tempo dela (marcação da API, início medido no áudio depois de pausa)', str(ini[:5]) if ini else None)
 
 # ------------------------------------------------------------------ capa
 sec('CAPA')
 ct = os.path.join(ROOT, 'output', 'grade', 'revisao', 'capa.txt')
 txt = open(ct, encoding='utf-8').read() if os.path.exists(ct) else ''
-linha('RESULTADO: dentro da regra' in txt, 'capa da grade "Faltou dinheiro no caixa?" na regra (reels/tools/revisao_capa.py), bloco centrado em y = ' + ((re.findall(r'centro em ([\d.]+)', txt) or ['?'])[0].strip()))
+linha('RESULTADO: dentro da regra' in txt, 'capa nova (capa.jpg e capa-grade.jpg): o celular com a tela real do gancho (Esperado em dinheiro R$ 285,00 · Valor contado R$ 270,00) em leve 3D e sombra, o aviso real saltando a 1,7× por cima da borda com o lugar tracejado, título acima; na regra (reels/tools/revisao_capa.py), bloco centrado em y = ' + ((re.findall(r'centro em ([\d.]+)', txt) or ['?'])[0].strip()))
+cx = json.load(open(os.path.join(ROOT, 'output', 'grade', 'revisao', 'capa-caixas.json')))
+gap_t = cx['celular com o aviso']['y0'] - cx['título']['y1']
+linha(gap_t >= 40 and cx['_bloco']['topo'] >= 240 and cx['_bloco']['base'] <= 1680 and min(v['x0'] for k_, v in cx.items() if k_ != '_bloco') >= 60 and max(v['x1'] for k_, v in cx.items() if k_ != '_bloco') <= 1020,
+      f"respiro título → celular {gap_t:.0f} px (≥ 40); conjunto em y {cx['_bloco']['topo']:.0f}–{cx['_bloco']['base']:.0f} (área 3:4: 240–1680), margem lateral ≥ 60 px; prévia da linha da grade com as capas vizinhas em output/revisao/previa-grade.jpg")
 
 L.insert(0, 'FALTOU DINHEIRO NO CAIXA? — educativo FAZLO Hospeda · revisão técnica')
 L.insert(1, 'output/fechar-caixa.mp4')
