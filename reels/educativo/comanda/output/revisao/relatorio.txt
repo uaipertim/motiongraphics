@@ -1,50 +1,70 @@
-A CAIPIRINHA DA PISCINA ENTROU NA CONTA? — Reel FAZLO Hospeda sem narração, só elementos gráficos · revisão técnica
+A CAIPIRINHA DA PISCINA ENTROU NA CONTA? — Reel sem narração, só elementos (reels/PADRAO-ELEMENTOS.md) · revisão técnica
 output/comanda.mp4
 
 FORMATO E SOM
-OK     vídeo h264 yuv420p 1080×1920 60 fps
-OK     áudio aac 48000 Hz · sem voz
-OK     duração 32.02 s (pedido: ~28–32 s)
-OK     loudness integrado -14.0 LUFS (alvo −14)
-OK     pico real -3.2 dBTP (limite −1,5)
-OK     trilha dos educativos (Série Explica, 92 BPM) sem ducking (não há voz) + efeitos sutis em saltos, encaixes, trocas e contagens
+OK     vídeo h264 yuv420p 1080×1920 60 fps · áudio aac 48000 Hz, sem voz
+OK     duração 30.00 s (pedido: ~30 s)
+OK     mix -13.9 LUFS (alvo −14), pico real -3.5 dBTP (limite −1,5); trilha com energia (nu-disco 120 BPM), cortes na batida, efeitos nos cortes e nos gestos
 
-TEXTOS DE TELA (estilo da legenda aprovada: Inter Display 900, 64 px, palavra-chave em limão, centralizados)
-OK     cada texto fica na tela pelo menos 1,2 s + 0,3 s por palavra
-OK     quebras de linha só em pausa natural: nenhuma linha termina em artigo, preposição ou conjunção
-OK     um texto de cada vez (o anterior sai antes do próximo entrar)
-        0.00– 3.60 s (3.60 s ≥ 3.3)  A caipirinha da piscina / entrou na conta?   [limão: entrou na conta?]
-        3.65– 5.75 s (2.10 s ≥ 2.1)  Bar, frigobar, restaurante…
-        5.75– 9.05 s (3.30 s ≥ 3.3)  e cada um anota / de um jeito.   [limão: cada um anota]
-        9.45–11.60 s (2.15 s ≥ 2.1)  No FAZLO Hospeda,
-       11.60–15.20 s (3.60 s ≥ 3.0)  tudo cai na comanda / do hóspede.   [limão: comanda do hóspede.]
-       15.25–23.95 s (8.70 s ≥ 1.8)  Lançou, somou.   [limão: somou.]
-       23.95–26.90 s (2.95 s ≥ 2.1)  Cancelou? / Continua registrado.   [limão: Continua registrado.]
-       27.07–31.26 s (4.19 s ≥ 3.3)  No check-out, / a conta já está pronta.   [limão: já está pronta.]
-OK     os textos nunca ficam sobre os elementos (cartões, painel, chips, total, marca), com respiro ≥ 24 px
-OK     linhas centralizadas pelo texto final, entre x 140 e 939, y 1393–1530
+QA DE MOVIMENTO (obrigatório: reels/tools/qa_movimento.py)
+       medida                                    v2 (referência)   este vídeo   alvo
+       ----------------------------------------------------------------------------------
+       movimento mediano (dif. média, 0–255)               1.151        2.483   ≥ 1,0
+       tempo parado total (s)                                2.0          0.0   ≤ 1,5
+       maior trecho parado (s)                               0.8          0.0   ≤ 0,5
+       parado no fim / logo (s)                              0.0          0.0   ≤ 0.8
+       mudanças grandes (> 15)                                29           30   
+       mudanças grandes por segundo                          1.0          1.0   ≥ 0,6
+       trocas de fundo                                         7            5   ≥ 3
+       duração (s)                                          29.0         30.0   
+       
+       fundos deste vídeo: escuro (0.0 s) → off-white (3.5 s) → escuro (6.0 s) → off-white (14.4 s) → escuro (20.1 s) → limao (27.4 s)
+       fundos da v2:       escuro (0.0 s) → off-white (5.6 s) → escuro (8.5 s) → off-white (11.0 s) → escuro (14.0 s) → off-white (17.0 s) → escuro (19.5 s) → limao (24.6 s)
+OK     movimento mediano ≥ 1,0
+OK     tempo parado total ≤ 1,5 s
+OK     nenhum trecho parado > 0,5 s
+OK     logo final parado ≤ 0.8 s
+OK     mudanças grandes ≥ 0,6 por segundo
+OK     pelo menos 3 trocas de fundo
 
-SÓ ELEMENTOS GRÁFICOS (regra da série: vídeo sem narração não usa telas)
-OK     zero telas e zero recortes do HTML: nada de src/telas, telas.json ou scripts/telas.cjs; o motor não carrega nenhuma imagem de tela
-OK     zero celular; a única imagem é a marca (src/logo.png, marca/logo do pacote); arquivos carregados: ['../audio/mix.wav', 'anim.js', 'logo.png']
-OK     peças desenhadas para o vídeo: cartões de consumo (nome, origem, quantidade × preço, valor), etiquetas, painel da comanda, chips "+1"/"+2", contador, risco, selo e o cartão final com check; Geist e Geist Mono, preto, off-white e verde-limão; ícones de linha da marca (comandas, check)
+CENAS (uma composição nova a cada ideia; manchete no alto, à esquerda)
+        0.00– 3.50 s · fundo escuro  · entra: quadro 0 · "A caipirinha da piscina / entrou na conta?" (3.5 s ≥ 3.3 s)
+          o copo de caipirinha gigante desenhando-se em limão (gelo e gotas), "R$ 22,00" batendo e o "?"
+        3.50– 6.00 s · fundo off     · entra: desliza · "Bar, frigobar, / restaurante…" (2.5 s ≥ 2.1 s)
+          copo · garrafa · prato, um a um na batida, com etiqueta e preço (R$ 22,00 · R$ 6,00 · R$ 68,00); a câmera desliza e recua
+        6.00– 9.50 s · fundo escuro  · entra: falha · "e cada um anota / de um jeito." (3.5 s ≥ 3.3 s)
+          bilhetes desencontrados (torto, rasurado, borrado); a "Cerveja long neck · R$ 14,00" escapa e cai do quadro
+        9.50–14.50 s · fundo escuro  · entra: mergulho · "No FAZLO Hospeda, / tudo cai na comanda / do hóspede." (5.0 s ≥ 3.9 s)
+          os três ícones ligados por curvas com pulsos à conta "Mariana Costa · Suíte Mirante"; os itens chegam; o Total conta até R$ 287,00 e mergulha no número grande
+       14.50–20.00 s · fundo off     · entra: cortina · "Lançou, somou." (5.5 s ≥ 1.8 s)
+          placar 3 → 4 (× R$ 22,00; R$ 66,00 → R$ 88,00), deslize para 2 → 4 (× R$ 6,00; R$ 12,00 → R$ 24,00), o chip "+ R$ 34,00" bate e o Total vai de R$ 287,00 a R$ 321,00
+       20.00–24.00 s · fundo escuro  · entra: corte · "Cancelou? / Continua registrado." (4.0 s ≥ 2.1 s)
+          o cartão "Cerveja long neck · 1 × R$ 14,00" grande: o risco, o carimbo "CANCELADO" com tremor; volta para a coluna, cinza
+       24.00–27.50 s · fundo escuro  · entra: desliza-v · "No check-out, / a conta já está pronta." (3.5 s ≥ 3.3 s)
+          a coluna se compacta no cartão "Total R$ 321,00" gigante, que fecha com o check desenhado; abertura para o limão
+       27.50–30.00 s · fundo limao   · entra: cortina · sem manchete (marca)
+          a marca FAZLO Hospeda se monta (a palavra se revela, a pílula salta) sobre o verde-limão
+OK     cada manchete fica pelo menos 1,2 s + 0,3 s por palavra, com a cena viva
+OK     manchete grande (Inter Display 900, 84 px) no ALTO, alinhada à esquerda (x 55, y 211–486); palavra-chave em limão (em verde #4E8800 no fundo off-white, para ler)
+OK     composição nova a cada ideia: cenas de 3.5, 2.5, 3.5, 5.0, 5.5, 4.0, 3.5, 2.5 s; as de mais de 4 s trocam de composição por dentro (conta: curvas → mergulho no total em 12,0 s; somou: 3 → 4, 2 → 4 e o Total, cortes em 16,5 e 18,5 s; cancelou: cartão → coluna em 22,5 s)
 
-VALORES (os da comanda real, conferidos com o HTML do pacote 08-comanda)
-OK     itens e totais iguais ao HTML: Caipirinha · Bar da piscina · 3 × R$ 22,00 = R$ 66,00 → 4 × = R$ 88,00 | Água sem gás · Frigobar · 2 × R$ 6,00 = R$ 12,00 → 4 × = R$ 24,00 | Cerveja long neck · Frigobar · 4 × R$ 14,00 = R$ 56,00 | Risoto de cogumelos · Restaurante · 2 × R$ 68,00 = R$ 136,00 | Suco de laranja · Frigobar · 1 × R$ 17,00 = R$ 17,00 | Cerveja long neck · Cancelado · 1 × R$ 14,00 · Total R$ 287,00 → R$ 321,00 (o cancelado não entra na soma)
-OK     contador do Total: R$ 287,00 (cena 3) → R$ 321,00 (cena 4), somando a cada encaixe
-OK     depois dos chips: Caipirinha 4 × R$ 22,00 = R$ 88,00 · Água sem gás 4 × R$ 6,00 = R$ 24,00
-OK     o cartão "Cerveja long neck · 1 × R$ 14,00" recebe o risco (24.45 s) e o selo "Cancelado" (24.95 s) e continua na pilha até ela se fechar (27.40 s)
+O NÚMERO É O PROTAGONISTA (≥ 1/3 da largura = 360 px)
+OK     em cada cena, o valor maior tem pelo menos 360 px de largura: gancho 671 px · origens 767 px · bilhetes 536 px · conta 1045 px · somou 1111 px · cancelou 889 px · pronta 872 px
 
-ZONAS SEGURAS
-OK     nada acima de y 200 nem abaixo de y 1536 (textos, cartões, etiquetas, chips, painel, o "?", o total e a marca), salvo a Cerveja que escapa pela lateral, fora do quadro
+ZONAS SEGURAS E RESPIROS (fora das transições de ±0,4 s, inclusive os cortes internos em 12,0 · 16,5 · 18,5 · 22,5 s)
+OK     nada acima de y 200 nem abaixo de y 1536
 OK     nada na coluna de botões (x > 940, y > 1000)
+OK     respiro ≥ 24 px entre a manchete e os elementos
 
-REGRAS
-OK     nada de ficha da hospedagem, caixa ou Day Use
-OK     nada do visual do "Toda estadia é um ciclo" (sem anel, sem ciclo, sem órbita, sem a logo circular); só a dinâmica de referência
+SÓ ELEMENTOS (regra 11) E NADA DA V2 (regra 10)
+OK     zero telas, zero recortes do HTML, zero celular; a única imagem é a marca (marca/logo, versão para fundo escuro)
+OK     nada do v2: sem anel/órbita, sem "01/06", sem recibo serrilhado, sem moeda em L, sem relógio, chave ou mala, sem caixa de marca-texto, marca sem círculo
+OK     ícones de linha desenhados no traço da marca (linha única, pontas arredondadas) e animados: copo (com gelo e gotas), garrafa, prato; comanda e check da marca/icones
+
+VALORES (conferidos com o HTML do pacote 08-comanda)
+OK     itens e totais iguais ao HTML; o cancelado não soma: Caipirinha · Bar da piscina · 3 × R$ 22,00 = R$ 66,00 → 4 × = R$ 88,00 | Água sem gás · Frigobar · 2 × R$ 6,00 = R$ 12,00 → 4 × = R$ 24,00 | Cerveja long neck · Frigobar · 4 × R$ 14,00 = R$ 56,00 | Risoto de cogumelos · Restaurante · 2 × R$ 68,00 = R$ 136,00 | Suco de laranja · Frigobar · 1 × R$ 17,00 = R$ 17,00 | Cerveja long neck · Cancelado · 1 × R$ 14,00 · Total R$ 287,00 → R$ 321,00 (+ R$ 34,00)
 
 CAPA
-OK     capa sem celular (capa.jpg e capa-grade.jpg): título "A caipirinha da piscina / entrou na conta?", o cartão gráfico da Caipirinha grande e inclinado com o "?" e os cartões Água sem gás e Risoto de cogumelos ao fundo; na regra (revisao_capa.py), bloco centrado em y = 960.1
-OK     respiro título → celular 80 px (≥ 40); conjunto em y 446–1474; prévia da linha da grade em output/revisao/previa-grade.jpg
+OK     capa (capa.jpg e capa-grade.jpg): fundo escuro, manchete "A caipirinha da piscina / entrou na conta?", o copo grande em traço limão, "R$ 22,00" e o "?"; na regra (revisao_capa.py), bloco centrado em y = 959.6; prévia da linha da grade em output/revisao/previa-grade.jpg
 
 RESULTADO: aprovado

@@ -61,72 +61,55 @@
  },
  "video": {
   "video": "output/comanda.mp4",
-  "duracao_s": 32.0,
-  "movimento_mediano": 0.431,
-  "parado_total_s": 10.7,
-  "maior_trecho_parado_s": 2.9,
-  "parado_final_s": 0.6,
-  "trechos_parados": [
-   [
-    13.0,
-    2.0
-   ],
-   [
-    15.5,
-    0.4
-   ],
-   [
-    16.7,
-    0.3
-   ],
-   [
-    17.7,
-    0.3
-   ],
-   [
-    19.3,
-    1.4
-   ],
-   [
-    20.8,
-    2.9
-   ],
-   [
-    25.3,
-    1.4
-   ],
-   [
-    29.2,
-    0.9
-   ],
-   [
-    31.3,
-    0.6
-   ]
-  ],
-  "mudancas_grandes": 4,
-  "mudancas_por_s": 0.12,
+  "duracao_s": 30.0,
+  "movimento_mediano": 2.483,
+  "parado_total_s": 0.0,
+  "maior_trecho_parado_s": 0.0,
+  "parado_final_s": 0.0,
+  "trechos_parados": [],
+  "mudancas_grandes": 30,
+  "mudancas_por_s": 1.0,
   "fundos": [
    [
     "escuro",
     0.0
+   ],
+   [
+    "off-white",
+    3.5
+   ],
+   [
+    "escuro",
+    6.0
+   ],
+   [
+    "off-white",
+    14.4
+   ],
+   [
+    "escuro",
+    20.1
+   ],
+   [
+    "limao",
+    27.4
    ]
   ],
-  "trocas_de_fundo": 0,
+  "trocas_de_fundo": 5,
   "logo_final_s": 0.8
  },
  "criterios": [
   [
    "movimento mediano ≥ 1,0",
-   false
+   true
   ],
   [
    "tempo parado total ≤ 1,5 s",
-   false
+   true
   ],
   [
    "nenhum trecho parado > 0,5 s",
-   false
+   true
   ],
   [
    "logo final parado ≤ 0.8 s",
@@ -134,11 +117,11 @@
   ],
   [
    "mudanças grandes ≥ 0,6 por segundo",
-   false
+   true
   ],
   [
    "pelo menos 3 trocas de fundo",
-   false
+   true
   ]
  ]
 }
