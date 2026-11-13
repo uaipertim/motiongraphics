@@ -2,7 +2,7 @@
 """
 Áudio do educativo "check-in": a locução (audio/voz.wav, de scripts/voz.py) + a TRILHA da Série Explica (cama de acordes
 Am9 → Fmaj9 → Cmaj9 → G6/9 a 92 BPM, baixo, pulso grave, shaker e arpejo, 100% sintetizada) + efeitos curtos nos
-gestos da animação (chave, ficha, casas 01–04, checks, carimbo, a chave saindo com brilho, avião, sineta da logo).
+gestos da animação (balão, casas da conferência, itens e checks da ficha, carimbo, avião, sineta da logo).
 
     python3 scripts/audio.py   -> audio/mix.wav (48 kHz, estéreo, −14 LUFS, pico real ≤ −2,4 dBTP no WAV, ≤ −1,5 dBTP no MP4) + audio/cues.json
 
@@ -314,15 +314,14 @@ def sparkle():
 # ------------------------------------------------------------------ os eventos, tirados da mesma linha do tempo da animação
 IDS = {w['id']: w['t0'] for f in LN['frases'] for w in f['palavras'] if w.get('id')}
 F = {f['id']: f for f in LN['frases']}
-gFim, fFim = IDS['confira'], F['cta']['t0'] + 0.14
+gFim = IDS['confira']
 ev = []
-ev += [(IDS['chegou'], 'keys')]                                       # a chave dá um tranco e tilinta
-ev += [(gFim - 0.05, 'whoosh'), (gFim + 0.15, 'drop')]                # o título encolhe e sobe; a ficha entra
-ev += [(IDS['quatro'] + k * 0.09, 'casa') for k in range(4)]         # as casas 01–04 aparecem
-for fr, k in (('documento', 'reserva'), ('pessoas', 'pet'), ('saida', 'vozalta'), ('saldo', 'checkout')):
+ev += [(IDS['chegou'], 'keys'), (IDS['chave'], 'shine')]              # a chave dá um tranco em "chegou" e brilha em "chave"
+ev += [(gFim - 0.05, 'whoosh'), (gFim + 0.2, 'drop')]                # o título encolhe e sobe; a ficha entra
+ev += [(IDS['quatro'] + k * 0.09, 'pop') for k in range(4)]          # as casas 01–04
+for fr, k in (('documento', 'reserva'), ('pessoas', 'pet'), ('saida', 'voz'), ('saldo', 'checkout')):
     ev += [(F[fr]['t0'] - 0.05, 'slide'), (IDS[k], 'check')]          # a linha acende; o check na palavra
-ev += [(IDS['conferido'], 'stamp')]                                   # carimbo "CONFERIDO"
-ev += [(IDS['mao'], 'keys'), (IDS['mao'], 'shine'), (IDS['mao'] + 0.36, 'whoosh')]   # a chave sai da ficha, com brilho
+ev += [(IDS['conferido'], 'stamp'), (IDS['mao'], 'keys'), (IDS['mao'] + 0.2, 'whoosh')]   # carimbo; a chave sai da ficha
 ev += [(IDS['mande'] - 0.12, 'whoosh'), (IDS['mande'], 'fly')]
 ev += [(LN['logo'], 'logowipe'), (LN['logo'] + 0.3, 'bell')]
 json.dump({'duracao': DUR, 'cues': [{'t': round(t, 4), 'type': ty} for t, ty in sorted(ev)]}, open(os.path.join(AUD, 'cues.json'), 'w'), indent=1)
@@ -349,9 +348,9 @@ for c in CUES['cues']:
     elif ty == 'drop': place(sfx, whoosh(0.35, 2600, 500, 0.8, 1.2), t, 0.18); place(sfx, wood(520, 0.1, 0.02), t + 0.35, 0.3)
     elif ty == 'pop': place(sfx, printer(0.3), t, 0.12, -0.2); place(sfx, pop(700), t + 0.05, 0.3)
     elif ty == 'strike': place(sfx, pen(0.35), t, 0.5, 0.2)
+    elif ty == 'keys': place(sfx, keys_jingle(), t, 0.35); place(send, keys_jingle(), t, 0.1)
     elif ty == 'pen': place(sfx, pen(1.2), t, 0.4, 0.1)
-    elif ty == 'keys': place(sfx, keys_jingle(), t, 0.3); place(send, keys_jingle(), t, 0.08)
-    elif ty == 'casa': place(sfx, tick(1300 + 120 * (round((t - IDS['quatro']) / 0.09))), t, 0.32)
+    elif ty == 'drawer': place(sfx, coin_clink(2600), t + 0.05, 0.3); place(sfx, wood(380, 0.12, 0.03), t, 0.4); place(sfx, keys_jingle(), t + 0.08, 0.12)
     elif ty == 'buzz': place(sfx, buzz(0.28), t, 0.18)
     elif ty == 'alert': place(sfx, ping(midi(70), 0.5), t, 0.26); place(sfx, ping(midi(66), 0.5), t + 0.12, 0.22)
     elif ty == 'coin': place(sfx, coin_clink(), t, 0.4); place(send, coin_clink(), t, 0.1)

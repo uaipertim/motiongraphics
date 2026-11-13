@@ -1,18 +1,16 @@
 /*
  * FAZLO Hospeda — educativo "O hóspede chegou? Confira isto no check-in." (1080×1920, 60 fps)
- * Conteúdo EDUCATIVO: não mostra a interface do sistema nem imita telas; os dados são fictícios (a mesma hóspede do
- * educativo reserva-whatsapp), com "Exemplo fictício" sempre visível quando há dado na tela, e nenhum número de
- * documento (só "documento conferido"). A linha do tempo vem de ../linha.json (scripts/linha.py, a partir da locução
- * com a marcação de tempo do ElevenLabs).
+ * Conteúdo EDUCATIVO: não mostra a interface do sistema nem imita telas. Os dados são fictícios e os mesmos da reserva do
+ * educativo reserva-whatsapp (Ana Lima, 14 a 16/11, 2 adultos e 1 criança, Chalé 3, R$ 900,00, sinal R$ 450,00), com
+ * "Exemplo fictício" sempre visível quando há dado na tela; nenhum número de documento ("documento conferido").
+ * A linha do tempo vem de ../linha.json (scripts/linha.py, a partir da locução com a marcação de tempo do ElevenLabs).
  *
- * Cenas: GANCHO (quadro 0 = capa: chip "ANTES DE ENTREGAR A CHAVE", título "O hóspede chegou? / Confira isto no
- * check-in." e uma chave grande em traço limão, balançando de leve) · "CONFIRA QUATRO COISAS" (o título encolhe e
- * sobe; a ficha "CHECK-IN" entra com as casas apagadas; as casas 01–04 aparecem em "quatro") · OS ITENS (cada linha
- * acende na própria frase, o dado é escrito e o check entra na palavra-chave) · "CONFERIDO" (carimbo) · A CHAVE (sai
- * da ficha com brilho limão em "mão do hóspede") · MANDE (texto grande + avião, sem legenda) · LOGO (últimos 3,2 s).
- * Mesmo motor e DNA dos educativos reserva-whatsapp e conta-do-caixa (fundo, marca, chip, ícones, ficha de papel com
- * borda serrilhada, carimbo, avião, logo e a legenda palavra por palavra: Inter Display 900, 68 px, chaves em limão,
- * linhas em y 1332/1412, x 130–936, cada página ≥ 1,5 s; a divisão das páginas vem do roteiro).
+ * Cenas: GANCHO (quadro 0 = capa: título + a chave em traço limão, balançando) · "CONFIRA QUATRO COISAS" (o título
+ * encolhe e sobe; a ficha "CHECK-IN" entra; as casas 01–04 em "quatro") · OS QUATRO ITENS (cada linha acende na
+ * própria frase, o dado é escrito e o check entra na palavra-chave) · "CONFERIDO" carimbado; em "mão do hóspede" a
+ * chave sai da ficha em limão · MANDE (sem legenda: a cena já mostra a frase) · LOGO (últimos 3,2 s).
+ * Mesmo motor e DNA do conta-do-caixa e do reserva-whatsapp (legenda palavra por palavra: Inter Display 900, 68 px,
+ * chaves em limão, linhas em y 1332/1412, x 130–936, cada página ≥ 1,5 s; a divisão das páginas vem do roteiro).
  * Conteúdo das cenas entre y 400 e 1270; nada na coluna de botões (x > 940, y > 1000).
  */
 (function () {
@@ -21,7 +19,7 @@
   const DISPLAY = "'FL Display', sans-serif", MONO = "'FL Mono', monospace";
   const C = { bg: '#0A0A0A', card: '#141614', card2: '#1A1D19', line: '#2C302B', lime: '#AFFA27', white: '#FFFFFF', gray: '#A6A9A2',
     grayD: '#6B6F68', amber: '#FFB23F', ink: '#141612', paper: '#F1EDE2', paper2: '#E5DFCF', inkSoft: '#6E685B', red: '#FF5C5C' };
-  const CAP = { size: 68, lh: 80, y1: 1332, maxW: 806, cx: 540, minPag: 1.5, segura: 0.8 };
+  const CAP = { size: 68, lh: 80, y1: 1332, maxW: 820, cx: 540, minPag: 1.5, segura: 0.8 };
 
   const clamp = (x, a = 0, b = 1) => Math.min(b, Math.max(a, x));
   const lerp = (a, b, t) => a + (b - a) * t;
@@ -104,36 +102,25 @@
   function icon(c, nome, x, y, s, col, lw = 4) {
     c.save(); c.translate(x, y); c.scale(s / 48, s / 48); c.strokeStyle = col; c.fillStyle = col; c.lineWidth = lw; c.lineCap = 'round'; c.lineJoin = 'round';
     c.beginPath();
-    if (nome === 'check') {
+    if (nome === 'calendario') {
+      c.roundRect(-20, -16, 40, 36, 6); c.moveTo(-20, -4); c.lineTo(20, -4); c.moveTo(-10, -22); c.lineTo(-10, -11); c.moveTo(10, -22); c.lineTo(10, -11);
+      c.stroke(); c.beginPath(); [[-9, 6], [0, 6], [9, 6], [-9, 14]].forEach(([a, b]) => c.rect(a - 2.5, b - 2.5, 5, 5)); c.fill();
+    } else if (nome === 'xicara') {
+      c.moveTo(-18, -8); c.lineTo(-15, 16); c.quadraticCurveTo(-14, 20, -9, 20); c.lineTo(7, 20); c.quadraticCurveTo(12, 20, 13, 16); c.lineTo(16, -8); c.closePath();
+      c.moveTo(16, -2); c.bezierCurveTo(28, -4, 28, 12, 14, 12); c.moveTo(-8, -14); c.quadraticCurveTo(-4, -19, -8, -24); c.moveTo(2, -14); c.quadraticCurveTo(6, -19, 2, -24); c.stroke();
+    } else if (nome === 'moedas') {
+      c.ellipse(-4, 10, 16, 6, 0, 0, TAU); c.moveTo(-20, 10); c.lineTo(-20, 2); c.ellipse(-4, 2, 16, 6, 0, Math.PI, 0); c.moveTo(12, 2); c.lineTo(12, 10);
+      c.moveTo(-20, 2); c.lineTo(-20, -6); c.ellipse(-4, -6, 16, 6, 0, Math.PI, TAU); c.moveTo(12, -6); c.lineTo(12, 2);
+      c.moveTo(24, -14); c.lineTo(24, 16); c.moveTo(18, -9); c.lineTo(30, -9); c.stroke();
+    } else if (nome === 'check') {
       c.moveTo(-14, 1); c.lineTo(-4, 11); c.lineTo(15, -10); c.stroke();
     } else if (nome === 'aviao') {
       c.moveTo(-22, -2); c.lineTo(22, -18); c.lineTo(10, 20); c.lineTo(2, 6); c.closePath(); c.moveTo(2, 6); c.lineTo(22, -18); c.moveTo(2, 6); c.lineTo(-2, 16); c.lineTo(10, 20); c.stroke();
+    } else if (nome === 'recibo') {
+      c.moveTo(-16, -22); c.lineTo(16, -22); c.lineTo(16, 22); c.lineTo(10, 18); c.lineTo(4, 22); c.lineTo(-2, 18); c.lineTo(-8, 22); c.lineTo(-16, 18); c.closePath();
+      c.moveTo(-9, -11); c.lineTo(9, -11); c.moveTo(-9, -2); c.lineTo(9, -2); c.moveTo(-9, 7); c.lineTo(3, 7); c.stroke();
     }
     c.restore();
-  }
-
-  // ---------------------------------------------------------------- a chave (traço, estilizada)
-  // Unidades locais: o centro do anel (a "cabeça") fica em (0, 0) e a haste aponta para a direita até x = 300.
-  // (x, y): onde fica o centro do anel; s: escala; rot: rotação em torno do anel. Devolve a caixa (sem a rotação).
-  const CHAVE = { r: 58, furo: 22, ponta: 300 };
-  function chave(c, x, y, s, rot = 0, o = {}) {
-    const col = o.cor || C.lime, lw = (o.lw || 5) / s;
-    c.save(); c.translate(x, y); c.rotate(rot); c.scale(s, s);
-    c.strokeStyle = col; c.lineWidth = lw; c.lineCap = 'round'; c.lineJoin = 'round';
-    if (o.glow) { c.shadowColor = css(C.lime, 0.9 * o.glow); c.shadowBlur = 36 * o.glow / s; }
-    // a haste com os dentes, num traço só (contorno)
-    c.beginPath();
-    c.moveTo(CHAVE.r - 4, -15); c.lineTo(CHAVE.ponta - 10, -15); c.quadraticCurveTo(CHAVE.ponta, -15, CHAVE.ponta, -5); c.lineTo(CHAVE.ponta, 15);
-    c.lineTo(276, 15); c.lineTo(276, 50); c.lineTo(254, 50); c.lineTo(254, 32); c.lineTo(232, 32); c.lineTo(232, 44); c.lineTo(208, 44); c.lineTo(208, 15);
-    c.lineTo(CHAVE.r - 4, 15);
-    c.fillStyle = css(C.card2, o.fundo ?? 0.95); c.fill(); c.stroke();
-    // o anel (cabeça) com o furo
-    c.beginPath(); c.arc(0, 0, CHAVE.r, 0, TAU); c.fillStyle = css(C.card2, o.fundo ?? 0.95); c.fill(); c.stroke();
-    c.beginPath(); c.arc(-14, 0, CHAVE.furo, 0, TAU); c.stroke();
-    // o friso da haste
-    c.save(); c.globalAlpha *= 0.55; c.beginPath(); c.moveTo(CHAVE.r + 16, 0); c.lineTo(CHAVE.ponta - 24, 0); c.stroke(); c.restore();
-    c.restore();
-    return { x0: x - CHAVE.r * s, y0: y - 58 * s, x1: x + CHAVE.ponta * s, y1: y + 58 * s };
   }
 
   // ---------------------------------------------------------------- tempos
@@ -163,27 +150,50 @@
     return w;
   }
 
+  // ---------------------------------------------------------------- a chave (traço da marca: linha única, pontas arredondadas)
+  // desenhada em torno do centro da argola; o comprimento total é ~ 470 × s
+  function chave(c, x, y, s, ang, o = {}) {
+    const col = o.cor || C.lime, fill = o.fill ?? css(C.card2, 0.95);
+    c.save(); c.translate(x, y); c.rotate(ang); c.scale(s, s);
+    c.strokeStyle = col; c.lineWidth = (o.lw || 6) / s * s; c.lineCap = 'round'; c.lineJoin = 'round';
+    if (o.glow) { c.shadowColor = col; c.shadowBlur = o.glow; }
+    // a argolinha do chaveiro
+    c.beginPath(); c.arc(-112, 0, 30, 0, TAU); c.stroke();
+    // a cabeça da chave (com o furo) e a haste com os dentes, num contorno só
+    c.beginPath();
+    c.arc(0, 0, 74, Math.PI * 0.12, Math.PI * 1.88);
+    c.lineTo(Math.cos(Math.PI * 1.88) * 74 + 6, -16); c.lineTo(330, -16); c.quadraticCurveTo(352, -16, 352, 4);
+    c.lineTo(352, 46); c.lineTo(326, 46); c.lineTo(326, 26); c.lineTo(300, 26); c.lineTo(300, 54); c.lineTo(272, 54); c.lineTo(272, 26);
+    c.lineTo(246, 26); c.lineTo(246, 42); c.lineTo(222, 42); c.lineTo(222, 16); c.lineTo(Math.cos(Math.PI * 0.12) * 74 + 6, 16); c.closePath();
+    if (fill) { c.fillStyle = fill; c.fill(); }
+    c.stroke();
+    c.beginPath(); c.arc(-22, 0, 24, 0, TAU); c.stroke();                            // o furo
+    c.beginPath(); c.moveTo(110, 0); c.lineTo(300, 0); c.globalAlpha *= 0.5; c.stroke(); // o sulco da haste
+    c.restore();
+  }
+
   // ---------------------------------------------------------------- 1. GANCHO (o quadro 0 é a capa)
-  const KEY = { s: 1.45, y: 1112 };
-  const keyX = () => 540 - ((CHAVE.ponta - CHAVE.r) / 2) * KEY.s;       // a chave centralizada pela caixa (anel + haste)
+  const KEY = { x: 405, y: 1100, s: 1.3 };
   function ganchoBloco(c, t) {
     chip(c, 'ANTES DE ENTREGAR A CHAVE', 540, 466, { align: 'center', box: 'chip' });
-    const S = 100, tc = at('chegou', 99), k = kick(t, tc, 0.3);
+    const S = 100, k = kick(t, at('chegou', 99), 0.3);
     const L = (s, y, cor, nome) => txt(c, s, 540, y, { size: S, weight: 900, align: 'center', ls: -0.03 * S, color: cor, box: nome });
     L('O hóspede', 600, C.white, 'título 1');
-    c.save(); c.translate(540, 674); c.scale(1 + 0.06 * k, 1 + 0.06 * k); c.translate(-540, -674);
+    c.save(); c.translate(540, 674); c.scale(1 + 0.05 * k, 1 + 0.05 * k); c.translate(-540, -674);
     L('chegou?', 702, C.white, 'título 2'); c.restore();
     L('Confira isto', 812, C.lime, 'título 3');
     L('no check-in.', 914, C.lime, 'título 4');
-    // a chave: balança de leve; em "chegou?" dá um tranco (como quem pega a chave do gancho)
-    const rot = 0.035 * Math.sin(t * 2.4) + (t >= tc ? 0.13 * Math.exp(-(t - tc) * 3.2) * Math.sin((t - tc) * 17) : 0);
-    const b = chave(c, keyX(), KEY.y + 3 * Math.sin(t * 2.2), KEY.s, rot);
-    BOX('chave', b.x0, b.y0 - 30, b.x1, b.y1 + 30);
+    // a chave balança de leve; dá um tranco em "chegou" e brilha em "chave"
+    const kc = kick(t, at('chegou', 99), 0.5), kv = kick(t, at('chave', 99), 0.5);
+    const ang = -0.06 + 0.05 * Math.sin(t * 2.1) + 0.16 * kc * Math.sin((t - at('chegou', 0)) * 18);
+    chave(c, KEY.x, KEY.y + 3 * Math.sin(t * 1.7), KEY.s * (1 + 0.06 * kv), ang, { glow: 34 * kv });
+    BOX('chave', KEY.x - 148 * KEY.s, KEY.y - 96 * KEY.s, KEY.x + 358 * KEY.s, KEY.y + 96 * KEY.s);
   }
   function gancho(c, t) {
     const t0 = T.ganchoFim - 0.04, u = E.inOutCubic(p(t, t0, t0 + 0.3));
+    if (u >= 1) return;
+    // em "confira": o título encolhe e sobe; a chave sai
     if (1.6 * u >= 1) return;
-    // em "confira": o título encolhe e sobe; a chave sai junto
     c.save(); c.globalAlpha *= clamp(1 - 1.6 * u);
     c.translate(540, 400); c.scale(lerp(1, 0.5, u), lerp(1, 0.5, u)); c.translate(-540, -400 - 60 * u);
     ganchoBloco(c, t); c.restore();
@@ -193,73 +203,52 @@
     if (t < t0 || t > T.fichaFim) return;
     saida(c, t, T.fichaFim, () => {
       c.save(); c.globalAlpha *= e; c.translate(0, 26 * (1 - e));
-      const a = 'O hóspede chegou? ', b = 'Confira isto no check-in.';
-      let size = 42; while (tw(a + b, DISPLAY, size, 900, -0.026 * size) > 800) size -= 1;
-      const ls = -0.026 * size, w1 = tw(a, DISPLAY, size, 900, ls), w2 = tw(b, DISPLAY, size, 900, ls), x = 540 - (w1 + w2) / 2;
-      txt(c, a, x, 440, { size, weight: 900, ls, box: 'título pequeno 1' });
-      txt(c, b, x + w1, 440, { size, weight: 900, ls, color: C.lime, box: 'título pequeno 2' });
+      const a = 'O hóspede chegou? ', b = 'Confira isto no check-in.', S = 38;
+      const w1 = tw(a, DISPLAY, S, 900, -1), w2 = tw(b, DISPLAY, S, 900, -1), x = 540 - (w1 + w2) / 2;
+      txt(c, a, x, 440, { size: S, weight: 900, ls: -1, box: 'título pequeno 1' });
+      txt(c, b, x + w1, 440, { size: S, weight: 900, ls: -1, color: C.lime, box: 'título pequeno 2' });
       c.restore();
     });
   }
 
-  // ---------------------------------------------------------------- 2–4. A FICHA DO CHECK-IN (papel)
-  const FICHA = { x0: 130, x1: 930, y0: 486, cab: 112, row: 146 };
-  const FRASE_DO_ITEM = { reserva: 'documento', pet: 'pessoas', vozalta: 'saida', checkout: 'saldo' };
-  const yRow = (i) => FICHA.y0 + FICHA.cab + i * FICHA.row;
-  function linhaFicha(c, t, it, i) {
-    const { x0, x1, row } = FICHA, w = x1 - x0, y = yRow(i);
-    const fr = T.F[FRASE_DO_ITEM[it.id]], tc = at(it.id, fr.t0), ativo = t >= fr.t0 - 0.1, k = kick(t, tc, 0.4);
-    const tq = at('quatro', 99) + i * 0.09, ec = E.outBack(p(t, tq, tq + 0.28), 2.0);   // as casas aparecem em "quatro"
-    // o fundo da linha acende na própria frase
-    if (ativo && t < fr.t1 + 0.35) { c.fillStyle = css(C.lime, 0.24 + 0.25 * k); rr(c, x0 + 18, y + 10, w - 36, row - 20, 16); c.fill(); }
-    // a casa numerada (01–04)
-    if (ec > 0) {
-      c.save(); c.translate(x0 + 72, y + row / 2); c.scale(ec, ec);
-      rr(c, -38, -38, 76, 76, 14);
-      if (ativo) { c.fillStyle = C.ink; c.fill(); } else { c.strokeStyle = css(C.ink, 0.35); c.lineWidth = 3; c.setLineDash([6, 6]); c.stroke(); c.setLineDash([]); }
-      txt(c, it.n, 0, 11, { fam: MONO, size: 30, weight: 800, color: ativo ? C.lime : css(C.ink, 0.4), align: 'center' });
+  // ---------------------------------------------------------------- 2–4. A FICHA "CHECK-IN" (papel)
+  const FICHA = { x0: 130, x1: 930, y0: 486, cab: 116, row: 112, pe: 104 };
+  function linhaFicha(c, t, it, i, y) {
+    const { x0, x1, row } = FICHA, w = x1 - x0, fr = T.F[it.frase], tc = at(it.id, fr.t0);
+    const ativo = t >= fr.t0 - 0.1, k = kick(t, fr.t0 - 0.05, 0.4);
+    if (ativo && t < fr.t1 + 0.35) { c.fillStyle = css(C.lime, 0.24 + 0.25 * k); rr(c, x0 + 18, y + 6, w - 36, row - 12, 14); c.fill(); }
+    // as casas 01–04 aparecem em "quatro"
+    const tq = at('quatro', 0) + i * 0.09, uq = p(t, tq, tq + 0.3);
+    if (uq > 0) {
+      const s = E.outBack(uq, 2.4);
+      c.save(); c.translate(x0 + 60, y + 44); c.scale(s, s);
+      txt(c, String(i + 1).padStart(2, '0'), 0, 0, { fam: MONO, size: 28, weight: 800, color: ativo ? C.ink : C.inkSoft, align: 'center' });
       c.restore();
-      if (ec >= 1) BOX(`casa ${it.n}`, x0 + 34, y + row / 2 - 38, x0 + 110, y + row / 2 + 38);
-      // o rótulo aparece com a casa, apagado até a frase
-      txt(c, it.rotulo, x0 + 134, y + 62, { size: 34, weight: 800, color: ativo ? C.ink : css(C.ink, 0.35), alpha: clamp(ec), box: `rótulo ${it.id}` });
+      if (uq >= 1) BOX(`casa ${i + 1}`, x0 + 40, y + 20, x0 + 80, y + 52);
     }
-    // o dado: escrito durante a frase, até a palavra-chave
+    const cor = ativo ? C.ink : css(C.ink, 0.38);
+    const lw = txt(c, it.rotulo, x0 + 100, y + 48, { size: 36, weight: 800, color: cor, box: `rótulo ${it.id}` });
+    if (it.nota && ativo) txt(c, it.nota, x0 + 100 + lw + 20, y + 46, { fam: MONO, size: 21, weight: 700, color: C.inkSoft, alpha: p(t, fr.t0, fr.t0 + 0.3), box: `valor nota ${it.id}` });
+    // o dado fictício é escrito ao longo da frase, até a palavra-chave
     if (ativo) {
       const u = p(t, fr.t0 + 0.05, tc), s = it.valor.slice(0, Math.ceil(it.valor.length * u));
-      if (s) txt(c, s, x0 + 134, y + 110, { fam: MONO, size: 28, weight: 800, color: '#2F4A12', box: `valor ${it.id}` });
+      if (s) txt(c, s, x0 + 100, y + 90, { fam: MONO, size: 28, weight: 800, color: '#3D4A2A', box: `valor ${it.id}` });
     }
     // o check entra na palavra-chave
     const ck = p(t, tc, tc + 0.3);
-    c.save(); c.translate(x1 - 56, y + row / 2);
-    c.beginPath(); c.arc(0, 0, 24, 0, TAU); c.strokeStyle = css(C.ink, 0.3); c.lineWidth = 3; c.setLineDash([5, 5]); c.stroke(); c.setLineDash([]);
-    if (ck > 0) { const s = E.outBack(ck, 2.2); c.scale(s, s); c.beginPath(); c.arc(0, 0, 24, 0, TAU); c.fillStyle = C.ink; c.fill(); icon(c, 'check', 0, 0, 30, C.lime, 6); }
+    c.save(); c.translate(x1 - 58, y + row / 2);
+    c.beginPath(); c.arc(0, 0, 26, 0, TAU); c.strokeStyle = css(C.ink, 0.3); c.lineWidth = 3; c.setLineDash([5, 5]); c.stroke(); c.setLineDash([]);
+    if (ck > 0) { const s = E.outBack(ck, 2.2); c.scale(s, s); c.beginPath(); c.arc(0, 0, 26, 0, TAU); c.fillStyle = C.ink; c.fill(); icon(c, 'check', 0, 0, 32, C.lime, 6); }
     c.restore();
-    BOX(`check ${it.id}`, x1 - 80, y + row / 2 - 24, x1 - 32, y + row / 2 + 24);
-  }
-  // a chave da ficha: pequena no cabeçalho; em "mão do hóspede" ela sai da ficha e desliza para fora, com brilho limão
-  function chaveDaFicha(c, t) {
-    const tm = at('mao', 99), u = E.inOutCubic(p(t, tm, tm + 0.42)), v = E.inCubic(p(t, tm + 0.38, tm + 1.05));
-    const x = lerp(FICHA.x0 + 34, 330, u) + 1000 * v, y = lerp(FICHA.y0 + 56, 760, u) - 70 * v;
-    const s = lerp(0.2, 0.9, u), gl = t >= tm ? clamp(p(t, tm, tm + 0.2)) * (1 - 0.4 * v) : 0;
-    if (x - CHAVE.r * s > W) return;
-    if (gl > 0) {                                          // o halo limão
-      const cx = x + (CHAVE.ponta - CHAVE.r) / 2 * s, g = c.createRadialGradient(cx, y, 0, cx, y, 260 * s + 60);
-      g.addColorStop(0, css(C.lime, 0.35 * gl)); g.addColorStop(1, css(C.lime, 0));
-      c.fillStyle = g; c.fillRect(cx - 400, y - 400, 800, 800);
-      for (let k = 0; k < 7; k++) {                        // faíscas que ficam para trás
-        const a = k * 0.9 + t * 3, r = (140 + 40 * Math.sin(k * 2.1 + t * 6)) * s + 30, fx = cx - 120 * v * k / 7 + Math.cos(a) * r, fy = y + Math.sin(a) * r * 0.6;
-        c.beginPath(); c.arc(fx, fy, 4 + 3 * Math.sin(k + t * 9), 0, TAU); c.fillStyle = css(C.lime, 0.7 * gl); c.fill();
-      }
-    }
-    const b = chave(c, x, y, s, -0.08 * u + 0.12 * v, { cor: u > 0 ? C.lime : C.ink, lw: u > 0 ? 5 : 3.2, glow: gl, fundo: u > 0 ? 0.95 : 0 });
-    BOX('chave', b.x0, b.y0, b.x1, b.y1);
+    BOX(`check ${it.id}`, x1 - 84, y + row / 2 - 26, x1 - 32, y + row / 2 + 26);
   }
   function ficha(c, t) {
-    const t0 = T.ganchoFim - 0.02;
+    const t0 = T.ganchoFim + 0.16;
     if (t < t0 || t > T.fichaFim) return;
     saidaLado(c, t, T.fichaFim, () => {
-      const e = ent(t, t0, 0.35), { x0, x1, y0, cab, row } = FICHA, w = x1 - x0, itens = LN.exemplo.ficha;
-      const h = cab + itens.length * row + 10;
+      // a ficha assenta antes de "quatro" (as casas 01–04)
+      const e = ent(t, t0, 0.28), { x0, x1, y0, cab, row, pe } = FICHA, w = x1 - x0, itens = LN.exemplo.ficha;
+      const h = cab + itens.length * row + pe;
       c.save(); c.globalAlpha *= e; c.translate(0, 110 * (1 - e));
       c.save(); c.shadowColor = 'rgba(0,0,0,0.55)'; c.shadowBlur = 50; c.shadowOffsetY = 24;
       c.beginPath(); c.moveTo(x0 + 18, y0); c.lineTo(x1 - 18, y0); c.quadraticCurveTo(x1, y0, x1, y0 + 18); c.lineTo(x1, y0 + h);
@@ -268,29 +257,55 @@
       c.lineTo(x0, y0 + 18); c.quadraticCurveTo(x0, y0, x0 + 18, y0); c.closePath();
       c.fillStyle = C.paper; c.fill(); c.restore();
       BOX('ficha', x0, y0, x1, y0 + h + 14);
-      txt(c, 'CHECK-IN', x0 + 118, y0 + 58, { fam: MONO, size: 30, weight: 800, color: C.ink, ls: 3, box: 'ficha título' });
-      selo(c, x0 + 118, y0 + 90, { size: 18 });
+      icon(c, 'recibo', x0 + 52, y0 + 50, 40, C.ink, 3.5);
+      txt(c, 'CHECK-IN', x0 + 92, y0 + 60, { fam: MONO, size: 30, weight: 800, color: C.ink, ls: 3, box: 'ficha título' });
+      selo(c, x0 + 92, y0 + 94, { size: 18 });
       c.fillStyle = C.paper2; c.fillRect(x0 + 30, y0 + cab - 2, w - 60, 3);
       itens.forEach((it, i) => {
-        if (i > 0) { c.fillStyle = css(C.ink, 0.1); c.fillRect(x0 + 30, yRow(i) - 1, w - 60, 2); }
-        linhaFicha(c, t, it, i);
+        const y = y0 + cab + i * row;
+        if (i > 0) { c.fillStyle = css(C.ink, 0.1); c.fillRect(x0 + 30, y - 1, w - 60, 2); }
+        linhaFicha(c, t, it, i, y);
       });
+      // o pé da ficha: a chave do chalé, presa ao papel até "mão do hóspede"
+      const yp = y0 + cab + itens.length * row, tm = at('mao', 99);
+      c.fillStyle = css(C.ink, 0.14); c.fillRect(x0 + 30, yp, w - 60, 2);
+      txt(c, 'CHAVE', x0 + 48, yp + 46, { fam: MONO, size: 22, weight: 800, color: C.inkSoft, ls: 3, box: 'chave rótulo' });
+      txt(c, LN.exemplo.chave, x0 + 48, yp + 82, { size: 32, weight: 800, color: C.ink, box: 'valor chave' });
+      if (t < tm) {
+        chave(c, x0 + 440, yp + 54, 0.36, -0.04, { cor: C.ink, fill: css(C.paper2, 1), lw: 5 });
+      } else {
+        c.save(); c.setLineDash([6, 8]); c.strokeStyle = css(C.ink, 0.3); c.lineWidth = 3; rr(c, x0 + 380, yp + 22, 220, 64, 16); c.stroke(); c.restore();
+      }
       // "CONFERIDO", carimbado em "conferido"
       const tl = at('conferido', 99), ec = p(t, tl, tl + 0.28);
       if (ec > 0) {
         const s = lerp(1.9, 1, E.outCubic(ec)), tr = kick(t, tl + 0.2, 0.2) * 6;
-        c.save(); c.translate(x1 - 168 + tr * Math.sin(t * 90), y0 + 58); c.rotate(-0.12); c.scale(s, s); c.globalAlpha *= clamp(ec * 1.6);
+        c.save(); c.translate(x1 - 170 + tr * Math.sin(t * 90), y0 + 58); c.rotate(-0.12); c.scale(s, s); c.globalAlpha *= clamp(ec * 1.6);
         rr(c, -128, -36, 256, 72, 14); c.fillStyle = css(C.paper, 0.85); c.fill(); c.strokeStyle = '#2F7A16'; c.lineWidth = 5; c.stroke();
         txt(c, 'CONFERIDO', 0, 12, { fam: MONO, size: 32, weight: 800, color: '#2F7A16', align: 'center', ls: 3 });
         c.restore();
-        if (ec >= 1) BOX('carimbo', x1 - 168 - 135, y0 + 58 - 52, x1 - 168 + 135, y0 + 58 + 52);
+        if (ec >= 1) BOX('carimbo', x1 - 170 - 135, y0 + 58 - 52, x1 - 170 + 135, y0 + 58 + 52);
       }
-      chaveDaFicha(c, t);
       c.restore();
     });
   }
+  // "mão do hóspede": a chave sai da ficha e desliza para fora, em limão, com brilho
+  function chaveSai(c, t) {
+    const tm = at('mao', 99), u = p(t, tm, tm + 0.8);
+    if (t < tm || u >= 1) return;
+    const yp = FICHA.y0 + FICHA.cab + LN.exemplo.ficha.length * FICHA.row;
+    const x0 = FICHA.x0 + 440, y0_ = yp + 54, v = E.inOutCubic(u);
+    const lift = E.outBack(p(t, tm, tm + 0.25), 2);
+    const x = lerp(x0, 1300, E.inCubic(clamp((u - 0.25) / 0.75))), y = y0_ - 70 * lift - 160 * E.inCubic(clamp((u - 0.25) / 0.75));
+    const s = lerp(0.36, 0.62, lift), g = 1 - v * 0.3;
+    // o brilho limão no instante em que a chave solta do papel
+    const rb = p(t, tm, tm + 0.5);
+    if (rb < 1) { c.beginPath(); c.arc(x0 + 40, y0_, lerp(40, 190, E.outExpo(rb)), 0, TAU); c.strokeStyle = css(C.lime, 0.9 * (1 - rb)); c.lineWidth = 8 * (1 - rb) + 1; c.stroke(); }
+    chave(c, x, y, s, -0.04 - 0.25 * v, { cor: C.lime, glow: 30 * g, lw: 6 });
+    if (u < 0.25) BOX('chave saindo', x - 150 * s, y - 100 * s, x + 370 * s, y + 100 * s);
+  }
 
-  // ---------------------------------------------------------------- 5. MANDE
+  // ---------------------------------------------------------------- 6. MANDE
   function mande(c, t) {
     const t0 = at('mande', T.fichaFim - 0.14);                 // o CTA desliza para dentro na própria palavra "Mande"
     if (t < t0 || t > T.ctaFim) return;
@@ -316,7 +331,7 @@
     });
   }
 
-  // ---------------------------------------------------------------- 6. LOGO
+  // ---------------------------------------------------------------- 7. LOGO
   function fimLogo(c, t) {
     const t0 = LN.logo, e = E.outBack(p(t, t0, t0 + 0.45), 1.8), D = 300, cy = 760;
     if (t < t0) return;
@@ -340,11 +355,10 @@
   function layoutLegenda() {
     PAGES = [];
     const ls = -0.02 * CAP.size, wid = (ws, a, b) => tw(ws.slice(a, b).map((x) => x.w).join(' '), DISPLAY, CAP.size, 900, ls);
-    // regra da série: a frase que a cena já mostra como texto principal (sem_legenda) não entra na legenda, e nenhuma
-    // página fica na tela enquanto ela é falada (aqui: o gancho, que é o título da capa, e a chamada final)
+    // regra da série: a frase que a cena já mostra como texto principal (sem_legenda) não entra na legenda
     const sem = LN.sem_legenda || [], todas = LN.frases.filter((f) => !sem.includes(f.id)).flatMap((f) => f.palavras);
-    const semT = LN.frases.filter((f) => sem.includes(f.id)).map((f) => f.palavras[0].t0);
-    const limDe = (t0) => Math.min(LN.logo - 0.05, ...semT.filter((s) => s > t0));
+    // cada página sai, no máximo, quando começa a próxima frase sem legenda (ou a logo)
+    const limDe = (tf) => { const f = LN.frases.find((x) => sem.includes(x.id) && x.palavras[0].t0 >= tf); return f ? f.palavras[0].t0 : LN.logo - 0.05; };
     let k = 0;
     for (const pg of LN.legenda) {
       const a = k, rows = [], pos = {};
@@ -357,9 +371,10 @@
     }
     if (k !== todas.length) throw new Error('legenda: sobram palavras');
     PAGES.forEach((q, i) => {
-      const nx = PAGES[i + 1], lim = limDe(q.t0);
-      let t1 = Math.min(nx ? nx.t0 : lim, q.fimFala + CAP.segura);
-      t1 = Math.max(t1, Math.min(q.t0 + CAP.minPag, nx ? nx.t0 : lim));
+      const nx = PAGES[i + 1];
+      const lim = limDe(q.fimFala), fim = nx ? Math.min(nx.t0, lim) : lim;
+      let t1 = Math.min(fim, q.fimFala + CAP.segura);
+      t1 = Math.max(t1, Math.min(q.t0 + CAP.minPag, fim));
       q.t1 = Math.min(t1, lim);
     });
   }
@@ -389,7 +404,7 @@
     c.beginPath(); c.rect(0, 0, W, H); c.rect(941, 1001, W - 941, 600); c.clip('evenodd');      // a coluna de botões (x > 940, y > 1000) fica vazia
     if (t < LN.logo) {
       gancho(c, t); tituloPequeno(c, t);
-      ficha(c, t); mande(c, t);
+      ficha(c, t); chaveSai(c, t); mande(c, t);
       marca(c);
       legenda(c, t);
     } else fimLogo(c, t);

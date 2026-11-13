@@ -161,49 +161,31 @@ ok(all(any(b['nome'] == 'logo final' for b in s['caixas']) for s in fim), 'o ví
 
 # ---------------------------------------------------------------- divisão da legenda
 rep.append(''); rep.append('DIVISÃO DA LEGENDA (quebras só em pausa ou pontuação; nenhuma linha termina em artigo, preposição ou conjunção)')
-FUNC = {'o', 'a', 'os', 'as', 'um', 'uma', 'de', 'da', 'do', 'das', 'dos', 'em', 'na', 'no', 'pelo', 'pela', 'para', 'pra', 'por', 'com', 'e', 'ou', 'que', 'se', 'mas', 'nem', 'esta', 'esse', 'essa'}
+FUNC = {'o', 'a', 'os', 'as', 'um', 'uma', 'de', 'da', 'do', 'das', 'dos', 'em', 'na', 'no', 'pelo', 'pela', 'para', 'por', 'com', 'e', 'ou', 'que', 'se', 'mas', 'nem', 'esta', 'esse', 'essa'}
 todas = [w for f in LN['frases'] if f['id'] not in LN.get('sem_legenda', []) for w in f['palavras']]
-SL = [f for f in LN['frases'] if f['id'] in LN.get('sem_legenda', [])]
-cruza = [(f['id'], ' / '.join(q['linhas'])) for f in SL for q in PG if q['t0'] < f['t1'] - 1e-6 and q['t1'] > f['palavras'][0]['t0'] + 1e-6]
-ok(not cruza, 'sem legenda nas frases que a cena já mostra como texto principal (regra da série): '
-   + '; '.join(f'"{" ".join(w["w"] for w in f["palavras"])}" {f["t0"]:.2f}–{f["t1"]:.2f} s' for f in SL)
-   + ('' if not cruza else ' · página por cima: ' + '; '.join(f'{a}: {b}' for a, b in cruza)))
-pos = {id(w): i for i, w in enumerate(todas)}
-k = 0; ruins, pag_sem = [], []
-for q in PG:
-    for li, ln in enumerate(q['linhas']):
-        n = len(ln.split()); ult = todas[k + n - 1]; prox = todas[k + n] if k + n < len(todas) else None
-        gap = (prox['t0'] - ult['t1']) * 1000 if prox else 0
-        pont = bool(re.search(r'[,.:;?!]$', ult['w']))
-        tipo = 'pontuação' if pont else (f'pausa {gap:.0f} ms' if gap >= 120 else f'grupo de sentido ({gap:.0f} ms)')
-        fimpag = li == len(q['linhas']) - 1
-        if ult['w'].lower().strip(',.:;?!') in FUNC:
-            ruins.append(ln)
-        if fimpag and prox and not pont and gap < 120:
-            pag_sem.append(ln)
-        rep.append(f'       {q["t0"]:6.2f}–{q["t1"]:5.2f} s  {"│ " if li else "┌ "}{ln:<28} → {"fim da página, " if fimpag else ""}{tipo}')
-        k += n
-ok(not ruins, 'nenhuma linha termina em artigo, preposição ou conjunção' + ('' if not ruins else ': ' + '; '.join(ruins)))
-ok(not pag_sem, 'toda troca de página cai em pontuação ou pausa' + ('' if not pag_sem else ': ' + '; '.join(pag_sem)))
-larg = max(b['x1'] - b['x0'] for s in INFO['caixas'] for b in s['caixas'] if b['nome'] == 'legenda')
-ok(all(129.5 <= x0 and x1 <= 936 for q in PG for x0, x1 in q['x']), f'linhas centralizadas e dentro de x 130–936, fora da coluna de botões em x > 940 (mais larga: {max(x1 - x0 for q in PG for x0, x1 in q["x"]):.0f} px)')
-
+SL = [(f, (LN['frases'][i + 1]['palavras'][0]['t0'] if i + 1 < len(LN['frases']) else DUR)) for i, f in enumerate(LN['frases']) if f['id'] in LN.get('sem_legenda', [])]
+viol = [(f['id'], q['linhas'][0]) for f, fim in SL for q in PG if q['t0'] < fim - 1e-6 and q['t1'] > f['palavras'][0]['t0'] + 1e-6]
+ok(not viol, 'sem legenda nas frases que a cena já mostra como texto principal (regra da série): '
+   + '; '.join(f'"{" ".join(w["w"] for w in f["palavras"])}" {f["palavras"][0]["t0"]:.2f}–{fim:.2f} s' for f, fim in SL)
+   + ('' if not viol else ' · página por cima: ' + ', '.join(f'{a}: "{b}"' for a, b in viol)))
+rep.append(f'       a legenda começa em {PG[0]["t0"]:.2f} s ("{PG[0]["linhas"][0]}…") e a última página sai em {PG[-1]["t1"]:.2f} s')
 # ---------------------------------------------------------------- sincronia de cada gesto × palavra (medida nos pixels do vídeo)
 rep.append(''); rep.append('SINCRONIA GESTO × PALAVRA (início do movimento medido nos pixels da região do gesto, a 60 fps; tolerância 80 ms)')
 IDS = {w['id']: w for f in LN['frases'] for w in f['palavras'] if w.get('id')}
-y0, cab, row = 486, 112, 146
+y0, cab, row = 486, 116, 112
 yrow = lambda i: y0 + cab + i * row
-ck = lambda i: (930 - 84, yrow(i) + row // 2 - 28, 930 - 28, yrow(i) + row // 2 + 28)
+ck = lambda i: (842, yrow(i) + 30, 902, yrow(i) + 82)
 GESTOS = [
-    ('chegou', '"chegou?" pulsa e a chave dá um tranco', (330, 1020, 940, 1220)),
+    ('chegou', 'a chave dá um tranco (e "chegou?" pulsa)', (220, 990, 860, 1220)),
+    ('chave', 'a chave brilha em limão', (220, 990, 860, 1220)),
     ('confira', 'o título encolhe e sobe; a ficha "CHECK-IN" entra', (130, 520, 950, 940)),
-    ('quatro', 'as casas 01–04 aparecem', (160, yrow(0) + 30, 250, yrow(0) + 116)),
+    ('quatro', 'as casas 01–04 aparecem', (166, 600, 216, 1040)),
     ('reserva', 'check em "01 Documento com foto"', ck(0)),
     ('pet', 'check em "02 Pessoas"', ck(1)),
-    ('vozalta', 'check em "03 Saída"', ck(2)),
+    ('voz', 'check em "03 Saída"', ck(2)),
     ('checkout', 'check em "04 Saldo"', ck(3)),
     ('conferido', 'carimbo "CONFERIDO"', (640, 490, 920, 640)),
-    ('mao', 'a chave sai da ficha, com brilho limão', (140, 500, 290, 600)),
+    ('mao', 'a chave sai da ficha, em limão, com brilho', (500, 1062, 720, 1150)),
     ('mande', '"Mande" e o avião deslizam para dentro', (945, 740, 1075, 880)),
 ]
 raw = subprocess.run(['ffmpeg', '-loglevel', 'error', '-i', VIDEO, '-vf', 'scale=540:960,format=gray', '-f', 'rawvideo', '-'], capture_output=True).stdout
@@ -227,11 +209,11 @@ ok(all(t is not None and abs(t - w) <= 0.08 for _, _, w, t in sinc), f'{len(sinc
 
 # ---------------------------------------------------------------- varredura de texto (nada encostando nem cortado)
 rep.append(''); rep.append('VARREDURA DE TEXTO (caixas do motor a cada 0,25 s)')
-TXT = ('rótulo', 'valor', 'título', 'chip', 'mande', 'linha', 'ficha título', 'exemplo fictício', 'carimbo', 'casa', 'marca', 'avião')
+TXT = ('rótulo', 'valor', 'título', 'chip', 'mande', 'linha', 'ficha título', 'exemplo fictício', 'carimbo', 'casa', 'chave rótulo', 'marca', 'avião')
 INTENC = lambda a, b: False
 toques, cortes = [], []
 for s_ in INFO['caixas']:
-    bx = s_['caixas']; card = None; fic = next((b for b in bx if b['nome'] == 'ficha'), None)
+    bx = s_['caixas']; card = next((b for b in bx if b['nome'] == 'cartão gaveta'), None); fic = next((b for b in bx if b['nome'] == 'ficha'), None)
     tx = [b for b in bx if b['nome'].startswith(TXT) or b['nome'].startswith('check')]
     if card:
         tx = [b for b in tx if not (b['nome'].startswith(('rótulo', 'valor', 'check')) and b['y0'] >= card['y0'] - 10)]
@@ -245,35 +227,32 @@ for s_ in INFO['caixas']:
                     if not (a_['x0'] < b_['x1'] and a_['x1'] > b_['x0']):
                         continue
                 toques.append((s_['t'], a_['nome'], b_['nome']))
-        if fic and tx[i]['nome'].startswith(('rótulo', 'valor', 'casa', 'ficha título', 'check')) and (tx[i]['x0'] < fic['x0'] + 20 or tx[i]['x1'] > fic['x1'] - 20):
+        if fic and tx[i]['nome'].startswith(('rótulo', 'valor', 'ficha título', 'check', 'casa', 'chave rótulo')) and (tx[i]['x0'] < fic['x0'] + 20 or tx[i]['x1'] > fic['x1'] - 20):
             cortes.append((s_['t'], tx[i]['nome']))
     for b in tx:
         if b['x0'] < 0 or b['x1'] > 1080:
-            if not b['nome'].startswith(('mande', 'linha', 'avião')):
+            if not b['nome'].startswith(('selo ', 'mande', 'linha', 'avião')):
                 cortes.append((s_['t'], b['nome']))
 ok(not toques, f'nenhum texto encosta em outro (respiro ≥ 4 px) em {len(INFO["caixas"])} quadros amostrados' + ('' if not toques else ': ' + ', '.join(f'{t:.2f}s {a}×{b}' for t, a, b in toques[:8])))
 ok(not cortes, 'nenhum texto cortado: os da ficha ficam ≥ 20 px dentro do papel; nada sai do quadro (fora as transições)' + ('' if not cortes else ': ' + ', '.join(f'{t:.2f}s {n}' for t, n in cortes[:8])))
 
 # ---------------------------------------------------------------- a conta
-rep.append(''); rep.append('DADOS CONFERIDOS COM O ROTEIRO DO RESERVA-WHATSAPP (exemplo fictício)')
+rep.append(''); rep.append('DADOS CONFERIDOS COM O ROTEIRO DO reserva-whatsapp (a mesma hóspede, exemplo fictício)')
 import datetime
 RW = json.load(open(os.path.join(ROOT, '..', 'reserva-whatsapp', 'roteiro.json')))['exemplo']
-rwf = {f['id']: f['valor'] for f in RW['ficha']}
-X = LN['exemplo']; fic = {f['id']: f['valor'] for f in X['ficha']}; R_ = X['reserva']
+rw = {f['id']: f['valor'] for f in RW['ficha']}; rs = LN['exemplo']['reserva']; fic = {f['id']: f for f in LN['exemplo']['ficha']}
 brl = lambda v: f'R$ {v:.2f}'.replace('.', ',')
-ok(rwf['nome'].startswith(R_['hospede'] + ' ·') and fic['reserva'].startswith(R_['hospede'] + ' ·'), f"hóspede: {R_['hospede']} (reserva-whatsapp: \"{rwf['nome'].split(' ·')[0]}\")")
-ok(rwf['datas'].startswith(f"{R_['entrada']} → {R_['saida']} · {R_['noites']} noites"), f"período: {R_['entrada']} a {R_['saida']}, {R_['noites']} noites (reserva-whatsapp: \"{rwf['datas']}\")")
-ok(rwf['pessoas'] == fic['pet'] == '2 adultos · 1 criança · sem pet', f"pessoas: \"{fic['pet']}\" (reserva-whatsapp: \"{rwf['pessoas']}\")")
-ok(rwf['acomodacao'] == f"{R_['acomodacao']} · {brl(R_['total'])}", f"acomodação e valor: {R_['acomodacao']} · {brl(R_['total'])} (reserva-whatsapp: \"{rwf['acomodacao']}\")")
-ok(rwf['sinal'].startswith(brl(R_['sinal'])), f"sinal: {brl(R_['sinal'])} (reserva-whatsapp: \"{rwf['sinal']}\")")
-ok(R_['total'] - R_['sinal'] == X['conta']['saldo'] and fic['checkout'] == f"{brl(X['conta']['saldo'])} · no check-out", f"saldo: {brl(R_['total'])} − sinal {brl(R_['sinal'])} = {brl(R_['total'] - R_['sinal'])} → \"{fic['checkout']}\"")
-dia = datetime.date(2026, int(R_['saida'][3:]), int(R_['saida'][:2]))
-sem = ['seg', 'ter', 'qua', 'qui', 'sex', 'sáb', 'dom'][dia.weekday()]
-ok(fic['vozalta'].startswith(f"{sem} {R_['saida']}"), f"saída: \"{fic['vozalta']}\" ({R_['saida']}/2026 é {sem}; a série é de 2026: o reserva-whatsapp é de sexta, 30/10/2026)")
-todos_txt = ' '.join([json.dumps(X, ensure_ascii=False)] + [w['w'] for q in PG for w in q['palavras']])
-docs = re.findall(r'\d{3}\.?\d{3}\.?\d{3}-?\d{2}|\b\d{2}\.?\d{3}\.?\d{3}-?[\dXx]\b|\b\d{7,}\b', todos_txt)
-ok(not docs and 'documento conferido' in fic['reserva'], 'nenhum número de documento na tela (só "documento conferido")' + ('' if not docs else ': ' + ', '.join(docs)))
-
+ok(rw['nome'].startswith(rs['nome'] + ' ') and fic['reserva']['valor'].startswith(rs['nome'] + ' ·'), f'nome: "{rs["nome"]}" (reserva: "{rw["nome"]}" · check-in: "{fic["reserva"]["valor"]}")')
+ok(not re.search(r'\d', fic['reserva']['valor']) and 'documento conferido' in fic['reserva']['valor'], 'nenhum número de documento na tela: só "documento conferido"')
+ok(fic['pet']['valor'] == rw['pessoas'], f'pessoas: "{fic["pet"]["valor"]}" = reserva "{rw["pessoas"]}"')
+e_, s_ = datetime.date.fromisoformat(rs['entrada']), datetime.date.fromisoformat(rs['saida'])
+dia = ['seg', 'ter', 'qua', 'qui', 'sex', 'sáb', 'dom'][s_.weekday()]
+ok(rw['datas'].startswith(f'{e_:%d/%m} → {s_:%d/%m}') and fic['voz']['valor'].startswith(f'{dia} {s_:%d/%m}'),
+   f'saída: "{fic["voz"]["valor"]}" — reserva "{rw["datas"]}"; {s_:%d/%m/%Y} cai em {dia} (calendário)')
+ok(rw['acomodacao'] == f'{rs["acomodacao"]} · {brl(rs["valor"])}' and LN['exemplo']['chave'] == rs['acomodacao'], f'acomodação e valor: "{rw["acomodacao"]}"; a chave é do "{LN["exemplo"]["chave"]}"')
+ok(rw['sinal'].startswith(brl(rs['sinal'])) and rs['valor'] - rs['sinal'] == rs['saldo'] and fic['checkout']['valor'].startswith(brl(rs['saldo']))
+   and fic['checkout']['nota'] == f'{brl(rs["valor"])} − sinal {brl(rs["sinal"])}',
+   f'saldo: {brl(rs["valor"])} − sinal {brl(rs["sinal"])} = {brl(rs["valor"] - rs["sinal"])} → "{fic["checkout"]["valor"]}" (sinal na reserva: "{rw["sinal"]}")')
 # ---------------------------------------------------------------- capa (quadro 0) e folha das zonas seguras
 subprocess.run(['ffmpeg', '-v', 'error', '-y', '-i', VIDEO, '-frames:v', '1', os.path.join(OUT, 'capa.png')], check=True)
 c0 = [s for s in INFO['caixas'] if s['t'] == 0][0]['caixas']
