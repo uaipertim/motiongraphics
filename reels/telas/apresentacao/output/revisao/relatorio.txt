@@ -1,10 +1,10 @@
-APRESENTAÇÃO FAZLO HOSPEDA (telas inteiras) — revisão técnica, com as correções de enquadramento
+APRESENTAÇÃO FAZLO HOSPEDA (telas inteiras) — revisão técnica: celular maior, aproximações curtas e lupas reposicionadas
 output/apresentacao-hospeda.mp4
 
 FORMATO E SOM
 OK     vídeo h264 yuv420p 1080x1920 60 fps
 OK     áudio aac 48000 Hz · sem voz
-OK     duração 90.00 s (antes: 87,6 s; alvo 80–90 s)
+OK     duração 90.00 s (antes: 90,0 s; alvo ~90 s)
 OK     loudness integrado -14.0 LUFS (alvo −14)
 OK     pico real -3.3 dBTP (limite −1,5)
 
@@ -12,30 +12,78 @@ SEÇÕES
        Abertura 0.0–5.0 s (5.0 s) · Visão geral 5.0–13.0 s (8.0 s) · Calendário 13.0–21.0 s (8.0 s) · Nova reserva 21.0–33.0 s (12.0 s) · Sinal 33.0–41.3 s (8.3 s) · Check-in 41.3–51.5 s (10.2 s) · Comanda 51.5–60.2 s (8.8 s) · Check-out 60.2–74.8 s (14.5 s) · Caixa 74.8–83.5 s (8.8 s) · Final 83.5–90.0 s (6.5 s)
 
 ENQUADRAMENTO
-OK     celular inteiro (com a moldura) dentro do quadro em 100.0% do vídeo (mínimo 60%)
-OK     zoom máximo 1.00× (limite 1,5×); para ler, a lupa
-OK     a largura inteira da tela do app sempre dentro do quadro, com ≥ 40 px de cada lado (menor margem: 254 px)
-OK     nenhum texto da tela cortado pela borda do vídeo, medido em 2700 quadros (textos cortados: 0)
+OK     celular em 1×: moldura com 570 px de largura (alvo 540–580), x 258–827, y 302–1507 (antes: ~430 px, base ~y 1525 com o celular reduzido sob a lupa)
+OK     base da moldura em y 1507 (perto de 1500, nunca abaixo de 1536)
+OK     celular inteiro (com a moldura) dentro do quadro em 92.9% do vídeo (mínimo 60%)
+OK     fora das aproximações, escala 1× (do fim da abertura ao começo do final)
+OK     escala máxima 1.300× da vista 1× (limite 1,3×)
+OK     a largura inteira da tela do app sempre dentro do quadro, ≥ 40 px de cada lado (menor margem: 139 px)
+OK     nenhum texto da tela cortado pela lateral, em 2700 quadros (cortados pela lateral: 0)
+OK     fora das aproximações, nenhum texto da tela cortado por cima ou por baixo (0)
+OK     a tela do app nunca entra na coluna de botões do Instagram (borda direita máxima x 895; coluna x > 940, y > 1000)
 
-LUPAS (leitura)
-OK     32 lupas, cada uma aberta e parada ≥ 1,8 s
-OK     texto da tela dentro da lupa ≥ 40 px (menor corpo do elemento × ampliação da lupa)
-       Recebido hoje 91px · Hospedados 40px · Saídas 40px · Precisa de atenção 41px · Pré-reserva 41px · Hospedada 41px · Confirmada 41px · Manutenção 41px · Livres no período 41px · Total da reserva 41px · Pré-reserva 41px · Sinal 41px · Depois: reserva confirmada 41px · Hóspede 41px · Telefone 41px · Acomodação 41px · Período 41px · Recibo de check-in 41px · Hospedada 41px · Total 41px · Água sem gás 41px · Caipirinha 41px · Total 41px · Saldo em aberto 82px · Libera com saldo zero 41px · Receber pagamento 41px · Saldo 82px · Quitado 41px · Recibo da estadia 48px · Recebido por forma de pagamento 41px · Diferença: falta R$ 15,00 41px · Diferença 48px
-OK     cada lupa mostra o conteúdo INTEIRO do elemento (nada cortado; a folga em volta fica na cor de fundo)
-OK     lupas fora da tela do app (zero sobreposição com a tela)
-OK     lupas dentro do quadro com ≥ 40 px de margem e acima dos 20% de baixo
-OK     rótulos com exatamente as palavras da tela (conferidos contra o texto do HTML de cada estado): Acomodação | Caipirinha | Confirmada | Depois: reserva confirmada | Diferença | Diferença: falta R$ 15,00 | Hospedada | Hospedados | Hóspede | Libera com saldo zero | Livres no período | Manutenção | Período | Precisa de atenção | Pré-reserva | Quitado | Receber pagamento | Recebido hoje | Recebido por forma de pagamento | Recibo da estadia | Recibo de check-in | Saldo | Saldo em aberto | Saídas | Sinal | Telefone | Total | Total da reserva | Água sem gás
-OK     rótulo inteiro dentro do balão da lupa (largura do texto medida no navegador)
-OK     rótulos com até 5 palavras, Inter Display 800 52 px
+APROXIMAÇÕES (momentos-chave)
+OK     6 aproximações (pedido: 6 a 8), cada uma voltando a 1× antes da próxima
+       1. 17.90–20.60 s (entra 0.45 s, parada 18.35–20.15 s = 1.80 s, sai 0.45 s) · 1.30× · cal: barra "Manutenção" no calendário
+          margens laterais da tela: esq. 139 px · dir. 235 px · foco em y 1024–1173 · 1 textos no foco, todos inteiros: sim
+       2. 36.40–39.10 s (entra 0.45 s, parada 36.85–38.65 s = 1.80 s, sai 0.45 s) · 1.30× · sinal: campo do sinal "315,00" (Confirmar reserva, Gustavo)
+          margens laterais da tela: esq. 188 px · dir. 185 px · foco em y 728–919 · 2 textos no foco, todos inteiros: sim
+       3. 46.75–49.20 s (entra 0.45 s, parada 47.20–48.75 s = 1.55 s, sai 0.45 s) · 1.30× · ci_feito: recibo do check-in da Fernanda
+          margens laterais da tela: esq. 188 px · dir. 185 px · foco em y 746–951 · 9 textos no foco, todos inteiros: sim
+       4. 57.85–60.45 s (entra 0.45 s, parada 58.30–60.00 s = 1.70 s, sai 0.45 s) · 1.30× · cmd_ok: Total R$ 321,00 com o item adicionado na comanda
+          margens laterais da tela: esq. 188 px · dir. 185 px · foco em y 638–772 · 2 textos no foco, todos inteiros: sim
+       5. 68.55–71.30 s (entra 0.45 s, parada 69.00–70.85 s = 1.85 s, sai 0.45 s) · 1.30× · quitado: saldo da Mariana R$ 412,00 → R$ 0,00 + "Quitado"
+          margens laterais da tela: esq. 188 px · dir. 185 px · foco em y 801–1033 · 3 textos no foco, todos inteiros: sim
+       6. 78.00–80.75 s (entra 0.45 s, parada 78.45–80.30 s = 1.85 s, sai 0.45 s) · 1.30× · cx_fechar: "falta R$ 15,00" no fechamento do caixa
+          margens laterais da tela: esq. 164 px · dir. 209 px · foco em y 926–1114 · 2 textos no foco, todos inteiros: sim
+OK     cada aproximação: ≤ 1,3×, entrada e saída de 0,4–0,5 s, parada ≥ 1,5 s, ≥ 40 px de margem lateral, o elemento em foco e todos os textos dele inteiros dentro de y 200–1536, sem lupa ao mesmo tempo
+
+LUPAS (destaques ampliados)
+OK     25 lupas, cada uma aberta e parada ≥ 1,8 s
+OK     texto dentro da lupa ≥ 40 px
+OK     cada lupa mostra o conteúdo INTEIRO do elemento
+OK     nenhuma lupa em cima do elemento que ela amplia (respiro ≥ 24 px, medido em cada quadro)
+OK     nenhuma lupa sobre a área em ação (os toques que acontecem com ela aberta)
+OK     respiro ≥ 24 px entre lupa e chip
+OK     lupas dentro de x 40–1040 e y 200–1536, fora da coluna de botões (x > 940, y > 1000)
+OK     rótulos com exatamente as palavras da tela (conferidos contra o HTML de cada estado)
+OK     rótulo inteiro dentro do balão
+       posição de cada destaque (no quadro, com a lupa aberta):
+          5.15– 7.55 s  Recebido hoje                    x 203–877, y 324–596  (acima do elemento, texto 91 px)
+          7.85– 9.85 s  Hospedados                       x 63–528, y 328–858  (acima do elemento, texto 40 px)
+          7.85– 9.85 s  Saídas                           x 552–1017, y 328–858  (acima do elemento, texto 40 px)
+         10.50–12.30 s  Precisa de atenção               x 130–950, y 338–703  (acima do elemento, texto 41 px)
+         13.70–15.55 s  Pré-reserva                      x 358–722, y 464–760  (acima do elemento, texto 41 px)
+         15.85–17.70 s  Hospedada                        x 113–450, y 668–964  (acima do elemento, texto 41 px)
+         15.85–17.70 s  Confirmada                       x 474–967, y 668–964  (acima do elemento, texto 41 px)
+         22.60–24.90 s  Livres no período                x 235–845, y 602–836  (acima do elemento, texto 41 px)
+         29.65–31.95 s  Total da reserva                 x 76–1004, y 550–778  (acima do elemento, texto 41 px)
+         33.60–35.45 s  Pré-reserva                      x 305–775, y 640–915  (abaixo do elemento, texto 41 px)
+         39.40–41.20 s  Depois: reserva confirmada       x 162–918, y 820–1106  (acima do elemento, texto 41 px)
+         42.20–44.05 s  Hóspede                          x 56–493, y 306–607  (acima do elemento, texto 41 px)
+         42.20–44.05 s  Telefone                         x 517–1024, y 309–607  (acima do elemento, texto 41 px)
+         44.15–45.95 s  Acomodação                       x 109–492, y 436–737  (acima do elemento, texto 41 px)
+         44.15–45.95 s  Período                          x 516–971, y 439–737  (acima do elemento, texto 41 px)
+         49.55–51.40 s  Hospedada                        x 322–758, y 1258–1526  (abaixo do elemento, texto 41 px)
+         52.05–53.90 s  Total                            x 48–1032, y 696–920  (abaixo do elemento, texto 41 px)
+         55.20–57.05 s  Água sem gás                     x 140–541, y 490–781  (acima do elemento, texto 41 px)
+         55.20–57.05 s  Caipirinha                       x 565–940, y 490–781  (acima do elemento, texto 41 px)
+         60.85–62.70 s  Saldo em aberto                  x 281–799, y 674–934  (acima do elemento, texto 82 px)
+         62.80–64.65 s  Libera com saldo zero            x 63–1017, y 688–995  (acima do elemento, texto 41 px)
+         66.05–67.85 s  Receber pagamento                x 206–874, y 922–1229  (acima do elemento, texto 41 px)
+         72.80–74.65 s  Recibo da estadia                x 292–788, y 616–838  (abaixo do elemento, texto 48 px)
+         75.35–77.20 s  Recebido por forma de pagamento  x 88–992, y 670–991  (acima do elemento, texto 41 px)
+         81.55–83.40 s  Diferença                        x 379–701, y 816–1038  (abaixo do elemento, texto 48 px)
 
 CONTORNO DE DESTAQUE
-OK     o contorno contém 100% do retângulo real do elemento (getBoundingClientRect do bloco inteiro, folga de 12 px, raio do elemento + 12) em 2177 medições
+OK     o contorno contém 100% do retângulo real do elemento (getBoundingClientRect do bloco inteiro, folga de 12 px, raio do elemento + 12) em 2133 medições
        elementos: ativas/chip, cal/fernanda, cal/gustavo, cal/helena, cal/manutencao, ci/acomodacao, ci/hospede, ci/periodo, ci/telefone, ci_feito/recibo, cmd/total, cmd_add/agua, cmd_add/agua_qtd, cmd_add/caipirinha, cmd_add/caipirinha_qtd, cmd_ok/total, cx/formas, cx_fechado/diferenca, cx_fechar/falta, ficha/botao, ficha/saldo, gus/chip, nr1/livres, nr6/total, quitado/chip, quitado/saldo, receber/confirmar, recibo/titulo, sinal/campo, sinal/depois, vg/atencao, vg/hospedados, vg/recebido, vg/saidas
 
 CHIP DA SEÇÃO E ÁREAS SEGURAS
 OK     chip sempre acima do celular, sem sobrepor nenhum pixel da tela
-OK     chip, textos, marca e pílula fora dos 20% de baixo e da coluna de botões (x > 985, y > 1060)
-OK     o celular inteiro fica acima dos 20% de baixo (base máxima y 1532)
+OK     chip com ≥ 24 px de respiro até a moldura (some enquanto a aproximação sobe o celular)
+OK     chip abaixo de y 200 (fora da interface do Instagram)
+OK     chip, textos, marca e pílula fora dos 20% de baixo e da coluna de botões (x > 940, y > 1000)
 
 DIGITAÇÃO
 OK     texto escrito no próprio campo do HTML: um quadro da tela renderizado por letra, com o cursor no fim (nr2: "Bruno Teixeira", 16 quadros; sinal: "315,00", 8 quadros)
