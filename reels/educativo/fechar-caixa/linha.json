@@ -1,0 +1,935 @@
+{
+ "provisoria": false,
+ "audio": "audio/voz.wav",
+ "inicio_voz": 0.6,
+ "fim_voz": 39.09,
+ "logo": 39.09,
+ "duracao": 41.69,
+ "marca": "@fazlohospeda",
+ "frases": [
+  {
+   "id": "gancho",
+   "t0": 0.6,
+   "t1": 3.96,
+   "palavras": [
+    {
+     "w": "Fechou",
+     "tela": "Fechou",
+     "chave": false,
+     "id": null,
+     "t0": 0.6,
+     "t1": 1.0
+    },
+    {
+     "w": "o",
+     "tela": "o",
+     "chave": false,
+     "id": null,
+     "t0": 1.08,
+     "t1": 1.16
+    },
+    {
+     "w": "caixa...",
+     "tela": "caixa...",
+     "chave": false,
+     "id": null,
+     "t0": 1.177,
+     "t1": 1.88
+    },
+    {
+     "w": "e",
+     "tela": "e",
+     "chave": false,
+     "id": null,
+     "t0": 2.291,
+     "t1": 2.52
+    },
+    {
+     "w": "faltou",
+     "tela": "faltou",
+     "chave": true,
+     "id": "faltou",
+     "t0": 2.6,
+     "t1": 2.92
+    },
+    {
+     "w": "dinheiro",
+     "tela": "dinheiro",
+     "chave": true,
+     "id": null,
+     "t0": 3.0,
+     "t1": 3.32
+    },
+    {
+     "w": "na",
+     "tela": "na",
+     "chave": false,
+     "id": null,
+     "t0": 3.36,
+     "t1": 3.4
+    },
+    {
+     "w": "gaveta?",
+     "tela": "gaveta?",
+     "chave": false,
+     "id": null,
+     "t0": 3.48,
+     "t1": 3.96
+    }
+   ]
+  },
+  {
+   "id": "dor",
+   "t0": 4.473,
+   "t1": 10.2,
+   "palavras": [
+    {
+     "w": "Quando",
+     "tela": "Quando",
+     "chave": false,
+     "id": null,
+     "t0": 4.473,
+     "t1": 4.6
+    },
+    {
+     "w": "o",
+     "tela": "o",
+     "chave": false,
+     "id": null,
+     "t0": 4.627,
+     "t1": 4.653
+    },
+    {
+     "w": "controle",
+     "tela": "controle",
+     "chave": false,
+     "id": null,
+     "t0": 4.68,
+     "t1": 5.16
+    },
+    {
+     "w": "fica",
+     "tela": "fica",
+     "chave": false,
+     "id": null,
+     "t0": 5.2,
+     "t1": 5.4
+    },
+    {
+     "w": "no",
+     "tela": "no",
+     "chave": false,
+     "id": null,
+     "t0": 5.44,
+     "t1": 5.48
+    },
+    {
+     "w": "caderno,",
+     "tela": "caderno,",
+     "chave": true,
+     "id": "caderno",
+     "t0": 5.56,
+     "t1": 6.12
+    },
+    {
+     "w": "ninguém",
+     "tela": "ninguém",
+     "chave": false,
+     "id": null,
+     "t0": 6.327,
+     "t1": 6.84
+    },
+    {
+     "w": "sabe",
+     "tela": "sabe",
+     "chave": false,
+     "id": null,
+     "t0": 7.0,
+     "t1": 7.24
+    },
+    {
+     "w": "quanto",
+     "tela": "quanto",
+     "chave": false,
+     "id": null,
+     "t0": 7.32,
+     "t1": 7.56
+    },
+    {
+     "w": "deveria",
+     "tela": "deveria",
+     "chave": false,
+     "id": null,
+     "t0": 7.6,
+     "t1": 7.96
+    },
+    {
+     "w": "ter...",
+     "tela": "ter...",
+     "chave": false,
+     "id": null,
+     "t0": 8.04,
+     "t1": 8.28
+    },
+    {
+     "w": "nem",
+     "tela": "nem",
+     "chave": false,
+     "id": null,
+     "t0": 8.668,
+     "t1": 9.0
+    },
+    {
+     "w": "onde",
+     "tela": "onde",
+     "chave": false,
+     "id": null,
+     "t0": 9.08,
+     "t1": 9.24
+    },
+    {
+     "w": "a",
+     "tela": "a",
+     "chave": false,
+     "id": null,
+     "t0": 9.32,
+     "t1": 9.36
+    },
+    {
+     "w": "conta",
+     "tela": "conta",
+     "chave": false,
+     "id": null,
+     "t0": 9.4,
+     "t1": 9.64
+    },
+    {
+     "w": "se",
+     "tela": "se",
+     "chave": false,
+     "id": null,
+     "t0": 9.72,
+     "t1": 9.8
+    },
+    {
+     "w": "perdeu.",
+     "tela": "perdeu.",
+     "chave": true,
+     "id": "perdeu",
+     "t0": 9.88,
+     "t1": 10.2
+    }
+   ]
+  },
+  {
+   "id": "abre",
+   "t0": 10.673,
+   "t1": 18.28,
+   "palavras": [
+    {
+     "w": "No",
+     "tela": "No",
+     "chave": false,
+     "id": null,
+     "t0": 10.673,
+     "t1": 10.76
+    },
+    {
+     "w": "Fazlo",
+     "tela": "FAZLO",
+     "chave": false,
+     "id": "fazlo",
+     "t0": 10.84,
+     "t1": 11.16
+    },
+    {
+     "w": "Hospeda,",
+     "tela": "Hospeda,",
+     "chave": false,
+     "id": null,
+     "t0": 11.2,
+     "t1": 11.72
+    },
+    {
+     "w": "o",
+     "tela": "o",
+     "chave": false,
+     "id": null,
+     "t0": 11.92,
+     "t1": 11.96
+    },
+    {
+     "w": "caixa",
+     "tela": "caixa",
+     "chave": false,
+     "id": null,
+     "t0": 12.04,
+     "t1": 12.44
+    },
+    {
+     "w": "abre",
+     "tela": "abre",
+     "chave": false,
+     "id": "abre",
+     "t0": 12.52,
+     "t1": 12.76
+    },
+    {
+     "w": "com",
+     "tela": "com",
+     "chave": false,
+     "id": null,
+     "t0": 12.84,
+     "t1": 12.92
+    },
+    {
+     "w": "o",
+     "tela": "o",
+     "chave": false,
+     "id": null,
+     "t0": 12.96,
+     "t1": 13.0
+    },
+    {
+     "w": "dinheiro",
+     "tela": "dinheiro",
+     "chave": true,
+     "id": "gaveta",
+     "t0": 13.08,
+     "t1": 13.48
+    },
+    {
+     "w": "da",
+     "tela": "da",
+     "chave": true,
+     "id": null,
+     "t0": 13.52,
+     "t1": 13.56
+    },
+    {
+     "w": "gaveta,",
+     "tela": "gaveta,",
+     "chave": true,
+     "id": null,
+     "t0": 13.64,
+     "t1": 14.12
+    },
+    {
+     "w": "e",
+     "tela": "e",
+     "chave": false,
+     "id": null,
+     "t0": 14.44,
+     "t1": 14.52
+    },
+    {
+     "w": "cada",
+     "tela": "cada",
+     "chave": false,
+     "id": null,
+     "t0": 14.56,
+     "t1": 14.76
+    },
+    {
+     "w": "entrada",
+     "tela": "entrada",
+     "chave": false,
+     "id": "entrada",
+     "t0": 14.84,
+     "t1": 15.32
+    },
+    {
+     "w": "fica",
+     "tela": "fica",
+     "chave": false,
+     "id": null,
+     "t0": 15.4,
+     "t1": 15.56
+    },
+    {
+     "w": "registrada,",
+     "tela": "registrada,",
+     "chave": false,
+     "id": null,
+     "t0": 15.64,
+     "t1": 16.36
+    },
+    {
+     "w": "separada",
+     "tela": "separada",
+     "chave": false,
+     "id": null,
+     "t0": 16.718,
+     "t1": 17.08
+    },
+    {
+     "w": "por",
+     "tela": "por",
+     "chave": false,
+     "id": null,
+     "t0": 17.16,
+     "t1": 17.24
+    },
+    {
+     "w": "forma",
+     "tela": "forma",
+     "chave": true,
+     "id": "forma",
+     "t0": 17.32,
+     "t1": 17.56
+    },
+    {
+     "w": "de",
+     "tela": "de",
+     "chave": true,
+     "id": null,
+     "t0": 17.64,
+     "t1": 17.72
+    },
+    {
+     "w": "pagamento.",
+     "tela": "pagamento.",
+     "chave": true,
+     "id": null,
+     "t0": 17.8,
+     "t1": 18.28
+    }
+   ]
+  },
+  {
+   "id": "fechar",
+   "t0": 18.759,
+   "t1": 23.08,
+   "palavras": [
+    {
+     "w": "Na",
+     "tela": "Na",
+     "chave": false,
+     "id": null,
+     "t0": 18.759,
+     "t1": 18.84
+    },
+    {
+     "w": "hora",
+     "tela": "hora",
+     "chave": false,
+     "id": null,
+     "t0": 18.92,
+     "t1": 19.08
+    },
+    {
+     "w": "de",
+     "tela": "de",
+     "chave": false,
+     "id": null,
+     "t0": 19.12,
+     "t1": 19.16
+    },
+    {
+     "w": "fechar,",
+     "tela": "fechar,",
+     "chave": false,
+     "id": "fechar",
+     "t0": 19.24,
+     "t1": 19.64
+    },
+    {
+     "w": "ele",
+     "tela": "ele",
+     "chave": false,
+     "id": null,
+     "t0": 19.914,
+     "t1": 20.04
+    },
+    {
+     "w": "já",
+     "tela": "já",
+     "chave": false,
+     "id": null,
+     "t0": 20.2,
+     "t1": 20.28
+    },
+    {
+     "w": "calcula",
+     "tela": "calcula",
+     "chave": false,
+     "id": null,
+     "t0": 20.36,
+     "t1": 20.84
+    },
+    {
+     "w": "quanto",
+     "tela": "quanto",
+     "chave": true,
+     "id": "deveria",
+     "t0": 21.035,
+     "t1": 21.24
+    },
+    {
+     "w": "deveria",
+     "tela": "deveria",
+     "chave": true,
+     "id": null,
+     "t0": 21.32,
+     "t1": 21.72
+    },
+    {
+     "w": "ter",
+     "tela": "ter",
+     "chave": true,
+     "id": null,
+     "t0": 21.8,
+     "t1": 21.96
+    },
+    {
+     "w": "em",
+     "tela": "em",
+     "chave": true,
+     "id": null,
+     "t0": 22.0,
+     "t1": 22.04
+    },
+    {
+     "w": "dinheiro",
+     "tela": "dinheiro",
+     "chave": true,
+     "id": null,
+     "t0": 22.12,
+     "t1": 22.44
+    },
+    {
+     "w": "na",
+     "tela": "na",
+     "chave": false,
+     "id": null,
+     "t0": 22.52,
+     "t1": 22.6
+    },
+    {
+     "w": "gaveta.",
+     "tela": "gaveta.",
+     "chave": false,
+     "id": null,
+     "t0": 22.64,
+     "t1": 23.08
+    }
+   ]
+  },
+  {
+   "id": "conta",
+   "t0": 23.469,
+   "t1": 27.72,
+   "palavras": [
+    {
+     "w": "Você",
+     "tela": "Você",
+     "chave": false,
+     "id": null,
+     "t0": 23.469,
+     "t1": 23.72
+    },
+    {
+     "w": "conta,",
+     "tela": "conta,",
+     "chave": false,
+     "id": "conta",
+     "t0": 23.8,
+     "t1": 24.28
+    },
+    {
+     "w": "digita",
+     "tela": "digita",
+     "chave": false,
+     "id": "digita",
+     "t0": 24.519,
+     "t1": 24.92
+    },
+    {
+     "w": "o",
+     "tela": "o",
+     "chave": false,
+     "id": null,
+     "t0": 24.96,
+     "t1": 25.0
+    },
+    {
+     "w": "valor...",
+     "tela": "valor...",
+     "chave": false,
+     "id": null,
+     "t0": 25.24,
+     "t1": 25.48
+    },
+    {
+     "w": "e",
+     "tela": "e",
+     "chave": false,
+     "id": null,
+     "t0": 25.84,
+     "t1": 25.88
+    },
+    {
+     "w": "a",
+     "tela": "a",
+     "chave": false,
+     "id": null,
+     "t0": 25.92,
+     "t1": 25.96
+    },
+    {
+     "w": "diferença",
+     "tela": "diferença",
+     "chave": true,
+     "id": "diferenca",
+     "t0": 26.04,
+     "t1": 26.52
+    },
+    {
+     "w": "aparece",
+     "tela": "aparece",
+     "chave": false,
+     "id": null,
+     "t0": 26.6,
+     "t1": 27.08
+    },
+    {
+     "w": "na",
+     "tela": "na",
+     "chave": false,
+     "id": null,
+     "t0": 27.16,
+     "t1": 27.32
+    },
+    {
+     "w": "hora.",
+     "tela": "hora.",
+     "chave": false,
+     "id": null,
+     "t0": 27.4,
+     "t1": 27.72
+    }
+   ]
+  },
+  {
+   "id": "obs",
+   "t0": 28.162,
+   "t1": 35.0,
+   "palavras": [
+    {
+     "w": "Com",
+     "tela": "Com",
+     "chave": false,
+     "id": null,
+     "t0": 28.162,
+     "t1": 28.28
+    },
+    {
+     "w": "diferença,",
+     "tela": "diferença,",
+     "chave": false,
+     "id": null,
+     "t0": 28.36,
+     "t1": 29.0
+    },
+    {
+     "w": "a",
+     "tela": "a",
+     "chave": false,
+     "id": null,
+     "t0": 29.135,
+     "t1": 29.2
+    },
+    {
+     "w": "observação",
+     "tela": "observação",
+     "chave": true,
+     "id": "obs",
+     "t0": 29.24,
+     "t1": 29.88
+    },
+    {
+     "w": "é",
+     "tela": "é",
+     "chave": false,
+     "id": null,
+     "t0": 29.96,
+     "t1": 30.04
+    },
+    {
+     "w": "obrigatória.",
+     "tela": "obrigatória.",
+     "chave": false,
+     "id": null,
+     "t0": 30.12,
+     "t1": 30.84
+    },
+    {
+     "w": "O",
+     "tela": "O",
+     "chave": false,
+     "id": null,
+     "t0": 31.147,
+     "t1": 31.2
+    },
+    {
+     "w": "motivo",
+     "tela": "motivo",
+     "chave": false,
+     "id": "motivo",
+     "t0": 31.24,
+     "t1": 31.64
+    },
+    {
+     "w": "fica",
+     "tela": "fica",
+     "chave": false,
+     "id": null,
+     "t0": 31.72,
+     "t1": 31.96
+    },
+    {
+     "w": "registrado,",
+     "tela": "registrado,",
+     "chave": false,
+     "id": null,
+     "t0": 31.893,
+     "t1": 32.68
+    },
+    {
+     "w": "junto",
+     "tela": "junto",
+     "chave": false,
+     "id": null,
+     "t0": 32.82,
+     "t1": 33.16
+    },
+    {
+     "w": "com",
+     "tela": "com",
+     "chave": false,
+     "id": null,
+     "t0": 33.24,
+     "t1": 33.32
+    },
+    {
+     "w": "quem",
+     "tela": "quem",
+     "chave": true,
+     "id": "quem",
+     "t0": 33.4,
+     "t1": 33.48
+    },
+    {
+     "w": "fechou",
+     "tela": "fechou",
+     "chave": true,
+     "id": null,
+     "t0": 33.56,
+     "t1": 34.04
+    },
+    {
+     "w": "e",
+     "tela": "e",
+     "chave": false,
+     "id": null,
+     "t0": 34.174,
+     "t1": 34.28
+    },
+    {
+     "w": "a",
+     "tela": "a",
+     "chave": false,
+     "id": null,
+     "t0": 34.32,
+     "t1": 34.36
+    },
+    {
+     "w": "que",
+     "tela": "que",
+     "chave": true,
+     "id": "horas",
+     "t0": 34.44,
+     "t1": 34.52
+    },
+    {
+     "w": "horas.",
+     "tela": "horas.",
+     "chave": true,
+     "id": null,
+     "t0": 34.6,
+     "t1": 35.0
+    }
+   ]
+  },
+  {
+   "id": "fim",
+   "t0": 35.407,
+   "t1": 39.08,
+   "palavras": [
+    {
+     "w": "Caixa",
+     "tela": "Caixa",
+     "chave": false,
+     "id": "fechado",
+     "t0": 35.407,
+     "t1": 35.72
+    },
+    {
+     "w": "fechado,",
+     "tela": "fechado,",
+     "chave": false,
+     "id": null,
+     "t0": 35.8,
+     "t1": 36.28
+    },
+    {
+     "w": "e",
+     "tela": "e",
+     "chave": false,
+     "id": null,
+     "t0": 36.6,
+     "t1": 36.72
+    },
+    {
+     "w": "tudo",
+     "tela": "tudo",
+     "chave": true,
+     "id": "explicado",
+     "t0": 36.823,
+     "t1": 37.0
+    },
+    {
+     "w": "explicado.",
+     "tela": "explicado.",
+     "chave": true,
+     "id": null,
+     "t0": 37.08,
+     "t1": 37.64
+    },
+    {
+     "w": "Fazlo",
+     "tela": "FAZLO",
+     "chave": false,
+     "id": "marca",
+     "t0": 38.095,
+     "t1": 38.52
+    },
+    {
+     "w": "Hospeda.",
+     "tela": "Hospeda.",
+     "chave": false,
+     "id": null,
+     "t0": 38.6,
+     "t1": 39.08
+    }
+   ]
+  }
+ ],
+ "inicios_medidos_no_audio": [
+  {
+   "palavra": "caixa...",
+   "marcacao_s": 1.28,
+   "audio_s": 1.177
+  },
+  {
+   "palavra": "e",
+   "marcacao_s": 2.4,
+   "audio_s": 2.291
+  },
+  {
+   "palavra": "Quando",
+   "marcacao_s": 4.44,
+   "audio_s": 4.473
+  },
+  {
+   "palavra": "ninguém",
+   "marcacao_s": 6.36,
+   "audio_s": 6.327
+  },
+  {
+   "palavra": "nem",
+   "marcacao_s": 8.76,
+   "audio_s": 8.668
+  },
+  {
+   "palavra": "No",
+   "marcacao_s": 10.68,
+   "audio_s": 10.673
+  },
+  {
+   "palavra": "separada",
+   "marcacao_s": 16.6,
+   "audio_s": 16.718
+  },
+  {
+   "palavra": "Na",
+   "marcacao_s": 18.76,
+   "audio_s": 18.759
+  },
+  {
+   "palavra": "ele",
+   "marcacao_s": 19.96,
+   "audio_s": 19.914
+  },
+  {
+   "palavra": "quanto",
+   "marcacao_s": 21.0,
+   "audio_s": 21.035
+  },
+  {
+   "palavra": "Você",
+   "marcacao_s": 23.48,
+   "audio_s": 23.469
+  },
+  {
+   "palavra": "digita",
+   "marcacao_s": 24.64,
+   "audio_s": 24.519
+  },
+  {
+   "palavra": "Com",
+   "marcacao_s": 28.12,
+   "audio_s": 28.162
+  },
+  {
+   "palavra": "a",
+   "marcacao_s": 29.16,
+   "audio_s": 29.135
+  },
+  {
+   "palavra": "O",
+   "marcacao_s": 31.16,
+   "audio_s": 31.147
+  },
+  {
+   "palavra": "registrado,",
+   "marcacao_s": 32.2,
+   "audio_s": 31.893
+  },
+  {
+   "palavra": "junto",
+   "marcacao_s": 32.96,
+   "audio_s": 32.82
+  },
+  {
+   "palavra": "e",
+   "marcacao_s": 34.2,
+   "audio_s": 34.174
+  },
+  {
+   "palavra": "Caixa",
+   "marcacao_s": 35.4,
+   "audio_s": 35.407
+  },
+  {
+   "palavra": "tudo",
+   "marcacao_s": 36.84,
+   "audio_s": 36.823
+  },
+  {
+   "palavra": "Fazlo",
+   "marcacao_s": 38.12,
+   "audio_s": 38.095
+  }
+ ]
+}

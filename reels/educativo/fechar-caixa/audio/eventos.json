@@ -1,0 +1,391 @@
+{
+ "duracao": 41.69,
+ "eventos": [
+  {
+   "t": -1,
+   "tipo": "corte"
+  },
+  {
+   "t": -0.6,
+   "tipo": "salto",
+   "id": "gancho"
+  },
+  {
+   "t": 2.6,
+   "tipo": "pulso"
+  },
+  {
+   "t": 3.923,
+   "tipo": "volta",
+   "id": "gancho"
+  },
+  {
+   "t": 4.373,
+   "tipo": "apaga"
+  },
+  {
+   "t": 4.423,
+   "tipo": "encaixa",
+   "id": "gancho"
+  },
+  {
+   "t": 6.56,
+   "tipo": "embaralha"
+  },
+  {
+   "t": 8.16,
+   "tipo": "embaralha"
+  },
+  {
+   "t": 9.88,
+   "tipo": "puxa"
+  },
+  {
+   "t": 10.23,
+   "tipo": "acende"
+  },
+  {
+   "t": 11.24,
+   "tipo": "contorno"
+  },
+  {
+   "t": 12.52,
+   "tipo": "salto",
+   "id": "abertura"
+  },
+  {
+   "t": 14.57,
+   "tipo": "volta",
+   "id": "abertura"
+  },
+  {
+   "t": 14.84,
+   "tipo": "contorno"
+  },
+  {
+   "t": 14.99,
+   "tipo": "encaixa",
+   "id": "abertura"
+  },
+  {
+   "t": 16.72,
+   "tipo": "salto",
+   "id": "forma-pix"
+  },
+  {
+   "t": 16.78,
+   "tipo": "salto",
+   "id": "forma-dinheiro"
+  },
+  {
+   "t": 16.84,
+   "tipo": "salto",
+   "id": "forma-credito"
+  },
+  {
+   "t": 16.9,
+   "tipo": "salto",
+   "id": "forma-debito"
+  },
+  {
+   "t": 18.9,
+   "tipo": "volta",
+   "id": "forma-pix"
+  },
+  {
+   "t": 18.95,
+   "tipo": "volta",
+   "id": "forma-dinheiro"
+  },
+  {
+   "t": 19,
+   "tipo": "volta",
+   "id": "forma-credito"
+  },
+  {
+   "t": 19,
+   "tipo": "contorno"
+  },
+  {
+   "t": 19,
+   "tipo": "conta",
+   "dur": 0.65
+  },
+  {
+   "t": 19.05,
+   "tipo": "volta",
+   "id": "forma-debito"
+  },
+  {
+   "t": 19.28,
+   "tipo": "encaixa",
+   "id": "forma-pix"
+  },
+  {
+   "t": 19.33,
+   "tipo": "encaixa",
+   "id": "forma-dinheiro"
+  },
+  {
+   "t": 19.38,
+   "tipo": "encaixa",
+   "id": "forma-credito"
+  },
+  {
+   "t": 19.43,
+   "tipo": "encaixa",
+   "id": "forma-debito"
+  },
+  {
+   "t": 19.65,
+   "tipo": "toque"
+  },
+  {
+   "t": 19.83,
+   "tipo": "folha"
+  },
+  {
+   "t": 20.755,
+   "tipo": "salto",
+   "id": "esperado"
+  },
+  {
+   "t": 20.905,
+   "tipo": "conta",
+   "dur": 0.8
+  },
+  {
+   "t": 21.175,
+   "tipo": "salto",
+   "id": "conta"
+  },
+  {
+   "t": 23.2,
+   "tipo": "volta",
+   "id": "conta"
+  },
+  {
+   "t": 23.25,
+   "tipo": "volta",
+   "id": "esperado"
+  },
+  {
+   "t": 23.58,
+   "tipo": "encaixa",
+   "id": "conta"
+  },
+  {
+   "t": 23.67,
+   "tipo": "encaixa",
+   "id": "esperado"
+  },
+  {
+   "t": 23.8,
+   "tipo": "salto",
+   "id": "valor"
+  },
+  {
+   "t": 24.519,
+   "tipo": "tecla"
+  },
+  {
+   "t": 24.629,
+   "tipo": "tecla"
+  },
+  {
+   "t": 24.739,
+   "tipo": "tecla"
+  },
+  {
+   "t": 24.849,
+   "tipo": "tecla"
+  },
+  {
+   "t": 24.959,
+   "tipo": "tecla"
+  },
+  {
+   "t": 25.069,
+   "tipo": "tecla"
+  },
+  {
+   "t": 25.8,
+   "tipo": "volta",
+   "id": "valor"
+  },
+  {
+   "t": 26.2,
+   "tipo": "aviso"
+  },
+  {
+   "t": 26.22,
+   "tipo": "encaixa",
+   "id": "valor"
+  },
+  {
+   "t": 26.35,
+   "tipo": "salto",
+   "id": "aviso"
+  },
+  {
+   "t": 26.85,
+   "tipo": "pulso"
+  },
+  {
+   "t": 28.35,
+   "tipo": "volta",
+   "id": "aviso"
+  },
+  {
+   "t": 28.77,
+   "tipo": "encaixa",
+   "id": "aviso"
+  },
+  {
+   "t": 29.24,
+   "tipo": "salto",
+   "id": "obs"
+  },
+  {
+   "t": 29.74,
+   "tipo": "tecla"
+  },
+  {
+   "t": 29.808,
+   "tipo": "tecla"
+  },
+  {
+   "t": 29.876,
+   "tipo": "tecla"
+  },
+  {
+   "t": 29.944,
+   "tipo": "tecla"
+  },
+  {
+   "t": 30.012,
+   "tipo": "tecla"
+  },
+  {
+   "t": 30.08,
+   "tipo": "tecla"
+  },
+  {
+   "t": 30.148,
+   "tipo": "tecla"
+  },
+  {
+   "t": 30.216,
+   "tipo": "tecla"
+  },
+  {
+   "t": 30.284,
+   "tipo": "tecla"
+  },
+  {
+   "t": 30.352,
+   "tipo": "tecla"
+  },
+  {
+   "t": 30.42,
+   "tipo": "tecla"
+  },
+  {
+   "t": 30.488,
+   "tipo": "tecla"
+  },
+  {
+   "t": 30.556,
+   "tipo": "tecla"
+  },
+  {
+   "t": 30.624,
+   "tipo": "tecla"
+  },
+  {
+   "t": 30.692,
+   "tipo": "tecla"
+  },
+  {
+   "t": 30.76,
+   "tipo": "tecla"
+  },
+  {
+   "t": 30.828,
+   "tipo": "tecla"
+  },
+  {
+   "t": 30.896,
+   "tipo": "tecla"
+  },
+  {
+   "t": 30.964,
+   "tipo": "tecla"
+  },
+  {
+   "t": 31.032,
+   "tipo": "tecla"
+  },
+  {
+   "t": 31.1,
+   "tipo": "tecla"
+  },
+  {
+   "t": 31.268,
+   "tipo": "volta",
+   "id": "obs"
+  },
+  {
+   "t": 31.688,
+   "tipo": "encaixa",
+   "id": "obs"
+  },
+  {
+   "t": 31.838,
+   "tipo": "toque"
+  },
+  {
+   "t": 32.038,
+   "tipo": "folha_fecha"
+  },
+  {
+   "t": 32.138,
+   "tipo": "tela"
+  },
+  {
+   "t": 32.588,
+   "tipo": "contorno"
+  },
+  {
+   "t": 33.4,
+   "tipo": "salto",
+   "id": "fechado"
+  },
+  {
+   "t": 34.44,
+   "tipo": "pulso"
+  },
+  {
+   "t": 35.407,
+   "tipo": "volta",
+   "id": "fechado"
+  },
+  {
+   "t": 35.827,
+   "tipo": "encaixa",
+   "id": "fechado"
+  },
+  {
+   "t": 35.827,
+   "tipo": "afasta"
+  },
+  {
+   "t": 36.573,
+   "tipo": "texto"
+  },
+  {
+   "t": 37.995,
+   "tipo": "logo"
+  }
+ ]
+}

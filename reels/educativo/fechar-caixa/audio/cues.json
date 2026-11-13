@@ -1,0 +1,349 @@
+{
+ "duracao": 41.69,
+ "cues": [
+  {
+   "t": 2.6,
+   "type": "pulso"
+  },
+  {
+   "t": 3.923,
+   "type": "volta"
+  },
+  {
+   "t": 4.373,
+   "type": "apaga"
+  },
+  {
+   "t": 4.423,
+   "type": "encaixa"
+  },
+  {
+   "t": 6.56,
+   "type": "embaralha"
+  },
+  {
+   "t": 8.16,
+   "type": "embaralha"
+  },
+  {
+   "t": 9.88,
+   "type": "puxa"
+  },
+  {
+   "t": 10.23,
+   "type": "acende"
+  },
+  {
+   "t": 11.24,
+   "type": "contorno"
+  },
+  {
+   "t": 12.52,
+   "type": "salto"
+  },
+  {
+   "t": 14.57,
+   "type": "volta"
+  },
+  {
+   "t": 14.84,
+   "type": "contorno"
+  },
+  {
+   "t": 14.99,
+   "type": "encaixa"
+  },
+  {
+   "t": 16.72,
+   "type": "salto"
+  },
+  {
+   "t": 16.78,
+   "type": "salto"
+  },
+  {
+   "t": 16.84,
+   "type": "salto"
+  },
+  {
+   "t": 16.9,
+   "type": "salto"
+  },
+  {
+   "t": 18.9,
+   "type": "volta"
+  },
+  {
+   "t": 18.95,
+   "type": "volta"
+  },
+  {
+   "t": 19,
+   "type": "conta"
+  },
+  {
+   "t": 19,
+   "type": "contorno"
+  },
+  {
+   "t": 19,
+   "type": "volta"
+  },
+  {
+   "t": 19.05,
+   "type": "volta"
+  },
+  {
+   "t": 19.28,
+   "type": "encaixa"
+  },
+  {
+   "t": 19.33,
+   "type": "encaixa"
+  },
+  {
+   "t": 19.38,
+   "type": "encaixa"
+  },
+  {
+   "t": 19.43,
+   "type": "encaixa"
+  },
+  {
+   "t": 19.65,
+   "type": "toque"
+  },
+  {
+   "t": 19.83,
+   "type": "folha"
+  },
+  {
+   "t": 20.755,
+   "type": "salto"
+  },
+  {
+   "t": 20.905,
+   "type": "conta"
+  },
+  {
+   "t": 21.175,
+   "type": "salto"
+  },
+  {
+   "t": 23.2,
+   "type": "volta"
+  },
+  {
+   "t": 23.25,
+   "type": "volta"
+  },
+  {
+   "t": 23.58,
+   "type": "encaixa"
+  },
+  {
+   "t": 23.67,
+   "type": "encaixa"
+  },
+  {
+   "t": 23.8,
+   "type": "salto"
+  },
+  {
+   "t": 24.519,
+   "type": "tecla"
+  },
+  {
+   "t": 24.629,
+   "type": "tecla"
+  },
+  {
+   "t": 24.739,
+   "type": "tecla"
+  },
+  {
+   "t": 24.849,
+   "type": "tecla"
+  },
+  {
+   "t": 24.959,
+   "type": "tecla"
+  },
+  {
+   "t": 25.069,
+   "type": "tecla"
+  },
+  {
+   "t": 25.8,
+   "type": "volta"
+  },
+  {
+   "t": 26.2,
+   "type": "aviso"
+  },
+  {
+   "t": 26.22,
+   "type": "encaixa"
+  },
+  {
+   "t": 26.35,
+   "type": "salto"
+  },
+  {
+   "t": 26.85,
+   "type": "pulso"
+  },
+  {
+   "t": 28.35,
+   "type": "volta"
+  },
+  {
+   "t": 28.77,
+   "type": "encaixa"
+  },
+  {
+   "t": 29.24,
+   "type": "salto"
+  },
+  {
+   "t": 29.74,
+   "type": "tecla"
+  },
+  {
+   "t": 29.808,
+   "type": "tecla"
+  },
+  {
+   "t": 29.876,
+   "type": "tecla"
+  },
+  {
+   "t": 29.944,
+   "type": "tecla"
+  },
+  {
+   "t": 30.012,
+   "type": "tecla"
+  },
+  {
+   "t": 30.08,
+   "type": "tecla"
+  },
+  {
+   "t": 30.148,
+   "type": "tecla"
+  },
+  {
+   "t": 30.216,
+   "type": "tecla"
+  },
+  {
+   "t": 30.284,
+   "type": "tecla"
+  },
+  {
+   "t": 30.352,
+   "type": "tecla"
+  },
+  {
+   "t": 30.42,
+   "type": "tecla"
+  },
+  {
+   "t": 30.488,
+   "type": "tecla"
+  },
+  {
+   "t": 30.556,
+   "type": "tecla"
+  },
+  {
+   "t": 30.624,
+   "type": "tecla"
+  },
+  {
+   "t": 30.692,
+   "type": "tecla"
+  },
+  {
+   "t": 30.76,
+   "type": "tecla"
+  },
+  {
+   "t": 30.828,
+   "type": "tecla"
+  },
+  {
+   "t": 30.896,
+   "type": "tecla"
+  },
+  {
+   "t": 30.964,
+   "type": "tecla"
+  },
+  {
+   "t": 31.032,
+   "type": "tecla"
+  },
+  {
+   "t": 31.1,
+   "type": "tecla"
+  },
+  {
+   "t": 31.268,
+   "type": "volta"
+  },
+  {
+   "t": 31.688,
+   "type": "encaixa"
+  },
+  {
+   "t": 31.838,
+   "type": "toque"
+  },
+  {
+   "t": 32.038,
+   "type": "folha_fecha"
+  },
+  {
+   "t": 32.138,
+   "type": "tela"
+  },
+  {
+   "t": 32.588,
+   "type": "contorno"
+  },
+  {
+   "t": 33.4,
+   "type": "salto"
+  },
+  {
+   "t": 34.44,
+   "type": "pulso"
+  },
+  {
+   "t": 35.407,
+   "type": "volta"
+  },
+  {
+   "t": 35.827,
+   "type": "afasta"
+  },
+  {
+   "t": 35.827,
+   "type": "encaixa"
+  },
+  {
+   "t": 36.573,
+   "type": "texto"
+  },
+  {
+   "t": 37.995,
+   "type": "logo"
+  },
+  {
+   "t": 38.245,
+   "type": "bell"
+  }
+ ]
+}

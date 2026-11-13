@@ -1,0 +1,6 @@
+output/stills/
+output/.video-only.mp4
+output/.fc.png
+output/revisao/dados.json
+audio/*.wav
+!audio/voz.wav

@@ -1,0 +1,60 @@
+FALTOU DINHEIRO NO CAIXA? — educativo FAZLO Hospeda · revisão técnica
+output/fechar-caixa.mp4
+
+FORMATO E SOM
+FALHA  output/fechar-caixa.mp4 não encontrado
+
+NARRAÇÃO (ElevenLabs)
+OK     eleven_v4 · Raquel - For Conversational (GDzHdQOi6jjf8zaXhCYD) · voice_settings só stability 0,50 e similarity_boost 0,75 · seed 1311
+OK     endpoint with-timestamps; a chave só nos Segredos de rede (nada no repositório)
+OK     texto enviado à API = texto exato do pedido ("Fazlo" para soar "Faz lo"), sem dicionário de pronúncia
+       ritmo 11.3 letras/s · maior pausa 0.52 s · fala de 0.00 a 38.49 s do áudio
+
+SALTOS (o elemento sai da tela, cresce, flutua e volta)
+OK     12 saltos: entrada de 0,35–0,5 s (elástico suave), parada ≥ 1,5 s, escala parada de 1,6× a 2× (pico ≤ 2,0× no elástico), o lugar marcado na tela enquanto o elemento está fora, e a janela nunca em cima do próprio lugar
+       gancho         sai  0.00 s (já fora no quadro 0) · palavra "faltou" 2.60 s · entra 0.45 s · parada 3.92 s · volta 3.92–4.42 s · escala 1.85–1.85× · lugar marcado
+       abertura       sai 12.52 s · palavra "abre" 12.52 s · entra 0.45 s · parada 1.60 s · volta 14.57–14.99 s · escala 1.85–1.97× · lugar marcado
+       forma-pix      sai 16.72 s · palavra "forma" 17.32 s · entra 0.45 s · parada 1.73 s · volta 18.90–19.28 s · escala 1.60–1.68× · lugar marcado
+       forma-dinheiro sai 16.78 s · palavra "forma" 17.32 s · entra 0.45 s · parada 1.72 s · volta 18.95–19.33 s · escala 1.60–1.68× · lugar marcado
+       forma-credito  sai 16.84 s · palavra "forma" 17.32 s · entra 0.45 s · parada 1.71 s · volta 19.00–19.38 s · escala 1.60–1.68× · lugar marcado
+       forma-debito   sai 16.90 s · palavra "forma" 17.32 s · entra 0.45 s · parada 1.70 s · volta 19.05–19.43 s · escala 1.60–1.68× · lugar marcado
+       esperado       sai 20.75 s · palavra "quanto" 21.04 s · entra 0.45 s · parada 2.05 s · volta 23.25–23.67 s · escala 1.85–1.97× · lugar marcado
+       conta          sai 21.18 s · palavra "quanto" 21.04 s · entra 0.42 s · parada 1.60 s · volta 23.20–23.58 s · escala 1.60–1.68× · sai da janela do esperado (a conta)
+       valor          sai 23.80 s · palavra "conta," 23.80 s · entra 0.45 s · parada 1.55 s · volta 25.80–26.22 s · escala 1.85–1.96× · lugar marcado
+       aviso          sai 26.35 s · palavra "diferença" 26.04 s · entra 0.45 s · parada 1.55 s · volta 28.35–28.77 s · escala 1.85–1.97× · lugar marcado
+       obs            sai 29.24 s · palavra "observação" 29.24 s · entra 0.45 s · parada 1.58 s · volta 31.27–31.69 s · escala 1.85–1.96× · lugar marcado
+       fechado        sai 33.40 s · palavra "quem" 33.40 s · entra 0.45 s · parada 1.56 s · volta 35.41–35.83 s · escala 1.85–1.96× · lugar marcado
+OK     cada janela é o elemento INTEIRO, recortado do próprio HTML em 4× (o retângulo do bloco com todos os filhos): abertura 1224×64, conta 1224×276, pix 1232×128, dinheiro 1232×128, credito 1232×128, debito 1232×128, aviso 1400×276, fechado 1232×128
+OK     digitação no próprio campo do HTML, caractere a caractere, com o cursor: "R$ 270,00" (9 quadros) e a observação (44 quadros)
+OK     contagens renderizadas no HTML: esperado R$ 0,00 → R$ 285,00 (21 quadros) · total recebido → R$ 1.525,00 (23 quadros)
+
+ZONAS SEGURAS E RESPIROS
+OK     nada abaixo de y 1536 nem acima de y 200 (janelas, valores soltos, textos, marca, legenda e o celular)
+OK     nada na coluna de botões (x > 940, y > 1000)
+OK     respiro ≥ 24 px entre o celular e a legenda (base do celular até y 1367; legenda a partir de y 1393)
+OK     respiro ≥ 24 px entre janelas e legenda (a legenda nunca em cima do elemento em foco)
+OK     respiro ≥ 24 px entre janelas paradas ao mesmo tempo (só o grupo das 4 formas e a conta ao lado do esperado ficam juntas)
+OK     celular em 1×: moldura x 270–813 (542 px), y 217–1363; escala máxima 1.00× (limite 1,3×), a tela sempre inteira na largura
+
+TEXTOS EXATOS DAS TELAS
+OK     os 25 textos e valores do pedido estão nas telas, iguais ao HTML (as janelas são recortes do próprio HTML; nada é redigitado)
+OK     janelas: "Abertura R$ 200,00" · "Esperado em dinheiro R$ 285,00" · PIX/Dinheiro/Cartão de crédito/Cartão de débito · "Valor contado" · "Diferença: falta R$ 15,00…" · observação · "Fechado hoje às 14:10 por Ana Dias. Aberto às 08:00 por Ana Dias."
+OK     valores soltos da cena do caderno: só valores que existem nas telas (R$ 200,00, R$ 285,00, R$ 125,00, R$ 270,00, R$ 1.525,00, R$ 40,00, R$ 900,00, R$ 380,00, R$ 120,00, R$ 15,00), na Geist Mono do app; riscados com uma linha reta, sem rabisco nem ilustração
+OK     legenda e tela com "FAZLO Hospeda" (a grafia "Fazlo" só no texto enviado à API)
+OK     texto do fim: "Caixa fechado. Tudo explicado." + a marca FAZLO Hospeda (marca/logo, versão para fundo escuro)
+
+DIÁRIO DA SESSÃO, DAY USE E REGRAS
+OK     o card "Diário da sessão" nunca aparece: na tela 03 ele começa em y 899 (a tela visível vai até 844 e nunca rola); a 06 só aparece com a folha por cima
+OK     nenhuma linha do sinal do Gustavo em nenhum quadro
+OK     na tela 07 aparece só o botão "Ver diário da sessão" (sem o conteúdo do diário), como no pacote
+OK     sem Day Use
+OK     nada do visual do v2 (sem anel, sem órbita, sem a logo circular)
+
+LEGENDA
+OK     16 páginas, palavra por palavra (Inter Display 900, 64 px, branca, chaves em limão, sem faixa), linhas em y 1442/1516, a mais curta com 1.67 s
+OK     cada palavra aparece no tempo dela (marcação da API, início medido no áudio depois de pausa)
+
+CAPA
+FALHA  capa da grade "Faltou dinheiro no caixa?" na regra (reels/tools/revisao_capa.py), bloco centrado em y = ?
+
+RESULTADO: 2 item(ns) a corrigir

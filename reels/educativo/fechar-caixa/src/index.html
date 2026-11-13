@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Faltou dinheiro no caixa?</title>
+<style>
+  @font-face { font-family: 'ID'; src: url('fonts/InterDisplay-Bold.otf') format('opentype'); font-weight: 700; }
+  @font-face { font-family: 'ID'; src: url('fonts/InterDisplay-ExtraBold.otf') format('opentype'); font-weight: 800; }
+  @font-face { font-family: 'ID'; src: url('fonts/InterDisplay-Black.otf') format('opentype'); font-weight: 900; }
+  @font-face { font-family: 'Geist'; src: url('fonts/Geist-Variable.woff2') format('woff2'); font-weight: 100 900; }
+  @font-face { font-family: 'Geist Mono'; src: url('fonts/GeistMono-Variable.woff2') format('woff2'); font-weight: 100 900; }
+  body { display: flex; flex-direction: column; align-items: center; gap: 12px; padding: 16px; box-sizing: border-box; min-height: 100vh; }
+  #moldura { width: calc((100vh - 110px) * 9 / 16); height: calc(100vh - 110px); position: relative; overflow: hidden; border-radius: 14px; box-shadow: 0 20px 60px rgba(0,0,0,.6); }
+  #palco { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; transform-origin: 0 0; overflow: hidden; background: #0A0A0A; }
+  .ui { display: flex; gap: 12px; align-items: center; width: min(560px, 100%); }
+  button { font: 800 14px 'JBM', monospace; letter-spacing: 1px; background: #AFFA27; color: #0A0A0A; border: 0; border-radius: 999px; padding: 10px 18px; cursor: pointer; }
+  input[type=range] { flex: 1; accent-color: #AFFA27; }
+  .time { font-variant-numeric: tabular-nums; width: 64px; text-align: right; }
+  body.render { padding: 0; display: block; background: #0A0A0A; }
+  body.render #moldura { width: 1080px; height: 1920px; border-radius: 0; box-shadow: none; }
+  body.render .ui { display: none; }
+</style>
+</head>
+<body>
+<div id="moldura"><div id="palco"></div></div>
+<div class="ui">
+  <button id="play">▶ PLAY</button>
+  <input id="seek" type="range" min="0" max="60" step="0.01" value="0">
+  <span class="time" id="time">0.00s</span>
+</div>
+<audio id="audio" src="../audio/mix.wav" preload="auto"></audio>
+<script src="anim.js"></script>
+<script>
+  const palco = document.getElementById('palco');
+  const params = new URLSearchParams(location.search);
+  window.ready = (async () => {
+    const meta = await (await fetch('telas.json')).json();
+    const linha = await (await fetch('../linha.json')).json();
+    await Promise.all([700, 800, 900].map((w) => document.fonts.load(`${w} 100px 'ID'`)).concat(
+      [400, 500, 600, 700].map((w) => document.fonts.load(`${w} 40px 'Geist Mono'`)), [document.fonts.load(`600 40px 'Geist'`)]));
+    await REEL.init(palco, meta, linha);
+    await document.fonts.ready;
+  })();
+  const fit = () => { const m = document.getElementById('moldura'); palco.style.transform = `scale(${m.clientWidth / 1080})`; };
+  if (params.has('render')) {
+    document.body.classList.add('render');
+    window.frameAt = (t) => REEL.renderAt(t);
+  } else {
+    fit(); addEventListener('resize', fit);
+    const audio = document.getElementById('audio');
+    const seek = document.getElementById('seek'), timeEl = document.getElementById('time'), btn = document.getElementById('play');
+    let playing = false, t0 = 0, base = 0;
+    const draw = (t) => { REEL.renderAt(t); seek.value = t; timeEl.textContent = t.toFixed(2) + 's'; };
+    const loop = (now) => {
+      if (!playing) return;
+      let t = audio.readyState >= 2 && !audio.paused ? audio.currentTime : base + (now - t0) / 1000;
+      if (t >= REEL.DURATION) { t = 0; base = 0; t0 = now; audio.currentTime = 0; }
+      draw(t); requestAnimationFrame(loop);
+    };
+    btn.onclick = () => {
+      playing = !playing; btn.textContent = playing ? '❚❚ PAUSA' : '▶ PLAY';
+      if (playing) { base = +seek.value; t0 = performance.now(); audio.currentTime = base; audio.play().catch(() => {}); requestAnimationFrame(loop); }
+      else audio.pause();
+    };
+    seek.oninput = () => { base = +seek.value; t0 = performance.now(); audio.currentTime = base; draw(base); };
+    window.ready.then(() => { seek.max = REEL.DURATION; draw(+(params.get('t') || 0)); });
+  }
+  window.capaGrade = () => REEL.capaGrade();
+</script>
+</body>
+</html>

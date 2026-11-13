@@ -1,4 +1,4 @@
-# Pacote completo extraído do .zip (fazlo-hospeda-telas.zip). Só vai para o git o que os reels "um-dia-inteiro" e "parte-1-chegada" usam (e a apresentação).
+# Pacote completo extraído do .zip (fazlo-hospeda-telas.zip). Só vai para o git o que os reels usam ("um-dia-inteiro", "parte-1-chegada", a apresentação e o educativo "fechar-caixa").
 *
 !*/
 !.gitignore
@@ -55,3 +55,5 @@
 !fazlo-hospeda-telas/telas/09-check-out/estados/04-encerrar-check-out.html
 !fazlo-hospeda-telas/telas/09-check-out/estados/06-recibo-da-estadia.html
 !fazlo-hospeda-telas/telas/10-caixa/estados/07-fechado-resumo.html
+!fazlo-hospeda-telas/telas/10-caixa/estados/07-fechado-resumo.html
+!fazlo-hospeda-telas/marca/logo/fazlo-hospeda-logo-escura@3x.png

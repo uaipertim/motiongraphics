@@ -1,0 +1,11 @@
+Fechou o caixa e faltou dinheiro na gaveta?
+
+Quando o controle fica no caderno, ninguém sabe quanto deveria ter, nem onde a conta se perdeu.
+
+No FAZLO Hospeda, o caixa abre com o dinheiro da gaveta e cada entrada fica registrada, separada por forma de pagamento. Na hora de fechar, o sistema já calcula quanto deveria ter em dinheiro.
+
+Você conta, digita o valor e a diferença aparece na hora. Com diferença, a observação é obrigatória: o motivo fica registrado, junto com quem fechou e a que horas.
+
+Caixa fechado, e tudo explicado.
+
+#pousada #gestaodepousada #hotelaria
