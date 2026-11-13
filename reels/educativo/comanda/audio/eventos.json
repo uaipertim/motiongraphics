@@ -1,148 +1,355 @@
 {
- "duracao": 32.01,
+ "duracao": 30,
+ "cenas": [
+  {
+   "id": "gancho",
+   "t0": 0,
+   "t1": 3.5,
+   "fundo": "escuro",
+   "entrada": null,
+   "manchete": [
+    "A caipirinha da piscina",
+    "entrou na conta?"
+   ],
+   "realce": [
+    "entrou",
+    "na",
+    "conta?"
+   ]
+  },
+  {
+   "id": "origens",
+   "t0": 3.5,
+   "t1": 6,
+   "fundo": "off",
+   "entrada": "desliza",
+   "manchete": [
+    "Bar, frigobar,",
+    "restaurante…"
+   ],
+   "realce": [
+    "restaurante…"
+   ]
+  },
+  {
+   "id": "bilhetes",
+   "t0": 6,
+   "t1": 9.5,
+   "fundo": "escuro",
+   "entrada": "falha",
+   "manchete": [
+    "e cada um anota",
+    "de um jeito."
+   ],
+   "realce": [
+    "cada",
+    "um",
+    "anota"
+   ]
+  },
+  {
+   "id": "conta",
+   "t0": 9.5,
+   "t1": 14.5,
+   "fundo": "escuro",
+   "entrada": "mergulho",
+   "manchete": [
+    "No FAZLO Hospeda,",
+    "tudo cai na comanda",
+    "do hóspede."
+   ],
+   "realce": [
+    "comanda",
+    "do",
+    "hóspede."
+   ]
+  },
+  {
+   "id": "somou",
+   "t0": 14.5,
+   "t1": 20,
+   "fundo": "off",
+   "entrada": "cortina",
+   "manchete": [
+    "Lançou, somou."
+   ],
+   "realce": [
+    "somou."
+   ]
+  },
+  {
+   "id": "cancelou",
+   "t0": 20,
+   "t1": 24,
+   "fundo": "escuro",
+   "entrada": "corte",
+   "manchete": [
+    "Cancelou?",
+    "Continua registrado."
+   ],
+   "realce": [
+    "Continua",
+    "registrado."
+   ]
+  },
+  {
+   "id": "pronta",
+   "t0": 24,
+   "t1": 27.5,
+   "fundo": "escuro",
+   "entrada": "desliza-v",
+   "manchete": [
+    "No check-out,",
+    "a conta já está pronta."
+   ],
+   "realce": [
+    "já",
+    "está",
+    "pronta."
+   ]
+  },
+  {
+   "id": "marca",
+   "t0": 27.5,
+   "t1": 30,
+   "fundo": "limao",
+   "entrada": "cortina",
+   "manchete": null,
+   "realce": []
+  }
+ ],
  "eventos": [
   {
-   "t": 0,
-   "tipo": "texto"
+   "t": 0.5,
+   "tipo": "batida"
   },
   {
-   "t": 0.9,
+   "t": 1,
    "tipo": "pulso"
   },
   {
-   "t": 2.2,
+   "t": 2,
    "tipo": "pulso"
   },
   {
-   "t": 3.65,
-   "tipo": "texto"
+   "t": 3,
+   "tipo": "pulso"
   },
   {
-   "t": 3.7,
-   "tipo": "etiqueta"
+   "t": 3.5,
+   "tipo": "corte",
+   "tipo_entrada": "desliza"
   },
   {
-   "t": 3.9,
-   "tipo": "voo"
+   "t": 3.55,
+   "tipo": "icone"
   },
   {
-   "t": 5.75,
-   "tipo": "texto"
+   "t": 3.8,
+   "tipo": "preco"
   },
   {
-   "t": 6.7,
+   "t": 4.3,
+   "tipo": "desliza"
+  },
+  {
+   "t": 4.35,
+   "tipo": "icone"
+  },
+  {
+   "t": 4.6,
+   "tipo": "preco"
+  },
+  {
+   "t": 5.1,
+   "tipo": "desliza"
+  },
+  {
+   "t": 5.15,
+   "tipo": "icone"
+  },
+  {
+   "t": 5.4,
+   "tipo": "preco"
+  },
+  {
+   "t": 5.6,
+   "tipo": "recua"
+  },
+  {
+   "t": 6,
+   "tipo": "corte",
+   "tipo_entrada": "falha"
+  },
+  {
+   "t": 6.05,
+   "tipo": "espalha"
+  },
+  {
+   "t": 7.5,
+   "tipo": "embaralha"
+  },
+  {
+   "t": 8.2,
    "tipo": "queda"
   },
   {
-   "t": 9.1,
-   "tipo": "painel"
+   "t": 9.5,
+   "tipo": "corte",
+   "tipo_entrada": "mergulho"
   },
   {
-   "t": 9.45,
-   "tipo": "texto"
+   "t": 9.8,
+   "tipo": "pulso_sai"
   },
   {
-   "t": 9.85,
-   "tipo": "aterra",
-   "id": "caipirinha"
+   "t": 10.15,
+   "tipo": "pulso_sai"
   },
   {
    "t": 10.2,
-   "tipo": "voo"
+   "tipo": "item"
   },
   {
-   "t": 10.25,
-   "tipo": "aterra",
-   "id": "agua"
+   "t": 10.5,
+   "tipo": "pulso_sai"
   },
   {
-   "t": 10.35,
-   "tipo": "voo"
+   "t": 10.55,
+   "tipo": "item"
   },
   {
-   "t": 10.75,
-   "tipo": "aterra",
-   "id": "cerveja"
+   "t": 10.85,
+   "tipo": "pulso_sai"
   },
   {
-   "t": 11.15,
-   "tipo": "aterra",
-   "id": "risoto"
+   "t": 10.9,
+   "tipo": "item"
   },
   {
-   "t": 11.55,
-   "tipo": "aterra",
-   "id": "suco"
+   "t": 11.2,
+   "tipo": "pulso_sai"
+  },
+  {
+   "t": 11.25,
+   "tipo": "item"
   },
   {
    "t": 11.6,
-   "tipo": "texto"
+   "tipo": "item"
   },
   {
-   "t": 12.05,
-   "tipo": "aterra",
-   "id": "cancelado"
+   "t": 11.6,
+   "tipo": "volta"
   },
   {
-   "t": 12.55,
+   "t": 12,
+   "tipo": "item_cinza"
+  },
+  {
+   "t": 12,
+   "tipo": "mergulho"
+  },
+  {
+   "t": 12.4,
    "tipo": "pulso"
   },
   {
-   "t": 15.25,
-   "tipo": "texto"
+   "t": 14.5,
+   "tipo": "corte",
+   "tipo_entrada": "cortina"
   },
   {
-   "t": 15.6,
-   "tipo": "voo"
+   "t": 15,
+   "tipo": "vira"
   },
   {
-   "t": 16.25,
+   "t": 15.35,
    "tipo": "troca"
   },
   {
-   "t": 16.7,
-   "tipo": "voo"
+   "t": 16.5,
+   "tipo": "desliza"
+  },
+  {
+   "t": 17,
+   "tipo": "vira"
   },
   {
    "t": 17.35,
    "tipo": "troca"
   },
   {
-   "t": 17.9,
-   "tipo": "conta",
-   "dur": 1
+   "t": 18.5,
+   "tipo": "desliza"
   },
   {
    "t": 18.9,
+   "tipo": "bate"
+  },
+  {
+   "t": 19,
+   "tipo": "conta",
+   "dur": 0.55
+  },
+  {
+   "t": 19.55,
    "tipo": "pulso"
   },
   {
-   "t": 23.95,
-   "tipo": "texto"
+   "t": 20,
+   "tipo": "corte",
+   "tipo_entrada": "corte"
   },
   {
-   "t": 24.45,
+   "t": 20.55,
    "tipo": "risco"
   },
   {
-   "t": 24.95,
-   "tipo": "selo"
+   "t": 21.25,
+   "tipo": "carimbo"
   },
   {
-   "t": 27.07,
-   "tipo": "texto"
+   "t": 22.5,
+   "tipo": "encolhe"
   },
   {
-   "t": 27.4,
-   "tipo": "fecha"
+   "t": 23,
+   "tipo": "encaixa"
   },
   {
-   "t": 28.6,
+   "t": 24,
+   "tipo": "corte",
+   "tipo_entrada": "desliza-v"
+  },
+  {
+   "t": 24.2,
+   "tipo": "compacta"
+  },
+  {
+   "t": 24.75,
+   "tipo": "impacto"
+  },
+  {
+   "t": 25.4,
    "tipo": "check"
   },
   {
-   "t": 30.66,
-   "tipo": "logo"
+   "t": 27.1,
+   "tipo": "abre"
+  },
+  {
+   "t": 27.5,
+   "tipo": "corte",
+   "tipo_entrada": "cortina"
+  },
+  {
+   "t": 27.6,
+   "tipo": "monta"
+  },
+  {
+   "t": 28.1,
+   "tipo": "marca"
   }
  ]
 }

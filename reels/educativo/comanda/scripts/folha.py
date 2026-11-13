@@ -1,32 +1,26 @@
 #!/usr/bin/env python3
-"""Folha de contato: 1 quadro por segundo + os momentos-chave (encaixes, chips, risco, selo, check) -> output/revisao/folha-contato.jpg"""
+"""Folha de contato: 2 quadros por segundo -> output/revisao/folha-contato.jpg (com a cena e o fundo de cada quadro)"""
 import json, os, subprocess
 from PIL import Image, ImageDraw, ImageFont
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 MP4 = os.path.join(ROOT, 'output', 'comanda.mp4')
 D = json.load(open(os.path.join(ROOT, 'output', 'revisao', 'dados.json')))
-ts = [(float(t), '') for t in range(0, int(D['duracao']) + 1) if t < D['duracao']]
-T = D['T']
-for k, t in D['pousa'].items():
-    ts.append((round(t + 0.2, 2), 'ENCAIXE ' + k))
-ts += [(round(T['chip1']['bate'] + 0.3, 2), '+1 CAIPIRINHA'), (round(T['chip2']['bate'] + 0.3, 2), '+2 ÁGUA'), (round(T['conta2']['t1'] + 0.1, 2), 'TOTAL 321'),
-       (round(T['selo'] + 0.5, 2), 'CANCELADO'), (round(T['check'] + 0.5, 2), 'CHECK')]
-ts.sort()
-W, H, COLS, PAD, LEG = 200, 356, 10, 10, 28
+ts = [k * 0.5 for k in range(int(D['duracao'] * 2))]
+cena = lambda t: next((c for c in D['cenas'] if c['t0'] <= t < c['t1']), D['cenas'][-1])
+W, H, COLS, PAD, LEG = 150, 267, 12, 8, 26
 rows = (len(ts) + COLS - 1) // COLS
-sheet = Image.new('RGB', (COLS * (W + PAD) + PAD, rows * (H + LEG + PAD) + PAD), (10, 10, 10))
+sheet = Image.new('RGB', (COLS * (W + PAD) + PAD, rows * (H + LEG + PAD) + PAD), (24, 24, 24))
 d = ImageDraw.Draw(sheet)
-font = ImageFont.truetype('/usr/share/fonts/truetype/dejavu/DejaVuSansMono.ttf', 14)
-for i, (t, rot) in enumerate(ts):
-    png = subprocess.run(['ffmpeg', '-v', 'error', '-ss', str(t), '-i', MP4, '-frames:v', '1', '-f', 'image2pipe', '-c:v', 'png', '-'], capture_output=True).stdout
+font = ImageFont.truetype('/usr/share/fonts/truetype/dejavu/DejaVuSansMono.ttf', 12)
+for i, t in enumerate(ts):
+    png = subprocess.run(['ffmpeg', '-v', 'error', '-ss', f'{t + 0.01:.2f}', '-i', MP4, '-frames:v', '1', '-f', 'image2pipe', '-c:v', 'png', '-'], capture_output=True).stdout
     tmp = os.path.join(ROOT, 'output', '.fc.png'); open(tmp, 'wb').write(png)
     im = Image.open(tmp).convert('RGB').resize((W, H), Image.LANCZOS); os.remove(tmp)
     x, y = PAD + (i % COLS) * (W + PAD), PAD + (i // COLS) * (H + LEG + PAD)
     sheet.paste(im, (x, y))
-    if rot:
-        d.rectangle([x - 3, y - 3, x + W + 2, y + H + 2], outline=(175, 250, 39), width=3)
-    d.text((x, y + H + 6), f'{t:05.2f}s {rot}', font=font, fill=(175, 250, 39) if rot else (200, 200, 195))
+    c = cena(t)
+    d.text((x, y + H + 5), f"{t:04.1f}s {c['id']}", font=font, fill=(175, 250, 39) if c['t0'] <= t < c['t0'] + 0.5 else (200, 200, 195))
 out = os.path.join(ROOT, 'output', 'revisao', 'folha-contato.jpg')
 sheet.save(out, quality=88)
 print('ok ->', out, len(ts), 'quadros')

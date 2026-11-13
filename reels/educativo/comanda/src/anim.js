@@ -1,389 +1,546 @@
 /*
- * FAZLO Hospeda — "A caipirinha da piscina entrou na conta?" (9:16, SEM narração).
- *
- * Regra da série: vídeo sem narração não usa telas do app, celular nem recortes do HTML. Tudo aqui são peças gráficas
- * de motion desenhadas para o vídeo (cartões de consumo, etiquetas, um painel de comanda, chips, contador, risco, selo,
- * check), na paleta e na tipografia da marca (preto, off-white e verde-limão; Geist e Geist Mono para valores), com os
- * valores reais da comanda da Mariana Costa (pacote 08-comanda, estados 02 e 04). Os textos de tela usam a tipografia
- * e o estilo da legenda aprovada (Inter Display 900, palavra-chave em limão). Determinístico: REEL.renderAt(t).
+ * FAZLO Hospeda — "A caipirinha da piscina entrou na conta?" (9:16, SEM narração, só elementos).
+ * Segue reels/PADRAO-ELEMENTOS.md: uma composição nova a cada ideia; o valor da cena como protagonista (número grande);
+ * ícones de linha animados; ligações de causa e efeito com pulso viajando; manchete grande no alto, à esquerda;
+ * fundos alternando (escuro, off-white, verde-limão); transições com impacto na batida (120 BPM); nada parado.
+ * Nenhuma tela, celular ou recorte do HTML: só peças gráficas, com os valores reais da comanda (08-comanda, 02 e 04).
+ * Determinístico: REEL.renderAt(t).
  */
 (() => {
-  const W = 1080, H = 1920;
-  const C = { preto: '#0A0A0A', limao: '#AFFA27', off: '#F7F7F2', cinza: '#6B6F68', cinzaC: '#9A9D95', painel: '#121411', borda: 'rgba(247,247,242,0.10)' };
-  const CAP = { size: 64, lh: 74, y1: 1442, cx: 540 };          // textos de tela: as linhas da legenda aprovada (y 1442/1516)
+  const W = 1080, H = 1920, BEAT = 0.5;
+  const C = { preto: '#0A0A0A', off: '#F7F7F2', limao: '#AFFA27', cinza: '#8E918A', cinzaE: '#5E5E5A', verde: '#4E8800', painel: '#131611' };
   const clamp = (v, a = 0, b = 1) => Math.max(a, Math.min(b, v));
   const lerp = (a, b, u) => a + (b - a) * u;
   const EZ = { lin: (u) => u, out: (u) => 1 - Math.pow(1 - u, 3), in: (u) => u * u * u, io: (u) => (u < 0.5 ? 4 * u * u * u : 1 - Math.pow(-2 * u + 2, 3) / 2),
     expo: (u) => (u >= 1 ? 1 : 1 - Math.pow(2, -10 * u)), quad: (u) => u * u,
     elastico: (u) => (u <= 0 ? 0 : u >= 1 ? 1 : 1 - Math.pow(2, -8 * u) * Math.cos(u * Math.PI * 2.5)),
-    back: (u) => { const c1 = 1.4, c3 = c1 + 1; return 1 + c3 * Math.pow(u - 1, 3) + c1 * Math.pow(u - 1, 2); } };
+    back: (u) => { const c1 = 1.6, c3 = c1 + 1; return 1 + c3 * Math.pow(u - 1, 3) + c1 * Math.pow(u - 1, 2); } };
   const ramp = (t, a, b, e = EZ.out) => e(clamp((t - a) / (b - a)));
   const kick = (t, t0, d = 0.25) => (t < t0 ? 0 : Math.exp(-((t - t0) / d) * 4));
+  const batida = (t, d = 0.18) => kick(((t % BEAT) + BEAT) % BEAT, 0, d);       // pulso a cada batida
   const el = (tag, cls, parent, css) => { const e = document.createElement(tag); if (cls) e.className = cls; if (css) Object.assign(e.style, css); if (parent) parent.appendChild(e); return e; };
   const rgba = (h, a) => { const n = parseInt(h.slice(1), 16); return `rgba(${(n >> 16) & 255},${(n >> 8) & 255},${n & 255},${a})`; };
   const brl = (v) => 'R$ ' + Math.round(v).toLocaleString('pt-BR') + ',00';
-  // ícones de linha da marca (marca/icones: comandas e check)
-  const ICONE = {
-    comanda: '<path d="M13 16H8"/><path d="M14 8H8"/><path d="M16 12H8"/><path d="M4 3a1 1 0 0 1 1-1 1.3 1.3 0 0 1 .7.2l.933.6a1.3 1.3 0 0 0 1.4 0l.934-.6a1.3 1.3 0 0 1 1.4 0l.933.6a1.3 1.3 0 0 0 1.4 0l.933-.6a1.3 1.3 0 0 1 1.4 0l.934.6a1.3 1.3 0 0 0 1.4 0l.933-.6A1.3 1.3 0 0 1 19 2a1 1 0 0 1 1 1v18a1 1 0 0 1-1 1 1.3 1.3 0 0 1-.7-.2l-.933-.6a1.3 1.3 0 0 0-1.4 0l-.934.6a1.3 1.3 0 0 1-1.4 0l-.933-.6a1.3 1.3 0 0 0-1.4 0l-.933.6a1.3 1.3 0 0 1-1.4 0l-.934-.6a1.3 1.3 0 0 0-1.4 0l-.933.6a1.3 1.3 0 0 1-.7.2 1 1 0 0 1-1-1z"/>',
-    check: '<path d="M20 6 9 17l-5-5"/>',
-  };
-  const svg = (nome, px, cor, sw = 1.9) => `<svg width="${px}" height="${px}" viewBox="0 0 24 24" fill="none" stroke="${cor}" stroke-width="${sw}" stroke-linecap="round" stroke-linejoin="round">${ICONE[nome]}</svg>`;
+  const rnd = (s) => { let x = Math.sin(s * 127.1) * 43758.5453; return x - Math.floor(x); };
 
-  // ---------------- os dados reais da comanda (08-comanda, estados 02 e 04) ----------------
+  // ---------------- os valores reais da comanda (08-comanda, estados 02 e 04) ----------------
   const ITENS = [
-    { id: 'caipirinha', nome: 'Caipirinha', origem: 'Bar da piscina', q: 3, un: 22, q2: 4 },
-    { id: 'agua', nome: 'Água sem gás', origem: 'Frigobar', q: 2, un: 6, q2: 4 },
-    { id: 'cerveja', nome: 'Cerveja long neck', origem: 'Frigobar', q: 4, un: 14 },
-    { id: 'risoto', nome: 'Risoto de cogumelos', origem: 'Restaurante', q: 2, un: 68 },
-    { id: 'suco', nome: 'Suco de laranja', origem: 'Frigobar', q: 1, un: 17 },
-    { id: 'cancelado', nome: 'Cerveja long neck', origem: 'Frigobar', q: 1, un: 14, cancelado: true },
+    { id: 'caipirinha', nome: 'Caipirinha', origem: 'Bar da piscina', q: 3, q2: 4, un: 22, icone: 'copo' },
+    { id: 'agua', nome: 'Água sem gás', origem: 'Frigobar', q: 2, q2: 4, un: 6, icone: 'garrafa' },
+    { id: 'cerveja', nome: 'Cerveja long neck', origem: 'Frigobar', q: 4, un: 14, icone: 'garrafa' },
+    { id: 'risoto', nome: 'Risoto de cogumelos', origem: 'Restaurante', q: 2, un: 68, icone: 'prato' },
+    { id: 'suco', nome: 'Suco de laranja', origem: 'Frigobar', q: 1, un: 17, icone: 'garrafa' },
+    { id: 'cancelado', nome: 'Cerveja long neck', origem: 'Frigobar', q: 1, un: 14, icone: 'garrafa', cancelado: true },
   ];
-  const TOTAL_1 = ITENS.filter((i) => !i.cancelado).reduce((a, i) => a + i.q * i.un, 0);                       // 287
-  const TOTAL_2 = ITENS.filter((i) => !i.cancelado).reduce((a, i) => a + (i.q2 || i.q) * i.un, 0);             // 321
+  const TOTAL_1 = ITENS.filter((i) => !i.cancelado).reduce((a, i) => a + i.q * i.un, 0);                 // 287
+  const TOTAL_2 = ITENS.filter((i) => !i.cancelado).reduce((a, i) => a + (i.q2 || i.q) * i.un, 0);       // 321
 
-  let ROOT, GRAF, CV, CX, FINAL_EL, DUR = 32.01;
+  // ---------------- ícones de linha (o traço da marca: linha única, pontas e cantos arredondados) ----------------
+  const ICONES = {
+    copo: { p: ['M5.5 6h13l-1.5 13.2a2 2 0 0 1-2 1.8H9a2 2 0 0 1-2-1.8z', 'M6.3 11.2h11.4', 'M15.4 6a2.7 2.7 0 0 1 5.4 0', 'M18.1 6V3.4', 'M10.6 2.3l2.6 9.4'],
+      gelo: ['M8.4 13.4h2.9v2.9H8.4z', 'M12.4 15h2.9v2.9h-2.9z'] },
+    garrafa: { p: ['M10 2h4', 'M10.5 2v3.2l-2 3.1A2 2 0 0 0 8 9.5V20a2 2 0 0 0 2 2h4a2 2 0 0 0 2-2V9.5a2 2 0 0 0-.5-1.2l-2-3.1V2', 'M8 12.5h8', 'M8 17h8'] },
+    prato: { p: ['M14 3.5a8.5 8.5 0 1 1 0 17a8.5 8.5 0 1 1 0-17z', 'M14 7.6a4.4 4.4 0 1 1 0 8.8a4.4 4.4 0 1 1 0-8.8z', 'M2.5 3v4.5a1.5 1.5 0 0 0 3 0V3', 'M4 9v12'] },
+    comanda: { p: ['M13 16H8', 'M14 8H8', 'M16 12H8', 'M4 3a1 1 0 0 1 1-1 1.3 1.3 0 0 1 .7.2l.933.6a1.3 1.3 0 0 0 1.4 0l.934-.6a1.3 1.3 0 0 1 1.4 0l.933.6a1.3 1.3 0 0 0 1.4 0l.933-.6a1.3 1.3 0 0 1 1.4 0l.934.6a1.3 1.3 0 0 0 1.4 0l.933-.6A1.3 1.3 0 0 1 19 2a1 1 0 0 1 1 1v18a1 1 0 0 1-1 1 1.3 1.3 0 0 1-.7-.2l-.933-.6a1.3 1.3 0 0 0-1.4 0l-.934.6a1.3 1.3 0 0 1-1.4 0l-.933-.6a1.3 1.3 0 0 0-1.4 0l-.933.6a1.3 1.3 0 0 1-1.4 0l-.934-.6a1.3 1.3 0 0 0-1.4 0l-.933.6a1.3 1.3 0 0 1-.7.2 1 1 0 0 1-1-1z'] },
+    check: { p: ['M20 6 9 17l-5-5'] },
+  };
+  const NS = 'http://www.w3.org/2000/svg';
+  function icone(nome, px, cor, sw, parent, css = {}) {
+    const s = document.createElementNS(NS, 'svg'); s.setAttribute('viewBox', '0 0 24 24'); s.setAttribute('width', px); s.setAttribute('height', px);
+    Object.assign(s.style, { position: 'absolute', overflow: 'visible', ...css });
+    const mk = (d, g) => { const p = document.createElementNS(NS, 'path'); p.setAttribute('d', d); p.setAttribute('fill', 'none'); p.setAttribute('stroke', cor); p.setAttribute('stroke-width', (sw * 24 / px).toFixed(3));             // traço em px do quadro, na escala do ícone
+      p.setAttribute('stroke-linecap', 'round'); p.setAttribute('stroke-linejoin', 'round'); p.setAttribute('pathLength', '1');
+      p.style.strokeDasharray = '1'; (g || s).appendChild(p); return p; };
+    const paths = ICONES[nome].p.map((d) => mk(d));
+    let gelo = null, geloP = [];
+    if (ICONES[nome].gelo) { gelo = document.createElementNS(NS, 'g'); s.appendChild(gelo); geloP = ICONES[nome].gelo.map((d) => mk(d, gelo)); }
+    parent.appendChild(s);
+    return { s, paths, gelo, geloP, px };
+  }
+  function traca(ic, u, escalonado = true) {
+    const n = ic.paths.length + ic.geloP.length;
+    [...ic.paths, ...ic.geloP].forEach((p, i) => { const v = escalonado ? clamp(u * n * 0.7 - i * 0.55 + 0.4) : u; p.style.strokeDashoffset = String(1 - v); });
+  }
+
+  // ---------------- a estrutura: cenas, transições, manchetes ----------------
+  // fundo: 'escuro' | 'off' | 'limao'; entrada: como a cena entra (na batida)
+  const CENAS = [
+    { id: 'gancho', t0: 0, t1: 3.5, fundo: 'escuro', entrada: null, manchete: [['A', 'caipirinha', 'da', 'piscina'], ['entrou', 'na', 'conta?']], realce: ['entrou', 'na', 'conta?'] },
+    { id: 'origens', t0: 3.5, t1: 6.0, fundo: 'off', entrada: 'desliza', manchete: [['Bar,', 'frigobar,'], ['restaurante…']], realce: ['restaurante…'] },
+    { id: 'bilhetes', t0: 6.0, t1: 9.5, fundo: 'escuro', entrada: 'falha', manchete: [['e', 'cada', 'um', 'anota'], ['de', 'um', 'jeito.']], realce: ['cada', 'um', 'anota'] },
+    { id: 'conta', t0: 9.5, t1: 14.5, fundo: 'escuro', entrada: 'mergulho', manchete: [['No', 'FAZLO', 'Hospeda,'], ['tudo', 'cai', 'na', 'comanda'], ['do', 'hóspede.']], realce: ['comanda', 'do', 'hóspede.'] },
+    { id: 'somou', t0: 14.5, t1: 20.0, fundo: 'off', entrada: 'cortina', manchete: [['Lançou,', 'somou.']], realce: ['somou.'] },
+    { id: 'cancelou', t0: 20.0, t1: 24.0, fundo: 'escuro', entrada: 'corte', manchete: [['Cancelou?'], ['Continua', 'registrado.']], realce: ['Continua', 'registrado.'] },
+    { id: 'pronta', t0: 24.0, t1: 27.5, fundo: 'escuro', entrada: 'desliza-v', manchete: [['No', 'check-out,'], ['a', 'conta', 'já', 'está', 'pronta.']], realce: ['já', 'está', 'pronta.'] },
+    { id: 'marca', t0: 27.5, t1: 30.0, fundo: 'limao', entrada: 'cortina', manchete: null },
+  ];
+  const DUR = 30.0;
+  const FUNDO = { escuro: C.preto, off: C.off, limao: C.limao };
+  const MANCHETE = { x: 80, y: 236, px: 84, lh: 0.98 };
+  let ROOT, FLASH, GLITCH;
   const EV = [];
   const ev = (t, tipo, d = {}) => EV.push({ t: +t.toFixed(3), tipo, ...d });
-  const T_ = {};
+  const QA = [];                                               // elementos para o QA: { cena, nome, tipo, e }
+  const qa = (cena, nome, tipo, e) => { QA.push({ cena, nome, tipo, e }); return e; };
 
-  // ---------------- textos de tela (o estilo da legenda aprovada) ----------------
-  const TEXTOS = [];
-  function texto(t0, t1, linhas, chaves = []) { TEXTOS.push({ t0, t1, linhas, chaves: new Set(chaves) }); ev(t0, 'texto'); }
-
-  // ---------------- geometria ----------------
-  const CARD = { w: 640, h: 112 };                             // o cartão de consumo (escala 1)
-  const PAINEL = { x: 150, y: 236, w: 780, h: 1104, cab: 128, topoCartoes: 384, passo: 124, escCartao: 720 / 640, totalY: 1150 };
-  const ETIQ = { bar: { txt: 'Bar da piscina', x: 318, y: 420, rot: -5 }, frigobar: { txt: 'Frigobar', x: 770, y: 640, rot: 4 }, restaurante: { txt: 'Restaurante', x: 330, y: 960, rot: -3 } };
-  const slotDe = (i) => ({ cx: 540, cy: PAINEL.topoCartoes + i * PAINEL.passo + CARD.h * PAINEL.escCartao / 2 });
-
-  // ---------------- roteiro (os tempos e os textos da versão aprovada) ----------------
-  const POUSA = { caipirinha: 9.85, agua: 10.25, cerveja: 10.75, risoto: 11.15, suco: 11.55, cancelado: 12.05 };
-  function monta() {
-    texto(0, 3.6, ['A caipirinha da piscina', 'entrou na conta?'], ['entrou', 'na', 'conta?']);
-    T_.gancho = { fim: 3.6 }; ev(0.9, 'pulso'); ev(2.2, 'pulso');
-    T_.dor = { etiq: 3.7, escapa: 6.7 };
-    texto(3.65, 5.75, ['Bar, frigobar, restaurante…']);
-    texto(5.75, 9.05, ['e cada um anota', 'de um jeito.'], ['cada', 'um', 'anota']);
-    ev(3.7, 'etiqueta'); ev(3.9, 'voo'); ev(T_.dor.escapa, 'queda');
-    // 3 · a comanda gráfica
-    T_.painel = 9.1; ev(T_.painel, 'painel');
-    texto(9.45, 11.6, ['No FAZLO Hospeda,']);
-    texto(11.6, 15.2, ['tudo cai na comanda', 'do hóspede.'], ['comanda', 'do', 'hóspede.']);
-    for (const [k, t] of Object.entries(POUSA)) ev(t, 'aterra', { id: k });
-    ev(10.2, 'voo'); ev(10.35, 'voo');
-    T_.contaPop = 12.55; ev(T_.contaPop, 'pulso');
-    // 4 · lançou, somou
-    T_.chip1 = { t0: 15.6, bate: 16.25, id: 'caipirinha', txt: '+1 Caipirinha' };
-    T_.chip2 = { t0: 16.7, bate: 17.35, id: 'agua', txt: '+2 Água sem gás' };
-    ev(T_.chip1.t0, 'voo'); ev(T_.chip1.bate, 'troca'); ev(T_.chip2.t0, 'voo'); ev(T_.chip2.bate, 'troca');
-    T_.conta2 = { t0: 17.9, t1: 18.9 }; ev(T_.conta2.t0, 'conta', { dur: 1.0 }); ev(T_.conta2.t1, 'pulso');
-    texto(15.25, 23.95, ['Lançou, somou.'], ['somou.']);
-    // 5 · cancelou? continua registrado
-    T_.risco = 24.45; T_.selo = 24.95; ev(T_.risco, 'risco'); ev(T_.selo, 'selo');
-    texto(23.95, 26.9, ['Cancelou?', 'Continua registrado.'], ['Continua', 'registrado.']);
-    // 6 · a pilha se fecha no total; check; a marca
-    T_.fecha = 27.4; T_.check = 28.6; T_.logo = 30.66;
-    ev(T_.fecha, 'fecha'); ev(T_.check, 'check'); ev(T_.logo, 'logo');
-    texto(27.07, 31.26, ['No check-out,', 'a conta já está pronta.'], ['já', 'está', 'pronta.']);
-    DUR = 32.01;
+  function montaManchete(c) {
+    if (!c.manchete) return;
+    const base = c.fundo === 'escuro' ? C.off : C.preto, corRealce = c.fundo === 'escuro' ? C.limao : C.verde;
+    const m = el('div', 'manchete', c.mundo, { position: 'absolute', left: MANCHETE.x + 'px', top: MANCHETE.y + 'px', font: `900 ${MANCHETE.px}px 'ID'`, letterSpacing: '-0.025em', lineHeight: MANCHETE.lh, color: base, whiteSpace: 'nowrap' });
+    c.palavras = [];
+    c.manchete.forEach((ln) => {
+      const L = el('div', null, m, { overflow: 'hidden', paddingBottom: '0.1em', marginBottom: '-0.1em' });
+      const row = el('div', null, L);
+      ln.forEach((w, i) => { const s = el('span', null, row, { display: 'inline-block', color: c.realce.includes(w) ? corRealce : base }); s.textContent = w + (i < ln.length - 1 ? ' ' : ''); c.palavras.push(s); });
+    });
+    c.mancheteEl = qa(c.id, 'manchete', 'texto', m);
+  }
+  function animaManchete(c, lt) {
+    if (!c.palavras) return;
+    c.palavras.forEach((s, i) => { const u = EZ.expo(clamp((lt - 0.05 - i * 0.055) / 0.45)); s.style.transform = `translateY(${(1 - u) * 115}%)`; });
+    c.mancheteEl.style.transform = `translate(${Math.sin(lt * 1.1) * 4}px, ${Math.sin(lt * 1.6) * 3}px)`;
   }
 
-  // ---------------- DOM ----------------
-  const CARTOES = {};
-  let PAINEL_EL, CONT_EL, CONT_LBL, ETIQ_EL = {}, Q_EL, CHIP_EL = {}, TOTAL_EL, LOGO;
-  function cartao(it) {
-    const d = el('div', 'cartao', GRAF, { position: 'absolute', left: 0, top: 0, width: CARD.w + 'px', height: CARD.h + 'px', borderRadius: '26px', background: C.off, transformOrigin: '50% 50%', display: 'none', boxSizing: 'border-box', overflow: 'hidden' });
-    el('div', null, d, { position: 'absolute', left: 0, top: 0, bottom: 0, width: '8px', background: C.limao });                        // a marca de consumo (filete limão)
-    const nome = el('div', null, d, { position: 'absolute', left: '34px', top: '19px', font: "600 32px 'Geist'", letterSpacing: '-0.01em', color: C.preto, whiteSpace: 'nowrap' }); nome.textContent = it.nome;
-    const sub = el('div', null, d, { position: 'absolute', left: '34px', top: '66px', height: '28px', font: "500 22px 'Geist'", color: C.cinza, whiteSpace: 'nowrap', display: 'flex', alignItems: 'center', gap: '10px' });
-    el('span', null, sub, { width: '9px', height: '9px', borderRadius: '50%', background: C.limao, boxShadow: '0 0 0 2px rgba(10,10,10,.08)' });
-    const org = el('span', null, sub); org.textContent = it.origem;
-    const qtd = el('span', null, sub, { position: 'relative', display: 'inline-block', height: '28px', overflow: 'hidden', font: "500 22px 'Geist Mono'", lineHeight: '28px', minWidth: '220px' });
-    const q1 = el('span', null, qtd, { position: 'absolute', left: 0, top: 0, whiteSpace: 'nowrap' }), q2 = el('span', null, qtd, { position: 'absolute', left: 0, top: 0, whiteSpace: 'nowrap' });
-    const val = el('div', null, d, { position: 'absolute', right: '30px', top: '30px', height: '48px', width: '240px', overflow: 'hidden', font: "600 34px 'Geist Mono'", lineHeight: '48px', color: C.preto, textAlign: 'right' });
-    const v1 = el('div', null, val, { position: 'absolute', right: 0, top: 0, whiteSpace: 'nowrap' }), v2 = el('div', null, val, { position: 'absolute', right: 0, top: 0, whiteSpace: 'nowrap' });
-    const risco = el('div', null, d, { position: 'absolute', left: '30px', top: '38px', height: '4px', width: '0px', background: C.preto, borderRadius: '2px' });
-    const risco2 = el('div', null, d, { position: 'absolute', right: '30px', top: '52px', height: '4px', width: '0px', background: C.preto, borderRadius: '2px' });
-    const selo = el('div', null, d, { position: 'absolute', right: '286px', top: '30px', height: '50px', padding: '0 18px', borderRadius: '999px', border: `3px solid ${C.preto}`, font: "700 22px 'Geist'", letterSpacing: '0.04em', textTransform: 'uppercase', color: C.preto, display: 'none', alignItems: 'center', boxSizing: 'border-box', background: C.off });
-    selo.textContent = 'Cancelado';
-    const pulso = el('div', null, d, { position: 'absolute', inset: 0, borderRadius: 'inherit', pointerEvents: 'none' });
-    CARTOES[it.id] = { it, d, nome, org, q1, q2, v1, v2, risco, risco2, selo, pulso };
+  // ---------------- partículas (algo sempre respira) ----------------
+  function particulas(c, n, cor) {
+    c.parts = [];
+    for (let i = 0; i < n; i++) {
+      const s = 4 + rnd(i * 3.1 + c.t0) * 9;
+      c.parts.push({ e: el('div', null, c.fundoEl, { position: 'absolute', left: 0, top: 0, width: s + 'px', height: s + 'px', borderRadius: '50%', background: cor }), x: 60 + rnd(i * 7.7 + c.t0) * 820, y: 260 + rnd(i * 5.3 + c.t0) * 1240, v: 30 + rnd(i * 1.9) * 70, f: rnd(i * 2.3) * 6 });
+    }
   }
+  function animaParticulas(c, lt) {
+    for (const p of c.parts || []) { const y = 260 + ((p.y - 260 - lt * p.v) % 1240 + 1240) % 1240; p.e.style.transform = `translate(${p.x + Math.sin(lt * 1.3 + p.f) * 18}px, ${y}px)`; p.e.style.opacity = 0.25 + 0.35 * (0.5 + 0.5 * Math.sin(lt * 3 + p.f)); }
+  }
+
+  // ---------------- peças ----------------
+  function pilula(parent, txt, css) { const d = el('div', 'pilula', parent, { position: 'absolute', height: '84px', padding: '0 40px', borderRadius: '999px', display: 'flex', alignItems: 'center', gap: '16px', font: "600 42px 'Geist'", whiteSpace: 'nowrap', boxSizing: 'border-box', ...css }); el('span', null, d, { width: '16px', height: '16px', borderRadius: '50%', background: C.limao, boxShadow: `0 0 0 3px ${rgba(C.preto, 0.15)}` }); el('span', null, d).textContent = txt; return d; }
+  function valorMono(parent, txt, px, cor, css = {}) { const d = el('div', 'valor', parent, { position: 'absolute', font: `700 ${px}px 'Geist Mono'`, letterSpacing: '-0.04em', color: cor, whiteSpace: 'nowrap', ...css }); d.textContent = txt; return d; }
+  // a "conta" gráfica: a coluna de chips dos itens com a barra do total (peça própria, desenhada para o vídeo)
+  function conta(parent, x, y, w, escuro = true) {
+    const box = el('div', 'conta', parent, { position: 'absolute', left: x + 'px', top: y + 'px', width: w + 'px', height: '700px', borderRadius: '36px', background: escuro ? C.painel : '#FFFFFF', border: `2px solid ${escuro ? rgba(C.off, 0.12) : rgba(C.preto, 0.08)}`, boxSizing: 'border-box', transformOrigin: '50% 50%', boxShadow: '0 40px 100px rgba(0,0,0,.45)' });
+    const cab = el('div', null, box, { position: 'absolute', left: '34px', top: '26px', right: '34px', display: 'flex', alignItems: 'center', gap: '18px' });
+    const ic = el('div', null, cab, { position: 'relative', width: '58px', height: '58px', borderRadius: '16px', background: rgba(C.limao, 0.14), flex: 'none' });
+    icone('comanda', 34, C.limao, 2.4, ic, { left: '12px', top: '12px' }).paths.forEach((p) => { p.style.strokeDashoffset = '0'; });
+    const tt = el('div', null, cab);
+    el('div', null, tt, { font: "700 36px 'Geist'", letterSpacing: '-0.015em', color: escuro ? C.off : C.preto, lineHeight: '40px' }).textContent = 'Mariana Costa';
+    el('div', null, tt, { font: "500 24px 'Geist'", color: C.cinza, lineHeight: '28px' }).textContent = 'Suíte Mirante';
+    const chips = ITENS.map((it, i) => {
+      const d = el('div', 'chip', box, { position: 'absolute', left: '26px', right: '26px', top: (118 + i * 70) + 'px', height: '60px', borderRadius: '16px', background: escuro ? '#1E221B' : '#F1F1EC', display: 'flex', alignItems: 'center', padding: '0 22px', boxSizing: 'border-box', gap: '14px', font: "600 26px 'Geist'", color: escuro ? C.off : C.preto, opacity: 0 });
+      el('span', null, d, { width: '10px', height: '10px', borderRadius: '50%', background: it.cancelado ? C.cinza : C.limao, flex: 'none' });
+      const n = el('span', null, d, { flex: '1', whiteSpace: 'nowrap', overflow: 'hidden', position: 'relative' }); n.textContent = `${it.nome}`;
+      const q = el('span', null, d, { font: "500 22px 'Geist Mono'", color: C.cinza, whiteSpace: 'nowrap' }); q.textContent = `${it.q} ×`;
+      const v = el('span', null, d, { font: "700 26px 'Geist Mono'", whiteSpace: 'nowrap', minWidth: '150px', textAlign: 'right' }); v.textContent = brl(it.q * it.un);
+      const risco = el('div', null, d, { position: 'absolute', left: '48px', right: '22px', top: '29px', height: '3px', background: C.cinza, transformOrigin: '0 50%', transform: 'scaleX(0)' });
+      return { d, n, q, v, risco, it };
+    });
+    const barra = el('div', null, box, { position: 'absolute', left: '26px', right: '26px', top: '548px', height: '124px', borderRadius: '22px', background: C.limao, display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '0 28px', boxSizing: 'border-box', color: C.preto });
+    el('span', null, barra, { font: "600 32px 'Geist'" }).textContent = 'Total';
+    const tot = el('span', null, barra, { font: "700 78px 'Geist Mono'", letterSpacing: '-0.045em', transformOrigin: '100% 50%' }); tot.textContent = brl(0);
+    return { box, chips, barra, tot };
+  }
+
+  // ---------------- montagem das cenas ----------------
+  const CENA = {};
   async function init(root) {
     ROOT = root;
-    el('div', 'fundo', ROOT, { position: 'absolute', inset: 0, background: 'radial-gradient(ellipse 980px 1200px at 540px 820px, #191B17 0%, #0C0D0B 58%, #060606 100%)' });
-    el('div', 'luz', ROOT, { position: 'absolute', left: '-160px', top: '200px', width: '1400px', height: '1300px', background: 'radial-gradient(circle at 50% 42%, rgba(175,250,39,0.07), rgba(175,250,39,0) 62%)' });
-    GRAF = el('div', 'graficos', ROOT, { position: 'absolute', inset: 0, perspective: '1600px', perspectiveOrigin: '540px 760px' });
-    // o painel da comanda (cena 3)
-    PAINEL_EL = el('div', 'comanda', GRAF, { position: 'absolute', left: PAINEL.x + 'px', top: PAINEL.y + 'px', width: PAINEL.w + 'px', height: PAINEL.h + 'px', borderRadius: '40px', background: `linear-gradient(180deg, #171A15, ${C.painel})`, border: `2px solid ${C.borda}`, boxSizing: 'border-box', display: 'none', transformOrigin: '50% 50%', boxShadow: '0 50px 120px rgba(0,0,0,.65)' });
-    const cab = el('div', null, PAINEL_EL, { position: 'absolute', left: '40px', right: '40px', top: '34px', height: '70px', display: 'flex', alignItems: 'center', gap: '22px' });
-    const ic = el('div', null, cab, { width: '64px', height: '64px', borderRadius: '18px', background: rgba(C.limao, 0.12), display: 'flex', alignItems: 'center', justifyContent: 'center' }); ic.innerHTML = svg('comanda', 34, C.limao);
-    const tt = el('div', null, cab);
-    const n1 = el('div', null, tt, { font: "700 38px 'Geist'", letterSpacing: '-0.015em', color: C.off, lineHeight: '42px' }); n1.textContent = 'Mariana Costa';
-    const n2 = el('div', null, tt, { font: "500 24px 'Geist'", color: C.cinzaC, lineHeight: '30px' }); n2.textContent = 'Suíte Mirante';
-    el('div', null, PAINEL_EL, { position: 'absolute', left: '40px', right: '40px', top: PAINEL.cab + 'px', height: '2px', background: C.borda });
-    el('div', null, PAINEL_EL, { position: 'absolute', left: '40px', right: '40px', top: (PAINEL.totalY - PAINEL.y - 36) + 'px', height: '2px', background: C.borda });
-    CONT_LBL = el('div', null, PAINEL_EL, { position: 'absolute', left: '44px', top: (PAINEL.totalY - PAINEL.y + 30) + 'px', font: "600 32px 'Geist'", color: C.cinzaC }); CONT_LBL.textContent = 'Total';
-    CONT_EL = el('div', null, PAINEL_EL, { position: 'absolute', right: '44px', top: (PAINEL.totalY - PAINEL.y - 4) + 'px', font: "700 82px 'Geist Mono'", letterSpacing: '-0.03em', color: C.limao, transformOrigin: '100% 60%', whiteSpace: 'nowrap', textShadow: `0 0 30px ${rgba(C.limao, 0.25)}` });
-    // as etiquetas
-    for (const [k, e] of Object.entries(ETIQ)) {
-      const d = el('div', 'etiqueta', GRAF, { position: 'absolute', left: 0, top: 0, height: '76px', padding: '0 34px 0 28px', borderRadius: '999px', border: `2px solid ${rgba(C.off, 0.85)}`, background: 'rgba(14,16,13,0.9)', display: 'none', alignItems: 'center', gap: '16px', font: "600 32px 'Geist'", color: C.off, whiteSpace: 'nowrap', boxSizing: 'border-box', boxShadow: '0 18px 50px rgba(0,0,0,.55)' });
-      el('span', null, d, { width: '14px', height: '14px', borderRadius: '50%', background: C.limao, boxShadow: `0 0 16px ${C.limao}` }); el('span', null, d).textContent = e.txt;
-      ETIQ_EL[k] = d;
+    for (const c of CENAS) {
+      c.el = el('div', 'cena', ROOT, { position: 'absolute', inset: 0, overflow: 'hidden', display: 'none', transformOrigin: '50% 50%' });
+      c.fundoEl = el('div', 'fundo', c.el, { position: 'absolute', inset: 0, background: FUNDO[c.fundo] });
+      if (c.fundo === 'escuro') el('div', null, c.fundoEl, { position: 'absolute', inset: 0, background: 'radial-gradient(ellipse 900px 1100px at 540px 900px, rgba(175,250,39,0.07), rgba(0,0,0,0) 65%)' });
+      c.mundo = el('div', 'mundo', c.el, { position: 'absolute', inset: 0, transformOrigin: '540px 900px' });
+      montaManchete(c);
+      particulas(c, c.fundo === 'escuro' ? 26 : 18, c.fundo === 'escuro' ? rgba(C.limao, 0.55) : c.fundo === 'off' ? rgba(C.preto, 0.25) : rgba(C.preto, 0.3));
+      CENA[c.id] = c;
+      MONTA[c.id](c);
     }
-    for (const it of ITENS) cartao(it);
-    // o "?" do gancho
-    Q_EL = el('div', 'interrogacao', GRAF, { position: 'absolute', left: 0, top: 0, font: "900 240px 'ID'", color: C.limao, display: 'none' }); Q_EL.textContent = '?';
-    // os chips "+1 Caipirinha" e "+2 Água sem gás"
-    // o cartão final do total
-    TOTAL_EL = el('div', 'total-final', GRAF, { position: 'absolute', left: '150px', top: '0px', width: '780px', height: '360px', borderRadius: '44px', background: C.off, display: 'none', transformOrigin: '50% 50%', boxShadow: '0 50px 120px rgba(0,0,0,.6)', overflow: 'hidden' });
-    el('div', null, TOTAL_EL, { position: 'absolute', left: 0, top: 0, bottom: 0, width: '12px', background: C.limao });
-    const tl = el('div', null, TOTAL_EL, { position: 'absolute', left: '60px', top: '64px', font: "600 40px 'Geist'", color: C.cinza }); tl.textContent = 'Total';
-    const tv = el('div', null, TOTAL_EL, { position: 'absolute', left: '56px', top: '128px', font: "700 128px 'Geist Mono'", letterSpacing: '-0.04em', color: C.preto, whiteSpace: 'nowrap' }); tv.textContent = brl(TOTAL_2);
-    const ck = el('div', null, TOTAL_EL, { position: 'absolute', right: '56px', top: '56px', width: '104px', height: '104px', borderRadius: '50%', background: C.limao, display: 'flex', alignItems: 'center', justifyContent: 'center', transformOrigin: '50% 50%' }); ck.innerHTML = svg('check', 60, C.preto, 2.6);
-    T_.dom = { ck };
-    FINAL_EL = el('div', 'final', ROOT, { position: 'absolute', inset: 0 });
-    CV = el('canvas', 'textos', ROOT, { position: 'absolute', left: 0, top: 0, width: W + 'px', height: H + 'px' }); CV.width = W; CV.height = H; CX = CV.getContext('2d');
-    monta();
-    for (const c of [T_.chip1, T_.chip2]) {
-      const d = el('div', 'chip', GRAF, { position: 'absolute', left: 0, top: 0, height: '78px', padding: '0 34px', borderRadius: '999px', background: C.limao, color: C.preto, font: "700 34px 'Geist'", display: 'none', alignItems: 'center', whiteSpace: 'nowrap', boxSizing: 'border-box', boxShadow: `0 20px 50px rgba(0,0,0,.5), 0 0 40px ${rgba(C.limao, 0.35)}` });
-      d.textContent = c.txt; CHIP_EL[c.id] = d;
-    }
-    LOGO = el('img', null, FINAL_EL, { position: 'absolute', left: '540px', top: '1060px', width: '560px', transform: 'translateX(-50%)', display: 'none' }); LOGO.src = 'logo.png'; LOGO.decoding = 'sync';
+    FLASH = el('div', 'flash', ROOT, { position: 'absolute', inset: 0, background: '#FFFFFF', opacity: 0, pointerEvents: 'none' });
+    GLITCH = el('div', 'falha', ROOT, { position: 'absolute', inset: 0, pointerEvents: 'none', display: 'none' });
+    for (let i = 0; i < 9; i++) el('div', null, GLITCH, { position: 'absolute', left: 0, width: '100%' });
+    for (let i = 1; i < CENAS.length; i++) ev(CENAS[i].t0, 'corte', { tipo_entrada: CENAS[i].entrada });
     await Promise.all([...ROOT.querySelectorAll('img')].map((i) => i.decode().catch(() => {})));
   }
 
-  // ---------------- poses ----------------
-  // a posição livre de cada cartão (cenas 1–3, antes de encaixar no painel): o movimento da versão aprovada
-  const ESC_LIVRE = 0.78;
-  function livre(id, t) {
-    const g = T_.gancho, D = T_.dor;
-    if (id === 'caipirinha') {
-      const u = ramp(t, g.fim - 0.25, g.fim + 0.6, EZ.io);
-      return { cx: lerp(540, 300 + Math.sin(t * 1.3) * 26, u), cy: lerp(780 + Math.sin(t * 1.6) * 8, 590 + Math.cos(t * 1.1) * 18, u), s: lerp(1.3, ESC_LIVRE, u),
-        ry: lerp(Math.sin(t * 1.4) * 16, Math.sin(t * 2) * 6, u), rx: lerp(7 + Math.sin(t * 1.1) * 3, 4, u), rz: lerp(-2, -6, u), op: 1 };
-    }
-    if (id === 'suco' || id === 'cancelado') {
-      const ap = id === 'suco' ? 10.2 : 10.35, u = ramp(t, ap, ap + 0.5, EZ.out);
-      return { cx: lerp(1350, 840, u), cy: ETIQ.frigobar.y - 140, s: ESC_LIVRE, ry: -12, rx: 4, rz: lerp(14, 4, u), op: t >= ap ? 1 : 0 };
-    }
-    const ap = { agua: 3.9, cerveja: 4.05, risoto: 4.2 }[id];
-    const ent = ramp(t, ap, ap + 0.5, EZ.out);
-    const P_ = { agua: [[780, 820], [520, 560], [800, 380]], cerveja: [[260, 760], [720, 880], [480, 300]], risoto: [[620, 1120], [320, 1180], [600, 820]] }[id];
-    const k = Math.max(0, t - ap) * 0.42, i = Math.floor(k) % 3, f = EZ.io(k - Math.floor(k));
-    let cx = lerp(P_[i][0], P_[(i + 1) % 3][0], f) + Math.sin(t * 2.1 + ap) * 22, cy = lerp(P_[i][1], P_[(i + 1) % 3][1], f) + Math.cos(t * 1.7) * 16;
-    let rz = Math.sin(t * 1.5 + ap * 3) * 8;
-    if (id === 'cerveja') {
-      // a cerveja escapa e cai para fora do quadro pela esquerda; volta pela esquerda quando a comanda aparece
-      const q = clamp((t - D.escapa) / 1.0), qv = clamp((t - (POUSA.cerveja - 1.1)) / 0.6);
-      if (t >= D.escapa && t < POUSA.cerveja - 1.1) { const x0 = cx, y0 = cy; cx = lerp(x0, -520, EZ.quad(q)); cy = y0 + 420 * EZ.quad(q) - 120 * Math.sin(q * Math.PI); rz -= 75 * q; }
-      if (t >= POUSA.cerveja - 1.1) { cx = lerp(-480, 220, EZ.out(qv)); cy = lerp(1150, 860, EZ.out(qv)); rz = lerp(-40, -4, EZ.out(qv)); }
-    }
-    return { cx, cy: Math.min(cy, 1240), s: ESC_LIVRE * (0.8 + 0.2 * ent), ry: Math.sin(t * 1.2 + ap) * 10, rx: 5, rz, op: t >= ap ? ent : 0 };
-  }
-  // a pose do cartão em cada instante
-  function pose(id, t) {
-    const i = ITENS.findIndex((x) => x.id === id), slot = slotDe(i), tp = POUSA[id];
-    const enc = { cx: slot.cx, cy: slot.cy, s: PAINEL.escCartao, rx: 0, ry: 0, rz: 0, op: 1 };
-    let p;
-    if (t < tp - 0.55) p = livre(id, t);
-    else if (t < tp) { const a = livre(id, tp - 0.55), u = EZ.io(clamp((t - (tp - 0.55)) / 0.55)); p = {}; for (const k in enc) p[k] = lerp(a[k], enc[k], u); }
-    else p = { ...enc };
-    // o encaixe: um pulso; a cena 6: a pilha sobe e se fecha no total
-    if (t >= T_.fecha) {
-      const u = EZ.in(clamp((t - T_.fecha - i * 0.04) / 0.5));
-      p.cy = lerp(p.cy, 740, u); p.s = lerp(p.s, 0.7, u); p.op = 1 - clamp((u - 0.45) / 0.4);
-    }
-    return p;
-  }
-  function aplica(d, p, extra = 1) {
-    d.style.transform = `translate(${p.cx - CARD.w / 2}px, ${p.cy - CARD.h / 2}px) rotateX(${p.rx}deg) rotateY(${p.ry}deg) rotateZ(${p.rz}deg) scale(${p.s * extra})`;
-    d.style.opacity = p.op; d.style.display = p.op > 0.005 ? 'block' : 'none';
-    d.style.boxShadow = `0 ${26 * p.s}px ${64 * p.s}px rgba(0,0,0,.55)`;
-  }
-
-  // ---------------- render ----------------
-  function renderAt(t) {
-    const g = T_.gancho, D = T_.dor;
-    // o "?"
-    const qv = t < g.fim + 0.3; Q_EL.style.display = qv ? 'block' : 'none';
-    if (qv) { const pul = 1 + 0.1 * (0.5 + 0.5 * Math.sin(t * 5.5)); Q_EL.style.opacity = 1 - ramp(t, g.fim - 0.1, g.fim + 0.3); Q_EL.style.transform = `translate(780px, 440px) rotate(8deg) scale(${pul})`; Q_EL.style.textShadow = `0 0 ${30 + 300 * (pul - 1)}px ${rgba(C.limao, 0.6)}`; }
-    // as etiquetas (somem quando a comanda abre; o suco e a cerveja cancelada entram pela direita)
-    const sumir = ramp(t, 9.0, 9.6, EZ.in);
-    Object.entries(ETIQ).forEach(([k, e], j) => {
-      const d = ETIQ_EL[k], vis = t >= D.etiq && sumir < 1; d.style.display = vis ? 'flex' : 'none'; if (!vis) return;
-      const a = ramp(t, D.etiq + j * 0.12, D.etiq + 0.45 + j * 0.12, EZ.back);
-      const w = d.offsetWidth, h = 76;
-      d.style.transform = `translate(${e.x - w / 2}px, ${e.y - h / 2 + Math.sin(t * 1.3 + e.x) * 6}px) rotate(${e.rot}deg) scale(${a * (1 - 0.4 * sumir)})`;
-      d.style.opacity = clamp(a) * (1 - sumir);
-    });
-    // o painel da comanda
-    const pa = ramp(t, T_.painel, T_.painel + 0.55, EZ.back), pf = ramp(t, T_.fecha + 0.25, T_.fecha + 0.65, EZ.in);
-    PAINEL_EL.style.display = t >= T_.painel && pf < 1 ? 'block' : 'none';
-    PAINEL_EL.style.opacity = clamp(pa * 1.4) * (1 - pf);
-    PAINEL_EL.style.transform = `translateY(${(1 - clamp(pa)) * 60}px) scale(${(0.92 + 0.08 * pa) * (1 - 0.1 * pf)})`;
-    // o contador do total: soma a cada encaixe (o cancelado não entra na soma); depois conta de 287 até 321
-    let tot = 0;
-    for (const it of ITENS) { if (it.cancelado) continue; const tp = POUSA[it.id]; tot += it.q * it.un * EZ.out(clamp((t - tp) / 0.35)); }
-    if (t >= T_.conta2.t0) tot = lerp(TOTAL_1, TOTAL_2, EZ.io(clamp((t - T_.conta2.t0) / (T_.conta2.t1 - T_.conta2.t0))));
-    CONT_EL.textContent = brl(tot);
-    const pop = 1 + 0.12 * kick(t, T_.contaPop, 0.5) + 0.16 * kick(t, T_.conta2.t1, 0.5) + 0.05 * Math.max(...ITENS.map((it) => (it.cancelado ? 0 : kick(t, POUSA[it.id], 0.3))));
-    CONT_EL.style.transform = `scale(${pop})`;
-    // os cartões
-    for (const it of ITENS) {
-      const K = CARTOES[it.id], p = pose(it.id, t), tp = POUSA[it.id];
-      if (t < (it.id === 'caipirinha' ? 0 : it.id === 'suco' ? 10.2 : it.id === 'cancelado' ? 10.35 : { agua: 3.9, cerveja: 4.05, risoto: 4.2 }[it.id])) { K.d.style.display = 'none'; continue; }
-      aplica(K.d, p, 1 + 0.05 * kick(t, tp, 0.35));
-      K.d.style.zIndex = t < tp ? 20 : 10;
-      // conteúdo: o gancho mostra o preço da Caipirinha (R$ 22,00); no painel, quantidade × preço e o valor da linha
-      const gancho = it.id === 'caipirinha' && t < tp;
-      const chip = it.id === T_.chip1.id ? T_.chip1 : it.id === T_.chip2.id ? T_.chip2 : null;
-      const fu = chip ? EZ.io(clamp((t - chip.bate) / 0.35)) : 0;
-      const qa = `${it.q} × ${brl(it.un)}`, qb = it.q2 ? `${it.q2} × ${brl(it.un)}` : qa;
-      const va = brl(it.q * it.un), vb = it.q2 ? brl(it.q2 * it.un) : va;
-      K.q1.textContent = gancho ? '' : qa; K.q2.textContent = gancho ? '' : qb;
-      K.org.textContent = it.origem + (gancho ? '' : ' ·');
-      K.v1.textContent = gancho ? brl(it.un) : va; K.v2.textContent = vb;
-      K.q1.style.transform = `translateY(${-100 * fu}%)`; K.q1.style.opacity = 1 - fu; K.q2.style.transform = `translateY(${100 * (1 - fu)}%)`; K.q2.style.opacity = it.q2 ? fu : 0;
-      K.v1.style.transform = `translateY(${-100 * fu}%)`; K.v1.style.opacity = 1 - fu; K.v2.style.transform = `translateY(${100 * (1 - fu)}%)`; K.v2.style.opacity = it.q2 ? fu : 0;
-      K.v1.style.color = K.v2.style.color = it.cancelado ? C.cinzaC : C.preto;
-      // o pulso do encaixe e da troca
-      const pk = Math.max(kick(t, tp, 0.5), chip ? kick(t, chip.bate, 0.6) : 0);
-      K.pulso.style.boxShadow = `inset 0 0 0 ${3 + 3 * pk}px ${rgba(C.limao, 0.15 + 0.85 * pk)}`;
-      // o cancelado: o risco e o selo; o cartão fica na pilha
-      if (it.cancelado) {
-        const ru = EZ.io(clamp((t - T_.risco) / 0.45)), su = EZ.back(clamp((t - T_.selo) / 0.4));
-        K.risco.style.width = (K.nome.offsetWidth + 8) * ru + 'px';
-        K.risco2.style.width = 130 * clamp((t - T_.risco - 0.2) / 0.35) + 'px';
-        K.d.style.background = t >= T_.risco ? `linear-gradient(0deg, ${rgba('#E9E9E3', ru)}, ${rgba('#E9E9E3', ru)}), ${C.off}` : C.off;
-        K.nome.style.color = ru > 0.5 ? '#5E5E5A' : C.preto;
-        K.selo.style.display = t >= T_.selo ? 'flex' : 'none'; K.selo.style.transform = `scale(${su}) rotate(${-6 * su}deg)`; K.selo.style.opacity = clamp(su);
-      }
-    }
-    // os chips "+1 Caipirinha" e "+2 Água sem gás": entram voando e batem no cartão
-    for (const c of [T_.chip1, T_.chip2]) {
-      const d = CHIP_EL[c.id], vis = t >= c.t0 && t < c.bate + 0.45; d.style.display = vis ? 'flex' : 'none'; if (!vis) continue;
-      const alvo = slotDe(ITENS.findIndex((x) => x.id === c.id)), u = EZ.in(clamp((t - c.t0) / (c.bate - c.t0))), w = d.offsetWidth;
-      const x0 = c.id === 'caipirinha' ? 1300 : -400, y0 = alvo.cy + 40;
-      const cx = lerp(x0, alvo.cx + 120, u), cy = lerp(y0, alvo.cy - 46, u) - Math.sin(u * Math.PI) * 60, sai = ramp(t, c.bate, c.bate + 0.45, EZ.out);
-      d.style.transform = `translate(${cx - w / 2}px, ${cy - 39 - sai * 40}px) rotate(${lerp(c.id === 'caipirinha' ? 14 : -14, 0, u)}deg) scale(${1 + 0.25 * sai})`;
-      d.style.opacity = 1 - sai; d.style.zIndex = 30;
-    }
-    // o cartão final do total, com o check
-    const fa = ramp(t, T_.fecha + 0.6, T_.fecha + 1.15, EZ.back);
-    TOTAL_EL.style.display = t >= T_.fecha + 0.6 ? 'block' : 'none';
-    if (t >= T_.fecha + 0.6) {
-      const sobe = ramp(t, T_.logo - 0.6, T_.logo + 0.2, EZ.io);
-      TOTAL_EL.style.transform = `translateY(${lerp(560, 520, sobe) - 0 + (1 - clamp(fa)) * 40}px) scale(${(0.85 + 0.15 * fa) * (1 + 0.04 * kick(t, T_.check, 0.5))})`;
-      TOTAL_EL.style.opacity = clamp(fa * 1.3); TOTAL_EL.style.zIndex = 40;
-      const cu = EZ.back(clamp((t - T_.check) / 0.45)); T_.dom.ck.style.transform = `scale(${cu})`; T_.dom.ck.style.boxShadow = `0 0 ${40 * kick(t, T_.check, 0.8) + 10}px ${rgba(C.limao, 0.7)}`;
-    }
-    // a marca
-    LOGO.style.display = t >= T_.logo ? 'block' : 'none';
-    if (t >= T_.logo) { const a = ramp(t, T_.logo, T_.logo + 0.5, EZ.out); LOGO.style.opacity = a; LOGO.style.transform = `translateX(-50%) translateY(${(1 - a) * 24}px) scale(${0.92 + 0.08 * EZ.elastico(clamp((t - T_.logo) / 0.6))})`; }
-    textos(t);
-  }
-
-  // ---------------- textos: a tipografia da legenda ----------------
-  let BOXES = null;
-  function tw(s) { CX.font = `900 ${CAP.size}px 'ID'`; CX.letterSpacing = `${-0.02 * CAP.size}px`; return CX.measureText(s).width + 0.02 * CAP.size; }
-  function textos(t) {
-    const c = CX; c.clearRect(0, 0, W, H);
-    for (const T of TEXTOS) {
-      if (t < T.t0 || t >= T.t1) continue;
-      const sai = ramp(t, T.t1 - 0.2, T.t1, EZ.in);
-      const y0 = CAP.y1 + (T.linhas.length === 1 ? CAP.lh / 2 : 0), ls = -0.02 * CAP.size;
-      c.save(); c.shadowColor = 'rgba(0,0,0,0.75)'; c.shadowBlur = 16; c.shadowOffsetY = 2;
-      let k = 0;
-      T.linhas.forEach((ln, ri) => {
-        let x = CAP.cx - tw(ln) / 2;
-        ln.split(' ').forEach((w) => {
-          const tw0 = T.t0 + 0.1 + k * 0.075; k++;
-          const ww = tw(w) - 0.02 * CAP.size;
-          if (t >= tw0) {
-            const u = EZ.out(clamp((t - tw0) / 0.12)), chave = T.chaves.has(w);
-            const pop = chave ? 1 + 0.07 * kick(t, tw0, 0.18) : 1, y = y0 + ri * CAP.lh + (1 - u) * 10 + sai * 8;
-            c.save(); c.font = `900 ${CAP.size}px 'ID'`; c.letterSpacing = `${ls}px`; c.globalAlpha = u * (1 - sai); c.fillStyle = chave ? C.limao : '#FFFFFF';
-            c.translate(x + ww / 2, y - CAP.size * 0.3); c.scale(pop, pop); c.fillText(w, -ww / 2, CAP.size * 0.3); c.restore();
-            if (BOXES && u > 0.99 && sai < 0.01) BOXES.push({ nome: w, tipo: 'texto', x0: x, y0: y - CAP.size * 0.76, x1: x + ww, y1: y + CAP.size * 0.22 });
-          }
-          x += tw(w + ' ') - 0.02 * CAP.size;
-        });
+  const MONTA = {
+    // 1 · o copo gigante desenhando-se em limão, o gelo, as gotas, "R$ 22,00" batendo, o "?"
+    gancho(c) {
+      c.copo = icone('copo', 600, C.limao, 15, c.mundo, { left: '90px', top: '560px' });
+      c.gotas = [0, 1, 2, 3, 4].map((i) => el('div', null, c.mundo, { position: 'absolute', left: 0, top: 0, width: '22px', height: '30px', borderRadius: '50% 50% 50% 50% / 62% 62% 38% 38%', background: C.limao }));
+      c.preco = qa('gancho', 'R$ 22,00', 'valor', valorMono(c.mundo, brl(22), 132, C.off, { left: '96px', top: '1238px', transformOrigin: '0% 50%' }));
+      c.q = qa('gancho', '?', 'grafico', el('div', null, c.mundo, { position: 'absolute', left: '700px', top: '520px', font: "900 400px 'ID'", color: C.limao, lineHeight: '1', transformOrigin: '50% 60%' })); c.q.textContent = '?';
+      qa('gancho', 'copo', 'icone', c.copo.s);
+      ev(0.5, 'batida'); ev(1.0, 'pulso'); ev(2.0, 'pulso'); ev(3.0, 'pulso');
+    },
+    // 2 · três ícones, um a um na batida, com etiqueta e preço; a câmera desliza de um para o outro
+    origens(c) {
+      c.trilho = el('div', null, c.mundo, { position: 'absolute', left: 0, top: 0, width: 3 * W + 'px', height: H + 'px', transformOrigin: '0 0' });
+      const D = [['copo', 'Bar da piscina', 22], ['garrafa', 'Frigobar', 6], ['prato', 'Restaurante', 68]];
+      c.paineis = D.map(([ic, et, v], i) => {
+        const x0 = i * W;
+        const icn = icone(ic, 430, C.preto, 13, c.trilho, { left: x0 + 325 + 'px', top: '540px' });
+        const et_ = pilula(c.trilho, et, { left: x0 + 540 + 'px', top: '1010px', background: C.preto, color: C.off, transform: 'translateX(-50%)' });
+        const pv = valorMono(c.trilho, brl(v), 150, C.preto, { left: x0 + 540 + 'px', top: '1150px', transform: 'translateX(-50%)', transformOrigin: '50% 60%' });
+        return { icn, et: et_, pv, chegada: [3.5, 4.3, 5.1][i] };
       });
-      c.restore();
+      c.paineis.forEach((p, i) => { ev(p.chegada + 0.05, 'icone'); ev(p.chegada + 0.3, 'preco'); qa('origens', ['R$ 22,00', 'R$ 6,00', 'R$ 68,00'][i], 'valor', p.pv); qa('origens', 'etiqueta ' + i, 'etiqueta', p.et); qa('origens', 'icone ' + i, 'icone', p.icn.s); });
+      ev(4.3, 'desliza'); ev(5.1, 'desliza'); ev(5.6, 'recua');
+    },
+    // 3 · bilhetes desencontrados: um torto, um rasurado, um borrado; a Cerveja escapa e cai do quadro
+    bilhetes(c) {
+      const N = [
+        { txt: ['Caipirinha', 'R$ 22,00'], x: 330, y: 700, r: -13, tipo: 'torto' },
+        { txt: ['Água sem gás', '2 × R$ 6,00'], x: 600, y: 890, r: 7, tipo: 'rasurado' },
+        { txt: ['Risoto de cogumelos', 'R$ 68,00'], x: 420, y: 1160, r: -5, tipo: 'borrado' },
+        { txt: ['Cerveja long neck', 'R$ 14,00'], x: 700, y: 640, r: 11, tipo: 'escapa' },
+      ];
+      c.notas = N.map((n, i) => {
+        const d = el('div', 'bilhete', c.mundo, { position: 'absolute', left: 0, top: 0, padding: '24px 34px 28px', boxSizing: 'border-box', borderRadius: '18px', background: '#ECEAE2', color: C.preto, boxShadow: '0 30px 70px rgba(0,0,0,.5)', transformOrigin: '50% 50%' });
+        el('div', null, d, { font: "600 38px 'Geist'", letterSpacing: '-0.01em', whiteSpace: 'nowrap' }).textContent = n.txt[0];
+        const v = el('div', null, d, { position: 'relative', display: 'inline-block', font: "700 84px 'Geist Mono'", letterSpacing: '-0.045em', marginTop: '2px', whiteSpace: 'nowrap' }); v.textContent = n.txt[1];
+        qa('bilhetes', n.txt[1], 'valor', v);
+        if (n.tipo === 'rasurado') for (let k = 0; k < 3; k++) el('div', null, v, { position: 'absolute', left: '-6px', right: '-6px', top: (34 + k * 14) + 'px', height: '7px', background: C.preto, transform: `rotate(${[-6, 4, -2][k]}deg)` });
+        if (n.tipo === 'borrado') { d.style.filter = 'blur(3.5px)'; }
+        qa('bilhetes', n.txt[0], 'bilhete', d);
+        return { ...n, d };
+      });
+      ev(6.05, 'espalha'); ev(7.5, 'embaralha'); ev(8.2, 'queda');
+    },
+    // 4 · os três ícones ligados por curvas a uma conta central; pulsos viram itens; o Total conta até R$ 287,00
+    conta(c) {
+      c.icones = [['copo', 210], ['garrafa', 540], ['prato', 870]].map(([n, x]) => ({ n, x, ic: icone(n, 150, C.limao, 9, c.mundo, { left: x - 75 + 'px', top: '530px' }) }));
+      c.svg = document.createElementNS(NS, 'svg'); c.svg.setAttribute('width', W); c.svg.setAttribute('height', H); Object.assign(c.svg.style, { position: 'absolute', left: 0, top: 0, overflow: 'visible' }); c.mundo.appendChild(c.svg);
+      c.k = conta(c.mundo, 240, 760, 600, true);
+      c.alvo = { x: 540, y: 770 };
+      const origem = { copo: 0, garrafa: 1, prato: 2 };
+      c.curvas = c.icones.map((I) => {
+        const p = document.createElementNS(NS, 'path');
+        const x0 = I.x, y0 = 700, x1 = c.alvo.x, y1 = c.alvo.y;
+        p.setAttribute('d', `M${x0} ${y0} C ${x0} ${y0 + 60}, ${x1 + (x0 - x1) * 0.15} ${y1 - 70}, ${x1} ${y1}`); p.setAttribute('fill', 'none'); p.setAttribute('stroke', C.limao); p.setAttribute('stroke-width', '5'); p.setAttribute('stroke-linecap', 'round');
+        p.setAttribute('pathLength', '1'); p.style.strokeDasharray = '1'; c.svg.appendChild(p); return p;
+      });
+      c.pulsos = [];
+      c.chegadas = [10.2, 10.55, 10.9, 11.25, 11.6];
+      ITENS.filter((it) => !it.cancelado).forEach((it, i) => {
+        const dot = el('div', null, c.mundo, { position: 'absolute', left: 0, top: 0, width: '30px', height: '30px', margin: '-15px', borderRadius: '50%', background: C.limao, boxShadow: `0 0 26px 8px ${rgba(C.limao, 0.6)}`, display: 'none' });
+        c.pulsos.push({ it, i, curva: c.curvas[origem[it.icone]], dot, chega: c.chegadas[i] });
+        ev(c.chegadas[i] - 0.4, 'pulso_sai'); ev(c.chegadas[i], 'item');
+      });
+      c.volta = { t0: 11.6, t1: 12.0 }; ev(11.6, 'volta'); ev(12.0, 'item_cinza');
+      // 4b · o mergulho no total
+      c.grande = el('div', null, c.mundo, { position: 'absolute', left: 0, top: 0, width: W + 'px', height: H + 'px', display: 'none' });
+      c.gLbl = el('div', null, c.grande, { position: 'absolute', left: '0', right: '0', top: '640px', textAlign: 'center', font: "600 58px 'Geist'", color: C.off }); c.gLbl.textContent = 'Total';
+      c.gVal = qa('conta', 'Total grande', 'valor', valorMono(c.grande, brl(TOTAL_1), 178, C.limao, { left: '540px', top: '730px', transform: 'translateX(-50%)', transformOrigin: '50% 60%', textShadow: `0 0 50px ${rgba(C.limao, 0.35)}` }));
+      c.gSub = el('div', null, c.grande, { position: 'absolute', left: '0', right: '0', top: '960px', textAlign: 'center', font: "500 38px 'Geist'", color: C.cinza }); c.gSub.textContent = 'Mariana Costa · Suíte Mirante';
+      c.mini = el('div', null, c.grande, { position: 'absolute', left: '290px', top: '1090px', width: '500px', height: '300px' });
+      c.miniChips = ITENS.map((it, i) => { const d = el('div', null, c.mini, { position: 'absolute', left: (i % 2) * 260 + 'px', top: Math.floor(i / 2) * 80 + 'px', width: '240px', height: '64px', borderRadius: '14px', background: '#1E221B', font: "700 26px 'Geist Mono'", color: it.cancelado ? C.cinza : C.off, display: 'flex', alignItems: 'center', justifyContent: 'center', textDecoration: it.cancelado ? 'line-through' : 'none' }); d.textContent = brl(it.q * it.un); return d; });
+      qa('conta', 'conta', 'painel', c.k.box); qa('conta', 'Total (barra)', 'valor', c.k.tot); c.icones.forEach((I) => qa('conta', 'icone ' + I.n, 'icone', I.ic.s));
+      ev(12.0, 'mergulho'); ev(12.4, 'pulso');
+    },
+    // 5 · números gigantes: 3 → 4, 2 → 4, e o "+ R$ 34,00" que bate no Total
+    somou(c) {
+      const corte = (ic, de, para, un, v1, v2) => {
+        const g = el('div', null, c.mundo, { position: 'absolute', inset: 0, display: 'none' });
+        const icn = icone(ic, 170, C.preto, 9, g, { left: '80px', top: '410px' });
+        const linha = el('div', null, g, { position: 'absolute', left: '0', right: '0', top: '600px', height: '340px', display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '30px', font: "700 320px 'Geist Mono'", letterSpacing: '-0.05em', lineHeight: '1', perspective: '900px' });
+        const a = el('div', null, linha, { color: C.cinza }); a.textContent = String(de);
+        const seta = el('div', null, linha, { color: C.verde, font: "700 200px 'Geist'", transformOrigin: '0% 50%' }); seta.textContent = '→';
+        const b = el('div', null, linha, { color: C.preto, transformOrigin: '50% 50%', minWidth: '190px', textAlign: 'center' }); b.textContent = String(para);
+        const x = el('div', null, g, { position: 'absolute', left: '540px', top: '958px', textAlign: 'center', translate: '-50% 0', width: 'max-content', font: "700 92px 'Geist Mono'", letterSpacing: '-0.04em', color: C.preto }); x.textContent = `× ${brl(un)}`;
+        const val = el('div', null, g, { position: 'absolute', left: '540px', translate: '-50% 0', width: 'max-content', top: '1150px', height: '120px', display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '22px', font: "700 76px 'Geist Mono'", letterSpacing: '-0.04em' });
+        const va = el('span', null, val, { color: C.cinza, position: 'relative' }); va.textContent = brl(v1);
+        const vr = el('span', null, val, { color: C.verde, font: "700 64px 'Geist'" }); vr.textContent = '→';
+        const vb = el('span', null, val, { color: C.preto, display: 'inline-block' }); vb.textContent = brl(v2);
+        const risco = el('div', null, va, { position: 'absolute', left: '-4px', right: '-4px', top: '50%', height: '6px', background: C.cinza, transformOrigin: '0 50%', transform: 'scaleX(0)' });
+        qa('somou', `${de} → ${para}`, 'valor', linha); qa('somou', `× ${brl(un)}`, 'valor', x); qa('somou', `${brl(v1)} → ${brl(v2)}`, 'valor', val);
+        return { g, icn, a, seta, b, x, val, va, vb, risco };
+      };
+      c.c1 = corte('copo', 3, 4, 22, 66, 88); c.c2 = corte('garrafa', 2, 4, 6, 12, 24);
+      c.c3 = el('div', null, c.mundo, { position: 'absolute', inset: 0, display: 'none' });
+      c.tLbl = el('div', null, c.c3, { position: 'absolute', left: 0, right: 0, top: '520px', textAlign: 'center', font: "600 60px 'Geist'", color: C.cinzaE }); c.tLbl.textContent = 'Total';
+      c.tVal = qa('somou', 'Total 287 → 321', 'valor', valorMono(c.c3, brl(TOTAL_1), 176, C.preto, { left: '540px', top: '610px', transform: 'translateX(-50%)', transformOrigin: '50% 60%' }));
+      c.tAntes = el('div', null, c.c3, { position: 'absolute', left: 0, right: 0, top: '850px', textAlign: 'center', font: "600 54px 'Geist Mono'", color: C.cinza, letterSpacing: '-0.03em' }); c.tAntes.textContent = `${brl(TOTAL_1)} → ${brl(TOTAL_2)}`;
+      c.chip = qa('somou', '+ R$ 34,00', 'chip', el('div', null, c.c3, { position: 'absolute', left: 0, top: 0, height: '120px', padding: '0 46px', borderRadius: '999px', background: C.limao, color: C.preto, font: "700 76px 'Geist Mono'", letterSpacing: '-0.04em', display: 'flex', alignItems: 'center', whiteSpace: 'nowrap', boxShadow: '0 30px 60px rgba(0,0,0,.25)' }));
+      c.chip.textContent = `+ ${brl(TOTAL_2 - TOTAL_1)}`;
+      ev(15.0, 'vira'); ev(15.35, 'troca'); ev(16.5, 'desliza'); ev(17.0, 'vira'); ev(17.35, 'troca'); ev(18.5, 'desliza'); ev(18.9, 'bate'); ev(19.0, 'conta', { dur: 0.55 }); ev(19.55, 'pulso');
+    },
+    // 6 · o cartão da Cerveja cancelada: risco, carimbo com tremor; volta para a coluna, cinza, e não some
+    cancelou(c) {
+      c.card = qa('cancelou', 'cartão cancelado', 'valor', el('div', null, c.mundo, { position: 'absolute', left: '90px', top: '616px', width: '880px', height: '360px', borderRadius: '40px', background: C.off, color: C.preto, transformOrigin: '50% 50%', boxShadow: '0 40px 100px rgba(0,0,0,.55)', overflow: 'visible' }));
+      el('div', null, c.card, { position: 'absolute', left: 0, top: 0, bottom: 0, width: '14px', borderRadius: '40px 0 0 40px', background: C.limao });
+      c.cNome = el('div', null, c.card, { position: 'absolute', left: '62px', top: '52px', font: "700 66px 'Geist'", letterSpacing: '-0.02em' }); c.cNome.textContent = 'Cerveja long neck';
+      el('div', null, c.card, { position: 'absolute', left: '64px', top: '138px', font: "500 40px 'Geist'", color: C.cinzaE }).textContent = 'Frigobar';
+      c.cVal = el('div', null, c.card, { position: 'absolute', left: '60px', top: '214px', font: "700 104px 'Geist Mono'", letterSpacing: '-0.05em' }); c.cVal.textContent = `1 × ${brl(14)}`;
+      c.risco = el('div', null, c.card, { position: 'absolute', left: '44px', top: '92px', width: '640px', height: '11px', borderRadius: '6px', background: C.preto, transformOrigin: '0 50%', transform: 'scaleX(0) rotate(-2deg)' });
+      c.risco2 = el('div', null, c.card, { position: 'absolute', left: '44px', top: '272px', width: '700px', height: '12px', borderRadius: '6px', background: C.preto, transformOrigin: '0 50%', transform: 'scaleX(0) rotate(-2deg)' });
+      c.selo = el('div', null, c.card, { position: 'absolute', right: '40px', top: '-46px', padding: '10px 30px', border: `9px solid ${C.preto}`, borderRadius: '20px', background: C.limao, font: "900 72px 'ID'", letterSpacing: '0.02em', color: C.preto, transformOrigin: '50% 50%', display: 'none' });
+      c.selo.textContent = 'CANCELADO';
+      c.k = conta(c.mundo, 240, 640, 600, true); c.k.box.style.display = 'none';
+      ev(20.55, 'risco'); ev(21.25, 'carimbo'); ev(22.5, 'encolhe'); ev(23.0, 'encaixa');
+    },
+    // 7 · a coluna se compacta num único cartão "Total R$ 321,00" gigante, que fecha com o check desenhado
+    pronta(c) {
+      c.k = conta(c.mundo, 240, 600, 600, true);
+      c.tc = qa('pronta', 'Total R$ 321,00', 'valor', el('div', null, c.mundo, { position: 'absolute', left: '120px', top: '560px', width: '800px', height: '390px', borderRadius: '44px', background: C.off, color: C.preto, transformOrigin: '50% 50%', display: 'none', boxShadow: '0 50px 120px rgba(0,0,0,.6)' }));
+      el('div', null, c.tc, { position: 'absolute', left: '60px', top: '64px', font: "600 54px 'Geist'", color: C.cinzaE }).textContent = 'Total';
+      c.tcV = el('div', null, c.tc, { position: 'absolute', left: '50px', top: '176px', font: "700 140px 'Geist Mono'", letterSpacing: '-0.05em', whiteSpace: 'nowrap' }); c.tcV.textContent = brl(TOTAL_2);
+      c.ckBox = el('div', null, c.tc, { position: 'absolute', right: '52px', top: '46px', width: '128px', height: '128px', borderRadius: '30px', background: C.preto });
+      c.ck = icone('check', 84, C.limao, 13, c.ckBox, { left: '22px', top: '22px' });
+      c.wipe = el('div', null, c.mundo, { position: 'absolute', left: '-100px', width: W + 200 + 'px', top: H + 'px', height: H + 400 + 'px', background: C.limao, transform: 'skewY(-6deg)' });
+      ev(24.2, 'compacta'); ev(24.75, 'impacto'); ev(25.4, 'check'); ev(27.1, 'abre');
+    },
+    // 8 · a marca se monta sobre o verde-limão
+    marca(c) {
+      c.card = qa('marca', 'marca', 'marca', el('div', null, c.mundo, { position: 'absolute', left: '100px', top: '700px', width: '880px', height: '280px', borderRadius: '48px', background: C.preto, transformOrigin: '50% 50%', overflow: 'hidden' }));
+      const K = 0.58, mk = (x0, x1, left) => { const box = el('div', null, c.card, { position: 'absolute', left: left + 'px', top: (280 - 216 * K) / 2 + 'px', width: (x1 - x0) * K + 'px', height: 216 * K + 'px', overflow: 'hidden' }); const i = el('img', null, box, { position: 'absolute', left: -x0 * K + 'px', top: '0', width: 1248 * K + 'px', height: 216 * K + 'px' }); i.src = 'logo.png'; i.decoding = 'sync'; return box; };
+      c.palavra = mk(0, 640, (880 - 1248 * K) / 2); c.pilula = mk(640, 1248, (880 - 1248 * K) / 2 + 640 * K);
+      c.listras = el('div', null, c.fundoEl, { position: 'absolute', inset: '-400px', background: `repeating-linear-gradient(115deg, ${rgba(C.preto, 0.05)} 0 3px, transparent 3px 46px)` });
+      ev(27.6, 'monta'); ev(28.1, 'marca');
+    },
+  };
+
+  // ---------------- animação de cada cena (lt = tempo local) ----------------
+  const ANIMA = {
+    gancho(c, t) {
+      traca(c.copo, 0.45 + 0.55 * ramp(t, 0, 0.9, EZ.io), false);
+      c.copo.s.style.transform = `rotate(${Math.sin(t * 1.7) * 3}deg) translateY(${Math.sin(t * 2.2) * 8}px)`;
+      if (c.copo.gelo) c.copo.gelo.setAttribute('transform', `translate(${Math.sin(t * 3) * 0.35} ${Math.sin(t * 4.1) * 0.5}) rotate(${Math.sin(t * 2.6) * 6} 12 15)`);
+      c.gotas.forEach((g, i) => { const f = ((t * 1.2 + i * 0.21) % 1); g.style.transform = `translate(${260 + i * 36 + Math.sin(i * 3) * 20}px, ${1150 + f * 120}px) scale(${1 - f * 0.5})`; g.style.opacity = (1 - f) * 0.9; });
+      const b = batida(t, 0.15);
+      c.preco.style.transform = `scale(${1 + 0.1 * b}) translateX(${Math.sin(t * 1.4) * 6}px)`;
+      c.q.style.transform = `rotate(${8 + Math.sin(t * 2.4) * 6}deg) scale(${1 + 0.14 * b})`; c.q.style.textShadow = `0 0 ${30 + 50 * b}px ${rgba(C.limao, 0.55)}`;
+    },
+    origens(c, t, T) {
+      // a câmera: copo → garrafa → prato (deslizes rápidos na batida) → recua mostrando os três
+      const x1 = ramp(T, 4.3, 4.5, EZ.io), x2 = ramp(T, 5.1, 5.3, EZ.io), rec = ramp(T, 5.6, 5.85, EZ.io);
+      const cx = lerp(lerp(0, W, x1), 2 * W, x2), esc = lerp(1, 0.31, rec), tx = lerp(-cx, (W - 3 * W * 0.31) / 2, rec), ty = lerp(0, 600, rec);
+      c.trilho.style.transform = `translate(${tx + Math.sin(t * 2) * 6}px, ${ty}px) scale(${esc})`;
+      c.paineis.forEach((p, i) => {
+        traca(p.icn, ramp(T, p.chegada, p.chegada + 0.45, EZ.io));
+        p.icn.s.style.transform = `rotate(${Math.sin(T * 2.3 + i) * 4}deg) translateY(${Math.sin(T * 3 + i) * 10}px)`;
+        const e = EZ.elastico(clamp((T - p.chegada - 0.25) / 0.5));
+        p.pv.style.transform = `translateX(-50%) scale(${0.2 + 0.8 * e}) rotate(${(1 - clamp(e)) * -8}deg)`; p.pv.style.opacity = clamp(e * 3);
+        const s = EZ.back(clamp((T - p.chegada - 0.1) / 0.35)); p.et.style.transform = `translateX(-50%) translateY(${(1 - clamp(s)) * 50}px) scale(${0.8 + 0.2 * s})`; p.et.style.opacity = clamp(s * 2);
+      });
+    },
+    bilhetes(c, t, T) {
+      const emb = ramp(T, 7.5, 7.9, EZ.io);
+      const troca = [[0, 2], [1, 0], [2, 1]];
+      c.notas.forEach((n, i) => {
+        const ent = EZ.back(clamp((T - 6.0 - i * 0.12) / 0.45));
+        let x = n.x, y = n.y;
+        if (i < 3) { const o = c.notas[troca[i][1]]; x = lerp(n.x, o.x, emb * (Math.sin(T) * 0 + 1) * (T < 8.6 ? 1 : 1)); y = lerp(n.y, o.y, emb); }
+        x += Math.sin(T * 1.6 + i * 2) * 26; y += Math.cos(T * 1.3 + i) * 18;
+        let r = n.r + Math.sin(T * 1.8 + i) * (n.tipo === 'torto' ? 9 : 4) + emb * (i % 2 ? 14 : -14) * (1 - ramp(T, 8.4, 9.0));
+        let op = clamp(ent * 2);
+        if (n.tipo === 'escapa') { const q = clamp((T - 8.2) / 0.9); x = lerp(x, 1550, EZ.quad(q)); y = y + 260 * EZ.quad(q); r += 120 * q; }
+        const bw = n.d.offsetWidth, bh = n.d.offsetHeight;
+        n.d.style.transform = `translate(${x - bw / 2 - (1 - clamp(ent)) * (i % 2 ? -300 : 300)}px, ${y - bh / 2}px) rotate(${r}deg) scale(${0.85 + 0.15 * ent})`;
+        n.d.style.opacity = op;
+      });
+    },
+    conta(c, t, T) {
+      const mer = ramp(T, 11.95, 12.3, EZ.in);
+      // os ícones e as curvas
+      c.icones.forEach((I, i) => { traca(I.ic, ramp(T, 9.55 + i * 0.12, 9.95 + i * 0.12, EZ.io)); I.ic.s.style.transform = `translateY(${Math.sin(T * 3 + i) * 8}px) rotate(${Math.sin(T * 2 + i) * 4}deg)`; });
+      c.curvas.forEach((p, i) => { p.style.strokeDashoffset = String(1 - ramp(T, 9.7 + i * 0.1, 10.1 + i * 0.1, EZ.io)); p.style.opacity = 0.35 + 0.25 * Math.sin(T * 6 + i); });
+      // os pulsos viajando nas curvas; ao chegar, viram um item da conta
+      let tot = 0;
+      for (const P of c.pulsos) {
+        const u = clamp((T - (P.chega - 0.4)) / 0.4), vis = u > 0 && u < 1; P.dot.style.display = vis ? 'block' : 'none';
+        if (vis) { const L = P.curva.getTotalLength ? P.curva : null; const pt = P.curva.getPointAtLength(EZ.in(u) * P.curva.getTotalLength()); P.dot.style.transform = `translate(${pt.x}px, ${pt.y}px) scale(${1 + 0.3 * Math.sin(u * 10)})`; }
+        const ch = c.k.chips[P.i], a = EZ.back(clamp((T - P.chega) / 0.35));
+        ch.d.style.opacity = clamp(a * 2); ch.d.style.transform = `translateY(${(1 - clamp(a)) * -60}px) scale(${0.9 + 0.1 * a + 0.05 * kick(T, P.chega, 0.4)})`;
+        ch.d.style.boxShadow = `inset 0 0 0 ${3 * kick(T, P.chega, 0.6) * 2}px ${C.limao}`;
+        tot += P.it.q * P.it.un * EZ.out(clamp((T - P.chega) / 0.3));
+      }
+      // a cerveja que escapou volta pela lateral (esquerda) e entra também, em cinza (cancelada, não soma)
+      const cv = c.k.chips[5], vu = EZ.out(clamp((T - c.volta.t0) / 0.4));
+      cv.d.style.opacity = T >= c.volta.t0 ? 1 : 0; cv.d.style.transform = `translateX(${(1 - vu) * -760}px) rotate(${(1 - vu) * -14}deg)`; cv.d.style.color = C.cinza; cv.v.style.color = C.cinza;
+      cv.risco.style.transform = `scaleX(${ramp(T, c.volta.t1, c.volta.t1 + 0.3)})`;
+      c.k.tot.textContent = brl(tot); c.k.tot.style.transform = `scale(${1 + 0.12 * Math.max(...c.chegadas.map((x) => kick(T, x, 0.35)))})`;
+      c.k.box.style.transform = `translateY(${Math.sin(T * 1.4) * 6}px) scale(${1 + mer * 0.6})`; c.k.box.style.opacity = 1 - clamp(mer * 3.5);
+      c.icones.forEach((I) => { I.ic.s.style.opacity = 1 - mer; }); c.svg.style.opacity = 1 - mer;
+      // 4b · o total grande
+      const g = ramp(T, 12.15, 12.55, EZ.out); c.grande.style.display = T >= 12.15 ? 'block' : 'none';
+      if (T >= 12.15) {
+        c.grande.style.opacity = g; c.grande.style.transform = `scale(${0.7 + 0.3 * g})`; c.grande.style.transformOrigin = '540px 820px';
+        c.gVal.textContent = brl(TOTAL_1);
+        c.gVal.style.transform = `translateX(-50%) scale(${1 + 0.16 * kick(T, 12.4, 0.5) + 0.04 * batida(T, 0.2)}) rotate(${Math.sin(T * 2.3) * 1.5}deg)`;
+        c.miniChips.forEach((d, i) => { const a = EZ.back(clamp((T - 12.5 - i * 0.08) / 0.3)); d.style.opacity = clamp(a * 2); d.style.transform = `translateY(${(1 - clamp(a)) * 40 + Math.sin(T * 3 + i) * 5}px)`; });
+      }
+    },
+    somou(c, t, T) {
+      const vis1 = T < 16.75, vis2 = T >= 16.3 && T < 18.75, vis3 = T >= 18.3;
+      const sl = (a) => EZ.io(clamp((T - a) / 0.25));
+      const anim = (k, t0, sai) => {
+        const lt = T - t0;
+        traca(k.icn, ramp(lt, 0, 0.4, EZ.io)); k.icn.s.style.transform = `rotate(${Math.sin(T * 2.4) * 5}deg) translateY(${Math.sin(T * 3) * 8}px)`;
+        k.seta.style.transform = `scaleX(${ramp(lt, 0.15, 0.4)})`;
+        const f = clamp((lt - 0.5) / 0.3);                                                                   // o placar vira
+        k.b.style.transform = `rotateX(${f < 0.5 ? -90 + 0 : 0}deg)`; k.b.style.transform = `rotateX(${lerp(-90, 0, EZ.out(clamp((lt - 0.5) / 0.25)))}deg) scale(${1 + 0.12 * kick(lt, 0.75, 0.5)})`;
+        k.b.style.opacity = lt > 0.5 ? 1 : 0;
+        k.a.style.transform = `translateY(${Math.sin(T * 2) * 6}px)`;
+        const xu = EZ.back(clamp((lt - 0.2) / 0.35)); k.x.style.transform = `translateY(${(1 - clamp(xu)) * 60}px) scale(${1 + 0.05 * batida(T)})`; k.x.style.opacity = clamp(xu * 2);
+        k.risco.style.transform = `scaleX(${ramp(lt, 0.85, 1.05)})`;
+        const vb = EZ.elastico(clamp((lt - 0.85) / 0.5)); k.vb.style.transform = `scale(${0.3 + 0.7 * vb})`; k.vb.style.opacity = clamp(vb * 3);
+        k.g.style.transform = `translateX(${sai * -W}px)`;
+      };
+      c.c1.g.style.display = vis1 ? 'block' : 'none'; if (vis1) { anim(c.c1, 14.5, sl(16.45)); c.c1.g.style.transform += ` translateX(${(1 - sl(14.5)) * 0}px)`; }
+      c.c2.g.style.display = vis2 ? 'block' : 'none'; if (vis2) { anim(c.c2, 16.5, sl(18.45)); c.c2.g.style.transform = `translateX(${(1 - sl(16.35)) * W - sl(18.45) * W}px)`; }
+      c.c3.style.display = vis3 ? 'block' : 'none';
+      if (vis3) {
+        c.c3.style.transform = `translateX(${(1 - sl(18.35)) * W}px)`;
+        const hit = 18.9, u = EZ.in(clamp((T - 18.55) / (hit - 18.55)));
+        const w = c.chip.offsetWidth;
+        c.chip.style.display = T < hit + 0.35 ? 'flex' : 'none';
+        c.chip.style.transform = `translate(${lerp(-w - 40, 540 - w / 2, u)}px, ${lerp(1240, 700, u) - Math.sin(u * Math.PI) * 120 - ramp(T, hit, hit + 0.35) * 60}px) rotate(${lerp(-14, 0, u)}deg) scale(${1 + 0.3 * ramp(T, hit, hit + 0.35)})`;
+        c.chip.style.opacity = 1 - ramp(T, hit, hit + 0.35);
+        const cnt = lerp(TOTAL_1, TOTAL_2, EZ.io(clamp((T - 19.0) / 0.55)));
+        c.tVal.textContent = brl(cnt);
+        c.tVal.style.transform = `translateX(-50%) scale(${1 + 0.18 * kick(T, hit, 0.4) + 0.2 * kick(T, 19.55, 0.5) + 0.03 * batida(T)}) translateY(${-kick(T, 19.55, 0.4) * 30}px)`;
+        c.tVal.style.color = T >= 19.55 ? C.preto : C.preto;
+        c.tAntes.style.opacity = ramp(T, 19.6, 19.8); c.tLbl.style.transform = `translateY(${Math.sin(T * 2) * 5}px)`;
+      }
+    },
+    cancelou(c, t, T) {
+      const enc = ramp(T, 22.5, 23.0, EZ.io);
+      const shake = kick(T, 21.25, 0.35);
+      c.mundo.style.transform = `translate(${Math.sin(T * 90) * 18 * shake}px, ${Math.cos(T * 77) * 14 * shake}px)`;
+      c.card.style.transform = `translate(${lerp(0, 0, enc)}px, ${lerp(Math.sin(T * 1.9) * 10, 0, enc)}px) rotate(${Math.sin(T * 1.5) * 1.5 * (1 - enc)}deg) scale(${lerp(1, 0, 0)})`;
+      c.risco.style.transform = `scaleX(${ramp(T, 20.55, 20.85, EZ.io)}) rotate(-2deg)`; c.risco2.style.transform = `scaleX(${ramp(T, 20.75, 21.05, EZ.io)}) rotate(-2deg)`;
+      c.cNome.style.color = T > 20.8 ? C.cinzaE : C.preto; c.cVal.style.color = T > 20.9 ? C.cinzaE : C.preto;
+      const s = clamp((T - 21.25) / 0.16); c.selo.style.display = T >= 21.12 ? 'block' : 'none';
+      c.selo.style.transform = `rotate(-9deg) scale(${T < 21.25 ? lerp(2.6, 1, EZ.in(clamp((T - 21.12) / 0.13))) : 1 + 0.06 * kick(T, 21.25, 0.3) + 0.02 * batida(T)})`; c.selo.style.opacity = clamp((T - 21.12) / 0.06);
+      // o cartão encolhe e volta para a coluna: o item fica lá, cinza
+      c.k.box.style.display = T >= 22.45 ? 'block' : 'none';
+      if (T >= 22.45) {
+        const a = ramp(T, 22.45, 22.85, EZ.out);
+        c.k.box.style.opacity = a; c.k.box.style.transform = `translateY(${(1 - a) * 80 + Math.sin(T * 1.4) * 5}px)`;
+        c.k.chips.forEach((ch, i) => { ch.d.style.opacity = i < 5 ? 1 : (T >= 23.0 ? 1 : 0); if (i === 5) { ch.d.style.color = C.cinza; ch.v.style.color = C.cinza; ch.risco.style.transform = 'scaleX(1)'; ch.d.style.boxShadow = `inset 0 0 0 ${6 * kick(T, 23.0, 0.7)}px ${C.limao}`; ch.d.style.transform = `scale(${1 + 0.08 * kick(T, 23.0, 0.5)})`; } });
+        c.k.tot.textContent = brl(TOTAL_2);
+        const rc = c.k.chips[5].d, alvoY = 640 + 118 + 5 * 70 + 30;                                          // o cartão viaja até a linha dele
+        c.card.style.transformOrigin = '50% 50%';
+        c.card.style.transform = `translate(0px, ${lerp(0, alvoY - 830, EZ.in(enc))}px) scale(${lerp(1, 0.6, EZ.out(clamp(enc * 1.6)))})`;
+        c.card.style.opacity = 1 - ramp(T, 22.9, 23.05);
+      } else c.card.style.opacity = 1;
+    },
+    pronta(c, t, T) {
+      const comp = ramp(T, 24.15, 24.7, EZ.in);
+      c.k.box.style.display = T < 24.8 ? 'block' : 'none';
+      c.k.chips.forEach((ch, i) => { ch.d.style.opacity = 1; if (i === 5) { ch.d.style.color = C.cinza; ch.v.style.color = C.cinza; ch.risco.style.transform = 'scaleX(1)'; } ch.d.style.transform = `translateY(${(270 - (118 + i * 70)) * comp}px) scale(${1 - 0.2 * comp})`; });
+      c.k.tot.textContent = brl(TOTAL_2);
+      c.k.box.style.transform = `scaleY(${1 - 0.45 * comp}) translateY(${Math.sin(T * 1.6) * 5}px)`; c.k.box.style.opacity = 1 - ramp(T, 24.6, 24.8);
+      const a = EZ.back(clamp((T - 24.7) / 0.4));
+      c.tc.style.display = T >= 24.7 ? 'block' : 'none';
+      c.tc.style.transform = `scale(${0.4 + 0.6 * a + 0.03 * Math.sin(T * 2.2) + 0.05 * kick(T, 25.8, 0.5)}) rotate(${Math.sin(T * 1.3) * 1.2}deg)`; c.tc.style.opacity = clamp(a * 2);
+      traca(c.ck, ramp(T, 25.4, 25.8, EZ.io), false); c.ckBox.style.transform = `scale(${1 + 0.15 * kick(T, 25.8, 0.5)})`;
+      c.tcV.style.transform = `translateY(${Math.sin(T * 2.6) * 4}px)`;
+      const w = ramp(T, 27.05, 27.5, EZ.in); c.wipe.style.transform = `translateY(${-w * (H + 500)}px) skewY(-6deg)`;
+    },
+    marca(c, t, T) {
+      const a = EZ.back(clamp((T - 27.55) / 0.4));
+      c.card.style.transform = `translateY(${Math.sin(T * 2) * 6}px) scale(${0.45 + 0.55 * a + 0.015 * Math.sin(T * 3)}) rotate(${(1 - clamp(a)) * -8 + Math.sin(T * 1.7) * 1.0}deg)`; c.card.style.opacity = clamp(a * 2);
+      const r = ramp(T, 27.85, 28.3, EZ.io); c.palavra.style.clipPath = `inset(0 ${(1 - r) * 100}% 0 0)`;
+      const p = EZ.elastico(clamp((T - 28.15) / 0.55)); c.pilula.style.transform = `scale(${p}) translateY(${Math.sin(T * 4) * 3}px)`; c.pilula.style.transformOrigin = '30% 50%';
+      c.listras.style.transform = `translateX(${(T - 27.5) * 60}px)`;
+    },
+  };
+
+  // ---------------- transições ----------------
+  function render(t) {
+    for (let i = 0; i < CENAS.length; i++) {
+      const c = CENAS[i], nx = CENAS[i + 1];
+      const ent = c.entrada, b0 = c.t0, b1 = c.t1;
+      const pre = ent === 'desliza' || ent === 'desliza-v' ? 0.15 : ent === 'cortina' ? 0.3 : ent === 'mergulho' ? 0.1 : 0;
+      const pos = nx ? (nx.entrada === 'desliza' || nx.entrada === 'desliza-v' ? 0.2 : nx.entrada === 'mergulho' ? 0.22 : nx.entrada === 'cortina' ? 0.05 : 0) : 0;
+      const vis = t >= b0 - pre && t < b1 + pos;
+      c.el.style.display = vis ? 'block' : 'none'; if (!vis) continue;
+      c.el.style.zIndex = String(i + 1);
+      let tr = '', op = 1;
+      // entrada
+      if (ent === 'desliza') { const u = EZ.io(clamp((t - (b0 - 0.15)) / 0.35)); tr += `translateX(${(1 - u) * W}px) `; }
+      if (ent === 'desliza-v') { const u = EZ.io(clamp((t - (b0 - 0.15)) / 0.35)); tr += `translateY(${(1 - u) * H}px) `; }
+      if (ent === 'cortina') { const u = EZ.io(clamp((t - (b0 - 0.3)) / 0.4)); tr += `translateY(${(1 - u) * H}px) skewY(${(1 - u) * -5}deg) `; }
+      if (ent === 'mergulho') { const u = EZ.out(clamp((t - (b0 - 0.1)) / 0.35)); tr += `scale(${0.55 + 0.45 * u}) `; op = clamp(u * 2.5); }
+      // saída (a próxima cena entra por cima)
+      if (nx && t >= b1 - 0.4) {
+        if (nx.entrada === 'desliza') { const u = EZ.io(clamp((t - (b1 - 0.15)) / 0.35)); tr = `translateX(${-u * W * 0.45}px) ` + tr; }
+        if (nx.entrada === 'desliza-v') { const u = EZ.io(clamp((t - (b1 - 0.15)) / 0.35)); tr = `translateY(${-u * H * 0.35}px) ` + tr; }
+        if (nx.entrada === 'mergulho') { const u = EZ.in(clamp((t - (b1 - 0.2)) / 0.3)); tr = `scale(${1 + 2.2 * u}) ` + tr; op *= 1 - u; }
+      }
+      c.el.style.transform = tr; c.el.style.opacity = op;
+      const lt = t - b0;
+      // a câmera da cena: deriva lenta (nada fica parado)
+      c.mundo.style.transformOrigin = '540px 900px';
+      if (!['cancelou'].includes(c.id)) c.mundo.style.transform = `scale(${1 + 0.035 * clamp(lt / (b1 - b0), -0.2, 1.2)}) rotate(${Math.sin(lt * 0.9) * 0.6}deg)`;
+      animaManchete(c, lt); animaParticulas(c, lt);
+      ANIMA[c.id](c, lt, t);
     }
+    // a falha digital (entrada da cena 3 e da cena 6) e o clarão dos cortes secos
+    const gl = CENAS.filter((c) => c.entrada === 'falha').map((c) => c.t0).find((b) => t >= b - 0.08 && t < b + 0.22);
+    GLITCH.style.display = gl != null ? 'block' : 'none';
+    if (gl != null) {
+      [...GLITCH.children].forEach((d, i) => { const r1 = rnd(Math.floor(t * 60) * 13 + i), r2 = rnd(Math.floor(t * 60) * 7 + i * 3); Object.assign(d.style, { top: r1 * H + 'px', height: 12 + r2 * 70 + 'px', background: i % 3 === 0 ? rgba(C.limao, 0.85) : i % 3 === 1 ? rgba(C.off, 0.6) : rgba(C.preto, 0.9), transform: `translateX(${(r2 - 0.5) * 200}px)` }); });
+      const atual = CENAS.find((c) => t >= c.t0 && t < c.t1);
+      if (atual) atual.el.style.filter = `drop-shadow(${8 * Math.sin(t * 200)}px 0 0 rgba(255,0,90,.75)) drop-shadow(${-8 * Math.sin(t * 200)}px 0 0 rgba(0,240,255,.75))`;
+    }
+    CENAS.forEach((c) => { if (gl == null || !(t >= c.t0 && t < c.t1)) c.el.style.filter = ''; });
+    const corte = CENAS.filter((c) => c.entrada === 'corte').map((c) => c.t0).find((b) => t >= b && t < b + 0.12);
+    const carimbo = kick(t, 21.25, 0.12);
+    FLASH.style.opacity = corte != null ? 0.85 * (1 - (t - corte) / 0.12) : 0.25 * carimbo;
+    FLASH.style.zIndex = '50'; GLITCH.style.zIndex = '51';
   }
 
-  // caixas do quadro para o QA
+  // ---------------- caixas para o QA ----------------
   function caixas(t) {
-    renderAt(t);
+    render(t);
     const R0 = ROOT.getBoundingClientRect(), k = R0.width / W, out = [];
     const bx = (e) => { const b = e.getBoundingClientRect(); return { x0: (b.left - R0.left) / k, y0: (b.top - R0.top) / k, x1: (b.right - R0.left) / k, y1: (b.bottom - R0.top) / k }; };
-    const add = (nome, tipo, e) => { if (!e || e.style.display === 'none') return; const op = e.style.opacity === '' ? 1 : +e.style.opacity; if (op < 0.05) return; out.push({ nome, tipo, ...bx(e), op }); };
-    for (const it of ITENS) add(it.id, 'cartao', CARTOES[it.id].d);
-    for (const k2 in ETIQ_EL) add(k2, 'etiqueta', ETIQ_EL[k2]);
-    for (const k2 in CHIP_EL) add(k2, 'chip', CHIP_EL[k2]);
-    add('comanda', 'painel', PAINEL_EL); add('total', 'total', TOTAL_EL); add('?', 'grafico', Q_EL); add('marca', 'marca', LOGO);
-    BOXES = []; textos(t); out.push(...BOXES); BOXES = null;
-    const card = (id) => { const K = CARTOES[id]; return { q: K.q2.style.opacity > 0.5 ? K.q2.textContent : K.q1.textContent, v: K.v2.style.opacity > 0.5 ? K.v2.textContent : K.v1.textContent, cancelado: K.selo.style.display === 'flex' }; };
-    return { caixas: out, contador: CONT_EL.textContent, cartoes: Object.fromEntries(ITENS.map((it) => [it.id, card(it.id)])) };
+    const visivel = (e) => { let n = e; let op = 1; while (n && n !== ROOT) { const cs = getComputedStyle(n); if (cs.display === 'none') return 0; op *= +cs.opacity; n = n.parentElement; } return op; };
+    for (const q of QA) { const op = visivel(q.e); if (op < 0.3) continue; out.push({ cena: q.cena, nome: q.nome, tipo: q.tipo, op, ...bx(q.e) }); }
+    const ativa = CENAS.find((c) => t >= c.t0 && t < c.t1) || CENAS[CENAS.length - 1];
+    return { caixas: out, cena: ativa.id, fundo: ativa.fundo };
   }
 
-  // ---------------- capa: o cartão da Caipirinha grande, o "?" e dois cartões ao fundo ----------------
+  // ---------------- capa: manchete + o copo grande em traço limão + "R$ 22,00" + "?" ----------------
   async function capaGrade() {
-    const desenhaCartao = (c, it, cx, cy, s, rot, ap = 1, comQtd = true) => {
-      c.save(); c.translate(cx, cy); c.rotate(rot * Math.PI / 180); c.scale(s, s); c.globalAlpha = ap;
-      const w = CARD.w, h = CARD.h;
-      c.shadowColor = 'rgba(0,0,0,.6)'; c.shadowBlur = 60 / s; c.shadowOffsetY = 26 / s;
-      c.beginPath(); c.roundRect(-w / 2, -h / 2, w, h, 26); c.fillStyle = C.off; c.fill(); c.shadowColor = 'transparent';
-      c.save(); c.clip(); c.fillStyle = C.limao; c.fillRect(-w / 2, -h / 2, 8, h); c.restore();
-      c.textBaseline = 'alphabetic';
-      c.font = "600 32px 'Geist'"; c.fillStyle = C.preto; if (c.letterSpacing !== undefined) c.letterSpacing = '-0.3px'; c.fillText(it.nome, -w / 2 + 34, -h / 2 + 50);
-      if (c.letterSpacing !== undefined) c.letterSpacing = '0px';
-      c.beginPath(); c.arc(-w / 2 + 38, -h / 2 + 80, 4.5, 0, Math.PI * 2); c.fillStyle = C.limao; c.fill();
-      c.font = "500 22px 'Geist'"; c.fillStyle = C.cinza; const o = it.origem + (comQtd ? ' ·' : ''); c.fillText(o, -w / 2 + 53, -h / 2 + 88);
-      if (comQtd) { const ow = c.measureText(o + ' ').width; c.font = "500 22px 'Geist Mono'"; c.fillText(`${it.q} × ${brl(it.un)}`, -w / 2 + 53 + ow, -h / 2 + 88); }
-      c.font = "600 34px 'Geist Mono'"; c.fillStyle = C.preto; c.textAlign = 'right'; c.fillText(comQtd ? brl(it.q * it.un) : brl(it.un), w / 2 - 30, 12); c.textAlign = 'left';
-      c.restore();
-    };
     const desenha = (c, DY) => {
-      const g = c.createRadialGradient(540, 980, 40, 540, 980, 1200); g.addColorStop(0, '#191B17'); g.addColorStop(0.58, '#0C0D0B'); g.addColorStop(1, '#060606'); c.fillStyle = g; c.fillRect(0, 0, W, H);
-      const luz = c.createRadialGradient(560, 1020, 10, 560, 1020, 620); luz.addColorStop(0, 'rgba(175,250,39,0.10)'); luz.addColorStop(1, 'rgba(175,250,39,0)'); c.fillStyle = luz; c.fillRect(0, 0, W, H);
-      const TIT = { px: 84 }, ty = 440 + DY;
-      c.textBaseline = 'alphabetic'; c.font = `900 ${TIT.px}px ID`; if (c.letterSpacing !== undefined) c.letterSpacing = '-2.1px';
-      c.fillStyle = C.off; c.fillText('A caipirinha da piscina', 90, ty + TIT.px * 0.82); const w1 = c.measureText('A caipirinha da piscina').width;
-      c.fillStyle = C.limao; c.fillText('entrou na conta?', 90, ty + TIT.px * 1.84); const w2 = c.measureText('entrou na conta?').width;
+      c.fillStyle = C.preto; c.fillRect(0, 0, W, H);
+      const g = c.createRadialGradient(540, 1000, 20, 540, 1000, 700); g.addColorStop(0, 'rgba(175,250,39,0.10)'); g.addColorStop(1, 'rgba(175,250,39,0)'); c.fillStyle = g; c.fillRect(0, 0, W, H);
+      const px = 84, ty = 440 + DY;
+      c.textBaseline = 'alphabetic'; c.font = `900 ${px}px ID`; if (c.letterSpacing !== undefined) c.letterSpacing = '-2.1px';
+      c.fillStyle = C.off; c.fillText('A caipirinha da piscina', 80, ty + px * 0.82); const w1 = c.measureText('A caipirinha da piscina').width;
+      c.fillStyle = C.limao; c.fillText('entrou na conta?', 80, ty + px * 1.80); const w2 = c.measureText('entrou na conta?').width;
       if (c.letterSpacing !== undefined) c.letterSpacing = '0px';
-      const caixas = [{ nome: 'título', x0: 90, y0: ty, x1: 90 + Math.max(w1, w2), y1: ty + TIT.px * 2.05 }];
-      const base = ty + TIT.px * 2.05 + 56;
-      // a caixa de um cartão girado (para a revisão da capa)
-      const ext = (cx, cy, sc, rot) => { const r = Math.abs(rot) * Math.PI / 180, hw = CARD.w * sc / 2, hh = CARD.h * sc / 2, ex = hw * Math.cos(r) + hh * Math.sin(r), ey = hw * Math.sin(r) + hh * Math.cos(r); return { x0: cx - ex, y0: cy - ey, x1: cx + ex, y1: cy + ey }; };
-      const P_ = [[ITENS[3], 600, base + 120, 1.08, 6, 0.5, 2], [ITENS[1], 470, base + 696, 1.1, -7, 0.62, 1.4], [ITENS[0], 530, base + 430, 1.34, -4, 1, 0]];
-      const bs = [];
-      // ao fundo, com profundidade: Risoto de cogumelos e Água sem gás, mais escuros e desfocados
-      for (const [it, x, y, sc, rot, ap, bl] of P_) {
-        c.save(); if (bl) c.filter = `blur(${bl}px)`; desenhaCartao(c, it, x, y, sc, rot, ap, it.id !== 'caipirinha'); c.restore();
-        bs.push(ext(x, y, sc, rot));
-      }
-      // o "?" pulsando, entre o fundo e o cartão da Caipirinha
-      const qx = 880, qy = base + 300;
-      c.save(); c.translate(qx, qy); c.rotate(8 * Math.PI / 180); c.font = "900 210px 'ID'"; c.fillStyle = C.limao; c.shadowColor = rgba(C.limao, 0.6); c.shadowBlur = 40; c.textAlign = 'center'; c.fillText('?', 0, 74); c.restore();
-      bs.push({ x0: qx - 70, y0: qy - 90, x1: qx + 70, y1: qy + 90 });
-      caixas.push({ nome: 'cartões', x0: Math.min(...bs.map((b) => b.x0)), y0: Math.min(...bs.map((b) => b.y0)), x1: Math.max(...bs.map((b) => b.x1)), y1: Math.max(...bs.map((b) => b.y1)) });
+      const caixas = [{ nome: 'manchete', x0: 80, y0: ty, x1: 80 + Math.max(w1, w2), y1: ty + px * 2.0 }];
+      // o copo em traço limão (os mesmos traços do vídeo)
+      const s = 22, ox = 120, oy = ty + px * 2 + 70;
+      c.save(); c.translate(ox, oy); c.scale(s, s); c.strokeStyle = C.limao; c.lineWidth = 14 / s; c.lineCap = 'round'; c.lineJoin = 'round';
+      c.shadowColor = rgba(C.limao, 0.35); c.shadowBlur = 30;
+      for (const d of [...ICONES.copo.p, ...ICONES.copo.gelo]) c.stroke(new Path2D(d));
+      c.restore();
+      for (let i = 0; i < 3; i++) { c.save(); c.translate(ox + 11.5 * s + i * 38 - 30, oy + 22.6 * s + i * 30); c.fillStyle = C.limao; c.globalAlpha = 0.9 - i * 0.25; c.beginPath(); c.ellipse(0, 0, 10, 14, 0, 0, Math.PI * 2); c.fill(); c.restore(); }
+      caixas.push({ nome: 'copo', x0: ox + 4 * s, y0: oy + 1.5 * s, x1: ox + 21.5 * s, y1: oy + 22.6 * s + 100 });
+      // o "?" e o preço
+      c.save(); c.font = "900 330px 'ID'"; c.fillStyle = C.limao; c.shadowColor = rgba(C.limao, 0.55); c.shadowBlur = 50; c.translate(830, oy + 250); c.rotate(8 * Math.PI / 180); c.textAlign = 'center'; c.fillText('?', 0, 110); c.restore();
+      caixas.push({ nome: '?', x0: 740, y0: oy + 30, x1: 935, y1: oy + 380 });
+      c.font = "700 120px 'Geist Mono'"; if (c.letterSpacing !== undefined) c.letterSpacing = '-4.8px'; c.fillStyle = C.off; c.textAlign = 'left';
+      c.fillText(brl(22), 120, oy + 22.6 * s + 228); const wp = c.measureText(brl(22)).width;
+      caixas.push({ nome: 'R$ 22,00', x0: 120, y0: oy + 22.6 * s + 128, x1: 120 + wp, y1: oy + 22.6 * s + 252 });
       return { caixas };
     };
     const m = desenha(document.createElement('canvas').getContext('2d'), 0);
     const dy = Math.round(960 - (Math.min(...m.caixas.map((b) => b.y0)) + Math.max(...m.caixas.map((b) => b.y1))) / 2);
     const cv = document.createElement('canvas'); cv.width = W; cv.height = H; const c = cv.getContext('2d');
-    const r = desenha(c, dy), cx = r.caixas;
-    const bloco = { topo: Math.min(...cx.map((b) => b.y0)), base: Math.max(...cx.map((b) => b.y1)) }; bloco.centro = (bloco.topo + bloco.base) / 2;
-    return { png: cv.toDataURL('image/png'), caixas: cx, bloco };
+    const r = desenha(c, dy);
+    const bloco = { topo: Math.min(...r.caixas.map((b) => b.y0)), base: Math.max(...r.caixas.map((b) => b.y1)) }; bloco.centro = (bloco.topo + bloco.base) / 2;
+    return { png: cv.toDataURL('image/png'), caixas: r.caixas, bloco };
   }
 
   window.REEL = {
-    init, renderAt, caixas, capaGrade, get DURATION() { return DUR; },
+    init, renderAt: render, caixas, capaGrade, get DURATION() { return DUR; },
     avisos: () => [], eventos: () => EV.slice().sort((a, b) => a.t - b.t),
-    textos: () => TEXTOS.map((x) => ({ t0: x.t0, t1: x.t1, linhas: x.linhas, chaves: [...x.chaves] })),
-    itens: () => ITENS, pousa: () => POUSA, totais: () => [TOTAL_1, TOTAL_2], T: () => T_,
+    cenas: () => CENAS.map((c) => ({ id: c.id, t0: c.t0, t1: c.t1, fundo: c.fundo, entrada: c.entrada, manchete: c.manchete ? c.manchete.map((l) => l.join(' ')) : null, realce: c.realce || [] })),
+    itens: () => ITENS, totais: () => [TOTAL_1, TOTAL_2],
   };
 })();

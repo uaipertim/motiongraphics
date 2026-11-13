@@ -36,11 +36,11 @@ const grab = async (page, t) => { await page.evaluate((t) => window.frameAt(t), 
     } else if (mode === 'dados') {
       const page = await openPage(browser, port);
       const fps = Number(opt('fps', 10));
-      const d = await page.evaluate((fps) => { const out = { duracao: REEL.DURATION, ZB: REEL.ZB, avisos: REEL.avisos(), eventos: REEL.eventos(), textos: REEL.textos(), itens: REEL.itens(), pousa: REEL.pousa(), totais: REEL.totais(), T: REEL.T(), quadros: [] };
+      const d = await page.evaluate((fps) => { const out = { duracao: REEL.DURATION, ZB: REEL.ZB, avisos: REEL.avisos(), eventos: REEL.eventos(), cenas: REEL.cenas(), itens: REEL.itens(), totais: REEL.totais(), quadros: [] };
         for (let i = 0; i < REEL.DURATION * fps; i++) { const q = REEL.caixas(i / fps); out.quadros.push({ t: i / fps, ...q }); } return out; }, fps);
       fs.mkdirSync(path.join(ROOT, 'output/revisao'), { recursive: true });
       fs.writeFileSync(path.join(ROOT, 'output/revisao/dados.json'), JSON.stringify(d));
-      fs.writeFileSync(path.join(ROOT, 'audio/eventos.json'), JSON.stringify({ duracao: d.duracao, eventos: d.eventos }, null, 1));
+      fs.writeFileSync(path.join(ROOT, 'audio/eventos.json'), JSON.stringify({ duracao: d.duracao, cenas: d.cenas, eventos: d.eventos }, null, 1));
       console.log('dados:', d.quadros.length, 'quadros,', d.eventos.length, 'eventos');
     } else {
       const fps = Number(opt('fps', 60)), out = path.resolve(ROOT, opt('out', 'output/comanda.mp4'));

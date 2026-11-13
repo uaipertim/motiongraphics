@@ -2,6 +2,11 @@
 
 Nova fase de produção dos Reels do Instagram do FAZLO Hospeda. O **Motion Graphics V2** ([`../v2`](../v2)) é a referência de qualidade visual, movimento, ritmo e acabamento. Cada Reel desta série tem conceito próprio e vive numa pasta independente, com vídeo, capa, storyboard, revisão técnica e todos os arquivos-fonte.
 
+**Padrão dos vídeos só com elementos (sem narração):** [`PADRAO-ELEMENTOS.md`](PADRAO-ELEMENTOS.md), de 13/11/2026.
+- **Narrado × sem narração:** vídeo narrado usa as telas reais no celular; vídeo sem narração usa só elementos gráficos vivos, sem tela, celular ou recorte do HTML.
+- **QA de movimento obrigatório:** [`tools/qa_movimento.py`](tools/qa_movimento.py), com a v2 como linha de base. Para aprovar: movimento mediano ≥ 1,0; parado ≤ 1,5 s, sem trecho > 0,5 s; ≥ 0,6 mudança grande por segundo; ≥ 3 trocas de fundo.
+- **Primeiro vídeo no padrão:** [`educativo/comanda/`](educativo/comanda) ("A caipirinha da piscina entrou na conta?").
+
 | Reel | Conceito | Duração | Pasta |
 |---|---|---|---|
 | **00** | **"Sob o mesmo teto."** Apresentação do produto: a pousada inteira (reservas, hospedagens, check-in/out, comandas, pagamentos e caixa) num só sistema | 28,2 s | [`reel-00/`](reel-00) |

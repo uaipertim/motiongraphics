@@ -1,0 +1,144 @@
+{
+ "referencia": {
+  "video": "../../../v2/output/fazlo-hospeda-reels-v2.mp4",
+  "duracao_s": 29.0,
+  "movimento_mediano": 1.151,
+  "parado_total_s": 2.0,
+  "maior_trecho_parado_s": 0.8,
+  "parado_final_s": 0.0,
+  "trechos_parados": [
+   [
+    7.4,
+    0.8
+   ],
+   [
+    16.4,
+    0.3
+   ],
+   [
+    21.7,
+    0.5
+   ]
+  ],
+  "mudancas_grandes": 29,
+  "mudancas_por_s": 1.0,
+  "fundos": [
+   [
+    "escuro",
+    0.0
+   ],
+   [
+    "off-white",
+    5.6
+   ],
+   [
+    "escuro",
+    8.5
+   ],
+   [
+    "off-white",
+    11.0
+   ],
+   [
+    "escuro",
+    14.0
+   ],
+   [
+    "off-white",
+    17.0
+   ],
+   [
+    "escuro",
+    19.5
+   ],
+   [
+    "limao",
+    24.6
+   ]
+  ],
+  "trocas_de_fundo": 7,
+  "logo_final_s": 0.0
+ },
+ "video": {
+  "video": "output/comanda.mp4",
+  "duracao_s": 32.0,
+  "movimento_mediano": 0.431,
+  "parado_total_s": 10.7,
+  "maior_trecho_parado_s": 2.9,
+  "parado_final_s": 0.6,
+  "trechos_parados": [
+   [
+    13.0,
+    2.0
+   ],
+   [
+    15.5,
+    0.4
+   ],
+   [
+    16.7,
+    0.3
+   ],
+   [
+    17.7,
+    0.3
+   ],
+   [
+    19.3,
+    1.4
+   ],
+   [
+    20.8,
+    2.9
+   ],
+   [
+    25.3,
+    1.4
+   ],
+   [
+    29.2,
+    0.9
+   ],
+   [
+    31.3,
+    0.6
+   ]
+  ],
+  "mudancas_grandes": 4,
+  "mudancas_por_s": 0.12,
+  "fundos": [
+   [
+    "escuro",
+    0.0
+   ]
+  ],
+  "trocas_de_fundo": 0,
+  "logo_final_s": 0.8
+ },
+ "criterios": [
+  [
+   "movimento mediano ≥ 1,0",
+   false
+  ],
+  [
+   "tempo parado total ≤ 1,5 s",
+   false
+  ],
+  [
+   "nenhum trecho parado > 0,5 s",
+   false
+  ],
+  [
+   "logo final parado ≤ 0.8 s",
+   true
+  ],
+  [
+   "mudanças grandes ≥ 0,6 por segundo",
+   false
+  ],
+  [
+   "pelo menos 3 trocas de fundo",
+   false
+  ]
+ ]
+}
