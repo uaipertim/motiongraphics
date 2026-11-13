@@ -1,0 +1,13 @@
+Reserva confirmada? Mande pro hóspede uma mensagem com cinco informações:
+
+1. As datas e quantas noites.
+2. A acomodação e quantas pessoas.
+3. O valor total, o sinal recebido e quanto falta pagar.
+4. O horário de entrada e o de saída.
+5. O endereço, com a localização.
+
+Assim o hóspede chega sabendo tudo, e ninguém fica com dúvida.
+
+Mande para quem responde as reservas da sua pousada.
+
+#pousada #gestaodepousada #hospedagem #reservas

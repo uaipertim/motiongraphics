@@ -1,0 +1,109 @@
+{
+ "duracao": 30.5,
+ "cues": [
+  {
+   "t": 0.83,
+   "type": "question"
+  },
+  {
+   "t": 3.9,
+   "type": "whoosh"
+  },
+  {
+   "t": 3.95,
+   "type": "pop"
+  },
+  {
+   "t": 4.04,
+   "type": "pop"
+  },
+  {
+   "t": 4.13,
+   "type": "pop"
+  },
+  {
+   "t": 4.15,
+   "type": "drop"
+  },
+  {
+   "t": 4.22,
+   "type": "pop"
+  },
+  {
+   "t": 4.31,
+   "type": "pop"
+  },
+  {
+   "t": 5.44,
+   "type": "slide"
+  },
+  {
+   "t": 6.83,
+   "type": "check"
+  },
+  {
+   "t": 7.75,
+   "type": "slide"
+  },
+  {
+   "t": 9.47,
+   "type": "check"
+  },
+  {
+   "t": 10.496,
+   "type": "slide"
+  },
+  {
+   "t": 13.63,
+   "type": "check"
+  },
+  {
+   "t": 14.727,
+   "type": "slide"
+  },
+  {
+   "t": 16.27,
+   "type": "check"
+  },
+  {
+   "t": 17.09,
+   "type": "slide"
+  },
+  {
+   "t": 18.27,
+   "type": "check"
+  },
+  {
+   "t": 18.32,
+   "type": "shine"
+  },
+  {
+   "t": 20.883,
+   "type": "stamp"
+  },
+  {
+   "t": 22.99,
+   "type": "sent"
+  },
+  {
+   "t": 23.04,
+   "type": "fly"
+  },
+  {
+   "t": 23.757,
+   "type": "whoosh"
+  },
+  {
+   "t": 23.877,
+   "type": "fly"
+  },
+  {
+   "t": 27.3,
+   "type": "logowipe"
+  },
+  {
+   "t": 27.6,
+   "type": "bell"
+  }
+ ]
+}

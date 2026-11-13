@@ -1,0 +1,289 @@
+{
+ "id": "confirmacao",
+ "titulo": "Reserva confirmada? Mande esta mensagem.",
+ "marca": "@fazlohospeda",
+ "voz": {
+  "modelo": "eleven_v4",
+  "voz": "Raquel - For Conversational (GDzHdQOi6jjf8zaXhCYD)",
+  "stability": 0.5,
+  "similarity_boost": 0.75
+ },
+ "nota": "Conteúdo educativo. Não é demonstração do FAZLO Hospeda: sem interface e sem imitar o app de conversa (o balão é genérico, no DNA da marca: cartão escuro com borda limão, 'MENSAGEM ENVIADA'). A hóspede é a mesma do reserva-whatsapp e do check-in (Ana Lima, 14 a 16/11, 2 noites, Chalé 3, 2 adultos e 1 criança, R$ 900,00, sinal R$ 450,00, saldo R$ 450,00 no check-out, saída até 12:00); os dados são fictícios, com o selo 'Exemplo fictício' em todo quadro com dado; o endereço é claramente fictício. Cada item de 'frases' é uma frase da locução; o texto de todos os tokens, na ordem, é exatamente a narração aprovada. 'chave': palavras em limão na legenda; 'id': o instante do gesto. 'legenda': a divisão das páginas e linhas (quebras só em pausa ou pontuação, ou por grupo de sentido quando não há pausa). 'sem_legenda': frases que a cena já mostra como texto principal; não entram na legenda (regra da série): o gancho inteiro, que está no título da capa, e a chamada final, que é o texto grande do CTA.",
+ "frases": [
+  {
+   "id": "gancho",
+   "tokens": [
+    {
+     "fala": "Reserva",
+     "chave": true
+    },
+    {
+     "fala": "confirmada?",
+     "chave": true,
+     "id": "confirmada"
+    }
+   ]
+  },
+  {
+   "id": "cinco",
+   "tokens": [
+    {
+     "fala": "Mande pro hóspede uma"
+    },
+    {
+     "fala": "mensagem",
+     "id": "mensagem"
+    },
+    {
+     "fala": "com"
+    },
+    {
+     "fala": "cinco informações.",
+     "chave": true,
+     "id": "cinco"
+    }
+   ]
+  },
+  {
+   "id": "datas",
+   "tokens": [
+    {
+     "fala": "As"
+    },
+    {
+     "fala": "datas",
+     "chave": true,
+     "id": "datas"
+    },
+    {
+     "fala": "e quantas"
+    },
+    {
+     "fala": "noites.",
+     "chave": true,
+     "id": "noites"
+    }
+   ]
+  },
+  {
+   "id": "acomodacao",
+   "tokens": [
+    {
+     "fala": "A"
+    },
+    {
+     "fala": "acomodação",
+     "chave": true,
+     "id": "acomodacao"
+    },
+    {
+     "fala": "e quantas"
+    },
+    {
+     "fala": "pessoas.",
+     "chave": true,
+     "id": "pessoas"
+    }
+   ]
+  },
+  {
+   "id": "valores",
+   "tokens": [
+    {
+     "fala": "O"
+    },
+    {
+     "fala": "valor total,",
+     "chave": true,
+     "id": "valor"
+    },
+    {
+     "fala": "o sinal recebido e quanto"
+    },
+    {
+     "fala": "falta pagar.",
+     "chave": true,
+     "id": "falta"
+    }
+   ]
+  },
+  {
+   "id": "horarios",
+   "tokens": [
+    {
+     "fala": "O"
+    },
+    {
+     "fala": "horário de entrada",
+     "chave": true,
+     "id": "horario"
+    },
+    {
+     "fala": "e o de"
+    },
+    {
+     "fala": "saída.",
+     "chave": true,
+     "id": "saida"
+    }
+   ]
+  },
+  {
+   "id": "endereco",
+   "tokens": [
+    {
+     "fala": "E o"
+    },
+    {
+     "fala": "endereço,",
+     "chave": true,
+     "id": "endereco"
+    },
+    {
+     "fala": "com a"
+    },
+    {
+     "fala": "localização.",
+     "chave": true,
+     "id": "localizacao"
+    }
+   ]
+  },
+  {
+   "id": "assim",
+   "tokens": [
+    {
+     "fala": "Assim o hóspede chega"
+    },
+    {
+     "fala": "sabendo tudo,",
+     "chave": true,
+     "id": "sabendo"
+    },
+    {
+     "fala": "e ninguém fica com"
+    },
+    {
+     "fala": "dúvida.",
+     "chave": true,
+     "id": "duvida"
+    }
+   ]
+  },
+  {
+   "id": "cta",
+   "tokens": [
+    {
+     "fala": "Mande",
+     "chave": true,
+     "id": "mande"
+    },
+    {
+     "fala": "para quem responde as reservas da sua pousada."
+    }
+   ]
+  }
+ ],
+ "narracao": "Reserva confirmada? Mande pro hóspede uma mensagem com cinco informações. As datas e quantas noites. A acomodação e quantas pessoas. O valor total, o sinal recebido e quanto falta pagar. O horário de entrada e o de saída. E o endereço, com a localização. Assim o hóspede chega sabendo tudo, e ninguém fica com dúvida. Mande para quem responde as reservas da sua pousada.",
+ "sem_legenda": [
+  "gancho",
+  "cinco",
+  "cta"
+ ],
+ "legenda": [
+  [
+   "As datas",
+   "e quantas noites."
+  ],
+  [
+   "A acomodação",
+   "e quantas pessoas."
+  ],
+  [
+   "O valor total,",
+   "o sinal recebido"
+  ],
+  [
+   "e quanto falta pagar."
+  ],
+  [
+   "O horário de entrada",
+   "e o de saída."
+  ],
+  [
+   "E o endereço,",
+   "com a localização."
+  ],
+  [
+   "Assim o hóspede chega",
+   "sabendo tudo,"
+  ],
+  [
+   "e ninguém fica",
+   "com dúvida."
+  ]
+ ],
+ "exemplo": {
+  "mensagem": [
+   {
+    "id": "noites",
+    "frase": "datas",
+    "rotulo": "Datas",
+    "linhas": [
+     "14 a 16/11 · 2 noites"
+    ]
+   },
+   {
+    "id": "pessoas",
+    "frase": "acomodacao",
+    "rotulo": "Acomodação",
+    "linhas": [
+     "Chalé 3 · 2 adultos e 1 criança"
+    ]
+   },
+   {
+    "id": "falta",
+    "frase": "valores",
+    "rotulo": "Valores",
+    "linhas": [
+     "total R$ 900,00 · sinal R$ 450,00 recebido",
+     "saldo R$ 450,00 no check-out"
+    ]
+   },
+   {
+    "id": "saida",
+    "frase": "horarios",
+    "rotulo": "Horários",
+    "linhas": [
+     "entrada a partir das 14:00",
+     "saída até 12:00"
+    ]
+   },
+   {
+    "id": "localizacao",
+    "frase": "endereco",
+    "rotulo": "Endereço",
+    "linhas": [
+     "Estrada do Exemplo, km 4"
+    ],
+    "pino": true
+   }
+  ],
+  "reserva": {
+   "nome": "Ana Lima",
+   "entrada": "2026-11-14",
+   "saida": "2026-11-16",
+   "noites": 2,
+   "adultos": 2,
+   "criancas": 1,
+   "acomodacao": "Chalé 3",
+   "valor": 900,
+   "sinal": 450,
+   "saldo": 450,
+   "hora_entrada": "14:00",
+   "hora_saida": "12:00",
+   "endereco": "Estrada do Exemplo, km 4"
+  }
+ },
+ "legenda_post": "Reserva confirmada? Mande pro hóspede uma mensagem com cinco informações:\n\n1. As datas e quantas noites.\n2. A acomodação e quantas pessoas.\n3. O valor total, o sinal recebido e quanto falta pagar.\n4. O horário de entrada e o de saída.\n5. O endereço, com a localização.\n\nAssim o hóspede chega sabendo tudo, e ninguém fica com dúvida.\n\nMande para quem responde as reservas da sua pousada.\n\n#pousada #gestaodepousada #hospedagem #reservas"
+}
