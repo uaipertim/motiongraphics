@@ -1,0 +1,784 @@
+{
+ "provisoria": false,
+ "audio": "audio/voz.wav",
+ "inicio_voz": 0.35,
+ "fim_voz": 28.52,
+ "logo": 29.22,
+ "duracao": 32.42,
+ "marca": "@fazlohospeda",
+ "exemplo": {
+  "origem": "reels/educativo/reserva-whatsapp/roteiro.json",
+  "reserva": {
+   "hospede": "Ana Lima",
+   "entrada": "14/11",
+   "saida": "16/11",
+   "noites": 2,
+   "adultos": 2,
+   "criancas": 1,
+   "pet": false,
+   "acomodacao": "Chalé 3",
+   "total": 900,
+   "sinal": 450
+  },
+  "ficha": [
+   {
+    "id": "reserva",
+    "n": "01",
+    "rotulo": "Documento com foto",
+    "valor": "Ana Lima · documento conferido"
+   },
+   {
+    "id": "pet",
+    "n": "02",
+    "rotulo": "Pessoas",
+    "valor": "2 adultos · 1 criança · sem pet"
+   },
+   {
+    "id": "vozalta",
+    "n": "03",
+    "rotulo": "Saída",
+    "valor": "seg 16/11 · até 12:00"
+   },
+   {
+    "id": "checkout",
+    "n": "04",
+    "rotulo": "Saldo",
+    "valor": "R$ 450,00 · no check-out"
+   }
+  ],
+  "conta": {
+   "total": 900,
+   "sinal": 450,
+   "saldo": 450
+  }
+ },
+ "legenda": [
+  [
+   "Antes de entregar",
+   "a chave,"
+  ],
+  [
+   "confira quatro coisas."
+  ],
+  [
+   "Documento com foto:"
+  ],
+  [
+   "o nome tem que bater",
+   "com a reserva."
+  ],
+  [
+   "Quantas pessoas",
+   "chegaram:"
+  ],
+  [
+   "adultos, crianças",
+   "e se veio pet."
+  ],
+  [
+   "A data e o horário",
+   "de saída,"
+  ],
+  [
+   "combinados em voz alta."
+  ],
+  [
+   "E quanto falta pagar,"
+  ],
+  [
+   "e quando: agora",
+   "ou no check-out."
+  ],
+  [
+   "Com isso conferido,",
+   "a chave"
+  ],
+  [
+   "pode ir pra mão",
+   "do hóspede."
+  ]
+ ],
+ "sem_legenda": [
+  "gancho",
+  "cta"
+ ],
+ "frases": [
+  {
+   "id": "gancho",
+   "t0": 0.35,
+   "t1": 1.31,
+   "palavras": [
+    {
+     "w": "O",
+     "chave": false,
+     "id": null,
+     "t0": 0.35,
+     "t1": 0.43
+    },
+    {
+     "w": "hóspede",
+     "chave": false,
+     "id": null,
+     "t0": 0.47,
+     "t1": 0.83
+    },
+    {
+     "w": "chegou?",
+     "chave": true,
+     "id": "chegou",
+     "t0": 0.91,
+     "t1": 1.31
+    }
+   ]
+  },
+  {
+   "id": "quatro",
+   "t0": 1.839,
+   "t1": 4.91,
+   "palavras": [
+    {
+     "w": "Antes",
+     "chave": false,
+     "id": null,
+     "t0": 1.839,
+     "t1": 2.11
+    },
+    {
+     "w": "de",
+     "chave": false,
+     "id": null,
+     "t0": 2.15,
+     "t1": 2.19
+    },
+    {
+     "w": "entregar",
+     "chave": false,
+     "id": null,
+     "t0": 2.27,
+     "t1": 2.59
+    },
+    {
+     "w": "a",
+     "chave": false,
+     "id": null,
+     "t0": 2.63,
+     "t1": 2.67
+    },
+    {
+     "w": "chave,",
+     "chave": true,
+     "id": "chave",
+     "t0": 2.75,
+     "t1": 3.15
+    },
+    {
+     "w": "confira",
+     "chave": false,
+     "id": "confira",
+     "t0": 3.409,
+     "t1": 3.79
+    },
+    {
+     "w": "quatro",
+     "chave": true,
+     "id": "quatro",
+     "t0": 3.967,
+     "t1": 4.27
+    },
+    {
+     "w": "coisas.",
+     "chave": true,
+     "id": null,
+     "t0": 4.35,
+     "t1": 4.91
+    }
+   ]
+  },
+  {
+   "id": "documento",
+   "t0": 5.431,
+   "t1": 9.15,
+   "palavras": [
+    {
+     "w": "Documento",
+     "chave": true,
+     "id": "documento",
+     "t0": 5.431,
+     "t1": 5.95
+    },
+    {
+     "w": "com",
+     "chave": true,
+     "id": null,
+     "t0": 6.03,
+     "t1": 6.11
+    },
+    {
+     "w": "foto:",
+     "chave": true,
+     "id": null,
+     "t0": 6.19,
+     "t1": 6.59
+    },
+    {
+     "w": "o",
+     "chave": false,
+     "id": null,
+     "t0": 7.059,
+     "t1": 7.15
+    },
+    {
+     "w": "nome",
+     "chave": false,
+     "id": null,
+     "t0": 7.23,
+     "t1": 7.55
+    },
+    {
+     "w": "tem",
+     "chave": false,
+     "id": null,
+     "t0": 7.745,
+     "t1": 7.87
+    },
+    {
+     "w": "que",
+     "chave": false,
+     "id": null,
+     "t0": 7.95,
+     "t1": 8.03
+    },
+    {
+     "w": "bater",
+     "chave": false,
+     "id": null,
+     "t0": 8.07,
+     "t1": 8.35
+    },
+    {
+     "w": "com",
+     "chave": false,
+     "id": null,
+     "t0": 8.43,
+     "t1": 8.51
+    },
+    {
+     "w": "a",
+     "chave": false,
+     "id": null,
+     "t0": 8.537,
+     "t1": 8.563
+    },
+    {
+     "w": "reserva.",
+     "chave": true,
+     "id": "reserva",
+     "t0": 8.59,
+     "t1": 9.15
+    }
+   ]
+  },
+  {
+   "id": "pessoas",
+   "t0": 9.666,
+   "t1": 13.95,
+   "palavras": [
+    {
+     "w": "Quantas",
+     "chave": false,
+     "id": null,
+     "t0": 9.666,
+     "t1": 9.95
+    },
+    {
+     "w": "pessoas",
+     "chave": true,
+     "id": "pessoas",
+     "t0": 10.03,
+     "t1": 10.35
+    },
+    {
+     "w": "chegaram:",
+     "chave": false,
+     "id": null,
+     "t0": 10.43,
+     "t1": 10.91
+    },
+    {
+     "w": "adultos,",
+     "chave": false,
+     "id": null,
+     "t0": 11.257,
+     "t1": 11.95
+    },
+    {
+     "w": "crianças",
+     "chave": false,
+     "id": null,
+     "t0": 12.043,
+     "t1": 12.83
+    },
+    {
+     "w": "e",
+     "chave": false,
+     "id": null,
+     "t0": 12.91,
+     "t1": 13.07
+    },
+    {
+     "w": "se",
+     "chave": false,
+     "id": null,
+     "t0": 13.15,
+     "t1": 13.31
+    },
+    {
+     "w": "veio",
+     "chave": false,
+     "id": null,
+     "t0": 13.35,
+     "t1": 13.55
+    },
+    {
+     "w": "pet.",
+     "chave": true,
+     "id": "pet",
+     "t0": 13.854,
+     "t1": 13.95
+    }
+   ]
+  },
+  {
+   "id": "saida",
+   "t0": 14.448,
+   "t1": 17.79,
+   "palavras": [
+    {
+     "w": "A",
+     "chave": false,
+     "id": null,
+     "t0": 14.448,
+     "t1": 14.51
+    },
+    {
+     "w": "data",
+     "chave": false,
+     "id": null,
+     "t0": 14.59,
+     "t1": 14.99
+    },
+    {
+     "w": "e",
+     "chave": false,
+     "id": null,
+     "t0": 15.07,
+     "t1": 15.097
+    },
+    {
+     "w": "o",
+     "chave": false,
+     "id": null,
+     "t0": 15.123,
+     "t1": 15.15
+    },
+    {
+     "w": "horário",
+     "chave": false,
+     "id": null,
+     "t0": 15.23,
+     "t1": 15.55
+    },
+    {
+     "w": "de",
+     "chave": false,
+     "id": null,
+     "t0": 15.63,
+     "t1": 15.67
+    },
+    {
+     "w": "saída,",
+     "chave": true,
+     "id": "saida",
+     "t0": 15.71,
+     "t1": 16.19
+    },
+    {
+     "w": "combinados",
+     "chave": false,
+     "id": null,
+     "t0": 16.417,
+     "t1": 16.99
+    },
+    {
+     "w": "em",
+     "chave": false,
+     "id": null,
+     "t0": 17.03,
+     "t1": 17.07
+    },
+    {
+     "w": "voz",
+     "chave": true,
+     "id": "vozalta",
+     "t0": 17.15,
+     "t1": 17.39
+    },
+    {
+     "w": "alta.",
+     "chave": true,
+     "id": null,
+     "t0": 17.47,
+     "t1": 17.79
+    }
+   ]
+  },
+  {
+   "id": "saldo",
+   "t0": 18.231,
+   "t1": 22.19,
+   "palavras": [
+    {
+     "w": "E",
+     "chave": false,
+     "id": null,
+     "t0": 18.231,
+     "t1": 18.27
+    },
+    {
+     "w": "quanto",
+     "chave": false,
+     "id": null,
+     "t0": 18.475,
+     "t1": 18.75
+    },
+    {
+     "w": "falta",
+     "chave": true,
+     "id": "falta",
+     "t0": 18.83,
+     "t1": 19.07
+    },
+    {
+     "w": "pagar,",
+     "chave": true,
+     "id": null,
+     "t0": 19.15,
+     "t1": 19.55
+    },
+    {
+     "w": "e",
+     "chave": false,
+     "id": null,
+     "t0": 19.828,
+     "t1": 19.87
+    },
+    {
+     "w": "quando:",
+     "chave": false,
+     "id": null,
+     "t0": 20.031,
+     "t1": 20.43
+    },
+    {
+     "w": "agora",
+     "chave": false,
+     "id": null,
+     "t0": 20.709,
+     "t1": 21.23
+    },
+    {
+     "w": "ou",
+     "chave": false,
+     "id": null,
+     "t0": 21.374,
+     "t1": 21.47
+    },
+    {
+     "w": "no",
+     "chave": false,
+     "id": null,
+     "t0": 21.55,
+     "t1": 21.63
+    },
+    {
+     "w": "check-out.",
+     "chave": true,
+     "id": "checkout",
+     "t0": 21.75,
+     "t1": 22.19
+    }
+   ]
+  },
+  {
+   "id": "conferido",
+   "t0": 22.681,
+   "t1": 25.87,
+   "palavras": [
+    {
+     "w": "Com",
+     "chave": false,
+     "id": null,
+     "t0": 22.681,
+     "t1": 22.75
+    },
+    {
+     "w": "isso",
+     "chave": false,
+     "id": null,
+     "t0": 22.83,
+     "t1": 22.99
+    },
+    {
+     "w": "conferido,",
+     "chave": false,
+     "id": "conferido",
+     "t0": 23.07,
+     "t1": 23.71
+    },
+    {
+     "w": "a",
+     "chave": false,
+     "id": null,
+     "t0": 23.888,
+     "t1": 23.95
+    },
+    {
+     "w": "chave",
+     "chave": false,
+     "id": null,
+     "t0": 24.03,
+     "t1": 24.27
+    },
+    {
+     "w": "pode",
+     "chave": false,
+     "id": null,
+     "t0": 24.486,
+     "t1": 24.75
+    },
+    {
+     "w": "ir",
+     "chave": false,
+     "id": null,
+     "t0": 24.83,
+     "t1": 24.91
+    },
+    {
+     "w": "pra",
+     "chave": false,
+     "id": null,
+     "t0": 24.99,
+     "t1": 25.07
+    },
+    {
+     "w": "mão",
+     "chave": true,
+     "id": "mao",
+     "t0": 25.15,
+     "t1": 25.23
+    },
+    {
+     "w": "do",
+     "chave": true,
+     "id": null,
+     "t0": 25.31,
+     "t1": 25.39
+    },
+    {
+     "w": "hóspede.",
+     "chave": true,
+     "id": null,
+     "t0": 25.43,
+     "t1": 25.87
+    }
+   ]
+  },
+  {
+   "id": "cta",
+   "t0": 26.278,
+   "t1": 28.51,
+   "palavras": [
+    {
+     "w": "Mande",
+     "chave": true,
+     "id": "mande",
+     "t0": 26.278,
+     "t1": 26.59
+    },
+    {
+     "w": "para",
+     "chave": false,
+     "id": null,
+     "t0": 26.67,
+     "t1": 26.75
+    },
+    {
+     "w": "quem",
+     "chave": false,
+     "id": null,
+     "t0": 26.79,
+     "t1": 26.91
+    },
+    {
+     "w": "faz",
+     "chave": false,
+     "id": null,
+     "t0": 26.99,
+     "t1": 27.15
+    },
+    {
+     "w": "o",
+     "chave": false,
+     "id": null,
+     "t0": 27.19,
+     "t1": 27.23
+    },
+    {
+     "w": "check-in",
+     "chave": false,
+     "id": null,
+     "t0": 27.479,
+     "t1": 27.63
+    },
+    {
+     "w": "na",
+     "chave": false,
+     "id": null,
+     "t0": 27.67,
+     "t1": 27.71
+    },
+    {
+     "w": "sua",
+     "chave": false,
+     "id": null,
+     "t0": 27.79,
+     "t1": 27.95
+    },
+    {
+     "w": "pousada.",
+     "chave": false,
+     "id": null,
+     "t0": 28.03,
+     "t1": 28.51
+    }
+   ]
+  }
+ ],
+ "inicios_medidos_no_audio": [
+  {
+   "palavra": "Antes",
+   "marcacao_s": 1.79,
+   "audio_s": 1.839
+  },
+  {
+   "palavra": "confira",
+   "marcacao_s": 3.43,
+   "audio_s": 3.409
+  },
+  {
+   "palavra": "quatro",
+   "marcacao_s": 3.95,
+   "audio_s": 3.967
+  },
+  {
+   "palavra": "Documento",
+   "marcacao_s": 5.39,
+   "audio_s": 5.431
+  },
+  {
+   "palavra": "o",
+   "marcacao_s": 7.07,
+   "audio_s": 7.059
+  },
+  {
+   "palavra": "tem",
+   "marcacao_s": 7.71,
+   "audio_s": 7.745
+  },
+  {
+   "palavra": "Quantas",
+   "marcacao_s": 9.63,
+   "audio_s": 9.666
+  },
+  {
+   "palavra": "adultos,",
+   "marcacao_s": 11.47,
+   "audio_s": 11.257
+  },
+  {
+   "palavra": "crianças",
+   "marcacao_s": 12.11,
+   "audio_s": 12.043
+  },
+  {
+   "palavra": "pet.",
+   "marcacao_s": 13.75,
+   "audio_s": 13.854
+  },
+  {
+   "palavra": "A",
+   "marcacao_s": 14.43,
+   "audio_s": 14.448
+  },
+  {
+   "palavra": "combinados",
+   "marcacao_s": 16.43,
+   "audio_s": 16.417
+  },
+  {
+   "palavra": "E",
+   "marcacao_s": 18.19,
+   "audio_s": 18.231
+  },
+  {
+   "palavra": "quanto",
+   "marcacao_s": 18.43,
+   "audio_s": 18.475
+  },
+  {
+   "palavra": "e",
+   "marcacao_s": 19.83,
+   "audio_s": 19.828
+  },
+  {
+   "palavra": "quando:",
+   "marcacao_s": 20.03,
+   "audio_s": 20.031
+  },
+  {
+   "palavra": "agora",
+   "marcacao_s": 20.75,
+   "audio_s": 20.709
+  },
+  {
+   "palavra": "ou",
+   "marcacao_s": 21.39,
+   "audio_s": 21.374
+  },
+  {
+   "palavra": "Com",
+   "marcacao_s": 22.67,
+   "audio_s": 22.681
+  },
+  {
+   "palavra": "a",
+   "marcacao_s": 23.91,
+   "audio_s": 23.888
+  },
+  {
+   "palavra": "pode",
+   "marcacao_s": 24.43,
+   "audio_s": 24.486
+  },
+  {
+   "palavra": "Mande",
+   "marcacao_s": 26.31,
+   "audio_s": 26.278
+  },
+  {
+   "palavra": "check-in",
+   "marcacao_s": 27.35,
+   "audio_s": 27.479
+  }
+ ]
+}

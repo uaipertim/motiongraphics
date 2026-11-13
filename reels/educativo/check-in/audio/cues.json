@@ -1,0 +1,97 @@
+{
+ "duracao": 32.42,
+ "cues": [
+  {
+   "t": 0.91,
+   "type": "keys"
+  },
+  {
+   "t": 3.359,
+   "type": "whoosh"
+  },
+  {
+   "t": 3.559,
+   "type": "drop"
+  },
+  {
+   "t": 3.967,
+   "type": "casa"
+  },
+  {
+   "t": 4.057,
+   "type": "casa"
+  },
+  {
+   "t": 4.147,
+   "type": "casa"
+  },
+  {
+   "t": 4.237,
+   "type": "casa"
+  },
+  {
+   "t": 5.381,
+   "type": "slide"
+  },
+  {
+   "t": 8.59,
+   "type": "check"
+  },
+  {
+   "t": 9.616,
+   "type": "slide"
+  },
+  {
+   "t": 13.854,
+   "type": "check"
+  },
+  {
+   "t": 14.398,
+   "type": "slide"
+  },
+  {
+   "t": 17.15,
+   "type": "check"
+  },
+  {
+   "t": 18.181,
+   "type": "slide"
+  },
+  {
+   "t": 21.75,
+   "type": "check"
+  },
+  {
+   "t": 23.07,
+   "type": "stamp"
+  },
+  {
+   "t": 25.15,
+   "type": "keys"
+  },
+  {
+   "t": 25.15,
+   "type": "shine"
+  },
+  {
+   "t": 25.51,
+   "type": "whoosh"
+  },
+  {
+   "t": 26.158,
+   "type": "whoosh"
+  },
+  {
+   "t": 26.278,
+   "type": "fly"
+  },
+  {
+   "t": 29.22,
+   "type": "logowipe"
+  },
+  {
+   "t": 29.52,
+   "type": "bell"
+  }
+ ]
+}
