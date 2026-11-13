@@ -179,7 +179,7 @@ GESTOS = [
     ('chegou', 'a chave dá um tranco (e "chegou?" pulsa)', (220, 990, 860, 1220)),
     ('chave', 'a chave brilha em limão', (220, 990, 860, 1220)),
     ('confira', 'o título encolhe e sobe; a ficha "CHECK-IN" entra', (130, 520, 950, 940)),
-    ('quatro', 'as casas 01–04 aparecem', (166, 600, 216, 1040)),
+    ('quatro', 'as casas 01–04 aparecem (medida na casa 01)', (168, 622, 212, 662)),
     ('reserva', 'check em "01 Documento com foto"', ck(0)),
     ('pet', 'check em "02 Pessoas"', ck(1)),
     ('voz', 'check em "03 Saída"', ck(2)),

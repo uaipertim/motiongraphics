@@ -243,11 +243,11 @@
     BOX(`check ${it.id}`, x1 - 84, y + row / 2 - 26, x1 - 32, y + row / 2 + 26);
   }
   function ficha(c, t) {
-    const t0 = T.ganchoFim + 0.16;
+    const t0 = T.ganchoFim + 0.12;
     if (t < t0 || t > T.fichaFim) return;
     saidaLado(c, t, T.fichaFim, () => {
       // a ficha assenta antes de "quatro" (as casas 01–04)
-      const e = ent(t, t0, 0.28), { x0, x1, y0, cab, row, pe } = FICHA, w = x1 - x0, itens = LN.exemplo.ficha;
+      const e = ent(t, t0, 0.22), { x0, x1, y0, cab, row, pe } = FICHA, w = x1 - x0, itens = LN.exemplo.ficha;
       const h = cab + itens.length * row + pe;
       c.save(); c.globalAlpha *= e; c.translate(0, 110 * (1 - e));
       c.save(); c.shadowColor = 'rgba(0,0,0,0.55)'; c.shadowBlur = 50; c.shadowOffsetY = 24;
