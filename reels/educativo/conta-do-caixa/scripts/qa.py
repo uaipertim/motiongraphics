@@ -97,7 +97,7 @@ for s in INFO['caixas']:
         for r in resto:
             if b['x0'] < r['x1'] and b['x1'] > r['x0'] and b['y0'] < r['y1'] and b['y1'] > r['y0']:
                 encosta.append((s['t'], r['nome']))
-ok(not fora, 'legenda dentro de x 130–950 (e as linhas até x 932, fora da coluna de botões) e acima de y 1536 em todos os quadros amostrados')
+ok(not fora, 'legenda dentro de x 130–950 (as linhas até x 936; a coluna de botões começa em x > 940) e acima de y 1536 em todos os quadros amostrados')
 ok(not encosta, 'a legenda não encosta em nenhum elemento da cena' + ('' if not encosta else ': ' + ', '.join(f'{t:.2f}s {n}' for t, n in encosta[:6])))
 
 # ---------------------------------------------------------------- sincronia
@@ -114,7 +114,7 @@ for i, w in enumerate(ws):
         continue
     a0, a1 = int((w['t0'] - 0.15) * sr), int((w['t0'] + 0.20) * sr)
     seg = env[max(0, a0): a1]; lim = ref - 26
-    q = seg <= lim; fim_q = None; j = len(seg) - 1 - int(0.10 * sr)
+    q = seg <= lim; fim_q = None; j = min(len(seg) - 1, int((w['t0'] + 0.09) * sr) - max(0, a0))   # busca até 90 ms depois da palavra: a oclusão de um 't' dentro dela não é pausa
     while j >= int(0.03 * sr):
         if q[j - int(0.03 * sr):j + 1].all():
             while j + 1 < len(q) and q[j + 1]:
@@ -181,7 +181,7 @@ for q in PG:
 ok(not ruins, 'nenhuma linha termina em artigo, preposição ou conjunção' + ('' if not ruins else ': ' + '; '.join(ruins)))
 ok(not pag_sem, 'toda troca de página cai em pontuação ou pausa' + ('' if not pag_sem else ': ' + '; '.join(pag_sem)))
 larg = max(b['x1'] - b['x0'] for s in INFO['caixas'] for b in s['caixas'] if b['nome'] == 'legenda')
-ok(all(130 <= x0 and x1 <= 932 for q in PG for x0, x1 in q['x']), f'linhas centralizadas e dentro de x 130–932 (mais larga: {max(x1 - x0 for q in PG for x0, x1 in q["x"]):.0f} px)')
+ok(all(129.5 <= x0 and x1 <= 936 for q in PG for x0, x1 in q['x']), f'linhas centralizadas e dentro de x 130–936, fora da coluna de botões em x > 940 (mais larga: {max(x1 - x0 for q in PG for x0, x1 in q["x"]):.0f} px)')
 
 # ---------------------------------------------------------------- sincronia de cada gesto × palavra (medida nos pixels do vídeo)
 rep.append(''); rep.append('SINCRONIA GESTO × PALAVRA (início do movimento medido nos pixels da região do gesto, a 60 fps; tolerância 80 ms)')

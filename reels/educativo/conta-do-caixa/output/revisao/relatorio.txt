@@ -1,0 +1,90 @@
+EDUCATIVO conta-do-caixa ("Vai fechar o caixa? Faça esta conta antes.") — revisão técnica
+output/conta-do-caixa.mp4
+
+FORMATO
+OK     vídeo h264 yuv420p 1080x1920 60 fps
+OK     áudio aac 48000 Hz 2 canais
+OK     duração 31.30 s (alvo 30–40 s)
+OK     vídeo e áudio com a mesma duração (Δ 0 ms)
+
+SOM
+OK     loudness integrado -14.0 LUFS (alvo −14)
+OK     pico real -2.3 dBTP (limite −1,5)
+OK     a trilha fica 10.4 dB abaixo da voz (voz -13.9 LUFS, trilha -24.3 LUFS; alvo ~10 dB, com ducking)
+
+LEGENDA
+OK     11 páginas; cada uma fica ≥ 1,5 s na tela (a mais curta: 1.93 s)
+OK     a página anterior sai antes da próxima entrar (nenhuma sobreposição)
+OK     chaves em limão: 23 palavras
+FALHA  legenda dentro de x 130–950 (e as linhas até x 932, fora da coluna de botões) e acima de y 1536 em todos os quadros amostrados
+OK     a legenda não encosta em nenhum elemento da cena
+
+SINCRONIA
+FALHA  voz × legenda: 16 palavras depois de pausa, a 9 ms em média e 126 ms no máximo (limite 80 ms) · sem silêncio real antes (não medidas): é, valor, motivo
+       Antes, +0 · faça -4 · esta +126 · Comece +0 · Some -2 · tudo +0 · Tire -5 · Esse +0 · Pix +0 · eles +0 · estão -4 · Agora +0 · Se -1 · anote -1 · enquanto +0 · Mande +0
+OK     cada página aparece no quadro da 1ª palavra (atraso em quadros: [1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0])
+
+ZONAS SEGURAS E CONTEÚDO
+OK     coluna de botões (x > 940, y > 1000): 0 pixel aceso em 125 quadros
+OK     20% de baixo (y > 1536): nada aceso em 125 quadros
+OK     todas as caixas da cena entre y 200 e 1536 e fora da coluna de botões
+OK     grafia oficial: nenhuma grafia fonética (Fázlo, Hospéda, Uátsap) na legenda nem no quadro
+OK     "Exemplo fictício" visível em todos os 81 quadros amostrados que mostram dado
+OK     a logo entra 0.70 s depois da última palavra e fica 3.20 s até o fim
+OK     o vídeo termina com a logo
+
+DIVISÃO DA LEGENDA (quebras só em pausa ou pontuação; nenhuma linha termina em artigo, preposição ou conjunção)
+         0.35– 2.55 s  ┌ Vai fechar o caixa           → grupo de sentido (40 ms)
+         0.35– 2.55 s  │ da pousada?                  → fim da página, pontuação
+         2.55– 4.87 s  ┌ Antes, faça esta conta.      → fim da página, pontuação
+         4.87– 7.36 s  ┌ Comece pelo troco            → grupo de sentido (40 ms)
+         4.87– 7.36 s  │ que abriu a gaveta.          → fim da página, pontuação
+         7.36– 9.81 s  ┌ Some tudo o que entrou       → grupo de sentido (80 ms)
+         7.36– 9.81 s  │ em dinheiro.                 → fim da página, pontuação
+         9.81–11.79 s  ┌ Tire o que saiu              → grupo de sentido (40 ms)
+         9.81–11.79 s  │ da gaveta.                   → fim da página, pontuação
+        11.79–14.70 s  ┌ Esse é o valor               → grupo de sentido (40 ms)
+        11.79–14.70 s  │ que deveria estar no caixa.  → fim da página, pontuação
+        14.70–17.19 s  ┌ Pix e cartão ficam           → grupo de sentido (80 ms)
+        14.70–17.19 s  │ fora dessa conta:            → fim da página, pontuação
+        17.19–19.11 s  ┌ eles não estão               → grupo de sentido (40 ms)
+        17.19–19.11 s  │ na gaveta.                   → fim da página, pontuação
+        19.11–22.10 s  ┌ Agora conte o dinheiro.      → pontuação
+        19.11–22.10 s  │ Se der diferença,            → fim da página, pontuação
+        22.10–25.10 s  ┌ anote o motivo na hora,      → pontuação
+        22.10–25.10 s  │ enquanto ainda lembra.       → fim da página, pontuação
+        25.10–28.05 s  ┌ Mande para quem fecha        → grupo de sentido (40 ms)
+        25.10–28.05 s  │ o caixa da sua pousada.      → fim da página, pontuação
+OK     nenhuma linha termina em artigo, preposição ou conjunção
+OK     toda troca de página cai em pontuação ou pausa
+FALHA  linhas centralizadas e dentro de x 130–932 (mais larga: 839 px)
+
+SINCRONIA GESTO × PALAVRA (início do movimento medido nos pixels da região do gesto, a 60 fps; tolerância 80 ms)
+       "caixa"  1.070 s → a gaveta abre com um tranco (e "o caixa?" pulsa):  1.083 s (+13 ms)
+       "faça"  3.379 s → o título encolhe e sobe; a ficha entra:  3.367 s (-12 ms)
+       "troco"  5.550 s → check em "Troco de abertura":  5.550 s (+0 ms)
+       "dinheiro."  8.910 s → check em "+ Entradas em dinheiro":  8.917 s (+7 ms)
+       "saiu" 10.350 s → check em "− Saídas da gaveta": 10.350 s (+0 ms)
+       "deveria" 12.910 s → "= Deveria ter · R$ 285,00" em limão + check: 12.917 s (+7 ms)
+       "Pix" 14.697 s → os selos PIX e CARTÃO entram voando: 14.667 s (-30 ms)
+       "fora" 15.950 s → os selos são riscados ("FORA DA CONTA"): 15.967 s (+17 ms)
+       "não" 17.550 s → a gaveta pisca: só dinheiro: 17.683 s (+133 ms)
+       "conte" 19.550 s → "Contado" começa a contar até R$ 270,00: 19.550 s (+0 ms)
+       "diferença," 21.270 s → "Diferença · falta R$ 15,00" em âmbar, com pulso: 21.283 s (+13 ms)
+       "anote" 22.096 s → o motivo começa a ser escrito à mão: 22.100 s (+4 ms)
+       "lembra." 24.350 s → carimbo "CONFERIDO": 24.367 s (+17 ms)
+       "Mande" 25.100 s → "Mande" e o avião deslizam para dentro: 25.117 s (+17 ms)
+FALHA  14 gestos, cada um a ≤ 80 ms da palavra (pior: 133 ms)
+
+VARREDURA DE TEXTO (caixas do motor a cada 0,25 s)
+FALHA  nenhum texto encosta em outro (respiro ≥ 4 px) em 126 quadros amostrados: 0.00s título 1×título 2, 0.00s título 3×título 4, 0.25s título 1×título 2, 0.25s título 3×título 4, 0.50s título 1×título 2, 0.50s título 3×título 4, 0.75s título 1×título 2, 0.75s título 3×título 4
+OK     nenhum texto cortado: os da ficha ficam ≥ 20 px dentro do papel; nada sai do quadro (fora as transições)
+
+A CONTA (exemplo fictício)
+OK     troco + entradas − saídas: 200 + 125 − 40 = 285 (deveria ter 285)
+OK     deveria ter − contado: 285 − 270 = 15 (falta 15)
+OK     os valores escritos na ficha batem com a conta: Troco de abertura R$ 200,00 · + Entradas em dinheiro R$ 125,00 · − Saídas da gaveta R$ 40,00 · = Deveria ter R$ 285,00 · Contado R$ 270,00 · Diferença falta R$ 15,00
+OK     Pix (R$ 900,00) e cartão (R$ 500,00) são ilustrativos e ficam fora da soma
+OK     capa (quadro 0) na regra das capas: dentro da regra das capas
+
+RESULTADO: 5 falha(s)

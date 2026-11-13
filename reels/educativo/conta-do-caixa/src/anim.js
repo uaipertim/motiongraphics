@@ -197,10 +197,10 @@
     const S = 100, k = kick(t, at('caixa', 99), 0.3);
     const L = (s, y, cor, nome) => txt(c, s, 540, y, { size: S, weight: 900, align: 'center', ls: -0.03 * S, color: cor, box: nome });
     L('Vai fechar', 600, C.white, 'título 1');
-    c.save(); c.translate(540, 670); c.scale(1 + 0.05 * k, 1 + 0.05 * k); c.translate(-540, -670);
-    L('o caixa?', 698, C.white, 'título 2'); c.restore();
-    L('Faça esta', 808, C.lime, 'título 3');
-    L('conta antes.', 906, C.lime, 'título 4');
+    c.save(); c.translate(540, 674); c.scale(1 + 0.05 * k, 1 + 0.05 * k); c.translate(-540, -674);
+    L('o caixa?', 702, C.white, 'título 2'); c.restore();
+    L('Faça esta', 812, C.lime, 'título 3');
+    L('conta antes.', 914, C.lime, 'título 4');
     // a gaveta: entreaberta na capa; abre com um tranco em "caixa" e segue respirando
     const tc = at('caixa', 99), abre = clamp(0.42 + 0.58 * E.outBack(p(t, tc, tc + 0.45), 2.4) + (t > tc ? 0.04 * Math.sin((t - tc) * 4) : 0), 0, 1.08);
     const b = gaveta(c, GAV.cx, GAV.top + 2 * Math.sin(t * 2.2), GAV.s, abre);
@@ -352,7 +352,7 @@
     const t0 = T.gavetaIn, t1 = T.gavetaFim;
     if (t < t0 || t > t1) return;
     const e = E.outBack(p(t, t0, t0 + 0.22), 1.5), sai = E.inCubic(p(t, t1 - 0.3, t1));
-    const tn = at('naoestao', 99), pisca = t >= tn && t < tn + 0.7 ? (Math.floor((t - tn) / 0.12) % 2 === 0 ? 1 : 0.35) : 1;
+    const tn = at('naoestao', 99), pisca = t >= tn && t < tn + 0.72 ? (Math.floor((t - tn) / 0.12) % 2 === 0 ? 0.3 : 1) : 1;
     const cy = 760 + 60 * (1 - e) + 40 * sai;
     c.save(); c.globalAlpha *= clamp(e) * (1 - sai);
     // um cartão escuro por trás, para a gaveta ler sobre o papel
@@ -425,7 +425,7 @@
       const a = k, rows = [], pos = {};
       pg.forEach((ln) => { const r0 = k; for (const w of ln.split(' ')) { if (!todas[k] || todas[k].w !== w) throw new Error(`legenda: "${w}" × "${todas[k] && todas[k].w}"`); k++; } rows.push([r0, k]); });
       rows.forEach(([r0, r1], ri) => {
-        const lw = wid(todas, r0, r1); let x = Math.min(CAP.cx - lw / 2, 932 - lw);
+        const lw = wid(todas, r0, r1); let x = Math.min(CAP.cx - lw / 2, 936 - lw);
         for (let j = r0; j < r1; j++) { pos[j] = { x, row: ri }; x += tw(todas[j].w + ' ', DISPLAY, CAP.size, 900, ls) - 0.02 * CAP.size; }
       });
       PAGES.push({ a, b: k, rows, pos, nrows: rows.length, t0: todas[a].t0, words: todas, fimFala: todas[k - 1].t1 });
