@@ -131,6 +131,50 @@ linha(not fora, 'nada acima de y 200 nem abaixo de y 1536', str(sorted(set(fora)
 linha(not col, 'nada na coluna de botões (x > 940, y > 1000)', str(sorted(set(col))[:6]) if col else None)
 linha(not perto, 'respiro ≥ 24 px entre a manchete e os elementos', str(sorted(set(perto))[:6]) if perto else None)
 
+sec('TEXTO ENCOSTADO OU CORTADO (varredura em todos os quadros a 30 fps)')
+cut, over, borda = {}, {}, {}
+for q in Q:
+    tr = na_transicao(q['t'])
+    T = [x for x in q['textos'] if x['x1'] > 0 and x['x0'] < 1080 and x['y1'] > 0 and x['y0'] < 1920]
+    for x in T:
+        if not tr and x.get('cx') and min(x['x0'] - x['cx']['x0'], x['cx']['x1'] - x['x1'], x['y0'] - x['cx']['y0'], x['cx']['y1'] - x['y1']) < 4:
+            cut.setdefault((q['cena'], x['txt'][:24]), q['t'])
+        # de propósito: o bilhete que escapa, os deslizes da câmera na cena 2 (4,3 · 5,1 · 5,6 s) e a Cerveja que volta pela lateral
+        if not tr and (x['x0'] < 0 or x['x1'] > 1080) and not (q['cena'] == 'bilhetes' and q['t'] >= 8.2) and not any(b - 0.1 <= q['t'] <= b + 0.35 for b in (4.3, 5.1, 5.6)) and not (q['cena'] == 'conta' and 11.55 <= q['t'] <= 12.0):
+            borda.setdefault((q['cena'], x['txt'][:24]), q['t'])
+    for i in range(len(T)):
+        for j in range(i + 1, len(T)):
+            a_, b_ = T[i], T[j]
+            if tr or not a_['cid'] or a_['cid'] != b_['cid'] or a_['selo'] or b_['selo'] or a_['girado'] or b_['girado']:
+                continue
+            if max(a_['x0'], b_['x0']) - min(a_['x1'], b_['x1']) < -3 and max(a_['y0'], b_['y0']) - min(a_['y1'], b_['y1']) < -3:
+                over.setdefault((q['cena'], a_['txt'][:18], b_['txt'][:18]), q['t'])
+linha(not cut, 'cada texto inteiro dentro da sua caixa (cartão, chip, barra, bilhete), com margem ≥ 4 px', str(cut) if cut else None)
+linha(not over, 'nenhum texto por cima de outro na mesma caixa (o selo "CANCELADO", carimbado de propósito, e os bilhetes girados ficam de fora)', str(over) if over else None)
+linha(not borda, 'nenhum texto cortado pela borda do quadro (salvo o que entra ou sai de propósito: o bilhete que escapa, os deslizes da câmera na cena 2 e a Cerveja voltando pela lateral)', str(borda) if borda else None)
+# defeito 1: a barra do Total (cena 4) — respiro entre o rótulo e o valor em TODOS os quadros, inclusive os das transições
+gaps = []
+for q in Q:
+    if q['cena'] != 'conta' or q['t'] >= 11.95:
+        continue
+    lb = next((x for x in q['textos'] if x['txt'] == 'Total' and x.get('caixa') == ''), None) or next((x for x in q['textos'] if x['txt'] == 'Total'), None)
+    vl = [x for x in q['textos'] if x['txt'].startswith('R$') and lb and x['cid'] == lb['cid']]
+    if lb and vl:
+        gaps.append((round(vl[0]['x0'] - lb['x1'], 1), round(q['t'], 2)))
+g = min(gaps) if gaps else (0, 0)
+linha(gaps and g[0] >= 16, f'barra do Total (cena 4): respiro entre "Total" e o valor contando ≥ 16 px em todos os {len(gaps)} quadros da contagem (menor: {g[0]:.1f} px em {g[1]:.2f} s); o valor tem a largura de "R$ 287,00" reservada e o pulso é de no máximo 6 %')
+# defeito 2: o cartão da Cerveja cancelada (cena 6) — "1 × R$ 14,00" inteiro, com a margem interna do nome
+mg = []
+for q in Q:
+    if q['cena'] != 'cancelou' or not (20.0 <= q['t'] < 22.45):
+        continue
+    nm = next((x for x in q['textos'] if x['txt'] == 'Cerveja long neck' and x.get('cx') and x['cx']['x1'] - x['cx']['x0'] > 700), None)
+    vl = next((x for x in q['textos'] if x['txt'] == '1 × R$ 14,00'), None)
+    if nm and vl:
+        mg.append((round(vl['x0'] - vl['cx']['x0'], 1), round(nm['x0'] - nm['cx']['x0'], 1), round(vl['cx']['x1'] - vl['x1'], 1), round(q['t'], 2)))
+ok2 = mg and all(v >= n - 6 and r >= 20 for v, n, r, _ in mg)                                  # 6 px: o cartão gira ±1,5°, e a caixa medida de duas linhas com a mesma margem varia até ~4 px
+linha(ok2, f'cartão da Cerveja cancelada (cena 6): "1 × R$ 14,00" inteiro dentro do cartão, com a mesma margem interna do nome, em todos os {len(mg)} quadros do risco e do selo (margem esquerda do valor {min(m[0] for m in mg):.0f}–{max(m[0] for m in mg):.0f} px × nome {min(m[1] for m in mg):.0f}–{max(m[1] for m in mg):.0f} px; o risco começa na mesma margem)')
+
 sec('SÓ ELEMENTOS (regra 11) E NADA DA V2 (regra 10)')
 imgs = re.findall(r"\.src = '([^']+)'", ANIM)
 linha(not os.path.exists(os.path.join(ROOT, 'src', 'telas')) and 'telas/' not in ANIM and set(imgs) <= {'logo.png'} and not re.search(r'PHONE|SCREEN|celular\s*=', ANIM),

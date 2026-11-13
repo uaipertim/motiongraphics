@@ -134,9 +134,10 @@
       const risco = el('div', null, d, { position: 'absolute', left: '48px', right: '22px', top: '29px', height: '3px', background: C.cinza, transformOrigin: '0 50%', transform: 'scaleX(0)' });
       return { d, n, q, v, risco, it };
     });
-    const barra = el('div', null, box, { position: 'absolute', left: '26px', right: '26px', top: '548px', height: '124px', borderRadius: '22px', background: C.limao, display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '0 28px', boxSizing: 'border-box', color: C.preto });
-    el('span', null, barra, { font: "600 32px 'Geist'" }).textContent = 'Total';
-    const tot = el('span', null, barra, { font: "700 78px 'Geist Mono'", letterSpacing: '-0.045em', transformOrigin: '100% 50%' }); tot.textContent = brl(0);
+    const barra = el('div', null, box, { position: 'absolute', left: '26px', right: '26px', top: '548px', height: '124px', borderRadius: '22px', background: C.limao, display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '16px', padding: '0 28px', boxSizing: 'border-box', color: C.preto });
+    el('span', null, barra, { font: "600 32px 'Geist'", flex: 'none' }).textContent = 'Total';
+    // o valor tem a largura do maior valor ("R$ 287,00"/"R$ 321,00") reservada desde o início, alinhado à direita
+    const tot = el('span', null, barra, { font: "700 70px 'Geist Mono'", letterSpacing: '-0.045em', transformOrigin: '100% 50%', display: 'inline-block', width: '360px', textAlign: 'right', whiteSpace: 'nowrap', flex: 'none' }); tot.textContent = brl(0);
     return { box, chips, barra, tot };
   }
 
@@ -257,7 +258,7 @@
       c.c1 = corte('copo', 3, 4, 22, 66, 88); c.c2 = corte('garrafa', 2, 4, 6, 12, 24);
       c.c3 = el('div', null, c.mundo, { position: 'absolute', inset: 0, display: 'none' });
       c.tLbl = el('div', null, c.c3, { position: 'absolute', left: 0, right: 0, top: '520px', textAlign: 'center', font: "600 60px 'Geist'", color: C.cinzaE }); c.tLbl.textContent = 'Total';
-      c.tVal = qa('somou', 'Total 287 → 321', 'valor', valorMono(c.c3, brl(TOTAL_1), 176, C.preto, { left: '540px', top: '610px', transform: 'translateX(-50%)', transformOrigin: '50% 60%' }));
+      c.tVal = qa('somou', 'Total 287 → 321', 'valor', valorMono(c.c3, brl(TOTAL_1), 164, C.preto, { left: '540px', top: '610px', transform: 'translateX(-50%)', transformOrigin: '50% 60%' }));
       c.tAntes = el('div', null, c.c3, { position: 'absolute', left: 0, right: 0, top: '850px', textAlign: 'center', font: "600 54px 'Geist Mono'", color: C.cinza, letterSpacing: '-0.03em' }); c.tAntes.textContent = `${brl(TOTAL_1)} → ${brl(TOTAL_2)}`;
       c.chip = qa('somou', '+ R$ 34,00', 'chip', el('div', null, c.c3, { position: 'absolute', left: 0, top: 0, height: '120px', padding: '0 46px', borderRadius: '999px', background: C.limao, color: C.preto, font: "700 76px 'Geist Mono'", letterSpacing: '-0.04em', display: 'flex', alignItems: 'center', whiteSpace: 'nowrap', boxShadow: '0 30px 60px rgba(0,0,0,.25)' }));
       c.chip.textContent = `+ ${brl(TOTAL_2 - TOTAL_1)}`;
@@ -269,9 +270,9 @@
       el('div', null, c.card, { position: 'absolute', left: 0, top: 0, bottom: 0, width: '14px', borderRadius: '40px 0 0 40px', background: C.limao });
       c.cNome = el('div', null, c.card, { position: 'absolute', left: '62px', top: '52px', font: "700 66px 'Geist'", letterSpacing: '-0.02em' }); c.cNome.textContent = 'Cerveja long neck';
       el('div', null, c.card, { position: 'absolute', left: '64px', top: '138px', font: "500 40px 'Geist'", color: C.cinzaE }).textContent = 'Frigobar';
-      c.cVal = el('div', null, c.card, { position: 'absolute', left: '60px', top: '214px', font: "700 104px 'Geist Mono'", letterSpacing: '-0.05em' }); c.cVal.textContent = `1 × ${brl(14)}`;
-      c.risco = el('div', null, c.card, { position: 'absolute', left: '44px', top: '92px', width: '640px', height: '11px', borderRadius: '6px', background: C.preto, transformOrigin: '0 50%', transform: 'scaleX(0) rotate(-2deg)' });
-      c.risco2 = el('div', null, c.card, { position: 'absolute', left: '44px', top: '272px', width: '700px', height: '12px', borderRadius: '6px', background: C.preto, transformOrigin: '0 50%', transform: 'scaleX(0) rotate(-2deg)' });
+      c.cVal = el('div', null, c.card, { position: 'absolute', left: '62px', top: '214px', whiteSpace: 'nowrap', font: "700 104px 'Geist Mono'", letterSpacing: '-0.05em' }); c.cVal.textContent = `1 × ${brl(14)}`;
+      c.risco = el('div', null, c.card, { position: 'absolute', left: '62px', top: '92px', width: '600px', height: '11px', borderRadius: '6px', background: C.preto, transformOrigin: '0 50%', transform: 'scaleX(0) rotate(-2deg)' });
+      c.risco2 = el('div', null, c.card, { position: 'absolute', left: '62px', top: '272px', width: '660px', height: '12px', borderRadius: '6px', background: C.preto, transformOrigin: '0 50%', transform: 'scaleX(0) rotate(-2deg)' });
       c.selo = el('div', null, c.card, { position: 'absolute', right: '40px', top: '-46px', padding: '10px 30px', border: `9px solid ${C.preto}`, borderRadius: '20px', background: C.limao, font: "900 72px 'ID'", letterSpacing: '0.02em', color: C.preto, transformOrigin: '50% 50%', display: 'none' });
       c.selo.textContent = 'CANCELADO';
       c.k = conta(c.mundo, 240, 640, 600, true); c.k.box.style.display = 'none';
@@ -357,7 +358,7 @@
       const cv = c.k.chips[5], vu = EZ.out(clamp((T - c.volta.t0) / 0.4));
       cv.d.style.opacity = T >= c.volta.t0 ? 1 : 0; cv.d.style.transform = `translateX(${(1 - vu) * -760}px) rotate(${(1 - vu) * -14}deg)`; cv.d.style.color = C.cinza; cv.v.style.color = C.cinza;
       cv.risco.style.transform = `scaleX(${ramp(T, c.volta.t1, c.volta.t1 + 0.3)})`;
-      c.k.tot.textContent = brl(tot); c.k.tot.style.transform = `scale(${1 + 0.12 * Math.max(...c.chegadas.map((x) => kick(T, x, 0.35)))})`;
+      c.k.tot.textContent = brl(tot); c.k.tot.style.transform = `scale(${1 + 0.06 * Math.max(...c.chegadas.map((x) => kick(T, x, 0.35)))})`;
       c.k.box.style.transform = `translateY(${Math.sin(T * 1.4) * 6}px) scale(${1 + mer * 0.6})`; c.k.box.style.opacity = 1 - clamp(mer * 3.5);
       c.icones.forEach((I) => { I.ic.s.style.opacity = 1 - mer; }); c.svg.style.opacity = 1 - mer;
       // 4b · o total grande
@@ -397,7 +398,7 @@
         c.chip.style.opacity = 1 - ramp(T, hit, hit + 0.35);
         const cnt = lerp(TOTAL_1, TOTAL_2, EZ.io(clamp((T - 19.0) / 0.55)));
         c.tVal.textContent = brl(cnt);
-        c.tVal.style.transform = `translateX(-50%) scale(${1 + 0.18 * kick(T, hit, 0.4) + 0.2 * kick(T, 19.55, 0.5) + 0.03 * batida(T)}) translateY(${-kick(T, 19.55, 0.4) * 30}px)`;
+        c.tVal.style.transform = `translateX(-50%) scale(${1 + 0.08 * kick(T, hit, 0.4) + 0.1 * kick(T, 19.55, 0.5) + 0.02 * batida(T)}) translateY(${-kick(T, 19.55, 0.4) * 30}px)`;
         c.tVal.style.color = T >= 19.55 ? C.preto : C.preto;
         c.tAntes.style.opacity = ramp(T, 19.6, 19.8); c.tLbl.style.transform = `translateY(${Math.sin(T * 2) * 5}px)`;
       }
@@ -410,7 +411,7 @@
       c.risco.style.transform = `scaleX(${ramp(T, 20.55, 20.85, EZ.io)}) rotate(-2deg)`; c.risco2.style.transform = `scaleX(${ramp(T, 20.75, 21.05, EZ.io)}) rotate(-2deg)`;
       c.cNome.style.color = T > 20.8 ? C.cinzaE : C.preto; c.cVal.style.color = T > 20.9 ? C.cinzaE : C.preto;
       const s = clamp((T - 21.25) / 0.16); c.selo.style.display = T >= 21.12 ? 'block' : 'none';
-      c.selo.style.transform = `rotate(-9deg) scale(${T < 21.25 ? lerp(2.6, 1, EZ.in(clamp((T - 21.12) / 0.13))) : 1 + 0.06 * kick(T, 21.25, 0.3) + 0.02 * batida(T)})`; c.selo.style.opacity = clamp((T - 21.12) / 0.06);
+      c.selo.style.transform = `rotate(-9deg) scale(${T < 21.25 ? lerp(1.35, 1, EZ.in(clamp((T - 21.12) / 0.13))) : 1 + 0.06 * kick(T, 21.25, 0.3) + 0.02 * batida(T)})`; c.selo.style.opacity = clamp((T - 21.12) / 0.06);
       // o cartão encolhe e volta para a coluna: o item fica lá, cinza
       c.k.box.style.display = T >= 22.45 ? 'block' : 'none';
       if (T >= 22.45) {
@@ -498,8 +499,21 @@
     const bx = (e) => { const b = e.getBoundingClientRect(); return { x0: (b.left - R0.left) / k, y0: (b.top - R0.top) / k, x1: (b.right - R0.left) / k, y1: (b.bottom - R0.top) / k }; };
     const visivel = (e) => { let n = e; let op = 1; while (n && n !== ROOT) { const cs = getComputedStyle(n); if (cs.display === 'none') return 0; op *= +cs.opacity; n = n.parentElement; } return op; };
     for (const q of QA) { const op = visivel(q.e); if (op < 0.3) continue; out.push({ cena: q.cena, nome: q.nome, tipo: q.tipo, op, ...bx(q.e) }); }
+    // os textos: cada um dentro da sua caixa (o ancestral com fundo), com margem; e textos da mesma caixa sem encostar
+    const textos = [];
+    const tw = document.createTreeWalker(ROOT, NodeFilter.SHOW_TEXT); let n;
+    while ((n = tw.nextNode())) {
+      const txt = n.textContent.trim(); if (!txt) continue;
+      const e = n.parentElement; if (visivel(e) < 0.3) continue;
+      const rg = document.createRange(); rg.selectNodeContents(n); const r = rg.getBoundingClientRect(); if (!r.width) continue;
+      let cx = e, caixa = null;
+      while (cx && cx !== ROOT) { const cs = getComputedStyle(cx); if (cs.backgroundColor !== 'rgba(0, 0, 0, 0)' && !cx.classList.contains('cena') && !cx.classList.contains('fundo')) { caixa = cx; break; } cx = cx.parentElement; }
+      const rr = { x0: (r.left - R0.left) / k, y0: (r.top - R0.top) / k, x1: (r.right - R0.left) / k, y1: (r.bottom - R0.top) / k };
+      let girado = false; for (let g = e; g && g !== ROOT; g = g.parentElement) { const m = getComputedStyle(g).transform; if (m && m !== 'none') { const v = m.match(/-?[\d.e-]+/g).map(Number); if (Math.abs(v[1]) > 0.02) { girado = true; break; } } }
+      textos.push({ txt, ...rr, girado, caixa: caixa ? caixa.className || caixa.tagName : null, cid: caixa ? (caixa.dataset.cid ||= String(Math.random()).slice(2, 8)) : null, ...(caixa ? { cx: bx(caixa) } : {}), selo: !!(e.closest && e.textContent === 'CANCELADO') });
+    }
     const ativa = CENAS.find((c) => t >= c.t0 && t < c.t1) || CENAS[CENAS.length - 1];
-    return { caixas: out, cena: ativa.id, fundo: ativa.fundo };
+    return { caixas: out, textos, cena: ativa.id, fundo: ativa.fundo };
   }
 
   // ---------------- capa: manchete + o copo grande em traço limão + "R$ 22,00" + "?" ----------------
