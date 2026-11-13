@@ -1,194 +1,287 @@
 /*
- * FAZLO Hospeda — "A caipirinha da piscina entrou na conta?" (9:16, sem narração; a mensagem vem de textos curtos na tela).
+ * FAZLO Hospeda — "A caipirinha da piscina entrou na conta?" (9:16, SEM narração).
  *
- * Motor: o do educativo "fechar-caixa" (celular em 3D leve, elementos que SALTAM da tela real com o lugar de origem
- * marcado, elástico suave, sombra e perspectiva, recortes do próprio HTML em 4×). Aqui o começo é só gráfico — o cartão
- * da Caipirinha com o "?" e os cartões de consumo voando entre as etiquetas "Bar da piscina", "Frigobar" e "Restaurante",
- * todos recortados do HTML da comanda (08-comanda) — e o resto é a comanda real da Mariana Costa (02 → 03 → 04).
- * Os textos de tela usam a tipografia e o estilo da legenda aprovada (Inter Display 900, palavra-chave em limão),
- * centralizados abaixo do celular. Determinístico: REEL.renderAt(t).
+ * Regra da série: vídeo sem narração não usa telas do app, celular nem recortes do HTML. Tudo aqui são peças gráficas
+ * de motion desenhadas para o vídeo (cartões de consumo, etiquetas, um painel de comanda, chips, contador, risco, selo,
+ * check), na paleta e na tipografia da marca (preto, off-white e verde-limão; Geist e Geist Mono para valores), com os
+ * valores reais da comanda da Mariana Costa (pacote 08-comanda, estados 02 e 04). Os textos de tela usam a tipografia
+ * e o estilo da legenda aprovada (Inter Display 900, palavra-chave em limão). Determinístico: REEL.renderAt(t).
  */
 (() => {
   const W = 1080, H = 1920;
-  const C = { preto: '#0A0A0A', limao: '#AFFA27', branco: '#F7F7F2', ambar: '#E8A317' };
-  const S0 = 1.436, BZ = 13;
-  const SW = 390 * S0, SH = 844 * S0, PW = SW + 2 * BZ, PH = SH + 2 * BZ;
-  const ZB = 1140 / PH;                                        // vista base: o celular de y 216 a 1356 (moldura ~540 px)
-  const BASEV = { x: 540, y: 216 + 1140 / 2, z: 0, Z: ZB, rx: 1.5, ry: -3, rz: 0 };
-  const FORA = { ...BASEV, y: 2700, rx: 24, ry: -10, rz: 4 };  // o celular antes de entrar (abaixo do quadro)
-  const K0 = S0 * ZB;                                          // px do quadro por px CSS, com o celular na vista base
+  const C = { preto: '#0A0A0A', limao: '#AFFA27', off: '#F7F7F2', cinza: '#6B6F68', cinzaC: '#9A9D95', painel: '#121411', borda: 'rgba(247,247,242,0.10)' };
   const CAP = { size: 64, lh: 74, y1: 1442, cx: 540 };          // textos de tela: as linhas da legenda aprovada (y 1442/1516)
   const clamp = (v, a = 0, b = 1) => Math.max(a, Math.min(b, v));
   const lerp = (a, b, u) => a + (b - a) * u;
   const EZ = { lin: (u) => u, out: (u) => 1 - Math.pow(1 - u, 3), in: (u) => u * u * u, io: (u) => (u < 0.5 ? 4 * u * u * u : 1 - Math.pow(-2 * u + 2, 3) / 2),
     expo: (u) => (u >= 1 ? 1 : 1 - Math.pow(2, -10 * u)), quad: (u) => u * u,
     elastico: (u) => (u <= 0 ? 0 : u >= 1 ? 1 : 1 - Math.pow(2, -8 * u) * Math.cos(u * Math.PI * 2.5)),
-    back: (u) => { const c1 = 1.2, c3 = c1 + 1; return 1 + c3 * Math.pow(u - 1, 3) + c1 * Math.pow(u - 1, 2); } };
+    back: (u) => { const c1 = 1.4, c3 = c1 + 1; return 1 + c3 * Math.pow(u - 1, 3) + c1 * Math.pow(u - 1, 2); } };
   const ramp = (t, a, b, e = EZ.out) => e(clamp((t - a) / (b - a)));
   const kick = (t, t0, d = 0.25) => (t < t0 ? 0 : Math.exp(-((t - t0) / d) * 4));
   const el = (tag, cls, parent, css) => { const e = document.createElement(tag); if (cls) e.className = cls; if (css) Object.assign(e.style, css); if (parent) parent.appendChild(e); return e; };
   const rgba = (h, a) => { const n = parseInt(h.slice(1), 16); return `rgba(${(n >> 16) & 255},${(n >> 8) & 255},${n & 255},${a})`; };
-  const img = (src, parent, css) => { const i = el('img', null, parent, css); i.decoding = 'sync'; i.src = src; return i; };
+  const brl = (v) => 'R$ ' + Math.round(v).toLocaleString('pt-BR') + ',00';
+  // ícones de linha da marca (marca/icones: comandas e check)
+  const ICONE = {
+    comanda: '<path d="M13 16H8"/><path d="M14 8H8"/><path d="M16 12H8"/><path d="M4 3a1 1 0 0 1 1-1 1.3 1.3 0 0 1 .7.2l.933.6a1.3 1.3 0 0 0 1.4 0l.934-.6a1.3 1.3 0 0 1 1.4 0l.933.6a1.3 1.3 0 0 0 1.4 0l.933-.6a1.3 1.3 0 0 1 1.4 0l.934.6a1.3 1.3 0 0 0 1.4 0l.933-.6A1.3 1.3 0 0 1 19 2a1 1 0 0 1 1 1v18a1 1 0 0 1-1 1 1.3 1.3 0 0 1-.7-.2l-.933-.6a1.3 1.3 0 0 0-1.4 0l-.934.6a1.3 1.3 0 0 1-1.4 0l-.933-.6a1.3 1.3 0 0 0-1.4 0l-.933.6a1.3 1.3 0 0 1-1.4 0l-.934-.6a1.3 1.3 0 0 0-1.4 0l-.933.6a1.3 1.3 0 0 1-.7.2 1 1 0 0 1-1-1z"/>',
+    check: '<path d="M20 6 9 17l-5-5"/>',
+  };
+  const svg = (nome, px, cor, sw = 1.9) => `<svg width="${px}" height="${px}" viewBox="0 0 24 24" fill="none" stroke="${cor}" stroke-width="${sw}" stroke-linecap="round" stroke-linejoin="round">${ICONE[nome]}</svg>`;
 
-  let ROOT, M, PHONE, SCREEN, ROLA, FXT, PROBE, PROBE_V, SALTOS_EL, GRAF, FINAL_EL, CV, CX, DUR = 32;
-  const EV = [], AVISOS = [];
+  // ---------------- os dados reais da comanda (08-comanda, estados 02 e 04) ----------------
+  const ITENS = [
+    { id: 'caipirinha', nome: 'Caipirinha', origem: 'Bar da piscina', q: 3, un: 22, q2: 4 },
+    { id: 'agua', nome: 'Água sem gás', origem: 'Frigobar', q: 2, un: 6, q2: 4 },
+    { id: 'cerveja', nome: 'Cerveja long neck', origem: 'Frigobar', q: 4, un: 14 },
+    { id: 'risoto', nome: 'Risoto de cogumelos', origem: 'Restaurante', q: 2, un: 68 },
+    { id: 'suco', nome: 'Suco de laranja', origem: 'Frigobar', q: 1, un: 17 },
+    { id: 'cancelado', nome: 'Cerveja long neck', origem: 'Frigobar', q: 1, un: 14, cancelado: true },
+  ];
+  const TOTAL_1 = ITENS.filter((i) => !i.cancelado).reduce((a, i) => a + i.q * i.un, 0);                       // 287
+  const TOTAL_2 = ITENS.filter((i) => !i.cancelado).reduce((a, i) => a + (i.q2 || i.q) * i.un, 0);             // 321
+
+  let ROOT, GRAF, CV, CX, FINAL_EL, DUR = 32.01;
+  const EV = [];
   const ev = (t, tipo, d = {}) => EV.push({ t: +t.toFixed(3), tipo, ...d });
   const T_ = {};
 
-  // ---------------- câmera ----------------
-  const CAM = [];
-  function cam(t, v, e = EZ.io) { const prev = CAM.length ? CAM[CAM.length - 1].v : BASEV; CAM.push({ t, v: { ...prev, ...v }, e }); CAM.sort((a, b) => a.t - b.t); }
-  function camEm(t) {
-    let i = 0; while (i < CAM.length - 1 && t >= CAM[i + 1].t) i++;
-    if (t <= CAM[0].t) return CAM[0].v; if (i === CAM.length - 1) return CAM[i].v;
-    const a = CAM[i], b = CAM[i + 1], u = b.e((t - a.t) / (b.t - a.t)); const o = {}; for (const k in a.v) o[k] = lerp(a.v[k], b.v[k], u); return o;
-  }
-  function move(t, v, dur = 0.5, e = EZ.io) { const atual = { ...camEm(t) }; cam(t, atual, EZ.lin); cam(t + dur, { ...atual, ...v }, e); }
-
-  // ---------------- a tela: bases (página inteira, com rolagem), a folha 03, sobreposições ----------------
-  const BASES = [];                                            // { id ('vazia' | 's02' | 's04'), t0, trans }
-  function base(id, t0, trans = 'fade') { BASES.push({ id, t0, trans }); ev(t0, 'tela'); }
-  const baseEm = (t) => BASES.filter((b) => b.t0 <= t).pop() || BASES[0];
-  const ROL = [[0, 0]];                                        // rolagem da página: pares [t, y] (px CSS)
-  function rola(t0, t1, y) { const y0 = ROL[ROL.length - 1][1]; ROL.push([t0, y0, t1, y]); ev(t0, 'rola', { dur: t1 - t0 }); }
-  function rolEm(t) { let y = 0; for (const r of ROL) { if (r.length === 2) { y = r[1]; continue; } const [a, y0, b, y1] = r; if (t >= b) y = y1; else if (t >= a) y = lerp(y0, y1, EZ.io((t - a) / (b - a))); } return y; }
-  const FOLHA = { abre: 1e9, fecha: 1e9 };
-  const R = (tela, nome) => { const r = (M[tela].el || {})[nome]; if (!r) throw new Error(tela + ': sem ' + nome); return r; };
-
-  const TOQUES = [], CONTORNOS = [];
-  function toque(t, tela, nome, fixo = false) { TOQUES.push({ t, r: R(tela, nome), fixo }); ev(t, 'toque'); }
-  function contorno(tela, nome, t0, t1) { CONTORNOS.push({ tela, nome, r: R(tela, nome), t0, t1 }); }
-
-  // ---------------- saltos (o motor do fechar-caixa) ----------------
-  // { id, tela, el, quadros (t -> img), troca {t, quadros2}, fundo, pad, f, alvo {cx, cy}, t0, tin, t1, tout, cor, rot, slot }
-  const SALTOS = [];
-  function salto(o) {
-    const s = { tin: 0.45, tout: 0.42, pad: 0, f: 1.85, rot: { rx: 6, ry: -8, rz: -1.5 }, cor: C.limao, slot: '#FFFFFF', fundo: 'transparent', ...o };
-    s.r = R(s.tela, s.el); s.w = s.r.w + 2 * s.pad; s.h = s.r.h + 2 * s.pad;
-    SALTOS.push(s);
-    ev(s.t0, 'salto', { id: s.id }); ev(s.t1, 'volta', { id: s.id }); ev(s.t1 + s.tout, 'encaixa', { id: s.id });
-    if (s.troca) ev(s.troca.t, 'troca', { id: s.id });
-    return s;
-  }
-  const fixo = (src) => () => src;
-  const conta = (Q, a, b) => (t) => Q[Math.round(clamp((t - a) / (b - a)) * (Q.length - 1))].img;
-
-  // ---------------- o começo gráfico: o cartão da Caipirinha, as etiquetas e os cartões em voo ----------------
-  const ETIQ = {                                               // as etiquetas (chips da folha "Lançar consumo"), no quadro
-    bar: { chip: 'chip_bar', x: 318, y: 420, rot: -5 }, frigobar: { chip: 'chip_frigobar', x: 770, y: 640, rot: 4 }, restaurante: { chip: 'chip_restaurante', x: 330, y: 960, rot: -3 },
-  };
-  const VOOS = [];                                             // os cartões de consumo: voam e encaixam nos lugares da comanda
-  function voo(o) { VOOS.push({ s: 0.8, ...o, r: R('s02', o.item) }); ev(o.pousa, 'aterra'); if (o.nasce) ev(o.aparece, 'voo'); }
-
   // ---------------- textos de tela (o estilo da legenda aprovada) ----------------
-  const TEXTOS = [];                                           // { t0, t1, linhas: [..], chaves: Set(palavras em limão) }
+  const TEXTOS = [];
   function texto(t0, t1, linhas, chaves = []) { TEXTOS.push({ t0, t1, linhas, chaves: new Set(chaves) }); ev(t0, 'texto'); }
 
-  // ---------------- roteiro ----------------
-  function monta() {
-    // ===== 1 · GANCHO (0–3,6 s): o cartão da Caipirinha sozinho no escuro, girando, com o "?" pulsando =====
-    cam(0, FORA);
-    texto(0, 3.6, ['A caipirinha da piscina', 'entrou na conta?'], ['entrou', 'na', 'conta?']);
-    T_.gancho = { fim: 3.6 };
-    ev(0.9, 'pulso'); ev(2.2, 'pulso');
+  // ---------------- geometria ----------------
+  const CARD = { w: 640, h: 112 };                             // o cartão de consumo (escala 1)
+  const PAINEL = { x: 150, y: 236, w: 780, h: 1104, cab: 128, topoCartoes: 384, passo: 124, escCartao: 720 / 640, totalY: 1150 };
+  const ETIQ = { bar: { txt: 'Bar da piscina', x: 318, y: 420, rot: -5 }, frigobar: { txt: 'Frigobar', x: 770, y: 640, rot: 4 }, restaurante: { txt: 'Restaurante', x: 330, y: 960, rot: -3 } };
+  const slotDe = (i) => ({ cx: 540, cy: PAINEL.topoCartoes + i * PAINEL.passo + CARD.h * PAINEL.escCartao / 2 });
 
-    // ===== 2 · A DOR (3,6–8,8 s): as etiquetas espalhadas, os cartões desencontrados; um escapa e cai do quadro =====
-    T_.dor = { ini: 3.6, etiq: 3.7, fim: 8.8, escapa: 6.7 };
+  // ---------------- roteiro (os tempos e os textos da versão aprovada) ----------------
+  const POUSA = { caipirinha: 9.85, agua: 10.25, cerveja: 10.75, risoto: 11.15, suco: 11.55, cancelado: 12.05 };
+  function monta() {
+    texto(0, 3.6, ['A caipirinha da piscina', 'entrou na conta?'], ['entrou', 'na', 'conta?']);
+    T_.gancho = { fim: 3.6 }; ev(0.9, 'pulso'); ev(2.2, 'pulso');
+    T_.dor = { etiq: 3.7, escapa: 6.7 };
     texto(3.65, 5.75, ['Bar, frigobar, restaurante…']);
     texto(5.75, 9.05, ['e cada um anota', 'de um jeito.'], ['cada', 'um', 'anota']);
     ev(3.7, 'etiqueta'); ev(3.9, 'voo'); ev(T_.dor.escapa, 'queda');
-
-    // ===== 3 · TUDO NA COMANDA (8,8–15,3 s): o celular entra; os cartões encaixam como as linhas; o Total conta =====
-    base('vazia', -1, 'corte');
-    move(9.05, BASEV, 0.75, EZ.out); ev(9.05, 'entra');
+    // 3 · a comanda gráfica
+    T_.painel = 9.1; ev(T_.painel, 'painel');
     texto(9.45, 11.6, ['No FAZLO Hospeda,']);
     texto(11.6, 15.2, ['tudo cai na comanda', 'do hóspede.'], ['comanda', 'do', 'hóspede.']);
-    // (as posições livres de cada cartão são calculadas em vooLivre; aqui, quando cada um encaixa)
-    voo({ id: 'caipirinha', item: 'caipirinha', img: M.s02.recortes.caipirinha.img, aparece: 0, pousa: 9.8 });
-    voo({ id: 'agua', item: 'agua', img: M.s02.recortes.agua.img, aparece: 3.9, pousa: 10.05 });
-    rola(10.12, 10.62, 600);                                    // a lista rola: os outros lugares ficam à vista
-    voo({ id: 'cerveja', item: 'cerveja', img: M.s02.recortes.cerveja.img, aparece: 4.05, pousa: 10.75, volta: true });
-    voo({ id: 'risoto', item: 'risoto', img: M.s02.recortes.risoto.img, aparece: 4.2, pousa: 11.0 });
-    voo({ id: 'suco', item: 'suco', img: M.s02.recortes.suco.img, aparece: 10.2, pousa: 11.25, nasce: 'frigobar' });
-    voo({ id: 'cancelado', item: 'cancelado', img: M.s02.recortes.cancelado.img, aparece: 10.35, pousa: 11.5, nasce: 'frigobar' });
-    T_.lista = { cheia: 12.0 };
-    base('s02', T_.lista.cheia, 'corte');
-    rola(12.05, 12.6, 0);
-    const tT = 12.7;
-    salto({ id: 'total', tela: 's02', el: 'total', quadros: conta(M.s02.conta_total, tT + 0.3, tT + 1.1), fundo: '#FFFFFF', pad: 8, f: 1.85,
-      alvo: { cx: 540, cy: 420 }, t0: tT, t1: tT + 0.45 + 1.6, rot: { rx: 6, ry: -7, rz: -1 } });
-    ev(tT + 0.3, 'conta', { dur: 0.8 });
-
-    // ===== 4 · LANÇOU, SOMOU (15,3–24,4 s): "Lançar consumo" → folha 03 → 04; as linhas mudam; o Total conta até R$ 321,00 =====
-    const tL = 15.25;
-    toque(tL, 's02', 'lancar_consumo');
-    FOLHA.abre = tL + 0.15; ev(FOLHA.abre, 'folha');
-    const tL2 = FOLHA.abre + 1.05;
-    toque(tL2, 's03', 'btn_lancar', true);
-    FOLHA.fecha = tL2 + 0.15; ev(FOLHA.fecha, 'folha_fecha');
-    base('s04', FOLHA.fecha + 0.1, 'fade');
-    T_.t4 = tL;
-    const tC = FOLHA.fecha + 0.45;
-    salto({ id: 'caipirinha', tela: 's04', el: 'caipirinha', quadros: fixo(M.s02.recortes.caipirinha.img), troca: { t: tC + 0.95, img: M.s04.recortes.caipirinha.img }, f: 1.6,
-      alvo: { cx: 540, cy: 600 }, t0: tC, t1: tC + 0.45 + 1.6, rot: { rx: 6, ry: 8, rz: 1.5 } });
-    const tA = tC + 0.45 + 1.6 + 0.15;
-    salto({ id: 'agua', tela: 's04', el: 'agua', quadros: fixo(M.s02.recortes.agua.img), troca: { t: tA + 0.95, img: M.s04.recortes.agua.img }, f: 1.6,
-      alvo: { cx: 540, cy: 700 }, t0: tA, t1: tA + 0.45 + 1.6, rot: { rx: 6, ry: -8, rz: -1.5 } });
-    const tT2 = tA + 0.45 + 1.6 + 0.15;
-    salto({ id: 'total-321', tela: 's04', el: 'total', quadros: conta(M.s04.conta_total, tT2 + 0.3, tT2 + 1.0), fundo: '#FFFFFF', pad: 8, f: 1.85,
-      alvo: { cx: 540, cy: 420 }, t0: tT2, t1: tT2 + 0.45 + 1.6, rot: { rx: 6, ry: 7, rz: 1 } });
-    ev(tT2 + 0.3, 'conta', { dur: 0.7 });
-    const fim4 = tT2 + 0.45 + 1.6 + 0.3;
-
-    // ===== 5 · NADA SOME: o item cancelado salta =====
-    const tR = fim4 + 0.05;
-    texto(T_.t4, tR + 0.1, ['Lançou, somou.'], ['somou.']);
-    rola(tR, tR + 0.5, 600);
-    const tX = tR + 0.6;
-    texto(tR + 0.1, tX + 0.45 + 1.6 + 0.4, ['Cancelou?', 'Continua registrado.'], ['Continua', 'registrado.']);
-    salto({ id: 'cancelado', tela: 's04', el: 'cancelado', quadros: fixo(M.s04.recortes.cancelado.img), slot: '#F4F4F0', fundo: '#F4F4F0', f: 1.6,
-      alvo: { cx: 540, cy: 760 }, t0: tX, t1: tX + 0.45 + 1.6, rot: { rx: 6, ry: 8, rz: 1.5 } });
-
-    // ===== 6 · FECHAMENTO: o Saldo e o "Receber R$ 321,00" saltam juntos; o celular se afasta; a marca =====
-    const tS0 = tX + 0.45 + 1.6 + 0.42 + 0.05;
-    rola(tS0, tS0 + 0.5, 0);
-    const tS = tS0 + 0.55;
-    const T6 = { t0: tS0 + 0.1 };
-    salto({ id: 'saldo', grupo: 'fechamento', tela: 's04', el: 'saldo', quadros: fixo(M.s04.recortes.saldo.img), fundo: '#FFFFFF', pad: 8, f: 1.85,
-      alvo: { cx: 540, cy: 400 }, t0: tS, t1: tS + 0.45 + 1.6, rot: { rx: 6, ry: -7, rz: -1 } });
-    salto({ id: 'receber', grupo: 'fechamento', tela: 's04', el: 'receber', quadros: fixo(M.s04.recortes.receber.img), f: 1.6, slot: '#F4F4F0',
-      alvo: { cx: 540, cy: 1000 }, t0: tS + 0.12, t1: tS + 0.12 + 0.45 + 1.6, rot: { rx: 5, ry: 7, rz: 1 } });
-    const tLonge = tS + 0.12 + 0.45 + 1.6 + 0.42 + 0.1;
-    move(tLonge, { x: 540, y: 760, z: 0, Z: ZB * 0.56, rx: 2, ry: -2, rz: 0 }, 0.8, EZ.io);
-    T_.logo = tLonge + 0.45; ev(tLonge, 'afasta'); ev(T_.logo, 'logo');
-    texto(T6.t0, T_.logo + 0.6, ['No check-out,', 'a conta já está pronta.'], ['já', 'está', 'pronta.']);
-    DUR = +(T_.logo + 1.35).toFixed(2);
+    for (const [k, t] of Object.entries(POUSA)) ev(t, 'aterra', { id: k });
+    ev(10.2, 'voo'); ev(10.35, 'voo');
+    T_.contaPop = 12.55; ev(T_.contaPop, 'pulso');
+    // 4 · lançou, somou
+    T_.chip1 = { t0: 15.6, bate: 16.25, id: 'caipirinha', txt: '+1 Caipirinha' };
+    T_.chip2 = { t0: 16.7, bate: 17.35, id: 'agua', txt: '+2 Água sem gás' };
+    ev(T_.chip1.t0, 'voo'); ev(T_.chip1.bate, 'troca'); ev(T_.chip2.t0, 'voo'); ev(T_.chip2.bate, 'troca');
+    T_.conta2 = { t0: 17.9, t1: 18.9 }; ev(T_.conta2.t0, 'conta', { dur: 1.0 }); ev(T_.conta2.t1, 'pulso');
+    texto(15.25, 23.95, ['Lançou, somou.'], ['somou.']);
+    // 5 · cancelou? continua registrado
+    T_.risco = 24.45; T_.selo = 24.95; ev(T_.risco, 'risco'); ev(T_.selo, 'selo');
+    texto(23.95, 26.9, ['Cancelou?', 'Continua registrado.'], ['Continua', 'registrado.']);
+    // 6 · a pilha se fecha no total; check; a marca
+    T_.fecha = 27.4; T_.check = 28.6; T_.logo = 30.66;
+    ev(T_.fecha, 'fecha'); ev(T_.check, 'check'); ev(T_.logo, 'logo');
+    texto(27.07, 31.26, ['No check-out,', 'a conta já está pronta.'], ['já', 'está', 'pronta.']);
+    DUR = 32.01;
   }
 
-  // a posição livre (no quadro) de cada cartão em voo, antes de encaixar
-  function vooLivre(v, t) {
-    const D = T_.dor, g = T_.gancho;
-    if (v.id === 'caipirinha') {
-      // o gancho: grande no centro, girando; depois encolhe e vai para perto da etiqueta "Bar da piscina"
+  // ---------------- DOM ----------------
+  const CARTOES = {};
+  let PAINEL_EL, CONT_EL, CONT_LBL, ETIQ_EL = {}, Q_EL, CHIP_EL = {}, TOTAL_EL, LOGO;
+  function cartao(it) {
+    const d = el('div', 'cartao', GRAF, { position: 'absolute', left: 0, top: 0, width: CARD.w + 'px', height: CARD.h + 'px', borderRadius: '26px', background: C.off, transformOrigin: '50% 50%', display: 'none', boxSizing: 'border-box', overflow: 'hidden' });
+    el('div', null, d, { position: 'absolute', left: 0, top: 0, bottom: 0, width: '8px', background: C.limao });                        // a marca de consumo (filete limão)
+    const nome = el('div', null, d, { position: 'absolute', left: '34px', top: '19px', font: "600 32px 'Geist'", letterSpacing: '-0.01em', color: C.preto, whiteSpace: 'nowrap' }); nome.textContent = it.nome;
+    const sub = el('div', null, d, { position: 'absolute', left: '34px', top: '66px', height: '28px', font: "500 22px 'Geist'", color: C.cinza, whiteSpace: 'nowrap', display: 'flex', alignItems: 'center', gap: '10px' });
+    el('span', null, sub, { width: '9px', height: '9px', borderRadius: '50%', background: C.limao, boxShadow: '0 0 0 2px rgba(10,10,10,.08)' });
+    const org = el('span', null, sub); org.textContent = it.origem;
+    const qtd = el('span', null, sub, { position: 'relative', display: 'inline-block', height: '28px', overflow: 'hidden', font: "500 22px 'Geist Mono'", lineHeight: '28px', minWidth: '220px' });
+    const q1 = el('span', null, qtd, { position: 'absolute', left: 0, top: 0, whiteSpace: 'nowrap' }), q2 = el('span', null, qtd, { position: 'absolute', left: 0, top: 0, whiteSpace: 'nowrap' });
+    const val = el('div', null, d, { position: 'absolute', right: '30px', top: '30px', height: '48px', width: '240px', overflow: 'hidden', font: "600 34px 'Geist Mono'", lineHeight: '48px', color: C.preto, textAlign: 'right' });
+    const v1 = el('div', null, val, { position: 'absolute', right: 0, top: 0, whiteSpace: 'nowrap' }), v2 = el('div', null, val, { position: 'absolute', right: 0, top: 0, whiteSpace: 'nowrap' });
+    const risco = el('div', null, d, { position: 'absolute', left: '30px', top: '38px', height: '4px', width: '0px', background: C.preto, borderRadius: '2px' });
+    const risco2 = el('div', null, d, { position: 'absolute', right: '30px', top: '52px', height: '4px', width: '0px', background: C.preto, borderRadius: '2px' });
+    const selo = el('div', null, d, { position: 'absolute', right: '286px', top: '30px', height: '50px', padding: '0 18px', borderRadius: '999px', border: `3px solid ${C.preto}`, font: "700 22px 'Geist'", letterSpacing: '0.04em', textTransform: 'uppercase', color: C.preto, display: 'none', alignItems: 'center', boxSizing: 'border-box', background: C.off });
+    selo.textContent = 'Cancelado';
+    const pulso = el('div', null, d, { position: 'absolute', inset: 0, borderRadius: 'inherit', pointerEvents: 'none' });
+    CARTOES[it.id] = { it, d, nome, org, q1, q2, v1, v2, risco, risco2, selo, pulso };
+  }
+  async function init(root) {
+    ROOT = root;
+    el('div', 'fundo', ROOT, { position: 'absolute', inset: 0, background: 'radial-gradient(ellipse 980px 1200px at 540px 820px, #191B17 0%, #0C0D0B 58%, #060606 100%)' });
+    el('div', 'luz', ROOT, { position: 'absolute', left: '-160px', top: '200px', width: '1400px', height: '1300px', background: 'radial-gradient(circle at 50% 42%, rgba(175,250,39,0.07), rgba(175,250,39,0) 62%)' });
+    GRAF = el('div', 'graficos', ROOT, { position: 'absolute', inset: 0, perspective: '1600px', perspectiveOrigin: '540px 760px' });
+    // o painel da comanda (cena 3)
+    PAINEL_EL = el('div', 'comanda', GRAF, { position: 'absolute', left: PAINEL.x + 'px', top: PAINEL.y + 'px', width: PAINEL.w + 'px', height: PAINEL.h + 'px', borderRadius: '40px', background: `linear-gradient(180deg, #171A15, ${C.painel})`, border: `2px solid ${C.borda}`, boxSizing: 'border-box', display: 'none', transformOrigin: '50% 50%', boxShadow: '0 50px 120px rgba(0,0,0,.65)' });
+    const cab = el('div', null, PAINEL_EL, { position: 'absolute', left: '40px', right: '40px', top: '34px', height: '70px', display: 'flex', alignItems: 'center', gap: '22px' });
+    const ic = el('div', null, cab, { width: '64px', height: '64px', borderRadius: '18px', background: rgba(C.limao, 0.12), display: 'flex', alignItems: 'center', justifyContent: 'center' }); ic.innerHTML = svg('comanda', 34, C.limao);
+    const tt = el('div', null, cab);
+    const n1 = el('div', null, tt, { font: "700 38px 'Geist'", letterSpacing: '-0.015em', color: C.off, lineHeight: '42px' }); n1.textContent = 'Mariana Costa';
+    const n2 = el('div', null, tt, { font: "500 24px 'Geist'", color: C.cinzaC, lineHeight: '30px' }); n2.textContent = 'Suíte Mirante';
+    el('div', null, PAINEL_EL, { position: 'absolute', left: '40px', right: '40px', top: PAINEL.cab + 'px', height: '2px', background: C.borda });
+    el('div', null, PAINEL_EL, { position: 'absolute', left: '40px', right: '40px', top: (PAINEL.totalY - PAINEL.y - 36) + 'px', height: '2px', background: C.borda });
+    CONT_LBL = el('div', null, PAINEL_EL, { position: 'absolute', left: '44px', top: (PAINEL.totalY - PAINEL.y + 30) + 'px', font: "600 32px 'Geist'", color: C.cinzaC }); CONT_LBL.textContent = 'Total';
+    CONT_EL = el('div', null, PAINEL_EL, { position: 'absolute', right: '44px', top: (PAINEL.totalY - PAINEL.y - 4) + 'px', font: "700 82px 'Geist Mono'", letterSpacing: '-0.03em', color: C.limao, transformOrigin: '100% 60%', whiteSpace: 'nowrap', textShadow: `0 0 30px ${rgba(C.limao, 0.25)}` });
+    // as etiquetas
+    for (const [k, e] of Object.entries(ETIQ)) {
+      const d = el('div', 'etiqueta', GRAF, { position: 'absolute', left: 0, top: 0, height: '76px', padding: '0 34px 0 28px', borderRadius: '999px', border: `2px solid ${rgba(C.off, 0.85)}`, background: 'rgba(14,16,13,0.9)', display: 'none', alignItems: 'center', gap: '16px', font: "600 32px 'Geist'", color: C.off, whiteSpace: 'nowrap', boxSizing: 'border-box', boxShadow: '0 18px 50px rgba(0,0,0,.55)' });
+      el('span', null, d, { width: '14px', height: '14px', borderRadius: '50%', background: C.limao, boxShadow: `0 0 16px ${C.limao}` }); el('span', null, d).textContent = e.txt;
+      ETIQ_EL[k] = d;
+    }
+    for (const it of ITENS) cartao(it);
+    // o "?" do gancho
+    Q_EL = el('div', 'interrogacao', GRAF, { position: 'absolute', left: 0, top: 0, font: "900 240px 'ID'", color: C.limao, display: 'none' }); Q_EL.textContent = '?';
+    // os chips "+1 Caipirinha" e "+2 Água sem gás"
+    // o cartão final do total
+    TOTAL_EL = el('div', 'total-final', GRAF, { position: 'absolute', left: '150px', top: '0px', width: '780px', height: '360px', borderRadius: '44px', background: C.off, display: 'none', transformOrigin: '50% 50%', boxShadow: '0 50px 120px rgba(0,0,0,.6)', overflow: 'hidden' });
+    el('div', null, TOTAL_EL, { position: 'absolute', left: 0, top: 0, bottom: 0, width: '12px', background: C.limao });
+    const tl = el('div', null, TOTAL_EL, { position: 'absolute', left: '60px', top: '64px', font: "600 40px 'Geist'", color: C.cinza }); tl.textContent = 'Total';
+    const tv = el('div', null, TOTAL_EL, { position: 'absolute', left: '56px', top: '128px', font: "700 128px 'Geist Mono'", letterSpacing: '-0.04em', color: C.preto, whiteSpace: 'nowrap' }); tv.textContent = brl(TOTAL_2);
+    const ck = el('div', null, TOTAL_EL, { position: 'absolute', right: '56px', top: '56px', width: '104px', height: '104px', borderRadius: '50%', background: C.limao, display: 'flex', alignItems: 'center', justifyContent: 'center', transformOrigin: '50% 50%' }); ck.innerHTML = svg('check', 60, C.preto, 2.6);
+    T_.dom = { ck };
+    FINAL_EL = el('div', 'final', ROOT, { position: 'absolute', inset: 0 });
+    CV = el('canvas', 'textos', ROOT, { position: 'absolute', left: 0, top: 0, width: W + 'px', height: H + 'px' }); CV.width = W; CV.height = H; CX = CV.getContext('2d');
+    monta();
+    for (const c of [T_.chip1, T_.chip2]) {
+      const d = el('div', 'chip', GRAF, { position: 'absolute', left: 0, top: 0, height: '78px', padding: '0 34px', borderRadius: '999px', background: C.limao, color: C.preto, font: "700 34px 'Geist'", display: 'none', alignItems: 'center', whiteSpace: 'nowrap', boxSizing: 'border-box', boxShadow: `0 20px 50px rgba(0,0,0,.5), 0 0 40px ${rgba(C.limao, 0.35)}` });
+      d.textContent = c.txt; CHIP_EL[c.id] = d;
+    }
+    LOGO = el('img', null, FINAL_EL, { position: 'absolute', left: '540px', top: '1060px', width: '560px', transform: 'translateX(-50%)', display: 'none' }); LOGO.src = 'logo.png'; LOGO.decoding = 'sync';
+    await Promise.all([...ROOT.querySelectorAll('img')].map((i) => i.decode().catch(() => {})));
+  }
+
+  // ---------------- poses ----------------
+  // a posição livre de cada cartão (cenas 1–3, antes de encaixar no painel): o movimento da versão aprovada
+  const ESC_LIVRE = 0.78;
+  function livre(id, t) {
+    const g = T_.gancho, D = T_.dor;
+    if (id === 'caipirinha') {
       const u = ramp(t, g.fim - 0.25, g.fim + 0.6, EZ.io);
-      const s = lerp(1.5, v.s, u), cx = lerp(540, 300 + Math.sin(t * 1.3) * 26, u), cy = lerp(780 + Math.sin(t * 1.6) * 8, 590 + Math.cos(t * 1.1) * 18, u);
-      return { cx, cy, s, ry: lerp(Math.sin(t * 1.4) * 16, Math.sin(t * 2) * 6, u), rx: lerp(7 + Math.sin(t * 1.1) * 3, 4, u), rz: lerp(-2, -6, u), op: 1 };
+      return { cx: lerp(540, 300 + Math.sin(t * 1.3) * 26, u), cy: lerp(780 + Math.sin(t * 1.6) * 8, 590 + Math.cos(t * 1.1) * 18, u), s: lerp(1.3, ESC_LIVRE, u),
+        ry: lerp(Math.sin(t * 1.4) * 16, Math.sin(t * 2) * 6, u), rx: lerp(7 + Math.sin(t * 1.1) * 3, 4, u), rz: lerp(-2, -6, u), op: 1 };
     }
-    const nasce = v.nasce ? ETIQ[v.nasce] : null;
-    if (nasce) { const u = ramp(t, v.aparece, v.aparece + 0.5, EZ.out); return { cx: lerp(1350, 840, u), cy: nasce.y - 140, s: v.s, ry: -12, rx: 4, rz: lerp(14, 4, u), op: 1 }; }
-    // os três cartões da dor: voam desencontrados entre as etiquetas
-    const ent = ramp(t, v.aparece, v.aparece + 0.5, EZ.out);
-    const P_ = { agua: [[780, 820], [520, 560], [800, 380]], cerveja: [[260, 760], [720, 880], [480, 300]], risoto: [[700, 1120], [300, 1180], [620, 820]] }[v.id];
-    const k = (t - v.aparece) * 0.42, i = Math.floor(k) % 3, f = EZ.io(k - Math.floor(k));
-    let cx = lerp(P_[i][0], P_[(i + 1) % 3][0], f) + Math.sin(t * 2.1 + v.aparece) * 22, cy = lerp(P_[i][1], P_[(i + 1) % 3][1], f) + Math.cos(t * 1.7) * 16;
-    let rz = Math.sin(t * 1.5 + v.aparece * 3) * 8, op = ent, s = v.s * (0.8 + 0.2 * ent);
-    if (v.volta) {
-      // a cerveja escapa e cai para fora do quadro (pela esquerda); volta pela esquerda quando o celular entra
-      const q = clamp((t - D.escapa) / 1.0), qv = clamp((t - (v.pousa - 1.1)) / 0.6);
-      if (t >= D.escapa && t < v.pousa - 1.1) { const x0 = cx, y0 = cy; cx = lerp(x0, -520, EZ.quad(q)); cy = y0 + 420 * EZ.quad(q) - 120 * Math.sin(q * Math.PI); rz = rz - 75 * q; }
-      if (t >= v.pousa - 1.1) { cx = lerp(-480, 220, EZ.out(qv)); cy = lerp(1150, 860, EZ.out(qv)); rz = lerp(-40, -4, EZ.out(qv)); }
+    if (id === 'suco' || id === 'cancelado') {
+      const ap = id === 'suco' ? 10.2 : 10.35, u = ramp(t, ap, ap + 0.5, EZ.out);
+      return { cx: lerp(1350, 840, u), cy: ETIQ.frigobar.y - 140, s: ESC_LIVRE, ry: -12, rx: 4, rz: lerp(14, 4, u), op: t >= ap ? 1 : 0 };
     }
-    return { cx, cy: Math.min(cy, 1240), s, ry: Math.sin(t * 1.2 + v.aparece) * 10, rx: 5, rz, op };
+    const ap = { agua: 3.9, cerveja: 4.05, risoto: 4.2 }[id];
+    const ent = ramp(t, ap, ap + 0.5, EZ.out);
+    const P_ = { agua: [[780, 820], [520, 560], [800, 380]], cerveja: [[260, 760], [720, 880], [480, 300]], risoto: [[620, 1120], [320, 1180], [600, 820]] }[id];
+    const k = Math.max(0, t - ap) * 0.42, i = Math.floor(k) % 3, f = EZ.io(k - Math.floor(k));
+    let cx = lerp(P_[i][0], P_[(i + 1) % 3][0], f) + Math.sin(t * 2.1 + ap) * 22, cy = lerp(P_[i][1], P_[(i + 1) % 3][1], f) + Math.cos(t * 1.7) * 16;
+    let rz = Math.sin(t * 1.5 + ap * 3) * 8;
+    if (id === 'cerveja') {
+      // a cerveja escapa e cai para fora do quadro pela esquerda; volta pela esquerda quando a comanda aparece
+      const q = clamp((t - D.escapa) / 1.0), qv = clamp((t - (POUSA.cerveja - 1.1)) / 0.6);
+      if (t >= D.escapa && t < POUSA.cerveja - 1.1) { const x0 = cx, y0 = cy; cx = lerp(x0, -520, EZ.quad(q)); cy = y0 + 420 * EZ.quad(q) - 120 * Math.sin(q * Math.PI); rz -= 75 * q; }
+      if (t >= POUSA.cerveja - 1.1) { cx = lerp(-480, 220, EZ.out(qv)); cy = lerp(1150, 860, EZ.out(qv)); rz = lerp(-40, -4, EZ.out(qv)); }
+    }
+    return { cx, cy: Math.min(cy, 1240), s: ESC_LIVRE * (0.8 + 0.2 * ent), ry: Math.sin(t * 1.2 + ap) * 10, rx: 5, rz, op: t >= ap ? ent : 0 };
+  }
+  // a pose do cartão em cada instante
+  function pose(id, t) {
+    const i = ITENS.findIndex((x) => x.id === id), slot = slotDe(i), tp = POUSA[id];
+    const enc = { cx: slot.cx, cy: slot.cy, s: PAINEL.escCartao, rx: 0, ry: 0, rz: 0, op: 1 };
+    let p;
+    if (t < tp - 0.55) p = livre(id, t);
+    else if (t < tp) { const a = livre(id, tp - 0.55), u = EZ.io(clamp((t - (tp - 0.55)) / 0.55)); p = {}; for (const k in enc) p[k] = lerp(a[k], enc[k], u); }
+    else p = { ...enc };
+    // o encaixe: um pulso; a cena 6: a pilha sobe e se fecha no total
+    if (t >= T_.fecha) {
+      const u = EZ.in(clamp((t - T_.fecha - i * 0.04) / 0.5));
+      p.cy = lerp(p.cy, 740, u); p.s = lerp(p.s, 0.7, u); p.op = 1 - clamp((u - 0.45) / 0.4);
+    }
+    return p;
+  }
+  function aplica(d, p, extra = 1) {
+    d.style.transform = `translate(${p.cx - CARD.w / 2}px, ${p.cy - CARD.h / 2}px) rotateX(${p.rx}deg) rotateY(${p.ry}deg) rotateZ(${p.rz}deg) scale(${p.s * extra})`;
+    d.style.opacity = p.op; d.style.display = p.op > 0.005 ? 'block' : 'none';
+    d.style.boxShadow = `0 ${26 * p.s}px ${64 * p.s}px rgba(0,0,0,.55)`;
+  }
+
+  // ---------------- render ----------------
+  function renderAt(t) {
+    const g = T_.gancho, D = T_.dor;
+    // o "?"
+    const qv = t < g.fim + 0.3; Q_EL.style.display = qv ? 'block' : 'none';
+    if (qv) { const pul = 1 + 0.1 * (0.5 + 0.5 * Math.sin(t * 5.5)); Q_EL.style.opacity = 1 - ramp(t, g.fim - 0.1, g.fim + 0.3); Q_EL.style.transform = `translate(780px, 440px) rotate(8deg) scale(${pul})`; Q_EL.style.textShadow = `0 0 ${30 + 300 * (pul - 1)}px ${rgba(C.limao, 0.6)}`; }
+    // as etiquetas (somem quando a comanda abre; o suco e a cerveja cancelada entram pela direita)
+    const sumir = ramp(t, 9.0, 9.6, EZ.in);
+    Object.entries(ETIQ).forEach(([k, e], j) => {
+      const d = ETIQ_EL[k], vis = t >= D.etiq && sumir < 1; d.style.display = vis ? 'flex' : 'none'; if (!vis) return;
+      const a = ramp(t, D.etiq + j * 0.12, D.etiq + 0.45 + j * 0.12, EZ.back);
+      const w = d.offsetWidth, h = 76;
+      d.style.transform = `translate(${e.x - w / 2}px, ${e.y - h / 2 + Math.sin(t * 1.3 + e.x) * 6}px) rotate(${e.rot}deg) scale(${a * (1 - 0.4 * sumir)})`;
+      d.style.opacity = clamp(a) * (1 - sumir);
+    });
+    // o painel da comanda
+    const pa = ramp(t, T_.painel, T_.painel + 0.55, EZ.back), pf = ramp(t, T_.fecha + 0.25, T_.fecha + 0.65, EZ.in);
+    PAINEL_EL.style.display = t >= T_.painel && pf < 1 ? 'block' : 'none';
+    PAINEL_EL.style.opacity = clamp(pa * 1.4) * (1 - pf);
+    PAINEL_EL.style.transform = `translateY(${(1 - clamp(pa)) * 60}px) scale(${(0.92 + 0.08 * pa) * (1 - 0.1 * pf)})`;
+    // o contador do total: soma a cada encaixe (o cancelado não entra na soma); depois conta de 287 até 321
+    let tot = 0;
+    for (const it of ITENS) { if (it.cancelado) continue; const tp = POUSA[it.id]; tot += it.q * it.un * EZ.out(clamp((t - tp) / 0.35)); }
+    if (t >= T_.conta2.t0) tot = lerp(TOTAL_1, TOTAL_2, EZ.io(clamp((t - T_.conta2.t0) / (T_.conta2.t1 - T_.conta2.t0))));
+    CONT_EL.textContent = brl(tot);
+    const pop = 1 + 0.12 * kick(t, T_.contaPop, 0.5) + 0.16 * kick(t, T_.conta2.t1, 0.5) + 0.05 * Math.max(...ITENS.map((it) => (it.cancelado ? 0 : kick(t, POUSA[it.id], 0.3))));
+    CONT_EL.style.transform = `scale(${pop})`;
+    // os cartões
+    for (const it of ITENS) {
+      const K = CARTOES[it.id], p = pose(it.id, t), tp = POUSA[it.id];
+      if (t < (it.id === 'caipirinha' ? 0 : it.id === 'suco' ? 10.2 : it.id === 'cancelado' ? 10.35 : { agua: 3.9, cerveja: 4.05, risoto: 4.2 }[it.id])) { K.d.style.display = 'none'; continue; }
+      aplica(K.d, p, 1 + 0.05 * kick(t, tp, 0.35));
+      K.d.style.zIndex = t < tp ? 20 : 10;
+      // conteúdo: o gancho mostra o preço da Caipirinha (R$ 22,00); no painel, quantidade × preço e o valor da linha
+      const gancho = it.id === 'caipirinha' && t < tp;
+      const chip = it.id === T_.chip1.id ? T_.chip1 : it.id === T_.chip2.id ? T_.chip2 : null;
+      const fu = chip ? EZ.io(clamp((t - chip.bate) / 0.35)) : 0;
+      const qa = `${it.q} × ${brl(it.un)}`, qb = it.q2 ? `${it.q2} × ${brl(it.un)}` : qa;
+      const va = brl(it.q * it.un), vb = it.q2 ? brl(it.q2 * it.un) : va;
+      K.q1.textContent = gancho ? '' : qa; K.q2.textContent = gancho ? '' : qb;
+      K.org.textContent = it.origem + (gancho ? '' : ' ·');
+      K.v1.textContent = gancho ? brl(it.un) : va; K.v2.textContent = vb;
+      K.q1.style.transform = `translateY(${-100 * fu}%)`; K.q1.style.opacity = 1 - fu; K.q2.style.transform = `translateY(${100 * (1 - fu)}%)`; K.q2.style.opacity = it.q2 ? fu : 0;
+      K.v1.style.transform = `translateY(${-100 * fu}%)`; K.v1.style.opacity = 1 - fu; K.v2.style.transform = `translateY(${100 * (1 - fu)}%)`; K.v2.style.opacity = it.q2 ? fu : 0;
+      K.v1.style.color = K.v2.style.color = it.cancelado ? C.cinzaC : C.preto;
+      // o pulso do encaixe e da troca
+      const pk = Math.max(kick(t, tp, 0.5), chip ? kick(t, chip.bate, 0.6) : 0);
+      K.pulso.style.boxShadow = `inset 0 0 0 ${3 + 3 * pk}px ${rgba(C.limao, 0.15 + 0.85 * pk)}`;
+      // o cancelado: o risco e o selo; o cartão fica na pilha
+      if (it.cancelado) {
+        const ru = EZ.io(clamp((t - T_.risco) / 0.45)), su = EZ.back(clamp((t - T_.selo) / 0.4));
+        K.risco.style.width = (K.nome.offsetWidth + 8) * ru + 'px';
+        K.risco2.style.width = 130 * clamp((t - T_.risco - 0.2) / 0.35) + 'px';
+        K.d.style.background = t >= T_.risco ? `linear-gradient(0deg, ${rgba('#E9E9E3', ru)}, ${rgba('#E9E9E3', ru)}), ${C.off}` : C.off;
+        K.nome.style.color = ru > 0.5 ? '#5E5E5A' : C.preto;
+        K.selo.style.display = t >= T_.selo ? 'flex' : 'none'; K.selo.style.transform = `scale(${su}) rotate(${-6 * su}deg)`; K.selo.style.opacity = clamp(su);
+      }
+    }
+    // os chips "+1 Caipirinha" e "+2 Água sem gás": entram voando e batem no cartão
+    for (const c of [T_.chip1, T_.chip2]) {
+      const d = CHIP_EL[c.id], vis = t >= c.t0 && t < c.bate + 0.45; d.style.display = vis ? 'flex' : 'none'; if (!vis) continue;
+      const alvo = slotDe(ITENS.findIndex((x) => x.id === c.id)), u = EZ.in(clamp((t - c.t0) / (c.bate - c.t0))), w = d.offsetWidth;
+      const x0 = c.id === 'caipirinha' ? 1300 : -400, y0 = alvo.cy + 40;
+      const cx = lerp(x0, alvo.cx + 120, u), cy = lerp(y0, alvo.cy - 46, u) - Math.sin(u * Math.PI) * 60, sai = ramp(t, c.bate, c.bate + 0.45, EZ.out);
+      d.style.transform = `translate(${cx - w / 2}px, ${cy - 39 - sai * 40}px) rotate(${lerp(c.id === 'caipirinha' ? 14 : -14, 0, u)}deg) scale(${1 + 0.25 * sai})`;
+      d.style.opacity = 1 - sai; d.style.zIndex = 30;
+    }
+    // o cartão final do total, com o check
+    const fa = ramp(t, T_.fecha + 0.6, T_.fecha + 1.15, EZ.back);
+    TOTAL_EL.style.display = t >= T_.fecha + 0.6 ? 'block' : 'none';
+    if (t >= T_.fecha + 0.6) {
+      const sobe = ramp(t, T_.logo - 0.6, T_.logo + 0.2, EZ.io);
+      TOTAL_EL.style.transform = `translateY(${lerp(560, 520, sobe) - 0 + (1 - clamp(fa)) * 40}px) scale(${(0.85 + 0.15 * fa) * (1 + 0.04 * kick(t, T_.check, 0.5))})`;
+      TOTAL_EL.style.opacity = clamp(fa * 1.3); TOTAL_EL.style.zIndex = 40;
+      const cu = EZ.back(clamp((t - T_.check) / 0.45)); T_.dom.ck.style.transform = `scale(${cu})`; T_.dom.ck.style.boxShadow = `0 0 ${40 * kick(t, T_.check, 0.8) + 10}px ${rgba(C.limao, 0.7)}`;
+    }
+    // a marca
+    LOGO.style.display = t >= T_.logo ? 'block' : 'none';
+    if (t >= T_.logo) { const a = ramp(t, T_.logo, T_.logo + 0.5, EZ.out); LOGO.style.opacity = a; LOGO.style.transform = `translateX(-50%) translateY(${(1 - a) * 24}px) scale(${0.92 + 0.08 * EZ.elastico(clamp((t - T_.logo) / 0.6))})`; }
+    textos(t);
   }
 
   // ---------------- textos: a tipografia da legenda ----------------
@@ -203,8 +296,8 @@
       c.save(); c.shadowColor = 'rgba(0,0,0,0.75)'; c.shadowBlur = 16; c.shadowOffsetY = 2;
       let k = 0;
       T.linhas.forEach((ln, ri) => {
-        const ws = ln.split(' '); let x = CAP.cx - tw(ln) / 2;           // centralizada pelo texto final da linha
-        ws.forEach((w) => {
+        let x = CAP.cx - tw(ln) / 2;
+        ln.split(' ').forEach((w) => {
           const tw0 = T.t0 + 0.1 + k * 0.075; k++;
           const ww = tw(w) - 0.02 * CAP.size;
           if (t >= tw0) {
@@ -221,263 +314,76 @@
     }
   }
 
-  // ---------------- DOM ----------------
-  let BASE_IMGS = {}, DIM, PAINEL, SALTO_DOM = [], VOO_DOM = [], ETIQ_DOM = [], GANCHO = {}, LOGO, TOQ, POUSO = [];
-  async function init(root, meta) {
-    ROOT = root; M = meta;
-    el('div', 'fundo', ROOT, { position: 'absolute', inset: 0, background: 'radial-gradient(ellipse 980px 1200px at 540px 820px, #191B17 0%, #0C0D0B 58%, #060606 100%)' });
-    el('div', 'luz', ROOT, { position: 'absolute', left: '-160px', top: '200px', width: '1400px', height: '1300px', background: 'radial-gradient(circle at 50% 42%, rgba(175,250,39,0.07), rgba(175,250,39,0) 62%)' });
-    const cena = el('div', 'cena', ROOT, { position: 'absolute', inset: 0, perspective: '2400px', perspectiveOrigin: '540px 800px' });
-    PHONE = el('div', 'celular', cena, { position: 'absolute', left: 0, top: 0, width: PW + 'px', height: PH + 'px', borderRadius: '70px', background: 'linear-gradient(145deg, #2a2a2a, #121212 40%, #0c0c0c)', boxShadow: '0 60px 140px rgba(0,0,0,0.75), 0 0 0 2px rgba(255,255,255,0.10), inset 0 0 0 2px rgba(255,255,255,0.05)', transformOrigin: '50% 50%' });
-    SCREEN = el('div', 'tela', PHONE, { position: 'absolute', left: BZ + 'px', top: BZ + 'px', width: SW + 'px', height: SH + 'px', borderRadius: '57px', overflow: 'hidden', background: '#F4F4F0', isolation: 'isolate' });
-    ROLA = el('div', 'rolagem', SCREEN, { position: 'absolute', left: 0, top: 0, width: SW + 'px', height: M.s02.H * S0 + 'px', zIndex: 1 });
-    BASE_IMGS.vazia = img(M.s02.vazia, ROLA, { position: 'absolute', left: 0, top: 0, width: SW + 'px', height: M.s02.H * S0 + 'px', display: 'none' });
-    BASE_IMGS.s02 = img(M.s02.tela, ROLA, { position: 'absolute', left: 0, top: 0, width: SW + 'px', height: M.s02.H * S0 + 'px', display: 'none' });
-    BASE_IMGS.s04 = img(M.s04.tela, ROLA, { position: 'absolute', left: 0, top: 0, width: SW + 'px', height: M.s04.H * S0 + 'px', display: 'none' });
-    FXT = el('div', 'efeitos', ROLA, { position: 'absolute', inset: 0, zIndex: 10 });
-    PROBE = el('div', 'sonda', ROLA, { position: 'absolute', visibility: 'hidden' });
-    DIM = el('div', 'escurecido', SCREEN, { position: 'absolute', inset: 0, background: M.s03.dim, display: 'none', zIndex: 20 });
-    const rp = M.s03.painel; PAINEL = img(rp.img, SCREEN, { position: 'absolute', left: rp.x * S0 + 'px', top: rp.y * S0 + 'px', width: rp.w * S0 + 'px', height: rp.h * S0 + 'px', display: 'none', zIndex: 21 });
-    PROBE_V = el('div', 'sonda-v', SCREEN, { position: 'absolute', visibility: 'hidden' });
-    TOQ = el('div', 'toques-fixos', SCREEN, { position: 'absolute', inset: 0, zIndex: 30 });
-    GRAF = el('div', 'graficos', ROOT, { position: 'absolute', inset: 0, perspective: '1600px', perspectiveOrigin: '540px 760px' });
-    SALTOS_EL = el('div', 'saltos', ROOT, { position: 'absolute', inset: 0, perspective: '1800px', perspectiveOrigin: '540px 760px' });
-    FINAL_EL = el('div', 'final', ROOT, { position: 'absolute', inset: 0 });
-    CV = el('canvas', 'textos', ROOT, { position: 'absolute', left: 0, top: 0, width: W + 'px', height: H + 'px' }); CV.width = W; CV.height = H; CX = CV.getContext('2d');
-    monta(); montaDom();
-    await Promise.all([...ROOT.querySelectorAll('img')].map((i) => i.decode().catch(() => {})));
-    const pre = []; for (const q of [...M.s02.conta_total, ...M.s04.conta_total]) { const i = new Image(); i.src = q.img; pre.push(i.decode().catch(() => {})); }
-    await Promise.all(pre);
-  }
-  function montaDom() {
-    // etiquetas (chips reais da folha "Lançar consumo"), 1,9× o tamanho no celular
-    for (const [k, e] of Object.entries(ETIQ)) {
-      const r = M.s03.recortes[e.chip];
-      const d = el('div', 'etiqueta', GRAF, { position: 'absolute', left: 0, top: 0, width: r.w * K0 + 'px', height: r.h * K0 + 'px', display: 'none', borderRadius: '999px', boxShadow: '0 18px 50px rgba(0,0,0,.55)' });
-      img(r.img, d, { width: '100%', height: '100%' });
-      ETIQ_DOM.push({ k, e, d, r });
-    }
-    // o "?" do gancho
-    GANCHO.q = el('div', 'interrogacao', GRAF, { position: 'absolute', left: 0, top: 0, font: `900 230px 'ID'`, color: C.limao, display: 'none', textShadow: `0 0 40px ${rgba(C.limao, 0.55)}` });
-    GANCHO.q.textContent = '?';
-    // os cartões em voo
-    for (const v of VOOS) {
-      const d = el('div', 'cartao', GRAF, { position: 'absolute', left: 0, top: 0, width: v.r.w * K0 + 'px', height: v.r.h * K0 + 'px', display: 'none', transformOrigin: '50% 50%', borderRadius: 16 * K0 + 'px' });
-      img(v.img, d, { width: '100%', height: '100%' });
-      const pouso = img(v.img, FXT, { position: 'absolute', left: v.r.x * S0 + 'px', top: v.r.y * S0 + 'px', width: v.r.w * S0 + 'px', height: v.r.h * S0 + 'px', display: 'none' });
-      VOO_DOM.push({ v, d, pouso });
-    }
-    // os saltos
-    for (const s of SALTOS) {
-      const box = el('div', 'salto', SALTOS_EL, { position: 'absolute', left: 0, top: 0, width: s.w * K0 + 'px', height: s.h * K0 + 'px', borderRadius: (s.r.raio + (s.pad ? 6 : 0)) * K0 + 'px', background: s.fundo, display: 'none', transformOrigin: '50% 50%', overflow: 'hidden' });
-      const im = img(s.quadros(s.t0), box, { position: 'absolute', left: s.pad * K0 + 'px', top: s.pad * K0 + 'px', width: s.r.w * K0 + 'px', height: s.r.h * K0 + 'px' });
-      const im2 = s.troca ? img(s.troca.img, box, { position: 'absolute', left: s.pad * K0 + 'px', top: s.pad * K0 + 'px', width: s.r.w * K0 + 'px', height: s.r.h * K0 + 'px', opacity: 0 }) : null;
-      const brilho = el('div', null, box, { position: 'absolute', inset: 0, borderRadius: 'inherit', pointerEvents: 'none' });
-      const slot = el('div', 'lugar', FXT, { position: 'absolute', left: (s.r.x - 3) * S0 + 'px', top: (s.r.y - 3) * S0 + 'px', width: (s.r.w + 6) * S0 + 'px', height: (s.r.h + 6) * S0 + 'px', borderRadius: (s.r.raio + 4) * S0 + 'px', background: s.slot, border: `${2.5 * S0}px dashed ${C.limao}`, boxSizing: 'border-box', display: 'none' });
-      SALTO_DOM.push({ s, box, im, im2, brilho, slot });
-    }
-    TOQ.dataset.x = '';
-    LOGO = img('logo.png', FINAL_EL, { position: 'absolute', left: '540px', top: '1196px', width: '520px', transform: 'translateX(-50%)', display: 'none' });
-  }
-
-  // ---------------- render ----------------
-  const sc = () => ROOT.getBoundingClientRect().width / W;
-  function medeRet(probe, x, y, w, h) {
-    Object.assign(probe.style, { left: x * S0 + 'px', top: y * S0 + 'px', width: w * S0 + 'px', height: h * S0 + 'px' });
-    const b = probe.getBoundingClientRect(), R0 = ROOT.getBoundingClientRect(), k = sc();
-    return { x0: (b.left - R0.left) / k, y0: (b.top - R0.top) / k, x1: (b.right - R0.left) / k, y1: (b.bottom - R0.top) / k };
-  }
-  function renderAt(t) {
-    const c = camEm(t);
-    const rx = c.rx + Math.sin(t * 0.9) * 0.8, ry = c.ry + Math.sin(t * 0.6 + 1) * 1.6;
-    PHONE.style.transform = `translate3d(${c.x - PW / 2}px, ${c.y - PH / 2 + Math.sin(t * 1.1) * 3}px, ${c.z}px) rotateX(${rx}deg) rotateY(${ry}deg) rotateZ(${c.rz}deg) scale(${c.Z})`;
-    PHONE.style.display = c.y > 2500 ? 'none' : 'block';
-    // base e rolagem
-    const b = baseEm(t), bi = BASES.indexOf(b);
-    for (const id in BASE_IMGS) { BASE_IMGS[id].style.display = 'none'; BASE_IMGS[id].style.zIndex = 1; }
-    BASE_IMGS[b.id].style.display = 'block'; BASE_IMGS[b.id].style.opacity = 1;
-    if (b.trans === 'fade' && t < b.t0 + 0.35 && bi > 0) { const a = BASES[bi - 1]; BASE_IMGS[a.id].style.display = 'block'; BASE_IMGS[b.id].style.opacity = ramp(t, b.t0, b.t0 + 0.35); BASE_IMGS[b.id].style.zIndex = 2; }
-    const sy = rolEm(t); ROLA.style.transform = `translateY(${-sy * S0}px)`;
-    // a folha "Lançar consumo"
-    const fa = ramp(t, FOLHA.abre, FOLHA.abre + 0.4), ff = ramp(t, FOLHA.fecha, FOLHA.fecha + 0.35, EZ.in), fv = t >= FOLHA.abre && ff < 1;
-    DIM.style.display = PAINEL.style.display = fv ? 'block' : 'none';
-    if (fv) { DIM.style.opacity = fa * (1 - ff); PAINEL.style.transform = `translateY(${((1 - fa) + ff) * (SH - M.s03.painel.y * S0 + 40)}px)`; }
-    // toques e contornos
-    let html = '', fixos = '';
-    for (const tq of TOQUES) {
-      const d = t - tq.t; if (d < -0.18 || d > 0.6) continue;
-      const r = tq.r, cx = (r.x + r.w / 2) * S0, cy = (r.y + r.h / 2) * S0, press = clamp(d < 0 ? 0 : d < 0.1 ? d / 0.1 : 1 - (d - 0.1) / 0.3);
-      let h = `<div style="position:absolute;left:${r.x * S0}px;top:${r.y * S0}px;width:${r.w * S0}px;height:${r.h * S0}px;border-radius:${12 * S0}px;background:rgba(0,0,0,${0.1 * press});transform:scale(${1 - 0.04 * press})"></div>`;
-      const dot = d < 0 ? 1 : 1 - ramp(t, tq.t + 0.15, tq.t + 0.45);
-      h += `<div style="position:absolute;left:${cx - 22}px;top:${cy - 22}px;width:44px;height:44px;border-radius:50%;background:${C.limao};opacity:${0.85 * dot};transform:scale(${d < 0 ? 0.6 + (d + 0.18) / 0.18 * 0.4 : 1 - 0.2 * press});box-shadow:0 0 18px ${C.limao}"></div>`;
-      if (d >= 0) { const u = EZ.out(d / 0.6); h += `<div style="position:absolute;left:${cx}px;top:${cy}px;width:10px;height:10px;margin:-5px;border-radius:50%;border:${5 * (1 - u)}px solid ${C.limao};opacity:${1 - u};transform:scale(${2 + u * 20})"></div>`; }
-      if (tq.fixo) fixos += h; else html += h;
-    }
-    TOQ.innerHTML = fixos;
-    if (!FXT.querySelector('.toques')) el('div', 'toques', FXT, { position: 'absolute', inset: 0, zIndex: 5 });
-    FXT.querySelector('.toques').innerHTML = html;
-    // o começo gráfico
-    desenhaGrafico(t);
-    // os saltos
-    for (const D of SALTO_DOM) desenhaSalto(D, t);
-    // a marca
-    LOGO.style.display = t >= T_.logo ? 'block' : 'none';
-    if (t >= T_.logo) { const a = ramp(t, T_.logo, T_.logo + 0.5, EZ.out); LOGO.style.opacity = a; LOGO.style.transform = `translateX(-50%) translateY(${(1 - a) * 24}px) scale(${0.92 + 0.08 * EZ.elastico(clamp((t - T_.logo) / 0.6))})`; }
-    textos(t);
-  }
-  function poseCartao(d, w, h, p) {
-    d.style.transform = `translate(${p.cx - w / 2}px, ${p.cy - h / 2}px) rotateX(${p.rx}deg) rotateY(${p.ry}deg) rotateZ(${p.rz}deg) scale(${p.s})`;
-    d.style.opacity = p.op;
-    d.style.boxShadow = `0 ${30 * p.s}px ${70 * p.s}px rgba(0,0,0,.55)`;
-  }
-  function desenhaGrafico(t) {
-    const D = T_.dor;
-    // o "?" pulsando (gancho), ao lado do cartão
-    const qv = t < T_.gancho.fim + 0.3; GANCHO.q.style.display = qv ? 'block' : 'none';
-    if (qv) { const pul = 1 + 0.1 * (0.5 + 0.5 * Math.sin(t * 5.5)), op = 1 - ramp(t, T_.gancho.fim - 0.1, T_.gancho.fim + 0.3); GANCHO.q.style.opacity = op; GANCHO.q.style.transform = `translate(${780}px, ${470}px) rotate(8deg) scale(${pul})`; GANCHO.q.style.textShadow = `0 0 ${30 + 30 * (pul - 1) * 10}px ${rgba(C.limao, 0.6)}`; }
-    // as etiquetas
-    const sumir = ramp(t, 9.0, 9.6, EZ.in);
-    for (const E of ETIQ_DOM) {
-      const vis = t >= D.etiq && sumir < 1; E.d.style.display = vis ? 'block' : 'none'; if (!vis) continue;
-      const a = ramp(t, D.etiq + ['bar', 'frigobar', 'restaurante'].indexOf(E.k) * 0.12, D.etiq + 0.45 + ['bar', 'frigobar', 'restaurante'].indexOf(E.k) * 0.12, EZ.back);
-      const w = E.r.w * K0, h = E.r.h * K0, s = 1.9 * a * (1 - 0.4 * sumir);
-      E.d.style.transform = `translate(${E.e.x - w / 2}px, ${E.e.y - h / 2 + Math.sin(t * 1.3 + E.e.x) * 6}px) rotate(${E.e.rot}deg) scale(${s})`;
-      E.d.style.opacity = clamp(a) * (1 - sumir);
-    }
-    // os cartões: livres → encaixe no lugar da comanda (dentro do celular) → a linha da tela
-    for (const V of VOO_DOM) {
-      const v = V.v, w = v.r.w * K0, h = v.r.h * K0;
-      const pousou = t >= v.pousa;
-      V.pouso.style.display = pousou && t < T_.lista.cheia ? 'block' : 'none';
-      const vis = t >= v.aparece && !pousou;
-      V.d.style.display = vis ? 'block' : 'none'; if (!vis) continue;
-      const livre = vooLivre(v, Math.min(t, v.pousa - 0.55));
-      if (t < v.pousa - 0.55) { poseCartao(V.d, w, h, livre); continue; }
-      // o encaixe: do ponto livre até o lugar dele na tela (medido no quadro, com o 3D do celular)
-      const alvo = medeRet(PROBE, v.r.x, v.r.y, v.r.w, v.r.h), u = EZ.io(clamp((t - (v.pousa - 0.55)) / 0.55));
-      const sAlvo = (alvo.x1 - alvo.x0) / w;
-      poseCartao(V.d, w, h, { cx: lerp(livre.cx, (alvo.x0 + alvo.x1) / 2, u), cy: lerp(livre.cy, (alvo.y0 + alvo.y1) / 2, u), s: lerp(livre.s, sAlvo, u), rx: lerp(livre.rx, 0, u), ry: lerp(livre.ry, 0, u), rz: lerp(livre.rz, 0, u), op: 1 });
-    }
-  }
-  const rectSalto = new Map();
-  function estadoSalto(s, t) {
-    if (t < s.t0 || t > s.t1 + s.tout) return null;
-    const e = t < s.t1 ? EZ.elastico(clamp((t - s.t0) / s.tin)) : 1 - EZ.io(clamp((t - s.t1) / s.tout));
-    const lift = t < s.t1 ? clamp((t - s.t0) / (s.tin * 0.6)) : 1 - EZ.io(clamp((t - s.t1) / s.tout));
-    return { e, lift };
-  }
-  function desenhaSalto(D, t) {
-    const s = D.s, st = estadoSalto(s, t);
-    D.box.style.display = st ? 'block' : 'none'; D.slot.style.display = st ? 'block' : 'none';
-    if (!st) { rectSalto.delete(s.id); return; }
-    const o = medeRet(PROBE, s.r.x, s.r.y, s.r.w, s.r.h);
-    const ow = (o.x1 - o.x0) * s.w / s.r.w, oh = (o.y1 - o.y0) * s.h / s.r.h, ocx = (o.x0 + o.x1) / 2, ocy = (o.y0 + o.y1) / 2;
-    const tw_ = s.w * K0 * s.f, th = s.h * K0 * s.f, L = st.lift;
-    const bob = Math.sin((t - s.t0) * 2.6) * 5 * L;
-    const cx = lerp(ocx, s.alvo.cx, st.e), cy = lerp(ocy, s.alvo.cy, st.e) + bob;
-    const wNow = lerp(ow, tw_, st.e), hNow = lerp(oh, th, st.e), scx = wNow / (s.w * K0), scy = hNow / (s.h * K0);
-    D.box.style.transform = `translate(${cx - s.w * K0 / 2}px, ${cy - s.h * K0 / 2}px) translateZ(${40 * L}px) rotateX(${s.rot.rx * L + Math.sin(t * 1.3) * 1.2 * L}deg) rotateY(${s.rot.ry * L}deg) rotateZ(${s.rot.rz * L}deg) scale(${scx}, ${scy})`;
-    D.box.style.boxShadow = `0 ${34 * L}px ${90 * L}px rgba(0,0,0,${0.6 * L}), 0 ${8 * L}px ${22 * L}px rgba(0,0,0,${0.35 * L})`;
-    D.box.style.zIndex = String(10 + Math.round(L * 10));
-    const q = s.quadros(t); if (D.im.dataset.src !== q) { D.im.src = q; D.im.dataset.src = q; }
-    let extra = 0;
-    if (D.im2) { const u = ramp(t, s.troca.t, s.troca.t + 0.3, EZ.io); D.im2.style.opacity = u; D.im.style.opacity = 1 - u; extra = kick(t, s.troca.t, 0.6); }
-    const pul = (0.5 + 0.5 * Math.sin((t - s.t0) * 5.2)) * L;
-    D.brilho.style.boxShadow = `inset 0 0 0 ${(3 + 3 * extra) / scx}px ${rgba(s.cor, 0.55 + 0.45 * pul)}`;
-    D.box.style.filter = `drop-shadow(0 0 ${18 + 26 * pul + 40 * extra}px ${rgba(s.cor, 0.35 * pul + 0.5 * extra)})`;
-    D.slot.style.opacity = clamp(L * 1.6);
-    rectSalto.set(s.id, { x0: cx - wNow / 2, y0: cy - hNow / 2, x1: cx + wNow / 2, y1: cy + hNow / 2, escala: wNow / (s.w * K0) });
-  }
-
   // caixas do quadro para o QA
   function caixas(t) {
     renderAt(t);
-    const R0 = ROOT.getBoundingClientRect(), k = sc(), out = [];
+    const R0 = ROOT.getBoundingClientRect(), k = R0.width / W, out = [];
     const bx = (e) => { const b = e.getBoundingClientRect(); return { x0: (b.left - R0.left) / k, y0: (b.top - R0.top) / k, x1: (b.right - R0.left) / k, y1: (b.bottom - R0.top) / k }; };
-    const add = (nome, tipo, e, extra = {}) => { if (!e || e.style.display === 'none' || +(e.style.opacity === '' ? 1 : e.style.opacity) < 0.05) return; out.push({ nome, tipo, ...bx(e), op: +(e.style.opacity === '' ? 1 : e.style.opacity), ...extra }); };
-    if (PHONE.style.display !== 'none') { add('celular', 'celular', PHONE); add('tela', 'tela', SCREEN); }
-    for (const D of SALTO_DOM) {
-      if (D.box.style.display === 'none') continue;
-      const st = estadoSalto(D.s, t), r = rectSalto.get(D.s.id);
-      out.push({ nome: D.s.id, tipo: 'salto', ...bx(D.box), lift: st.lift, e: st.e, escala: r ? r.escala : 0, lugar: bx(D.slot), origem: medeRet(PROBE, D.s.r.x, D.s.r.y, D.s.r.w, D.s.r.h) });
-    }
-    for (const V of VOO_DOM) add(V.v.id, 'cartao', V.d);
-    for (const E of ETIQ_DOM) add(E.k, 'etiqueta', E.d);
-    add('?', 'grafico', GANCHO.q); add('marca', 'marca', LOGO);
+    const add = (nome, tipo, e) => { if (!e || e.style.display === 'none') return; const op = e.style.opacity === '' ? 1 : +e.style.opacity; if (op < 0.05) return; out.push({ nome, tipo, ...bx(e), op }); };
+    for (const it of ITENS) add(it.id, 'cartao', CARTOES[it.id].d);
+    for (const k2 in ETIQ_EL) add(k2, 'etiqueta', ETIQ_EL[k2]);
+    for (const k2 in CHIP_EL) add(k2, 'chip', CHIP_EL[k2]);
+    add('comanda', 'painel', PAINEL_EL); add('total', 'total', TOTAL_EL); add('?', 'grafico', Q_EL); add('marca', 'marca', LOGO);
     BOXES = []; textos(t); out.push(...BOXES); BOXES = null;
-    return { caixas: out, cam: camEm(t), escala: camEm(t).Z / ZB, rolagem: rolEm(t), base: baseEm(t).id };
+    const card = (id) => { const K = CARTOES[id]; return { q: K.q2.style.opacity > 0.5 ? K.q2.textContent : K.q1.textContent, v: K.v2.style.opacity > 0.5 ? K.v2.textContent : K.v1.textContent, cancelado: K.selo.style.display === 'flex' }; };
+    return { caixas: out, contador: CONT_EL.textContent, cartoes: Object.fromEntries(ITENS.map((it) => [it.id, card(it.id)])) };
   }
 
-  // ---------------- capa: o celular com a comanda real e o cartão da Caipirinha SALTANDO ----------------
+  // ---------------- capa: o cartão da Caipirinha grande, o "?" e dois cartões ao fundo ----------------
   async function capaGrade() {
-    const carrega = async (src) => { const i = new Image(); i.src = src; await i.decode(); return i; };
-    const [tela, cartao] = await Promise.all([carrega(M.s02.tela), carrega(M.s02.recortes.caipirinha.img)]);
-    const rc = M.s02.el.caipirinha;
-    const k = 1.08, CSS_H = 690, sw = 390 * k, sh = CSS_H * k, bz = 14, fw = sw + 2 * bz, fh = sh + 2 * bz;
-    const F = document.createElement('canvas'); F.width = Math.ceil(fw); F.height = Math.ceil(fh); const f = F.getContext('2d');
-    const grad = f.createLinearGradient(0, 0, fw, fh); grad.addColorStop(0, '#2a2a2a'); grad.addColorStop(0.4, '#121212'); grad.addColorStop(1, '#0c0c0c');
-    f.beginPath(); f.roundRect(0, 0, fw, fh, 58); f.fillStyle = grad; f.fill(); f.lineWidth = 2; f.strokeStyle = 'rgba(255,255,255,.12)'; f.stroke();
-    f.save(); f.beginPath(); f.roundRect(bz, bz, sw, sh, 44); f.clip(); f.translate(bz, bz);
-    const meia = (im, w, h) => { const t = document.createElement('canvas'); t.width = Math.round(w); t.height = Math.round(h); const x = t.getContext('2d'); x.imageSmoothingQuality = 'high'; x.drawImage(im, 0, 0, t.width, t.height); return t; };
-    f.imageSmoothingQuality = 'high';
-    const t2 = meia(tela, tela.naturalWidth / 2, tela.naturalHeight / 2);
-    f.drawImage(t2, 0, 0, t2.width, t2.width * CSS_H / 390, 0, 0, sw, sh);
-    // o lugar do cartão: vazio na cor do fundo, contorno tracejado limão
-    f.beginPath(); f.roundRect((rc.x - 3) * k, (rc.y - 3) * k, (rc.w + 6) * k, (rc.h + 6) * k, (rc.raio + 4) * k); f.fillStyle = '#F4F4F0'; f.fill();
-    f.setLineDash([11, 8]); f.lineWidth = 3.5; f.strokeStyle = C.limao; f.stroke(); f.setLineDash([]);
-    f.restore();
-    const ESC = 1.7, cw = rc.w * k * ESC, ch = rc.h * k * ESC;
+    const desenhaCartao = (c, it, cx, cy, s, rot, ap = 1, comQtd = true) => {
+      c.save(); c.translate(cx, cy); c.rotate(rot * Math.PI / 180); c.scale(s, s); c.globalAlpha = ap;
+      const w = CARD.w, h = CARD.h;
+      c.shadowColor = 'rgba(0,0,0,.6)'; c.shadowBlur = 60 / s; c.shadowOffsetY = 26 / s;
+      c.beginPath(); c.roundRect(-w / 2, -h / 2, w, h, 26); c.fillStyle = C.off; c.fill(); c.shadowColor = 'transparent';
+      c.save(); c.clip(); c.fillStyle = C.limao; c.fillRect(-w / 2, -h / 2, 8, h); c.restore();
+      c.textBaseline = 'alphabetic';
+      c.font = "600 32px 'Geist'"; c.fillStyle = C.preto; if (c.letterSpacing !== undefined) c.letterSpacing = '-0.3px'; c.fillText(it.nome, -w / 2 + 34, -h / 2 + 50);
+      if (c.letterSpacing !== undefined) c.letterSpacing = '0px';
+      c.beginPath(); c.arc(-w / 2 + 38, -h / 2 + 80, 4.5, 0, Math.PI * 2); c.fillStyle = C.limao; c.fill();
+      c.font = "500 22px 'Geist'"; c.fillStyle = C.cinza; const o = it.origem + (comQtd ? ' ·' : ''); c.fillText(o, -w / 2 + 53, -h / 2 + 88);
+      if (comQtd) { const ow = c.measureText(o + ' ').width; c.font = "500 22px 'Geist Mono'"; c.fillText(`${it.q} × ${brl(it.un)}`, -w / 2 + 53 + ow, -h / 2 + 88); }
+      c.font = "600 34px 'Geist Mono'"; c.fillStyle = C.preto; c.textAlign = 'right'; c.fillText(comQtd ? brl(it.q * it.un) : brl(it.un), w / 2 - 30, 12); c.textAlign = 'left';
+      c.restore();
+    };
     const desenha = (c, DY) => {
       const g = c.createRadialGradient(540, 980, 40, 540, 980, 1200); g.addColorStop(0, '#191B17'); g.addColorStop(0.58, '#0C0D0B'); g.addColorStop(1, '#060606'); c.fillStyle = g; c.fillRect(0, 0, W, H);
-      const luz = c.createRadialGradient(560, 1000, 10, 560, 1000, 640); luz.addColorStop(0, 'rgba(175,250,39,0.10)'); luz.addColorStop(1, 'rgba(175,250,39,0)'); c.fillStyle = luz; c.fillRect(0, 0, W, H);
-      const TIT = { px: 84, l1: 'A caipirinha da piscina', l2: 'entrou na conta?' }, titH = TIT.px * 2.05;
-      const ty = 440 + DY;
+      const luz = c.createRadialGradient(560, 1020, 10, 560, 1020, 620); luz.addColorStop(0, 'rgba(175,250,39,0.10)'); luz.addColorStop(1, 'rgba(175,250,39,0)'); c.fillStyle = luz; c.fillRect(0, 0, W, H);
+      const TIT = { px: 84 }, ty = 440 + DY;
       c.textBaseline = 'alphabetic'; c.font = `900 ${TIT.px}px ID`; if (c.letterSpacing !== undefined) c.letterSpacing = '-2.1px';
-      c.fillStyle = C.branco; c.fillText(TIT.l1, 90, ty + TIT.px * 0.82); const w1 = c.measureText(TIT.l1).width;
-      c.fillStyle = C.limao; c.fillText(TIT.l2, 90, ty + TIT.px * 1.84); const w2 = c.measureText(TIT.l2).width;
-      const caixas = [{ nome: 'título', x0: 90, y0: ty, x1: 90 + Math.max(w1, w2), y1: ty + titH }];
-      const py = ty + titH + 66, px = 540 - fw / 2 - 30;
-      c.save(); c.filter = 'blur(38px)'; c.fillStyle = 'rgba(0,0,0,.75)'; c.beginPath(); c.roundRect(px + 40, py + 60, fw - 40, fh - 20, 60); c.fill(); c.restore();
-      const th = -10 * Math.PI / 180, P = 1500, cx0 = px + fw / 2, cy0 = py + fh / 2;
-      let bx0 = 1e9, bx1 = -1e9, by0 = 1e9, by1 = -1e9;
-      c.save(); c.translate(cx0, cy0); c.rotate(-1.6 * Math.PI / 180);
-      const tira = 2;
-      for (let x = 0; x < fw; x += tira) {
-        const u = x - fw / 2, s = P / (P + u * Math.sin(th)), X = u * Math.cos(th) * s, X2 = (u + tira) * Math.cos(th) * (P / (P + (u + tira) * Math.sin(th))), hh = fh * s;
-        const lw = Math.min(tira + 2, fw - x);
-        c.drawImage(F, x, 0, lw, fh, X, -hh / 2, (X2 - X) * lw / tira, hh);
-        bx0 = Math.min(bx0, X); bx1 = Math.max(bx1, X2); by0 = Math.min(by0, -hh / 2); by1 = Math.max(by1, hh / 2);
+      c.fillStyle = C.off; c.fillText('A caipirinha da piscina', 90, ty + TIT.px * 0.82); const w1 = c.measureText('A caipirinha da piscina').width;
+      c.fillStyle = C.limao; c.fillText('entrou na conta?', 90, ty + TIT.px * 1.84); const w2 = c.measureText('entrou na conta?').width;
+      if (c.letterSpacing !== undefined) c.letterSpacing = '0px';
+      const caixas = [{ nome: 'título', x0: 90, y0: ty, x1: 90 + Math.max(w1, w2), y1: ty + TIT.px * 2.05 }];
+      const base = ty + TIT.px * 2.05 + 56;
+      // a caixa de um cartão girado (para a revisão da capa)
+      const ext = (cx, cy, sc, rot) => { const r = Math.abs(rot) * Math.PI / 180, hw = CARD.w * sc / 2, hh = CARD.h * sc / 2, ex = hw * Math.cos(r) + hh * Math.sin(r), ey = hw * Math.sin(r) + hh * Math.cos(r); return { x0: cx - ex, y0: cy - ey, x1: cx + ex, y1: cy + ey }; };
+      const P_ = [[ITENS[3], 600, base + 120, 1.08, 6, 0.5, 2], [ITENS[1], 470, base + 696, 1.1, -7, 0.62, 1.4], [ITENS[0], 530, base + 430, 1.34, -4, 1, 0]];
+      const bs = [];
+      // ao fundo, com profundidade: Risoto de cogumelos e Água sem gás, mais escuros e desfocados
+      for (const [it, x, y, sc, rot, ap, bl] of P_) {
+        c.save(); if (bl) c.filter = `blur(${bl}px)`; desenhaCartao(c, it, x, y, sc, rot, ap, it.id !== 'caipirinha'); c.restore();
+        bs.push(ext(x, y, sc, rot));
       }
-      c.restore();
-      const cel = { nome: 'celular', x0: cx0 + bx0 - 14, y0: cy0 + by0 - 14, x1: cx0 + bx1 + 14, y1: cy0 + by1 + 14 };
-      // o cartão da Caipirinha saltando: acima do lugar dele, por cima da borda direita do celular
-      const ax = 612, ay = py + bz + (rc.y + rc.h / 2) * k - 222;
-      c.save(); c.translate(ax, ay); c.rotate(3 * Math.PI / 180);
-      c.shadowColor = 'rgba(0,0,0,.6)'; c.shadowBlur = 60; c.shadowOffsetY = 30;
-      c.beginPath(); c.roundRect(-cw / 2, -ch / 2, cw, ch, 16 * k * ESC); c.fillStyle = '#FFFFFF'; c.fill();
-      c.shadowColor = 'rgba(175,250,39,.45)'; c.shadowBlur = 56; c.shadowOffsetY = 0; c.fill(); c.shadowColor = 'transparent';
-      c.drawImage(cartao, -cw / 2, -ch / 2, cw, ch);
-      c.beginPath(); c.roundRect(-cw / 2, -ch / 2, cw, ch, 16 * k * ESC); c.lineWidth = 4; c.strokeStyle = C.limao; c.stroke();
-      c.restore();
-      const ext = Math.sin(3 * Math.PI / 180) * cw / 2;
-      const av = { nome: 'cartão', x0: ax - cw / 2 - 6, y0: ay - ch / 2 - ext - 6, x1: ax + cw / 2 + 6, y1: ay + ch / 2 + ext + 6 };
-      caixas.push({ nome: 'celular com o cartão', x0: Math.min(cel.x0, av.x0), y0: Math.min(cel.y0, av.y0), x1: Math.max(cel.x1, av.x1), y1: Math.max(cel.y1, av.y1) });
-      return { caixas, cel, av };
+      // o "?" pulsando, entre o fundo e o cartão da Caipirinha
+      const qx = 880, qy = base + 300;
+      c.save(); c.translate(qx, qy); c.rotate(8 * Math.PI / 180); c.font = "900 210px 'ID'"; c.fillStyle = C.limao; c.shadowColor = rgba(C.limao, 0.6); c.shadowBlur = 40; c.textAlign = 'center'; c.fillText('?', 0, 74); c.restore();
+      bs.push({ x0: qx - 70, y0: qy - 90, x1: qx + 70, y1: qy + 90 });
+      caixas.push({ nome: 'cartões', x0: Math.min(...bs.map((b) => b.x0)), y0: Math.min(...bs.map((b) => b.y0)), x1: Math.max(...bs.map((b) => b.x1)), y1: Math.max(...bs.map((b) => b.y1)) });
+      return { caixas };
     };
     const m = desenha(document.createElement('canvas').getContext('2d'), 0);
     const dy = Math.round(960 - (Math.min(...m.caixas.map((b) => b.y0)) + Math.max(...m.caixas.map((b) => b.y1))) / 2);
     const cv = document.createElement('canvas'); cv.width = W; cv.height = H; const c = cv.getContext('2d');
     const r = desenha(c, dy), cx = r.caixas;
     const bloco = { topo: Math.min(...cx.map((b) => b.y0)), base: Math.max(...cx.map((b) => b.y1)) }; bloco.centro = (bloco.topo + bloco.base) / 2;
-    return { png: cv.toDataURL('image/png'), caixas: cx, bloco, detalhe: { celular: r.cel, cartao: r.av, escala_cartao: ESC } };
+    return { png: cv.toDataURL('image/png'), caixas: cx, bloco };
   }
 
   window.REEL = {
-    init, renderAt, caixas, capaGrade, get DURATION() { return DUR; }, ZB,
-    avisos: () => AVISOS, eventos: () => EV.slice().sort((a, b) => a.t - b.t),
-    saltos: () => SALTOS.map((s) => ({ id: s.id, grupo: s.grupo || null, tela: s.tela, el: s.el, t0: s.t0, tin: s.tin, t1: s.t1, tout: s.tout, f: s.f, alvo: s.alvo, troca: s.troca ? s.troca.t : null })),
+    init, renderAt, caixas, capaGrade, get DURATION() { return DUR; },
+    avisos: () => [], eventos: () => EV.slice().sort((a, b) => a.t - b.t),
     textos: () => TEXTOS.map((x) => ({ t0: x.t0, t1: x.t1, linhas: x.linhas, chaves: [...x.chaves] })),
-    voos: () => VOOS.map((v) => ({ id: v.id, item: v.item, aparece: v.aparece, pousa: v.pousa })),
-    T: () => T_,
+    itens: () => ITENS, pousa: () => POUSA, totais: () => [TOTAL_1, TOTAL_2], T: () => T_,
   };
 })();

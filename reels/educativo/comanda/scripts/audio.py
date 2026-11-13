@@ -1,9 +1,10 @@
 #!/usr/bin/env python3
 """
-Áudio do Reel "A caipirinha da piscina entrou na conta?" (sem narração): a TRILHA dos educativos aprovados (a da Série Explica,
+Áudio do Reel "A caipirinha da piscina entrou na conta?" (sem narração, só elementos gráficos): a TRILHA dos educativos aprovados (a da Série Explica,
 copiada sem alteração: Am9 → Fmaj9 → Cmaj9 → G6/9 a 92 BPM) sem ducking (não há voz) + efeitos sutis nos gestos da animação
-(audio/eventos.json, de `node scripts/render.cjs dados`): o pulso do "?", as etiquetas, os cartões voando, a queda, o encaixe de
-cada cartão na comanda, os saltos e encaixes, as trocas 3 → 4, as contagens, os toques, a folha, a marca.
+(audio/eventos.json, de `node scripts/render.cjs dados`): o pulso do "?", as etiquetas, os cartões voando, a queda, o painel da
+comanda, o encaixe de cada cartão, os chips batendo (3 → 4, 2 → 4), a contagem, o risco e o selo do cancelado, a pilha
+fechando, o check e a marca.
 
     python3 scripts/audio.py   -> audio/mix.wav (48 kHz, estéreo, −14 LUFS, pico real ≤ −2,4 dBTP no WAV, ≤ −1,5 dBTP no MP4) + audio/cues.json
 """
@@ -353,6 +354,11 @@ for c in CUES['cues']:
     elif ty == 'troca': place(sfx, pop(880), t, 0.18); place(sfx, ping(midi(84), 0.4), t + 0.02, 0.08)
     elif ty == 'entra': place(sfx, whoosh(0.7, 300, 2200, 0.55, 1.1), t, 0.2)
     elif ty == 'rola': place(sfx, whoosh(0.4, 1800, 900, 0.4, 1.4), t, 0.06)
+    elif ty == 'painel': place(sfx, whoosh(0.5, 300, 2400, 0.55, 1.1), t, 0.2); place(sfx, wood(700, 0.08, 0.02), t + 0.4, 0.18)
+    elif ty == 'risco': place(sfx, pen(0.45), t, 0.45, 0.2)
+    elif ty == 'selo': place(sfx, stamp_hit(), t, 0.42); place(send, stamp_hit(), t, 0.08)
+    elif ty == 'fecha': place_pan(sfx, whoosh(0.6, 2400, 500, 0.5, 1.2), t, 0.18, 0.3, -0.3)
+    elif ty == 'check': place(sfx, check_ding(), t, 0.32); place(send, check_ding(), t, 0.1)
     elif ty == 'logo': place_pan(sfx, whoosh(0.4, 300, 3000, 0.55, 1.1), t, 0.22, -0.6, 0.6)
     elif ty == 'bell': b = desk_bell(midi(91)); place(sfx, b, t, 0.42); place(send, b, t, 0.3)
 sfx *= 10 ** (-13 / 20)

@@ -1,4 +1,4 @@
-# Pacote completo extraído do .zip (fazlo-hospeda-telas.zip). Só vai para o git o que os reels usam ("um-dia-inteiro", "parte-1-chegada", a apresentação e os educativos "fechar-caixa" e "comanda").
+# Pacote completo extraído do .zip (fazlo-hospeda-telas.zip). Só vai para o git o que os reels usam ("um-dia-inteiro", "parte-1-chegada", a apresentação e o educativo "fechar-caixa"; o "comanda" só confere os valores no HTML).
 *
 !*/
 !.gitignore

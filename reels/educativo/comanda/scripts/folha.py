@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Folha de contato: 1 quadro por segundo + 1 quadro no pico de cada salto -> output/revisao/folha-contato.jpg"""
+"""Folha de contato: 1 quadro por segundo + os momentos-chave (encaixes, chips, risco, selo, check) -> output/revisao/folha-contato.jpg"""
 import json, os, subprocess
 from PIL import Image, ImageDraw, ImageFont
 
@@ -7,8 +7,11 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 MP4 = os.path.join(ROOT, 'output', 'comanda.mp4')
 D = json.load(open(os.path.join(ROOT, 'output', 'revisao', 'dados.json')))
 ts = [(float(t), '') for t in range(0, int(D['duracao']) + 1) if t < D['duracao']]
-for s in D['saltos']:
-    ts.append((round((s['t0'] + s['tin'] + s['t1']) / 2, 2), 'SALTO ' + s['id']))
+T = D['T']
+for k, t in D['pousa'].items():
+    ts.append((round(t + 0.2, 2), 'ENCAIXE ' + k))
+ts += [(round(T['chip1']['bate'] + 0.3, 2), '+1 CAIPIRINHA'), (round(T['chip2']['bate'] + 0.3, 2), '+2 ÁGUA'), (round(T['conta2']['t1'] + 0.1, 2), 'TOTAL 321'),
+       (round(T['selo'] + 0.5, 2), 'CANCELADO'), (round(T['check'] + 0.5, 2), 'CHECK')]
 ts.sort()
 W, H, COLS, PAD, LEG = 200, 356, 10, 10, 28
 rows = (len(ts) + COLS - 1) // COLS

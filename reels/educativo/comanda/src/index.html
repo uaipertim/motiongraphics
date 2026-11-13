@@ -35,10 +35,9 @@
   const palco = document.getElementById('palco');
   const params = new URLSearchParams(location.search);
   window.ready = (async () => {
-    const meta = await (await fetch('telas.json')).json();
     await Promise.all([700, 800, 900].map((w) => document.fonts.load(`${w} 100px 'ID'`)).concat(
       [400, 500, 600, 700].map((w) => document.fonts.load(`${w} 40px 'Geist Mono'`)), [document.fonts.load(`600 40px 'Geist'`)]));
-    await REEL.init(palco, meta);
+    await REEL.init(palco);
     await document.fonts.ready;
   })();
   const fit = () => { const m = document.getElementById('moldura'); palco.style.transform = `scale(${m.clientWidth / 1080})`; };
