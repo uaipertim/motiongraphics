@@ -210,12 +210,13 @@
     const t0 = T.ganchoFim - 0.04, u = E.inOutCubic(p(t, t0, t0 + 0.3));
     if (u >= 1) return;
     // em "faça": o título encolhe e sobe; a gaveta desce e sai
+    if (1.6 * u >= 1) return;
     c.save(); c.globalAlpha *= clamp(1 - 1.6 * u);
     c.translate(540, 400); c.scale(lerp(1, 0.5, u), lerp(1, 0.5, u)); c.translate(-540, -400 - 60 * u);
     ganchoBloco(c, t); c.restore();
   }
   function tituloPequeno(c, t) {
-    const t0 = T.ganchoFim + 0.1, e = E.outCubic(p(t, t0, t0 + 0.35));
+    const t0 = T.ganchoFim + 0.14, e = E.outCubic(p(t, t0, t0 + 0.35));   // entra quando o bloco do gancho já sumiu
     if (t < t0 || t > T.fichaFim) return;
     saida(c, t, T.fichaFim, () => {
       c.save(); c.globalAlpha *= e; c.translate(0, 26 * (1 - e));
