@@ -1,4 +1,4 @@
-A CAIPIRINHA DA PISCINA ENTROU NA CONTA? — Reel de uso FAZLO Hospeda (sem narração) · revisão técnica
+A CAIPIRINHA DA PISCINA ENTROU NA CONTA? — Reel FAZLO Hospeda sem narração, só elementos gráficos · revisão técnica
 output/comanda.mp4
 
 FORMATO E SOM
@@ -6,7 +6,7 @@ OK     vídeo h264 yuv420p 1080×1920 60 fps
 OK     áudio aac 48000 Hz · sem voz
 OK     duração 32.02 s (pedido: ~28–32 s)
 OK     loudness integrado -14.0 LUFS (alvo −14)
-OK     pico real -2.8 dBTP (limite −1,5)
+OK     pico real -3.2 dBTP (limite −1,5)
 OK     trilha dos educativos (Série Explica, 92 BPM) sem ducking (não há voz) + efeitos sutis em saltos, encaixes, trocas e contagens
 
 TEXTOS DE TELA (estilo da legenda aprovada: Inter Display 900, 64 px, palavra-chave em limão, centralizados)
@@ -21,40 +21,30 @@ OK     um texto de cada vez (o anterior sai antes do próximo entrar)
        15.25–23.95 s (8.70 s ≥ 1.8)  Lançou, somou.   [limão: somou.]
        23.95–26.90 s (2.95 s ≥ 2.1)  Cancelou? / Continua registrado.   [limão: Continua registrado.]
        27.07–31.26 s (4.19 s ≥ 3.3)  No check-out, / a conta já está pronta.   [limão: já está pronta.]
-OK     os textos nunca ficam sobre o elemento em foco nem sobre o celular, com respiro ≥ 24 px
+OK     os textos nunca ficam sobre os elementos (cartões, painel, chips, total, marca), com respiro ≥ 24 px
 OK     linhas centralizadas pelo texto final, entre x 140 e 939, y 1393–1530
 
-SALTOS (o elemento sai da tela, cresce, flutua e volta)
-OK     7 saltos: elemento inteiro (recorte do HTML em 4×), entrada 0,35–0,5 s com elástico suave, parada ≥ 1,5 s, escala 1,6–2×, o lugar marcado (tracejado limão) e a janela fora dele
-       total       sai 12.70 s · entra 0.45 s · parada 1.60 s · volta 14.75–15.17 s · escala 1.85–1.96×
-       caipirinha  sai 17.05 s · entra 0.45 s · parada 1.60 s · volta 19.10–19.52 s · escala 1.60–1.68× · troca 02 → 04 em 18.00 s
-       agua        sai 19.25 s · entra 0.45 s · parada 1.60 s · volta 21.30–21.72 s · escala 1.60–1.68× · troca 02 → 04 em 20.20 s
-       total-321   sai 21.45 s · entra 0.45 s · parada 1.60 s · volta 23.50–23.92 s · escala 1.85–1.97×
-       cancelado   sai 24.45 s · entra 0.45 s · parada 1.60 s · volta 26.50–26.92 s · escala 1.60–1.68×
-       saldo       sai 27.52 s · entra 0.45 s · parada 1.60 s · volta 29.57–29.99 s · escala 1.85–1.97× · grupo fechamento
-       receber     sai 27.64 s · entra 0.45 s · parada 1.60 s · volta 29.69–30.11 s · escala 1.60–1.68× · grupo fechamento
-OK     nunca duas janelas grandes ao mesmo tempo, salvo o Saldo e o "Receber R$ 321,00", que saltam juntos (um grupo), com respiro ≥ 24 px entre elas
-OK     todos os recortes (14) são o elemento INTEIRO do HTML (o retângulo do bloco com todos os filhos), em 4×
-OK     contagens renderizadas no HTML: Total R$ 0,00 → R$ 287,00 (23 quadros) e R$ 287,00 → R$ 321,00 (17 quadros)
+SÓ ELEMENTOS GRÁFICOS (regra da série: vídeo sem narração não usa telas)
+OK     zero telas e zero recortes do HTML: nada de src/telas, telas.json ou scripts/telas.cjs; o motor não carrega nenhuma imagem de tela
+OK     zero celular; a única imagem é a marca (src/logo.png, marca/logo do pacote); arquivos carregados: ['../audio/mix.wav', 'anim.js', 'logo.png']
+OK     peças desenhadas para o vídeo: cartões de consumo (nome, origem, quantidade × preço, valor), etiquetas, painel da comanda, chips "+1"/"+2", contador, risco, selo e o cartão final com check; Geist e Geist Mono, preto, off-white e verde-limão; ícones de linha da marca (comandas, check)
 
-CARTÕES EM VOO (cenas 1–3)
-OK     os cartões de consumo (recortes dos itens da comanda 02) voam das etiquetas e encaixam nos lugares da lista, um a um: caipirinha 9.80 s · agua 10.05 s · cerveja 10.75 s · risoto 11.00 s · suco 11.25 s · cancelado 11.50 s
-OK     as etiquetas são os chips reais da folha "Lançar consumo" ("Bar da piscina", "Frigobar", "Restaurante"); a "Cerveja long neck" escapa e cai para fora do quadro pela esquerda (sem passar de y 1536) e volta quando o celular entra
+VALORES (os da comanda real, conferidos com o HTML do pacote 08-comanda)
+OK     itens e totais iguais ao HTML: Caipirinha · Bar da piscina · 3 × R$ 22,00 = R$ 66,00 → 4 × = R$ 88,00 | Água sem gás · Frigobar · 2 × R$ 6,00 = R$ 12,00 → 4 × = R$ 24,00 | Cerveja long neck · Frigobar · 4 × R$ 14,00 = R$ 56,00 | Risoto de cogumelos · Restaurante · 2 × R$ 68,00 = R$ 136,00 | Suco de laranja · Frigobar · 1 × R$ 17,00 = R$ 17,00 | Cerveja long neck · Cancelado · 1 × R$ 14,00 · Total R$ 287,00 → R$ 321,00 (o cancelado não entra na soma)
+OK     contador do Total: R$ 287,00 (cena 3) → R$ 321,00 (cena 4), somando a cada encaixe
+OK     depois dos chips: Caipirinha 4 × R$ 22,00 = R$ 88,00 · Água sem gás 4 × R$ 6,00 = R$ 24,00
+OK     o cartão "Cerveja long neck · 1 × R$ 14,00" recebe o risco (24.45 s) e o selo "Cancelado" (24.95 s) e continua na pilha até ela se fechar (27.40 s)
 
 ZONAS SEGURAS
-OK     nada acima de y 200 nem abaixo de y 1536 (textos, saltos, cartões, etiquetas, o "?", a marca e o celular depois de entrar)
+OK     nada acima de y 200 nem abaixo de y 1536 (textos, cartões, etiquetas, chips, painel, o "?", o total e a marca), salvo a Cerveja que escapa pela lateral, fora do quadro
 OK     nada na coluna de botões (x > 940, y > 1000)
-OK     celular em 1×: moldura x 269–813 (543 px), y 210–1367; câmera sem aproximação (máx. 1.00×)
 
-TEXTOS EXATOS DO HTML, DADOS E REGRAS
-OK     os 33 rótulos e valores do pedido estão no HTML das telas usadas; tudo o que aparece vem do próprio HTML (recortes e telas), nada é redigitado
-OK     itens: Caipirinha 3 × R$ 22,00 = R$ 66,00 → 4 × = R$ 88,00 · Água sem gás 2 × R$ 6,00 = R$ 12,00 → 4 × = R$ 24,00 · Cerveja long neck 4 × R$ 14,00 · Risoto de cogumelos 2 × R$ 68,00 · Suco de laranja 1 × R$ 17,00 · Cerveja long neck Cancelado 1 × R$ 14,00
-OK     só as telas 08-comanda (02, 03, 04): nada da ficha da hospedagem, nada do caixa, sem Day Use
-OK     na 04, o aviso "Salvo" do pacote aparece no pé da página (rolada no item cancelado), como no estado original
-OK     nada do visual do v2 (sem anel, sem órbita, sem a logo circular)
+REGRAS
+OK     nada de ficha da hospedagem, caixa ou Day Use
+OK     nada do visual do "Toda estadia é um ciclo" (sem anel, sem ciclo, sem órbita, sem a logo circular); só a dinâmica de referência
 
 CAPA
-OK     capa (capa.jpg e capa-grade.jpg): título "A caipirinha da piscina / entrou na conta?", o celular com a comanda real em leve 3D e sombra, o cartão da Caipirinha saltando a 1,7× com a origem tracejada; na regra (revisao_capa.py), bloco centrado em y = 959.8
-OK     respiro título → celular 42 px (≥ 40); conjunto em y 442–1478; prévia da linha da grade em output/revisao/previa-grade.jpg
+OK     capa sem celular (capa.jpg e capa-grade.jpg): título "A caipirinha da piscina / entrou na conta?", o cartão gráfico da Caipirinha grande e inclinado com o "?" e os cartões Água sem gás e Risoto de cogumelos ao fundo; na regra (revisao_capa.py), bloco centrado em y = 960.1
+OK     respiro título → celular 80 px (≥ 40); conjunto em y 446–1474; prévia da linha da grade em output/revisao/previa-grade.jpg
 
 RESULTADO: aprovado
