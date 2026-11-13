@@ -36,8 +36,12 @@ Pix (R$ 900,00) e cartão (R$ 500,00) são ilustrativos e ficam fora da soma: n�
 | 4,9–14,7 s | troco · dinheiro · saiu · deveria estar | Cada linha acende na própria frase, o valor é escrito e o check entra na palavra-chave. Em "deveria estar", a linha da soma é traçada, o valor conta até R$ 285,00 e a linha fica limão. |
 | 14,7–19,1 s | "Pix e cartão ficam fora dessa conta: eles não estão na gaveta." | Os selos "PIX · R$ 900,00" e "CARTÃO · R$ 500,00" voam para dentro da ficha. Em "fora dessa conta" são riscados ("FORA DA CONTA") e empurrados para fora. Em "não estão", a gaveta pisca vazia deles: "NA GAVETA: SÓ DINHEIRO". |
 | 19,1–25,1 s | "Agora conte o dinheiro. Se der diferença, anote o motivo na hora, enquanto ainda lembra." | "Contado" conta até R$ 270,00. "Diferença · falta R$ 15,00" acende em âmbar, com pulso. O motivo é escrito à mão em "anote". O carimbo "CONFERIDO" bate em "lembra". |
-| 25,1–28,1 s | "Mande para quem fecha o caixa da sua pousada." | A ficha desliza para fora. "Mande / para quem fecha / o caixa da / sua pousada." entra com o avião. |
+| 25,1–28,1 s | "Mande para quem fecha o caixa da sua pousada." | A ficha desliza para fora. "Mande / para quem fecha / o caixa da / sua pousada." entra com o avião. Sem legenda: a cena já mostra a frase. |
 | 28,1–31,3 s | — | Logo do FAZLO Hospeda e @fazlohospeda, com a sineta, 0,7 s depois da última palavra. |
+
+## Regra da série: legenda × texto principal
+
+Quando a cena já mostra a frase da narração como texto principal, essa frase **não entra na legenda**. A legenda some ao fim da página anterior e só a cena fala. Exemplo: a chamada final "Mande / para quem fecha / o caixa da / sua pousada." deste vídeo. No `roteiro.json`, essas frases vão no campo `sem_legenda`, e o `qa.py` confere que nenhuma página fica na tela durante elas.
 
 ## Locução, legenda e som
 

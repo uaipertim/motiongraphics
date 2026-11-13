@@ -8,7 +8,7 @@
   "stability": 0.5,
   "similarity_boost": 0.75
  },
- "nota": "Conteúdo educativo. Não é demonstração do FAZLO Hospeda: sem interface, sem nome de hóspede; valores ilustrativos e o selo 'Exemplo fictício' em todo quadro com dado. Cada item de 'frases' é uma frase da locução; o texto de todos os tokens, na ordem, é exatamente a narração aprovada. 'chave': palavras em limão na legenda; 'id': o instante do gesto. 'legenda': a divisão das páginas e linhas da legenda (quebras só em pausa ou pontuação).",
+ "nota": "Conteúdo educativo. Não é demonstração do FAZLO Hospeda: sem interface, sem nome de hóspede; valores ilustrativos e o selo 'Exemplo fictício' em todo quadro com dado. Cada item de 'frases' é uma frase da locução; o texto de todos os tokens, na ordem, é exatamente a narração aprovada. 'chave': palavras em limão na legenda; 'id': o instante do gesto. 'legenda': a divisão das páginas e linhas da legenda (quebras só em pausa ou pontuação). 'sem_legenda': frases que a cena já mostra como texto principal; elas não entram na legenda (regra da série).",
  "frases": [
   {
    "id": "gancho",
@@ -217,10 +217,6 @@
   [
    "anote o motivo na hora,",
    "enquanto ainda lembra."
-  ],
-  [
-   "Mande para quem fecha",
-   "o caixa da sua pousada."
   ]
  ],
  "exemplo": {
@@ -284,5 +280,8 @@
    "falta": 15
   }
  },
- "legenda_post": "Vai fechar o caixa da pousada? Antes, faça esta conta:\n\n1. Comece pelo troco que abriu a gaveta.\n2. Some tudo o que entrou em dinheiro.\n3. Tire o que saiu da gaveta.\n4. Esse é o valor que deveria estar no caixa.\n\nPix e cartão ficam fora dessa conta: eles não estão na gaveta.\n\nAgora conte o dinheiro. Se der diferença, anote o motivo na hora, enquanto ainda lembra.\n\nMande para quem fecha o caixa da sua pousada.\n\n#pousada #gestaodepousada #hospedagem"
+ "legenda_post": "Vai fechar o caixa da pousada? Antes, faça esta conta:\n\n1. Comece pelo troco que abriu a gaveta.\n2. Some tudo o que entrou em dinheiro.\n3. Tire o que saiu da gaveta.\n4. Esse é o valor que deveria estar no caixa.\n\nPix e cartão ficam fora dessa conta: eles não estão na gaveta.\n\nAgora conte o dinheiro. Se der diferença, anote o motivo na hora, enquanto ainda lembra.\n\nMande para quem fecha o caixa da sua pousada.\n\n#pousada #gestaodepousada #hospedagem",
+ "sem_legenda": [
+  "cta"
+ ]
 }

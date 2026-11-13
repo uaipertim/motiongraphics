@@ -92,7 +92,7 @@ def main():
     fim_voz = round(fim + INI, 3)
     logo = round(fim_voz + POS_VOZ, 3)
     out = {'provisoria': False, 'audio': 'audio/voz.wav', 'inicio_voz': INI, 'fim_voz': fim_voz, 'logo': logo, 'duracao': round(logo + LOGO, 3),
-           'marca': R['marca'], 'exemplo': R['exemplo'], 'legenda': R.get('legenda'), 'frases': frases,
+           'marca': R['marca'], 'exemplo': R['exemplo'], 'legenda': R.get('legenda'), 'sem_legenda': R.get('sem_legenda', []), 'frases': frases,
            'inicios_medidos_no_audio': [{'palavra': w, 'marcacao_s': round(a + INI, 3), 'audio_s': round(b + INI, 3)} for w, a, b in mudou]}
     json.dump(out, open(os.path.join(ROOT, 'linha.json'), 'w'), ensure_ascii=False, indent=1)
     print(f'linha.json: voz {INI:.2f}–{fim_voz:.2f} s, logo {logo:.2f} s, duração {out["duracao"]:.2f} s')

@@ -420,7 +420,9 @@
   function layoutLegenda() {
     PAGES = [];
     const ls = -0.02 * CAP.size, wid = (ws, a, b) => tw(ws.slice(a, b).map((x) => x.w).join(' '), DISPLAY, CAP.size, 900, ls);
-    const lim = LN.logo - 0.05, todas = LN.frases.flatMap((f) => f.palavras);
+    // regra da série: a frase que a cena já mostra como texto principal (sem_legenda) não entra na legenda
+    const sem = LN.sem_legenda || [], todas = LN.frases.filter((f) => !sem.includes(f.id)).flatMap((f) => f.palavras);
+    const fs = LN.frases.find((f) => sem.includes(f.id)), lim = fs ? fs.palavras[0].t0 : LN.logo - 0.05;
     let k = 0;
     for (const pg of LN.legenda) {
       const a = k, rows = [], pos = {};

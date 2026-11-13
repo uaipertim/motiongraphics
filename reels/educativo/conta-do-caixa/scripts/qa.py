@@ -107,7 +107,7 @@ x = x.astype(float) / 32768
 x = x.mean(axis=1) if x.ndim > 1 else x
 env = 20 * np.log10(np.sqrt(uniform_filter1d(x ** 2, int(0.01 * sr)) + 1e-12))
 ref = np.percentile(env[env > -80], 95)
-ws = [w for f in LN['frases'] for w in f['palavras']]
+ws = [w for f in LN['frases'] if f['id'] not in LN.get('sem_legenda', []) for w in f['palavras']]   # a frase sem legenda (CTA) não entra
 med, sem = [], []
 for i, w in enumerate(ws):
     if i == 0 or w['t0'] - ws[i - 1]['t1'] < 0.12:
@@ -162,7 +162,10 @@ ok(all(any(b['nome'] == 'logo final' for b in s['caixas']) for s in fim), 'o ví
 # ---------------------------------------------------------------- divisão da legenda
 rep.append(''); rep.append('DIVISÃO DA LEGENDA (quebras só em pausa ou pontuação; nenhuma linha termina em artigo, preposição ou conjunção)')
 FUNC = {'o', 'a', 'os', 'as', 'um', 'uma', 'de', 'da', 'do', 'das', 'dos', 'em', 'na', 'no', 'pelo', 'pela', 'para', 'por', 'com', 'e', 'ou', 'que', 'se', 'mas', 'nem', 'esta', 'esse', 'essa'}
-todas = [w for f in LN['frases'] for w in f['palavras']]
+todas = [w for f in LN['frases'] if f['id'] not in LN.get('sem_legenda', []) for w in f['palavras']]
+SL = [f for f in LN['frases'] if f['id'] in LN.get('sem_legenda', [])]
+ok(all(q['t1'] <= f['t0'] + 1e-6 for f in SL for q in PG) and not any(w['w'] for q in PG for w in q['palavras'] if any(w['t0'] >= f['t0'] for f in SL)),
+   'sem legenda na chamada final (a cena já mostra a frase como texto principal): ' + '; '.join(f'"{" ".join(w["w"] for w in f["palavras"])}" {f["t0"]:.2f} s → a última página sai em {PG[-1]["t1"]:.2f} s' for f in SL))
 pos = {id(w): i for i, w in enumerate(todas)}
 k = 0; ruins, pag_sem = [], []
 for q in PG:

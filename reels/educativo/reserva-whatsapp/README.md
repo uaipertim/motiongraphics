@@ -22,6 +22,10 @@ Reel educativo do @fazlohospeda (sexta, 30/10/2026), feito a partir do [saldo-ch
 | 29,0–32,6 s | "Envie para quem atende o WhatsApp da sua pousada." | "Envie / para quem atende / o WhatsApp da / sua pousada." com o avião |
 | 32,6–35,8 s | — | Logo do FAZLO Hospeda e @fazlohospeda, com a sineta |
 
+## Regra da série: legenda × texto principal
+
+Quando a cena já mostra a frase da narração como texto principal, essa frase **não entra na legenda**. A legenda some ao fim da página anterior e só a cena fala. Exemplo: a chamada final "Mande / para quem fecha / o caixa da / sua pousada." do [conta-do-caixa](../conta-do-caixa). No `roteiro.json`, essas frases vão no campo `sem_legenda`, e o `qa.py` confere que nenhuma página fica na tela durante elas. Vale a partir do conta-do-caixa; este vídeo não foi refeito.
+
 ## Locução, legenda e som
 
 - **Locução** (`scripts/voz.py`):

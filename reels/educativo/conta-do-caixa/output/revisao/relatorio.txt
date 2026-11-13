@@ -13,16 +13,16 @@ OK     pico real -2.3 dBTP (limite −1,5)
 OK     a trilha fica 10.4 dB abaixo da voz (voz -13.9 LUFS, trilha -24.3 LUFS; alvo ~10 dB, com ducking)
 
 LEGENDA
-OK     11 páginas; cada uma fica ≥ 1,5 s na tela (a mais curta: 1.93 s)
+OK     10 páginas; cada uma fica ≥ 1,5 s na tela (a mais curta: 1.93 s)
 OK     a página anterior sai antes da próxima entrar (nenhuma sobreposição)
-OK     chaves em limão: 23 palavras
+OK     chaves em limão: 22 palavras
 OK     legenda dentro de x 130–950 (as linhas até x 936; a coluna de botões começa em x > 940) e acima de y 1536 em todos os quadros amostrados
 OK     a legenda não encosta em nenhum elemento da cena
 
 SINCRONIA
-OK     voz × legenda: 16 palavras depois de pausa, a 1 ms em média e 5 ms no máximo (limite 80 ms) · sem silêncio real antes (não medidas): é, valor, motivo
-       Antes, +0 · faça -4 · esta -3 · Comece +0 · Some -2 · tudo +0 · Tire -5 · Esse +0 · Pix +0 · eles +0 · estão -4 · Agora +0 · Se -1 · anote -1 · enquanto +0 · Mande +0
-OK     cada página aparece no quadro da 1ª palavra (atraso em quadros: [1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0])
+OK     voz × legenda: 15 palavras depois de pausa, a 1 ms em média e 5 ms no máximo (limite 80 ms) · sem silêncio real antes (não medidas): é, valor, motivo
+       Antes, +0 · faça -4 · esta -3 · Comece +0 · Some -2 · tudo +0 · Tire -5 · Esse +0 · Pix +0 · eles +0 · estão -4 · Agora +0 · Se -1 · anote -1 · enquanto +0
+OK     cada página aparece no quadro da 1ª palavra (atraso em quadros: [1, 0, 0, 0, 0, 0, 0, 1, 0, 0])
 
 ZONAS SEGURAS E CONTEÚDO
 OK     coluna de botões (x > 940, y > 1000): 0 pixel aceso em 125 quadros
@@ -34,6 +34,7 @@ OK     a logo entra 0.70 s depois da última palavra e fica 3.20 s até o fim
 OK     o vídeo termina com a logo
 
 DIVISÃO DA LEGENDA (quebras só em pausa ou pontuação; nenhuma linha termina em artigo, preposição ou conjunção)
+OK     sem legenda na chamada final (a cena já mostra a frase como texto principal): "Mande para quem fecha o caixa da sua pousada." 25.10 s → a última página sai em 25.10 s
          0.35– 2.55 s  ┌ Vai fechar o caixa           → grupo de sentido (40 ms)
          0.35– 2.55 s  │ da pousada?                  → fim da página, pontuação
          2.55– 4.87 s  ┌ Antes, faça esta conta.      → fim da página, pontuação
@@ -53,8 +54,6 @@ DIVISÃO DA LEGENDA (quebras só em pausa ou pontuação; nenhuma linha termina 
         19.11–22.10 s  │ Se der diferença,            → fim da página, pontuação
         22.10–25.10 s  ┌ anote o motivo na hora,      → pontuação
         22.10–25.10 s  │ enquanto ainda lembra.       → fim da página, pontuação
-        25.10–28.05 s  ┌ Mande para quem fecha        → grupo de sentido (40 ms)
-        25.10–28.05 s  │ o caixa da sua pousada.      → fim da página, pontuação
 OK     nenhuma linha termina em artigo, preposição ou conjunção
 OK     toda troca de página cai em pontuação ou pausa
 OK     linhas centralizadas e dentro de x 130–936, fora da coluna de botões em x > 940 (mais larga: 806 px)
