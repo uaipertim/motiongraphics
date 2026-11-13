@@ -2,7 +2,12 @@ A CAIPIRINHA DA PISCINA ENTROU NA CONTA? — Reel de uso FAZLO Hospeda (sem narr
 output/comanda.mp4
 
 FORMATO E SOM
-FALHA  output/comanda.mp4 não encontrado
+OK     vídeo h264 yuv420p 1080×1920 60 fps
+OK     áudio aac 48000 Hz · sem voz
+OK     duração 32.02 s (pedido: ~28–32 s)
+OK     loudness integrado -14.0 LUFS (alvo −14)
+OK     pico real -2.8 dBTP (limite −1,5)
+OK     trilha dos educativos (Série Explica, 92 BPM) sem ducking (não há voz) + efeitos sutis em saltos, encaixes, trocas e contagens
 
 TEXTOS DE TELA (estilo da legenda aprovada: Inter Display 900, 64 px, palavra-chave em limão, centralizados)
 OK     cada texto fica na tela pelo menos 1,2 s + 0,3 s por palavra
@@ -49,6 +54,7 @@ OK     na 04, o aviso "Salvo" do pacote aparece no pé da página (rolada no ite
 OK     nada do visual do v2 (sem anel, sem órbita, sem a logo circular)
 
 CAPA
-FALHA  capa (capa.jpg e capa-grade.jpg): título "A caipirinha da piscina / entrou na conta?", o celular com a comanda real em leve 3D e sombra, o cartão da Caipirinha saltando a 1,7× com a origem tracejada; na regra (revisao_capa.py), bloco centrado em y = ?
+OK     capa (capa.jpg e capa-grade.jpg): título "A caipirinha da piscina / entrou na conta?", o celular com a comanda real em leve 3D e sombra, o cartão da Caipirinha saltando a 1,7× com a origem tracejada; na regra (revisao_capa.py), bloco centrado em y = 959.8
+OK     respiro título → celular 42 px (≥ 40); conjunto em y 442–1478; prévia da linha da grade em output/revisao/previa-grade.jpg
 
-RESULTADO: 2 item(ns) a corrigir
+RESULTADO: aprovado
