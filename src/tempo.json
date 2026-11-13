@@ -1,0 +1,92 @@
+{
+  "bpm": 124,
+  "fps": 60,
+  "largura": 1080,
+  "altura": 1920,
+  "duracao": 51.6,
+  "nota": "Todas as posições em compassos (4 tempos). 1 compasso = 1,9355 s a 124 BPM.",
+  "cenas": [
+    {
+      "id": "gancho",
+      "ini": 0,
+      "fim": 2,
+      "texto": "Casa cheia. / E agora?"
+    },
+    {
+      "id": "sexta",
+      "ini": 2,
+      "fim": 4,
+      "texto": "SEXTA 18:00"
+    },
+    {
+      "id": "vaga",
+      "ini": 4,
+      "fim": 6,
+      "texto": "Tem vaga pro sábado?"
+    },
+    {
+      "id": "quarto",
+      "ini": 6,
+      "fim": 8,
+      "texto": "Quarto 4 já liberou?"
+    },
+    {
+      "id": "conta",
+      "ini": 8,
+      "fim": 10,
+      "texto": "Põe na conta do 6."
+    },
+    {
+      "id": "caixa",
+      "ini": 10,
+      "fim": 12,
+      "texto": "O caixa bateu?"
+    },
+    {
+      "id": "respira",
+      "ini": 12,
+      "fim": 13,
+      "texto": "Respira."
+    },
+    {
+      "id": "drop",
+      "ini": 13,
+      "fim": 15,
+      "texto": "Tudo num lugar só."
+    },
+    {
+      "id": "jornada",
+      "ini": 15,
+      "fim": 20,
+      "texto": "Reserva · Chegada · Comanda · Saída · Caixa"
+    },
+    {
+      "id": "ciclo",
+      "ini": 20,
+      "fim": 22,
+      "texto": "Do início ao fim."
+    },
+    {
+      "id": "volta",
+      "ini": 22,
+      "fim": 24,
+      "texto": "Casa cheia. / Cabeça leve."
+    },
+    {
+      "id": "logo",
+      "ini": 24,
+      "fim": 26.66,
+      "texto": "FAZLO Hospeda · @fazlohospeda"
+    }
+  ],
+  "bumbo": [
+    [
+      0,
+      11.75
+    ],
+    [
+      13,
+      26.01
+    ]
+  ]
+}
