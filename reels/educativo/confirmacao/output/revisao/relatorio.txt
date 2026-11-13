@@ -1,0 +1,66 @@
+EDUCATIVO confirmacao ("Reserva confirmada? Mande esta mensagem.") — revisão técnica
+output/confirmacao.mp4
+
+FORMATO
+OK     vídeo h264 yuv420p 1080x1920 60 fps
+OK     áudio aac 48000 Hz 2 canais
+OK     duração 30.50 s (alvo 30–40 s)
+OK     vídeo e áudio com a mesma duração (Δ 0 ms)
+
+SOM
+OK     loudness integrado -14.0 LUFS (alvo −14)
+OK     pico real -1.9 dBTP (limite −1,5)
+OK     a trilha fica 10.4 dB abaixo da voz (voz -14.2 LUFS, trilha -24.6 LUFS; alvo ~10 dB, com ducking)
+
+LEGENDA
+OK     8 páginas; cada uma fica ≥ 1,5 s na tela (a mais curta: 1.70 s)
+OK     a página anterior sai antes da próxima entrar (nenhuma sobreposição)
+OK     chaves em limão: 17 palavras
+OK     legenda dentro de x 130–950 (as linhas até x 936; a coluna de botões começa em x > 940) e acima de y 1536 em todos os quadros amostrados
+OK     a legenda não encosta em nenhum elemento da cena
+
+SINCRONIA
+OK     voz × legenda: 12 palavras depois de pausa, a 1 ms em média e 12 ms no máximo (limite 80 ms) · sem silêncio real antes (não medidas): valor
+       A +0 · acomodação -2 · e +0 · O +0 · o +0 · e +0 · O +0 · E +0 · com -12 · Assim +0 · tudo, -1 · e +0
+OK     cada página aparece no quadro da 1ª palavra (atraso em quadros: [1, 0, 0, 0, 0, 1, 0, 0])
+
+ZONAS SEGURAS E CONTEÚDO
+OK     coluna de botões (x > 940, y > 1000): 0 pixel aceso em 122 quadros
+OK     20% de baixo (y > 1536): nada aceso em 122 quadros
+OK     todas as caixas da cena entre y 200 e 1536 e fora da coluna de botões
+OK     grafia oficial: nenhuma grafia fonética (Fázlo, Hospéda, Uátsap) na legenda nem no quadro
+OK     "Exemplo fictício" visível em todos os 72 quadros amostrados que mostram dado
+OK     a logo entra 0.70 s depois da última palavra e fica 3.20 s até o fim
+OK     o vídeo termina com a logo
+
+DIVISÃO DA LEGENDA (quebras só em pausa ou pontuação; nenhuma linha termina em artigo, preposição ou conjunção)
+OK     sem legenda nas frases que a cena já mostra como texto principal (regra da série): "Reserva confirmada?" 0.35–1.98 s; "Mande pro hóspede uma mensagem com cinco informações." 1.98–5.49 s; "Mande para quem responde as reservas da sua pousada." 23.88–30.50 s
+       a legenda começa em 5.49 s ("As datas…") e a última página sai em 23.88 s
+
+SINCRONIA GESTO × PALAVRA (início do movimento medido nos pixels da região do gesto, a 60 fps; tolerância 80 ms)
+       "confirmada?"  0.830 s → "confirmada?" pulsa no título:  0.833 s (+3 ms)
+       "cinco"  3.950 s → o título encolhe e sobe; o balão cresce com as casas 01–05:  3.933 s (-17 ms)
+       "noites."  6.830 s → check em "01 Datas":  6.850 s (+20 ms)
+       "pessoas."  9.470 s → check em "02 Acomodação":  9.483 s (+13 ms)
+       "falta" 13.630 s → check em "03 Valores": 13.650 s (+20 ms)
+       "saída." 16.270 s → check em "04 Horários": 16.283 s (+13 ms)
+       "localização." 18.270 s → check em "05 Endereço" (e o pino pulsa): 18.283 s (+13 ms)
+       "sabendo" 20.883 s → carimbo "ENVIADA": 20.900 s (+17 ms)
+       "dúvida." 22.990 s → dois checks de entregue no canto do balão e o avião saindo: 23.017 s (+27 ms)
+       "Mande" 23.877 s → "Mande" e o avião deslizam para dentro: 23.883 s (+6 ms)
+OK     10 gestos, cada um a ≤ 80 ms da palavra (pior: 27 ms)
+
+VARREDURA DE TEXTO (caixas do motor a cada 0,25 s)
+OK     nenhum texto encosta em outro (respiro ≥ 4 px) em 122 quadros amostrados
+OK     nenhum texto cortado: os do balão ficam ≥ 20 px dentro dele; nada sai do quadro (fora as transições)
+
+DADOS CONFERIDOS COM OS ROTEIROS DO reserva-whatsapp E DO check-in (a mesma hóspede, exemplo fictício)
+OK     a reserva é a mesma do check-in: Ana Lima, 14/11 a 16/11, Chalé 3, 2 adultos e 1 criança, R$ 900,00, sinal R$ 450,00, saldo R$ 450,00
+OK     01 datas: "14 a 16/11 · 2 noites" — reserva "14/11 → 16/11 · 2 noites" (2 noites no calendário)
+OK     02 acomodação: "Chalé 3 · 2 adultos e 1 criança" — reserva "Chalé 3 · R$ 900,00" e "2 adultos · 1 criança · sem pet"
+OK     03 valores: R$ 900,00 − sinal R$ 450,00 = saldo R$ 450,00 no check-out (check-in: "R$ 450,00 · no check-out")
+OK     04 horários: entrada a partir das 14:00 (dado novo deste vídeo) · saída até 12:00 (check-in: "seg 16/11 · até 12:00")
+OK     05 endereço claramente fictício: "Estrada do Exemplo, km 4"
+OK     capa (quadro 0) na regra das capas: dentro da regra das capas
+
+RESULTADO: aprovado

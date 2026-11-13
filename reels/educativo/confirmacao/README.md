@@ -16,7 +16,7 @@ O horário de entrada, "a partir das 14:00", é o único dado novo deste vídeo.
 - O endereço é claramente fictício ("Estrada do Exemplo, km 4"), sem nome de pousada.
 - Não promete integração nem resultado.
 
-▶ **Vídeo:** [`output/confirmacao.mp4`](output/confirmacao.mp4) (1080×1920, 60 fps). **Para aprovação: não publicar antes do OK.**
+▶ **Vídeo:** [`output/confirmacao.mp4`](output/confirmacao.mp4) (30,5 s, 1080×1920, 60 fps). **Para aprovação: não publicar antes do OK.**
 - Capa (quadro 0): [`output/capa.jpg`](output/capa.jpg) · capa da grade: [`output/capa-grade.jpg`](output/capa-grade.jpg) · prévia na linha da grade: [`output/revisao/previa-grade.jpg`](output/revisao/previa-grade.jpg)
 - Folha de contato (2 quadros por segundo): [`output/revisao/folha-contato.jpg`](output/revisao/folha-contato.jpg)
 - Revisão técnica: [`output/revisao/relatorio.txt`](output/revisao/relatorio.txt) (sincronia de cada gesto × palavra, divisão da legenda, zonas, som, varredura de texto e dados conferidos com o reserva-whatsapp e o check-in)
@@ -43,7 +43,7 @@ As linhas 03 e 04 quebram dentro do balão por grupo de sentido.
 | 5,5–19,6 s | as cinco informações | Cada linha acende na própria frase, é digitada com o cursor e recebe o check na palavra-chave: "noites", "pessoas", "falta pagar", "saída", "localização". Em "localização", o pino de mapa pulsa. |
 | 19,6–23,9 s | "Assim o hóspede chega sabendo tudo, e ninguém fica com dúvida." | Carimbo "ENVIADA" em "sabendo tudo". Em "dúvida", dois checks de entregue no canto do balão e o avião saindo dele. |
 | 23,9–26,3 s | "Mande para quem responde as reservas da sua pousada." | O balão desliza para fora. Entra "Mande / para quem responde / as reservas da / sua pousada." com o avião. Sem legenda. |
-| 27,0 s–fim | — | Logo do FAZLO Hospeda e @fazlohospeda, com a sineta, 0,7 s depois da última palavra. |
+| 27,0–30,5 s | — | Logo do FAZLO Hospeda e @fazlohospeda, com a sineta, 0,7 s depois da última palavra. |
 
 ## Regra da série: legenda × texto principal
 
