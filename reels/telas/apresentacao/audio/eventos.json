@@ -74,7 +74,11 @@
   },
   {
    "t": 17.9,
-   "tipo": "lupa"
+   "tipo": "zoom"
+  },
+  {
+   "t": 20.15,
+   "tipo": "zoom_sai"
   },
   {
    "t": 20.85,
@@ -229,8 +233,8 @@
    "tipo": "janela"
   },
   {
-   "t": 36.5,
-   "tipo": "lupa"
+   "t": 36.4,
+   "tipo": "zoom"
   },
   {
    "t": 36.65,
@@ -257,7 +261,11 @@
    "tipo": "tecla"
   },
   {
-   "t": 39,
+   "t": 38.65,
+   "tipo": "zoom_sai"
+  },
+  {
+   "t": 39.1,
    "tipo": "lupa"
   },
   {
@@ -293,8 +301,12 @@
    "tipo": "passo"
   },
   {
-   "t": 46.95,
-   "tipo": "lupa"
+   "t": 46.75,
+   "tipo": "zoom"
+  },
+  {
+   "t": 48.75,
+   "tipo": "zoom_sai"
   },
   {
    "t": 49.05,
@@ -329,7 +341,7 @@
    "tipo": "janela"
   },
   {
-   "t": 54.9,
+   "t": 54.85,
    "tipo": "lupa"
   },
   {
@@ -345,8 +357,12 @@
    "tipo": "troca"
   },
   {
-   "t": 58.05,
-   "tipo": "lupa"
+   "t": 57.85,
+   "tipo": "zoom"
+  },
+  {
+   "t": 60,
+   "tipo": "zoom_sai"
   },
   {
    "t": 60.25,
@@ -377,7 +393,7 @@
    "tipo": "janela"
   },
   {
-   "t": 65.65,
+   "t": 65.7,
    "tipo": "lupa"
   },
   {
@@ -393,12 +409,16 @@
    "tipo": "troca"
   },
   {
+   "t": 68.55,
+   "tipo": "zoom"
+  },
+  {
    "t": 68.6,
    "tipo": "cadeado_abre"
   },
   {
-   "t": 68.75,
-   "tipo": "lupa"
+   "t": 70.85,
+   "tipo": "zoom_sai"
   },
   {
    "t": 71.3,
@@ -445,8 +465,12 @@
    "tipo": "janela"
   },
   {
-   "t": 78.2,
-   "tipo": "lupa"
+   "t": 78,
+   "tipo": "zoom"
+  },
+  {
+   "t": 80.3,
+   "tipo": "zoom_sai"
   },
   {
    "t": 80.75,
@@ -465,7 +489,7 @@
    "tipo": "gaveta"
   },
   {
-   "t": 81.3,
+   "t": 81.2,
    "tipo": "lupa"
   },
   {

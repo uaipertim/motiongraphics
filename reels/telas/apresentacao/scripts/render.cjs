@@ -36,7 +36,7 @@ const grab = async (page, t) => { await page.evaluate((t) => window.frameAt(t), 
     } else if (mode === 'dados') {
       const page = await openPage(browser, port);
       const fps = Number(opt('fps', 10));
-      const d = await page.evaluate((fps) => { const out = { duracao: REEL.DURATION, avisos: REEL.avisos(), secoes: REEL.secoes(), chaves: REEL.chaves(), eventos: REEL.eventos(), lupas: REEL.lupas(), contornos: REEL.contornos(), usadas: REEL.usadas(), quadros: [] };
+      const d = await page.evaluate((fps) => { const out = { duracao: REEL.DURATION, ZB: REEL.ZB, avisos: REEL.avisos(), secoes: REEL.secoes(), chaves: REEL.chaves(), eventos: REEL.eventos(), lupas: REEL.lupas(), zooms: REEL.zooms(), contornos: REEL.contornos(), usadas: REEL.usadas(), quadros: [] };
         for (let i = 0; i < REEL.DURATION * fps; i++) { const q = REEL.caixas(i / fps); out.quadros.push({ t: i / fps, ...q }); } return out; }, fps);
       fs.mkdirSync(path.join(ROOT, 'output/revisao'), { recursive: true });
       fs.writeFileSync(path.join(ROOT, 'output/revisao/dados.json'), JSON.stringify(d));

@@ -4,27 +4,35 @@ Reel 9:16 (1080×1920), **90,0 s**, 60 fps, H.264 + AAC, **sem voz**. É o prime
 
 **Não publicar antes do OK.**
 
-## Correções (base 699f3d5)
+## Correção 2 (base f7aa2ca): celular maior e aproximações curtas
 
-Roteiro, trilha, duração aproximada e final mantidos. Mudou só:
+A correção anterior travou a câmera em 1× com o celular reduzido sob a lupa (~430 px de largura) e deixou o terço de baixo vazio. Agora:
 
-1. **Enquadramento.** O celular fica inteiro, com a moldura, em 100% do vídeo. O zoom máximo é 1,0× (limite 1,5×) e a tela tem sempre ≥ 40 px de margem dos lados. Nenhum texto da tela é cortado pela borda do vídeo; isso é medido em cada quadro.
-2. **Lupa para ler.** Para ler algo pequeno, o celular diminui e desce, e uma lupa abre acima dele, fora da tela, ligada por uma linha fina ao ponto.
-   - A lupa mostra o elemento inteiro ampliado (texto ≥ 40 px), nunca um pedaço cortado.
-   - A câmera e as lupas são agendadas para que nenhuma lupa cubra a tela, nem nas transições.
-   - Os valores grandes que "saltavam e contavam" saíram: agora quem mostra o valor é a lupa, com o elemento real.
-3. **Destaque.** O contorno limão usa o retângulo real do bloco inteiro (`getBoundingClientRect`, com todos os filhos), com 12 px de folga e o raio do elemento + 12. O QA confere que o contorno contém 100% do elemento.
-4. **Chip da seção** sempre acima do celular, na área preta (y 176–238). O topo do celular fica em y ≥ 262. Sobreposição com a tela: zero.
-5. **Digitação no próprio campo.** "Bruno Teixeira" e "315,00" são escritos no input do HTML, letra a letra. Cada letra é um quadro da tela renderizado pelo Chromium (fonte, tamanho, cor e alinhamento do app), com o cursor piscando no fim. Nada é colado por cima.
-6. **Rótulos = palavras da tela.** Cada rótulo é conferido contra o texto do HTML do estado. "Bloqueada" virou "Manutenção", e a barra do Rafael deu lugar à da Helena (Hospedada), que cabe inteira na lupa.
+1. **Celular maior.** Na vista 1× a moldura tem 570 px de largura (x 258–827) e vai de y 302 a y 1507.
+   - O chip da seção fica em y 206–268, acima do celular, com ≥ 24 px de respiro até a moldura.
+   - Nada entra na coluna de botões do Instagram (x > 940, y > 1000).
+2. **6 aproximações curtas (1,3×)**, nos momentos sugeridos:
+   - "Manutenção" no calendário;
+   - sinal "315,00" digitado no "Confirmar reserva" do Gustavo;
+   - recibo do check-in da Fernanda;
+   - Total R$ 321,00 com o item adicionado na comanda;
+   - saldo da Mariana R$ 412,00 → R$ 0,00 "Quitado";
+   - "falta R$ 15,00" no fechamento do caixa.
 
-▶ **Vídeo:** [`output/apresentacao-hospeda.mp4`](output/apresentacao-hospeda.mp4)
-- Storyboard: [`output/storyboard.jpg`](output/storyboard.jpg)
-- Capa da grade: [`output/capa-grade.jpg`](output/capa-grade.jpg) · conferência: [`output/grade/revisao/capa-no-feed.jpg`](output/grade/revisao/capa-no-feed.jpg)
-- Legenda: [`legenda.txt`](legenda.txt)
-- Revisão técnica: [`output/revisao/relatorio.txt`](output/revisao/relatorio.txt)
+   Cada uma entra em 0,45 s, fica parada de 1,55 a 1,85 s, sai em 0,45 s e volta a 1×. A tela fica com ≥ 139 px de margem lateral. O elemento em foco e todos os textos dele ficam inteiros dentro de y 200–1536. O chip some enquanto o celular sobe e volta junto com o 1×.
+3. **Lupas reposicionadas.** As 25 lupas restantes ficam sobre o celular, perto do elemento, mas nunca em cima dele (respiro ≥ 24 px), nem sobre um toque em andamento. Também mantêm ≥ 24 px do chip. Nenhuma lupa aparece junto com uma aproximação: os 6 elementos aproximados perderam a lupa.
+4. Mantidos: telas inteiras funcionando, rótulos com as palavras da tela, digitação no próprio campo, valores do LEIA-ME, trilha e mixagem, final, ~90 s.
+   - Única troca de tempo: a lupa "Receber pagamento" abre 0,15 s depois (o0 + 5,8 s), para não cobrir o fim do toque em "Receber".
 
-![storyboard](output/storyboard.jpg)
+Folha de contato (1 quadro a cada 2 s + o pico de cada aproximação): [`output/revisao/folha-contato.jpg`](output/revisao/folha-contato.jpg).
+
+## Correção 1 (base 699f3d5)
+
+Celular sempre inteiro e lupa fora da tela para ler (substituída pela correção 2 acima nos itens de enquadramento e lupa). Continuam valendo:
+- contorno no retângulo real do elemento (`getBoundingClientRect` do bloco inteiro, +12 px, raio + 12);
+- chip fora da tela;
+- digitação letra a letra no próprio campo do HTML;
+- rótulos = palavras da tela ("Manutenção", não "Bloqueada").
 
 ## Linguagem
 
@@ -37,7 +45,7 @@ Roteiro, trilha, duração aproximada e final mantidos. Mudou só:
   - rolagem da Visão geral até "Precisa de atenção" e até a barra de baixo;
   - o nome do hóspede e o sinal sendo digitados;
   - estados antes → depois: pré-reserva → janela do sinal, check-in → check-in feito → hospedada, R$ 287,00 → R$ 321,00, R$ 412,00 → quitado, caixa aberto → fechado.
-- **Câmera.** O celular fica sempre inteiro (máx. 1,0×). Para ler, entra a lupa. A ampliação da lupa vem do menor texto do elemento, para ficar ≥ 40 px no quadro.
+- **Câmera.** O celular fica inteiro em 1× (moldura de 570 px), com 6 aproximações curtas de 1,3× nos momentos-chave. Para os valores, a lupa; a ampliação dela vem do menor texto do elemento, para ficar ≥ 40 px no quadro.
 - **Motion por cima:**
   - chip da seção no alto;
   - contorno limão no retângulo real do elemento lido;
@@ -68,7 +76,7 @@ Roteiro, trilha, duração aproximada e final mantidos. Mudou só:
 - **Menu "criar" sobre o calendário.** O estado `menu-criar` do pacote é desenhado sobre a Visão geral. No vídeo, a folha do menu sobe sobre o calendário, de onde saiu o toque no "+". A folha é a do pacote, na mesma posição.
 - **Calendário no celular (14 dias).** Ele mostra até o dia 22. Os nomes das barras têm 11,5 px e são lidos na lupa.
 - **Caixa.** A tela do caixa nunca rola. A linha do diário com o sinal do Gustavo está em y 1274 da página e fica fora da parte visível.
-- **Áreas seguras.** Lupas, chip, textos, marca e pílula ficam fora dos 20% de baixo e da coluna de botões (x > 985, y > 1060). O celular inteiro fica acima de y 1536 (base máxima y 1532).
+- **Áreas seguras.** Lupas, chip, textos, marca e pílula ficam em y 200–1536 e fora da coluna de botões (x > 940, y > 1000). Em 1×, a base da moldura fica em y 1507.
 
 ## Som
 
@@ -96,6 +104,7 @@ node scripts/render.cjs dados --fps 30       # eventos do som + dados do QA
 python3 scripts/audio.py
 node scripts/render.cjs video --workers 4    # output/apresentacao-hospeda.mp4
 python3 scripts/storyboard.py
+python3 scripts/folha.py                     # output/revisao/folha-contato.jpg
 cd ../../.. && node reels/tools/capa_grade.cjs reels/telas/apresentacao \
   && python3 reels/tools/revisao_capa.py reels/telas/apresentacao --saida reels/telas/apresentacao/output/grade --vizinhos reels/telas/parte-1-chegada/output/grade
 cd reels/telas/apresentacao && cp output/grade/capa.jpg output/capa-grade.jpg && python3 scripts/qa.py

@@ -6,7 +6,7 @@ from PIL import Image, ImageDraw, ImageFont
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 MP4 = os.path.join(ROOT, 'output', 'apresentacao-hospeda.mp4')
-QUADROS = [(3.5, 'ABERTURA'), (5.45, 'VISÃO GERAL'), (16.15, 'CALENDÁRIO'), (29.95, 'NOVA RESERVA'), (37.15, 'SINAL'), (42.5, 'CHECK-IN'), (55.5, 'COMANDA'), (69.3, 'CHECK-OUT'), (78.75, 'CAIXA'), (88.5, 'FINAL')]
+QUADROS = [(3.5, 'ABERTURA'), (5.45, 'VISÃO GERAL'), (19.25, 'CALENDÁRIO'), (29.95, 'NOVA RESERVA'), (37.8, 'SINAL'), (48.0, 'CHECK-IN'), (55.5, 'COMANDA'), (69.9, 'CHECK-OUT'), (79.4, 'CAIXA'), (88.5, 'FINAL')]
 W, H = 360, 640
 font = ImageFont.truetype(os.path.join(ROOT, 'src', 'fonts', 'JetBrainsMonoNL-ExtraBold.ttf'), 26)
 sheet = Image.new('RGB', (5 * W + 6 * 16, 2 * (H + 60) + 16), (10, 10, 10))
