@@ -1,0 +1,12 @@
+RÉVEILLON NA POUSADA — margens (80 px nas laterais)
+
+OK     slide 01 (capa limão): conteúdo em x 81–999, y 484–1260
+OK     slide 02: conteúdo em x 79–1000, y 203–1243
+OK     slide 03: conteúdo em x 80–977, y 94–1251
+OK     slide 04: conteúdo em x 82–1000, y 94–1251
+OK     slide 05: conteúdo em x 82–808, y 94–1251
+OK     slide 06: conteúdo em x 81–920, y 94–1243
+OK     slide 07: conteúdo em x 81–999, y 94–1243
+OK     slide 08: conteúdo em x 81–989, y 203–1243
+
+RESULTADO: tudo dentro da margem de 80 px
