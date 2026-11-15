@@ -1,8 +1,8 @@
 RÉVEILLON NA POUSADA — linhas de texto (palavra sozinha numa linha = FALHA)
 
-ok     slide 01 texto: Réveillon na pousada:
-ok     slide 01 texto: 5 regras antes
-ok     slide 01 texto: de abrir as reservas.
+ok     slide 01 texto: 5 regras pro
+ok     slide 01 texto: Réveillon
+ok     slide 01 texto: da pousada.
 ok     slide 02 texto: Réveillon lota rápido.
 ok     slide 02 texto: E a regra fica pra depois.
 ok     slide 02 texto: Quem define antes não negocia caso a caso
@@ -17,12 +17,15 @@ ok     slide 03 texto: ninguém compra.
 ok     slide 03 nota: Datas e números são exemplos.
 ok     slide 03 texto: Defina o pacote
 ok     slide 03 texto: com mínimo de noites.
-ok     slide 03 texto: [30/12 a 02/01] · mínimo [3] noites
+ok     slide 03 texto: [30/12 a 02/01] · mínimo
+ok     slide 03 texto: [3] noites
 ok     slide 04 texto: Data disputada pede compromisso maior.
 ok     slide 04 texto: Sinal maior
 ok     slide 04 texto: para data concorrida.
-ok     slide 04 texto: sinal [30%]
-ok     slide 04 texto: sinal [50%]
+ok     slide 04 texto: sinal
+ok     slide 04 texto: [30%]
+ok     slide 04 texto: sinal
+ok     slide 04 texto: [50%]
 ok     slide 05 texto: Recepção lotada não é hora de cobrar.
 ok     slide 05 texto: Saldo com prazo
 ok     slide 05 texto: antes da chegada.
@@ -33,7 +36,9 @@ ok     slide 06 nota: Monte a regra respeitando o Código de Defesa do Consumido
 ok     slide 06 texto: Cancelamento
 ok     slide 06 texto: com regra própria.
 ok     slide 06 chips: RÉVEILLON → REGRA PRÓPRIA
-ok     slide 06 texto: cancelou até [X] dias antes → crédito
+ok     slide 06 texto: cancelou até [X]
+ok     slide 06 texto: dias antes
+ok     slide 06 texto: → crédito
 ok     slide 07 texto: Ceia, horário e o que está incluso: tudo
 ok     slide 07 texto: combinado antes.
 ok     slide 07 texto: Horários e o que

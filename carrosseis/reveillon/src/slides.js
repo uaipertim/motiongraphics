@@ -335,6 +335,59 @@
     LINHAS.push({ tag: 'nota', texto: text, sozinha: false });
     return { top: y - size * 0.75 };
   }
+  // card do DADO EM DESTAQUE (slides 03–06): rótulo em mono, uma linha de apoio opcional (40 px) e o valor principal
+  // em corpo grande (≥ 2× o texto do card comum); [campos] em mono numa caixinha tracejada.
+  // so = true: só mede (devolve a altura); hMin: altura mínima (os dois cards lado a lado com a mesma altura)
+  function linhaRica(ctx, txt, size, maxW) {
+    const ph = Math.round(size * 0.84), fam = DISPLAY, wt = size >= 70 ? 900 : 700, ls = size >= 70 ? -0.025 * size : -0.4;
+    const sp = tw(ctx, ' ', fam, size, wt, ls), NB = ' ';
+    const words = txt.replace(/\[[^\]]+\]/g, (m) => m.replace(/ /g, NB)).split(' ').filter(Boolean).map((t) => {
+      t = t.replace(new RegExp(NB, 'g'), ' '); const isPh = /^\[.*\]$/.test(t);
+      return { t, ph: isPh, w: isPh ? tw(ctx, t, MONO, ph, 800) + 0.6 * ph : tw(ctx, t, fam, size, wt, ls) };
+    });
+    const lines = []; let cur = [], cw = 0;
+    for (const w of words) { if (cur.length && cw + sp + w.w > maxW) { lines.push({ words: cur, w: cw }); cur = []; cw = 0; } cur.push(w); cw += (cur.length > 1 ? sp : 0) + w.w; }
+    if (cur.length) lines.push({ words: cur, w: cw });
+    const n = lines.length;
+    if (n > 1 && lines[n - 1].words.length === 1 && lines[n - 2].words.length > 2) lines[n - 1].words.unshift(lines[n - 2].words.pop());
+    lines.forEach((l) => { l.w = l.words.reduce((a, w) => a + w.w, 0) + sp * (l.words.length - 1); });
+    if (lines.some((l) => l.w > maxW + 0.5)) throw new Error('o valor em destaque não cabe no card: ' + txt);
+    return { lines, sp, ph, fam, wt, ls, size, lh: size * 1.12 };
+  }
+  function desenhaRica(ctx, r, x, y, dest) {
+    r.lines.forEach((ln, i) => {
+      let xx = x; const yy = y + i * r.lh;
+      ln.words.forEach((w) => {
+        if (w.ph) {
+          const hh = r.ph * 1.3;
+          rr(ctx, xx, yy - r.ph * 0.98, w.w, hh, Math.min(14, r.ph * 0.25)); ctx.fillStyle = dest ? 'rgba(10,10,10,0.13)' : 'rgba(255,255,255,0.1)'; ctx.fill();
+          ctx.strokeStyle = dest ? 'rgba(10,10,10,0.4)' : rgba(C.lime, 0.6); ctx.lineWidth = r.size >= 70 ? 3 : 2; ctx.setLineDash(r.size >= 70 ? [9, 7] : [6, 5]); ctx.stroke(); ctx.setLineDash([]);
+          setFont(ctx, MONO, r.ph, 800); ctx.fillStyle = dest ? C.ink : C.lime; ctx.fillText(w.t, xx + 0.3 * r.ph, yy - r.ph * 0.06);
+        } else { setFont(ctx, r.fam, r.size, r.wt, r.ls); ctx.fillStyle = dest ? C.ink : C.white; ctx.fillText(w.t, xx, yy); }
+        xx += w.w + r.sp;
+      });
+    });
+    anota('texto', r.lines);
+  }
+  function grande(ctx, x, y, w, o, so = false, hMin = 0) {
+    const pad = 52, size = o.size || 96, dest = !!o.destaque;
+    const pre = o.pre ? linhaRica(ctx, o.pre, 40, w - 2 * pad) : null, main = linhaRica(ctx, o.main, size, w - 2 * pad);
+    const hLab = 44 + 22, hPre = pre ? pre.lines.length * 52 + 14 : 0;
+    const hMain = (main.lines.length - 1) * main.lh + size * 0.74 + main.ph * 0.32 + 18;
+    const h = Math.max(hMin, pad + hLab + hPre + hMain + pad - 18);
+    if (so) return h;
+    if (dest) { ctx.save(); ctx.shadowColor = rgba(C.lime, 0.25); ctx.shadowBlur = 50; card(ctx, x, y, w, h, { fill: C.lime, stroke: C.lime, r: 32 }); ctx.restore(); }
+    else card(ctx, x, y, w, h, { r: 32 });
+    // o conteúdo centrado na altura do card (quando hMin estica o card)
+    const ext = (h - (pad + hLab + hPre + hMain + pad - 18)) / 2;
+    let yy = y + pad + ext;
+    setFont(ctx, MONO, 30, 800, 3); ctx.fillStyle = dest ? C.ink : C.lime; ctx.fillText(o.lab, x + pad, yy + 22); yy += hLab;
+    if (pre) { desenhaRica(ctx, pre, x + pad, yy + 30, dest); yy += hPre; }
+    desenhaRica(ctx, main, x + pad, yy + size * 0.74, dest);
+    return h;
+  }
+  // um card em destaque centrado entre o título e o que vem embaixo (a nota ou o apoio)
+  const grandeNoMeio = (ctx, t, sp, o) => { const h = grande(ctx, 0, 0, CW, o, true); grande(ctx, M, mid(t, sp) - h / 2, CW, o); };
   // card rotulado em qualquer largura (os dois cards lado a lado do slide 4)
   function rotuladoEm(ctx, x, y, w, lab, txt, o = {}) {
     const dest = !!o.destaque, h = 40 + 30 + 22 + 52 + 26;
@@ -379,7 +432,7 @@
     // 1 · capa limão, texto preto
     1(ctx) {
       limeBackground(ctx);
-      const t = title(ctx, [{ t: 'Réveillon na pousada:', c: INK }, { t: '5 regras antes', c: INK, br: true }, { t: 'de abrir as reservas.', c: INK, br: true }], 0,
+      const t = title(ctx, [{ t: '5 regras pro', c: INK }, { t: 'Réveillon', c: INK, br: true }, { t: 'da pousada.', c: INK, br: true }], 0,
         { max: 170, maxH: 800, lh: 0.98, vcenter: [300, 1150], maxW: CW - 8, x: M + 2 });
       chip(ctx, M + 2, t.top - 74, 'GUIA RÁPIDO · SALVA ESSE', { size: 32, stroke: INK, color: INK, lw: 3 });
       swipe(ctx, INK, INK);
@@ -410,23 +463,23 @@
       const sp = support(ctx, 'Sem mínimo, sobra noite solta que ninguém compra.');
       const nt = nota(ctx, 'Datas e números são exemplos.', sp);
       const t = titulo2(ctx, 'Defina o pacote', 'com mínimo de noites.');
-      cards(ctx, t, nt, [['RÉVEILLON', '[30/12 a 02/01] · mínimo [3] noites']]);
+      grandeNoMeio(ctx, t, nt, { lab: 'RÉVEILLON', pre: '[30/12 a 02/01] · mínimo', main: '[3] noites', size: 130 });
     },
     // 4 · passo 02: sinal maior para data concorrida (dois cards lado a lado)
     4(ctx) {
       track(ctx, 2);
       const sp = support(ctx, 'Data disputada pede compromisso maior.');
       const t = titulo2(ctx, 'Sinal maior', 'para data concorrida.');
-      const w = (CW - 24) / 2, h = 40 + 30 + 22 + 52 + 26, y = mid(t, sp) - h / 2;
-      rotuladoEm(ctx, M, y, w, 'DATA COMUM', 'sinal [30%]');
-      rotuladoEm(ctx, M + w + 24, y, w, 'RÉVEILLON', 'sinal [50%]', { destaque: true });
+      const w = (CW - 24) / 2, a = { lab: 'DATA COMUM', pre: 'sinal', main: '[30%]', size: 110 }, b = { lab: 'RÉVEILLON', pre: 'sinal', main: '[50%]', size: 110, destaque: true };
+      const h = Math.max(grande(ctx, 0, 0, w, a, true), grande(ctx, 0, 0, w, b, true)), y = mid(t, sp) - h / 2;
+      grande(ctx, M, y, w, a, false, h); grande(ctx, M + w + 24, y, w, b, false, h);
     },
     // 5 · passo 03: saldo com prazo
     5(ctx) {
       track(ctx, 3);
       const sp = support(ctx, 'Recepção lotada não é hora de cobrar.');
       const t = titulo2(ctx, 'Saldo com prazo', 'antes da chegada.');
-      cards(ctx, t, sp, [['SALDO', 'até [15/12]']]);
+      grandeNoMeio(ctx, t, sp, { lab: 'SALDO', main: 'até [15/12]', size: 130 });
     },
     // 6 · passo 04: cancelamento com regra própria
     6(ctx) {
@@ -434,18 +487,19 @@
       const sp = support(ctx, 'Data de Réveillon não volta a vender em cima da hora.');
       const nt = nota(ctx, 'Monte a regra respeitando o Código de Defesa do Consumidor.', sp);
       const t = titulo2(ctx, 'Cancelamento', 'com regra própria.');
-      const txt = 'cancelou até [X] dias antes → crédito', hc = cardH(ctx, txt), hchip = 64, gap = 40;
+      const cd = { lab: 'CANCELAMENTO', main: 'cancelou até [X] dias antes → crédito', size: 96 };
+      const cs = 42, hchip = 84, gap = 44, hc = grande(ctx, 0, 0, CW, cd, true);
       const y0 = mid(t, nt) - (hchip + gap + hc) / 2, cyc = y0 + hchip / 2;
-      // chip "RÉVEILLON" → chip limão "REGRA PRÓPRIA" (centrados juntos)
-      const wa = tw(ctx, 'RÉVEILLON', MONO, 32, 800, 32 * 0.06) - 32 * 0.06 + 48, wb = tw(ctx, 'REGRA PRÓPRIA', MONO, 32, 800, 32 * 0.06) - 32 * 0.06 + 48, aw = 110;
+      // chip "RÉVEILLON" → chip limão "REGRA PRÓPRIA" (centrados juntos, maiores)
+      const pad = cs * 0.75, wa = tw(ctx, 'RÉVEILLON', MONO, cs, 800, cs * 0.06) - cs * 0.06 + 2 * pad, wb = tw(ctx, 'REGRA PRÓPRIA', MONO, cs, 800, cs * 0.06) - cs * 0.06 + 2 * pad, aw = 120;
       let x = 540 - (wa + aw + wb) / 2;
-      chip(ctx, x, cyc, 'RÉVEILLON', { size: 32, stroke: C.white, color: C.white, h: hchip });
-      const ax0 = x + wa + 22, ax1 = x + wa + aw - 22;
-      ctx.strokeStyle = C.lime; ctx.lineWidth = 6; ctx.lineCap = 'round'; ctx.lineJoin = 'round';
-      ctx.beginPath(); ctx.moveTo(ax0, cyc); ctx.lineTo(ax1, cyc); ctx.moveTo(ax1 - 18, cyc - 16); ctx.lineTo(ax1, cyc); ctx.lineTo(ax1 - 18, cyc + 16); ctx.stroke();
-      chip(ctx, x + wa + aw, cyc, 'REGRA PRÓPRIA', { size: 32, fill: C.lime, color: C.ink, h: hchip });
+      chip(ctx, x, cyc, 'RÉVEILLON', { size: cs, stroke: C.white, color: C.white, h: hchip, lw: 3 });
+      const ax0 = x + wa + 24, ax1 = x + wa + aw - 24;
+      ctx.strokeStyle = C.lime; ctx.lineWidth = 7; ctx.lineCap = 'round'; ctx.lineJoin = 'round';
+      ctx.beginPath(); ctx.moveTo(ax0, cyc); ctx.lineTo(ax1, cyc); ctx.moveTo(ax1 - 20, cyc - 18); ctx.lineTo(ax1, cyc); ctx.lineTo(ax1 - 20, cyc + 18); ctx.stroke();
+      chip(ctx, x + wa + aw, cyc, 'REGRA PRÓPRIA', { size: cs, fill: C.lime, color: C.ink, h: hchip });
       LINHAS.push({ tag: 'chips', texto: 'RÉVEILLON → REGRA PRÓPRIA', sozinha: false });
-      rotulado(ctx, y0 + hchip + gap, 'CANCELAMENTO', txt);
+      grande(ctx, M, y0 + hchip + gap, CW, cd);
     },
     // 7 · passo 05: horários e incluso escritos na confirmação
     7(ctx) {
