@@ -1,0 +1,41 @@
+{
+ "saida": "audio/mix.wav",
+ "duracao": 167.23,
+ "lufs_integrado": -13.99,
+ "lufs_ffmpeg": -14.0,
+ "lra_ffmpeg": 5.0,
+ "pico_real_dbtp": -2.55,
+ "pico_real_ffmpeg": -2.5,
+ "pico_amostra_dbfs": -2.56,
+ "dc": [
+  3.3e-06,
+  3.3e-06
+ ],
+ "ganho_voz_db": 6.01,
+ "voz_lufs_na_mix": -12.87,
+ "ducking_db": {
+  "grave": -3.0,
+  "meio": -8.5,
+  "agudo": -5.0,
+  "medido_banda_larga": -5.95,
+  "ataque_s": 0.16,
+  "segura_s": 0.3,
+  "solta_s": 0.55,
+  "antecipa_s": 0.04
+ },
+ "voz_rms_na_fala": -15.2,
+ "trilha_rms_na_fala": -35.2,
+ "voz_menos_trilha_na_fala_db": 20.0,
+ "voz_menos_trilha_na_faixa_da_voz_db": 23.7,
+ "trilha_rms_nas_pausas": -29.7,
+ "trilha_respira_nas_pausas_db": 5.6,
+ "fracao_do_tempo_com_voz": 0.645,
+ "limitador": {
+  "teto_dbtp": -2.5,
+  "reducao_max_db": -7.4,
+  "tempo_com_reducao": 0.1085,
+  "tempo_acima_de_3db": 0.0343,
+  "tempo_acima_de_6db": 0.0027
+ },
+ "ultimo_250ms_dbfs": -240.0
+}

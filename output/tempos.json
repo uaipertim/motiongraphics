@@ -1,0 +1,458 @@
+{
+ "duracao": 167.23,
+ "assuntos": [
+  {
+   "id": "dor",
+   "ini": 1,
+   "fim": 15.73
+  },
+  {
+   "id": "virada",
+   "ini": 17.325,
+   "fim": 22.53
+  },
+  {
+   "id": "visao",
+   "ini": 24.06,
+   "fim": 32.54
+  },
+  {
+   "id": "calendario",
+   "ini": 34.78,
+   "fim": 40.26
+  },
+  {
+   "id": "duplicada",
+   "ini": 42.505,
+   "fim": 48.625
+  },
+  {
+   "id": "sinal",
+   "ini": 50.82,
+   "fim": 55.34
+  },
+  {
+   "id": "cancelamento",
+   "ini": 57.245,
+   "fim": 65.525
+  },
+  {
+   "id": "comanda",
+   "ini": 67.755,
+   "fim": 73.835
+  },
+  {
+   "id": "checkout",
+   "ini": 76.02,
+   "fim": 80.98
+  },
+  {
+   "id": "caixa",
+   "ini": 82.865,
+   "fim": 88.945
+  },
+  {
+   "id": "fechamento",
+   "ini": 91.095,
+   "fim": 96.535
+  },
+  {
+   "id": "internet",
+   "ini": 98.64,
+   "fim": 104.24
+  },
+  {
+   "id": "comeca1",
+   "ini": 105.895,
+   "fim": 116.21
+  },
+  {
+   "id": "comeca2",
+   "ini": 118.495,
+   "fim": 126.95
+  },
+  {
+   "id": "teste",
+   "ini": 128.645,
+   "fim": 135.23
+  },
+  {
+   "id": "preco",
+   "ini": 136.83,
+   "fim": 155.82
+  },
+  {
+   "id": "chamada",
+   "ini": 157.475,
+   "fim": 162.43
+  }
+ ],
+ "telas": [
+  {
+   "tela": "01",
+   "ini": 24.22,
+   "destaques": [
+    {
+     "t": 25.78,
+     "como": "contorno"
+    },
+    {
+     "t": 27.493,
+     "como": "contorno"
+    },
+    {
+     "t": 28.64,
+     "como": "contorno"
+    },
+    {
+     "t": 29.6,
+     "como": "contorno"
+    },
+    {
+     "t": 30.24,
+     "como": "contorno"
+    },
+    {
+     "t": 30.78,
+     "como": "janela",
+     "volta": 34.48
+    },
+    {
+     "t": 31.64,
+     "como": "contorno na janela"
+    }
+   ],
+   "fim": 35.07,
+   "duracao": 10.85,
+   "ultimoDestaque": 31.64,
+   "espera": 3.43,
+   "assunto": "visao",
+   "ultimaDoAssunto": true
+  },
+  {
+   "tela": "02",
+   "ini": 35.07,
+   "destaques": [
+    {
+     "t": 35.92,
+     "como": "contorno"
+    },
+    {
+     "t": 36.69,
+     "como": "contorno"
+    },
+    {
+     "t": 38.24,
+     "como": "contornos"
+    },
+    {
+     "t": 38.98,
+     "como": "janela",
+     "volta": 42.205
+    },
+    {
+     "t": 39.44,
+     "como": "contorno na janela"
+    },
+    {
+     "t": 39.62,
+     "como": "contorno na janela"
+    }
+   ],
+   "fim": 42.245,
+   "duracao": 7.17,
+   "ultimoDestaque": 39.62,
+   "espera": 2.63,
+   "assunto": "calendario",
+   "ultimaDoAssunto": true
+  },
+  {
+   "tela": "09",
+   "ini": 42.385,
+   "destaques": [
+    {
+     "t": 43.205,
+     "como": "contorno"
+    },
+    {
+     "t": 45.265,
+     "como": "pulso"
+    },
+    {
+     "t": 46.385,
+     "como": "pulso"
+    },
+    {
+     "t": 47.725,
+     "como": "janela",
+     "volta": 50.46
+    }
+   ],
+   "fim": 50.5,
+   "duracao": 8.12,
+   "ultimoDestaque": 47.725,
+   "espera": 2.77,
+   "assunto": "duplicada",
+   "ultimaDoAssunto": true
+  },
+  {
+   "tela": "03",
+   "ini": 50.62,
+   "destaques": [
+    {
+     "t": 52.373,
+     "como": "contorno"
+    },
+    {
+     "t": 52.833,
+     "como": "pulso"
+    },
+    {
+     "t": 53.28,
+     "como": "contorno"
+    },
+    {
+     "t": 53.58,
+     "como": "janela",
+     "volta": 56.885
+    }
+   ],
+   "fim": 57.085,
+   "duracao": 6.47,
+   "ultimoDestaque": 53.58,
+   "espera": 3.51,
+   "assunto": "sinal",
+   "ultimaDoAssunto": true
+  },
+  {
+   "tela": "11r",
+   "ini": 57.085,
+   "destaques": [
+    {
+     "t": 58.925,
+     "como": "contorno"
+    },
+    {
+     "t": 59.925,
+     "como": "contorno"
+    },
+    {
+     "t": 61.045,
+     "como": "contorno"
+    }
+   ],
+   "fim": 62.625,
+   "duracao": 5.54,
+   "ultimoDestaque": 61.045,
+   "espera": 1.58,
+   "assunto": "cancelamento",
+   "ultimaDoAssunto": true
+  },
+  {
+   "tela": "11d",
+   "ini": 62.625,
+   "destaques": [
+    {
+     "t": 62.665,
+     "como": "contorno"
+    },
+    {
+     "t": 63.565,
+     "como": "contorno"
+    },
+    {
+     "t": 64.505,
+     "como": "janela",
+     "volta": 67.395
+    }
+   ],
+   "fim": 67.595,
+   "duracao": 4.97,
+   "ultimoDestaque": 64.505,
+   "espera": 3.09,
+   "assunto": "cancelamento",
+   "ultimaDoAssunto": true
+  },
+  {
+   "tela": "05",
+   "ini": 67.595,
+   "destaques": [
+    {
+     "t": 69.075,
+     "como": "contorno"
+    },
+    {
+     "t": 69.395,
+     "como": "janela",
+     "volta": 71.055
+    },
+    {
+     "t": 71.655,
+     "como": "contorno"
+    },
+    {
+     "t": 72.435,
+     "como": "contorno"
+    },
+    {
+     "t": 73.095,
+     "como": "contorno"
+    }
+   ],
+   "fim": 75.96,
+   "duracao": 8.36,
+   "ultimoDestaque": 73.095,
+   "espera": 2.86,
+   "assunto": "comanda",
+   "ultimaDoAssunto": true
+  },
+  {
+   "tela": "04",
+   "ini": 75.96,
+   "destaques": [
+    {
+     "t": 76.86,
+     "como": "contorno"
+    },
+    {
+     "t": 77.25,
+     "como": "janela",
+     "volta": 82.525
+    },
+    {
+     "t": 79.16,
+     "como": "contorno na janela"
+    }
+   ],
+   "fim": 82.765,
+   "duracao": 6.81,
+   "ultimoDestaque": 79.16,
+   "espera": 3.61,
+   "assunto": "checkout",
+   "ultimaDoAssunto": true
+  },
+  {
+   "tela": "06",
+   "ini": 82.765,
+   "destaques": [
+    {
+     "t": 83.745,
+     "como": "contorno"
+    },
+    {
+     "t": 84.005,
+     "como": "janela",
+     "volta": 85.265
+    },
+    {
+     "t": 86.245,
+     "como": "contorno"
+    },
+    {
+     "t": 86.685,
+     "como": "contorno"
+    },
+    {
+     "t": 87.085,
+     "como": "contorno"
+    },
+    {
+     "t": 87.605,
+     "como": "contorno"
+    },
+    {
+     "t": 87.825,
+     "como": "janela",
+     "volta": 90.655
+    },
+    {
+     "t": 88.185,
+     "como": "contorno na janela"
+    }
+   ],
+   "fim": 91.375,
+   "duracao": 8.61,
+   "ultimoDestaque": 88.185,
+   "espera": 3.19,
+   "assunto": "caixa",
+   "ultimaDoAssunto": true
+  },
+  {
+   "tela": "10",
+   "ini": 91.375,
+   "destaques": [
+    {
+     "t": 92.295,
+     "como": "contorno"
+    },
+    {
+     "t": 92.795,
+     "como": "pulso"
+    },
+    {
+     "t": 94.015,
+     "como": "contorno"
+    },
+    {
+     "t": 95.075,
+     "como": "janela",
+     "volta": 98.02
+    }
+   ],
+   "fim": 98.2,
+   "duracao": 6.83,
+   "ultimoDestaque": 95.075,
+   "espera": 3.13,
+   "assunto": "fechamento",
+   "ultimaDoAssunto": true
+  },
+  {
+   "tela": "13",
+   "ini": 108.155,
+   "destaques": [
+    {
+     "t": 109.63,
+     "como": "contorno"
+    },
+    {
+     "t": 111.37,
+     "como": "contorno"
+    }
+   ],
+   "fim": 112.59,
+   "duracao": 4.44,
+   "ultimoDestaque": 111.37,
+   "espera": 1.22,
+   "assunto": "comeca1",
+   "ultimaDoAssunto": true
+  },
+  {
+   "tela": "14",
+   "ini": 112.59,
+   "destaques": [
+    {
+     "t": 112.87,
+     "como": "contorno"
+    },
+    {
+     "t": 113.47,
+     "como": "pulso"
+    },
+    {
+     "t": 114.09,
+     "como": "contorno"
+    },
+    {
+     "t": 115.45,
+     "como": "contorno"
+    }
+   ],
+   "fim": 118.075,
+   "duracao": 5.48,
+   "ultimoDestaque": 115.45,
+   "espera": 2.63,
+   "assunto": "comeca1",
+   "ultimaDoAssunto": true
+  }
+ ]
+}

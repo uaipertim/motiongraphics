@@ -1,0 +1,9 @@
+# trabalho local e arquivos que os scripts regeneram
+.trabalho/
+__pycache__/
+node_modules/
+audio/narracao/narracao.wav
+audio/trilha.wav
+audio/efeitos.wav
+audio/mix.wav
+audio/eventos.exemplo.json

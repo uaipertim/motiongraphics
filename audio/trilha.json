@@ -1,0 +1,153 @@
+{
+ "bpm": 96.0,
+ "tom": "Ré maior (dor em Si menor)",
+ "duracao": 167.23,
+ "ancoras": [
+  {
+   "t": 17.485,
+   "batida": 0.0
+  },
+  {
+   "t": 128.965,
+   "batida": 180.0
+  },
+  {
+   "t": 141.07,
+   "batida": 200.0
+  },
+  {
+   "t": 150.94,
+   "batida": 216.0
+  },
+  {
+   "t": 162.88,
+   "batida": 236.0
+  }
+ ],
+ "andamentos": [
+  96.88,
+  99.13,
+  97.26,
+  100.5
+ ],
+ "secoes": [
+  {
+   "tipo": "virada",
+   "nome": "virada",
+   "batida": 0.0,
+   "t": 17.485
+  },
+  {
+   "tipo": "dia",
+   "nome": "visao",
+   "batida": 12.0,
+   "t": 24.917
+  },
+  {
+   "tipo": "dia",
+   "nome": "calendario",
+   "batida": 28.0,
+   "t": 34.826
+  },
+  {
+   "tipo": "dia",
+   "nome": "duplicada",
+   "batida": 40.0,
+   "t": 42.258
+  },
+  {
+   "tipo": "dia",
+   "nome": "sinal",
+   "batida": 52.0,
+   "t": 49.69
+  },
+  {
+   "tipo": "dia",
+   "nome": "cancelamento",
+   "batida": 64.0,
+   "t": 57.122
+  },
+  {
+   "tipo": "dia",
+   "nome": "comanda",
+   "batida": 80.0,
+   "t": 67.032
+  },
+  {
+   "tipo": "dia",
+   "nome": "checkout",
+   "batida": 96.0,
+   "t": 76.941
+  },
+  {
+   "tipo": "dia",
+   "nome": "caixa",
+   "batida": 104.0,
+   "t": 81.896
+  },
+  {
+   "tipo": "dia",
+   "nome": "fechamento",
+   "batida": 120.0,
+   "t": 91.805
+  },
+  {
+   "tipo": "internet",
+   "nome": "internet",
+   "batida": 132.0,
+   "t": 99.237
+  },
+  {
+   "tipo": "leve",
+   "nome": "comeca1",
+   "batida": 144.0,
+   "t": 106.669
+  },
+  {
+   "tipo": "leve",
+   "nome": "comeca2",
+   "batida": 164.0,
+   "t": 119.056
+  },
+  {
+   "tipo": "teste",
+   "nome": "teste",
+   "batida": 180.0,
+   "t": 128.965
+  },
+  {
+   "tipo": "preco_a",
+   "nome": "preco",
+   "batida": 192.0,
+   "t": 136.228
+  },
+  {
+   "tipo": "preco_b",
+   "nome": "R$ 99,90",
+   "batida": 200.0,
+   "t": 141.07
+  },
+  {
+   "tipo": "preco_c",
+   "nome": "R$ 79,90",
+   "batida": 216.0,
+   "t": 150.94
+  },
+  {
+   "tipo": "chamada",
+   "nome": "chamada",
+   "batida": 228.0,
+   "t": 158.104
+  },
+  {
+   "tipo": "final",
+   "nome": "final",
+   "batida": 236.0,
+   "t": 162.88
+  }
+ ],
+ "t_impacto_fazlo": 17.485,
+ "t_cair": 99.52,
+ "t_nao": 102.64,
+ "t_final": 162.88
+}

@@ -1,0 +1,42 @@
+@font-face { font-family: 'Geist'; src: url(fonts/Geist-Variable.woff2) format('woff2'); font-weight: 100 900; font-display: block; }
+@font-face { font-family: 'Geist Mono'; src: url(fonts/GeistMono-Variable.woff2) format('woff2'); font-weight: 100 900; font-display: block; }
+
+:root {
+  --tinta: #0A0A0A; --limao: #AFFA27; --branco: #F4F4F0; --ambar: #E8A317;
+  --cinza: #8C8C85; --cinza2: #5E5E5A; --grafite: #1A1A18; --grafite2: #262624; --linha: #33332F;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; background: #000; }
+#palco {
+  position: relative; width: 1080px; height: 1920px; overflow: hidden; background: var(--tinta);
+  font-family: 'Geist', sans-serif; color: var(--branco);
+  -webkit-font-smoothing: antialiased; text-rendering: geometricPrecision; font-kerning: normal;
+}
+#fundo, #cenas, .cena { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; }
+.cena { overflow: hidden; }
+.mono { font-family: 'Geist Mono', monospace; font-variant-numeric: tabular-nums; }
+.abs { position: absolute; left: 0; top: 0; transform-origin: 50% 50%; }
+.centro { display: flex; align-items: center; justify-content: center; text-align: center; }
+.pal { display: inline-block; white-space: pre; transform-origin: 50% 80%; }
+
+/* aparelho */
+.ap-celular { border-radius: 55px; background: #141413; box-shadow: inset 0 0 0 1.5px #3b3b37, inset 0 0 0 4px #0c0c0b, 0 22px 60px rgba(0,0,0,0.55); }
+.ap-janela { border-radius: 24px; box-shadow: 0 0 0 1px rgba(244,244,240,0.14), 0 24px 60px rgba(0,0,0,0.55); }
+.ap-apagada { background: radial-gradient(120% 80% at 30% 0%, #1b1b19 0%, #070707 60%); }
+
+/* legenda */
+#legenda { position: absolute; left: 140px; top: 1382px; width: 800px; height: 150px; }
+.leg-pag {
+  position: absolute; left: 0; top: 0; width: 800px; height: 150px;
+  display: flex; align-items: center; justify-content: center; text-align: center;
+}
+.leg-txt { font-weight: 700; font-size: 52px; line-height: 1.2; letter-spacing: -0.012em; color: var(--branco); text-wrap: balance; max-width: 800px; }
+.leg-txt .ch { color: var(--limao); }
+
+/* peças gráficas */
+.chip { display: inline-flex; align-items: center; gap: 14px; padding: 0 26px; height: 68px; border-radius: 999px; font-weight: 600; font-size: 32px; white-space: nowrap; }
+.chip-escuro { background: var(--grafite); box-shadow: inset 0 0 0 1.5px var(--linha); color: var(--branco); }
+.chip-limao { background: var(--limao); color: var(--tinta); }
+.chip-ambar { background: rgba(232,163,23,0.14); box-shadow: inset 0 0 0 1.5px rgba(232,163,23,0.7); color: var(--ambar); }
+.cartao { border-radius: 30px; background: var(--grafite); box-shadow: inset 0 0 0 1.5px var(--linha); }
+.rot { font-weight: 500; font-size: 30px; color: var(--cinza); letter-spacing: 0.01em; }

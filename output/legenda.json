@@ -1,0 +1,338 @@
+[
+ {
+  "assunto": "dor",
+  "ini": 0.95,
+  "fim": 3.81,
+  "texto": "Em muita pousada, o dono faz tudo:",
+  "corpo": 52,
+  "linhas": 2
+ },
+ {
+  "assunto": "dor",
+  "ini": 3.83,
+  "fim": 6.6499999999999995,
+  "texto": "a reserva fica no caderno e no WhatsApp,",
+  "corpo": 52,
+  "linhas": 2
+ },
+ {
+  "assunto": "dor",
+  "ini": 6.67,
+  "fim": 8.785,
+  "texto": "o consumo, no papel.",
+  "corpo": 52,
+  "linhas": 1
+ },
+ {
+  "assunto": "dor",
+  "ini": 8.805,
+  "fim": 11.025,
+  "texto": "No check-out, ninguém sabe ao certo",
+  "corpo": 52,
+  "linhas": 2
+ },
+ {
+  "assunto": "dor",
+  "ini": 11.045,
+  "fim": 13.299999999999999,
+  "texto": "quanto o hóspede ainda deve.",
+  "corpo": 52,
+  "linhas": 1
+ },
+ {
+  "assunto": "dor",
+  "ini": 13.319999999999999,
+  "fim": 16.48,
+  "texto": "E no fim do dia, o caixa não bate.",
+  "corpo": 52,
+  "linhas": 1
+ },
+ {
+  "assunto": "virada",
+  "ini": 17.275,
+  "fim": 18.775,
+  "texto": "O FAZLO Hospeda junta",
+  "corpo": 52,
+  "linhas": 1
+ },
+ {
+  "assunto": "virada",
+  "ini": 18.794999999999998,
+  "fim": 21.1,
+  "texto": "tudo isso em um só lugar.",
+  "corpo": 52,
+  "linhas": 1
+ },
+ {
+  "assunto": "virada",
+  "ini": 21.12,
+  "fim": 23.28,
+  "texto": "Veja como fica o dia a dia.",
+  "corpo": 52,
+  "linhas": 1
+ },
+ {
+  "assunto": "visao",
+  "ini": 24.009999999999998,
+  "fim": 27.15,
+  "texto": "Ao abrir o Hospeda, você vê o dia da pousada:",
+  "corpo": 52,
+  "linhas": 2
+ },
+ {
+  "assunto": "visao",
+  "ini": 27.169999999999998,
+  "fim": 29.39,
+  "texto": "quem está hospedado, quem chega,",
+  "corpo": 52,
+  "linhas": 2
+ },
+ {
+  "assunto": "visao",
+  "ini": 29.41,
+  "fim": 31.43,
+  "texto": "quem sai e quanto já entrou,",
+  "corpo": 52,
+  "linhas": 1
+ },
+ {
+  "assunto": "visao",
+  "ini": 31.45,
+  "fim": 33.29,
+  "texto": "por forma de pagamento.",
+  "corpo": 52,
+  "linhas": 1
+ },
+ {
+  "assunto": "calendario",
+  "ini": 34.730000000000004,
+  "fim": 37.87,
+  "texto": "No calendário, cada acomodação tem a sua linha,",
+  "corpo": 52,
+  "linhas": 2
+ },
+ {
+  "assunto": "calendario",
+  "ini": 37.89,
+  "fim": 41.01,
+  "texto": "e cada reserva aparece no período dela.",
+  "corpo": 52,
+  "linhas": 2
+ },
+ {
+  "assunto": "duplicada",
+  "ini": 42.455000000000005,
+  "fim": 44.235,
+  "texto": "E o Hospeda não deixa vender",
+  "corpo": 52,
+  "linhas": 1
+ },
+ {
+  "assunto": "duplicada",
+  "ini": 44.255,
+  "fim": 47.515,
+  "texto": "o mesmo chalé duas vezes nas mesmas datas:",
+  "corpo": 52,
+  "linhas": 2
+ },
+ {
+  "assunto": "duplicada",
+  "ini": 47.535000000000004,
+  "fim": 49.375,
+  "texto": "ele avisa na hora.",
+  "corpo": 52,
+  "linhas": 1
+ },
+ {
+  "assunto": "sinal",
+  "ini": 50.77,
+  "fim": 52.99,
+  "texto": "Na reserva, você registra o sinal,",
+  "corpo": 52,
+  "linhas": 2
+ },
+ {
+  "assunto": "sinal",
+  "ini": 53.010000000000005,
+  "fim": 56.09,
+  "texto": "e o saldo que falta já fica calculado.",
+  "corpo": 52,
+  "linhas": 2
+ },
+ {
+  "assunto": "cancelamento",
+  "ini": 57.195,
+  "fim": 59.975,
+  "texto": "Se o hóspede cancelar, você decide:",
+  "corpo": 52,
+  "linhas": 2
+ },
+ {
+  "assunto": "cancelamento",
+  "ini": 59.995000000000005,
+  "fim": 62.415,
+  "texto": "reter o sinal, que fica com a pousada,",
+  "corpo": 52,
+  "linhas": 2
+ },
+ {
+  "assunto": "cancelamento",
+  "ini": 62.435,
+  "fim": 66.275,
+  "texto": "ou devolver, e a saída já é lançada no caixa.",
+  "corpo": 52,
+  "linhas": 2
+ },
+ {
+  "assunto": "comanda",
+  "ini": 67.705,
+  "fim": 71.48500000000001,
+  "texto": "Durante a estadia, cada consumo vai para a comanda do hóspede:",
+  "corpo": 50,
+  "linhas": 2
+ },
+ {
+  "assunto": "comanda",
+  "ini": 71.50500000000001,
+  "fim": 74.585,
+  "texto": "o que foi, quantos e quanto.",
+  "corpo": 52,
+  "linhas": 1
+ },
+ {
+  "assunto": "checkout",
+  "ini": 75.97,
+  "fim": 78.47000000000001,
+  "texto": "No check-out, o saldo aparece claro,",
+  "corpo": 52,
+  "linhas": 2
+ },
+ {
+  "assunto": "checkout",
+  "ini": 78.49000000000001,
+  "fim": 81.73,
+  "texto": "e a saída só libera com tudo quitado.",
+  "corpo": 52,
+  "linhas": 2
+ },
+ {
+  "assunto": "caixa",
+  "ini": 82.815,
+  "fim": 85.31500000000001,
+  "texto": "O caixa abre com o dinheiro da gaveta,",
+  "corpo": 52,
+  "linhas": 2
+ },
+ {
+  "assunto": "caixa",
+  "ini": 85.33500000000001,
+  "fim": 87.635,
+  "texto": "e cada recebimento entra no diário,",
+  "corpo": 52,
+  "linhas": 2
+ },
+ {
+  "assunto": "caixa",
+  "ini": 87.655,
+  "fim": 89.695,
+  "texto": "com a forma de pagamento.",
+  "corpo": 52,
+  "linhas": 1
+ },
+ {
+  "assunto": "fechamento",
+  "ini": 91.045,
+  "fim": 93.305,
+  "texto": "No fechamento, você conta o dinheiro,",
+  "corpo": 52,
+  "linhas": 2
+ },
+ {
+  "assunto": "fechamento",
+  "ini": 93.325,
+  "fim": 95.105,
+  "texto": "e o Hospeda mostra na hora",
+  "corpo": 52,
+  "linhas": 1
+ },
+ {
+  "assunto": "fechamento",
+  "ini": 95.125,
+  "fim": 97.285,
+  "texto": "se sobrou ou faltou.",
+  "corpo": 52,
+  "linhas": 1
+ },
+ {
+  "assunto": "internet",
+  "ini": 98.59,
+  "fim": 101.37,
+  "texto": "E se a internet cair no meio de um recebimento,",
+  "corpo": 52,
+  "linhas": 2
+ },
+ {
+  "assunto": "internet",
+  "ini": 101.39,
+  "fim": 104.99,
+  "texto": "o mesmo pagamento não é lançado duas vezes.",
+  "corpo": 52,
+  "linhas": 2
+ },
+ {
+  "assunto": "comeca1",
+  "ini": 109.52,
+  "fim": 112.22000000000001,
+  "texto": "A equipe FAZLO configura a sua pousada:",
+  "corpo": 52,
+  "linhas": 2
+ },
+ {
+  "assunto": "comeca1",
+  "ini": 112.24000000000001,
+  "fim": 114.14,
+  "texto": "acomodações, tarifas,",
+  "corpo": 52,
+  "linhas": 1
+ },
+ {
+  "assunto": "comeca1",
+  "ini": 114.16,
+  "fim": 116.96,
+  "texto": "produtos da comanda e usuários.",
+  "corpo": 52,
+  "linhas": 2
+ },
+ {
+  "assunto": "comeca2",
+  "ini": 118.44500000000001,
+  "fim": 120.58500000000001,
+  "texto": "Você recebe o convite por e-mail,",
+  "corpo": 52,
+  "linhas": 2
+ },
+ {
+  "assunto": "comeca2",
+  "ini": 120.605,
+  "fim": 123.84,
+  "texto": "cria a sua senha e já começa a usar.",
+  "corpo": 52,
+  "linhas": 2
+ },
+ {
+  "assunto": "comeca2",
+  "ini": 123.86,
+  "fim": 127.7,
+  "texto": "E qualquer dúvida, é só chamar a gente no WhatsApp.",
+  "corpo": 52,
+  "linhas": 2
+ },
+ {
+  "assunto": "preco",
+  "ini": 136.78,
+  "fim": 140.46,
+  "texto": "Depois dos 30 dias, se fizer sentido para você,",
+  "corpo": 52,
+  "linhas": 2
+ }
+]
