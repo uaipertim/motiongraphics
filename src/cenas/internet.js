@@ -79,7 +79,7 @@
   M.para(gR, t0 - 0.02, 0.6, { y: [130, 0], s: [0.92, 1] }, 'back');
   som(t0 + 0.03, 'pop', { forca: 0.7 });
   // barra de envio: avança, trava no meio quando a internet cai
-  const BX = CX - CW / 2 + 36, BY = CY + CH / 2 - 62, BW = CW - 72;
+  const BX = CX - CW / 2 + 36, BY = CY + CH / 2 - 86, BW = CW - 72;   // estado do envio a 26 px da borda de baixo
   gR.dom.appendChild(h('div', { style: `position:absolute;left:${BX}px;top:${BY}px;width:${BW}px;height:12px;border-radius:6px;background:${COR.grafite2};` }));
   const barra = h('div', { style: `position:absolute;left:${BX}px;top:${BY}px;width:${BW}px;height:12px;border-radius:6px;background:${COR.limao};transform-origin:0 50%;` });
   gR.dom.appendChild(barra);

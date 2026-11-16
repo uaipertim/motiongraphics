@@ -169,8 +169,9 @@ def main():
               f"· {s['dur']:.2f} s · {s['mb']:.1f} MB · {s['kbps']:.0f} kbps · {s['audio']}")
     conf(m["larg"] == 1080 and m["alt"] == 1920 and m["fps"] == 60, "mestre 1080×1920 a 60 fps")
     conf(abs(m["dur"] - dur) < 0.1 and abs(m["dur_audio"] - m["dur"]) < 0.1, f"mestre com {m['dur']:.2f} s (linha do tempo {dur:.2f} s), som do mesmo tamanho")
-    conf(l["fps"] == 30 and l["mb"] <= 16.0, f"versão leve a 30 fps com {l['mb']:.2f} MB (≤ 16 MB)")
-    conf(abs(l["dur"] - dur) < 0.1, "versão leve com a mesma duração")
+    conf(l["larg"] == 1080 and l["alt"] == 1920 and l["fps"] == 30, "versão WhatsApp 1080×1920 a 30 fps")
+    conf(l["mb"] <= 16.0, f"versão WhatsApp com {l['mb']:.2f} MB (alvo ~14 MB)")
+    conf(abs(l["dur"] - dur) < 0.1, "versão WhatsApp com a mesma duração")
 
     print("== som (medido nos arquivos finais, ffmpeg ebur128) ==")
     for nome, arq in (("mestre", MESTRE), ("whatsapp", LEVE)):
@@ -198,6 +199,33 @@ def main():
         antes, depois = env[i - 2400:i - 400].max(), env[i:i + 1600].max()
         piores.append(depois / max(antes, 1e-9))
     conf(min(piores) > 2.0, f"voz: cada assunto começa no tempo da linha do tempo (energia sobe ≥ {min(piores):.1f}× no início de cada um)")
+
+    print("== texto dentro da caixa (página do vídeo, 10 fps, margem 16 px) ==")
+    r = subprocess.run(["node", "scripts/caixas.mjs", "--fps", "10", "--margem", "16"], capture_output=True, text=True)
+    ultima = r.stdout.strip().splitlines()
+    for linha in ultima[:-1]:
+        print("   " + linha)
+    conf(r.returncode == 0, ultima[-1] if ultima else r.stderr[-300:])
+
+    print("== regras de conteúdo (recortes das telas que o vídeo carrega) ==")
+    orig = "pacote/fazlo-hospeda-apresentacao-teste/telas/"
+    def mesma_linha(rec, y_rec, arq, y_orig, x0=0):
+        a = np.asarray(Image.open("src/telas/" + rec).convert("RGB"))[y_rec, x0:x0 + 1170]
+        b = np.asarray(Image.open(orig + arq).convert("RGB"))[y_orig, x0:x0 + 1170]
+        return bool(np.array_equal(a, b))
+    celulares = {"01.png": "01-visao-geral-celular.png", "02.png": "02-calendario-celular.png", "03.png": "03-nova-reserva-sinal-celular.png",
+                 "04.png": "04-hospedagem-checkout-celular.png", "05.png": "05-comanda-aberta-celular.png", "06.png": "06-caixa-aberto-celular.png",
+                 "10.png": "10-fechamento-caixa-celular.png", "11r.png": "11-cancelamento-sinal-reter-celular.png", "11d.png": "11-cancelamento-sinal-devolver-celular.png"}
+    conf(all(mesma_linha(r, 0, o, 96) for r, o in celulares.items()),
+         "faixa de demonstração: todos os recortes começam na linha 96 do original (a faixa ocupa 0–92)")
+    h06 = Image.open("src/telas/06.png").size[1]
+    conf(h06 == 1538 * 3 and mesma_linha("06.png", h06 - 1, "06-caixa-aberto-celular.png", 96 + h06 - 1),
+         f"06: o diário termina na linha \"Consumo · Patricia Almeida\" (corte em y {1538} css; \"Day Use · Camila Rocha\" começa em ~1648 css)")
+    h14 = Image.open("src/telas/14-itens.png").size[1]
+    conf(h14 == (1000 - 462) * 3 and mesma_linha("14-itens.png", 0, "14-nova-pousada-revisao-celular.png", 462 * 3),
+         "14: só os itens 2 a 6 (y 462–1000 css); item 1 (nome, cidade, responsável, datas) e rodapé do convite ficam fora")
+    w09 = Image.open("src/telas/09-janela.png").size
+    conf(w09 == (1560, 2118), "09: só a janela \"Nova reserva\" (sem menu lateral com Day Use e sem o nome da pousada de demonstração)")
 
     print("== nada parado por mais de 0,5 s nas partes sem tela ==")
     telas = [(t["ini"], t["fim"]) for t in tempos["telas"]]

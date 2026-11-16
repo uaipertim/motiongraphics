@@ -8,11 +8,12 @@ commit, script ou vídeo do repositório foi aberto.
 
 | Arquivo | O que é |
 |---|---|
-| `output/apresentacao.mp4` | mestre · 1080×1920 · 60 fps · H.264 High (BT.709) · AAC 192 kbps · **53,8 MB** |
-| `output/apresentacao-whatsapp.mp4` | versão leve · 720×1280 · 30 fps · H.264 · AAC 96 kbps · **15,5 MB** |
+| `output/apresentacao.mp4` | mestre · 1080×1920 · 60 fps · H.264 High (BT.709) · AAC 192 kbps · **53,8 MB** (Revisão 2) |
+| `output/apresentacao-whatsapp.mp4` | versão WhatsApp · 1080×1920 · 30 fps · H.264 CRF 27 · AAC 128 kbps · **14,4 MB** (Revisão 2) |
 | `output/miniatura.jpg` | quadro 0 do mestre |
 | `output/folha-contato.jpg` | 1 quadro por segundo, tirado do mestre final |
 | `output/legenda.json` · `output/tempos.json` | páginas da legenda e tempos de cada tela, exportados da linha do tempo |
+| `output/caixas.json` | resultado da varredura "texto dentro da caixa" (Revisão 2) |
 
 Duração: **167,23 s (2 min 47,2 s)**. A fala sozinha dura 134,4 s e não foi acelerada; o resto são as
 pausas pedidas (1,4 a 2,2 s entre assuntos), 1,0 s de abertura e 4,8 s de fecho.
@@ -164,7 +165,7 @@ teste grátis inteiro, do preço em diante ("a mensalidade é de R$ 99,90…") e
 - **Mixagem:** ducking por bandas a partir da voz (a trilha desce 8,5 dB no miolo, antes de cada palavra
   começar, e respira 5,6 dB nas pausas); a voz fica 20 dB acima da trilha enquanto fala.
 - **Medido nos arquivos finais** (`ffmpeg ebur128`): mestre **−14,0 LUFS, pico real −1,9 dBTP**;
-  WhatsApp **−14,0 LUFS, pico real −1,9 dBTP**.
+  WhatsApp **−14,0 LUFS, pico real −1,7 dBTP** (Revisão 2).
 
 ## O que foi verificado
 
@@ -172,17 +173,18 @@ Com `scripts/conferir.py`, sobre os **arquivos finais**:
 
 ```text
 == formato ==
-  mestre: 1080x1920 60.0 fps h264 High yuv420p bt709 · 167.23 s · 53.8 MB · 2575 kbps · aac 48000 Hz 2ch
-  whatsapp: 720x1280 30.0 fps h264 High yuv420p bt709 · 167.23 s · 15.5 MB · 742 kbps · aac 44100 Hz 2ch
+  mestre: 1080x1920 60.0 fps h264 High yuv420p bt709 · 167.23 s · 53.8 MB · 2572 kbps · aac 48000 Hz 2ch
+  whatsapp: 1080x1920 30.0 fps h264 High yuv420p bt709 · 167.23 s · 14.4 MB · 687 kbps · aac 48000 Hz 2ch
   ok    mestre 1080×1920 a 60 fps
   ok    mestre com 167.23 s (linha do tempo 167.23 s), som do mesmo tamanho
-  ok    versão leve a 30 fps com 15.51 MB (≤ 16 MB)
-  ok    versão leve com a mesma duração
+  ok    versão WhatsApp 1080×1920 a 30 fps
+  ok    versão WhatsApp com 14.36 MB (alvo ~14 MB)
+  ok    versão WhatsApp com a mesma duração
 == som (medido nos arquivos finais, ffmpeg ebur128) ==
   mestre: -14.0 LUFS · LRA 5.0 · pico real -1.9 dBTP
   ok    mestre: −14 LUFS (±0,5)
   ok    mestre: pico real ≤ −1,5 dBTP
-  whatsapp: -14.0 LUFS · LRA 5.1 · pico real -1.9 dBTP
+  whatsapp: -14.0 LUFS · LRA 5.0 · pico real -1.7 dBTP
   ok    whatsapp: −14 LUFS (±0,5)
   ok    whatsapp: pico real ≤ −1,5 dBTP
 == sincronia no arquivo final ==
@@ -190,6 +192,14 @@ Com `scripts/conferir.py`, sobre os **arquivos finais**:
   ok    whatsapp: som do arquivo × mixagem: +0.0 ms
   ok    legenda: 42/42 páginas entram no quadro previsto (desvio médio +60 ms, pior +67 ms)
   ok    voz: cada assunto começa no tempo da linha do tempo (energia sobe ≥ 4.2× no início de cada um)
+== texto dentro da caixa (página do vídeo, 10 fps, margem 16 px) ==
+   1673 quadros amostrados a 10 fps, margem mínima 16 px
+  ok    nenhum texto fora da caixa
+== regras de conteúdo (recortes das telas que o vídeo carrega) ==
+  ok    faixa de demonstração: todos os recortes começam na linha 96 do original (a faixa ocupa 0–92)
+  ok    06: o diário termina na linha "Consumo · Patricia Almeida" (corte em y 1538 css; "Day Use · Camila Rocha" começa em ~1648 css)
+  ok    14: só os itens 2 a 6 (y 462–1000 css); item 1 (nome, cidade, responsável, datas) e rodapé do convite ficam fora
+  ok    09: só a janela "Nova reserva" (sem menu lateral com Day Use e sem o nome da pousada de demonstração)
 == nada parado por mais de 0,5 s nas partes sem tela ==
   ok    trechos parados > 0,5 s fora das telas: nenhum
   (nas telas, a maior parada é de 1.20 s — é a espera depois do último destaque)
@@ -223,6 +233,53 @@ Pontos que deixo à vista, porque dependem de leitura da regra:
    check-out). São cenas separadas; a troca é por esmaecimento, sem as duas legíveis ao mesmo tempo.
 3. **Duração:** 2 min 47 s, não 2 min 45 s — a voz não foi acelerada.
 
+## Revisão 2
+
+Pedido: corrigir o valor que passava da borda no cartão "Check-out" da dor, varrer o vídeo inteiro atrás
+de texto fora da caixa, e trocar a versão WhatsApp para 1080×1920. Roteiro, voz, tempos, trilha, mixagem
+e as demais cenas não mudaram: `audio/eventos.json`, `output/legenda.json` e `output/tempos.json` saíram
+idênticos da exportação, e a mixagem usada é a mesma.
+
+**Causa do estouro.** Não era só o corpo do número. O valor tem um "pulo" de escala (1,25 → 1) quando
+vira "R$ ???"; como o objeto não declarava a escala inicial, o motor usava a origem desse pulo (1,25)
+**durante todo o giro**. A 64 px × 1,25, "R$ 412,00" media 410 px num cartão de 414 px (margem direita −22 px).
+
+**Correção no cartão Check-out.** Escala inicial 1 declarada; o número fica nos 64 px do projeto. O valor
+mais largo do giro (todos têm 9 caracteres monoespaçados, ex. "R$ 715,00") mede 328 px: **margens de
+32 px à esquerda e 54 px à direita**; "R$ ???" (com o pulo de 1,25) fica a 109 px da borda. O cartão
+não foi alargado: os dois cartões já vão de x 86 a 934, e alargar invadiria a coluna de botões.
+Todos os textos do cartão passaram para a mesma margem interna de 32 px; a interrogação de "ainda", que
+ficava em cima do valor, desceu para o lado de "ninguém sabe ao certo".
+
+**Cartão do Caixa.** Textos com margem interna de 32 px; valores (R$ 285,00 / R$ 270,00) de 40 para
+36 px, para abrir 30 px entre rótulo e valor. O selo "≠ não bate" carimbava a partir de 2,2× com
+rotação de −14° e passava da borda por 0,3 s; agora carimba de 1,15× / −6° até 1× / −4°.
+Medido a 60 fps: nenhum elemento (texto, ícone, selo) passa da borda dos dois cartões em nenhum quadro;
+a menor folga é 6 px (uma interrogação flutuando) no Check-out e 10 px no Caixa.
+
+**Varredura automática** (`scripts/caixas.mjs`, também chamada pelo `conferir.py`). Amostra a linha do
+tempo a 10 fps (1.673 quadros) e, em cada quadro, mede no navegador cada trecho de texto visível contra a
+sua caixa: a caixa ancestral mais próxima (cartão, pílula, selo, botão), ou, se não houver, a menor caixa
+pintada por baixo dele. Exige 16 px de margem em cada lado (na vertical, mede a altura das letras, não a
+da linha). Quando a caixa está escalada numa entrada/saída, a margem exigida escala junto. A legenda fica
+fora (tem faixa própria). Além do Check-out, ela achou:
+
+| Onde | Problema | Correção |
+|---|---|---|
+| Internet, cartão "Recebimento" | "Lançando… / Sem resposta… / Lançado" a 12 px da borda de baixo | barra e estado subiram 24 px (26 px de margem) |
+| Como começa, aviso "1" do convite | círculo de 52 px com "1" de 32 px: 13 px em cima e embaixo | círculo de 60 px, número de 30 px |
+| Dor, selo "não bate" | passava da borda do cartão durante o carimbo | ver acima |
+
+Resultado atual: **nenhum texto fora da caixa**.
+
+**Regras de conteúdo** agora também têm checagem automática no `conferir.py`: cada recorte de celular
+começa na linha 96 do original (a faixa de demonstração ocupa 0–92); o 06 termina no corte de
+1538 css, antes de "Day Use · Camila Rocha"; o 14 é só y 462–1000 css (itens 2 a 6); o 09 é só a janela.
+
+**Versão WhatsApp.** Feita a partir do mestre com o comando pedido
+(`fps=30`, `libx264 -preset slow -crf 27`, `yuv420p`, AAC 128 kbps, `+faststart`): 1080×1920, 30 fps,
+**14,4 MB**, −14,0 LUFS, pico real −1,7 dBTP.
+
 ## O que eu melhoraria numa próxima versão
 
 - **Ouvir e regravar o que for preciso.** Com escuta (ou transcrição) dá para regravar só a frase que
@@ -236,7 +293,6 @@ Pontos que deixo à vista, porque dependem de leitura da regra:
   legenda; é um plano de localização, não de leitura.
 - **Trilha.** Feita por síntese em código: funciona como cama discreta, mas uma trilha tocada/produzida
   daria mais calor.
-- **Versão leve em 1080p** se o envio for como documento (sem recompressão do WhatsApp).
 
 ## Como refazer
 
@@ -246,7 +302,8 @@ python3 scripts/gerar_narracao.py --formato mp3_44100_192   # só se for regrava
 python3 scripts/montar_narracao.py          # pausas + tempos por palavra
 node scripts/exportar.mjs                   # eventos de som, legenda e tempos; confere as regras
 python3 scripts/trilha.py && python3 scripts/efeitos.py audio/eventos.json -o audio/efeitos.wav && python3 scripts/mixar.py
-bash scripts/renderizar.sh                  # quadros (4 processos) → mestre, versão leve, miniatura
+bash scripts/renderizar.sh                  # quadros (4 processos) → mestre, versão WhatsApp, miniatura
+node scripts/caixas.mjs                     # texto dentro da caixa, 10 fps, margem 16 px (também roda no conferir)
 python3 scripts/conferir.py --folha         # confere os arquivos finais e gera a folha de contato
 ```
 

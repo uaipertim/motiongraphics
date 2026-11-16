@@ -31,14 +31,9 @@ ffmpeg -v error -stats -y -f concat -safe 0 -i "$TRAB/lista.txt" -i audio/mix.wa
   -map 0:v -map 1:a -vf "$COR" -r $FPS -c:v libx264 -preset slow -crf 15 -profile:v high -level 4.2 \
   -g 120 -bf 2 $TAGS -c:a aac -b:a 192k -ar 48000 -movflags +faststart -shortest output/apresentacao.mp4
 
-# 3) WhatsApp: 720×1280, 30 fps, duas passadas, ≤ ~16 MB
-VB=630k
-COR2="fps=30,scale=720:1280:in_range=full:out_range=tv:out_color_matrix=bt709:flags=lanczos+accurate_rnd+full_chroma_int,format=yuv420p"
-ffmpeg -v error -y -f concat -safe 0 -i "$TRAB/lista.txt" -vf "$COR2" -c:v libx264 -preset veryslow -b:v $VB \
-  -profile:v high -level 3.1 -g 60 -bf 3 $TAGS -pass 1 -passlogfile "$TRAB/p2" -an -f mp4 /dev/null
-ffmpeg -v error -stats -y -f concat -safe 0 -i "$TRAB/lista.txt" -i audio/mix.wav -map 0:v -map 1:a -vf "$COR2" \
-  -c:v libx264 -preset veryslow -b:v $VB -maxrate 1400k -bufsize 2800k -profile:v high -level 3.1 -g 60 -bf 3 $TAGS \
-  -pass 2 -passlogfile "$TRAB/p2" -c:a aac -b:a 96k -ar 44100 -movflags +faststart -shortest output/apresentacao-whatsapp.mp4
+# 3) WhatsApp: 1080×1920, 30 fps, feita a partir do mestre (Revisão 2: comando definido no pedido)
+ffmpeg -v error -stats -y -i output/apresentacao.mp4 -vf fps=30 -c:v libx264 -preset slow -crf 27 -pix_fmt yuv420p \
+  -c:a aac -b:a 128k -movflags +faststart output/apresentacao-whatsapp.mp4
 
 # 4) miniatura (quadro 0 do mestre)
 ffmpeg -v error -y -i output/apresentacao.mp4 -frames:v 1 -q:v 2 output/miniatura.jpg

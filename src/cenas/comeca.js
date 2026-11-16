@@ -131,7 +131,7 @@
   // 1: aviso de mensagem nova
   {
     const p = passos[0];
-    const b = h('div', { class: 'mono', text: '1', style: `position:absolute;left:${PX + 34}px;top:${p.y - 84}px;width:52px;height:52px;border-radius:50%;background:${COR.branco};color:${COR.tinta};font-weight:700;font-size:32px;display:flex;align-items:center;justify-content:center;box-shadow:0 0 0 5px ${COR.grafite};transform-origin:50% 50%;` });
+    const b = h('div', { class: 'mono', text: '1', style: `position:absolute;left:${PX + 30}px;top:${p.y - 88}px;width:60px;height:60px;border-radius:50%;background:${COR.branco};color:${COR.tinta};font-weight:700;font-size:30px;display:flex;align-items:center;justify-content:center;box-shadow:0 0 0 5px ${COR.grafite};transform-origin:50% 50%;` });
     p.g.dom.appendChild(b);
     const bo = M.el(b, { o: 0, s: 0.2 });
     estala(bo, c2('e-mail') - 0.02, { dur: 0.4, s0: 0.2, ease: 'back2' });

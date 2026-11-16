@@ -182,11 +182,13 @@
   const PY = 1100, PW = 414, PH = 380, XC = 293, XD = 727;   // painéis terminam em x = 934
   const gC = grupo(el, XC, PY, { o: 0 });
   gC.dom.appendChild(h('div', { class: 'cartao', style: `position:absolute;left:${XC - PW / 2}px;top:${PY - PH / 2}px;width:${PW}px;height:${PH}px;` }));
-  const icC = ico(gC.dom, 'saida', 140, PY - 132, 56, COR.branco, 1.9);
+  const icC = ico(gC.dom, 'saida', 146, PY - 132, 56, COR.branco, 1.9);
   desenhar(icC.svg, tC + 0.15, 0.6);
-  txt(gC.dom, 182, PY - 132, 'Check-out', { tam: 42, peso: 700, alinh: 'left', larg: 300 });
-  txt(gC.dom, 112, PY - 52, 'O hóspede ainda deve', { tam: 30, peso: 500, cor: COR.cinza, alinh: 'left', larg: 380 });
-  const valC = txt(gC.dom, 112, PY + 44, 'R$ 0,00', { tam: 64, peso: 700, cor: COR.branco, alinh: 'left', larg: 420, mono: true, esp: '-0.03em' });
+  txt(gC.dom, 188, PY - 132, 'Check-out', { tam: 42, peso: 700, alinh: 'left', larg: 300 });
+  txt(gC.dom, 118, PY - 52, 'O hóspede ainda deve', { tam: 30, peso: 500, cor: COR.cinza, alinh: 'left', larg: 380 });
+  // s: 1 explícito — sem ele o número ficava na escala de origem do "pulo" final (1,25) durante todo o giro
+  // e "R$ 412,00" passava da borda. A 64 px o valor mais largo mede 328 px: margens 32 / 54 px.
+  const valC = txt(gC.dom, 118, PY + 44, 'R$ 0,00', { tam: 64, peso: 700, cor: COR.branco, alinh: 'left', larg: 330, mono: true, esp: '-0.03em' }, { s: 1 });
   M.para(gC, tC, 0.18, { o: [0, 1] }, 'out2');
   M.para(gC, tC, 0.55, { y: [90, 0], s: [0.9, 1] }, 'back');
   som(tC + 0.04, 'pop', { forca: 0.75, pan: -0.4 });
@@ -206,14 +208,14 @@
   M.para(valC, tDeve + 0.25, 0.4, { s: [1.25, 1] }, 'back');
   som(tDeve + 0.25, 'erro', { forca: 0.65, pan: -0.3 });
   // interrogações âmbar
-  [[446, PY - 148, d('sabe')], [462, PY - 52, d('quanto')], [452, PY + 44, d('ainda')]].forEach(([x, y, t0], i) => {
-    const q = ico(gC.dom, 'interrogacao', x, y, [64, 50, 56][i], COR.ambar, 2.2, { o: 0 });
+  [[446, PY - 136, d('sabe')], [462, PY - 52, d('quanto')], [456, PY + 132, d('ainda')]].forEach(([x, y, t0], i) => {
+    const q = ico(gC.dom, 'interrogacao', x, y, [64, 50, 48][i], COR.ambar, 2.2, { o: 0 });
     estala(q, t0, { dur: 0.42, s0: 0.2 });
     M.para(q, t0, 0.5, { r: [-30, [12, -8, 16][i]] }, 'out3');
     som(t0, 'tick', { forca: 0.6, pan: -0.2 });
     M.vivo((t) => { if (q.v.o > 0.01) M.mais(q.dom, ` translateY(${M.r3(Math.sin(t * 2.6 + i * 2) * 6)}px)`); });
   });
-  const rotQ = txt(gC.dom, 112, PY + 136, 'ninguém sabe ao certo', { tam: 30, peso: 600, cor: COR.ambar, alinh: 'left', larg: 380 }, { o: 0 });
+  const rotQ = txt(gC.dom, 118, PY + 136, 'ninguém sabe ao certo', { tam: 30, peso: 600, cor: COR.ambar, alinh: 'left', larg: 380 }, { o: 0 });
   entra(rotQ, tDeve + 0.3, { dy: 20, dur: 0.4 });
 
   /* ================= D · "E no fim do dia, o caixa não bate." ================= */
@@ -221,16 +223,16 @@
   M.para(gC, tD + 0.1, 0.5, { o: 0.62 }, 'io2');
   const gD = grupo(el, XD, PY, { o: 0 });
   gD.dom.appendChild(h('div', { class: 'cartao', style: `position:absolute;left:${XD - PW / 2}px;top:${PY - PH / 2}px;width:${PW}px;height:${PH}px;` }));
-  const icD = ico(gD.dom, 'caixa', 574, PY - 132, 56, COR.branco, 1.9);
+  const icD = ico(gD.dom, 'caixa', 580, PY - 132, 56, COR.branco, 1.9);
   desenhar(icD.svg, tD + 0.15, 0.6);
-  txt(gD.dom, 616, PY - 132, 'Caixa', { tam: 42, peso: 700, alinh: 'left', larg: 200 });
-  const lua = ico(gD.dom, 'lua', 884, PY - 132, 50, COR.cinza, 2);
+  txt(gD.dom, 622, PY - 132, 'Caixa', { tam: 42, peso: 700, alinh: 'left', larg: 200 });
+  const lua = ico(gD.dom, 'lua', 878, PY - 132, 50, COR.cinza, 2);
   desenhar(lua.svg, d('fim') - 0.05, 0.6);
   M.para(lua, d('fim') - 0.05, 0.9, { r: [-50, 0] }, 'out3');
-  txt(gD.dom, 546, PY - 46, 'Esperado', { tam: 30, peso: 500, cor: COR.cinza, alinh: 'left', larg: 200 });
-  const vE = txt(gD.dom, 908, PY - 46, 'R$ 0,00', { tam: 40, peso: 700, alinh: 'right', larg: 260, mono: true, esp: '-0.03em' });
-  txt(gD.dom, 546, PY + 24, 'Na gaveta', { tam: 30, peso: 500, cor: COR.cinza, alinh: 'left', larg: 200 });
-  const vG = txt(gD.dom, 908, PY + 24, 'R$ 0,00', { tam: 40, peso: 700, alinh: 'right', larg: 260, mono: true, esp: '-0.03em' });
+  txt(gD.dom, 552, PY - 46, 'Esperado', { tam: 30, peso: 500, cor: COR.cinza, alinh: 'left', larg: 200 });
+  const vE = txt(gD.dom, 902, PY - 46, 'R$ 0,00', { tam: 36, peso: 700, alinh: 'right', larg: 260, mono: true, esp: '-0.03em' });
+  txt(gD.dom, 552, PY + 24, 'Na gaveta', { tam: 30, peso: 500, cor: COR.cinza, alinh: 'left', larg: 200 });
+  const vG = txt(gD.dom, 902, PY + 24, 'R$ 0,00', { tam: 36, peso: 700, alinh: 'right', larg: 260, mono: true, esp: '-0.03em' });
   M.para(gD, tD, 0.18, { o: [0, 1] }, 'out2');
   M.para(gD, tD, 0.55, { y: [90, 0], s: [0.9, 1] }, 'back');
   som(tD + 0.04, 'pop', { forca: 0.75, pan: 0.4 });
@@ -245,9 +247,9 @@
   const tNB = d('não') - 0.02;
   const selo2 = h('div', { style: `position:absolute;left:${XD - 150}px;top:${PY + 82}px;width:300px;height:76px;border-radius:38px;background:${COR.ambar};color:${COR.tinta};display:flex;align-items:center;justify-content:center;gap:12px;font-weight:800;font-size:36px;transform-origin:50% 50%;` }, [B.icone('desigual', 44, COR.tinta, 2.6), h('span', { text: 'não bate' })]);
   gD.dom.appendChild(selo2);
-  const seloOb = M.el(selo2, { o: 0, s: 2.2, r: -8 });
+  const seloOb = M.el(selo2, { o: 0, s: 1.15, r: -6 });   // carimba sem passar da borda do cartão
   M.para(seloOb, tNB, 0.1, { o: [0, 1] }, 'out2');
-  M.para(seloOb, tNB, 0.34, { s: [2.2, 1], r: [-14, -4] }, 'out4');
+  M.para(seloOb, tNB, 0.34, { s: [1.15, 1], r: [-6, -4] }, 'out4');
   som(tNB + 0.16, 'carimbo', { forca: 0.8, pan: 0.3 });
   som(tNB + 0.2, 'erro', { forca: 0.6, pan: 0.3 });
   vG.dom.style.transition = 'none';
