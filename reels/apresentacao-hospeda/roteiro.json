@@ -12,7 +12,7 @@
   "R$ 99,90": "noventa e nove reais e noventa centavos",
   "R$ 79,90": "setenta e nove reais e noventa centavos"
  },
- "nota": "Apresentação por WhatsApp para a pousada que aceitou receber o vídeo (roteiro aprovado com ajustes em 30/10/2026). Telas: só os PNGs de hospeda-v2/, em recortes sem a faixa 'Demonstração · Quero usar'. 'falado': como a voz diz os valores (a legenda e a tela mostram a grafia da chave). Cada item de 'frases' é uma frase da locução; o texto de todos os tokens, na ordem, é exatamente a narração aprovada. 'chave': palavras em limão; 'id': o instante que dispara a animação; 'pausa_depois': silêncio acrescentado depois da frase.",
+ "nota": "Apresentação por WhatsApp para a pousada que aceitou receber o vídeo (roteiro aprovado com ajustes em 30/10/2026). Telas: só os PNGs de hospeda-v2/, em recortes sem a faixa 'Demonstração · Quero usar'. 'falado': como a voz diz os valores (a legenda e a tela mostram a grafia da chave). Cada item de 'frases' é uma frase da locução; o texto de todos os tokens, na ordem, é exatamente a narração aprovada. 'chave': palavras em limão; 'id': o instante que dispara a animação; 'pausa_depois': silêncio acrescentado depois da frase. 'tomada': 'canais' marca as frases da parte de Airbnb e Booking (aprovada em 19/11/2026), gravadas numa tomada própria (scripts/voz_canais.py) para não regravar a narração aprovada; 'narracao' continua sendo só a tomada principal.",
  "frases": [
   {
    "id": "dor1",
@@ -209,6 +209,192 @@
      "fala": "avisa na hora.",
      "chave": true,
      "id": "avisa"
+    }
+   ]
+  },
+  {
+   "id": "canais1",
+   "tomada": "canais",
+   "pausa_depois": 1.0,
+   "tokens": [
+    {
+     "fala": "O Hospeda também troca o"
+    },
+    {
+     "fala": "calendário",
+     "chave": true,
+     "id": "calcanal"
+    },
+    {
+     "fala": "com o"
+    },
+    {
+     "fala": "Airbnb",
+     "chave": true,
+     "id": "airbnb"
+    },
+    {
+     "fala": "e o"
+    },
+    {
+     "fala": "Booking.",
+     "chave": true,
+     "id": "booking"
+    }
+   ]
+  },
+  {
+   "id": "canais2",
+   "tomada": "canais",
+   "pausa_depois": 1.0,
+   "tokens": [
+    {
+     "fala": "Em"
+    },
+    {
+     "fala": "Canais,",
+     "chave": true,
+     "id": "canais"
+    },
+    {
+     "fala": "cada acomodação tem um"
+    },
+    {
+     "fala": "link",
+     "chave": true,
+     "id": "link"
+    },
+    {
+     "fala": "para colar no canal, e o canal"
+    },
+    {
+     "fala": "fecha lá",
+     "chave": true,
+     "id": "fecha"
+    },
+    {
+     "fala": "as datas ocupadas aqui."
+    }
+   ]
+  },
+  {
+   "id": "canais3",
+   "tomada": "canais",
+   "pausa_depois": 1.6,
+   "tokens": [
+    {
+     "fala": "E a cada"
+    },
+    {
+     "fala": "30 minutos,",
+     "chave": true,
+     "id": "minutos"
+    },
+    {
+     "fala": "o Hospeda"
+    },
+    {
+     "fala": "lê",
+     "id": "le"
+    },
+    {
+     "fala": "o calendário do canal: o que foi"
+    },
+    {
+     "fala": "vendido lá",
+     "chave": true,
+     "id": "vendido"
+    },
+    {
+     "fala": "aparece aqui,"
+    },
+    {
+     "fala": "bloqueado.",
+     "chave": true,
+     "id": "bloqueado"
+    }
+   ]
+  },
+  {
+   "id": "canais4",
+   "tomada": "canais",
+   "pausa_depois": 1.8,
+   "tokens": [
+    {
+     "fala": "Com um"
+    },
+    {
+     "fala": "toque,",
+     "chave": true,
+     "id": "toque"
+    },
+    {
+     "fala": "esse bloqueio"
+    },
+    {
+     "fala": "vira uma reserva do Hospeda,",
+     "chave": true,
+     "id": "vira"
+    },
+    {
+     "fala": "e o"
+    },
+    {
+     "fala": "check-in",
+     "chave": true,
+     "id": "checkin"
+    },
+    {
+     "fala": "segue normal."
+    }
+   ]
+  },
+  {
+   "id": "canais5",
+   "tomada": "canais",
+   "pausa_depois": 0.9,
+   "tokens": [
+    {
+     "fala": "Se uma data"
+    },
+    {
+     "fala": "bater",
+     "chave": true,
+     "id": "bater"
+    },
+    {
+     "fala": "com uma reserva daqui, o Hospeda"
+    },
+    {
+     "fala": "avisa,",
+     "chave": true,
+     "id": "avisa2"
+    },
+    {
+     "fala": "mas"
+    },
+    {
+     "fala": "não cancela nada sozinho.",
+     "chave": true,
+     "id": "naocancela"
+    }
+   ]
+  },
+  {
+   "id": "canais6",
+   "tomada": "canais",
+   "pausa_depois": 2.2,
+   "tokens": [
+    {
+     "fala": "Isso"
+    },
+    {
+     "fala": "reduz muito o risco",
+     "chave": true,
+     "id": "reduz"
+    },
+    {
+     "fala": "de reserva dupla."
     }
    ]
   },
@@ -685,5 +871,6 @@
    ]
   }
  ],
- "narracao": "Em muita pousada, o dono faz tudo: a reserva fica no caderno e no WhatsApp, o consumo, no papel. No check-out, ninguém sabe ao certo quanto o hóspede ainda deve. E no fim do dia, o caixa não bate. O FAZLO Hospeda junta tudo isso em um só lugar. Veja como fica o dia a dia. Ao abrir o Hospeda, você vê o dia da pousada: quem está hospedado, quem chega, quem sai e quanto já entrou, por forma de pagamento. No calendário, cada acomodação tem a sua linha, e cada reserva aparece no período dela. E o Hospeda não deixa vender o mesmo chalé duas vezes nas mesmas datas: ele avisa na hora. Na reserva, você registra o sinal, e o saldo que falta já fica calculado. Se o hóspede cancelar, você decide: reter o sinal, que fica com a pousada, ou devolver, e a saída já é lançada no caixa. Durante a estadia, cada consumo vai para a comanda do hóspede: o que foi, quantos e quanto. No check-out, o saldo aparece claro, e a saída só libera com tudo quitado. O caixa abre com o dinheiro da gaveta, e cada recebimento entra no diário, com a forma de pagamento. No fechamento, você conta o dinheiro, e o Hospeda mostra na hora se sobrou ou faltou. O Day Use tem a sua própria lista e a sua comanda, como na hospedagem. E o pagamento entra no mesmo caixa. E se a internet cair no meio de um recebimento, o mesmo pagamento não é lançado duas vezes. Você não precisa cadastrar nada. A equipe FAZLO configura a sua pousada: acomodações, tarifas, produtos da comanda e usuários. Você recebe o convite por e-mail, cria a sua senha e já começa a usar. E qualquer dúvida, é só chamar a gente no WhatsApp. São 30 dias grátis para usar o Hospeda na sua pousada. Sem cartão e sem compromisso. Depois dos 30 dias, se fizer sentido para você, a mensalidade é de R$ 99,90 por mês. Sem taxa por reserva e sem fidelidade. E as 10 primeiras pousadas pagam R$ 79,90 por mês durante os primeiros 12 meses. Quer testar 30 dias na sua pousada? É só responder esta mensagem."
+ "narracao": "Em muita pousada, o dono faz tudo: a reserva fica no caderno e no WhatsApp, o consumo, no papel. No check-out, ninguém sabe ao certo quanto o hóspede ainda deve. E no fim do dia, o caixa não bate. O FAZLO Hospeda junta tudo isso em um só lugar. Veja como fica o dia a dia. Ao abrir o Hospeda, você vê o dia da pousada: quem está hospedado, quem chega, quem sai e quanto já entrou, por forma de pagamento. No calendário, cada acomodação tem a sua linha, e cada reserva aparece no período dela. E o Hospeda não deixa vender o mesmo chalé duas vezes nas mesmas datas: ele avisa na hora. Na reserva, você registra o sinal, e o saldo que falta já fica calculado. Se o hóspede cancelar, você decide: reter o sinal, que fica com a pousada, ou devolver, e a saída já é lançada no caixa. Durante a estadia, cada consumo vai para a comanda do hóspede: o que foi, quantos e quanto. No check-out, o saldo aparece claro, e a saída só libera com tudo quitado. O caixa abre com o dinheiro da gaveta, e cada recebimento entra no diário, com a forma de pagamento. No fechamento, você conta o dinheiro, e o Hospeda mostra na hora se sobrou ou faltou. O Day Use tem a sua própria lista e a sua comanda, como na hospedagem. E o pagamento entra no mesmo caixa. E se a internet cair no meio de um recebimento, o mesmo pagamento não é lançado duas vezes. Você não precisa cadastrar nada. A equipe FAZLO configura a sua pousada: acomodações, tarifas, produtos da comanda e usuários. Você recebe o convite por e-mail, cria a sua senha e já começa a usar. E qualquer dúvida, é só chamar a gente no WhatsApp. São 30 dias grátis para usar o Hospeda na sua pousada. Sem cartão e sem compromisso. Depois dos 30 dias, se fizer sentido para você, a mensalidade é de R$ 99,90 por mês. Sem taxa por reserva e sem fidelidade. E as 10 primeiras pousadas pagam R$ 79,90 por mês durante os primeiros 12 meses. Quer testar 30 dias na sua pousada? É só responder esta mensagem.",
+ "narracao_canais": "O Hospeda também troca o calendário com o Airbnb e o Booking. Em Canais, cada acomodação tem um link para colar no canal, e o canal fecha lá as datas ocupadas aqui. E a cada 30 minutos, o Hospeda lê o calendário do canal: o que foi vendido lá aparece aqui, bloqueado. Com um toque, esse bloqueio vira uma reserva do Hospeda, e o check-in segue normal. Se uma data bater com uma reserva daqui, o Hospeda avisa, mas não cancela nada sozinho. Isso reduz muito o risco de reserva dupla."
 }

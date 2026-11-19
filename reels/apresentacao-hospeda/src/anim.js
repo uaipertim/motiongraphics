@@ -149,9 +149,13 @@
     const F = Object.fromEntries(LN.frases.map((f) => [f.id, f]));
     const ini = (id) => F[id].t0 - 0.8;                           // a cena entra antes da fala: mais tempo de tela
     T = { F, dorFim: F.virada.t0 - 0.2, viradaFim: ini('dia'), cta: F.cta.t0 - 0.6 };
+    // a reserva aberta a partir do bloqueio entra quando a narração diz "…vira uma reserva do Hospeda,"
+    const vira = F.canais4.palavras.find((w) => w.id === 'vira'), iv = F.canais4.palavras.indexOf(vira);
+    T.virou = F.canais4.palavras[iv + 4].t0 - 0.35;
     CENAS = [
       { id: 'dia', t0: ini('dia'), t1: ini('calendario'), chip: 'HOJE NA POUSADA' },
-      { id: 'reservas', t0: ini('calendario'), t1: ini('sinal'), chip: 'RESERVAS E CALENDÁRIO' },
+      { id: 'reservas', t0: ini('calendario'), t1: ini('canais1'), chip: 'RESERVAS E CALENDÁRIO' },
+      { id: 'canais', t0: ini('canais1'), t1: ini('sinal'), chip: 'AIRBNB E BOOKING' },
       { id: 'sinal', t0: ini('sinal'), t1: ini('comanda'), chip: 'SINAL E CANCELAMENTO' },
       { id: 'comanda', t0: ini('comanda'), t1: ini('caixa'), chip: 'COMANDA E CHECK-OUT' },
       { id: 'caixa', t0: ini('caixa'), t1: ini('dayuse1'), chip: 'CAIXA' },
@@ -168,6 +172,14 @@
       ['dia', 'dia', cena.dia.t0, 'sobe', [{ t: cena.dia.t0, foco: null }, k('hospedado', 'hospedado'), k('chega', 'chega'), k('sai', 'sai'), k('entrou', 'entrou')]],
       ['reservas', 'calendario', cena.reservas.t0, 'sobe', [{ t: cena.reservas.t0, foco: null }, k('acomodacao', 'acomodacoes'), k('reserva', 'reservas')]],
       ['reservas', 'duplicada', F.duplicada.t0 - 0.35, 'empurra', [{ t: F.duplicada.t0, foco: null }, k('duas', 'aviso')]],
+      // Airbnb e Booking (19/11/2026): Canais (envio e recebimento) → o bloqueio no calendário → a ficha → a reserva → os avisos
+      ['canais', 'canais-topo', cena.canais.t0, 'sobe', [{ t: cena.canais.t0, foco: null }, k('airbnb', 'texto')]],
+      ['canais', 'canais', at('canais') - 0.35, 'empurra', [{ t: at('canais') - 0.35, foco: null }, k('link', 'envio-airbnb'), k('fecha', 'envio'), k('minutos', 'recebendo'), k('le', 'sincronizar')]],
+      ['canais', 'calendario-airbnb', at('vendido') - 0.35, 'empurra', [{ t: at('vendido') - 0.35, foco: null }, k('vendido', 'linha'), k('bloqueado', 'bloqueio')]],
+      ['canais', 'bloqueio', F.canais4.t0 - 1.2, 'empurra', [{ t: F.canais4.t0 - 1.2, foco: 'ocupado', hl: false }, k('toque', 'botao')]],
+      ['canais', 'registrar-airbnb', T.virou, 'empurra', [{ t: T.virou, foco: null }, k('checkin', 'reserva')]],
+      ['canais', 'inicio-conflito', F.canais5.t0 - 0.35, 'empurra', [{ t: F.canais5.t0 - 0.35, foco: null }, k('bater', 'conflito'), k('naocancela', 'nada')]],
+      ['canais', 'sino-canais', F.canais6.t0 - 0.35, 'empurra', [{ t: F.canais6.t0 - 0.35, foco: null }, k('reduz', 'conflito')]],
       ['sinal', 'sinal', cena.sinal.t0, 'sobe', [{ t: cena.sinal.t0, foco: null }, k('sinal', 'sinal'), k('saldo', 'saldo')]],
       ['sinal', 'reter', F.cancela.t0 - 0.35, 'empurra', [{ t: F.cancela.t0, foco: null }, k('reter', 'reter')]],
       ['sinal', 'devolver', at('devolver') - 0.12, 'troca', [{ t: at('devolver') - 0.12, foco: 'reter', hl: false }, k('devolver', 'devolver'), k('saida', 'info')]],
@@ -588,7 +600,7 @@
     // o balão de resposta (genérico), pulsando
     const ub = E.outBack(p(t, at('responder', t0 + 2) - 0.1, at('responder', t0 + 2) + 0.35), 2);
     if (ub > 0) {
-      const x = 880, y = 1160, r = 64 * ub, ru = ((t - at('responder', 0)) % 1.2) / 1.2;
+      const x = 880, y = 1160, r = 64 * ub, ru = Math.max(0, (t - at('responder', 0)) % 1.2) / 1.2;
       c.beginPath(); c.arc(x, y, r + 40 * ru, 0, TAU); c.strokeStyle = css(C.lime, 0.6 * (1 - ru)); c.lineWidth = 4; c.stroke();
       c.beginPath(); c.arc(x, y, r, 0, TAU); c.fillStyle = C.lime; c.fill();
       icon(c, 'balao', x, y + 2, 66 * ub, C.ink, 4.5);

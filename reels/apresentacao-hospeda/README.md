@@ -1,11 +1,11 @@
-# FAZLO Hospeda: apresentação para a pousada abordada (2 min 58 s, 9:16, WhatsApp)
+# FAZLO Hospeda: apresentação para a pousada abordada (3 min 41 s, 9:16, WhatsApp)
 
 Vídeo explicativo de como o sistema funciona na prática, para a pousada que aceitou recebê-lo. Não é Reels: a pousada assiste com calma para decidir se quer testar. A ordem é a dor, o dia a dia com o Hospeda, como começa, o teste grátis, quanto custa e a chamada.
 
 O roteiro aprovado (com os ajustes de 30/10/2026) está em [`ROTEIRO.md`](ROTEIRO.md). **Não publicar antes do OK.**
 
-▶ **Para enviar no WhatsApp:** [`output/fazlo-hospeda-apresentacao-whatsapp.mp4`](output/fazlo-hospeda-apresentacao-whatsapp.mp4) (14 MB, 1080×1920, 30 fps, −14 LUFS, pico −1,8 dBTP).
-▶ **Mestre:** [`output/fazlo-hospeda-apresentacao.mp4`](output/fazlo-hospeda-apresentacao.mp4) (45 MB, 60 fps).
+▶ **Para enviar no WhatsApp:** [`output/fazlo-hospeda-apresentacao-whatsapp.mp4`](output/fazlo-hospeda-apresentacao-whatsapp.mp4) (14 MB, 1080×1920, 30 fps, CRF 28, −14 LUFS).
+▶ **Mestre:** [`output/fazlo-hospeda-apresentacao.mp4`](output/fazlo-hospeda-apresentacao.mp4) (57 MB, 60 fps). **Trecho novo para aprovar:** [`output/trecho-airbnb-booking.mp4`](output/trecho-airbnb-booking.mp4) (0:47,9–1:33,0).
 **Revisão técnica:** [`output/revisao/relatorio.txt`](output/revisao/relatorio.txt).
 
 ## Cenas (no tempo da locução)
@@ -16,7 +16,8 @@ O roteiro aprovado (com os ajustes de 30/10/2026) está em [`ROTEIRO.md`](ROTEIR
 | 16,1–21,6 s | Virada | **Sem tela.** Tudo é sugado para a logo, e os ícones do dia a dia entram em órbita em "um só lugar". |
 | 21,6–32,9 s | O dia | `01-visao-geral-celular`: Hospedados → Chegadas → Saídas → "Recebido hoje" com as formas de pagamento. |
 | 32,9–48,8 s | Reservas | `02-calendario-celular` (as acomodações, depois as reservas) → `09-reserva-duplicada-computador`. Só o aviso âmbar "Período ocupado" ganha destaque. |
-| 48,8–66,3 s | Sinal e cancelamento | `03-nova-reserva-sinal-celular` (o sinal, depois o saldo) → `11-cancelamento-sinal-reter-celular`, que troca no lugar por `11-cancelamento-sinal-devolver-celular` na palavra "devolver". O foco final é a saída do caixa. |
+| 48,8–91,8 s | **Airbnb e Booking** (19/11/2026) | `15-canais-celular` (o texto do topo; depois "Enviar para o canal" e "Receber do canal" da Bica D'Água 01) → `16-calendario-14-dias-celular` (o bloqueio do Airbnb) → `17-bloqueio-airbnb-celular` ("Registrar esta reserva no Hospeda") → `18-registrar-reserva-airbnb-celular` → `19-visao-geral-avisos-canais-celular` ("Conflito com o Airbnb… Nada foi cancelado") → `20-atividades-celular` (o mesmo aviso no sino). |
+| 91,8–109,3 s | Sinal e cancelamento | `03-nova-reserva-sinal-celular` (o sinal, depois o saldo) → `11-cancelamento-sinal-reter-celular`, que troca no lugar por `11-cancelamento-sinal-devolver-celular` na palavra "devolver". O foco final é a saída do caixa. |
 | 66,3–82,2 s | Comanda e check-out | `05-comanda-aberta-celular` (o item, a comanda da hóspede, quantidade × preço) → `04-hospedagem-checkout-celular` ("Saldo em aberto" e "O check-out libera com saldo zero."). |
 | 82,2–98,4 s | Caixa | `06-caixa-aberto-celular`: a câmera rola da abertura até o diário da sessão e a forma de pagamento → `10-fechamento-caixa-celular` (o valor contado, depois a diferença). |
 | 98,4–109,2 s | Day Use | `12-day-use-celular` → `12-day-use-ativo-celular` → a linha "Day Use · Camila Rocha" do diário (`06-caixa-aberto-celular`). |
@@ -39,6 +40,12 @@ O roteiro aprovado (com os ajustes de 30/10/2026) está em [`ROTEIRO.md`](ROTEIR
 - A Camila do cancelamento e a do Day Use ficam em cenas separadas.
 - O recorte do cancelamento não mostra as diárias da Suíte Mirante.
 
+**Parte Airbnb e Booking (19/11/2026).** Entrou depois da reserva duplicada, sem mudar nenhuma outra cena; as cenas seguintes só deslocam 43 s. Os tempos de 48,8 s em diante na tabela acima, a partir de "Sinal e cancelamento", são os antigos (somar 43 s); os medidos estão em `output/info.json`.
+- **Telas:** capturas da Demo de 19/11/2026 no celular, em `hospeda-v2/15` a `20`. Ficam fora do recorte: o selo "Demonstração" do cabeçalho, a data, o aviso "Na demonstração, a sincronização não é feita." e a versão.
+- **Locução:** tomada própria (`scripts/voz_canais.py` → `audio/voz-canais.wav`), com a mesma voz e os mesmos ajustes, seed 5201 (a 5200 terminou cortada). A frase anterior e a seguinte vão como contexto. Ritmo 11,0 letras/s, igual ao da tomada principal; nível ajustado em −0,5 dB para casar com ela. A narração de 30/10 não foi regravada.
+- **Pronúncia:** "Hospeda" → "Hospéda". "Airbnb" e "Booking" vão na grafia oficial. No teste de 19/11, as duas palavras ficaram com a mesma duração e perto do timbre da grafia fonética brasileira ("Érbiênbi", "Búkin") e longe da leitura soletrada ("A I R B N B"), então nenhuma troca foi necessária.
+- **Montagem:** o `linha.py` agora junta as duas tomadas. Sem a parte nova (`LINHA_SO_PRINCIPAL=1`), ele reproduz idêntico o `linha.json` aprovado.
+
 ## Locução, legenda e som
 
 - **Locução** (`scripts/voz.py`):
@@ -52,7 +59,7 @@ O roteiro aprovado (com os ajustes de 30/10/2026) está em [`ROTEIRO.md`](ROTEIR
 
 ## Revisão (`scripts/qa.py`): aprovado
 
-- **Formato e som:** 178,5 s; −14,0 LUFS; pico −1,9 dBTP; trilha 10,4 dB abaixo da voz.
+- **Formato e som:** 221,4 s; −14,0 LUFS; pico −2,2 dBTP; trilha 10,5 dB abaixo da voz.
 - **Legenda:** 52 páginas, todas ≥ 1,5 s. "R$ 99,90" e "R$ 79,90" aparecem assim na legenda.
 - **Sincronia:** 2 ms em média e 36 ms no máximo. Cinco palavras curtas ("o", "e") tinham a marcação da API adiantada até 178 ms; o `linha.py` as acerta pelo início medido no áudio montado.
 - **Telas:**
@@ -67,12 +74,13 @@ O roteiro aprovado (com os ajustes de 30/10/2026) está em [`ROTEIRO.md`](ROTEIR
 ```bash
 cd reels/apresentacao-hospeda
 python3 scripts/voz.py                              # locução (só gera se ainda não existir; --refaz para gerar de novo)
+python3 scripts/voz_canais.py                       # a tomada da parte Airbnb e Booking (idem)
 python3 scripts/linha.py                            # audio/voz-montada.wav + linha.json
 python3 scripts/telas.py --prova                    # src/telas/*.png + src/telas.json + output/revisao/recortes.jpg
 node scripts/render.cjs info                        # output/info.json (plano, legenda e caixas a cada 0,25 s)
 python3 scripts/audio.py                            # audio/mix.wav
 node scripts/render.cjs video --mix audio/mix.wav   # output/fazlo-hospeda-apresentacao.mp4
 python3 scripts/qa.py                               # output/revisao/relatorio.txt, zonas-seguras.jpg, miniatura.jpg
-ffmpeg -i output/fazlo-hospeda-apresentacao.mp4 -vf fps=30 -c:v libx264 -preset slow -crf 26 -pix_fmt yuv420p \
+ffmpeg -i output/fazlo-hospeda-apresentacao.mp4 -vf fps=30 -c:v libx264 -preset slow -crf 28 -pix_fmt yuv420p \
   -c:a aac -b:a 128k -movflags +faststart output/fazlo-hospeda-apresentacao-whatsapp.mp4
 ```

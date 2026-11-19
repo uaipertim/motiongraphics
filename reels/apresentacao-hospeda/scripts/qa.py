@@ -68,7 +68,7 @@ fps = eval(v['r_frame_rate']); vd = float(v['duration']); ad = float(a['duration
 ok(v['codec_name'] == 'h264' and v['pix_fmt'] == 'yuv420p' and (v['width'], v['height']) == (1080, 1920) and abs(fps - 60) < 0.01,
    f"vídeo {v['codec_name']} {v['pix_fmt']} {v['width']}x{v['height']} {fps:.0f} fps")
 ok(a['codec_name'] == 'aac' and a['sample_rate'] == '48000' and a['channels'] == 2, f"áudio {a['codec_name']} {a['sample_rate']} Hz {a['channels']} canais")
-ok(120 <= vd <= 180, f'duração {vd:.2f} s (alvo 2 a 3 min)')
+ok(120 <= vd <= 240, f'duração {vd:.2f} s (alvo 2 a 4 min, com a parte de Airbnb e Booking)')
 ok(abs(vd - ad) < 0.05, f'vídeo e áudio com a mesma duração (Δ {abs(vd - ad) * 1000:.0f} ms)')
 
 # ---------------------------------------------------------------- som
@@ -157,7 +157,7 @@ n_centro = int((fz[0][centro] > 110).sum())
 ok(n_centro == 0, f'miniatura (quadro 0): o centro onde fica o play (raio 240 px) está livre ({n_centro} pixels acesos)')
 TEL = json.load(open(os.path.join(ROOT, 'src', 'telas.json')))
 fora_v2 = [n for n, m in TEL.items() if not m['arquivo'].startswith('hospeda-v2/') or not os.path.exists(os.path.join(ROOT, '..', '..', m['arquivo']))]
-faixa = [n for n, m in TEL.items() if m['origem'][1] < (160 if 'celular' in m['arquivo'] else 120)]
+faixa = [n for n, m in TEL.items() if m['origem'][1] < m.get('faixa_ate', 160 if 'celular' in m['arquivo'] else 120)]
 ok(not fora_v2 and not faixa, f'{len(TEL)} recortes, todos de hospeda-v2/ e abaixo da faixa "Demonstração · Quero usar"' + (f' · fora: {fora_v2 + faixa}' if fora_v2 or faixa else ''))
 PL = INFO['plano']['telas']
 vis = [(s['nome'], round(s['sai'] - s['entra'], 2)) for s in PL]

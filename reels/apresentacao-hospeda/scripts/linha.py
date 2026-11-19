@@ -117,63 +117,113 @@ def refina_montada(frases, v, sr):
     return mudou
 
 
+TOMADAS = {'principal': ('voz.wav', 'falas.json'), 'canais': ('voz-canais.wav', 'falas-canais.json')}
+MARGEM = 0.20      # na tomada própria (canais): voz antes da 1ª palavra e depois da última que entra na montagem
+
+
 def main():
-    sr, y = wavfile.read(os.path.join(ROOT, 'audio', 'voz.wav'))
-    y = y.astype(np.float64) / 32768
-    env = 20 * np.log10(np.sqrt(uniform_filter1d(y ** 2, int(0.01 * sr)) + 1e-12))
-    ws = [dict(w) for w in F['palavras']]
-    fim = F['fim_da_fala_s']
-    for w in ws:
-        w['t1'] = min(w['t1'], fim)
-    mudou = refina_inicios(ws, env, sr)
-    # cada palavra do roteiro (token a token) recebe a palavra correspondente da locução
-    k, grupos = 0, []
-    for f in R['frases']:
+    so_principal = os.environ.get('LINHA_SO_PRINCIPAL') == '1'      # para conferir que a montagem antiga não mudou
+    frases_r = [f for f in R['frases'] if not (so_principal and f.get('tomada', 'principal') != 'principal')]
+    usadas = sorted({f.get('tomada', 'principal') for f in frases_r})
+    T = {}
+    for nome in usadas:
+        wav, js = TOMADAS[nome]
+        sr, y = wavfile.read(os.path.join(ROOT, 'audio', wav))
+        y = y.astype(np.float64) / 32768
+        Fj = F if nome == 'principal' else json.load(open(os.path.join(ROOT, 'audio', js)))
+        env = 20 * np.log10(np.sqrt(uniform_filter1d(y ** 2, int(0.01 * sr)) + 1e-12))
+        ws = [dict(w) for w in Fj['palavras']]
+        fim = Fj['fim_da_fala_s']
+        for w in ws:
+            w['t1'] = min(w['t1'], fim)
+        T[nome] = {'y': y, 'sr': sr, 'env': env, 'ws': ws, 'fim': fim, 'k': 0, 'mudou': refina_inicios(ws, env, sr)}
+    srs = {t['sr'] for t in T.values()}
+    assert len(srs) == 1, 'as tomadas têm taxas de amostragem diferentes'
+    sr = srs.pop()
+    # o nível: a tomada própria fica no mesmo nível de voz da principal (RMS dos trechos com fala, acima de −40 dBFS)
+    def nivel(t):
+        h = int(0.01 * sr); n = len(t['y']) // h
+        r = np.sqrt((t['y'][:n * h].reshape(n, h) ** 2).mean(axis=1)); r = r[r > 10 ** (-40 / 20)]
+        return float(np.sqrt((r ** 2).mean()))
+    if 'principal' in T:
+        for nome, t in T.items():
+            t['ganho'] = nivel(T['principal']) / nivel(t) if nome != 'principal' else 1.0
+    # cada palavra do roteiro (token a token) recebe a palavra correspondente da sua tomada
+    grupos = []
+    for f in frases_r:
+        t = T[f.get('tomada', 'principal')]
         pw = []
-        for t in f['tokens']:
-            for j, wd in enumerate(unidades(t['fala'])):
-                a = ws[k]
+        for tk in f['tokens']:
+            for j, wd in enumerate(unidades(tk['fala'])):
+                a = t['ws'][t['k']]
                 assert a['w'] == wd, f'a locução e o roteiro divergem: "{a["w"]}" × "{wd}"'
-                pw.append((a, {'w': wd, 'chave': bool(t.get('chave')), 'id': t.get('id') if j == 0 else None}))
-                k += 1
+                pw.append((a, {'w': wd, 'chave': bool(tk.get('chave')), 'id': tk.get('id') if j == 0 else None}))
+                t['k'] += 1
         grupos.append((f, pw))
-    assert k == len(ws)
-    # cortes: o ponto mais baixo do silêncio entre as frases
-    cortes = []
-    for (f, pw), (_, nx) in zip(grupos, grupos[1:]):
-        a, b = int(pw[-1][0]['t1'] * sr), int(nx[0][0]['t0'] * sr)
-        assert b > a, f'sem silêncio entre "{pw[-1][1]["w"]}" e "{nx[0][1]["w"]}"'
-        cortes.append((a + int(np.argmin(env[a:b]))) / sr)
-    # a montagem: cada frase, a sua pausa, a frase seguinte
-    lim = [0.0] + cortes + [len(y) / sr]
-    partes, frases, desloc, rel = [], [], 0.0, []
+    for nome, t in T.items():
+        assert t['k'] == len(t['ws']), f'{nome}: sobraram palavras da locução'
+    # cortes: o ponto mais baixo do silêncio entre frases seguidas da MESMA tomada; nas pontas da tomada própria,
+    # a voz da 1ª à última palavra com MARGEM (a principal começa em 0 e vai até o fim do arquivo, como antes)
+    lim = []
+    for nome, t in T.items():
+        idx = [i for i, (f, _) in enumerate(grupos) if f.get('tomada', 'principal') == nome]
+        cortes = []
+        for i, j in zip(idx, idx[1:]):
+            pa, pb = grupos[i][1], grupos[j][1]
+            a, b = int(pa[-1][0]['t1'] * sr), int(pb[0][0]['t0'] * sr)
+            assert b > a, f'sem silêncio entre "{pa[-1][1]["w"]}" e "{pb[0][1]["w"]}"'
+            cortes.append((a + int(np.argmin(t['env'][a:b]))) / sr)
+        t['cortes'] = cortes
+        ini = 0.0 if nome == 'principal' else max(0.0, grupos[idx[0]][1][0][0]['t0'] - MARGEM)
+        fim = len(t['y']) / sr if nome == 'principal' else min(len(t['y']) / sr, t['fim'] + MARGEM)
+        bordas = [ini] + cortes + [fim]
+        for n_, i in enumerate(idx):
+            lim.append((i, bordas[n_], bordas[n_ + 1]))
+    lim = [(a, b) for _, a, b in sorted(lim)]
+    # a montagem: cada frase (da sua tomada), a sua pausa, a frase seguinte
+    partes, frases, pos, segs = [], [], 0.0, []
     nf = int(FADE * sr)
     for i, (f, pw) in enumerate(grupos):
-        s = y[int(lim[i] * sr): int(lim[i + 1] * sr)].copy()
+        t = T[f.get('tomada', 'principal')]
+        a0, a1 = lim[i]
+        s = t['y'][int(a0 * sr): int(a1 * sr)].copy() * t.get('ganho', 1.0)
         if i:
             s[:nf] *= np.linspace(0, 1, nf)
         if i < len(grupos) - 1:
             s[-nf:] *= np.linspace(1, 0, nf)
+        # a posição exata (em amostras) onde o trecho entra na montagem
+        ini_s = sum(len(x) for x in partes) / sr
+        desloc = ini_s - a0
         partes += [s, np.zeros(int(round(f['pausa_depois'] * sr)))]
         out = [{**m, 't0': round(a['t0'] + desloc + INI, 3), 't1': round(a['t1'] + desloc + INI, 3)} for a, m in pw]
-        frases.append({'id': f['id'], 't0': out[0]['t0'], 't1': out[-1]['t1'], 'pausa_depois': f['pausa_depois'], 'palavras': out})
-        rel.append((lim[i], desloc))
-        desloc += f['pausa_depois']
+        frases.append({'id': f['id'], **({'tomada': f['tomada']} if f.get('tomada') else {}), 't0': out[0]['t0'], 't1': out[-1]['t1'],
+                       'pausa_depois': f['pausa_depois'], 'palavras': out})
+        segs.append((f.get('tomada', 'principal'), a0, a1, desloc))
     v = np.concatenate(partes)
     mudou2 = refina_montada(frases, v, sr)
     wavfile.write(os.path.join(ROOT, 'audio', 'voz-montada.wav'), sr, np.round(np.clip(v, -1, 1) * 32767).astype(np.int16))
-    shift = lambda t: t + [d for l0, d in rel if l0 <= t][-1]
-    fim_voz = round(shift(fim) + INI, 3)
+    def shift(nome, x):
+        for tom, a0, a1, d in segs:
+            if tom == nome and a0 <= x < a1:
+                return x + d
+        return x + [d for tom, a0, a1, d in segs if tom == nome][-1]
+    ult = grupos[-1][0].get('tomada', 'principal')
+    fim_voz = round(shift(ult, T[ult]['fim']) + INI, 3)
     logo = round(fim_voz + POS_VOZ, 3)
     out = {'provisoria': False, 'audio': 'audio/voz-montada.wav', 'inicio_voz': INI, 'fim_voz': fim_voz, 'logo': logo, 'duracao': round(logo + LOGO, 3),
-           'marca': R['marca'], 'cortes_s': [round(c, 3) for c in cortes], 'frases': frases,
-           'inicios_medidos_no_audio': [{'palavra': w, 'marcacao_s': round(shift(a) + INI, 3), 'audio_s': round(shift(b) + INI, 3)} for w, a, b in mudou],
+           'marca': R['marca'], 'tomadas': {n: {'arquivo': 'audio/' + TOMADAS[n][0], 'ganho_db': round(20 * np.log10(t.get('ganho', 1.0)), 2), 'cortes_s': [round(c, 3) for c in t['cortes']]} for n, t in T.items()},
+           'cortes_s': [round(c, 3) for c in T['principal']['cortes']], 'frases': frases,
+           'inicios_medidos_no_audio': [{'palavra': w, **({'tomada': n} if n != 'principal' else {}), 'marcacao_s': round(shift(n, a) + INI, 3), 'audio_s': round(shift(n, b) + INI, 3)}
+                                        for n, t in T.items() for w, a, b in t['mudou']],
            'inicios_acertados_na_montagem': [{'palavra': w, 'antes_s': a, 'audio_s': b} for w, a, b in mudou2]}
-    json.dump(out, open(os.path.join(ROOT, 'linha.json'), 'w'), ensure_ascii=False, indent=1)
-    print(f'linha.json: voz {INI:.2f}–{fim_voz:.2f} s, logo {logo:.2f} s, duração {out["duracao"]:.2f} s')
+    if so_principal:
+        out.pop('tomadas')
+    destino = os.environ.get('LINHA_SAIDA', os.path.join(ROOT, 'linha.json'))
+    json.dump(out, open(destino, 'w'), ensure_ascii=False, indent=1)
+    print(f'{os.path.basename(destino)}: voz {INI:.2f}–{fim_voz:.2f} s, logo {logo:.2f} s, duração {out["duracao"]:.2f} s')
     for f in frases:
         print(f'  {f["id"]:10s} {f["t0"]:6.2f}–{f["t1"]:6.2f} (+{f["pausa_depois"]:.1f})  ' + ' '.join(w['w'] for w in f['palavras']))
-    print(f'  {len(mudou)} inícios medidos no áudio; {len(mudou2)} acertados de novo no áudio montado: ' + ', '.join(f'{w} {(b - a) * 1000:+.0f} ms' for w, a, b in mudou2))
+    print(f'  {sum(len(t["mudou"]) for t in T.values())} inícios medidos no áudio; {len(mudou2)} acertados de novo no áudio montado: ' + ', '.join(f'{w} {(b - a) * 1000:+.0f} ms' for w, a, b in mudou2))
 
 
 if __name__ == '__main__':

@@ -54,18 +54,39 @@ RECORTES = {
     # só os itens 4 a 6: o item 1 (nome da pousada e datas do teste) e o texto do convite ficam fora
     'revisao':    ('14-nova-pousada-revisao-celular.png', (36, 1990, 1134, 2940), {
                    'acomodacoes': (100, 1995, 1070, 2370), 'produtos': (100, 2420, 1070, 2640), 'usuarios': (100, 2690, 1070, 2930)}),
+    # ---- Airbnb e Booking (capturas da Demo de 19/11/2026, 390 px a 3x). Estas telas não têm a faixa de cima: a marca da
+    # demonstração é o selo "Demonstração" ao lado da data do cabeçalho (y 250–350) e, em Canais, o aviso "Na demonstração,
+    # a sincronização não é feita." (y 960–1110). Os recortes ficam fora dos dois e do número da versão (rodapé do menu).
+    'canais-topo':  ('15-canais-celular.png', (36, 354, 1134, 936), {
+                     'texto': (42, 495, 1128, 756)}),
+    'canais':       ('15-canais-celular.png', (36, 1176, 1134, 3336), {
+                     'envio-airbnb': (72, 1464, 1098, 1800), 'envio': (72, 1350, 1098, 2148),
+                     'recebendo': (72, 2265, 1098, 2400), 'sincronizar': (90, 2424, 1080, 2580)}),
+    'calendario-airbnb': ('16-calendario-14-dias-celular.png', (36, 1026, 1134, 1920), {
+                     'linha': (48, 1194, 1128, 1329), 'bloqueio': (714, 1200, 1026, 1326)}),
+    # a ficha cobre a tela inteira (sem cabeçalho nem selo): o recorte pode começar no alto
+    'bloqueio':     ('17-bloqueio-airbnb-celular.png', (36, 45, 1134, 2490), {
+                     'ocupado': (72, 816, 1098, 1230), 'texto': (108, 930, 1080, 1200), 'botao': (72, 2238, 1098, 2400)}, 0),
+    'registrar-airbnb': ('18-registrar-reserva-airbnb-celular.png', (48, 540, 1122, 1470), {
+                     'reserva': (108, 954, 1062, 1398)}),
+    'inicio-conflito': ('19-visao-geral-avisos-canais-celular.png', (36, 3285, 1134, 4770), {
+                     'conflito': (48, 4002, 1122, 4740), 'nada': (90, 4422, 1086, 4500)}),
+    # o painel do sino (Atividades) cobre a tela inteira: o recorte vai do título até o fim da seção "Canais"
+    'sino-canais':  ('20-atividades-celular.png', (24, 24, 1146, 1698), {
+                     'conflito': (36, 1176, 1134, 1686)}, 0),
 }
 
 
 def main():
     os.makedirs(OUT, exist_ok=True)
     meta = {}
-    for nome, (arq, (x0, y0, x1, y1), focos) in RECORTES.items():
+    for nome, (arq, (x0, y0, x1, y1), focos, *resto) in RECORTES.items():
         im = Image.open(os.path.join(V2, arq)).convert('RGB')
-        assert y0 >= (160 if 'celular' in arq else 120), f'{nome}: o recorte entra na faixa de demonstração'
+        faixa = resto[0] if resto else (160 if 'celular' in arq else 120)   # até onde vai a marca de demonstração no alto
+        assert y0 >= faixa, f'{nome}: o recorte entra na faixa de demonstração'
         assert x1 <= im.width and y1 <= im.height, (nome, im.size)
         im.crop((x0, y0, x1, y1)).save(os.path.join(OUT, nome + '.png'), optimize=True)
-        meta[nome] = {'arquivo': 'hospeda-v2/' + arq, 'origem': [x0, y0, x1, y1], 'w': x1 - x0, 'h': y1 - y0,
+        meta[nome] = {'arquivo': 'hospeda-v2/' + arq, 'origem': [x0, y0, x1, y1], 'w': x1 - x0, 'h': y1 - y0, 'faixa_ate': faixa,
                       'focos': {k: [a - x0, b - y0, c - x0, d - y0] for k, (a, b, c, d) in focos.items()}}
         for k, (a, b, c, d) in focos.items():
             assert x0 <= a < c <= x1 and y0 <= b < d <= y1, f'{nome}.{k} fora do recorte'

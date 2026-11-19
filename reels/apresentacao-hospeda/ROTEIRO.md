@@ -1,6 +1,6 @@
 # FAZLO Hospeda: apresentação para a pousada abordada (roteiro)
 
-**Status:** aprovado em 30/10/2026 com três ajustes: a frase da reserva duplicada, a opção (b) na tela 14 e os preços por extenso na voz. O vídeo construído e os tempos medidos na locução estão no [README](README.md).
+**Status:** aprovado em 30/10/2026 com três ajustes: a frase da reserva duplicada, a opção (b) na tela 14 e os preços por extenso na voz. Em 19/11/2026 foi aprovada a parte **Airbnb e Booking** (logo depois da reserva duplicada; ver abaixo). O vídeo construído e os tempos medidos na locução estão no [README](README.md).
 
 **Para quem:** uma pousada que aceitou receber "um vídeo explicativo de como o sistema funciona na prática". Vai pelo WhatsApp e não é Reels. A pousada assiste com calma para decidir se quer testar.
 
@@ -89,9 +89,38 @@ Os tempos abaixo são estimados (11,6 letras/s, o ritmo medido na voz do institu
   - A Suíte Mirante do cancelamento não mostra diárias: o recorte fica no modal.
   - As tarifas da Suíte Mirante (cena 10) ficam longe da hospedagem da Mariana (cena 6).
 - **Nome de pousada:** "Pousada Recanto da Serra" (o item 1 de `14-nova-pousada-revisao`) fica fora do recorte.
-- **Fora do vídeo:** Booking/Airbnb, site e reserva pelo site, FNRH/Cadastur, pagamento on-line. O vídeo também não fala em versões.
+- **Fora do vídeo:** Booking/Airbnb (**exceção:** entram só na parte "Airbnb e Booking", aprovada em 19/11/2026), site e reserva pelo site, FNRH/Cadastur, pagamento on-line. O vídeo também não fala em versões.
 
 ## Decisões (30/10/2026)
 
 1. **Tela 14:** opção (b). O bloco com o texto do convite e as datas do teste fica fora (as datas de exemplo envelhecem). O convite fica só na narração.
 2. **Preços na voz:** "noventa e nove reais e noventa centavos" e "setenta e nove reais e noventa centavos". Na tela e na legenda, "R$ 99,90" e "R$ 79,90".
+
+## Parte nova: Airbnb e Booking (aprovada em 19/11/2026)
+
+**Onde entra:** logo depois da reserva duplicada ("…ele avisa na hora.") e antes de "Na reserva, você registra o sinal…". O vídeo passa de 2 min 58 s para cerca de 3 min 41 s; nenhuma outra cena muda.
+
+**Narração (texto aprovado):**
+> O Hospeda também troca o calendário com o Airbnb e o Booking.
+> Em Canais, cada acomodação tem um link para colar no canal, e o canal fecha lá as datas ocupadas aqui.
+> E a cada 30 minutos, o Hospeda lê o calendário do canal: o que foi vendido lá aparece aqui, bloqueado.
+> Com um toque, esse bloqueio vira uma reserva do Hospeda, e o check-in segue normal.
+> Se uma data bater com uma reserva daqui, o Hospeda avisa, mas não cancela nada sozinho.
+> Isso reduz muito o risco de reserva dupla.
+
+**Exceção às regras:** Airbnb e Booking entram **só nesta parte**. O que o texto não diz, de propósito: "tempo real", "na hora", "acaba com o overbooking"; que o Hospeda gerencia ou publica anúncios, preços ou disponibilidade; que o valor pago no canal entra no caixa. A limitação do Booking (até 20 tipos de quarto, uma unidade por tipo) não é citada, e nada promete o contrário.
+
+**Locução:** tomada própria (`scripts/voz_canais.py`), com a mesma voz e os mesmos ajustes; a frase anterior e a seguinte vão como contexto para a entonação seguir. A narração aprovada de 30/10 não foi regravada. "Hospeda" → "Hospéda"; "Airbnb" e "Booking" vão na grafia oficial (o teste de pronúncia está no README).
+
+**Telas:** capturas da Demo de 19/11/2026 no celular (`hospeda-v2/15` a `20`), sem o selo "Demonstração", sem o aviso "Na demonstração, a sincronização não é feita.", sem a data do cabeçalho e sem a versão.
+
+| Frase | Tela | Foco |
+|---|---|---|
+| "O Hospeda também troca o calendário com o Airbnb e o Booking." | `15-canais-celular` (topo) | o texto "Envie a ocupação… e receba as datas ocupadas neles" |
+| "Em Canais, cada acomodação tem um link…" | `15-canais-celular` (Bica D'Água 01) | "Enviar para o canal": Airbnb "Link ativo · lido pela última vez há 40 minutos", depois o bloco do envio |
+| "E a cada 30 minutos, o Hospeda lê o calendário do canal:" | a mesma tela | "Receber do canal": "Recebendo · lido pela última vez há 12 minutos", depois "Sincronizar agora" |
+| "…o que foi vendido lá aparece aqui, bloqueado." | `16-calendario-14-dias-celular` | a linha da Bica D'Água 01, depois o bloqueio listrado com o cadeado e o selo "Airbnb" |
+| "Com um toque, esse bloqueio vira uma reserva do Hospeda, e o check-in segue normal." | `17-bloqueio-airbnb-celular` → `18-registrar-reserva-airbnb-celular` | o botão "Registrar esta reserva no Hospeda", depois "Reserva do Airbnb · Bica D'Água 01 · 22/11 a 25/11" |
+| "Se uma data bater…, o Hospeda avisa, mas não cancela nada sozinho." | `19-visao-geral-avisos-canais-celular` (Início) | o aviso "Conflito com o Airbnb", depois "Nada foi cancelado. Confira e resolva." |
+| "Isso reduz muito o risco de reserva dupla." | `20-atividades-celular` (sino) | o mesmo aviso no painel do sino |
+

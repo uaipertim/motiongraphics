@@ -43,7 +43,7 @@ SETTINGS = {'stability': 0.50, 'similarity_boost': 0.75}
 SEED = 5200
 SR = 44100
 R = json.load(open(os.path.join(ROOT, 'roteiro.json')))
-TEXTO = ' '.join(t['fala'] for f in R['frases'] for t in f['tokens'])
+TEXTO = ' '.join(t['fala'] for f in R['frases'] if f.get('tomada', 'principal') == 'principal' for t in f['tokens'])   # a tomada "canais" é do voz_canais.py
 FALADO = R.get('falado', {})
 assert TEXTO == R['narracao'], 'os tokens do roteiro não refazem a narração aprovada'
 
