@@ -17,12 +17,13 @@
 <canvas id="c" width="1080" height="1920"></canvas>
 <script src="anim.js"></script>
 <script src="estilo.js"></script>
+<script src="plano.js"></script>
 <script>
   const q = new URLSearchParams(location.search);
   const carrega = (src) => new Promise((ok, erro) => { const i = new Image(); i.onload = () => ok(i); i.onerror = erro; i.src = src; });
   window.ready = (async () => {
     await Promise.all(['900 40px "FL Display"', '800 40px "FL Display"', '700 40px "FL Display"', '700 40px "FL Mono"'].map((f) => document.fonts.load(f)));
-    const plano = q.has('estilo') ? window.PLANO_ESTILO : window.PLANO;
+    const plano = q.has('estilo') ? window.PLANO_ESTILO : window.montaPlano(await (await fetch('../linha.json')).json());
     const nomes = new Set();
     plano.telas.forEach((s) => { nomes.add(s.img); (s.estados || []).forEach((e) => nomes.add(e.img)); (s.saltos || []).forEach((j) => j.img && nomes.add(j.img)); });
     const imgs = {};

@@ -1,0 +1,10 @@
+{
+ "lufs": -14.0,
+ "pico_real_dbtp": -2.2,
+ "voz_lufs": -26.0,
+ "trilha_abaixo_da_voz_na_fala_db": 13.8,
+ "ducking_max_db": 7,
+ "bpm": 120.0,
+ "drop_s": 11.5,
+ "eventos": 92
+}

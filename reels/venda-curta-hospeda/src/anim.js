@@ -124,10 +124,11 @@
     c.restore();
   }
   function tela(c, s, t) {
-    if (t < s.t0 || t >= s.t1) return;
+    const tin = s.t0 - 0.25;
+    if (t < tin || t >= s.t1) return;
     const q = cam(s, t);
-    // entrada e saída: desliza e gira de leve (ritmo rápido)
-    const ue = E.out(p(t, s.t0, s.t0 + 0.42)), us = E.in(p(t, s.t1 - 0.32, s.t1));
+    // entrada e saída: desliza e gira de leve; a tela seguinte entra enquanto a anterior sai (empurra)
+    const ue = E.out(p(t, tin, tin + 0.45)), us = E.in(p(t, s.t1 - 0.3, s.t1));
     q.dx = (s.de === 'baixo' ? 0 : 1100 * (1 - ue)) - 1100 * us;
     q.dy = (s.de === 'baixo' ? 1500 * (1 - ue) : 0);
     c.save();
@@ -156,7 +157,7 @@
     const cards = [['WhatsApp', 'Chalé 05 · 23 a 26/11', -1, g.t0 + 0.05, 640], ['Airbnb', 'Chalé 05 · 23 a 26/11', 1, g.t0 + 0.5, 860]];
     const choque = g.t0 + 0.85, tre = t > choque ? Math.exp(-(t - choque) * 6) * Math.sin((t - choque) * 70) * 14 : 0;
     cards.forEach(([canal, s, lado, t0, y], i) => {
-      const u = E.back(p(t, t0, t0 + 0.5)), x = 540 + lado * lerp(900, 0, u) + (i ? tre : -tre), r = lado * lerp(14, 3, u);
+      const u = E.back(p(t, t0, t0 + 0.5)), x = 540 + lado * lerp(110, 0, u) + (i ? tre : -tre), r = lado * lerp(10, 3, u);
       c.save(); c.translate(x, y); c.rotate(r * Math.PI / 180);
       c.shadowColor = 'rgba(0,0,0,0.6)'; c.shadowBlur = 40; c.shadowOffsetY = 16;
       rr(c, -400, -110, 800, 220, 32); c.fillStyle = '#FFFFFF'; c.fill(); c.shadowColor = 'transparent';
@@ -165,15 +166,125 @@
       txt(c, s, -360, 72, { size: 60, weight: 900, color: C.ink, ls: -1 });
       c.restore();
     });
+    // a pergunta grande no alto desde o quadro 0 (é a miniatura no WhatsApp)
+    const pz = 1 + 0.02 * Math.sin(t * 6);
+    c.save(); c.translate(540, 330); c.scale(pz, pz);
+    txt(c, 'Vendeu o mesmo', 0, 0, { size: 104, weight: 900, align: 'center', ls: -3 });
+    txt(c, 'chalé duas vezes?', 0, 118, { size: 104, weight: 900, align: 'center', ls: -3, color: C.lime });
+    c.restore();
     const tb = g.t0 + 0.9, ub = E.back(p(t, tb, tb + 0.35), 3);
     if (ub > 0) {
-      c.save(); c.translate(860, 520); c.scale(ub, ub); c.rotate(-0.15);
+      c.save(); c.translate(900, 610); c.scale(ub, ub); c.rotate(-0.15);
       c.beginPath(); c.arc(0, 0, 92, 0, TAU); c.fillStyle = C.amber; c.fill();
       txt(c, '2×', 0, 26, { size: 80, weight: 900, align: 'center', color: C.ink });
       c.restore();
     }
     c.restore();
   }
+  function chipCanal(c, x, y, nome, cor, esc, giro) {
+    font(c, D, 46, 900, -0.5); const w = c.measureText(nome).width + 64;
+    c.save(); c.translate(x, y); c.rotate(giro); c.scale(esc, esc);
+    c.shadowColor = 'rgba(0,0,0,0.6)'; c.shadowBlur = 30; c.shadowOffsetY = 12;
+    rr(c, -w / 2, -42, w, 84, 42); c.fillStyle = cor; c.fill(); c.shadowColor = 'transparent';
+    txt(c, nome, 0, 16, { size: 46, weight: 900, align: 'center', color: cor === C.ink ? C.white : C.ink, ls: -0.5 });
+    c.restore();
+  }
+  function caderno(c, x, y, esc, giro) {
+    c.save(); c.translate(x, y); c.rotate(giro); c.scale(esc, esc);
+    c.shadowColor = 'rgba(0,0,0,0.6)'; c.shadowBlur = 30; c.shadowOffsetY = 12;
+    rr(c, -120, -150, 240, 300, 18); c.fillStyle = '#F1EDE2'; c.fill(); c.shadowColor = 'transparent';
+    c.fillStyle = '#C9C2AE'; for (let k = 0; k < 7; k++) { c.beginPath(); c.arc(-120, -120 + k * 40, 9, 0, TAU); c.fill(); }
+    c.strokeStyle = '#B8B09A'; c.lineWidth = 3; for (let k = 0; k < 6; k++) { c.beginPath(); c.moveTo(-85, -95 + k * 40); c.lineTo(95, -95 + k * 40); c.stroke(); }
+    c.strokeStyle = '#3A5BD9'; c.lineWidth = 6; c.lineCap = 'round';
+    [[-70, -105, 60], [-70, -65, 30], [-70, -25, 75], [-70, 15, 45]].forEach(([a, b, w]) => { c.beginPath(); c.moveTo(a, b); c.bezierCurveTo(a + w * 0.3, b - 10, a + w * 0.6, b + 10, a + w + 40, b - 4); c.stroke(); });
+    c.strokeStyle = '#D9402F'; c.lineWidth = 7; c.beginPath(); c.moveTo(-80, 60); c.lineTo(80, 120); c.moveTo(80, 60); c.lineTo(-80, 120); c.stroke();
+    c.restore();
+  }
+  function caos(c, t, g) {
+    if (!g || t < g.t0 || t >= g.t1) return;
+    const sai = E.in(p(t, g.t1 - 0.35, g.t1));
+    c.save(); c.globalAlpha = 1 - sai;
+    // a reserva no meio, e tudo caindo em volta dela
+    const tre = Math.sin(t * 40) * 5 * clamp((t - g.whats) / 0.5) * (1 - sai);
+    c.save(); c.translate(540 + tre, 760);
+    rr(c, -400, -110, 800, 220, 32); c.fillStyle = '#FFFFFF'; c.fill();
+    txt(c, 'Chalé 05 · 23 a 26/11', -360, 22, { size: 60, weight: 900, color: C.ink, ls: -1 });
+    c.restore();
+    const itens = [[g.whats, 'WhatsApp', '#25D366', 250, 470, -0.12], [g.airbnb, 'Airbnb', '#FF5A5F', 820, 1000, 0.1], [g.booking, 'Booking', '#1E5BD9', 290, 1060, 0.08]];
+    itens.forEach(([t0, nome, cor, x, y, giro], i) => {
+      const u = E.back(p(t, t0 - 0.05, t0 + 0.4), 2.4); if (u <= 0) return;
+      const fl = Math.sin(t * 2.2 + i) * 10;
+      chipCanal(c, x, lerp(y - 500, y, clamp(u)) + fl, nome, cor, clamp(u, 0, 1.3), giro + Math.sin(t * 1.7 + i) * 0.04);
+    });
+    const uc = E.back(p(t, g.caderno - 0.1, g.caderno + 0.4), 2);
+    if (uc > 0) caderno(c, 830, lerp(-300, 470, clamp(uc)) + Math.sin(t * 2) * 8, 0.9 * clamp(uc, 0, 1.2), 0.14);
+    c.restore();
+  }
+  function gaveta(c, t, g) {
+    if (!g || t < g.t0 || t >= g.t1) return;
+    const u = E.back(p(t, g.t0, g.t0 + 0.5)), sai = E.in(p(t, g.t1 - 0.3, g.t1));
+    c.save(); c.globalAlpha = 1 - sai; c.translate(540, 800); c.scale(u, u);
+    rr(c, -380, -260, 760, 520, 40); c.fillStyle = '#1B1C1A'; c.fill(); c.strokeStyle = '#34372F'; c.lineWidth = 4; c.stroke();
+    txt(c, 'CAIXA DO DIA', 0, -150, { fam: MONO, size: 40, weight: 700, align: 'center', color: C.gray, ls: 6 });
+    const pis = 0.55 + 0.45 * Math.abs(Math.sin(t * 9));
+    const v = t < g.ninguem ? 'R$ ' + (100 + Math.floor((t * 37) % 900)) + ',00' : 'R$ ???';
+    txt(c, v, 0, 30, { fam: MONO, size: 130, weight: 700, align: 'center', color: t < g.ninguem ? C.white : C.amber, alpha: t < g.ninguem ? 1 : pis });
+    // a gaveta abrindo
+    const ab = E.out(p(t, g.entrou, g.entrou + 0.4));
+    rr(c, -330, 120 + 70 * ab, 660, 110, 22); c.fillStyle = '#2A2C27'; c.fill();
+    rr(c, -70, 160 + 70 * ab, 140, 22, 11); c.fillStyle = '#4A4D45'; c.fill();
+    c.restore();
+  }
+  function nome(c, x, y, esc = 1) {                            // "FAZLO" branco + pílula limão "Hospeda", como no logo da marca
+    c.save(); c.translate(x, y); c.scale(esc, esc);
+    font(c, D, 112, 900, -2); const wf = c.measureText('FAZLO').width;
+    font(c, D, 62, 800, -0.5); const wh = c.measureText('Hospeda').width;
+    const pw = wh + 64, tot = wf + 26 + pw, x0 = -tot / 2;
+    txt(c, 'FAZLO', x0, 40, { size: 112, weight: 900, ls: -2 });
+    rr(c, x0 + wf + 26, -46, pw, 96, 48); c.fillStyle = C.lime; c.fill();
+    txt(c, 'Hospeda', x0 + wf + 26 + pw / 2, 22, { size: 62, weight: 800, align: 'center', color: C.ink, ls: -0.5 });
+    c.restore();
+  }
+  function logo(c, x, y, w, a = 1) { const h = w * LOGO.height / LOGO.width; c.save(); c.globalAlpha *= a; c.drawImage(LOGO, x - w / 2, y - h / 2, w, h); c.restore(); }
+  function marcaCena(c, t, m) {
+    if (!m || t < m.t0 || t >= m.t1) return;
+    const sai = E.in(p(t, m.t1 - 0.3, m.t1));
+    c.save(); c.globalAlpha = 1 - sai;
+    // anel de impacto
+    const ui = p(t, m.fazlo - 0.05, m.fazlo + 0.6);
+    if (ui > 0 && ui < 1) { c.beginPath(); c.arc(540, 760, 120 + 620 * E.out(ui), 0, TAU); c.strokeStyle = rgba(C.lime, 1 - ui); c.lineWidth = 26 * (1 - ui); c.stroke(); }
+    const u = E.back(p(t, m.fazlo - 0.1, m.fazlo + 0.45), 2.2);
+    if (u > 0) { c.save(); c.translate(540, 760); c.scale(u, u); logo(c, 0, -120, 360); nome(c, 0, 170, 1); c.restore(); }
+    // "num lugar só": os ícones dos canais e do caderno são puxados para dentro do logo
+    const ul = E.out(p(t, m.lugar - 0.2, m.lugar + 0.4));
+    if (t < m.lugar + 0.4) {
+      [['WhatsApp', '#25D366', 250, 470], ['Airbnb', '#FF5A5F', 820, 1000], ['Booking', '#1E5BD9', 290, 1060]].forEach(([n, cor, x, y]) =>
+        chipCanal(c, lerp(x, 540, ul), lerp(y, 760, ul), n, cor, lerp(0.9, 0.1, ul), 0));
+    }
+    if (ul >= 1) { const uk = E.back(p(t, m.lugar + 0.4, m.lugar + 0.75), 3); c.save(); c.translate(540, 1110); c.scale(uk, uk);
+      c.beginPath(); c.arc(0, 0, 58, 0, TAU); c.fillStyle = C.lime; c.fill();
+      c.strokeStyle = C.ink; c.lineWidth = 12; c.lineCap = 'round'; c.lineJoin = 'round'; c.beginPath(); c.moveTo(-24, 2); c.lineTo(-6, 20); c.lineTo(26, -16); c.stroke(); c.restore(); }
+    c.restore();
+  }
+  function fechoCena(c, t, f) {
+    if (!f || t < f.t0) return;
+    const u = E.back(p(t, f.t0, f.t0 + 0.55), 2);
+    // pulso no ritmo da trilha (120 BPM) e um anel limão a cada compasso: o fecho nunca fica parado
+    const bt = Math.max(0, t - f.t0), pulso = 1 + 0.018 * Math.exp(-((bt % 0.5) / 0.12));
+    const ua2 = (bt % 2) / 2;
+    if (bt > 0.6) { c.beginPath(); c.arc(540, 410, 150 + 260 * E.out(ua2), 0, TAU); c.strokeStyle = rgba(C.lime, 0.35 * (1 - ua2)); c.lineWidth = 6; c.stroke(); }
+    c.save(); c.translate(540, 520); c.scale(clamp(u, 0, 1.2) * pulso, clamp(u, 0, 1.2) * pulso); logo(c, 0, -110, 300); nome(c, 0, 150, 0.95); c.restore();
+    const linha = (s, y, t0, cor, size) => {
+      const v = E.back(p(t, t0, t0 + 0.4), 2); if (v <= 0) return;
+      c.save(); c.translate(540, y); c.scale(v, v); txt(c, s, 0, 0, { size, weight: 900, align: 'center', color: cor, ls: -1.5 }); c.restore();
+    };
+    linha('30 dias para testar', 930, f.teste, C.lime, 96);
+    linha('e a FAZLO configura', 1060, f.configura - 0.05, C.white, 74);
+    linha('tudo para você.', 1150, f.configura + 0.35, C.white, 74);
+    const ua = E.out(p(t, f.arroba, f.arroba + 0.5));
+    if (ua > 0) txt(c, '@fazlohospeda', 540, 1300, { fam: MONO, size: 46, weight: 700, align: 'center', color: C.gray, alpha: ua });
+  }
+
   function marca(c, t, m) {
     if (t < m.t0 || t >= m.t1) return;
     const u = E.back(p(t, m.t0, m.t0 + 0.6)), sai = E.in(p(t, m.t1 - 0.3, m.t1));
@@ -211,11 +322,32 @@
   function frame(c, t) {
     fundo(c, t, PLANO.tom && PLANO.tom(t));
     for (const g of PLANO.ganchos || []) gancho(c, t, g);
+    caos(c, t, PLANO.caos); gaveta(c, t, PLANO.gaveta); marcaCena(c, t, PLANO.marca);
     for (const s of PLANO.telas) tela(c, s, t);
     for (const m of PLANO.marcas || []) marca(c, t, m);
+    fechoCena(c, t, PLANO.fecho);
     legenda(c, t);
   }
+  function eventos() {
+    const ev = [], P = PLANO;
+    (P.ganchos || []).forEach((g) => { ev.push({ t: g.t0 + 0.3, tipo: 'whoosh' }, { t: g.t0 + 0.75, tipo: 'whoosh' }, { t: g.t0 + 0.85, tipo: 'impacto' }, { t: g.t0 + 0.95, tipo: 'pop' }); });
+    if (P.caos) ['whats', 'airbnb', 'booking', 'caderno'].forEach((k) => ev.push({ t: P.caos[k], tipo: 'pop' }));
+    if (P.gaveta) ev.push({ t: P.gaveta.t0, tipo: 'whoosh' }, { t: P.gaveta.ninguem, tipo: 'erro' }, { t: P.gaveta.entrou, tipo: 'gaveta' });
+    if (P.marca) ev.push({ t: P.marca.fazlo - 0.05, tipo: 'impacto' }, { t: P.marca.lugar + 0.4, tipo: 'check' }, { t: P.marca.lugar - 0.2, tipo: 'suga' });
+    for (const s of P.telas) {
+      ev.push({ t: s.t0 - 0.25, tipo: 'whoosh' });
+      (s.cam || []).forEach((k) => { if ((k.d || 0) > 0.1 && k.z > 1) ev.push({ t: k.t, tipo: 'zoom' }); });
+      (s.aneis || []).forEach((r) => ev.push({ t: r.t + 0.05, tipo: 'tick' }));
+      (s.saltos || []).forEach((j) => ev.push({ t: j.t, tipo: 'pop' }, { t: j.ate, tipo: 'volta' }));
+      (s.toques || []).forEach((q) => ev.push({ t: q.t, tipo: 'toque' }));
+      (s.estados || []).forEach((e) => ev.push({ t: e.t, tipo: 'desliza' }));
+    }
+    if (P.fecho) ev.push({ t: P.fecho.t0, tipo: 'impacto' }, { t: P.fecho.teste, tipo: 'check' }, { t: P.fecho.configura, tipo: 'pop' }, { t: P.fecho.arroba, tipo: 'sino' });
+    return ev.sort((a, b) => a.t - b.t);
+  }
   window.CURTO = {
+    eventos: () => eventos(),
+    plano: () => ({ telas: PLANO.telas.map((s) => ({ img: s.img, t0: s.t0, t1: s.t1, focos: [...(s.aneis || []).map((r) => r.t), ...(s.saltos || []).map((j) => j.t)] })), legenda: PLANO.legenda.map((g) => ({ t0: g.t0, t1: g.t1, texto: g.palavras.map((w) => w.w).join(' ') })) }),
     init(imgs, logo, plano) { IMG = imgs; LOGO = logo; PLANO = plano; DUR = plano.duracao; },
     renderAt(c, t) { frame(c, Math.min(Math.max(t, 0), DUR - 1e-4)); },
     get DURATION() { return DUR; },

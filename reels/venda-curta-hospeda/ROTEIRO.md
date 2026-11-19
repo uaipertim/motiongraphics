@@ -1,6 +1,6 @@
 # FAZLO Hospeda — vídeo curto de venda (para aprovação)
 
-**Status:** aguardando três aprovações: a voz, este roteiro com a timeline e os quadros de estilo (`aprovacao/`). Nada foi narrado nem renderizado.
+**Status:** em 19/11/2026 foram aprovados a voz (Alexa), o roteiro com dois ajustes (frases 9 e 11) e os quadros de estilo. O vídeo foi narrado e renderizado para aprovação; ver o README.
 
 **Para quem:** o primeiro contato com donos de pousada pelo WhatsApp. É um vídeo diferente da apresentação completa (3:41), que continua indo só para quem já mostrou interesse.
 
@@ -22,9 +22,9 @@
 6. O Hospeda manda pra eles as datas ocupadas e traz pra cá o que foi vendido lá, já bloqueado.
 7. Se uma data bater, ele avisa. E não cancela nada sozinho.
 8. Isso reduz muito o risco de reserva dupla.
-9. E na hora de vender, só aparece o que está livre.
+9. E dentro do Hospeda, o mesmo chalé não é vendido duas vezes nas mesmas datas.
 10. Do check-in ao check-out, cada hóspede tem a sua conta, com o saldo sempre à vista.
-11. Tudo o que ele consome vai direto pra comanda.
+11. Tudo o que ele consome entra na comanda dele.
 12. E o check-out só libera com tudo pago. Nada fica pra trás.
 13. No fim do dia, o caixa fecha conferido: quanto entrou em PIX, em dinheiro e no cartão.
 14. E nos relatórios, você vê a ocupação e os recebimentos do período.

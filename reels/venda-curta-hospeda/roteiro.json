@@ -1,0 +1,447 @@
+{
+ "id": "venda-curta-hospeda",
+ "marca": "@fazlohospeda",
+ "voz": {
+  "nome": "Alexa - Soft, Clear and Friendly",
+  "voice_id": "sXSV9RZ095VZyL64w3ap",
+  "modelo": "eleven_v4",
+  "stability": 0.5,
+  "similarity_boost": 0.75
+ },
+ "pronuncia": {
+  "Hospeda": "Hospéda",
+  "FAZLO": "Fázlo",
+  "WhatsApp": "Uátsap",
+  "30": "Trinta"
+ },
+ "nota": "Roteiro aprovado em 19/11/2026 (frases 9 e 11 ajustadas). 'chave': palavras em limão na legenda; 'id': o instante que dispara a animação; 'pausa': silêncio depois da frase.",
+ "frases": [
+  {
+   "id": "g1",
+   "pausa": 0.3,
+   "tokens": [
+    {
+     "fala": "Vendeu o mesmo"
+    },
+    {
+     "fala": "chalé",
+     "chave": true,
+     "id": "chale"
+    },
+    {
+     "fala": "duas vezes?",
+     "chave": true,
+     "id": "duas"
+    }
+   ]
+  },
+  {
+   "id": "g2",
+   "pausa": 0.25,
+   "tokens": [
+    {
+     "fala": "Reserva no"
+    },
+    {
+     "fala": "WhatsApp,",
+     "chave": true,
+     "id": "whats"
+    },
+    {
+     "fala": "no"
+    },
+    {
+     "fala": "Airbnb,",
+     "chave": true,
+     "id": "airbnb0"
+    },
+    {
+     "fala": "no"
+    },
+    {
+     "fala": "Booking…",
+     "chave": true,
+     "id": "booking0"
+    },
+    {
+     "fala": "e um"
+    },
+    {
+     "fala": "caderno",
+     "chave": true,
+     "id": "caderno"
+    },
+    {
+     "fala": "no meio?"
+    }
+   ]
+  },
+  {
+   "id": "g3",
+   "pausa": 0.4,
+   "tokens": [
+    {
+     "fala": "E no fim do dia,"
+    },
+    {
+     "fala": "ninguém sabe",
+     "chave": true,
+     "id": "ninguem"
+    },
+    {
+     "fala": "quanto entrou?",
+     "chave": true,
+     "id": "entrou"
+    }
+   ]
+  },
+  {
+   "id": "marca",
+   "pausa": 0.45,
+   "tokens": [
+    {
+     "fala": "O"
+    },
+    {
+     "fala": "FAZLO Hospeda",
+     "chave": true,
+     "id": "fazlo"
+    },
+    {
+     "fala": "coloca tudo isso num"
+    },
+    {
+     "fala": "lugar só.",
+     "chave": true,
+     "id": "lugar"
+    }
+   ]
+  },
+  {
+   "id": "canais1",
+   "pausa": 0.25,
+   "tokens": [
+    {
+     "fala": "O"
+    },
+    {
+     "fala": "Airbnb",
+     "chave": true,
+     "id": "airbnb"
+    },
+    {
+     "fala": "e o"
+    },
+    {
+     "fala": "Booking",
+     "chave": true,
+     "id": "booking"
+    },
+    {
+     "fala": "entram no mesmo"
+    },
+    {
+     "fala": "calendário.",
+     "chave": true,
+     "id": "calendario"
+    }
+   ]
+  },
+  {
+   "id": "canais2",
+   "pausa": 0.3,
+   "tokens": [
+    {
+     "fala": "O Hospeda"
+    },
+    {
+     "fala": "manda",
+     "chave": true,
+     "id": "manda"
+    },
+    {
+     "fala": "pra eles as datas ocupadas e"
+    },
+    {
+     "fala": "traz pra cá",
+     "chave": true,
+     "id": "traz"
+    },
+    {
+     "fala": "o que foi vendido lá, já"
+    },
+    {
+     "fala": "bloqueado.",
+     "chave": true,
+     "id": "bloqueado"
+    }
+   ]
+  },
+  {
+   "id": "canais3",
+   "pausa": 0.25,
+   "tokens": [
+    {
+     "fala": "Se uma data"
+    },
+    {
+     "fala": "bater,",
+     "chave": true,
+     "id": "bater"
+    },
+    {
+     "fala": "ele"
+    },
+    {
+     "fala": "avisa.",
+     "chave": true,
+     "id": "avisa"
+    },
+    {
+     "fala": "E"
+    },
+    {
+     "fala": "não cancela nada",
+     "chave": true,
+     "id": "naocancela"
+    },
+    {
+     "fala": "sozinho."
+    }
+   ]
+  },
+  {
+   "id": "canais4",
+   "pausa": 0.4,
+   "tokens": [
+    {
+     "fala": "Isso"
+    },
+    {
+     "fala": "reduz muito o risco",
+     "chave": true,
+     "id": "reduz"
+    },
+    {
+     "fala": "de reserva dupla."
+    }
+   ]
+  },
+  {
+   "id": "dupla",
+   "pausa": 0.4,
+   "tokens": [
+    {
+     "fala": "E dentro do Hospeda, o"
+    },
+    {
+     "fala": "mesmo chalé",
+     "chave": true,
+     "id": "mesmochale"
+    },
+    {
+     "fala": "não é vendido",
+     "chave": true,
+     "id": "naovendido"
+    },
+    {
+     "fala": "duas vezes nas mesmas datas."
+    }
+   ]
+  },
+  {
+   "id": "hosp",
+   "pausa": 0.25,
+   "tokens": [
+    {
+     "fala": "Do"
+    },
+    {
+     "fala": "check-in",
+     "chave": true,
+     "id": "checkin"
+    },
+    {
+     "fala": "ao"
+    },
+    {
+     "fala": "check-out,",
+     "chave": true,
+     "id": "checkout0"
+    },
+    {
+     "fala": "cada hóspede tem a sua"
+    },
+    {
+     "fala": "conta,",
+     "chave": true,
+     "id": "conta"
+    },
+    {
+     "fala": "com o"
+    },
+    {
+     "fala": "saldo",
+     "chave": true,
+     "id": "saldo"
+    },
+    {
+     "fala": "sempre à vista."
+    }
+   ]
+  },
+  {
+   "id": "comanda",
+   "pausa": 0.25,
+   "tokens": [
+    {
+     "fala": "Tudo o que ele"
+    },
+    {
+     "fala": "consome",
+     "chave": true,
+     "id": "consome"
+    },
+    {
+     "fala": "entra na"
+    },
+    {
+     "fala": "comanda",
+     "chave": true,
+     "id": "comanda"
+    },
+    {
+     "fala": "dele."
+    }
+   ]
+  },
+  {
+   "id": "checkout",
+   "pausa": 0.4,
+   "tokens": [
+    {
+     "fala": "E o"
+    },
+    {
+     "fala": "check-out",
+     "chave": true,
+     "id": "checkout"
+    },
+    {
+     "fala": "só"
+    },
+    {
+     "fala": "libera com tudo pago.",
+     "chave": true,
+     "id": "libera"
+    },
+    {
+     "fala": "Nada fica pra trás.",
+     "id": "nada"
+    }
+   ]
+  },
+  {
+   "id": "caixa",
+   "pausa": 0.3,
+   "tokens": [
+    {
+     "fala": "No fim do dia, o"
+    },
+    {
+     "fala": "caixa",
+     "chave": true,
+     "id": "caixa"
+    },
+    {
+     "fala": "fecha"
+    },
+    {
+     "fala": "conferido:",
+     "chave": true,
+     "id": "conferido"
+    },
+    {
+     "fala": "quanto entrou em"
+    },
+    {
+     "fala": "PIX,",
+     "chave": true,
+     "id": "pix"
+    },
+    {
+     "fala": "em"
+    },
+    {
+     "fala": "dinheiro",
+     "chave": true,
+     "id": "dinheiro"
+    },
+    {
+     "fala": "e no"
+    },
+    {
+     "fala": "cartão.",
+     "chave": true,
+     "id": "cartao"
+    }
+   ]
+  },
+  {
+   "id": "relat",
+   "pausa": 0.5,
+   "tokens": [
+    {
+     "fala": "E nos"
+    },
+    {
+     "fala": "relatórios,",
+     "chave": true,
+     "id": "relatorios"
+    },
+    {
+     "fala": "você vê a"
+    },
+    {
+     "fala": "ocupação",
+     "chave": true,
+     "id": "ocupacao"
+    },
+    {
+     "fala": "e os"
+    },
+    {
+     "fala": "recebimentos",
+     "chave": true,
+     "id": "recebimentos"
+    },
+    {
+     "fala": "do período."
+    }
+   ]
+  },
+  {
+   "id": "cta",
+   "pausa": 0.0,
+   "tokens": [
+    {
+     "fala": "30 dias para testar,",
+     "chave": true,
+     "id": "teste"
+    },
+    {
+     "fala": "e a"
+    },
+    {
+     "fala": "FAZLO configura tudo",
+     "chave": true,
+     "id": "configura"
+    },
+    {
+     "fala": "para você."
+    }
+   ]
+  }
+ ],
+ "narracao": "Vendeu o mesmo chalé duas vezes? Reserva no WhatsApp, no Airbnb, no Booking… e um caderno no meio? E no fim do dia, ninguém sabe quanto entrou? O FAZLO Hospeda coloca tudo isso num lugar só. O Airbnb e o Booking entram no mesmo calendário. O Hospeda manda pra eles as datas ocupadas e traz pra cá o que foi vendido lá, já bloqueado. Se uma data bater, ele avisa. E não cancela nada sozinho. Isso reduz muito o risco de reserva dupla. E dentro do Hospeda, o mesmo chalé não é vendido duas vezes nas mesmas datas. Do check-in ao check-out, cada hóspede tem a sua conta, com o saldo sempre à vista. Tudo o que ele consome entra na comanda dele. E o check-out só libera com tudo pago. Nada fica pra trás. No fim do dia, o caixa fecha conferido: quanto entrou em PIX, em dinheiro e no cartão. E nos relatórios, você vê a ocupação e os recebimentos do período. 30 dias para testar, e a FAZLO configura tudo para você."
+}

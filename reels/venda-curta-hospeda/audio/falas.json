@@ -1,0 +1,1069 @@
+{
+ "texto": "Vendeu o mesmo chalé duas vezes? Reserva no WhatsApp, no Airbnb, no Booking… e um caderno no meio? E no fim do dia, ninguém sabe quanto entrou? O FAZLO Hospeda coloca tudo isso num lugar só. O Airbnb e o Booking entram no mesmo calendário. O Hospeda manda pra eles as datas ocupadas e traz pra cá o que foi vendido lá, já bloqueado. Se uma data bater, ele avisa. E não cancela nada sozinho. Isso reduz muito o risco de reserva dupla. E dentro do Hospeda, o mesmo chalé não é vendido duas vezes nas mesmas datas. Do check-in ao check-out, cada hóspede tem a sua conta, com o saldo sempre à vista. Tudo o que ele consome entra na comanda dele. E o check-out só libera com tudo pago. Nada fica pra trás. No fim do dia, o caixa fecha conferido: quanto entrou em PIX, em dinheiro e no cartão. E nos relatórios, você vê a ocupação e os recebimentos do período. 30 dias para testar, e a FAZLO configura tudo para você.",
+ "enviado": "Vendeu o mesmo chalé duas vezes? Reserva no Uátsap, no Airbnb, no Booking… e um caderno no meio? E no fim do dia, ninguém sabe quanto entrou? O Fázlo Hospéda coloca tudo isso num lugar só. O Airbnb e o Booking entram no mesmo calendário. O Hospéda manda pra eles as datas ocupadas e traz pra cá o que foi vendido lá, já bloqueado. Se uma data bater, ele avisa. E não cancela nada sozinho. Isso reduz muito o risco de reserva dupla. E dentro do Hospéda, o mesmo chalé não é vendido duas vezes nas mesmas datas. Do check-in ao check-out, cada hóspede tem a sua conta, com o saldo sempre à vista. Tudo o que ele consome entra na comanda dele. E o check-out só libera com tudo pago. Nada fica pra trás. No fim do dia, o caixa fecha conferido: quanto entrou em PIX, em dinheiro e no cartão. E nos relatórios, você vê a ocupação e os recebimentos do período. Trinta dias para testar, e a Fázlo configura tudo para você.",
+ "voz": {
+  "nome": "Alexa - Soft, Clear and Friendly",
+  "voice_id": "sXSV9RZ095VZyL64w3ap",
+  "modelo": "eleven_v4",
+  "stability": 0.5,
+  "similarity_boost": 0.75
+ },
+ "seed": 7100,
+ "formato": "mp3_44100_192",
+ "ritmo_letras_s": 10.9,
+ "fim_da_fala_s": 64.87,
+ "duracao_audio": 65.04,
+ "palavras": [
+  {
+   "w": "Vendeu",
+   "falado": "Vendeu",
+   "t0": 0.0,
+   "t1": 0.48
+  },
+  {
+   "w": "o",
+   "falado": "o",
+   "t0": 0.52,
+   "t1": 0.56
+  },
+  {
+   "w": "mesmo",
+   "falado": "mesmo",
+   "t0": 0.64,
+   "t1": 0.96
+  },
+  {
+   "w": "chalé",
+   "falado": "chalé",
+   "t0": 1.04,
+   "t1": 1.44
+  },
+  {
+   "w": "duas",
+   "falado": "duas",
+   "t0": 1.52,
+   "t1": 1.84
+  },
+  {
+   "w": "vezes?",
+   "falado": "vezes?",
+   "t0": 2.0,
+   "t1": 2.48
+  },
+  {
+   "w": "Reserva",
+   "falado": "Reserva",
+   "t0": 2.88,
+   "t1": 3.36
+  },
+  {
+   "w": "no",
+   "falado": "no",
+   "t0": 3.44,
+   "t1": 3.52
+  },
+  {
+   "w": "WhatsApp,",
+   "falado": "Uátsap,",
+   "t0": 3.547,
+   "t1": 4.24
+  },
+  {
+   "w": "no",
+   "falado": "no",
+   "t0": 4.36,
+   "t1": 4.4
+  },
+  {
+   "w": "Airbnb,",
+   "falado": "Airbnb,",
+   "t0": 4.48,
+   "t1": 5.28
+  },
+  {
+   "w": "no",
+   "falado": "no",
+   "t0": 5.44,
+   "t1": 5.52
+  },
+  {
+   "w": "Booking…",
+   "falado": "Booking…",
+   "t0": 5.68,
+   "t1": 6.24
+  },
+  {
+   "w": "e",
+   "falado": "e",
+   "t0": 6.68,
+   "t1": 6.72
+  },
+  {
+   "w": "um",
+   "falado": "um",
+   "t0": 6.76,
+   "t1": 6.8
+  },
+  {
+   "w": "caderno",
+   "falado": "caderno",
+   "t0": 6.88,
+   "t1": 7.36
+  },
+  {
+   "w": "no",
+   "falado": "no",
+   "t0": 7.44,
+   "t1": 7.52
+  },
+  {
+   "w": "meio?",
+   "falado": "meio?",
+   "t0": 7.6,
+   "t1": 7.92
+  },
+  {
+   "w": "E",
+   "falado": "E",
+   "t0": 8.4,
+   "t1": 8.48
+  },
+  {
+   "w": "no",
+   "falado": "no",
+   "t0": 8.52,
+   "t1": 8.56
+  },
+  {
+   "w": "fim",
+   "falado": "fim",
+   "t0": 8.64,
+   "t1": 8.72
+  },
+  {
+   "w": "do",
+   "falado": "do",
+   "t0": 8.8,
+   "t1": 8.88
+  },
+  {
+   "w": "dia,",
+   "falado": "dia,",
+   "t0": 8.96,
+   "t1": 9.2
+  },
+  {
+   "w": "ninguém",
+   "falado": "ninguém",
+   "t0": 9.48,
+   "t1": 9.76
+  },
+  {
+   "w": "sabe",
+   "falado": "sabe",
+   "t0": 9.92,
+   "t1": 10.16
+  },
+  {
+   "w": "quanto",
+   "falado": "quanto",
+   "t0": 10.24,
+   "t1": 10.48
+  },
+  {
+   "w": "entrou?",
+   "falado": "entrou?",
+   "t0": 10.56,
+   "t1": 10.8
+  },
+  {
+   "w": "O",
+   "falado": "O",
+   "t0": 11.36,
+   "t1": 11.44
+  },
+  {
+   "w": "FAZLO",
+   "falado": "Fázlo",
+   "t0": 11.6,
+   "t1": 11.92
+  },
+  {
+   "w": "Hospeda",
+   "falado": "Hospéda",
+   "t0": 11.96,
+   "t1": 12.48
+  },
+  {
+   "w": "coloca",
+   "falado": "coloca",
+   "t0": 12.56,
+   "t1": 12.88
+  },
+  {
+   "w": "tudo",
+   "falado": "tudo",
+   "t0": 13.12,
+   "t1": 13.44
+  },
+  {
+   "w": "isso",
+   "falado": "isso",
+   "t0": 13.52,
+   "t1": 13.76
+  },
+  {
+   "w": "num",
+   "falado": "num",
+   "t0": 13.84,
+   "t1": 13.92
+  },
+  {
+   "w": "lugar",
+   "falado": "lugar",
+   "t0": 13.96,
+   "t1": 14.32
+  },
+  {
+   "w": "só.",
+   "falado": "só.",
+   "t0": 14.4,
+   "t1": 14.64
+  },
+  {
+   "w": "O",
+   "falado": "O",
+   "t0": 15.12,
+   "t1": 15.2
+  },
+  {
+   "w": "Airbnb",
+   "falado": "Airbnb",
+   "t0": 15.28,
+   "t1": 15.84
+  },
+  {
+   "w": "e",
+   "falado": "e",
+   "t0": 15.88,
+   "t1": 15.92
+  },
+  {
+   "w": "o",
+   "falado": "o",
+   "t0": 15.96,
+   "t1": 16.0
+  },
+  {
+   "w": "Booking",
+   "falado": "Booking",
+   "t0": 16.08,
+   "t1": 16.48
+  },
+  {
+   "w": "entram",
+   "falado": "entram",
+   "t0": 16.56,
+   "t1": 16.88
+  },
+  {
+   "w": "no",
+   "falado": "no",
+   "t0": 17.0,
+   "t1": 17.12
+  },
+  {
+   "w": "mesmo",
+   "falado": "mesmo",
+   "t0": 17.24,
+   "t1": 17.44
+  },
+  {
+   "w": "calendário.",
+   "falado": "calendário.",
+   "t0": 17.52,
+   "t1": 18.08
+  },
+  {
+   "w": "O",
+   "falado": "O",
+   "t0": 18.56,
+   "t1": 18.6
+  },
+  {
+   "w": "Hospeda",
+   "falado": "Hospéda",
+   "t0": 18.64,
+   "t1": 19.2
+  },
+  {
+   "w": "manda",
+   "falado": "manda",
+   "t0": 19.36,
+   "t1": 19.52
+  },
+  {
+   "w": "pra",
+   "falado": "pra",
+   "t0": 19.6,
+   "t1": 19.68
+  },
+  {
+   "w": "eles",
+   "falado": "eles",
+   "t0": 19.76,
+   "t1": 20.0
+  },
+  {
+   "w": "as",
+   "falado": "as",
+   "t0": 20.08,
+   "t1": 20.16
+  },
+  {
+   "w": "datas",
+   "falado": "datas",
+   "t0": 20.24,
+   "t1": 20.48
+  },
+  {
+   "w": "ocupadas",
+   "falado": "ocupadas",
+   "t0": 20.56,
+   "t1": 21.2
+  },
+  {
+   "w": "e",
+   "falado": "e",
+   "t0": 21.44,
+   "t1": 21.52
+  },
+  {
+   "w": "traz",
+   "falado": "traz",
+   "t0": 21.6,
+   "t1": 21.84
+  },
+  {
+   "w": "pra",
+   "falado": "pra",
+   "t0": 21.92,
+   "t1": 22.0
+  },
+  {
+   "w": "cá",
+   "falado": "cá",
+   "t0": 22.08,
+   "t1": 22.32
+  },
+  {
+   "w": "o",
+   "falado": "o",
+   "t0": 22.36,
+   "t1": 22.4
+  },
+  {
+   "w": "que",
+   "falado": "que",
+   "t0": 22.48,
+   "t1": 22.56
+  },
+  {
+   "w": "foi",
+   "falado": "foi",
+   "t0": 22.6,
+   "t1": 22.72
+  },
+  {
+   "w": "vendido",
+   "falado": "vendido",
+   "t0": 22.76,
+   "t1": 23.12
+  },
+  {
+   "w": "lá,",
+   "falado": "lá,",
+   "t0": 23.2,
+   "t1": 23.36
+  },
+  {
+   "w": "já",
+   "falado": "já",
+   "t0": 23.68,
+   "t1": 23.84
+  },
+  {
+   "w": "bloqueado.",
+   "falado": "bloqueado.",
+   "t0": 23.96,
+   "t1": 24.56
+  },
+  {
+   "w": "Se",
+   "falado": "Se",
+   "t0": 24.96,
+   "t1": 25.04
+  },
+  {
+   "w": "uma",
+   "falado": "uma",
+   "t0": 25.12,
+   "t1": 25.2
+  },
+  {
+   "w": "data",
+   "falado": "data",
+   "t0": 25.32,
+   "t1": 25.44
+  },
+  {
+   "w": "bater,",
+   "falado": "bater,",
+   "t0": 25.52,
+   "t1": 25.92
+  },
+  {
+   "w": "ele",
+   "falado": "ele",
+   "t0": 26.16,
+   "t1": 26.24
+  },
+  {
+   "w": "avisa.",
+   "falado": "avisa.",
+   "t0": 26.32,
+   "t1": 26.8
+  },
+  {
+   "w": "E",
+   "falado": "E",
+   "t0": 27.12,
+   "t1": 27.2
+  },
+  {
+   "w": "não",
+   "falado": "não",
+   "t0": 27.24,
+   "t1": 27.36
+  },
+  {
+   "w": "cancela",
+   "falado": "cancela",
+   "t0": 27.44,
+   "t1": 28.0
+  },
+  {
+   "w": "nada",
+   "falado": "nada",
+   "t0": 28.24,
+   "t1": 28.56
+  },
+  {
+   "w": "sozinho.",
+   "falado": "sozinho.",
+   "t0": 28.64,
+   "t1": 29.12
+  },
+  {
+   "w": "Isso",
+   "falado": "Isso",
+   "t0": 29.52,
+   "t1": 29.76
+  },
+  {
+   "w": "reduz",
+   "falado": "reduz",
+   "t0": 29.84,
+   "t1": 30.24
+  },
+  {
+   "w": "muito",
+   "falado": "muito",
+   "t0": 30.32,
+   "t1": 30.64
+  },
+  {
+   "w": "o",
+   "falado": "o",
+   "t0": 30.68,
+   "t1": 30.72
+  },
+  {
+   "w": "risco",
+   "falado": "risco",
+   "t0": 30.8,
+   "t1": 31.04
+  },
+  {
+   "w": "de",
+   "falado": "de",
+   "t0": 31.12,
+   "t1": 31.16
+  },
+  {
+   "w": "reserva",
+   "falado": "reserva",
+   "t0": 31.2,
+   "t1": 31.6
+  },
+  {
+   "w": "dupla.",
+   "falado": "dupla.",
+   "t0": 31.68,
+   "t1": 32.08
+  },
+  {
+   "w": "E",
+   "falado": "E",
+   "t0": 32.4,
+   "t1": 32.48
+  },
+  {
+   "w": "dentro",
+   "falado": "dentro",
+   "t0": 32.56,
+   "t1": 32.88
+  },
+  {
+   "w": "do",
+   "falado": "do",
+   "t0": 32.92,
+   "t1": 32.96
+  },
+  {
+   "w": "Hospeda,",
+   "falado": "Hospéda,",
+   "t0": 33.0,
+   "t1": 33.52
+  },
+  {
+   "w": "o",
+   "falado": "o",
+   "t0": 33.72,
+   "t1": 33.76
+  },
+  {
+   "w": "mesmo",
+   "falado": "mesmo",
+   "t0": 33.84,
+   "t1": 34.16
+  },
+  {
+   "w": "chalé",
+   "falado": "chalé",
+   "t0": 34.24,
+   "t1": 34.64
+  },
+  {
+   "w": "não",
+   "falado": "não",
+   "t0": 34.72,
+   "t1": 34.88
+  },
+  {
+   "w": "é",
+   "falado": "é",
+   "t0": 34.92,
+   "t1": 34.96
+  },
+  {
+   "w": "vendido",
+   "falado": "vendido",
+   "t0": 35.04,
+   "t1": 35.44
+  },
+  {
+   "w": "duas",
+   "falado": "duas",
+   "t0": 35.52,
+   "t1": 35.84
+  },
+  {
+   "w": "vezes",
+   "falado": "vezes",
+   "t0": 35.92,
+   "t1": 36.24
+  },
+  {
+   "w": "nas",
+   "falado": "nas",
+   "t0": 36.32,
+   "t1": 36.48
+  },
+  {
+   "w": "mesmas",
+   "falado": "mesmas",
+   "t0": 36.56,
+   "t1": 36.88
+  },
+  {
+   "w": "datas.",
+   "falado": "datas.",
+   "t0": 36.96,
+   "t1": 37.36
+  },
+  {
+   "w": "Do",
+   "falado": "Do",
+   "t0": 37.76,
+   "t1": 37.84
+  },
+  {
+   "w": "check-in",
+   "falado": "check-in",
+   "t0": 37.92,
+   "t1": 38.32
+  },
+  {
+   "w": "ao",
+   "falado": "ao",
+   "t0": 38.36,
+   "t1": 38.4
+  },
+  {
+   "w": "check-out,",
+   "falado": "check-out,",
+   "t0": 38.48,
+   "t1": 39.04
+  },
+  {
+   "w": "cada",
+   "falado": "cada",
+   "t0": 39.24,
+   "t1": 39.52
+  },
+  {
+   "w": "hóspede",
+   "falado": "hóspede",
+   "t0": 39.6,
+   "t1": 40.08
+  },
+  {
+   "w": "tem",
+   "falado": "tem",
+   "t0": 40.16,
+   "t1": 40.24
+  },
+  {
+   "w": "a",
+   "falado": "a",
+   "t0": 40.32,
+   "t1": 40.4
+  },
+  {
+   "w": "sua",
+   "falado": "sua",
+   "t0": 40.44,
+   "t1": 40.64
+  },
+  {
+   "w": "conta,",
+   "falado": "conta,",
+   "t0": 40.72,
+   "t1": 41.2
+  },
+  {
+   "w": "com",
+   "falado": "com",
+   "t0": 41.4,
+   "t1": 41.44
+  },
+  {
+   "w": "o",
+   "falado": "o",
+   "t0": 41.52,
+   "t1": 41.6
+  },
+  {
+   "w": "saldo",
+   "falado": "saldo",
+   "t0": 41.84,
+   "t1": 42.08
+  },
+  {
+   "w": "sempre",
+   "falado": "sempre",
+   "t0": 42.16,
+   "t1": 42.48
+  },
+  {
+   "w": "à",
+   "falado": "à",
+   "t0": 42.52,
+   "t1": 42.56
+  },
+  {
+   "w": "vista.",
+   "falado": "vista.",
+   "t0": 42.64,
+   "t1": 43.04
+  },
+  {
+   "w": "Tudo",
+   "falado": "Tudo",
+   "t0": 43.44,
+   "t1": 43.6
+  },
+  {
+   "w": "o",
+   "falado": "o",
+   "t0": 43.64,
+   "t1": 43.68
+  },
+  {
+   "w": "que",
+   "falado": "que",
+   "t0": 43.72,
+   "t1": 43.76
+  },
+  {
+   "w": "ele",
+   "falado": "ele",
+   "t0": 43.84,
+   "t1": 43.92
+  },
+  {
+   "w": "consome",
+   "falado": "consome",
+   "t0": 44.08,
+   "t1": 44.56
+  },
+  {
+   "w": "entra",
+   "falado": "entra",
+   "t0": 44.64,
+   "t1": 44.88
+  },
+  {
+   "w": "na",
+   "falado": "na",
+   "t0": 44.96,
+   "t1": 45.04
+  },
+  {
+   "w": "comanda",
+   "falado": "comanda",
+   "t0": 45.16,
+   "t1": 45.52
+  },
+  {
+   "w": "dele.",
+   "falado": "dele.",
+   "t0": 45.6,
+   "t1": 45.92
+  },
+  {
+   "w": "E",
+   "falado": "E",
+   "t0": 46.24,
+   "t1": 46.32
+  },
+  {
+   "w": "o",
+   "falado": "o",
+   "t0": 46.347,
+   "t1": 46.373
+  },
+  {
+   "w": "check-out",
+   "falado": "check-out",
+   "t0": 46.4,
+   "t1": 46.96
+  },
+  {
+   "w": "só",
+   "falado": "só",
+   "t0": 47.12,
+   "t1": 47.28
+  },
+  {
+   "w": "libera",
+   "falado": "libera",
+   "t0": 47.4,
+   "t1": 47.76
+  },
+  {
+   "w": "com",
+   "falado": "com",
+   "t0": 47.84,
+   "t1": 47.92
+  },
+  {
+   "w": "tudo",
+   "falado": "tudo",
+   "t0": 48.08,
+   "t1": 48.4
+  },
+  {
+   "w": "pago.",
+   "falado": "pago.",
+   "t0": 48.44,
+   "t1": 48.8
+  },
+  {
+   "w": "Nada",
+   "falado": "Nada",
+   "t0": 49.12,
+   "t1": 49.44
+  },
+  {
+   "w": "fica",
+   "falado": "fica",
+   "t0": 49.52,
+   "t1": 49.68
+  },
+  {
+   "w": "pra",
+   "falado": "pra",
+   "t0": 49.76,
+   "t1": 49.84
+  },
+  {
+   "w": "trás.",
+   "falado": "trás.",
+   "t0": 49.92,
+   "t1": 50.32
+  },
+  {
+   "w": "No",
+   "falado": "No",
+   "t0": 50.64,
+   "t1": 50.72
+  },
+  {
+   "w": "fim",
+   "falado": "fim",
+   "t0": 50.8,
+   "t1": 50.88
+  },
+  {
+   "w": "do",
+   "falado": "do",
+   "t0": 50.96,
+   "t1": 51.04
+  },
+  {
+   "w": "dia,",
+   "falado": "dia,",
+   "t0": 51.12,
+   "t1": 51.44
+  },
+  {
+   "w": "o",
+   "falado": "o",
+   "t0": 51.56,
+   "t1": 51.6
+  },
+  {
+   "w": "caixa",
+   "falado": "caixa",
+   "t0": 51.68,
+   "t1": 52.0
+  },
+  {
+   "w": "fecha",
+   "falado": "fecha",
+   "t0": 52.08,
+   "t1": 52.4
+  },
+  {
+   "w": "conferido:",
+   "falado": "conferido:",
+   "t0": 52.48,
+   "t1": 53.12
+  },
+  {
+   "w": "quanto",
+   "falado": "quanto",
+   "t0": 53.56,
+   "t1": 53.76
+  },
+  {
+   "w": "entrou",
+   "falado": "entrou",
+   "t0": 53.84,
+   "t1": 54.08
+  },
+  {
+   "w": "em",
+   "falado": "em",
+   "t0": 54.16,
+   "t1": 54.24
+  },
+  {
+   "w": "PIX,",
+   "falado": "PIX,",
+   "t0": 54.44,
+   "t1": 54.64
+  },
+  {
+   "w": "em",
+   "falado": "em",
+   "t0": 54.84,
+   "t1": 54.88
+  },
+  {
+   "w": "dinheiro",
+   "falado": "dinheiro",
+   "t0": 54.96,
+   "t1": 55.44
+  },
+  {
+   "w": "e",
+   "falado": "e",
+   "t0": 55.52,
+   "t1": 55.6
+  },
+  {
+   "w": "no",
+   "falado": "no",
+   "t0": 55.64,
+   "t1": 55.68
+  },
+  {
+   "w": "cartão.",
+   "falado": "cartão.",
+   "t0": 55.76,
+   "t1": 56.16
+  },
+  {
+   "w": "E",
+   "falado": "E",
+   "t0": 56.6,
+   "t1": 56.64
+  },
+  {
+   "w": "nos",
+   "falado": "nos",
+   "t0": 56.72,
+   "t1": 56.8
+  },
+  {
+   "w": "relatórios,",
+   "falado": "relatórios,",
+   "t0": 56.88,
+   "t1": 57.44
+  },
+  {
+   "w": "você",
+   "falado": "você",
+   "t0": 57.6,
+   "t1": 57.76
+  },
+  {
+   "w": "vê",
+   "falado": "vê",
+   "t0": 57.84,
+   "t1": 57.92
+  },
+  {
+   "w": "a",
+   "falado": "a",
+   "t0": 57.96,
+   "t1": 58.0
+  },
+  {
+   "w": "ocupação",
+   "falado": "ocupação",
+   "t0": 58.08,
+   "t1": 58.72
+  },
+  {
+   "w": "e",
+   "falado": "e",
+   "t0": 58.8,
+   "t1": 58.88
+  },
+  {
+   "w": "os",
+   "falado": "os",
+   "t0": 58.92,
+   "t1": 58.96
+  },
+  {
+   "w": "recebimentos",
+   "falado": "recebimentos",
+   "t0": 59.04,
+   "t1": 59.76
+  },
+  {
+   "w": "do",
+   "falado": "do",
+   "t0": 59.8,
+   "t1": 59.84
+  },
+  {
+   "w": "período.",
+   "falado": "período.",
+   "t0": 59.92,
+   "t1": 60.4
+  },
+  {
+   "w": "30",
+   "falado": "Trinta",
+   "t0": 60.76,
+   "t1": 61.04
+  },
+  {
+   "w": "dias",
+   "falado": "dias",
+   "t0": 61.2,
+   "t1": 61.44
+  },
+  {
+   "w": "para",
+   "falado": "para",
+   "t0": 61.52,
+   "t1": 61.6
+  },
+  {
+   "w": "testar,",
+   "falado": "testar,",
+   "t0": 61.68,
+   "t1": 62.16
+  },
+  {
+   "w": "e",
+   "falado": "e",
+   "t0": 62.52,
+   "t1": 62.56
+  },
+  {
+   "w": "a",
+   "falado": "a",
+   "t0": 62.6,
+   "t1": 62.64
+  },
+  {
+   "w": "FAZLO",
+   "falado": "Fázlo",
+   "t0": 62.72,
+   "t1": 63.12
+  },
+  {
+   "w": "configura",
+   "falado": "configura",
+   "t0": 63.2,
+   "t1": 63.68
+  },
+  {
+   "w": "tudo",
+   "falado": "tudo",
+   "t0": 63.92,
+   "t1": 64.16
+  },
+  {
+   "w": "para",
+   "falado": "para",
+   "t0": 64.24,
+   "t1": 64.32
+  },
+  {
+   "w": "você.",
+   "falado": "você.",
+   "t0": 64.4,
+   "t1": 64.8
+  }
+ ],
+ "quando": "2026-11-19 17:52"
+}
