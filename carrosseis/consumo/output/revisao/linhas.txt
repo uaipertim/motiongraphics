@@ -1,0 +1,43 @@
+NADA DE CONSUMO FORA DA CONTA — linhas de texto (palavra sozinha numa linha = FALHA)
+
+ok     slide 01 texto: Nada de
+ok     slide 01 texto: consumo
+ok     slide 01 texto: fora da conta.
+ok     slide 02 texto: Uma cerveja aqui,
+ok     slide 02 texto: uma água ali.
+ok     slide 02 texto: E ninguém sabe o total.
+ok     slide 02 texto: Consumo que não entra na conta é dinheiro que sai
+ok     slide 02 texto: da pousada.
+ok     slide 02 bilhete: 1 cerveja
+ok     slide 02 bilhete: água?
+ok     slide 02 bilhete: 2 suco
+ok     slide 02 carimbo: NÃO LANÇADO
+ok     slide 03 texto: Preço de cabeça muda a cada turno.
+ok     slide 03 texto: Uma tabela de preços
+ok     slide 03 texto: igual pra todo mundo.
+ok     slide 03 texto: R$ [14,00]
+ok     slide 04 texto: Consumo anotado depois é consumo esquecido.
+ok     slide 04 texto: Anote na hora,
+ok     slide 04 texto: não no fim do dia.
+ok     slide 04 texto: 1× Caipirinha
+ok     slide 05 texto: Quarto e nome do hóspede em toda anotação.
+ok     slide 05 texto: Cada item
+ok     slide 05 texto: na conta do quarto certo.
+ok     slide 05 chips: Caipirinha → CHALÉ 6 · [nome]
+ok     slide 06 texto: Faltou, lançou. Repôs, anotou.
+ok     slide 06 texto: Frigobar conferido
+ok     slide 06 texto: na arrumação do dia.
+ok     slide 06 chips: ÁGUA · REFRIGERANTE · CERVEJA · CHOCOLATE · CONFERIDO
+ok     slide 07 texto: Hóspede que acompanha a conta não estranha
+ok     slide 07 texto: o total.
+ok     slide 07 texto: Mostre a conta parcial
+ok     slide 07 texto: antes do fim.
+ok     slide 07 bolha: Oi, [nome]! Até agora seu consumo
+ok     slide 07 bolha: está em [R$ 64,00]. Quer que eu
+ok     slide 07 bolha: mande os itens pra conferir?
+ok     slide 08 texto: Anotou na hora,
+ok     slide 08 texto: cobrou certo na saída.
+ok     slide 08 texto: Salva e manda pra quem cuida do bar e do
+ok     slide 08 texto: frigobar aí.
+
+RESULTADO: nenhuma palavra sozinha numa linha

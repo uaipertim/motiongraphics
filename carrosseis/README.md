@@ -14,6 +14,7 @@ Carrosséis estáticos para o Instagram da @fazlohospeda, com a mesma identidade
 | **Réveillon** | DICA | "Réveillon na pousada: 5 regras antes de abrir as reservas" | 8 · 1080×1350 (4:5) | `01.png` (limão) | [`reveillon/`](reveillon) |
 | **Overbooking** | DICA | "Quarto vendido duas vezes?" | 8 · 1080×1350 (4:5) | `01.png` (limão) | [`overbooking/`](overbooking) |
 | **Check-out** | DICA | "Checklist do check-out sem surpresa" (par do 04) | 8 · 1080×1350 (4:5) | `01.png` (limão) | [`checkout/`](checkout) |
+| **Consumo** | DICA | "Nada de consumo fora da conta" | 8 · 1080×1350 (4:5) | `01.png` (limão) | [`consumo/`](consumo) |
 
 ## Capas — regra fixa (a partir de outubro de 2026)
 
