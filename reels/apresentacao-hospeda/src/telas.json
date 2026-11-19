@@ -422,182 +422,176 @@
  "canais-topo": {
   "arquivo": "hospeda-v2/15-canais-celular.png",
   "origem": [
-   36,
-   354,
-   1134,
-   936
+   0,
+   350,
+   1170,
+   987
   ],
-  "w": 1098,
-  "h": 582,
-  "faixa_ate": 160,
+  "w": 1170,
+  "h": 656,
+  "faixa_ate": 349,
+  "respiro": [
+   19,
+   0,
+   0,
+   0
+  ],
   "focos": {
    "texto": [
-    6,
-    141,
-    1092,
-    402
+    48,
+    189,
+    1122,
+    433
    ]
   }
  },
- "canais": {
+ "canais-envio": {
   "arquivo": "hospeda-v2/15-canais-celular.png",
   "origem": [
-   36,
-   1176,
-   1134,
-   3336
+   24,
+   1146,
+   1146,
+   1791
   ],
-  "w": 1098,
-  "h": 2160,
+  "w": 1122,
+  "h": 645,
   "faixa_ate": 160,
   "focos": {
+   "link": [
+    48,
+    332,
+    1074,
+    454
+   ],
    "envio-airbnb": [
-    36,
-    288,
-    1062,
-    624
-   ],
-   "envio": [
-    36,
-    174,
-    1062,
-    972
-   ],
+    48,
+    326,
+    1074,
+    633
+   ]
+  }
+ },
+ "canais-recebe": {
+  "arquivo": "hospeda-v2/15-canais-celular.png",
+  "origem": [
+   24,
+   2171,
+   1146,
+   2928
+  ],
+  "w": 1122,
+  "h": 757,
+  "faixa_ate": 160,
+  "focos": {
    "recebendo": [
-    36,
-    1089,
-    1062,
-    1224
+    48,
+    108,
+    1074,
+    238
    ],
    "sincronizar": [
-    54,
-    1248,
-    1044,
-    1404
+    66,
+    250,
+    1056,
+    412
    ]
   }
  },
  "calendario-airbnb": {
   "arquivo": "hospeda-v2/16-calendario-14-dias-celular.png",
   "origem": [
-   36,
-   1026,
-   1134,
-   1920
+   24,
+   1008,
+   1146,
+   1489
   ],
-  "w": 1098,
-  "h": 894,
+  "w": 1122,
+  "h": 481,
   "faixa_ate": 160,
   "focos": {
    "linha": [
-    12,
-    168,
-    1092,
-    303
+    27,
+    192,
+    1095,
+    333
    ],
    "bloqueio": [
-    678,
-    174,
-    990,
-    300
+    687,
+    203,
+    1005,
+    323
    ]
   }
  },
  "bloqueio": {
   "arquivo": "hospeda-v2/17-bloqueio-airbnb-celular.png",
   "origem": [
-   36,
-   45,
-   1134,
-   2490
+   0,
+   504,
+   1170,
+   2527
   ],
-  "w": 1098,
-  "h": 2445,
+  "w": 1170,
+  "h": 2023,
   "faixa_ate": 0,
   "focos": {
    "ocupado": [
-    36,
-    771,
-    1062,
-    1185
-   ],
-   "texto": [
     72,
-    885,
-    1044,
-    1155
+    315,
+    1098,
+    729
    ],
    "botao": [
-    36,
-    2193,
-    1062,
-    2355
+    72,
+    1740,
+    1098,
+    1884
    ]
   }
  },
  "registrar-airbnb": {
   "arquivo": "hospeda-v2/18-registrar-reserva-airbnb-celular.png",
   "origem": [
-   48,
-   540,
-   1122,
-   1470
+   24,
+   498,
+   1146,
+   1434
   ],
-  "w": 1074,
-  "h": 930,
+  "w": 1122,
+  "h": 936,
   "faixa_ate": 160,
   "focos": {
    "reserva": [
-    60,
-    414,
-    1014,
-    858
+    87,
+    459,
+    1035,
+    912
    ]
   }
  },
  "inicio-conflito": {
   "arquivo": "hospeda-v2/19-visao-geral-avisos-canais-celular.png",
   "origem": [
-   36,
-   3285,
-   1134,
-   4770
+   24,
+   3975,
+   1146,
+   4749
   ],
-  "w": 1098,
-  "h": 1485,
+  "w": 1122,
+  "h": 774,
   "faixa_ate": 160,
   "focos": {
    "conflito": [
-    12,
-    717,
-    1086,
-    1455
+    24,
+    24,
+    1098,
+    750
    ],
    "nada": [
-    54,
-    1137,
-    1050,
-    1215
-   ]
-  }
- },
- "sino-canais": {
-  "arquivo": "hospeda-v2/20-atividades-celular.png",
-  "origem": [
-   24,
-   24,
-   1146,
-   1698
-  ],
-  "w": 1122,
-  "h": 1674,
-  "faixa_ate": 0,
-  "focos": {
-   "conflito": [
-    12,
-    1152,
-    1110,
-    1662
+    48,
+    440,
+    1074,
+    524
    ]
   }
  }

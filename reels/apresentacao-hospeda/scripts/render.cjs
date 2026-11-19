@@ -30,7 +30,7 @@ const decode = (u) => Buffer.from(u.split(',')[1], 'base64');
   const open = async () => {
     const pg = await browser.newPage({ viewport: { width: 1080, height: 1920 } });
     pg.on('pageerror', (e) => console.error('[page]', e.message));
-    await pg.goto(`http://127.0.0.1:${port}/src/index.html${PREVIA ? '?previa' : ''}`); await pg.evaluate(() => window.ready); return pg;
+    await pg.goto(`http://127.0.0.1:${port}/src/index.html?${PREVIA ? 'previa&' : ''}${args.includes('--semfoco') ? 'semfoco' : ''}`); await pg.evaluate(() => window.ready); return pg;
   };
   const OUT = path.join(ROOT, 'output'); fs.mkdirSync(OUT, { recursive: true });
   try {

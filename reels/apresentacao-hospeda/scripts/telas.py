@@ -54,26 +54,29 @@ RECORTES = {
     # só os itens 4 a 6: o item 1 (nome da pousada e datas do teste) e o texto do convite ficam fora
     'revisao':    ('14-nova-pousada-revisao-celular.png', (36, 1990, 1134, 2940), {
                    'acomodacoes': (100, 1995, 1070, 2370), 'produtos': (100, 2420, 1070, 2640), 'usuarios': (100, 2690, 1070, 2930)}),
-    # ---- Airbnb e Booking (capturas da Demo de 19/11/2026, 390 px a 3x). Estas telas não têm a faixa de cima: a marca da
-    # demonstração é o selo "Demonstração" ao lado da data do cabeçalho (y 250–350) e, em Canais, o aviso "Na demonstração,
-    # a sincronização não é feita." (y 960–1110). Os recortes ficam fora dos dois e do número da versão (rodapé do menu).
-    'canais-topo':  ('15-canais-celular.png', (36, 354, 1134, 936), {
-                     'texto': (42, 495, 1128, 756)}),
-    'canais':       ('15-canais-celular.png', (36, 1176, 1134, 3336), {
-                     'envio-airbnb': (72, 1464, 1098, 1800), 'envio': (72, 1350, 1098, 2148),
-                     'recebendo': (72, 2265, 1098, 2400), 'sincronizar': (90, 2424, 1080, 2580)}),
-    'calendario-airbnb': ('16-calendario-14-dias-celular.png', (36, 1026, 1134, 1920), {
-                     'linha': (48, 1194, 1128, 1329), 'bloqueio': (714, 1200, 1026, 1326)}),
-    # a ficha cobre a tela inteira (sem cabeçalho nem selo): o recorte pode começar no alto
-    'bloqueio':     ('17-bloqueio-airbnb-celular.png', (36, 45, 1134, 2490), {
-                     'ocupado': (72, 816, 1098, 1230), 'texto': (108, 930, 1080, 1200), 'botao': (72, 2238, 1098, 2400)}, 0),
-    'registrar-airbnb': ('18-registrar-reserva-airbnb-celular.png', (48, 540, 1122, 1470), {
-                     'reserva': (108, 954, 1062, 1398)}),
-    'inicio-conflito': ('19-visao-geral-avisos-canais-celular.png', (36, 3285, 1134, 4770), {
-                     'conflito': (48, 4002, 1122, 4740), 'nada': (90, 4422, 1086, 4500)}),
-    # o painel do sino (Atividades) cobre a tela inteira: o recorte vai do título até o fim da seção "Canais"
-    'sino-canais':  ('20-atividades-celular.png', (24, 24, 1146, 1698), {
-                     'conflito': (36, 1176, 1134, 1686)}, 0),
+    # ---- Airbnb e Booking (capturas da Demo de 19/11/2026, 390 px a 3x). A Demo de hoje tem margem lateral de 16 px (48 px
+    # na imagem), não os 20 px das telas de outubro: por isso os recortes vão de x 24 a 1146, a mesma folga de 24 px até a
+    # borda do cartão que as telas de outubro têm. Cada corte de cima e de baixo cai numa faixa vazia (medida na imagem,
+    # scripts/telas.py --bordas): nada de texto ou botão encostado ou cortado. Ficam fora o selo "Demonstração" e a data do
+    # cabeçalho (y 252–348), o aviso "Na demonstração, a sincronização não é feita." (y 990–1122) e a versão.
+    # 'pad' (cima, direita, baixo, esquerda): respiro com a cor de fundo da própria página, quando o corte não pode subir
+    # mais sem pegar o selo "Demonstração".
+    'canais-topo':  ('15-canais-celular.png', (0, 350, 1170, 987), {
+                     'texto': (48, 520, 1122, 764)}, {'faixa': 349, 'pad': (19, 0, 0, 0)}),
+    'canais-envio': ('15-canais-celular.png', (24, 1146, 1146, 1791), {
+                     'link': (72, 1478, 1098, 1600), 'envio-airbnb': (72, 1472, 1098, 1779)}),
+    'canais-recebe': ('15-canais-celular.png', (24, 2171, 1146, 2928), {
+                     'recebendo': (72, 2279, 1098, 2409), 'sincronizar': (90, 2421, 1080, 2583)}),
+    'calendario-airbnb': ('16-calendario-14-dias-celular.png', (24, 1008, 1146, 1489), {
+                     'linha': (51, 1200, 1119, 1341), 'bloqueio': (711, 1211, 1029, 1331)}),
+    # a ficha cobre a tela inteira (sem cabeçalho nem selo); o meio dela é vazio (o botão fica no pé da tela), então a
+    # câmera mostra primeiro o período e o "Ocupado pelo Airbnb" e depois desce até o botão
+    'bloqueio':     ('17-bloqueio-airbnb-celular.png', (0, 504, 1170, 2527), {
+                     'ocupado': (72, 819, 1098, 1233), 'botao': (72, 2244, 1098, 2388)}, {'faixa': 0}),
+    'registrar-airbnb': ('18-registrar-reserva-airbnb-celular.png', (24, 498, 1146, 1434), {
+                     'reserva': (111, 957, 1059, 1410)}),
+    'inicio-conflito': ('19-visao-geral-avisos-canais-celular.png', (24, 3975, 1146, 4749), {
+                     'conflito': (48, 3999, 1122, 4725), 'nada': (72, 4415, 1098, 4499)}),
 }
 
 
@@ -82,12 +85,19 @@ def main():
     meta = {}
     for nome, (arq, (x0, y0, x1, y1), focos, *resto) in RECORTES.items():
         im = Image.open(os.path.join(V2, arq)).convert('RGB')
-        faixa = resto[0] if resto else (160 if 'celular' in arq else 120)   # até onde vai a marca de demonstração no alto
+        op = resto[0] if resto else {}
+        faixa = op.get('faixa', 160 if 'celular' in arq else 120)   # até onde vai a marca de demonstração no alto
         assert y0 >= faixa, f'{nome}: o recorte entra na faixa de demonstração'
         assert x1 <= im.width and y1 <= im.height, (nome, im.size)
-        im.crop((x0, y0, x1, y1)).save(os.path.join(OUT, nome + '.png'), optimize=True)
-        meta[nome] = {'arquivo': 'hospeda-v2/' + arq, 'origem': [x0, y0, x1, y1], 'w': x1 - x0, 'h': y1 - y0, 'faixa_ate': faixa,
-                      'focos': {k: [a - x0, b - y0, c - x0, d - y0] for k, (a, b, c, d) in focos.items()}}
+        rec = im.crop((x0, y0, x1, y1))
+        pt, pr, pb, pl = op.get('pad', (0, 0, 0, 0))
+        if any((pt, pr, pb, pl)):                                   # respiro com a cor do fundo da página
+            fundo = im.getpixel((x0 + 4, y0 + 2))
+            novo = Image.new('RGB', (rec.width + pl + pr, rec.height + pt + pb), fundo); novo.paste(rec, (pl, pt)); rec = novo
+        rec.save(os.path.join(OUT, nome + '.png'), optimize=True)
+        meta[nome] = {'arquivo': 'hospeda-v2/' + arq, 'origem': [x0, y0, x1, y1], 'w': rec.width, 'h': rec.height, 'faixa_ate': faixa,
+                      **({'respiro': [pt, pr, pb, pl]} if any((pt, pr, pb, pl)) else {}),
+                      'focos': {k: [a - x0 + pl, b - y0 + pt, c - x0 + pl, d - y0 + pt] for k, (a, b, c, d) in focos.items()}}
         for k, (a, b, c, d) in focos.items():
             assert x0 <= a < c <= x1 and y0 <= b < d <= y1, f'{nome}.{k} fora do recorte'
     json.dump(meta, open(os.path.join(ROOT, 'src', 'telas.json'), 'w'), ensure_ascii=False, indent=1)
@@ -110,5 +120,30 @@ def main():
         sheet.save(os.path.join(ROOT, 'output', 'revisao', 'recortes.jpg'), quality=85)
 
 
+NOVOS = ['canais-topo', 'canais-envio', 'canais-recebe', 'calendario-airbnb', 'bloqueio', 'registrar-airbnb', 'inicio-conflito']
+
+
+def bordas():
+    """os recortes da parte Airbnb e Booking: nada encostado nem cortado nas bordas"""
+    import numpy as np
+    ok = True
+    for nome in NOVOS:
+        a = np.asarray(Image.open(os.path.join(OUT, nome + '.png')).convert('RGB')).astype(int)
+        h, w, _ = a.shape
+        miolo = a[:, 60:w - 60]
+        cheia = (miolo.max(axis=1) - miolo.min(axis=1)).max(axis=1) > 10          # linha com algo além do fundo
+        cima = int(np.argmax(cheia)); baixo = int(np.argmax(cheia[::-1]))
+        escuro = np.nonzero((a.mean(axis=2) < 170).any(axis=0))[0]                 # texto e botões escuros
+        esq, dir_ = int(escuro.min()), int(w - 1 - escuro.max())
+        # o calendário é mais alto que o cartão do vídeo: o corte de baixo é a própria linha entre as acomodações 02 e 03
+        regua = nome == 'calendario-airbnb' and baixo == 0 and (np.ptp(a[-3:, 60:w - 60].mean(axis=2), axis=1) < 40).any()
+        bom = cima >= 12 and (baixo >= 12 or regua) and esq >= 36 and dir_ >= 36
+        ok &= bom
+        print(f'  {"ok   " if bom else "FALHA"} {nome:18s} {w}×{h} · vazio no alto {cima} px, embaixo {baixo} px · texto a {esq} px da esquerda e {dir_} px da direita' + (' · embaixo: a linha entre as acomodações 02 e 03' if regua else ''))
+    return ok
+
+
 if __name__ == '__main__':
+    if '--bordas' in sys.argv:
+        sys.exit(0 if bordas() else 1)
     main()

@@ -37,7 +37,7 @@
   const kick = (t, t0, d = 0.25) => (t < t0 ? 0 : Math.exp(-((t - t0) / d) * 4));
   const hash = (n) => { const x = Math.sin(n * 127.1) * 43758.5453; return x - Math.floor(x); };
 
-  let M = null, LOGO = null, LN = null, DUR = 0, PREVIA = false, PAGES = [], IDS = {}, T = {}, BOXES = null, TEL = null, IMG = {}, SHOTS = [], CENAS = [];
+  let M = null, LOGO = null, LN = null, DUR = 0, PREVIA = false, PAGES = [], IDS = {}, T = {}, BOXES = null, TEL = null, IMG = {}, SHOTS = [], CENAS = [], SEMFOCO = false;   // SEMFOCO: prova dos recortes, sem contorno
   function BOX(nome, x0, y0, x1, y1) { if (BOXES) BOXES.push({ nome, x0, y0, x1, y1 }); }
   function setFont(c, fam, size, weight, ls = 0) { c.font = `${weight} ${size}px ${fam}`; c.letterSpacing = `${ls}px`; }
   function tw(s, fam, size, weight, ls = 0) { setFont(M, fam, size, weight, ls); return M.measureText(s).width - (s.length ? ls : 0); }
@@ -172,14 +172,14 @@
       ['dia', 'dia', cena.dia.t0, 'sobe', [{ t: cena.dia.t0, foco: null }, k('hospedado', 'hospedado'), k('chega', 'chega'), k('sai', 'sai'), k('entrou', 'entrou')]],
       ['reservas', 'calendario', cena.reservas.t0, 'sobe', [{ t: cena.reservas.t0, foco: null }, k('acomodacao', 'acomodacoes'), k('reserva', 'reservas')]],
       ['reservas', 'duplicada', F.duplicada.t0 - 0.35, 'empurra', [{ t: F.duplicada.t0, foco: null }, k('duas', 'aviso')]],
-      // Airbnb e Booking (19/11/2026): Canais (envio e recebimento) → o bloqueio no calendário → a ficha → a reserva → os avisos
+      // Airbnb e Booking (19/11/2026): Canais (topo, envio, recebimento) → o bloqueio no calendário → a ficha → a reserva → o aviso no Início
       ['canais', 'canais-topo', cena.canais.t0, 'sobe', [{ t: cena.canais.t0, foco: null }, k('airbnb', 'texto')]],
-      ['canais', 'canais', at('canais') - 0.35, 'empurra', [{ t: at('canais') - 0.35, foco: null }, k('link', 'envio-airbnb'), k('fecha', 'envio'), k('minutos', 'recebendo'), k('le', 'sincronizar')]],
+      ['canais', 'canais-envio', at('canais') - 0.35, 'empurra', [{ t: at('canais') - 0.35, foco: null }, k('link', 'link'), k('fecha', 'envio-airbnb')]],
+      ['canais', 'canais-recebe', F.canais3.t0 - 0.35, 'empurra', [{ t: F.canais3.t0 - 0.35, foco: null }, k('minutos', 'recebendo'), k('le', 'sincronizar')]],
       ['canais', 'calendario-airbnb', at('vendido') - 0.35, 'empurra', [{ t: at('vendido') - 0.35, foco: null }, k('vendido', 'linha'), k('bloqueado', 'bloqueio')]],
-      ['canais', 'bloqueio', F.canais4.t0 - 1.2, 'empurra', [{ t: F.canais4.t0 - 1.2, foco: 'ocupado', hl: false }, k('toque', 'botao')]],
+      ['canais', 'bloqueio', F.canais4.t0 - 1.2, 'empurra', [{ t: F.canais4.t0 - 1.2, foco: null }, k('toque', 'botao')]],
       ['canais', 'registrar-airbnb', T.virou, 'empurra', [{ t: T.virou, foco: null }, k('checkin', 'reserva')]],
-      ['canais', 'inicio-conflito', F.canais5.t0 - 0.35, 'empurra', [{ t: F.canais5.t0 - 0.35, foco: null }, k('bater', 'conflito'), k('naocancela', 'nada')]],
-      ['canais', 'sino-canais', F.canais6.t0 - 0.35, 'empurra', [{ t: F.canais6.t0 - 0.35, foco: null }, k('reduz', 'conflito')]],
+      ['canais', 'inicio-conflito', F.canais5.t0 - 0.35, 'empurra', [{ t: F.canais5.t0 - 0.35, foco: null }, k('bater', 'conflito'), k('naocancela', 'nada'), k('reduz', 'conflito')]],
       ['sinal', 'sinal', cena.sinal.t0, 'sobe', [{ t: cena.sinal.t0, foco: null }, k('sinal', 'sinal'), k('saldo', 'saldo')]],
       ['sinal', 'reter', F.cancela.t0 - 0.35, 'empurra', [{ t: F.cancela.t0, foco: null }, k('reter', 'reter')]],
       ['sinal', 'devolver', at('devolver') - 0.12, 'troca', [{ t: at('devolver') - 0.12, foco: 'reter', hl: false }, k('devolver', 'devolver'), k('saida', 'info')]],
@@ -263,7 +263,7 @@
     // o foco ativo: escurece o resto e desenha o contorno limão
     let ativo = null;
     s.keys.forEach((k, i) => { if (i && k.hl !== false && k.foco && t >= k.t - 0.05) ativo = k; });
-    if (ativo) {
+    if (ativo && !SEMFOCO) {
       const [fa, fb, fc, fd] = tel.focos[ativo.foco], pad = 10;
       const rx = ox + fa * z - pad, ry = oy + fb * z - pad, rw2 = (fc - fa) * z + 2 * pad, rh2 = (fd - fb) * z + 2 * pad;
       const u = E.outCubic(p(t, ativo.t - 0.05, ativo.t + 0.35));
@@ -711,7 +711,7 @@
   }
   function renderAt(c, t) { frame(c, clamp(t, 0, DUR - 1e-4)); }
   function init(img, linha, telas, imgs, o = {}) {
-    LOGO = img; LN = linha; TEL = telas; IMG = imgs; DUR = linha.duracao; PREVIA = !!o.previa;
+    LOGO = img; LN = linha; TEL = telas; IMG = imgs; DUR = linha.duracao; PREVIA = !!o.previa; SEMFOCO = !!o.semFoco;
     M = document.createElement('canvas').getContext('2d');
     tempos(); layoutLegenda();
   }

@@ -29,7 +29,7 @@
     const linha = await (await fetch('../linha.json?' + Date.now())).json();
     const telas = await (await fetch('telas.json?' + Date.now())).json(), imgs = {};
     await Promise.all(Object.keys(telas).map(async (n) => { const im = new Image(); im.src = 'telas/' + n + '.png'; await im.decode(); imgs[n] = im; }));
-    REEL.init(img, linha, telas, imgs, { previa: q.has('previa') });
+    REEL.init(img, linha, telas, imgs, { previa: q.has('previa'), semFoco: q.has('semfoco') });
     REEL.renderAt(ctx, Number(q.get('t') || 0));
   })();
   window.frameAt = (t) => { REEL.renderAt(ctx, t); return ctx.canvas.toDataURL('image/png'); };
