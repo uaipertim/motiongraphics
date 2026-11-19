@@ -1,0 +1,48 @@
+CHECKLIST DO CHECK-OUT — linhas de texto (palavra sozinha numa linha = FALHA)
+
+ok     slide 01 texto: Checklist
+ok     slide 01 texto: do check-out
+ok     slide 01 texto: sem surpresa.
+ok     slide 02 texto: Mala na porta.
+ok     slide 02 texto: E a conta ainda aberta.
+ok     slide 02 texto: Check-out bom é o que dura dois minutos.
+ok     slide 02 card: CHALÉ 3 · SAÍDA · 11:52
+ok     slide 02 carimbo: CONTA ABERTA
+ok     slide 03 texto: Conta revisada com calma não vira discussão
+ok     slide 03 texto: na saída.
+ok     slide 03 texto: Feche o consumo
+ok     slide 03 texto: na noite anterior.
+ok     slide 03 texto: [R$ 86,00]
+ok     slide 03 chips: frigobar · bar · restaurante
+ok     slide 04 texto: Hóspede avisado chega no balcão pronto
+ok     slide 04 texto: pra pagar.
+ok     slide 04 texto: Avise o valor
+ok     slide 04 texto: antes da hora de sair.
+ok     slide 04 bolha: Bom dia, [nome]! Seu check-out é até as
+ok     slide 04 bolha: [12h]. O consumo da estadia ficou em
+ok     slide 04 bolha: [R$ 86,00]. Pode acertar por
+ok     slide 04 bolha: [Pix ou cartão] quando quiser.
+ok     slide 05 texto: Saldo zero antes de liberar a saída.
+ok     slide 05 texto: Receba e registre
+ok     slide 05 texto: no mesmo momento.
+ok     slide 05 texto: R$ 0,00
+ok     slide 05 selo: QUITADO
+ok     slide 06 texto: Conferir com o hóspede ainda ali evita mensagem
+ok     slide 06 texto: chata depois.
+ok     slide 06 texto: Chave devolvida,
+ok     slide 06 texto: acomodação conferida.
+ok     slide 06 chips: CHAVE · CONTROLE · TOALHAS · FRIGOBAR · ITENS ESQUECIDOS · CONFERIDO
+ok     slide 07 texto: Avaliação pedida na hora certa vira a próxima
+ok     slide 07 texto: reserva de alguém.
+ok     slide 07 texto: Agradeça
+ok     slide 07 texto: e peça a avaliação.
+ok     slide 07 bolha: Obrigado pela estadia, [nome]! Se
+ok     slide 07 bolha: puder deixar sua opinião no Google,
+ok     slide 07 bolha: ajuda muito a gente: [link].
+ok     slide 07 bolha: Volte sempre!
+ok     slide 08 texto: Check-out tranquilo
+ok     slide 08 texto: começa na noite anterior.
+ok     slide 08 texto: Salva pra usar na próxima saída e manda pra quem
+ok     slide 08 texto: cuida da recepção aí.
+
+RESULTADO: nenhuma palavra sozinha numa linha

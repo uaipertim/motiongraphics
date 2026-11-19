@@ -13,6 +13,7 @@ Carrosséis estáticos para o Instagram da @fazlohospeda, com a mesma identidade
 | **Passagem da recepção** | DICA | "Outra pessoa vai assumir a recepção. O que ela precisa saber?" (quarta, 28/10) | 6 · 1080×1350 (4:5) | `01.png` (limão) | [`passagem-recepcao/`](passagem-recepcao) |
 | **Réveillon** | DICA | "Réveillon na pousada: 5 regras antes de abrir as reservas" | 8 · 1080×1350 (4:5) | `01.png` (limão) | [`reveillon/`](reveillon) |
 | **Overbooking** | DICA | "Quarto vendido duas vezes?" | 8 · 1080×1350 (4:5) | `01.png` (limão) | [`overbooking/`](overbooking) |
+| **Check-out** | DICA | "Checklist do check-out sem surpresa" (par do 04) | 8 · 1080×1350 (4:5) | `01.png` (limão) | [`checkout/`](checkout) |
 
 ## Capas — regra fixa (a partir de outubro de 2026)
 
