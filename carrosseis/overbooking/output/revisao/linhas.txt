@@ -1,0 +1,43 @@
+QUARTO VENDIDO DUAS VEZES — linhas de texto (palavra sozinha numa linha = FALHA)
+
+ok     slide 01 texto: Quarto vendido
+ok     slide 01 texto: duas vezes?
+ok     slide 02 texto: Duas conversas.
+ok     slide 02 texto: Um chalé só.
+ok     slide 02 texto: Acontece quando a agenda está em mais de
+ok     slide 02 texto: um lugar.
+ok     slide 02 balão: Fechado o Chalé 2 pro dia 20?
+ok     slide 02 resposta: Fechado!
+ok     slide 02 balão: Fechado o Chalé 2 pro dia 20?
+ok     slide 02 resposta: Fechado!
+ok     slide 02 card: CHALÉ 2 · 20 a 22/12
+ok     slide 02 carimbo: DUAS RESERVAS
+ok     slide 03 texto: Caderno, celular e recado da recepção: tudo vai
+ok     slide 03 texto: para o mesmo lugar.
+ok     slide 03 texto: Uma agenda só
+ok     slide 03 texto: para todas as reservas.
+ok     slide 03 chips: Caderno · WhatsApp · Recado
+ok     slide 03 card: TODAS AS RESERVAS · AGENDA ÚNICA
+ok     slide 04 texto: A resposta vem depois da conferência, não antes.
+ok     slide 04 texto: Confira a data
+ok     slide 04 texto: antes de dizer sim.
+ok     slide 04 bolha: Deixa eu conferir a agenda e já
+ok     slide 04 bolha: te confirmo, [nome]!
+ok     slide 05 texto: Sem sinal no prazo, a data volta a ficar livre.
+ok     slide 05 texto: Pré-reserva com prazo
+ok     slide 05 texto: até o sinal chegar.
+ok     slide 05 texto: segura até [24h]
+ok     slide 06 texto: Recebeu, bloqueou. Nada de deixar pra depois.
+ok     slide 06 texto: Sinal caiu,
+ok     slide 06 texto: data bloqueada na hora.
+ok     slide 06 chips: SINAL RECEBIDO → DATA BLOQUEADA
+ok     slide 07 texto: Data presa por engano também é venda perdida.
+ok     slide 07 texto: Cancelou?
+ok     slide 07 texto: Libere a data na hora.
+ok     slide 07 texto: [20 a 22/12]
+ok     slide 07 selos: BLOQUEADA (riscado) → LIVRE
+ok     slide 08 texto: Uma agenda,
+ok     slide 08 texto: um chalé por vez.
+ok     slide 08 texto: Salva e manda pra quem responde as reservas aí.
+
+RESULTADO: nenhuma palavra sozinha numa linha

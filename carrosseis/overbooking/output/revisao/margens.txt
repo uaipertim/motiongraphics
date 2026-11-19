@@ -1,0 +1,12 @@
+QUARTO VENDIDO DUAS VEZES — margens (80 px nas laterais)
+
+OK     slide 01 (capa limão): conteúdo em x 81–999, y 494–1260
+OK     slide 02: conteúdo em x 79–913, y 204–1251
+OK     slide 03: conteúdo em x 79–1000, y 94–1251
+OK     slide 04: conteúdo em x 80–999, y 94–1251
+OK     slide 05: conteúdo em x 81–999, y 94–1251
+OK     slide 06: conteúdo em x 82–995, y 94–1251
+OK     slide 07: conteúdo em x 81–947, y 94–1251
+OK     slide 08: conteúdo em x 81–958, y 204–1243
+
+RESULTADO: tudo dentro da margem de 80 px
