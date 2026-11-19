@@ -5,7 +5,7 @@ Vídeo explicativo de como o sistema funciona na prática, para a pousada que ac
 O roteiro aprovado (com os ajustes de 30/10/2026) está em [`ROTEIRO.md`](ROTEIRO.md). **Não publicar antes do OK.**
 
 ▶ **Para enviar no WhatsApp:** [`output/fazlo-hospeda-apresentacao-whatsapp.mp4`](output/fazlo-hospeda-apresentacao-whatsapp.mp4) (14 MB, 1080×1920, 30 fps, CRF 28, −14 LUFS).
-▶ **Mestre:** [`output/fazlo-hospeda-apresentacao.mp4`](output/fazlo-hospeda-apresentacao.mp4) (57 MB, 60 fps). **Trecho novo para aprovar:** [`output/trecho-airbnb-booking.mp4`](output/trecho-airbnb-booking.mp4) (0:47,9–1:33,0).
+▶ **Mestre:** [`output/fazlo-hospeda-apresentacao.mp4`](output/fazlo-hospeda-apresentacao.mp4) (56 MB, 60 fps). **Trecho novo para a aprovação final:** [`output/trecho-airbnb-booking.mp4`](output/trecho-airbnb-booking.mp4) (0:47,9–1:33,0).
 **Revisão técnica:** [`output/revisao/relatorio.txt`](output/revisao/relatorio.txt).
 
 ## Cenas (no tempo da locução)
@@ -60,11 +60,11 @@ O roteiro aprovado (com os ajustes de 30/10/2026) está em [`ROTEIRO.md`](ROTEIR
 
 ## Revisão (`scripts/qa.py`): aprovado
 
-- **Formato e som:** 221,4 s; −14,0 LUFS; pico −2,2 dBTP; trilha 10,5 dB abaixo da voz.
-- **Legenda:** 52 páginas, todas ≥ 1,5 s. "R$ 99,90" e "R$ 79,90" aparecem assim na legenda.
+- **Formato e som:** 221,4 s; −14,0 LUFS; pico −2,1 dBTP no mestre e −1,5 na versão WhatsApp (o AAC de 128 kbps sobe o pico; fica no limite de −1,5); trilha 10,5 dB abaixo da voz.
+- **Legenda:** 65 páginas, todas ≥ 1,5 s. "R$ 99,90" e "R$ 79,90" aparecem assim na legenda.
 - **Sincronia:** 2 ms em média e 36 ms no máximo. Cinco palavras curtas ("o", "e") tinham a marcação da API adiantada até 178 ms; o `linha.py` as acerta pelo início medido no áudio montado.
 - **Telas:**
-  - 15 recortes, todos de `hospeda-v2/` e abaixo da faixa de demonstração;
+  - 22 recortes, todos de `hospeda-v2/` e abaixo da faixa de demonstração;
   - cada tela fica ≥ 3,5 s;
   - a última de cada assunto fica parada ≥ 2,5 s depois do último foco.
 - **Miniatura:** o centro do play está livre.

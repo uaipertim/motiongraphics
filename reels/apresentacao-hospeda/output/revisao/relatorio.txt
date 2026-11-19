@@ -9,7 +9,7 @@ OK     vídeo e áudio com a mesma duração (Δ 3 ms)
 
 SOM
 OK     loudness integrado -14.0 LUFS (alvo −14)
-OK     pico real -2.2 dBTP (limite −1,5)
+OK     pico real -2.1 dBTP (limite −1,5)
 OK     a trilha fica 10.5 dB abaixo da voz (voz -13.2 LUFS, trilha -23.7 LUFS; alvo ~10 dB, com ducking)
 
 LEGENDA
@@ -30,7 +30,7 @@ OK     todas as caixas da cena entre y 265 e 1536
 OK     miniatura (quadro 0): o centro onde fica o play (raio 240 px) está livre (0 pixels acesos)
 OK     22 recortes, todos de hospeda-v2/ e abaixo da faixa "Demonstração · Quero usar"
 OK     22 telas; cada uma fica ≥ 3,5 s na tela (a menor: dayuse 3.58 s)
-       dia 11.3s · calendario 8.2s · duplicada 8.2s · canais-topo 6.7s · canais 13.5s · calendario-airbnb 4.5s · bloqueio 4.1s · registrar-airbnb 5.0s · inicio-conflito 7.8s · sino-canais 4.5s · sinal 7.5s · reter 5.9s · devolver 4.9s · comanda 9.0s · checkout 7.4s · caixa 9.0s · fechamento 7.7s · dayuse 3.6s · dayuse-ativo 3.9s · diario 4.4s · acomodacoes 8.4s · revisao 4.5s
+       dia 11.3s · calendario 8.2s · duplicada 8.2s · canais-topo 6.7s · canais-envio 8.8s · canais-recebe 5.2s · calendario-airbnb 4.5s · bloqueio 4.1s · registrar-airbnb 5.0s · inicio-conflito 11.7s · sinal 7.5s · reter 5.9s · devolver 4.9s · comanda 9.0s · checkout 7.4s · caixa 9.0s · fechamento 7.7s · dayuse 3.6s · dayuse-ativo 3.9s · diario 4.4s · acomodacoes 8.4s · revisao 4.5s
 OK     tempo de leitura: a última tela de cada cena fica parada ≥ 2,5 s depois do último foco (dia 3.1s · reservas 5.2s · canais 3.8s · sinal 3.8s · comanda 3.3s · caixa 3.1s · dayuse 2.6s · comeca 2.8s)
 OK     valores na legenda: ['R$ 99,90', 'R$ 79,90'] (a voz fala por extenso)
 OK     grafia oficial: nenhuma grafia fonética (Fázlo, Hospéda, Uátsap) na legenda nem no quadro
