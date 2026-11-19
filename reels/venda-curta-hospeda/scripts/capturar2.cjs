@@ -1,0 +1,32 @@
+// Estados extras (mesmas regras do capturar.cjs): check-in, caixa conferido e o topo de Relatórios.
+const fs = require('fs'), path = require('path');
+const { chromium } = require('/opt/node-tools/node_modules/playwright');
+const OUT = path.join(__dirname, '..', 'telas');
+const C = require('fs').readFileSync(path.join(__dirname, 'capturar.cjs'), 'utf8');
+const ESCONDE = eval('(' + C.match(/const ESCONDE = (\(\) => \{[\s\S]*?\n\};)/)[1].replace(/;$/, '') + ')');
+(async () => {
+  const nav = await chromium.launch();
+  const ctx = await nav.newContext({ viewport: { width: 390, height: 844 }, deviceScaleFactor: 3, isMobile: true, hasTouch: true, locale: 'pt-BR' });
+  const pag = await ctx.newPage();
+  const foto = async (nome) => { await pag.evaluate(ESCONDE); await pag.waitForTimeout(200); await pag.screenshot({ path: path.join(OUT, nome + '.png') }); console.log(nome); };
+  const mais = async (nome) => { await pag.getByText('Mais', { exact: true }).click(); await pag.waitForTimeout(700); await pag.locator('[data-testid=tenant-more-menu]').getByText(nome, { exact: true }).first().click(); await pag.waitForTimeout(1500); };
+  await pag.goto('https://demo.fazlohospeda.com.br/', { waitUntil: 'networkidle' });
+  await pag.getByText('Entrar na demonstração').click(); await pag.waitForTimeout(2500);
+  await pag.getByText('Fazer check-in', { exact: true }).first().click(); await pag.waitForTimeout(1500);
+  await foto('checkin');
+  console.log((await pag.evaluate(() => document.body.innerText)).slice(-900));
+  await pag.goto('https://demo.fazlohospeda.com.br/', { waitUntil: 'networkidle' });
+  await pag.getByText('Entrar na demonstração').click(); await pag.waitForTimeout(2500);
+  await mais('Caixa');
+  await pag.getByText('Fechar caixa', { exact: true }).first().click(); await pag.waitForTimeout(1200);
+  const campo = pag.locator('[role=dialog] input').first();
+  await campo.click(); await campo.type('380', { delay: 40 }); await pag.waitForTimeout(800);
+  await foto('caixa-fechar-confere');
+  console.log((await pag.evaluate(() => document.body.innerText)).slice(-500));
+  await pag.keyboard.press('Escape'); await pag.waitForTimeout(500);
+  await pag.goto('https://demo.fazlohospeda.com.br/', { waitUntil: 'networkidle' });
+  await pag.getByText('Entrar na demonstração').click(); await pag.waitForTimeout(2500);
+  await mais('Relatórios');
+  await foto('relatorios-topo');
+  await nav.close();
+})();

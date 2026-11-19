@@ -1,0 +1,323 @@
+{
+ "inicio": {
+  "escondidos": 10,
+  "titulo": [
+   0,
+   192,
+   1170,
+   474
+  ],
+  "recebido": [
+   48,
+   522,
+   1122,
+   1361
+  ],
+  "hospedados": [
+   48,
+   1409,
+   382,
+   1787
+  ],
+  "chegadas": [
+   418,
+   1409,
+   752,
+   1787
+  ],
+  "saidas": [
+   788,
+   1409,
+   1122,
+   1787
+  ]
+ },
+ "inicio-conflito": {
+  "escondidos": 5,
+  "conflito": [
+   48,
+   -1411,
+   1122,
+   1736
+  ],
+  "nada": [
+   99,
+   935,
+   1071,
+   1223
+  ],
+  "booking": [
+   48,
+   -1411,
+   1122,
+   1736
+  ]
+ },
+ "inicio-chegadas": {
+  "escondidos": 5,
+  "chegadas": [
+   48,
+   1247,
+   1122,
+   1331
+  ],
+  "checkin": [
+   99,
+   1880,
+   1071,
+   2012
+  ]
+ },
+ "canais": {
+  "escondidos": 6,
+  "texto": [
+   48,
+   522,
+   1122,
+   762
+  ],
+  "bica": [
+   99,
+   1221,
+   1071,
+   1347
+  ]
+ },
+ "canais-links": {
+  "escondidos": 5,
+  "enviar": [
+   48,
+   207,
+   1122,
+   2373
+  ],
+  "linkativo": [
+   99,
+   576,
+   1071,
+   636
+  ],
+  "receber": [
+   48,
+   207,
+   1122,
+   2373
+  ],
+  "recebendo": [
+   99,
+   1383,
+   1071,
+   1443
+  ],
+  "sincronizar": [
+   99,
+   1467,
+   1071,
+   1611
+  ]
+ },
+ "calendario": {
+  "escondidos": 5,
+  "airbnb": [
+   723,
+   1223,
+   1017,
+   1319
+  ],
+  "bica01": [
+   81,
+   1267,
+   378,
+   1319
+  ]
+ },
+ "bloqueio": {
+  "escondidos": 5,
+  "ocupado": [
+   723,
+   1223,
+   1017,
+   1319
+  ],
+  "registrar": [
+   72,
+   2244,
+   1098,
+   2388
+  ],
+  "selo": [
+   822,
+   1248,
+   966,
+   1293
+  ]
+ },
+ "nova": {
+  "escondidos": 10,
+  "entrada": [
+   111,
+   861,
+   1059,
+   1083
+  ]
+ },
+ "nova-datas": {
+  "escondidos": 5,
+  "confirmar": [
+   48,
+   2340,
+   1122,
+   2484
+  ]
+ },
+ "nova-livres": {
+  "escondidos": 5,
+  "livres": [
+   111,
+   780,
+   1059,
+   843
+  ],
+  "primeira": [
+   114,
+   870,
+   1056,
+   1176
+  ]
+ },
+ "hospedagens": {
+  "escondidos": 5,
+  "ana": [
+   99,
+   2205,
+   1071,
+   2397
+  ]
+ },
+ "ficha": {
+  "escondidos": 5,
+  "nome": [
+   48,
+   657,
+   1122,
+   921
+  ]
+ },
+ "ficha-comanda": {
+  "escondidos": 5,
+  "comanda": [
+   48,
+   420,
+   1122,
+   504
+  ],
+  "agua": [
+   111,
+   810,
+   809,
+   921
+  ],
+  "cerveja": [
+   111,
+   1134,
+   809,
+   1245
+  ]
+ },
+ "ficha-saldo": {
+  "escondidos": 5,
+  "saldo": [
+   162,
+   900,
+   1008,
+   972
+  ],
+  "checkout": [
+   111,
+   1413,
+   1059,
+   1557
+  ],
+  "libera": [
+   111,
+   1239,
+   1059,
+   1761
+  ]
+ },
+ "caixa": {
+  "escondidos": 5,
+  "esperado": [
+   108,
+   1158,
+   1062,
+   1362
+  ],
+  "fechar": [
+   48,
+   894,
+   1122,
+   1038
+  ]
+ },
+ "caixa-formas": {
+  "escondidos": 5,
+  "recebido": [
+   111,
+   420,
+   1059,
+   603
+  ],
+  "pix": [
+   111,
+   603,
+   1059,
+   714
+  ]
+ },
+ "caixa-fechar": {
+  "escondidos": 5,
+  "contado": [
+   60,
+   1248,
+   1110,
+   2472
+  ],
+  "esperado": [
+   108,
+   1158,
+   1062,
+   1362
+  ]
+ },
+ "relatorios": {
+  "escondidos": 5,
+  "recebimentos": [
+   111,
+   600,
+   1059,
+   804
+  ],
+  "total": [
+   111,
+   864,
+   759,
+   972
+  ]
+ },
+ "relatorios-ocupacao": {
+  "escondidos": 5,
+  "ocupacao": [
+   111,
+   1008,
+   1059,
+   2004
+  ],
+  "hoje": [
+   111,
+   1092,
+   1059,
+   1356
+  ]
+ }
+}
