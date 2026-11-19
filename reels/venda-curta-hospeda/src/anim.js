@@ -246,22 +246,54 @@
     c.restore();
   }
   function logo(c, x, y, w, a = 1) { const h = w * LOGO.height / LOGO.width; c.save(); c.globalAlpha *= a; c.drawImage(LOGO, x - w / 2, y - h / 2, w, h); c.restore(); }
+  // Cena da marca. Os selos ficam SEMPRE fora de uma área livre em volta do logo (símbolo e nome "FAZLO Hospeda"):
+  // entram já em volta dele, chegam mais perto em "num lugar só" sem encostar e somem no lugar onde estão.
+  const SELOS = [  // [nome, cor, perto (x, y), longe (x, y)]
+    ['WhatsApp', '#25D366', [205, 480], [210, 400]],
+    ['Airbnb', '#FF5A5F', [875, 480], [870, 400]],
+    ['Booking', '#1E5BD9', [540, 1255], [540, 1330]],
+  ];
+  function geoMarca(t, m) {
+    const u = E.back(p(t, m.fazlo - 0.1, m.fazlo + 0.45), 2.2);
+    font(M2, D, 112, 900, -2); const wf = M2.measureText('FAZLO').width;
+    font(M2, D, 62, 800, -0.5); const tot = wf + 26 + M2.measureText('Hospeda').width + 64;
+    const logo = u > 0 ? [
+      { tipo: 'circulo', cx: 540, cy: 760 - 120 * u, r: 180 * u },
+      { tipo: 'ret', x0: 540 - tot / 2 * u, y0: 760 + (170 - 50) * u, x1: 540 + tot / 2 * u, y1: 760 + (170 + 50) * u },
+    ] : [];
+    const uk = t >= m.lugar + 0.6 ? E.back(p(t, m.lugar + 0.6, m.lugar + 0.95), 3) : 0;
+    if (uk > 0) logo.push({ tipo: 'circulo', cx: 540, cy: 1110, r: 58 * uk });
+    const ent = E.back(p(t, m.t0, m.t0 + 0.4), 2), perto = E.io(p(t, m.lugar - 0.25, m.lugar + 0.25)), some = E.in(p(t, m.lugar + 0.3, m.lugar + 0.6));
+    const selos = SELOS.map(([nome, cor, P, L], k) => {
+      font(M2, D, 46, 900, -0.5); const w = M2.measureText(nome).width + 64;
+      const esc = 0.9 * clamp(ent, 0, 1.15) * (1 - some), fl = 8 * Math.sin(t * 2.4 + k * 2);
+      const x = lerp(L[0], P[0], perto), y = lerp(L[1], P[1], perto) + fl * (1 - perto);
+      return { nome, cor, x, y, esc, x0: x - w / 2 * esc, x1: x + w / 2 * esc, y0: y - 42 * esc, y1: y + 42 * esc };
+    }).filter((q) => q.esc > 0.005);
+    return { u, uk, logo, selos };
+  }
+  function folga(g) {                                            // menor distância (px) entre um selo e o logo
+    let min = 1e9;
+    for (const q of g.selos) for (const L of g.logo) {
+      let d;
+      if (L.tipo === 'circulo') { const dx = Math.max(q.x0 - L.cx, 0, L.cx - q.x1), dy = Math.max(q.y0 - L.cy, 0, L.cy - q.y1); d = Math.hypot(dx, dy) - L.r; }
+      else { const dx = Math.max(q.x0 - L.x1, 0, L.x0 - q.x1), dy = Math.max(q.y0 - L.y1, 0, L.y0 - q.y1); d = Math.hypot(dx, dy); }
+      min = Math.min(min, d);
+    }
+    return min;
+  }
+  let M2 = null;
   function marcaCena(c, t, m) {
     if (!m || t < m.t0 || t >= m.t1) return;
-    const sai = E.in(p(t, m.t1 - 0.3, m.t1));
+    M2 = M2 || document.createElement('canvas').getContext('2d');
+    const sai = E.in(p(t, m.t1 - 0.3, m.t1)), g = geoMarca(t, m);
     c.save(); c.globalAlpha = 1 - sai;
     // anel de impacto
     const ui = p(t, m.fazlo - 0.05, m.fazlo + 0.6);
     if (ui > 0 && ui < 1) { c.beginPath(); c.arc(540, 760, 120 + 620 * E.out(ui), 0, TAU); c.strokeStyle = rgba(C.lime, 1 - ui); c.lineWidth = 26 * (1 - ui); c.stroke(); }
-    const u = E.back(p(t, m.fazlo - 0.1, m.fazlo + 0.45), 2.2);
-    if (u > 0) { c.save(); c.translate(540, 760); c.scale(u, u); logo(c, 0, -120, 360); nome(c, 0, 170, 1); c.restore(); }
-    // "num lugar só": os ícones dos canais e do caderno são puxados para dentro do logo
-    const ul = E.out(p(t, m.lugar - 0.2, m.lugar + 0.4));
-    if (t < m.lugar + 0.4) {
-      [['WhatsApp', '#25D366', 250, 470], ['Airbnb', '#FF5A5F', 820, 1000], ['Booking', '#1E5BD9', 290, 1060]].forEach(([n, cor, x, y]) =>
-        chipCanal(c, lerp(x, 540, ul), lerp(y, 760, ul), n, cor, lerp(0.9, 0.1, ul), 0));
-    }
-    if (ul >= 1) { const uk = E.back(p(t, m.lugar + 0.4, m.lugar + 0.75), 3); c.save(); c.translate(540, 1110); c.scale(uk, uk);
+    for (const q of g.selos) chipCanal(c, q.x, q.y, q.nome, q.cor, q.esc, 0);
+    if (g.u > 0) { c.save(); c.translate(540, 760); c.scale(g.u, g.u); logo(c, 0, -120, 360); nome(c, 0, 170, 1); c.restore(); }
+    if (g.uk > 0) { c.save(); c.translate(540, 1110); c.scale(g.uk, g.uk);
       c.beginPath(); c.arc(0, 0, 58, 0, TAU); c.fillStyle = C.lime; c.fill();
       c.strokeStyle = C.ink; c.lineWidth = 12; c.lineCap = 'round'; c.lineJoin = 'round'; c.beginPath(); c.moveTo(-24, 2); c.lineTo(-6, 20); c.lineTo(26, -16); c.stroke(); c.restore(); }
     c.restore();
@@ -347,6 +379,8 @@
   }
   window.CURTO = {
     eventos: () => eventos(),
+    marca: (t) => { M2 = M2 || document.createElement('canvas').getContext('2d'); const g = geoMarca(t, PLANO.marca); return { folga: folga(g), selos: g.selos.map((q) => [q.nome, q.x0, q.y0, q.x1, q.y1]), logo: g.logo }; },
+    marcaT: () => [PLANO.marca.t0, PLANO.marca.t1, PLANO.marca.lugar],
     plano: () => ({ telas: PLANO.telas.map((s) => ({ img: s.img, t0: s.t0, t1: s.t1, focos: [...(s.aneis || []).map((r) => r.t), ...(s.saltos || []).map((j) => j.t)] })), legenda: PLANO.legenda.map((g) => ({ t0: g.t0, t1: g.t1, texto: g.palavras.map((w) => w.w).join(' ') })) }),
     init(imgs, logo, plano) { IMG = imgs; LOGO = logo; PLANO = plano; DUR = plano.duracao; },
     renderAt(c, t) { frame(c, Math.min(Math.max(t, 0), DUR - 1e-4)); },

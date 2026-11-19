@@ -48,7 +48,7 @@ Os tempos são estimados no ritmo de 13 a 14 letras por segundo; os definitivos 
 | 0,0–2,4 | 1 | **Sem tela (gancho).** | Dois cartões de reserva iguais, "WhatsApp · Chalé 05 · 23 a 26/11" e "Airbnb · Chalé 05 · 23 a 26/11", entram dos dois lados e batem. A tela treme e salta o selo âmbar "2×". |
 | 2,4–6,3 | 2 | **Sem tela.** | Os selos "WhatsApp", "Airbnb", "Booking" e um caderno caem em volta do cartão e embolam. |
 | 6,3–8,8 | 3 | **Sem tela.** | Uma gaveta de caixa com "R$ ???" piscando em âmbar. |
-| 8,8–11,6 | 4 | **Marca.** | Tudo é sugado para o centro e o logo FAZLO Hospeda estoura em limão. |
+| 8,8–11,6 | 4 | **Marca.** | O logo FAZLO Hospeda estoura em limão com os selos WhatsApp, Airbnb e Booking em volta, sem encostar nele. Em "num lugar só" os selos chegam mais perto, ainda com margem livre, e somem no lugar. |
 | 11,6–14,6 | 5 | `calendario` | O celular entra girando com a tela inteira. A câmera aproxima na linha da Bica D'Água 01. |
 | 14,6–20,3 | 6 | `canais-links` → `calendario` | Em "manda", contorno em "Link ativo · lido pela última vez há 40 minutos" (Canais). Em "traz pra cá", volta ao calendário. Em "bloqueado", o selo "Airbnb" com o cadeado salta numa janela. |
 | 20,3–24,0 | 7 | `inicio-conflito` | Na tela Início, a câmera aproxima. Em "avisa", contorno âmbar no "Conflito com o Airbnb" e o aviso salta. Em "não cancela", destaque em "Nada foi cancelado. Confira e resolva." |
