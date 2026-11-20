@@ -17,7 +17,7 @@
   const FPS = 30;
   const DURS = { 1: 9, 2: 10, 3: 9, 4: 9, 5: 9, 6: 9, 7: 9, 8: 9 };   // a duração de cada slide (s)
   // o instante do estado final de cada cena (antes de ela se dissolver): é a versão estática de segurança (output/png/)
-  const POSE = { 1: 4.6, 2: 9.0, 3: 7.6, 4: 7.6, 5: 7.6, 6: 7.6, 7: 7.6, 8: 7.6 };
+  const POSE = { 1: 7.0, 2: 9.0, 3: 7.6, 4: 7.6, 5: 7.6, 6: 7.6, 7: 7.6, 8: 7.6 };
   let DUR = 9;                                                     // a do slide que está sendo desenhado
 
   const W = 1080, H = 1350, M = 80, CW = W - 2 * M;          // área útil: x 80–1000
@@ -423,6 +423,7 @@
     ctx.beginPath(); ctx.arc(cx, cy, r, 0, TAU); ctx.stroke();
     for (let i = 0; i < 12; i++) { const a = (i / 12) * TAU, r0 = r * (i % 3 ? 0.84 : 0.76); ctx.beginPath(); ctx.moveTo(cx + Math.cos(a) * r0, cy + Math.sin(a) * r0); ctx.lineTo(cx + Math.cos(a) * r * 0.92, cy + Math.sin(a) * r * 0.92); ctx.stroke(); }
     const ah = ((h % 12) / 12) * TAU - Math.PI / 2, am = (h % 1) * TAU - Math.PI / 2;
+    ctx.globalAlpha *= o.ponteiros ?? 1;
     ctx.lineWidth = (o.lw || Math.max(3, r * 0.05)) * 1.5;
     ctx.beginPath(); ctx.moveTo(cx, cy); ctx.lineTo(cx + Math.cos(ah) * r * 0.48, cy + Math.sin(ah) * r * 0.48); ctx.stroke();
     ctx.lineWidth = o.lw || Math.max(3, r * 0.05);
@@ -523,14 +524,17 @@
       // a luz respira (periódica no slide: o último quadro emenda no primeiro)
       const luz = 0.86 + 0.14 * Math.sin(TAU * t / DUR * 3);
       fachada(ctx, M + 230, yb, 300, INK, luz, t);
-      // o relógio: 18h → 22h (0,4–2,8 s), segura; 22h → 00h (3,6–5,4 s), segura; 00h → 18h (7,4–8,9 s, uma volta e meia)
-      const h = 18 + 4 * eIO(p(t, 0.4, 2.8)) + 2 * eIO(p(t, 3.6, 5.4)) + 18 * eIO(p(t, 7.4, 8.9));
+      // o relógio: 18:00 → 22:00 (0,4–2,8 s), segura; 22:00 → 00:30 (3,6–5,6 s) e fica parado ali. Na dissolução do fim
+      // (os últimos 0,75 s), os ponteiros e o rótulo esmaecem e reaparecem em 18:00: nenhum quadro mostra hora da manhã
+      const volta = t >= DUR - 0.4, some = p(t, DUR - 0.75, DUR - 0.4), surge_ = p(t, DUR - 0.4, DUR - 0.06);
+      const h = volta ? 18 : 18 + 4 * eIO(p(t, 0.4, 2.8)) + 2.5 * eIO(p(t, 3.6, 5.6));
+      const aP = volta ? eIO(surge_) : 1 - eIO(some);
       const rx = M + CW - 140, ry = yb - 200;
-      relogioP(ctx, rx, ry, 124, h, INK, { lw: 6, fundo: 'rgba(255,255,255,0.18)' });
-      monoLab(ctx, hora(h), rx, ry + 124 + 54, INK, 34, 'center', 1, 'hora do relógio');
+      relogioP(ctx, rx, ry, 124, h, INK, { lw: 6, fundo: 'rgba(255,255,255,0.18)', ponteiros: aP });
+      camada(ctx, aP, () => monoLab(ctx, hora(h), rx, ry + 124 + 54, INK, 34, 'center', 1, 'hora do relógio'));
       swipe(ctx, INK, INK, t);
       marca(ctx, 'ARRASTA', ...CAIXAS.arrasta);
-      LINHAS.push({ tag: 'cena', texto: 'porta acesa · relógio 18:00 → 22:00 → 00:00 → 18:00', sozinha: false });
+      LINHAS.push({ tag: 'cena', texto: 'porta acesa · relógio 18:00 → 22:00 → 00:30 (volta a 18:00 na dissolução)', sozinha: false });
     },
 
     // 02 · o problema, em TELA DIVIDIDA: em cima, "A NOITE" (cinza): o chalé aceso, a cama arrumada e o kit parados, o
@@ -588,63 +592,63 @@
         // ---- (b) O DIA SEGUINTE: o sinal na balança e as noites presas
         if (t >= 4.9) {
           // a balança: o travessão balança devagar e o sinal desliza para o lado que desce
-          const px = M + 286, py = YB + 222, L2 = 192;
+          const px = M + 310, py = YB + 236, L2 = 215;
           const osc = t < 5.6 ? 0 : 0.10 * Math.sin(TAU * (t - 5.6) / 2.6) * (1 - 0.35 * p(t, 5.6, 8.6));
           const ang = osc * eOut(p(t, 5.6, 6.1));
           camada(ctx, cl((t - 4.9) / 0.3), () => {
-            monoLab(ctx, 'SINAL · 50%', M, YB + 38, C.gray, 24, 'left', 3, 'rótulo SINAL');
-            ctx.save(); traco(ctx, C.gray, 4);
-            ctx.beginPath(); ctx.moveTo(px, py); ctx.lineTo(px - 26, py + 64); ctx.lineTo(px + 26, py + 64); ctx.closePath(); ctx.stroke();
-            ctx.beginPath(); ctx.moveTo(px - 70, py + 64); ctx.lineTo(px + 70, py + 64); ctx.stroke();
+            monoLab(ctx, 'SINAL · 50%', M, YB + 38, C.gray, 26, 'left', 3, 'rótulo SINAL');
+            ctx.save(); traco(ctx, C.gray, 5);
+            ctx.beginPath(); ctx.moveTo(px, py); ctx.lineTo(px - 32, py + 80); ctx.lineTo(px + 32, py + 80); ctx.closePath(); ctx.stroke();
+            ctx.beginPath(); ctx.moveTo(px - 86, py + 80); ctx.lineTo(px + 86, py + 80); ctx.stroke();
             ctx.restore();
             const kb = eOut(p(t, 4.95, 5.4));
             ctx.save(); ctx.translate(px, py); ctx.rotate(ang);
-            traco(ctx, C.white, 5); ctx.beginPath(); ctx.moveTo(-L2 * kb, 0); ctx.lineTo(L2 * kb, 0); ctx.stroke();
+            traco(ctx, C.white, 6); ctx.beginPath(); ctx.moveTo(-L2 * kb, 0); ctx.lineTo(L2 * kb, 0); ctx.stroke();
             ctx.restore();
             // os pratos e as opções (penduradas nas pontas; ficam na vertical)
             [[-1, 'DEVOLVER?'], [1, 'FICAR?']].forEach(([lado, s_]) => {
               const ex = px + Math.cos(ang) * L2 * lado * kb, ey = py + Math.sin(ang) * L2 * lado * kb;
               camada(ctx, cl((t - 5.25) / 0.25), () => {
-                ctx.save(); traco(ctx, C.gray, 3);
-                ctx.beginPath(); ctx.moveTo(ex, ey); ctx.lineTo(ex - 40, ey + 40); ctx.moveTo(ex, ey); ctx.lineTo(ex + 40, ey + 40); ctx.stroke();
-                ctx.beginPath(); ctx.moveTo(ex - 56, ey + 40); ctx.quadraticCurveTo(ex, ey + 72, ex + 56, ey + 40); ctx.closePath(); ctx.stroke();
+                ctx.save(); traco(ctx, C.gray, 4);
+                ctx.beginPath(); ctx.moveTo(ex, ey); ctx.lineTo(ex - 48, ey + 48); ctx.moveTo(ex, ey); ctx.lineTo(ex + 48, ey + 48); ctx.stroke();
+                ctx.beginPath(); ctx.moveTo(ex - 68, ey + 48); ctx.quadraticCurveTo(ex, ey + 88, ex + 68, ey + 48); ctx.closePath(); ctx.stroke();
                 ctx.restore();
-                monoLab(ctx, s_, ex, ey + 108, C.white, 26, 'center', 2, 'opção ' + s_);
+                monoLab(ctx, s_, ex, ey + 126, C.white, 28, 'center', 2, 'opção ' + s_);
               });
             });
           });
           // o sinal R$ 540, apoiado no travessão, escorrega para o lado que desce
           surge(ctx, t, 5.05, px, py - 34, () => {
-            const desl = ang * 520;
-            ctx.save(); ctx.translate(px, py); ctx.rotate(ang); ctx.translate(desl, -38);
+            const desl = ang * 560;
+            ctx.save(); ctx.translate(px, py); ctx.rotate(ang); ctx.translate(desl, -46);
             ctx.shadowColor = rgba(C.lime, 0.3); ctx.shadowBlur = 30;
-            const s_ = 'R$ 540', w = tw(ctx, s_, MONO, 40, 800, 0) + 48, h_ = 66;
+            const s_ = 'R$ 540', w = tw(ctx, s_, MONO, 48, 800, 0) + 56, h_ = 80;
             rr(ctx, -w / 2, -h_ / 2, w, h_, h_ / 2); ctx.fillStyle = C.lime; ctx.fill(); ctx.shadowColor = 'transparent';
-            setFont(ctx, MONO, 40, 800, 0, 'center'); ctx.fillStyle = INK; ctx.fillText(s_, 0, 14);
+            setFont(ctx, MONO, 48, 800, 0, 'center'); ctx.fillStyle = INK; ctx.fillText(s_, 0, 17);
             marca(ctx, 'sinal R$ 540', -w / 2, -h_ / 2, w / 2, h_ / 2);
             ctx.restore();
           }, { dy: 30 });
-          // o "?" pulsando em cima da balança
+          // o "?" pulsando em cima da balança (acima do sinal)
           if (t >= 5.7) {
             const kq = mola(t, 5.7, 0.5), pul = 1 + 0.1 * Math.sin(TAU * (t - 5.7) / 1.1);
             ctx.save(); ctx.translate(px, YB + 90); ctx.scale(kq * pul, kq * pul); ctx.globalAlpha *= cl((t - 5.7) / 0.15);
-            brilho(ctx, 0, -20, 100, AMB, 0.16);
-            setFont(ctx, DISPLAY, 88, 900, 0, 'center'); ctx.fillStyle = AMB; ctx.fillText('?', 0, 30);
-            marca(ctx, '?', -26, -34, 26, 32);
+            brilho(ctx, 0, -20, 110, AMB, 0.16);
+            setFont(ctx, DISPLAY, 96, 900, 0, 'center'); ctx.fillStyle = AMB; ctx.fillText('?', 0, 32);
+            marca(ctx, '?', -28, -37, 28, 34);
             ctx.restore();
           }
           // as noites 27/12 e 28/12, presas no cadeado
-          const tw_ = 176, th_ = 196, gx = 20, tx0 = M + CW - 2 * tw_ - gx, ty0 = YB + 56;
+          const tw_ = 144, th_ = 250, gx = 18, tx0 = M + CW - 2 * tw_ - gx, ty0 = YB + 52;
           ['27/12', '28/12'].forEach((d, i) => {
             const a0 = 6.0 + i * 0.15, x = tx0 + i * (tw_ + gx);
             surge(ctx, t, a0, x + tw_ / 2, ty0 + th_ / 2, () => {
               rr(ctx, x, ty0, tw_, th_, 20); ctx.fillStyle = '#161615'; ctx.fill(); ctx.strokeStyle = '#3A3A36'; ctx.lineWidth = 2; ctx.stroke();
-              monoLab(ctx, d, x + tw_ / 2, ty0 + 56, C.white, 34, 'center', 0, 'noite ' + d);
+              monoLab(ctx, d, x + tw_ / 2, ty0 + 62, C.white, 34, 'center', 0, 'noite ' + d);
               const fecha = eOut(p(t, 6.5 + i * 0.12, 6.75 + i * 0.12)), bate = t > 6.75 + i * 0.12 && t < 7.0 + i * 0.12 ? 3 * Math.sin((t - 6.75) * 60) : 0;
-              cadeado(ctx, x + tw_ / 2 + bate, ty0 + 118, 62, fecha > 0.98 ? AMB : C.gray, 1 - fecha, {});
+              cadeado(ctx, x + tw_ / 2 + bate, ty0 + 144, 76, fecha > 0.98 ? AMB : C.gray, 1 - fecha, {});
             }, { dy: 16 });
           });
-          camada(ctx, cl((t - 7.0) / 0.3), () => monoLab(ctx, 'NOITES PRESAS', tx0 + tw_ + gx / 2, ty0 + th_ + 46, AMB, 24, 'center', 3, 'rótulo NOITES PRESAS'));
+          camada(ctx, cl((t - 7.0) / 0.3), () => monoLab(ctx, 'NOITES PRESAS', tx0 + tw_ + gx / 2, ty0 + th_ + 44, AMB, 24, 'center', 2, 'rótulo NOITES PRESAS'));
         }
       });
       LINHAS.push({ tag: 'dados', texto: 'chegada prevista 22h · sinal R$ 540 · noites 27/12 e 28/12 presas', sozinha: false });
@@ -656,42 +660,44 @@
       const { y0, y1 } = topo(ctx, 1, 'A regra vai escrita', 'na confirmação.', 'Quem reserva já sabe o que acontece se não vier.', true);
       const k0 = saida(t); palco(ctx, t, y0, y1, k0);
       camada(ctx, k0, () => {
-        const pw = 720, px = 540 - pw / 2, slot = y1 - 46, ph = slot - y0 - 6;
+        const pw = 860, px = 540 - pw / 2, slot = y1 - 46, ph = slot - y0 - 6;
         // a folha sobe da fenda (0,6–3,4 s): o topo dela sai primeiro, e as linhas aparecem na ordem de leitura
         const sai_ = eIO(p(t, 0.6, 3.4)), sy = slot - ph * sai_;                // sy: o topo da folha
-        const LIN = [['CONFIRMAÇÃO DE RESERVA', 24, '#6E6E68', 64], ['Chalé 3 · 26/12 a 29/12 · 3 noites', 27, INK, 132], ['Total R$ 1.080 · sinal R$ 540 pago', 27, INK, 186],
-          ['Chegada até 22h', 27, INK, 240], ['Não comparecimento:', 27, INK, 316], ['o sinal fica com a pousada', 27, INK, 362]];
+        // [texto, corpo, cor, base, destaque]: a regra em Inter Display 900, 40 px, com o marca-texto limão por trás
+        const LIN = [['CONFIRMAÇÃO DE RESERVA', 26, '#6E6E68', 66], ['Chalé 3 · 26/12 a 29/12 · 3 noites', 30, INK, 146], ['Total R$ 1.080 · sinal R$ 540 pago', 30, INK, 206],
+          ['Chegada até 22h', 30, INK, 266], ['Não comparecimento:', 40, INK, 356, true], ['o sinal fica com a pousada', 40, INK, 414, true]];
+        const fnt = (sz, d) => (d ? [DISPLAY, sz, 900, -0.4] : [MONO, sz, 800, 0]);
         if (sai_ > 0) {
           ctx.save(); ctx.beginPath(); ctx.rect(px - 30, y0 - 4, pw + 60, slot - y0 + 4); ctx.clip();
           ctx.save(); ctx.shadowColor = 'rgba(0,0,0,0.55)'; ctx.shadowBlur = 30; ctx.shadowOffsetY = 12;
           ctx.fillStyle = OFF; ctx.fillRect(px, sy, pw, ph + 20); ctx.restore();
-          ctx.strokeStyle = 'rgba(10,10,10,0.15)'; ctx.lineWidth = 2; ctx.beginPath(); ctx.moveTo(px + 40, sy + 92); ctx.lineTo(px + pw - 40, sy + 92); ctx.stroke();
+          ctx.strokeStyle = 'rgba(10,10,10,0.15)'; ctx.lineWidth = 2; ctx.beginPath(); ctx.moveTo(px + 40, sy + 98); ctx.lineTo(px + pw - 40, sy + 98); ctx.stroke();
           // o marca-texto passa pela regra (3,6–4,6 s): a faixa limão cresce da esquerda para a direita, linha a linha
           const mk = p(t, 3.6, 4.6);
           [[4, 0, 0.45], [5, 0.45, 1]].forEach(([i, a, b]) => {
             const u = cl((mk - a) / (b - a)); if (u <= 0) return;
-            const [s_, sz, , yy] = LIN[i], w = tw(ctx, s_, MONO, sz, 800, 0) + 24;
-            ctx.save(); ctx.globalAlpha *= 0.95; ctx.fillStyle = C.lime; ctx.beginPath(); ctx.roundRect(px + 40 - 12, sy + yy - sz * 0.92, w * u, sz * 1.3, 6); ctx.fill(); ctx.restore();
+            const [s_, sz, , yy, d_] = LIN[i], w = tw(ctx, s_, ...fnt(sz, d_)) + 28;
+            ctx.save(); ctx.globalAlpha *= 0.95; ctx.fillStyle = C.lime; ctx.beginPath(); ctx.roundRect(px + 40 - 14, sy + yy - sz * 0.9, w * u, sz * 1.22, 8); ctx.fill(); ctx.restore();
           });
-          LIN.forEach(([s_, sz, cor, yy]) => {
-            setFont(ctx, MONO, sz, 800, 0); ctx.fillStyle = cor; ctx.fillText(s_, px + 40, sy + yy);
+          LIN.forEach(([s_, sz, cor, yy, d_]) => {
+            setFont(ctx, ...fnt(sz, d_)); ctx.fillStyle = cor; ctx.fillText(s_, px + 40, sy + yy);
             // só conta (conferência) a linha que já saiu inteira da fenda
             if (sy + yy + sz * 0.3 < slot - 2) { const w = ctx.measureText(s_).width; marca(ctx, 'linha ' + s_, px + 40, sy + yy - sz * 0.76, px + 40 + w, sy + yy + sz * 0.22); }
           });
           ctx.restore();
-          if (mk > 0 && mk < 1) { const i = mk < 0.45 ? 4 : 5, u = mk < 0.45 ? mk / 0.45 : (mk - 0.45) / 0.55, [s_, sz, , yy] = LIN[i], w = tw(ctx, s_, MONO, sz, 800, 0) + 24; brilho(ctx, px + 28 + w * u, sy + yy - 10, 60, C.lime, 0.4); }
+          if (mk > 0 && mk < 1) { const i = mk < 0.45 ? 4 : 5, u = mk < 0.45 ? mk / 0.45 : (mk - 0.45) / 0.55, [s_, sz, , yy, d_] = LIN[i], w = tw(ctx, s_, ...fnt(sz, d_)) + 28; brilho(ctx, px + 26 + w * u, sy + yy - 12, 70, C.lime, 0.4); }
         }
         // a impressora (embaixo; a folha sai pela fenda de cima dela)
         surge(ctx, t, 0.15, 540, slot + 24, () => {
-          rr(ctx, px - 40, slot - 10, pw + 80, 62, 20); ctx.fillStyle = '#1F1F1D'; ctx.fill(); ctx.strokeStyle = '#3A3A36'; ctx.lineWidth = 2; ctx.stroke();
-          rr(ctx, px - 10, slot - 5, pw + 20, 10, 5); ctx.fillStyle = INK; ctx.fill();
-          ctx.beginPath(); ctx.arc(px + pw + 12, slot + 26, 7, 0, TAU); ctx.fillStyle = t > 0.6 && t < 3.4 ? C.lime : '#3A3A36'; ctx.fill();
+          rr(ctx, px - 20, slot - 10, pw + 40, 62, 20); ctx.fillStyle = '#1F1F1D'; ctx.fill(); ctx.strokeStyle = '#3A3A36'; ctx.lineWidth = 2; ctx.stroke();
+          rr(ctx, px - 8, slot - 5, pw + 16, 10, 5); ctx.fillStyle = INK; ctx.fill();
+          ctx.beginPath(); ctx.arc(px + pw - 4, slot + 30, 7, 0, TAU); ctx.fillStyle = t > 0.6 && t < 3.4 ? C.lime : '#3A3A36'; ctx.fill();
         }, { dy: 10 });
         // o carimbo "REGRA ENVIADA" (com o check) no pé da folha
-        const cy_ = y0 + 6 + 464;
-        carimbo(ctx, 560, cy_, 'REGRA ENVIADA', -0.06, '#2E7D16', t, 4.9, { size: 30, pad: 24, escMax: 1.25 });
+        const cy_ = y0 + 6 + 540;
+        carimbo(ctx, 580, cy_, 'REGRA ENVIADA', -0.06, '#2E7D16', t, 4.9, { size: 34, pad: 26, escMax: 1.2 });
         if (t >= 5.15) {
-          const kc = mola(t, 5.15, 0.45), cx_ = 560 - 196;
+          const kc = mola(t, 5.15, 0.45), cx_ = 580 - 222;
           ctx.save(); ctx.translate(cx_, cy_); ctx.scale(kc, kc);
           ctx.beginPath(); ctx.arc(0, 0, 30, 0, TAU); ctx.fillStyle = '#2E7D16'; ctx.fill(); checkIcon(OFF)(ctx, 40);
           marca(ctx, 'check da regra', -30, -30, 30, 30);
@@ -767,17 +773,17 @@
       camada(ctx, k0, () => {
         // 22:10 e a mensagem da pousada
         surge(ctx, t, 0.2, M + 100, y0 + 42, () => {
-          const c = chip(ctx, M, y0 + 44, '22:10', { size: 34, stroke: '#3A3A36', fill: '#151514', color: C.white, h: 70, padX: 24 + 42, nome: 'hora 22:10' });
-          relogioP(ctx, c.left + 38, y0 + 44, 17, 22 + 1 / 6, C.gray, { lw: 2.5 });
+          const c = chip(ctx, M, y0 + 48, '22:10', { size: 38, stroke: '#3A3A36', fill: '#151514', color: C.white, h: 82, padX: 26 + 46, nome: 'hora 22:10' });
+          relogioP(ctx, c.left + 42, y0 + 48, 20, 22 + 1 / 6, C.gray, { lw: 3 });
         }, { dy: 10 });
         const b1 = { x: M + CW, y: y0 + 8 };
-        surge(ctx, t, 0.55, b1.x, b1.y, () => balao(ctx, b1.x, b1.y, 'Tudo certo com a viagem?', 'dir', { size: 36 }), { semSubir: true });
+        surge(ctx, t, 0.55, b1.x, b1.y, () => balao(ctx, b1.x, b1.y, 'Tudo certo com a viagem?', 'dir', { size: 38 }), { semSubir: true });
         // a bifurcação (1,3–1,9 s): sai do balão e abre em dois caminhos
-        const fx = 540, fy = y0 + 160, L_ = [M + 220, y0 + 228], R_ = [M + CW - 220, y0 + 228];
+        const fx = 540, fy = y0 + 170, L_ = [M + 220, y0 + 240], R_ = [M + CW - 220, y0 + 240];
         const kb = eIO(p(t, 1.3, 1.9));
         if (kb > 0) {
           ctx.save(); traco(ctx, '#3A3A36', 4);
-          ctx.beginPath(); ctx.moveTo(fx + 200, y0 + 100); ctx.quadraticCurveTo(fx + 200, fy, fx, fy); ctx.stroke();
+          ctx.beginPath(); ctx.moveTo(fx + 200, y0 + 106); ctx.quadraticCurveTo(fx + 200, fy, fx, fy); ctx.stroke();
           for (const [ex, ey] of [L_, R_]) { ctx.beginPath(); ctx.moveTo(fx, fy); ctx.quadraticCurveTo(fx + (ex - fx) * kb, fy, fx + (ex - fx) * kb, fy + (ey - fy) * kb); ctx.stroke(); }
           ctx.restore();
           ctx.beginPath(); ctx.arc(fx, fy, 8, 0, TAU); ctx.fillStyle = C.white; ctx.fill();
@@ -785,24 +791,24 @@
         // o caminho da esquerda (1,9–3,6 s): respondeu
         const acL = eOut(p(t, 1.9, 2.3));
         if (acL > 0) { ctx.save(); traco(ctx, C.lime, 5); ctx.globalAlpha *= acL; ctx.beginPath(); ctx.moveTo(fx, fy); ctx.quadraticCurveTo(L_[0], fy, L_[0], L_[1]); ctx.stroke(); ctx.restore(); }
-        camada(ctx, cl((t - 2.0) / 0.25), () => monoLab(ctx, 'RESPONDEU', L_[0], L_[1] + 44, C.lime, 24, 'center', 3, 'caminho RESPONDEU'));
-        surge(ctx, t, 2.3, M, L_[1] + 72, () => balao(ctx, M, L_[1] + 72, 'Pneu furado, chego 23h', 'esq', { size: 34 }), { semSubir: true });
+        camada(ctx, cl((t - 2.0) / 0.25), () => monoLab(ctx, 'RESPONDEU', L_[0], L_[1] + 48, C.lime, 28, 'center', 3, 'caminho RESPONDEU'));
+        surge(ctx, t, 2.3, M, L_[1] + 78, () => balao(ctx, M, L_[1] + 78, 'Pneu furado, chego 23h', 'esq', { size: 38 }), { semSubir: true });
         const acesoL = eOut(p(t, 3.0, 3.4));
-        surge(ctx, t, 2.8, L_[0], y1 - 130, () => { if (acesoL > 0) brilho(ctx, L_[0], y1 - 200, 200, C.lime, 0.22 * acesoL * (0.85 + 0.15 * Math.sin(t * 3))); chale(ctx, L_[0], y1 - 80, 210, acesoL > 0 ? C.lime : C.gray, { aceso: acesoL }); }, { dy: 12 });
-        surge(ctx, t, 3.3, L_[0], y1 - 28, () => chip(ctx, L_[0], y1 - 28, 'CONTINUA ACESO', { size: 24, fill: C.lime, color: INK, h: 50, padX: 22, align: 'center', nome: 'chip CONTINUA ACESO' }), { dy: 8 });
+        surge(ctx, t, 2.8, L_[0], y1 - 140, () => { if (acesoL > 0) brilho(ctx, L_[0], y1 - 210, 210, C.lime, 0.22 * acesoL * (0.85 + 0.15 * Math.sin(t * 3))); chale(ctx, L_[0], y1 - 86, 220, acesoL > 0 ? C.lime : C.gray, { aceso: acesoL }); }, { dy: 12 });
+        surge(ctx, t, 3.3, L_[0], y1 - 30, () => chip(ctx, L_[0], y1 - 30, 'CONTINUA ACESO', { size: 26, fill: C.lime, color: INK, h: 54, padX: 24, align: 'center', nome: 'chip CONTINUA ACESO' }), { dy: 8 });
         // o caminho da direita (3,9–5,6 s): não respondeu até 8h
         const acR = eOut(p(t, 3.9, 4.3));
         if (acR > 0) { ctx.save(); traco(ctx, AMB, 5); ctx.globalAlpha *= acR; ctx.beginPath(); ctx.moveTo(fx, fy); ctx.quadraticCurveTo(R_[0], fy, R_[0], R_[1]); ctx.stroke(); ctx.restore(); }
-        camada(ctx, cl((t - 4.0) / 0.25), () => monoLab(ctx, 'NÃO RESPONDEU ATÉ 8H', R_[0], R_[1] + 44, AMB, 24, 'center', 2, 'caminho NÃO RESPONDEU'));
-        surge(ctx, t, 4.3, R_[0], R_[1] + 112, () => {
+        camada(ctx, cl((t - 4.0) / 0.25), () => monoLab(ctx, 'NÃO RESPONDEU ATÉ 8H', R_[0] + 10, R_[1] + 48, AMB, 26, 'center', 1, 'caminho NÃO RESPONDEU'));
+        surge(ctx, t, 4.3, R_[0], R_[1] + 119, () => {
           const hR = 22 + 1 / 6 + (10 - 1 / 6) * eIO(p(t, 4.35, 4.95));   // 22:10 → 08:00
-          const c = chip(ctx, R_[0], R_[1] + 112, hora(hR), { size: 34, stroke: '#3A3A36', fill: '#151514', color: C.white, h: 70, padX: 24 + 42, align: 'center', nome: 'hora 08:00' });
-          relogioP(ctx, c.left + 38, R_[1] + 112, 17, hR, C.gray, { lw: 2.5 });
+          const c = chip(ctx, R_[0], R_[1] + 119, hora(hR), { size: 38, stroke: '#3A3A36', fill: '#151514', color: C.white, h: 82, padX: 26 + 46, align: 'center', nome: 'hora 08:00' });
+          relogioP(ctx, c.left + 42, R_[1] + 119, 20, hR, C.gray, { lw: 3 });
         }, { dy: 10 });
         // o chalé apagado, e o carimbo NO-SHOW por cima
-        camada(ctx, cl((t - 4.5) / 0.3), () => chale(ctx, R_[0], y1 - 80, 210, '#5E5E59', {}));
-        carimbo(ctx, R_[0], y1 - 150, 'NO-SHOW', -0.1, AMB, t, 5.1, { size: 46, pad: 28, escMax: 1.3 });
-        if (t > 5.6) brilho(ctx, R_[0], y1 - 150, 170, AMB, 0.08 + 0.05 * Math.sin(t * 2.6));
+        camada(ctx, cl((t - 4.5) / 0.3), () => chale(ctx, R_[0], y1 - 86, 220, '#5E5E59', {}));
+        carimbo(ctx, R_[0], y1 - 160, 'NO-SHOW', -0.1, AMB, t, 5.1, { size: 50, pad: 28, escMax: 1.25 });
+        if (t > 5.6) brilho(ctx, R_[0], y1 - 160, 180, AMB, 0.08 + 0.05 * Math.sin(t * 2.6));
       });
       LINHAS.push({ tag: 'dados', texto: '22:10 · Tudo certo com a viagem? · respondeu: Pneu furado, chego 23h · não respondeu até 8h: NO-SHOW', sozinha: false });
     },
@@ -813,51 +819,77 @@
       const { y0, y1 } = topo(ctx, 4, 'O sinal segue', 'a regra combinada.', 'Combinado antes, sem discussão depois.', true);
       const k0 = saida(t); palco(ctx, t, y0, y1, k0);
       camada(ctx, k0, () => {
+        // a composição final é uma conta em linha, centralizada: em cima, o contorno do cartão original; duas setas;
+        // embaixo à esquerda, a gaveta entreaberta com o R$ 540 dentro (RETIDO); à direita, o saldo riscado (NÃO COBRADO)
         const hw = 420, hh = 180, cw0 = 2 * hw + 14, ch0 = 196, cx0 = 540 - cw0 / 2, cy0 = y0 + 8;
         const div = eIO(p(t, 2.0, 2.7)), corte = t >= 2.0;
+        const bw = 430, gap = CW - 2 * bw, bTop = y0 + 330, bH = 230;            // a linha de baixo: gaveta e saldo, do mesmo tamanho
+        const gcx = M + bw / 2, scx = M + CW - bw / 2;
         // o cartão inteiro da reserva (até o corte, em 2,0 s)
         if (!corte) surge(ctx, t, 0.2, 540, cy0 + ch0 / 2, () => {
-          ctx.save();
           rr(ctx, cx0, cy0, cw0, ch0, 24); ctx.fillStyle = '#161615'; ctx.fill(); ctx.strokeStyle = C.lime; ctx.lineWidth = 2.5; ctx.stroke();
           monoLab(ctx, 'RESERVA · CHALÉ 3', cx0 + 36, cy0 + 48, C.lime, 22, 'left', 3, 'rótulo RESERVA');
           odometro(ctx, 1080 * eOut(p(t, 0.4, 1.5)), 1080, cx0 + 32, cy0 + 128, 68, { cor: C.white, nome: 'valor R$ 1.080' });
           monoLab(ctx, '3 NOITES × R$ 360', cx0 + 36, cy0 + 172, C.grayM, 20, 'left', 2, 'conta 3 × 360');
-          // a linha de corte (onde o cartão vai se dividir)
           if (t > 1.6) { ctx.setLineDash([8, 8]); ctx.strokeStyle = rgba(C.white, 0.4 * p(t, 1.6, 1.9)); ctx.lineWidth = 2; ctx.beginPath(); ctx.moveTo(540, cy0 + 14); ctx.lineTo(540, cy0 + ch0 - 14); ctx.stroke(); ctx.setLineDash([]); }
-          ctx.restore();
         }, { dy: 16 });
-        // as duas metades: o SINAL (à esquerda) e o SALDO (à direita)
-        const ly = cy0 + 8;
-        const sinalX = cx0 + (M - cx0) * div, saldoX = cx0 + cw0 - hw + (M + CW - hw - (cx0 + cw0 - hw)) * div;
-        // o sinal cai na gaveta (3,2–3,9 s), que fecha (4,0–4,4 s)
-        const gcx = M + 250, gtop = y0 + 390, abre = t < 4.0 ? eOut(p(t, 2.9, 3.2)) : 1 - eIO(p(t, 4.0, 4.4));
-        camada(ctx, cl((t - 2.7) / 0.3), () => { gavetaCaixa(ctx, gcx, gtop, 480, abre, C.gray); });
+        // o contorno tracejado do cartão original (4,4 s) e as duas setas que partem dele (4,6–5,2 s)
+        const ko = eOut(p(t, 4.4, 4.9));
+        if (ko > 0) camada(ctx, ko, () => {
+          ctx.save(); ctx.setLineDash([12, 10]); rr(ctx, cx0, cy0, cw0, ch0, 24); ctx.strokeStyle = rgba(C.white, 0.45); ctx.lineWidth = 2.5; ctx.stroke(); ctx.restore();
+          monoLab(ctx, 'RESERVA · CHALÉ 3', cx0 + 36, cy0 + 48, C.grayM, 22, 'left', 3, 'contorno RESERVA');
+          monoLab(ctx, 'R$ 1.080', cx0 + 34, cy0 + 128, C.gray, 64, 'left', 0, 'contorno R$ 1.080');
+          monoLab(ctx, '3 NOITES × R$ 360', cx0 + 36, cy0 + 172, C.grayD, 20, 'left', 2, 'contorno 3 × 360');
+          const ks = eIO(p(t, 4.6, 5.2));
+          for (const [xa, xb, cor] of [[540 - 150, gcx, C.lime], [540 + 150, scx, C.grayM]]) {
+            const ya = cy0 + ch0 + 12, yb = bTop - 18, xe = xa + (xb - xa) * ks, ye = ya + (yb - ya) * ks;
+            if (ks > 0) { ctx.save(); traco(ctx, cor, 5); ctx.beginPath(); ctx.moveTo(xa, ya); ctx.lineTo(xe, ye); ctx.stroke();
+              if (ks > 0.95) { const a = Math.atan2(yb - ya, xb - xa); ctx.beginPath(); ctx.moveTo(xe - 22 * Math.cos(a - 0.5), ye - 22 * Math.sin(a - 0.5)); ctx.lineTo(xe, ye); ctx.lineTo(xe - 22 * Math.cos(a + 0.5), ye - 22 * Math.sin(a + 0.5)); ctx.stroke(); }
+              ctx.restore(); }
+          }
+        });
+        // a gaveta (embaixo à esquerda, maior): abre (2,9–3,2 s), recebe o sinal e fica entreaberta (4,0–4,4 s)
+        const abre = t < 4.0 ? eOut(p(t, 2.9, 3.2)) : 1 - 0.5 * eIO(p(t, 4.0, 4.4));
+        const gTop = bTop + 6;
+        camada(ctx, cl((t - 2.7) / 0.3), () => {
+          const yf = gavetaCaixa(ctx, gcx, gTop, bw * 0.98, abre, C.gray);
+          // a plaqueta "R$ 540" dentro da bandeja (o sinal que caiu), visível com a gaveta entreaberta
+          if (t >= 3.85) {
+            const kp = eOut(p(t, 3.85, 4.1)), yb_ = gTop + 46, ym = (yb_ + yf) / 2;
+            ctx.save(); ctx.globalAlpha *= kp; ctx.beginPath(); ctx.rect(gcx - bw / 2, yb_ + 2, bw, yf - yb_ - 4); ctx.clip();
+            chip(ctx, gcx, ym, 'R$ 540', { size: 30, fill: C.lime, color: INK, h: 50, padX: 22, align: 'center', nome: 'plaqueta R$ 540' });
+            ctx.restore();
+          }
+        });
         if (corte) {
-          const cai = eIn(p(t, 3.2, 3.85)), sx = sinalX + (gcx - hw * 0.25 - sinalX) * cai, sy = ly + (gtop + 50 - ly) * cai, esc = 1 - 0.5 * cai;
+          // o sinal cai na gaveta (3,2–3,85 s), encolhendo
+          const ly = cy0 + 8, sinalX = cx0 + (M - cx0) * div, cai = eIn(p(t, 3.2, 3.85));
           if (cai < 1) {
+            const sx = sinalX + (gcx - hw * 0.2 - sinalX) * cai, sy = ly + (gTop + 50 - ly) * cai, esc = 1 - 0.6 * cai;
             ctx.save(); ctx.globalAlpha *= 1 - p(t, 3.7, 3.85); ctx.translate(sx, sy); ctx.scale(esc, esc);
             rr(ctx, 0, 0, hw, hh, 22); ctx.fillStyle = C.lime; ctx.fill();
             monoLab(ctx, 'SINAL · 50%', 30, 44, INK, 22, 'left', 3, 'rótulo SINAL');
             odometro(ctx, 540 * eOut(p(t, 2.2, 3.0)), 540, 26, 128, 64, { cor: INK, nome: 'valor sinal R$ 540' });
             ctx.restore();
           }
-          // o saldo esmaece com o risco e o NÃO COBRADO
-          const esm = 1 - 0.62 * eIO(p(t, 3.6, 4.4)), risco = eOut(p(t, 3.8, 4.3));
-          ctx.save(); ctx.translate(saldoX, ly);
-          ctx.save(); ctx.globalAlpha *= esm; rr(ctx, 0, 0, hw, hh, 22); ctx.fillStyle = '#161615'; ctx.fill(); ctx.strokeStyle = '#3A3A36'; ctx.lineWidth = 2; ctx.stroke();
-          monoLab(ctx, 'SALDO', 30, 44, C.gray, 22, 'left', 3, 'rótulo SALDO');
-          odometro(ctx, 540 * eOut(p(t, 2.2, 3.0)), 540, 26, 128, 64, { cor: C.white, nome: 'valor saldo R$ 540' });
+          // o saldo desce para a direita (3,5–4,3 s), do mesmo tamanho da gaveta, esmaece e ganha o risco
+          const desce = eIO(p(t, 3.5, 4.3)), x0s = cx0 + cw0 - hw + (M + CW - hw - (cx0 + cw0 - hw)) * div;
+          const sx = x0s + (M + CW - bw - x0s) * desce, sy = ly + (bTop - ly) * desce, w = hw + (bw - hw) * desce, h = hh + (bH - hh) * desce;
+          const esm = 1 - 0.55 * eIO(p(t, 3.9, 4.5)), risco = eOut(p(t, 4.2, 4.6));
+          ctx.save(); ctx.translate(sx, sy);
+          ctx.save(); ctx.globalAlpha *= esm; rr(ctx, 0, 0, w, h, 22); ctx.fillStyle = '#161615'; ctx.fill(); ctx.strokeStyle = '#3A3A36'; ctx.lineWidth = 2; ctx.stroke();
+          monoLab(ctx, 'SALDO', 34, 50 + 14 * desce, C.gray, 24, 'left', 3, 'rótulo SALDO');
+          odometro(ctx, 540 * eOut(p(t, 2.2, 3.0)), 540, 30, 136 + 40 * desce, 64 + 12 * desce, { cor: C.white, nome: 'valor saldo R$ 540' });
           ctx.restore();
-          if (risco > 0) { traco(ctx, C.white, 5); ctx.beginPath(); ctx.moveTo(22, 104); ctx.lineTo(22 + (hw - 44) * risco, 98); ctx.stroke(); }
+          if (risco > 0) { traco(ctx, C.white, 6); ctx.beginPath(); ctx.moveTo(24, 118 + 34 * desce); ctx.lineTo(24 + (w - 48) * risco, 110 + 34 * desce); ctx.stroke(); }
           ctx.restore();
-          surge(ctx, t, 4.3, saldoX + hw / 2, ly + hh + 50, () => chip(ctx, saldoX + hw / 2, ly + hh + 50, 'NÃO COBRADO', { size: 24, stroke: C.grayM, color: C.gray, h: 50, padX: 22, align: 'center', nome: 'chip NÃO COBRADO' }), { dy: 8 });
         }
-        // a gaveta fechou: RETIDO, com um brilho limão
-        surge(ctx, t, 4.45, gcx, gtop + 200, () => {
-          ctx.save(); ctx.shadowColor = rgba(C.lime, 0.4); ctx.shadowBlur = 30;
-          chip(ctx, gcx, gtop + 200, 'RETIDO · R$ 540', { size: 30, fill: C.lime, color: INK, h: 62, padX: 26, align: 'center', nome: 'chip RETIDO' }); ctx.restore();
-        }, { dy: 10 });
-        if (t > 4.6) brilho(ctx, gcx, gtop + 80, 200, C.lime, 0.08 + 0.04 * Math.sin(t * 2.2));
+        // os rótulos da linha de baixo, alinhados: RETIDO (limão) e NÃO COBRADO (cinza)
+        const yr = bTop + bH + 52;
+        surge(ctx, t, 4.5, gcx, yr, () => { ctx.save(); ctx.shadowColor = rgba(C.lime, 0.4); ctx.shadowBlur = 30;
+          chip(ctx, gcx, yr, 'RETIDO', { size: 32, fill: C.lime, color: INK, h: 64, padX: 30, align: 'center', nome: 'chip RETIDO' }); ctx.restore(); }, { dy: 10 });
+        surge(ctx, t, 4.65, scx, yr, () => chip(ctx, scx, yr, 'NÃO COBRADO', { size: 32, stroke: C.grayM, color: C.gray, h: 64, padX: 30, align: 'center', nome: 'chip NÃO COBRADO' }), { dy: 10 });
+        if (t > 4.6) brilho(ctx, gcx, bTop + 110, 220, C.lime, 0.08 + 0.04 * Math.sin(t * 2.2));
       });
       LINHAS.push({ tag: 'dados', texto: 'RESERVA R$ 1.080 = 3 NOITES × R$ 360 · SINAL R$ 540 RETIDO · SALDO R$ 540 NÃO COBRADO', sozinha: false });
     },

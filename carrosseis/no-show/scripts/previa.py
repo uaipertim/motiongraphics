@@ -44,7 +44,7 @@ d = ImageDraw.Draw(sheet)
 for j, s in enumerate(['0 s', '2 s', '4,5 s', 'estado final']):
     d.text((LAB + G + j * (TW + G), 12), s, font=f1, fill=(175, 250, 39))
 for n in range(1, 9):
-    ts = [0.0, 2.0, 4.5, pose[str(n)] if n != 1 else 4.6]
+    ts = [0.0, 2.0, 4.5, pose[str(n)]]
     qs = quadros(os.path.join(OUT, f'{n:02d}.mp4'), [int(round(t * FPS)) for t in ts])
     y = TOP + G + (n - 1) * (TH + G)
     d.text((14, y + TH // 2 - 24), f'{n:02d}', font=f2, fill=(175, 250, 39))
@@ -52,12 +52,12 @@ for n in range(1, 9):
         sheet.paste(q.resize((TW, TH), Image.LANCZOS), (LAB + G + j * (TW + G), y))
 sheet.save(os.path.join(OUT, 'previa.jpg'), quality=88)
 
-# a capa na grade (recorte 3:4, quadro 0), ao lado da capa do carrossel "Consumo"
+# a capa na grade (recorte 3:4, quadro 0), ao lado das capas vizinhas: o "Tarifa de dezembro" (animado) e o "Consumo"
 crop_x = int((W - H * 3 / 4) / 2)
 tiles = [quadros(os.path.join(OUT, '01.mp4'), [0])[0].crop((crop_x, 0, W - crop_x, H))]
-ref = os.path.join(ROOT, '..', 'consumo', 'output', '01.png')
-if os.path.exists(ref):
-    tiles.append(Image.open(ref).convert('RGB').crop((crop_x, 0, W - crop_x, H)))
+for ref in [os.path.join(ROOT, '..', 'tarifa-alta-temporada', 'output', 'png', '01.png'), os.path.join(ROOT, '..', 'consumo', 'output', '01.png')]:
+    if os.path.exists(ref):
+        tiles.append(Image.open(ref).convert('RGB').crop((crop_x, 0, W - crop_x, H)))
 grid = Image.new('RGB', (len(tiles) * 360, 475), (255, 255, 255))
 for i, t in enumerate(tiles):
     grid.paste(t.resize((356, 475), Image.LANCZOS), (i * 360, 0))

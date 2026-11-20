@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 """
-Recortes grandes (1:1) dos trechos com mais elementos, para olhar antes do commit: os slides 02 e 05.
+Recortes grandes (1:1) dos trechos com mais elementos, para olhar antes do commit: os slides 02, 03, 05 e 06.
 
-    python3 scripts/recortes.py   ->  output/revisao/02-recorte.jpg · output/revisao/05-recorte.jpg
+    python3 scripts/recortes.py   ->  output/revisao/02-recorte.jpg · 03-recorte.jpg · 05-recorte.jpg · 06-recorte.jpg
 
 Os quadros saem do próprio motor (node scripts/render.cjs stills), nos instantes das entradas com mola e no estado final.
 """
@@ -17,6 +17,10 @@ FONT = os.path.join(ROOT, 'src', 'fonts', 'JetBrainsMonoNL-Bold.ttf')
 CORTES = {
     2: ((60, 380, 1020, 1200), [(2.85, 'a notificação âmbar entrando (mola)'), (3.6, 'a noite: 22h · sem notícia'), (5.2, 'o sinal cai na balança (mola)'),
                                 (6.15, 'as noites 27/12 e 28/12 entrando'), (6.9, 'os cadeados fecham'), (9.0, 'estado final')]),
+    3: ((60, 380, 1020, 1130), [(1.8, 'a folha subindo da impressora'), (3.4, 'a folha inteira'), (3.9, 'o marca-texto na 1ª linha da regra'),
+                                (4.4, 'o marca-texto na 2ª linha'), (5.0, '"REGRA ENVIADA" batendo'), (7.6, 'estado final')]),
+    6: ((60, 380, 1020, 1130), [(1.2, 'o cartão da reserva contando'), (2.4, 'o corte: sinal e saldo'), (3.5, 'o sinal caindo na gaveta'),
+                                (4.3, 'o saldo descendo; a gaveta entreaberta'), (5.0, 'o contorno e as setas'), (7.6, 'estado final')]),
     5: ((60, 380, 1020, 1130), [(0.8, 'a mensagem das 22h10 entrando'), (2.45, '"Pneu furado, chego 23h" entrando'), (3.45, 'o chalé continua aceso'),
                                 (4.45, '"não respondeu até 8h"'), (5.25, 'o carimbo NO-SHOW batendo'), (7.6, 'estado final')]),
 }
