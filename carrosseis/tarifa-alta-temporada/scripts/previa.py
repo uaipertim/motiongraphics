@@ -9,13 +9,14 @@ Prévia e conferência do carrossel ANIMADO "Tarifa de dezembro" (roda depois de
 Tudo é medido nos próprios MP4 (os quadros saem do vídeo pelo ffmpeg):
   • ffprobe: 1080×1350, 30 fps, 7 s, H.264 yuv420p, faixa de áudio AAC, arquivo < 15 MB;
   • margens: o conteúdo fica entre x 80 e 1000 em todos os quadros (a cada 0,1 s). Nos slides escuros conta o que tem
-    luminância acima de 60; na capa limão, o que se destaca do limão (a escala gravada ao fundo não conta);
+    luminância acima de 60; na capa limão, o que se destaca muito do limão (o preto do texto; o medidor ao fundo — a escala e o ponteiro a 30% — não
+    conta);
   • canto do ícone de som: nada de conteúdo em x ≥ 940 e y ≥ 1210 (140×140 px embaixo à direita), em nenhum quadro;
   • estabilidade: de 2,5 s até o fim, o conteúdo não muda (nenhum pixel com o brilho diferente em mais de 40 níveis,
     com 50 px de tolerância para o ruído do H.264; a luz de fundo, que respira devagar, fica abaixo disso). Na capa,
     só o movimento ambiente: a seta e o pontinho do chip;
-  • capa: o quadro 0 já tem o título inteiro (igual ao último quadro na área do título);
-  • loop: o último quadro e o quadro 0 da capa são iguais (fora a escala e os detalhes que se movem devagar).
+  • capa: o quadro 0 já tem o título inteiro (igual ao último quadro na área do título); o medidor do fundo se mexe
+    bastante entre 0 s e 2,0 s (> 20.000 px); o quadro final e o quadro 0 batem (o loop fecha sem salto).
 """
 import json
 import os
@@ -42,19 +43,22 @@ def ok(cond, msg):
 
 
 def quadros(mp4, ts):
-    """os quadros do vídeo nos instantes ts (s), pelo ffmpeg"""
-    out = []
+    """os quadros do vídeo nos instantes ts (s), escolhidos pelo NÚMERO do quadro (round(t × 30)), numa chamada só do
+    ffmpeg (o -ss no último quadro não devolve nada; pelo número, o quadro final de 6,967 s sai certo)"""
+    ns = [min(int(round(t * FPS)), int(DUR * FPS) - 1) for t in ts]
+    alvo = sorted(set(ns))
     with tempfile.TemporaryDirectory() as tmp:
-        for t in ts:
-            p = os.path.join(tmp, 'q.png')
-            subprocess.run(['ffmpeg', '-v', 'error', '-y', '-ss', f'{t:.3f}', '-i', mp4, '-frames:v', '1', p], check=True)
-            out.append(np.asarray(Image.open(p).convert('RGB')).astype(np.int16))
-    return out
+        expr = '+'.join(f'eq(n\\,{k})' for k in alvo)
+        subprocess.run(['ffmpeg', '-v', 'error', '-y', '-i', mp4, '-vf', f'select={expr}', '-vsync', '0', os.path.join(tmp, 'q%04d.png')], check=True)
+        fs = sorted(os.listdir(tmp))
+        assert len(fs) == len(alvo), f'{mp4}: {len(fs)} quadros extraídos de {len(alvo)}'
+        por_n = {k: np.asarray(Image.open(os.path.join(tmp, f)).convert('RGB')).astype(np.int16) for k, f in zip(alvo, fs)}
+    return [por_n[k] for k in ns]
 
 
 def conteudo(a, capa):
     if capa:
-        return np.sqrt(((a - LIME) ** 2).sum(axis=2)) > 150
+        return np.sqrt(((a - LIME) ** 2).sum(axis=2)) > 220
     return a @ [0.2126, 0.7152, 0.0722] > 60
 
 
@@ -115,9 +119,24 @@ for n in range(1, N + 1):
         dif_tit = int((q0[300:1100] != ult[300:1100]).sum())
         ok(dif_tit < 400, f'slide 01 (capa): o quadro 0 já está completo — na área do título, {dif_tit} px diferentes do último quadro (só o pontinho do chip pulsa)')
         fora = max(int((conteudo(q, True) != ult)[:, :].sum()) for t, q in zip(amostras, todos) if t >= 2.5)
-        rel.append(f'       slide 01 (capa): depois de 2,5 s mudam no máximo {fora} px (a seta do "ARRASTA →" e o pontinho do chip; a escala ao fundo gira devagar e não conta)')
-        dif_loop = int((q0 != ult).sum())
-        rel.append(f'       slide 01 (capa): loop — o último quadro e o quadro 0 diferem em {dif_loop} px (a seta e o pontinho, no meio do movimento)')
+        rel.append(f'       slide 01 (capa): o título, o chip e o "ARRASTA →" ficam parados; depois de 2,5 s mudam no máximo {fora} px do conteúdo (a seta e o pontinho do chip; o medidor ao fundo não conta)')
+        # o medidor: quanto da capa se mexe entre 0 s e 2,0 s (o ponteiro subindo e a escala girando), e o loop.
+        # Antes do medidor (commit 0d4675a): 11.672 px com o brilho diferente em > 20 níveis e 4.645 px em > 40.
+        lum = lambda q: q @ [0.2126, 0.7152, 0.0722]
+        q2 = quadros(f, [2.0])[0]
+        d02 = np.abs(lum(q2) - lum(todos[0]))
+        m20, m40 = int((d02 > 20).sum()), int((d02 > 40).sum())
+        ok(m20 > 1.5 * 11672 and m40 > 2 * 4645, f'slide 01 (capa): movimento entre 0 s e 2,0 s: {m20} px com o brilho diferente em > 20 níveis e {m40} px em > 40 '
+           f'(antes do medidor: 11.672 e 4.645 px); é o ponteiro subindo de "normal" a "pico" e a escala girando junto')
+        # o loop: o quadro final (209, 6,967 s) e o quadro 0 têm de ser IGUAIS no render (os quadros que vão para o vídeo).
+        # No MP4 sobra só o ruído do H.264 (o quadro 0 é quadro-chave; o final, não), espalhado nas bordas das letras.
+        with tempfile.TemporaryDirectory() as tmp:
+            subprocess.run(['node', os.path.join(ROOT, 'scripts', 'render.cjs'), 'stills', f'1:0,1:{(DUR * FPS - 1) / FPS:.6f}', '--dir', tmp], check=True, capture_output=True)
+            r0, r1 = [np.asarray(Image.open(os.path.join(tmp, x)).convert('RGB')).astype(np.int16) for x in sorted(os.listdir(tmp))]
+        loop_r = int((np.abs(lum(r1) - lum(r0)) > 40).sum())
+        loop_v = int((np.abs(lum(todos[-1]) - lum(todos[0])) > 40).sum())
+        ok(loop_r == 0, f'slide 01 (capa): loop — o quadro final (6,967 s) e o quadro 0 batem: {loop_r} px diferentes nos quadros do render '
+           f'(o ponteiro e a escala já voltaram; a seta e o pontinho do chip estão na posição do quadro 0). No MP4, {loop_v} px de ruído do H.264 nas bordas das letras')
     else:
         ok(pior[1] <= 50, f'slide {n:02d}: animação terminada até 2,5 s (de 2,5 s a 6,97 s, no máximo {pior[1]} px mudam mais de 40 níveis de brilho; tolerância de ruído do vídeo: 50 px)')
 sheet.save(os.path.join(OUT, 'previa.jpg'), quality=90)

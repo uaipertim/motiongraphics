@@ -31,22 +31,31 @@ AAC silenciosa. Não tem trilha, narração nem legenda na tela.
   Nada some no fim.
 - **Tipos de movimento:** número contando, barras crescendo, item sendo marcado, cartão entrando com leve deslocamento
   e selo surgindo. Nenhum texto entra letra por letra; títulos e apoios já estão na tela desde o quadro 0.
-- **Capa:** o quadro 0 já está completo e legível (é ele que aparece na grade e na prévia). O movimento fica em três
-  lugares, todos voltando ao começo em 7 s:
-  - a escala gravada ao fundo gira 20° (10 traços);
-  - o pontinho do chip pulsa;
-  - a seta do "ARRASTA →" dá um empurrãozinho a cada 1,75 s.
+- **Capa:** o quadro 0 já está completo e legível (é ele que aparece na grade e na prévia). Título, chip e
+  "ARRASTA →" ficam parados. O movimento é a escala gravada ao fundo virando um **MEDIDOR** (revisão de 2026-11-20):
+  - **Ponteiro:** traço preto #0A0A0A a 33%, com a espessura dos traços maiores da escala e o pivô fora do quadro, no
+    mesmo centro da escala.
+  - **Faixa de pico:** uma faixa mais escura no aro marca a região "pico".
+  - **Tempos:** o ponteiro sobe de "normal" até "pico" entre 0,3 s e 2,0 s (easing suave, com um leve assentamento no
+    fim), fica em "pico" até 6,2 s e volta devagar. A escala gira 20° junto com ele.
+  - **Loop:** no último quadro (6,967 s), o ponteiro e a escala já estão na posição do quadro 0, então o loop fecha
+    sem salto.
+  - **Camadas:** o ponteiro é fundo; quando cruza o texto, passa por trás dele.
+  - O pontinho do chip ainda pulsa, e a seta do "ARRASTA →" dá um empurrãozinho a cada 1,75 s.
 - **Canto do ícone de som:** os 140×140 px de baixo à direita ficam livres, porque é onde o Instagram põe o ícone de
   som no vídeo. Por isso o "ARRASTA →" e o texto de apoio sobem para y ≈ 1146–1166 (nos estáticos, ficam em 1252).
 - **Selo "EXEMPLO FICTÍCIO":** no alto, à direita, na linha da trilha de passos (slides 04–07).
+- **As cores das faixas:** normal em cinza, alta em off-white #F4F4F0 e pico em limão. O âmbar é reservado para
+  alertas na identidade: só aparece no slide 02 (a etiqueta que sobe de repente). No 07 não há texto sobre as barras:
+  os percentuais ficam acima delas, em branco sobre o fundo escuro.
 
 ## Os slides
 
 | # | Texto | Animação (até 2 s) |
 |---|---|---|
-| 01 | capa limão: chip "ALTA TEMPORADA" · "Tarifa de / dezembro: / quando e / quanto subir?" · "ARRASTA →" | completa no quadro 0; a escala do fundo, o pontinho do chip e a seta se mexem devagar |
+| 01 | capa limão: chip "ALTA TEMPORADA" · "Tarifa de / dezembro: / quando e / quanto subir?" · "ARRASTA →" | completa no quadro 0; o medidor do fundo: o ponteiro sobe de "normal" até "pico" (0,3–2,0 s), fica lá e volta até o fim; a escala gira junto |
 | 02 | "Subir o preço em cima da hora assusta quem já perguntou." + "**Não subir deixa dinheiro na mesa.**" | a etiqueta "R$" sobe de repente (âmbar), com a seta; as moedas caem nas pilhas da mesa (limão) |
-| 03 | trilha **01** · "Separe as datas / **por demanda.**" · apoio "Normal, alta e pico, cada uma com o seu valor." | a faixa de dezembro (31 dias) se pinta da esquerda para a direita: normal (cinza), alta (âmbar, 18–23 e 26–29), pico (limão, 24–25 e 30–31); depois, a legenda das três faixas |
+| 03 | trilha **01** · "Separe as datas / **por demanda.**" · apoio "Normal, alta e pico, cada uma com o seu valor." | a faixa de dezembro (31 dias) se pinta da esquerda para a direita: normal (cinza), alta (off-white, 18–23 e 26–29), pico (limão, 24–25 e 30–31); depois, a legenda das três faixas |
 | 04 | trilha **02** · "Defina o valor de cada / **faixa antes de abrir.**" · apoio "Preço pensado com calma, resposta rápida no WhatsApp." | barras crescendo e números contando: Normal R$ 300 · Alta R$ 360 (+20%) · Pico R$ 450 (+50%) |
 | 05 | trilha **03** · "Reserva confirmada fica / **com o valor combinado.**" · apoio "Tabela nova vale só para reserva nova." | o cartão da reserva confirmada em outubro (R$ 300 → continua R$ 300) entra e ganha o check; o cartão limão da reserva nova de dezembro conta de R$ 300 até R$ 360 |
 | 06 | trilha **04** · "A mesma tabela / **em todo lugar.**" · apoio "WhatsApp, Instagram e recepção falando o mesmo preço." | três etiquetas entram uma depois da outra: WHATSAPP · INSTAGRAM · RECEPÇÃO, todas com R$ 360 |
@@ -78,4 +87,9 @@ A conferência mede tudo nos próprios MP4 (os quadros saem pelo ffmpeg):
 - **Margens e canto do som:** conferidos a cada 0,1 s: conteúdo em x 80–1000 e nada em x ≥ 940, y ≥ 1210.
 - **Estabilidade:** depois de 2,5 s, nenhum pixel muda mais de 40 níveis de brilho. Há uma tolerância de 50 px para
   o ruído do H.264.
-- **Capa:** o quadro 0 já tem o título inteiro.
+- **Capa:**
+  - o quadro 0 já tem o título inteiro;
+  - o movimento entre 0 s e 2,0 s: 19.785 px mudam mais de 20 níveis de brilho e 18.577 px mudam mais de 40. Antes do
+    medidor eram 11.672 e 4.645 px;
+  - o quadro final e o quadro 0 são idênticos nos quadros do render (0 px). No MP4 sobram ~90 px de ruído do H.264 nas
+    bordas das letras (o quadro 0 é quadro-chave e o final, não).

@@ -254,17 +254,33 @@
     ctx.strokeStyle = arrowColor; ctx.lineWidth = 6; ctx.lineCap = 'round'; ctx.lineJoin = 'round';
     ctx.beginPath(); ctx.moveTo(ax - aw, y - 12); ctx.lineTo(ax, y - 12); ctx.moveTo(ax - 20, y - 30); ctx.lineTo(ax, y - 12); ctx.lineTo(ax - 20, y + 6); ctx.stroke();
   }
-  // a escala gravada ao fundo da capa limão (a mesma dos outros carrosséis), girando devagar: 10 traços (20°) em 7 s,
-  // o desenho volta exatamente ao começo (os traços longos a cada 10)
+  // a capa vira um MEDIDOR: a escala gravada ao fundo (a mesma dos outros carrosséis, com o centro fora do quadro, em
+  // 1180, 1280) ganha um ponteiro (traço preto a 33%, a espessura dos traços maiores da escala) com o pivô no mesmo
+  // centro. O ponteiro sobe da região "normal" até a região "pico" (a faixa mais escura da escala) entre 0,3 s e 2,0 s,
+  // com um leve assentamento no fim, fica em "pico" até 6,2 s e volta devagar até 7,0 s: o quadro final é o quadro 0
+  // e o loop fecha sem salto. A escala gira junto (20°). Tudo isso é fundo: o título, o chip e o "ARRASTA →" vêm por cima.
+  const MED = { cx: 1180, cy: 1280, a0: (200 * Math.PI) / 180, a1: (252 * Math.PI) / 180, giro: (20 * Math.PI) / 180, pico: [(236 * Math.PI) / 180, (262 * Math.PI) / 180] };
+  const eSettle = (x) => { if (x <= 0) return 0; if (x >= 1) return 1; const c1 = 0.9, c3 = c1 + 1; return 1 + c3 * Math.pow(x - 1, 3) + c1 * Math.pow(x - 1, 2); };
+  const medidor = (t) => (t < 6.2 ? eSettle(p(t, 0.3, 2.0)) : 1 - eIO(p(t, 6.2, DUR - 1 / FPS)));   // 0 = normal, 1 = pico (no último quadro, já em casa)
   function limeBackground(ctx, t = 0) {
+    const u = medidor(t);
     ctx.fillStyle = C.lime; ctx.fillRect(0, 0, W, H);
-    ctx.save(); ctx.translate(1180, 1280); ctx.rotate(0.385 - (t / DUR) * (TAU / 18)); ctx.lineCap = 'round';
+    ctx.save(); ctx.translate(MED.cx, MED.cy); ctx.rotate(0.385 + MED.giro * u); ctx.lineCap = 'round';
     for (let j = 0; j < 180; j++) {
       const a = (j / 180) * TAU, r1 = 1180, r0 = j % 10 === 0 ? 1080 : j % 5 === 0 ? 1120 : 1150;
       ctx.beginPath(); ctx.moveTo(r0 * Math.cos(a), r0 * Math.sin(a)); ctx.lineTo(r1 * Math.cos(a), r1 * Math.sin(a));
       ctx.strokeStyle = rgba(C.limeDeep, j % 10 === 0 ? 0.55 : 0.3); ctx.lineWidth = j % 10 === 0 ? 5 : 3; ctx.stroke();
     }
     for (const r of [1000, 1010, 760]) { ctx.beginPath(); ctx.arc(0, 0, r, 0, TAU); ctx.strokeStyle = rgba(C.limeDeep, 0.3); ctx.lineWidth = 3; ctx.stroke(); }
+    ctx.restore();
+    // a região "pico" da escala (uma faixa mais escura no aro, no mesmo verde da escala), girando com ela
+    ctx.save(); ctx.translate(MED.cx, MED.cy); ctx.rotate(MED.giro * u);
+    ctx.beginPath(); ctx.arc(0, 0, 1036, MED.pico[0], MED.pico[1]); ctx.strokeStyle = rgba(C.limeDeep, 0.5); ctx.lineWidth = 34; ctx.lineCap = 'butt'; ctx.stroke();
+    ctx.restore();
+    // o ponteiro: do pivô (fora do quadro) até o aro dos traços; vai de "normal" (200°) até "pico" (252°, com o giro da escala)
+    const a = MED.a0 + (MED.a1 - MED.a0) * u + MED.giro * u;
+    ctx.save(); ctx.strokeStyle = rgba(C.ink, 0.33); ctx.lineWidth = 5; ctx.lineCap = 'round';
+    ctx.beginPath(); ctx.moveTo(MED.cx + 120 * Math.cos(a), MED.cy + 120 * Math.sin(a)); ctx.lineTo(MED.cx + 1172 * Math.cos(a), MED.cy + 1172 * Math.sin(a)); ctx.stroke();
     ctx.restore();
   }
   const W_ = C.white, Li = C.lime, INK = C.ink;
@@ -290,7 +306,7 @@
   // 03 · dezembro em faixas de demanda
   const DIAS = 31, ALTA = [18, 19, 20, 21, 22, 23, 26, 27, 28, 29], PICO = [24, 25, 30, 31];
   const faixaDe = (d) => (PICO.includes(d) ? 'pico' : ALTA.includes(d) ? 'alta' : 'normal');
-  const COR_FAIXA = { normal: '#6E6E68', alta: C.amber, pico: C.lime };
+  const COR_FAIXA = { normal: '#6E6E68', alta: '#F4F4F0', pico: C.lime };   // (o âmbar é só para alertas)
 
   const SLIDES = {
     // 01 · capa limão: completa no quadro 0; o movimento fica na escala do fundo, no chip e no "ARRASTA →"
@@ -329,7 +345,8 @@
       });
       ctx.restore();
     },
-    // 03 · passo 1: as datas por demanda (a faixa de dezembro pinta em três cores, da esquerda para a direita)
+    // 03 · passo 1: as datas por demanda (a faixa de dezembro pinta em três cores, da esquerda para a direita: normal
+    // cinza, alta off-white, pico limão)
     3(ctx, t) {
       track(ctx, 1);
       const sp = support(ctx, 'Normal, alta e pico, cada uma com o seu valor.');
@@ -358,7 +375,7 @@
       track(ctx, 2); ficticio(ctx);
       const sp = support(ctx, 'Preço pensado com calma, resposta rápida no WhatsApp.');
       const tt = titulo2(ctx, 'Defina o valor de cada', 'faixa antes de abrir.');
-      const rows = [['NORMAL', 300, '', COR_FAIXA.normal], ['ALTA', 360, '+20%', C.amber], ['PICO', 450, '+50%', C.lime]];
+      const rows = [['NORMAL', 300, '', COR_FAIXA.normal], ['ALTA', 360, '+20%', COR_FAIXA.alta], ['PICO', 450, '+50%', C.lime]];
       const rh = 150, gap = 40, total = rows.length * rh + (rows.length - 1) * gap;
       let y = mid(tt, sp) - total / 2;
       rows.forEach(([lab, v, pct, cor], i) => {
@@ -430,7 +447,7 @@
       const tt = titulo2(ctx, 'Anote como', 'cada faixa vendeu.');
       const m = mid(tt, sp), hMax = 380, base = m + hMax / 2 + 20, bw = 220, gapX = (CW - 3 * bw) / 2;
       monoLab(ctx, 'OCUPAÇÃO', M, base - hMax - 92, C.gray, 28);
-      [['NORMAL', 55, COR_FAIXA.normal], ['ALTA', 80, C.amber], ['PICO', 100, C.lime]].forEach(([lab, v, cor], i) => {
+      [['NORMAL', 55, COR_FAIXA.normal], ['ALTA', 80, COR_FAIXA.alta], ['PICO', 100, C.lime]].forEach(([lab, v, cor], i) => {
         const x = M + i * (bw + gapX), a = 0.2 + i * 0.25, k = eOut(p(t, a, a + 1.1)), h = hMax * (v / 100) * k;
         rr(ctx, x, base - hMax, bw, hMax, 18); ctx.fillStyle = '#1C1C1A'; ctx.fill();
         if (h > 0) { rr(ctx, x, base - h, bw, h, 18); ctx.fillStyle = cor; ctx.fill(); }
