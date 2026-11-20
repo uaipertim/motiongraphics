@@ -1,0 +1,12 @@
+NO-SHOW — conferência do slide 01 (9 s)
+
+OK     01.mp4: 1080×1350, 30 fps, 9.00 s (270 quadros), h264 yuv420p, áudio aac 48000 Hz, 0.52 MB
+OK     margens: conteúdo em x 81–999 em todos os quadros (a cada 0,1 s)
+OK     canto do ícone de som (x ≥ 940, y ≥ 1210) livre em todos os quadros
+OK     texto do topo fixo: nas caixas do texto, os quadros do motor (a cada 0,5 s, 19 quadros) são idênticos ao quadro 0 (0 px); no MP4, 16 px de ruído do H.264 nas bordas das letras
+OK     loop: o último quadro (8.967 s) e o quadro 0 batem: 0 px diferentes nos quadros do motor (no MP4: 18 px de ruído)
+OK     valores do roteiro: (sem valores)
+OK     toques: 270 quadros (todos), até 3 elementos por quadro + o texto fixo, 6 pares medidos; nenhum par a menos de 10 px; menor vão 33.6 px (chip NO-SHOW × texto fixo 0, 0.00 s)
+OK     contas: 3 × R$ 360 = R$ 1.080; 50% = R$ 540; R$ 1.080 − R$ 540 = R$ 540; 2 × R$ 360 = R$ 720
+
+RESULTADO: aprovado

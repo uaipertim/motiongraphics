@@ -359,8 +359,8 @@
   // um elemento que entra com mola a partir de um ponto (escala + leve subida)
   function surge(ctx, t, t0, ox, oy, fn, o = {}) {
     if (t < t0) return;
-    const k = mola(t, t0, o.dur || 0.55), a = cl((t - t0) / 0.18), kt = o.semSubir ? Math.min(k, 1) : k;
-    ctx.save(); ctx.globalAlpha *= a; ctx.translate(ox, oy + (1 - kt) * (o.dy ?? 26)); ctx.scale(0.6 + 0.4 * k, 0.6 + 0.4 * k); ctx.translate(-ox, -oy); fn(k); ctx.restore();
+    const k = mola(t, t0, o.dur || 0.55), a = cl((t - t0) / 0.18), kt = o.semSubir ? Math.min(k, 1) : k, ke = o.semPassar ? Math.min(k, 1) : k;
+    ctx.save(); ctx.globalAlpha *= a; ctx.translate(ox, oy + (1 - kt) * (o.dy ?? 26)); ctx.scale(0.6 + 0.4 * ke, 0.6 + 0.4 * ke); ctx.translate(-ox, -oy); fn(k); ctx.restore();
   }
   // "ARRASTA →" na margem direita, ACIMA do canto do ícone de som: a seta dá um empurrãozinho a cada 1,5 s
   function swipe(ctx, textColor, arrowColor, t = 0) {
@@ -715,12 +715,12 @@
       const { y0, y1 } = topo(ctx, 2, 'Combine o horário', 'de chegada.', 'Saber a hora evita esperar a noite inteira.');
       const k0 = saida(t); palco(ctx, t, y0, y1, k0);
       camada(ctx, k0, () => {
-        const r = 214, cx = M + r + 6, cy = (y0 + y1) / 2 - 40;
+        const r = 214, cx = M + r + 14, cy = (y0 + y1) / 2 - 40;
         surge(ctx, t, 0.15, cx, cy, () => {
           ctx.beginPath(); ctx.arc(cx, cy, r, 0, TAU); ctx.fillStyle = '#121211'; ctx.fill(); ctx.strokeStyle = '#3A3A36'; ctx.lineWidth = 3; ctx.stroke();
           for (let hh = 0; hh < 24; hh++) { const a = ang24(hh), r0 = r - (hh % 6 ? 18 : 30); ctx.beginPath(); ctx.moveTo(cx + Math.cos(a) * r0, cy + Math.sin(a) * r0); ctx.lineTo(cx + Math.cos(a) * (r - 6), cy + Math.sin(a) * (r - 6)); ctx.strokeStyle = hh % 6 ? '#3A3A36' : C.grayM; ctx.lineWidth = hh % 6 ? 2 : 4; ctx.stroke(); }
           [[0, '0'], [6, '6'], [12, '12'], [18, '18']].forEach(([hh, s_]) => { const a = ang24(hh); monoLab(ctx, s_, cx + Math.cos(a) * (r - 62), cy + Math.sin(a) * (r - 62) + 10, C.grayM, 26, 'center', 0, 'hora ' + s_); });
-        }, { dy: 12 });
+        }, { dy: 12, semPassar: true });                                    // (a mola não passa da margem)
         // a faixa 14h–22h acende (0,7–1,7 s)
         const kf = eIO(p(t, 0.7, 1.7));
         if (kf > 0) {
@@ -758,7 +758,8 @@
         if (t >= 4.8) {
           const a = ang24(19), ax = cx + Math.cos(a) * (r - 12), ay = cy + Math.sin(a) * (r - 12), kk = p(t, 4.8, 5.6);
           ctx.beginPath(); ctx.arc(ax, ay, 16, 0, TAU); ctx.fillStyle = C.white; ctx.fill();
-          if (kk < 1) { ctx.beginPath(); ctx.arc(ax, ay, 16 + 60 * eOut(kk), 0, TAU); ctx.strokeStyle = rgba(C.lime, 0.8 * (1 - kk)); ctx.lineWidth = 4; ctx.stroke(); }
+          if (kk < 1) { ctx.save(); ctx.beginPath(); ctx.rect(M, y0, CW, y1 - y0); ctx.clip();      // (o anel fica dentro da margem)
+            ctx.beginPath(); ctx.arc(ax, ay, 16 + 60 * eOut(kk), 0, TAU); ctx.strokeStyle = rgba(C.lime, 0.8 * (1 - kk)); ctx.lineWidth = 4; ctx.stroke(); ctx.restore(); }
           const pul = 0.5 + 0.5 * Math.sin(TAU * (t - 4.8) / 1.4); brilho(ctx, ax, ay, 60, C.lime, 0.2 + 0.15 * pul);
         }
       });
@@ -923,7 +924,7 @@
               }
               if (t > 2.2 + (i - 1) * 0.1 && t < 2.9 + (i - 1) * 0.1) { const kk = p(t, 2.2 + (i - 1) * 0.1, 2.9 + (i - 1) * 0.1); ctx.beginPath(); ctx.arc(x + tw_ / 2, ty + 160, 30 + 60 * eOut(kk), 0, TAU); ctx.strokeStyle = rgba(C.lime, 0.7 * (1 - kk)); ctx.lineWidth = 3; ctx.stroke(); }
             }
-          }, { dy: 16 });
+          }, { dy: 16, semPassar: true });                                  // (a mola não passa da margem)
         });
         // o 26 recebe o NO-SHOW
         carimbo(ctx, M + tw_ / 2, ty + th_ - 110, 'NO-SHOW', -0.1, AMB, t, 0.9, { size: 30, pad: 18, escMax: 1.15 });

@@ -1,0 +1,107 @@
+NO-SHOW — conferência dos 8 slides
+
+NO-SHOW — conferência do slide 01 (9 s)
+
+OK     01.mp4: 1080×1350, 30 fps, 9.00 s (270 quadros), h264 yuv420p, áudio aac 48000 Hz, 0.52 MB
+OK     margens: conteúdo em x 81–999 em todos os quadros (a cada 0,1 s)
+OK     canto do ícone de som (x ≥ 940, y ≥ 1210) livre em todos os quadros
+OK     texto do topo fixo: nas caixas do texto, os quadros do motor (a cada 0,5 s, 19 quadros) são idênticos ao quadro 0 (0 px); no MP4, 16 px de ruído do H.264 nas bordas das letras
+OK     loop: o último quadro (8.967 s) e o quadro 0 batem: 0 px diferentes nos quadros do motor (no MP4: 18 px de ruído)
+OK     valores do roteiro: (sem valores)
+OK     toques: 270 quadros (todos), até 3 elementos por quadro + o texto fixo, 6 pares medidos; nenhum par a menos de 10 px; menor vão 33.6 px (chip NO-SHOW × texto fixo 0, 0.00 s)
+OK     contas: 3 × R$ 360 = R$ 1.080; 50% = R$ 540; R$ 1.080 − R$ 540 = R$ 540; 2 × R$ 360 = R$ 720
+
+RESULTADO: aprovado
+
+NO-SHOW — conferência do slide 02 (10 s)
+
+OK     02.mp4: 1080×1350, 30 fps, 10.00 s (300 quadros), h264 yuv420p, áudio aac 48000 Hz, 2.16 MB
+OK     margens: conteúdo em x 79–1001 em todos os quadros (a cada 0,1 s)
+OK     canto do ícone de som (x ≥ 940, y ≥ 1210) livre em todos os quadros
+OK     texto do topo fixo: nas caixas do texto, os quadros do motor (a cada 0,5 s, 21 quadros) são idênticos ao quadro 0 (0 px); no MP4, 33 px de ruído do H.264 nas bordas das letras
+OK     loop: o último quadro (9.967 s) e o quadro 0 batem: 0 px diferentes nos quadros do motor (no MP4: 33 px de ruído)
+OK     valores do roteiro: R$ 540, 22h, 27/12, 28/12
+OK     toques: 300 quadros (todos), até 13 elementos por quadro + o texto fixo, 91 pares medidos; nenhum par a menos de 10 px; menor vão 15.0 px (selo EXEMPLO FICTÍCIO × texto fixo 0, 0.00 s)
+OK     contas: 3 × R$ 360 = R$ 1.080; 50% = R$ 540; R$ 1.080 − R$ 540 = R$ 540; 2 × R$ 360 = R$ 720
+
+RESULTADO: aprovado
+
+NO-SHOW — conferência do slide 03 (9 s)
+
+OK     03.mp4: 1080×1350, 30 fps, 9.00 s (270 quadros), h264 yuv420p, áudio aac 48000 Hz, 1.06 MB
+OK     margens: conteúdo em x 80–1000 em todos os quadros (a cada 0,1 s)
+OK     canto do ícone de som (x ≥ 940, y ≥ 1210) livre em todos os quadros
+OK     texto do topo fixo: nas caixas do texto, os quadros do motor (a cada 0,5 s, 19 quadros) são idênticos ao quadro 0 (0 px); no MP4, 21 px de ruído do H.264 nas bordas das letras
+OK     loop: o último quadro (8.967 s) e o quadro 0 batem: 0 px diferentes nos quadros do motor (no MP4: 21 px de ruído)
+OK     valores do roteiro: 26/12 a 29/12, 3 noites, R$ 1.080, R$ 540, 22h
+OK     toques: 270 quadros (todos), até 9 elementos por quadro + o texto fixo, 53 pares medidos; nenhum par a menos de 10 px; menor vão 18.8 px (linha Não comparecimento: × linha o sinal fica com a pousada, 2.17 s)
+OK     contas: 3 × R$ 360 = R$ 1.080; 50% = R$ 540; R$ 1.080 − R$ 540 = R$ 540; 2 × R$ 360 = R$ 720
+
+RESULTADO: aprovado
+
+NO-SHOW — conferência do slide 04 (9 s)
+
+OK     04.mp4: 1080×1350, 30 fps, 9.00 s (270 quadros), h264 yuv420p, áudio aac 48000 Hz, 1.30 MB
+OK     margens: conteúdo em x 80–991 em todos os quadros (a cada 0,1 s)
+OK     canto do ícone de som (x ≥ 940, y ≥ 1210) livre em todos os quadros
+OK     texto do topo fixo: nas caixas do texto, os quadros do motor (a cada 0,5 s, 19 quadros) são idênticos ao quadro 0 (0 px); no MP4, 33 px de ruído do H.264 nas bordas das letras
+OK     loop: o último quadro (8.967 s) e o quadro 0 batem: 0 px diferentes nos quadros do motor (no MP4: 33 px de ruído)
+OK     valores do roteiro: 14h–22h
+OK     toques: 270 quadros (todos), até 6 elementos por quadro + o texto fixo, 27 pares medidos; nenhum par a menos de 10 px; menor vão 40.0 px (hora 0 × hora da chegada, 1.83 s)
+OK     contas: 3 × R$ 360 = R$ 1.080; 50% = R$ 540; R$ 1.080 − R$ 540 = R$ 540; 2 × R$ 360 = R$ 720
+
+RESULTADO: aprovado
+
+NO-SHOW — conferência do slide 05 (9 s)
+
+OK     05.mp4: 1080×1350, 30 fps, 9.00 s (270 quadros), h264 yuv420p, áudio aac 48000 Hz, 1.55 MB
+OK     margens: conteúdo em x 80–999 em todos os quadros (a cada 0,1 s)
+OK     canto do ícone de som (x ≥ 940, y ≥ 1210) livre em todos os quadros
+OK     texto do topo fixo: nas caixas do texto, os quadros do motor (a cada 0,5 s, 19 quadros) são idênticos ao quadro 0 (0 px); no MP4, 5 px de ruído do H.264 nas bordas das letras
+OK     loop: o último quadro (8.967 s) e o quadro 0 batem: 0 px diferentes nos quadros do motor (no MP4: 5 px de ruído)
+OK     valores do roteiro: (sem valores)
+OK     toques: 270 quadros (todos), até 8 elementos por quadro + o texto fixo, 44 pares medidos; nenhum par a menos de 10 px; menor vão 24.0 px (caminho NÃO RESPONDEU × hora 08:00, 4.47 s)
+OK     contas: 3 × R$ 360 = R$ 1.080; 50% = R$ 540; R$ 1.080 − R$ 540 = R$ 540; 2 × R$ 360 = R$ 720
+
+RESULTADO: aprovado
+
+NO-SHOW — conferência do slide 06 (9 s)
+
+OK     06.mp4: 1080×1350, 30 fps, 9.00 s (270 quadros), h264 yuv420p, áudio aac 48000 Hz, 1.48 MB
+OK     margens: conteúdo em x 80–1000 em todos os quadros (a cada 0,1 s)
+OK     canto do ícone de som (x ≥ 940, y ≥ 1210) livre em todos os quadros
+OK     texto do topo fixo: nas caixas do texto, os quadros do motor (a cada 0,5 s, 19 quadros) são idênticos ao quadro 0 (0 px); no MP4, 0 px de ruído do H.264 nas bordas das letras
+OK     loop: o último quadro (8.967 s) e o quadro 0 batem: 0 px diferentes nos quadros do motor (no MP4: 0 px de ruído)
+OK     valores do roteiro: R$ 1.080, R$ 360, R$ 540
+OK     toques: 270 quadros (todos), até 9 elementos por quadro + o texto fixo, 77 pares medidos; nenhum par a menos de 10 px; menor vão 15.1 px (rótulo SINAL × valor sinal R$ 540, 3.83 s)
+OK     contas: 3 × R$ 360 = R$ 1.080; 50% = R$ 540; R$ 1.080 − R$ 540 = R$ 540; 2 × R$ 360 = R$ 720
+
+RESULTADO: aprovado
+
+NO-SHOW — conferência do slide 07 (9 s)
+
+OK     07.mp4: 1080×1350, 30 fps, 9.00 s (270 quadros), h264 yuv420p, áudio aac 48000 Hz, 1.46 MB
+OK     margens: conteúdo em x 79–1001 em todos os quadros (a cada 0,1 s)
+OK     canto do ícone de som (x ≥ 940, y ≥ 1210) livre em todos os quadros
+OK     texto do topo fixo: nas caixas do texto, os quadros do motor (a cada 0,5 s, 19 quadros) são idênticos ao quadro 0 (0 px); no MP4, 1 px de ruído do H.264 nas bordas das letras
+OK     loop: o último quadro (8.967 s) e o quadro 0 batem: 0 px diferentes nos quadros do motor (no MP4: 0 px de ruído)
+OK     valores do roteiro: 26/12, 27/12, 28/12, R$ 360, R$ 720
+OK     toques: 270 quadros (todos), até 11 elementos por quadro + o texto fixo, 77 pares medidos; nenhum par a menos de 10 px; menor vão 16.3 px (conta 2 × 360 × valor R$ 720, 4.73 s)
+OK     contas: 3 × R$ 360 = R$ 1.080; 50% = R$ 540; R$ 1.080 − R$ 540 = R$ 540; 2 × R$ 360 = R$ 720
+
+RESULTADO: aprovado
+
+NO-SHOW — conferência do slide 08 (9 s)
+
+OK     08.mp4: 1080×1350, 30 fps, 9.00 s (270 quadros), h264 yuv420p, áudio aac 48000 Hz, 1.69 MB
+OK     margens: conteúdo em x 81–991 em todos os quadros (a cada 0,1 s)
+OK     canto do ícone de som (x ≥ 940, y ≥ 1210) livre em todos os quadros
+OK     texto do topo fixo: nas caixas do texto, os quadros do motor (a cada 0,5 s, 19 quadros) são idênticos ao quadro 0 (0 px); no MP4, 8 px de ruído do H.264 nas bordas das letras
+OK     loop: o último quadro (8.967 s) e o quadro 0 batem: 0 px diferentes nos quadros do motor (no MP4: 10 px de ruído)
+OK     valores do roteiro: (sem valores)
+OK     toques: 270 quadros (todos), até 7 elementos por quadro + o texto fixo, 35 pares medidos; nenhum par a menos de 10 px; menor vão 16.6 px (folha NO-SHOW × folha POLÍTICA DE, 2.47 s)
+OK     contas: 3 × R$ 360 = R$ 1.080; 50% = R$ 540; R$ 1.080 − R$ 540 = R$ 540; 2 × R$ 360 = R$ 720
+
+RESULTADO: aprovado
+
+RESULTADO GERAL: aprovado

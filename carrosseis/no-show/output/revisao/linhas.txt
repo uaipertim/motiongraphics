@@ -1,0 +1,37 @@
+NO-SHOW — linhas de texto no último quadro (palavra sozinha numa linha = FALHA)
+
+ok     slide 01 texto: O hóspede
+ok     slide 01 texto: não apareceu.
+ok     slide 01 texto: E agora?
+ok     slide 01 cena: porta acesa · relógio 18:00 → 22:00 → 00:30 (volta a 18:00 na dissolução)
+ok     slide 02 texto: O chalé ficou pronto a noite toda.
+ok     slide 02 texto: Sem regra combinada, ninguém
+ok     slide 02 texto: sabe o que fazer com o sinal.
+ok     slide 02 dados: chegada prevista 22h · sinal R$ 540 · noites 27/12 e 28/12 presas
+ok     slide 03 texto: Quem reserva já sabe o que acontece se não vier.
+ok     slide 03 texto: A regra vai escrita
+ok     slide 03 texto: na confirmação.
+ok     slide 03 dados: Chalé 3 · 26/12 a 29/12 · 3 noites · Total R$ 1.080 · sinal R$ 540 pago · Chegada até 22h
+ok     slide 04 texto: Saber a hora evita esperar a noite inteira.
+ok     slide 04 texto: Combine o horário
+ok     slide 04 texto: de chegada.
+ok     slide 04 dados: chegada 14h–22h · chegou 19h
+ok     slide 05 texto: Às vezes é só um atraso na estrada.
+ok     slide 05 texto: Passou do horário?
+ok     slide 05 texto: Mande mensagem.
+ok     slide 05 dados: 22:10 · Tudo certo com a viagem? · respondeu: Pneu furado, chego 23h · não respondeu até 8h: NO-SHOW
+ok     slide 06 texto: Combinado antes, sem discussão depois.
+ok     slide 06 texto: O sinal segue
+ok     slide 06 texto: a regra combinada.
+ok     slide 06 dados: RESERVA R$ 1.080 = 3 NOITES × R$ 360 · SINAL R$ 540 RETIDO · SALDO R$ 540 NÃO COBRADO
+ok     slide 07 texto: Noite livre ainda pode ser vendida.
+ok     slide 07 texto: Libere as noites
+ok     slide 07 texto: que sobraram.
+ok     slide 07 dados: 26/12 NO-SHOW · 27/12 e 28/12 LIVRE → RESERVADO · 2 noites × R$ 360 = R$ 720
+ok     slide 08 texto: Regra combinada antes,
+ok     slide 08 texto: decisão tranquila depois.
+ok     slide 08 texto: Salva pra montar a sua política de no-show.
+ok     slide 08 assinatura: @fazlohospeda
+ok     slide 08 dados: POLÍTICA DE NO-SHOW · regra na confirmação · chegada até 22h · mensagem · sinal conforme a regra · noites liberadas
+
+RESULTADO: nenhuma palavra sozinha numa linha
