@@ -1,0 +1,75 @@
+{
+ "modo": "telas",
+ "quadros": 17,
+ "com_achados": {},
+ "todos": {
+  "alterar-joao-operacao.png": {
+   "achados": [],
+   "letras_lidas": 490
+  },
+  "alterar-joao.png": {
+   "achados": [],
+   "letras_lidas": 490
+  },
+  "convidar-preenchido.png": {
+   "achados": [],
+   "letras_lidas": 606
+  },
+  "convidar.png": {
+   "achados": [],
+   "letras_lidas": 593
+  },
+  "desativar-mariana.png": {
+   "achados": [],
+   "letras_lidas": 183
+  },
+  "inativos-reativado.png": {
+   "achados": [],
+   "letras_lidas": 288
+  },
+  "inativos.png": {
+   "achados": [],
+   "letras_lidas": 354
+  },
+  "inicio.png": {
+   "achados": [],
+   "letras_lidas": 386
+  },
+  "menu-mais.png": {
+   "achados": [],
+   "letras_lidas": 235
+  },
+  "usuarios-convite.png": {
+   "achados": [],
+   "letras_lidas": 442
+  },
+  "usuarios-joao-operacao-topo.png": {
+   "achados": [],
+   "letras_lidas": 384
+  },
+  "usuarios-joao-operacao.png": {
+   "achados": [],
+   "letras_lidas": 437
+  },
+  "usuarios-joao.png": {
+   "achados": [],
+   "letras_lidas": 434
+  },
+  "usuarios-mariana-inativa.png": {
+   "achados": [],
+   "letras_lidas": 445
+  },
+  "usuarios-mariana-reativada.png": {
+   "achados": [],
+   "letras_lidas": 437
+  },
+  "usuarios-mariana.png": {
+   "achados": [],
+   "letras_lidas": 437
+  },
+  "usuarios.png": {
+   "achados": [],
+   "letras_lidas": 368
+  }
+ }
+}

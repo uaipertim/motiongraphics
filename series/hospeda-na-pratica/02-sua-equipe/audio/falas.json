@@ -1,0 +1,835 @@
+{
+ "texto": "Ainda divide uma senha só com toda a equipe? A senha passa de mão em mão, e quando alguém sai, você nem sabe quem ainda entra. No FAZLO Hospeda, cada pessoa tem o seu próprio acesso. Toque em Mais e depois em Usuários. Aqui está a sua equipe, com o papel de cada um. Para chamar alguém novo, toque em Convidar usuário. Coloque o nome, o e-mail e escolha o papel: Administrador, Operação ou Caixa. Cada papel já mostra o que a pessoa pode fazer. Enviou o convite: a pessoa recebe por e-mail e entra com o papel escolhido. Mudou de função? Toque em Alterar papel e salve. Saiu da equipe? Desative. A pessoa perde o acesso, e o histórico continua. Se voltar, é só reativar. Cada um com o seu acesso, e você no controle.",
+ "enviado": "Ainda divide uma senha só com toda a equipe? A senha passa de mão em mão, e quando alguém sai, você nem sabe quem ainda entra. No Fázlo Hospéda, cada pessoa tem o seu próprio acesso. Toque em Mais e depois em Usuários. Aqui está a sua equipe, com o papel de cada um. Para chamar alguém novo, toque em Convidar usuário. Coloque o nome, o e-mail e escolha o papel: Administrador, Operação ou Caixa. Cada papel já mostra o que a pessoa pode fazer. Enviou o convite: a pessoa recebe por e-mail e entra com o papel escolhido. Mudou de função? Toque em Alterar papel e salve. Saiu da equipe? Desative. A pessoa perde o acesso, e o histórico continua. Se voltar, é só reativar. Cada um com o seu acesso, e você no controle.",
+ "voz": {
+  "nome": "Alexa - Soft, Clear and Friendly",
+  "voice_id": "sXSV9RZ095VZyL64w3ap",
+  "modelo": "eleven_v4",
+  "stability": 0.5,
+  "similarity_boost": 0.75
+ },
+ "seed": 7100,
+ "formato": "mp3_44100_192",
+ "ritmo_letras_s": 10.4,
+ "fim_da_fala_s": 52.81,
+ "duracao_audio": 53.04,
+ "palavras": [
+  {
+   "w": "Ainda",
+   "falado": "Ainda",
+   "t0": 0.0,
+   "t1": 0.28
+  },
+  {
+   "w": "divide",
+   "falado": "divide",
+   "t0": 0.32,
+   "t1": 0.667
+  },
+  {
+   "w": "uma",
+   "falado": "uma",
+   "t0": 0.72,
+   "t1": 0.92
+  },
+  {
+   "w": "senha",
+   "falado": "senha",
+   "t0": 0.96,
+   "t1": 1.296
+  },
+  {
+   "w": "só",
+   "falado": "só",
+   "t0": 1.36,
+   "t1": 1.6
+  },
+  {
+   "w": "com",
+   "falado": "com",
+   "t0": 1.68,
+   "t1": 1.813
+  },
+  {
+   "w": "toda",
+   "falado": "toda",
+   "t0": 1.84,
+   "t1": 2.2
+  },
+  {
+   "w": "a",
+   "falado": "a",
+   "t0": 2.24,
+   "t1": 2.267
+  },
+  {
+   "w": "equipe?",
+   "falado": "equipe?",
+   "t0": 2.293,
+   "t1": 2.773
+  },
+  {
+   "w": "A",
+   "falado": "A",
+   "t0": 3.12,
+   "t1": 3.36
+  },
+  {
+   "w": "senha",
+   "falado": "senha",
+   "t0": 3.52,
+   "t1": 3.84
+  },
+  {
+   "w": "passa",
+   "falado": "passa",
+   "t0": 3.96,
+   "t1": 4.12
+  },
+  {
+   "w": "de",
+   "falado": "de",
+   "t0": 4.16,
+   "t1": 4.32
+  },
+  {
+   "w": "mão",
+   "falado": "mão",
+   "t0": 4.4,
+   "t1": 4.64
+  },
+  {
+   "w": "em",
+   "falado": "em",
+   "t0": 4.72,
+   "t1": 4.8
+  },
+  {
+   "w": "mão,",
+   "falado": "mão,",
+   "t0": 4.84,
+   "t1": 5.04
+  },
+  {
+   "w": "e",
+   "falado": "e",
+   "t0": 5.32,
+   "t1": 5.36
+  },
+  {
+   "w": "quando",
+   "falado": "quando",
+   "t0": 5.44,
+   "t1": 5.6
+  },
+  {
+   "w": "alguém",
+   "falado": "alguém",
+   "t0": 5.64,
+   "t1": 6.0
+  },
+  {
+   "w": "sai,",
+   "falado": "sai,",
+   "t0": 6.04,
+   "t1": 6.32
+  },
+  {
+   "w": "você",
+   "falado": "você",
+   "t0": 6.44,
+   "t1": 6.72
+  },
+  {
+   "w": "nem",
+   "falado": "nem",
+   "t0": 6.88,
+   "t1": 7.12
+  },
+  {
+   "w": "sabe",
+   "falado": "sabe",
+   "t0": 7.2,
+   "t1": 7.44
+  },
+  {
+   "w": "quem",
+   "falado": "quem",
+   "t0": 7.52,
+   "t1": 7.68
+  },
+  {
+   "w": "ainda",
+   "falado": "ainda",
+   "t0": 7.8,
+   "t1": 8.0
+  },
+  {
+   "w": "entra.",
+   "falado": "entra.",
+   "t0": 8.08,
+   "t1": 8.4
+  },
+  {
+   "w": "No",
+   "falado": "No",
+   "t0": 8.96,
+   "t1": 9.04
+  },
+  {
+   "w": "FAZLO",
+   "falado": "Fázlo",
+   "t0": 9.12,
+   "t1": 9.44
+  },
+  {
+   "w": "Hospeda,",
+   "falado": "Hospéda,",
+   "t0": 9.547,
+   "t1": 10.0
+  },
+  {
+   "w": "cada",
+   "falado": "cada",
+   "t0": 10.24,
+   "t1": 10.48
+  },
+  {
+   "w": "pessoa",
+   "falado": "pessoa",
+   "t0": 10.56,
+   "t1": 10.96
+  },
+  {
+   "w": "tem",
+   "falado": "tem",
+   "t0": 11.04,
+   "t1": 11.2
+  },
+  {
+   "w": "o",
+   "falado": "o",
+   "t0": 11.24,
+   "t1": 11.28
+  },
+  {
+   "w": "seu",
+   "falado": "seu",
+   "t0": 11.32,
+   "t1": 11.52
+  },
+  {
+   "w": "próprio",
+   "falado": "próprio",
+   "t0": 11.6,
+   "t1": 11.84
+  },
+  {
+   "w": "acesso.",
+   "falado": "acesso.",
+   "t0": 11.92,
+   "t1": 12.4
+  },
+  {
+   "w": "Toque",
+   "falado": "Toque",
+   "t0": 12.88,
+   "t1": 13.12
+  },
+  {
+   "w": "em",
+   "falado": "em",
+   "t0": 13.24,
+   "t1": 13.36
+  },
+  {
+   "w": "Mais",
+   "falado": "Mais",
+   "t0": 13.56,
+   "t1": 13.76
+  },
+  {
+   "w": "e",
+   "falado": "e",
+   "t0": 13.92,
+   "t1": 13.96
+  },
+  {
+   "w": "depois",
+   "falado": "depois",
+   "t0": 14.0,
+   "t1": 14.48
+  },
+  {
+   "w": "em",
+   "falado": "em",
+   "t0": 14.6,
+   "t1": 14.72
+  },
+  {
+   "w": "Usuários.",
+   "falado": "Usuários.",
+   "t0": 14.8,
+   "t1": 15.52
+  },
+  {
+   "w": "Aqui",
+   "falado": "Aqui",
+   "t0": 16.04,
+   "t1": 16.32
+  },
+  {
+   "w": "está",
+   "falado": "está",
+   "t0": 16.44,
+   "t1": 16.587
+  },
+  {
+   "w": "a",
+   "falado": "a",
+   "t0": 16.613,
+   "t1": 16.64
+  },
+  {
+   "w": "sua",
+   "falado": "sua",
+   "t0": 16.72,
+   "t1": 16.8
+  },
+  {
+   "w": "equipe,",
+   "falado": "equipe,",
+   "t0": 16.88,
+   "t1": 17.28
+  },
+  {
+   "w": "com",
+   "falado": "com",
+   "t0": 17.44,
+   "t1": 17.52
+  },
+  {
+   "w": "o",
+   "falado": "o",
+   "t0": 17.56,
+   "t1": 17.6
+  },
+  {
+   "w": "papel",
+   "falado": "papel",
+   "t0": 17.64,
+   "t1": 18.0
+  },
+  {
+   "w": "de",
+   "falado": "de",
+   "t0": 18.12,
+   "t1": 18.24
+  },
+  {
+   "w": "cada",
+   "falado": "cada",
+   "t0": 18.28,
+   "t1": 18.56
+  },
+  {
+   "w": "um.",
+   "falado": "um.",
+   "t0": 18.64,
+   "t1": 18.8
+  },
+  {
+   "w": "Para",
+   "falado": "Para",
+   "t0": 19.36,
+   "t1": 19.44
+  },
+  {
+   "w": "chamar",
+   "falado": "chamar",
+   "t0": 19.52,
+   "t1": 19.76
+  },
+  {
+   "w": "alguém",
+   "falado": "alguém",
+   "t0": 19.84,
+   "t1": 20.08
+  },
+  {
+   "w": "novo,",
+   "falado": "novo,",
+   "t0": 20.16,
+   "t1": 20.48
+  },
+  {
+   "w": "toque",
+   "falado": "toque",
+   "t0": 20.72,
+   "t1": 20.96
+  },
+  {
+   "w": "em",
+   "falado": "em",
+   "t0": 21.08,
+   "t1": 21.2
+  },
+  {
+   "w": "Convidar",
+   "falado": "Convidar",
+   "t0": 21.32,
+   "t1": 21.76
+  },
+  {
+   "w": "usuário.",
+   "falado": "usuário.",
+   "t0": 21.84,
+   "t1": 22.4
+  },
+  {
+   "w": "Coloque",
+   "falado": "Coloque",
+   "t0": 22.88,
+   "t1": 23.12
+  },
+  {
+   "w": "o",
+   "falado": "o",
+   "t0": 23.16,
+   "t1": 23.2
+  },
+  {
+   "w": "nome,",
+   "falado": "nome,",
+   "t0": 23.28,
+   "t1": 23.6
+  },
+  {
+   "w": "o",
+   "falado": "o",
+   "t0": 23.88,
+   "t1": 23.92
+  },
+  {
+   "w": "e-mail",
+   "falado": "e-mail",
+   "t0": 24.0,
+   "t1": 24.56
+  },
+  {
+   "w": "e",
+   "falado": "e",
+   "t0": 24.6,
+   "t1": 24.64
+  },
+  {
+   "w": "escolha",
+   "falado": "escolha",
+   "t0": 24.76,
+   "t1": 25.04
+  },
+  {
+   "w": "o",
+   "falado": "o",
+   "t0": 25.08,
+   "t1": 25.12
+  },
+  {
+   "w": "papel:",
+   "falado": "papel:",
+   "t0": 25.253,
+   "t1": 25.52
+  },
+  {
+   "w": "Administrador,",
+   "falado": "Administrador,",
+   "t0": 26.2,
+   "t1": 26.88
+  },
+  {
+   "w": "Operação",
+   "falado": "Operação",
+   "t0": 27.12,
+   "t1": 27.84
+  },
+  {
+   "w": "ou",
+   "falado": "ou",
+   "t0": 28.0,
+   "t1": 28.08
+  },
+  {
+   "w": "Caixa.",
+   "falado": "Caixa.",
+   "t0": 28.24,
+   "t1": 28.64
+  },
+  {
+   "w": "Cada",
+   "falado": "Cada",
+   "t0": 29.16,
+   "t1": 29.36
+  },
+  {
+   "w": "papel",
+   "falado": "papel",
+   "t0": 29.44,
+   "t1": 29.84
+  },
+  {
+   "w": "já",
+   "falado": "já",
+   "t0": 29.92,
+   "t1": 30.16
+  },
+  {
+   "w": "mostra",
+   "falado": "mostra",
+   "t0": 30.24,
+   "t1": 30.48
+  },
+  {
+   "w": "o",
+   "falado": "o",
+   "t0": 30.56,
+   "t1": 30.587
+  },
+  {
+   "w": "que",
+   "falado": "que",
+   "t0": 30.613,
+   "t1": 30.64
+  },
+  {
+   "w": "a",
+   "falado": "a",
+   "t0": 30.68,
+   "t1": 30.72
+  },
+  {
+   "w": "pessoa",
+   "falado": "pessoa",
+   "t0": 30.76,
+   "t1": 31.12
+  },
+  {
+   "w": "pode",
+   "falado": "pode",
+   "t0": 31.2,
+   "t1": 31.36
+  },
+  {
+   "w": "fazer.",
+   "falado": "fazer.",
+   "t0": 31.4,
+   "t1": 31.76
+  },
+  {
+   "w": "Enviou",
+   "falado": "Enviou",
+   "t0": 32.32,
+   "t1": 32.72
+  },
+  {
+   "w": "o",
+   "falado": "o",
+   "t0": 32.76,
+   "t1": 32.8
+  },
+  {
+   "w": "convite:",
+   "falado": "convite:",
+   "t0": 32.88,
+   "t1": 33.36
+  },
+  {
+   "w": "a",
+   "falado": "a",
+   "t0": 33.8,
+   "t1": 33.84
+  },
+  {
+   "w": "pessoa",
+   "falado": "pessoa",
+   "t0": 33.92,
+   "t1": 34.16
+  },
+  {
+   "w": "recebe",
+   "falado": "recebe",
+   "t0": 34.24,
+   "t1": 34.72
+  },
+  {
+   "w": "por",
+   "falado": "por",
+   "t0": 34.8,
+   "t1": 34.88
+  },
+  {
+   "w": "e-mail",
+   "falado": "e-mail",
+   "t0": 34.92,
+   "t1": 35.36
+  },
+  {
+   "w": "e",
+   "falado": "e",
+   "t0": 35.44,
+   "t1": 35.52
+  },
+  {
+   "w": "entra",
+   "falado": "entra",
+   "t0": 35.64,
+   "t1": 35.92
+  },
+  {
+   "w": "com",
+   "falado": "com",
+   "t0": 35.96,
+   "t1": 36.0
+  },
+  {
+   "w": "o",
+   "falado": "o",
+   "t0": 36.027,
+   "t1": 36.053
+  },
+  {
+   "w": "papel",
+   "falado": "papel",
+   "t0": 36.08,
+   "t1": 36.4
+  },
+  {
+   "w": "escolhido.",
+   "falado": "escolhido.",
+   "t0": 36.48,
+   "t1": 36.96
+  },
+  {
+   "w": "Mudou",
+   "falado": "Mudou",
+   "t0": 37.44,
+   "t1": 37.68
+  },
+  {
+   "w": "de",
+   "falado": "de",
+   "t0": 37.76,
+   "t1": 37.84
+  },
+  {
+   "w": "função?",
+   "falado": "função?",
+   "t0": 37.96,
+   "t1": 38.32
+  },
+  {
+   "w": "Toque",
+   "falado": "Toque",
+   "t0": 38.8,
+   "t1": 39.12
+  },
+  {
+   "w": "em",
+   "falado": "em",
+   "t0": 39.16,
+   "t1": 39.2
+  },
+  {
+   "w": "Alterar",
+   "falado": "Alterar",
+   "t0": 39.28,
+   "t1": 39.68
+  },
+  {
+   "w": "papel",
+   "falado": "papel",
+   "t0": 39.76,
+   "t1": 40.24
+  },
+  {
+   "w": "e",
+   "falado": "e",
+   "t0": 40.4,
+   "t1": 40.48
+  },
+  {
+   "w": "salve.",
+   "falado": "salve.",
+   "t0": 40.56,
+   "t1": 41.04
+  },
+  {
+   "w": "Saiu",
+   "falado": "Saiu",
+   "t0": 41.44,
+   "t1": 41.76
+  },
+  {
+   "w": "da",
+   "falado": "da",
+   "t0": 41.8,
+   "t1": 41.84
+  },
+  {
+   "w": "equipe?",
+   "falado": "equipe?",
+   "t0": 41.96,
+   "t1": 42.32
+  },
+  {
+   "w": "Desative.",
+   "falado": "Desative.",
+   "t0": 42.72,
+   "t1": 43.36
+  },
+  {
+   "w": "A",
+   "falado": "A",
+   "t0": 43.76,
+   "t1": 43.84
+  },
+  {
+   "w": "pessoa",
+   "falado": "pessoa",
+   "t0": 43.92,
+   "t1": 44.24
+  },
+  {
+   "w": "perde",
+   "falado": "perde",
+   "t0": 44.32,
+   "t1": 44.64
+  },
+  {
+   "w": "o",
+   "falado": "o",
+   "t0": 44.68,
+   "t1": 44.72
+  },
+  {
+   "w": "acesso,",
+   "falado": "acesso,",
+   "t0": 44.84,
+   "t1": 45.28
+  },
+  {
+   "w": "e",
+   "falado": "e",
+   "t0": 45.4,
+   "t1": 45.44
+  },
+  {
+   "w": "o",
+   "falado": "o",
+   "t0": 45.48,
+   "t1": 45.52
+  },
+  {
+   "w": "histórico",
+   "falado": "histórico",
+   "t0": 45.64,
+   "t1": 46.08
+  },
+  {
+   "w": "continua.",
+   "falado": "continua.",
+   "t0": 46.16,
+   "t1": 46.8
+  },
+  {
+   "w": "Se",
+   "falado": "Se",
+   "t0": 47.2,
+   "t1": 47.28
+  },
+  {
+   "w": "voltar,",
+   "falado": "voltar,",
+   "t0": 47.44,
+   "t1": 47.76
+  },
+  {
+   "w": "é",
+   "falado": "é",
+   "t0": 48.0,
+   "t1": 48.08
+  },
+  {
+   "w": "só",
+   "falado": "só",
+   "t0": 48.16,
+   "t1": 48.32
+  },
+  {
+   "w": "reativar.",
+   "falado": "reativar.",
+   "t0": 48.48,
+   "t1": 48.96
+  },
+  {
+   "w": "Cada",
+   "falado": "Cada",
+   "t0": 49.44,
+   "t1": 49.76
+  },
+  {
+   "w": "um",
+   "falado": "um",
+   "t0": 49.84,
+   "t1": 50.0
+  },
+  {
+   "w": "com",
+   "falado": "com",
+   "t0": 50.08,
+   "t1": 50.16
+  },
+  {
+   "w": "o",
+   "falado": "o",
+   "t0": 50.2,
+   "t1": 50.24
+  },
+  {
+   "w": "seu",
+   "falado": "seu",
+   "t0": 50.32,
+   "t1": 50.52
+  },
+  {
+   "w": "acesso,",
+   "falado": "acesso,",
+   "t0": 50.56,
+   "t1": 51.12
+  },
+  {
+   "w": "e",
+   "falado": "e",
+   "t0": 51.32,
+   "t1": 51.36
+  },
+  {
+   "w": "você",
+   "falado": "você",
+   "t0": 51.44,
+   "t1": 51.84
+  },
+  {
+   "w": "no",
+   "falado": "no",
+   "t0": 52.08,
+   "t1": 52.16
+  },
+  {
+   "w": "controle.",
+   "falado": "controle.",
+   "t0": 52.24,
+   "t1": 52.8
+  }
+ ],
+ "quando": "2026-11-20 11:31"
+}

@@ -43,6 +43,11 @@
    "escondidos": 5,
    "proibidos": 0
   },
+  "usuarios-joao": {
+   "trocas": 0,
+   "escondidos": 5,
+   "proibidos": 0
+  },
   "alterar-joao": {
    "trocas": 2,
    "escondidos": 5,
@@ -53,7 +58,17 @@
    "escondidos": 5,
    "proibidos": 0
   },
+  "usuarios-joao-operacao-topo": {
+   "trocas": 0,
+   "escondidos": 5,
+   "proibidos": 0
+  },
   "usuarios-joao-operacao": {
+   "trocas": 0,
+   "escondidos": 5,
+   "proibidos": 0
+  },
+  "usuarios-mariana": {
    "trocas": 0,
    "escondidos": 5,
    "proibidos": 0
@@ -75,6 +90,11 @@
   },
   "inativos-reativado": {
    "trocas": 0,
+   "escondidos": 5,
+   "proibidos": 0
+  },
+  "usuarios-mariana-reativada": {
+   "trocas": 18,
    "escondidos": 5,
    "proibidos": 0
   }

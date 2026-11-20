@@ -1,0 +1,691 @@
+{
+ "modo": "video",
+ "quadros": 171,
+ "com_achados": {},
+ "todos": {
+  "t=13.38": {
+   "achados": [],
+   "letras_lidas": 363
+  },
+  "t=13.63": {
+   "achados": [],
+   "letras_lidas": 323
+  },
+  "t=13.88": {
+   "achados": [],
+   "letras_lidas": 340
+  },
+  "t=14.13": {
+   "achados": [],
+   "letras_lidas": 333
+  },
+  "t=14.38": {
+   "achados": [],
+   "letras_lidas": 295
+  },
+  "t=14.63": {
+   "achados": [],
+   "letras_lidas": 150
+  },
+  "t=14.88": {
+   "achados": [],
+   "letras_lidas": 168
+  },
+  "t=15.13": {
+   "achados": [],
+   "letras_lidas": 194
+  },
+  "t=15.38": {
+   "achados": [],
+   "letras_lidas": 182
+  },
+  "t=15.63": {
+   "achados": [],
+   "letras_lidas": 192
+  },
+  "t=15.88": {
+   "achados": [],
+   "letras_lidas": 404
+  },
+  "t=16.13": {
+   "achados": [],
+   "letras_lidas": 304
+  },
+  "t=16.38": {
+   "achados": [],
+   "letras_lidas": 280
+  },
+  "t=16.63": {
+   "achados": [],
+   "letras_lidas": 305
+  },
+  "t=16.88": {
+   "achados": [],
+   "letras_lidas": 302
+  },
+  "t=17.13": {
+   "achados": [],
+   "letras_lidas": 350
+  },
+  "t=17.38": {
+   "achados": [],
+   "letras_lidas": 354
+  },
+  "t=17.63": {
+   "achados": [],
+   "letras_lidas": 355
+  },
+  "t=17.88": {
+   "achados": [],
+   "letras_lidas": 359
+  },
+  "t=18.13": {
+   "achados": [],
+   "letras_lidas": 360
+  },
+  "t=18.38": {
+   "achados": [],
+   "letras_lidas": 348
+  },
+  "t=18.63": {
+   "achados": [],
+   "letras_lidas": 337
+  },
+  "t=18.88": {
+   "achados": [],
+   "letras_lidas": 329
+  },
+  "t=19.13": {
+   "achados": [],
+   "letras_lidas": 14
+  },
+  "t=19.38": {
+   "achados": [],
+   "letras_lidas": 22
+  },
+  "t=19.63": {
+   "achados": [],
+   "letras_lidas": 26
+  },
+  "t=19.88": {
+   "achados": [],
+   "letras_lidas": 26
+  },
+  "t=20.13": {
+   "achados": [],
+   "letras_lidas": 346
+  },
+  "t=20.38": {
+   "achados": [],
+   "letras_lidas": 361
+  },
+  "t=20.63": {
+   "achados": [],
+   "letras_lidas": 347
+  },
+  "t=20.88": {
+   "achados": [],
+   "letras_lidas": 356
+  },
+  "t=21.13": {
+   "achados": [],
+   "letras_lidas": 363
+  },
+  "t=21.38": {
+   "achados": [],
+   "letras_lidas": 363
+  },
+  "t=21.63": {
+   "achados": [],
+   "letras_lidas": 369
+  },
+  "t=21.88": {
+   "achados": [],
+   "letras_lidas": 369
+  },
+  "t=22.13": {
+   "achados": [],
+   "letras_lidas": 313
+  },
+  "t=22.38": {
+   "achados": [],
+   "letras_lidas": 187
+  },
+  "t=22.63": {
+   "achados": [],
+   "letras_lidas": 191
+  },
+  "t=22.88": {
+   "achados": [],
+   "letras_lidas": 217
+  },
+  "t=23.13": {
+   "achados": [],
+   "letras_lidas": 113
+  },
+  "t=23.38": {
+   "achados": [],
+   "letras_lidas": 401
+  },
+  "t=23.63": {
+   "achados": [],
+   "letras_lidas": 426
+  },
+  "t=23.88": {
+   "achados": [],
+   "letras_lidas": 427
+  },
+  "t=24.13": {
+   "achados": [],
+   "letras_lidas": 426
+  },
+  "t=24.38": {
+   "achados": [],
+   "letras_lidas": 430
+  },
+  "t=24.63": {
+   "achados": [],
+   "letras_lidas": 417
+  },
+  "t=24.88": {
+   "achados": [],
+   "letras_lidas": 420
+  },
+  "t=25.13": {
+   "achados": [],
+   "letras_lidas": 428
+  },
+  "t=25.38": {
+   "achados": [],
+   "letras_lidas": 426
+  },
+  "t=25.63": {
+   "achados": [],
+   "letras_lidas": 425
+  },
+  "t=25.88": {
+   "achados": [],
+   "letras_lidas": 431
+  },
+  "t=26.13": {
+   "achados": [],
+   "letras_lidas": 447
+  },
+  "t=26.38": {
+   "achados": [],
+   "letras_lidas": 451
+  },
+  "t=26.63": {
+   "achados": [],
+   "letras_lidas": 578
+  },
+  "t=26.88": {
+   "achados": [],
+   "letras_lidas": 518
+  },
+  "t=27.13": {
+   "achados": [],
+   "letras_lidas": 520
+  },
+  "t=27.38": {
+   "achados": [],
+   "letras_lidas": 518
+  },
+  "t=27.63": {
+   "achados": [],
+   "letras_lidas": 575
+  },
+  "t=27.88": {
+   "achados": [],
+   "letras_lidas": 530
+  },
+  "t=28.13": {
+   "achados": [],
+   "letras_lidas": 534
+  },
+  "t=28.38": {
+   "achados": [],
+   "letras_lidas": 535
+  },
+  "t=28.63": {
+   "achados": [],
+   "letras_lidas": 475
+  },
+  "t=28.88": {
+   "achados": [],
+   "letras_lidas": 453
+  },
+  "t=29.13": {
+   "achados": [],
+   "letras_lidas": 457
+  },
+  "t=29.38": {
+   "achados": [],
+   "letras_lidas": 470
+  },
+  "t=29.63": {
+   "achados": [],
+   "letras_lidas": 491
+  },
+  "t=29.88": {
+   "achados": [],
+   "letras_lidas": 544
+  },
+  "t=30.13": {
+   "achados": [],
+   "letras_lidas": 509
+  },
+  "t=30.38": {
+   "achados": [],
+   "letras_lidas": 550
+  },
+  "t=30.63": {
+   "achados": [],
+   "letras_lidas": 564
+  },
+  "t=30.88": {
+   "achados": [],
+   "letras_lidas": 566
+  },
+  "t=31.13": {
+   "achados": [],
+   "letras_lidas": 566
+  },
+  "t=31.38": {
+   "achados": [],
+   "letras_lidas": 558
+  },
+  "t=31.63": {
+   "achados": [],
+   "letras_lidas": 517
+  },
+  "t=31.88": {
+   "achados": [],
+   "letras_lidas": 513
+  },
+  "t=32.13": {
+   "achados": [],
+   "letras_lidas": 476
+  },
+  "t=32.38": {
+   "achados": [],
+   "letras_lidas": 439
+  },
+  "t=32.63": {
+   "achados": [],
+   "letras_lidas": 537
+  },
+  "t=32.88": {
+   "achados": [],
+   "letras_lidas": 482
+  },
+  "t=33.13": {
+   "achados": [],
+   "letras_lidas": 491
+  },
+  "t=33.38": {
+   "achados": [],
+   "letras_lidas": 505
+  },
+  "t=33.63": {
+   "achados": [],
+   "letras_lidas": 209
+  },
+  "t=33.88": {
+   "achados": [],
+   "letras_lidas": 209
+  },
+  "t=34.13": {
+   "achados": [],
+   "letras_lidas": 210
+  },
+  "t=34.38": {
+   "achados": [],
+   "letras_lidas": 210
+  },
+  "t=34.63": {
+   "achados": [],
+   "letras_lidas": 471
+  },
+  "t=34.88": {
+   "achados": [],
+   "letras_lidas": 545
+  },
+  "t=35.13": {
+   "achados": [],
+   "letras_lidas": 515
+  },
+  "t=35.38": {
+   "achados": [],
+   "letras_lidas": 354
+  },
+  "t=35.63": {
+   "achados": [],
+   "letras_lidas": 336
+  },
+  "t=35.88": {
+   "achados": [],
+   "letras_lidas": 388
+  },
+  "t=36.13": {
+   "achados": [],
+   "letras_lidas": 354
+  },
+  "t=36.38": {
+   "achados": [],
+   "letras_lidas": 350
+  },
+  "t=36.63": {
+   "achados": [],
+   "letras_lidas": 371
+  },
+  "t=36.88": {
+   "achados": [],
+   "letras_lidas": 367
+  },
+  "t=37.13": {
+   "achados": [],
+   "letras_lidas": 380
+  },
+  "t=37.38": {
+   "achados": [],
+   "letras_lidas": 380
+  },
+  "t=37.63": {
+   "achados": [],
+   "letras_lidas": 344
+  },
+  "t=37.88": {
+   "achados": [],
+   "letras_lidas": 354
+  },
+  "t=38.13": {
+   "achados": [],
+   "letras_lidas": 362
+  },
+  "t=38.38": {
+   "achados": [],
+   "letras_lidas": 381
+  },
+  "t=38.63": {
+   "achados": [],
+   "letras_lidas": 361
+  },
+  "t=38.88": {
+   "achados": [],
+   "letras_lidas": 366
+  },
+  "t=39.13": {
+   "achados": [],
+   "letras_lidas": 377
+  },
+  "t=39.38": {
+   "achados": [],
+   "letras_lidas": 375
+  },
+  "t=39.63": {
+   "achados": [],
+   "letras_lidas": 375
+  },
+  "t=39.88": {
+   "achados": [],
+   "letras_lidas": 377
+  },
+  "t=40.13": {
+   "achados": [],
+   "letras_lidas": 385
+  },
+  "t=40.38": {
+   "achados": [],
+   "letras_lidas": 367
+  },
+  "t=40.63": {
+   "achados": [],
+   "letras_lidas": 341
+  },
+  "t=40.88": {
+   "achados": [],
+   "letras_lidas": 303
+  },
+  "t=41.13": {
+   "achados": [],
+   "letras_lidas": 342
+  },
+  "t=41.38": {
+   "achados": [],
+   "letras_lidas": 325
+  },
+  "t=41.63": {
+   "achados": [],
+   "letras_lidas": 327
+  },
+  "t=41.88": {
+   "achados": [],
+   "letras_lidas": 327
+  },
+  "t=42.13": {
+   "achados": [],
+   "letras_lidas": 324
+  },
+  "t=42.38": {
+   "achados": [],
+   "letras_lidas": 332
+  },
+  "t=42.63": {
+   "achados": [],
+   "letras_lidas": 361
+  },
+  "t=42.88": {
+   "achados": [],
+   "letras_lidas": 217
+  },
+  "t=43.13": {
+   "achados": [],
+   "letras_lidas": 527
+  },
+  "t=43.38": {
+   "achados": [],
+   "letras_lidas": 528
+  },
+  "t=43.63": {
+   "achados": [],
+   "letras_lidas": 515
+  },
+  "t=43.88": {
+   "achados": [],
+   "letras_lidas": 513
+  },
+  "t=44.13": {
+   "achados": [],
+   "letras_lidas": 199
+  },
+  "t=44.38": {
+   "achados": [],
+   "letras_lidas": 282
+  },
+  "t=44.63": {
+   "achados": [],
+   "letras_lidas": 273
+  },
+  "t=44.88": {
+   "achados": [],
+   "letras_lidas": 206
+  },
+  "t=45.13": {
+   "achados": [],
+   "letras_lidas": 338
+  },
+  "t=45.38": {
+   "achados": [],
+   "letras_lidas": 355
+  },
+  "t=45.63": {
+   "achados": [],
+   "letras_lidas": 315
+  },
+  "t=45.88": {
+   "achados": [],
+   "letras_lidas": 596
+  },
+  "t=46.13": {
+   "achados": [],
+   "letras_lidas": 303
+  },
+  "t=46.38": {
+   "achados": [],
+   "letras_lidas": 308
+  },
+  "t=46.63": {
+   "achados": [],
+   "letras_lidas": 315
+  },
+  "t=46.88": {
+   "achados": [],
+   "letras_lidas": 316
+  },
+  "t=47.13": {
+   "achados": [],
+   "letras_lidas": 289
+  },
+  "t=47.38": {
+   "achados": [],
+   "letras_lidas": 324
+  },
+  "t=47.63": {
+   "achados": [],
+   "letras_lidas": 383
+  },
+  "t=47.88": {
+   "achados": [],
+   "letras_lidas": 366
+  },
+  "t=48.13": {
+   "achados": [],
+   "letras_lidas": 414
+  },
+  "t=48.38": {
+   "achados": [],
+   "letras_lidas": 425
+  },
+  "t=48.63": {
+   "achados": [],
+   "letras_lidas": 420
+  },
+  "t=48.88": {
+   "achados": [],
+   "letras_lidas": 295
+  },
+  "t=49.13": {
+   "achados": [],
+   "letras_lidas": 298
+  },
+  "t=49.38": {
+   "achados": [],
+   "letras_lidas": 303
+  },
+  "t=49.63": {
+   "achados": [],
+   "letras_lidas": 297
+  },
+  "t=49.88": {
+   "achados": [],
+   "letras_lidas": 297
+  },
+  "t=50.13": {
+   "achados": [],
+   "letras_lidas": 301
+  },
+  "t=50.38": {
+   "achados": [],
+   "letras_lidas": 313
+  },
+  "t=50.63": {
+   "achados": [],
+   "letras_lidas": 313
+  },
+  "t=50.88": {
+   "achados": [],
+   "letras_lidas": 320
+  },
+  "t=51.13": {
+   "achados": [],
+   "letras_lidas": 324
+  },
+  "t=51.38": {
+   "achados": [],
+   "letras_lidas": 292
+  },
+  "t=51.63": {
+   "achados": [],
+   "letras_lidas": 343
+  },
+  "t=51.88": {
+   "achados": [],
+   "letras_lidas": 331
+  },
+  "t=52.13": {
+   "achados": [],
+   "letras_lidas": 331
+  },
+  "t=52.38": {
+   "achados": [],
+   "letras_lidas": 343
+  },
+  "t=52.63": {
+   "achados": [],
+   "letras_lidas": 274
+  },
+  "t=52.88": {
+   "achados": [],
+   "letras_lidas": 285
+  },
+  "t=53.13": {
+   "achados": [],
+   "letras_lidas": 275
+  },
+  "t=53.38": {
+   "achados": [],
+   "letras_lidas": 277
+  },
+  "t=53.63": {
+   "achados": [],
+   "letras_lidas": 290
+  },
+  "t=53.88": {
+   "achados": [],
+   "letras_lidas": 303
+  },
+  "t=54.13": {
+   "achados": [],
+   "letras_lidas": 150
+  },
+  "t=54.38": {
+   "achados": [],
+   "letras_lidas": 192
+  },
+  "t=54.63": {
+   "achados": [],
+   "letras_lidas": 163
+  },
+  "t=54.88": {
+   "achados": [],
+   "letras_lidas": 306
+  },
+  "t=55.13": {
+   "achados": [],
+   "letras_lidas": 298
+  },
+  "t=55.38": {
+   "achados": [],
+   "letras_lidas": 299
+  },
+  "t=55.63": {
+   "achados": [],
+   "letras_lidas": 299
+  },
+  "t=55.88": {
+   "achados": [],
+   "letras_lidas": 294
+  }
+ }
+}

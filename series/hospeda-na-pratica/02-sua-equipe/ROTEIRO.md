@@ -1,6 +1,6 @@
 # Episódio 2: Sua equipe no Hospeda (roteiro aprovado com ajustes em 20/11/2026)
 
-**Status:** roteiro aprovado com ajustes em 20/11/2026. As telas foram capturadas e há 2 amostras de voz da frase 7 para aprovação. O vídeo ainda não foi narrado nem renderizado. Segue as [regras da série](../REGRAS.md).
+**Status:** aprovado em 20/11/2026 (roteiro, 13 telas e voz A). Narrado e renderizado como **primeira prévia** (63,4 s), para aprovação; ver o [README](README.md). Segue as [regras da série](../REGRAS.md).
 
 ## 1. Levantamento da tela (Demo, 20/11/2026)
 
@@ -78,7 +78,7 @@ O app não mostra nenhuma outra regra de acesso além das descrições dos papé
 
 **Título na tela:** "Sua equipe no Hospeda", com o selo da série "FAZLO Hospeda na prática".
 
-**Duração:** cerca de **65 s** (61 s de fala com as pausas de leitura, mais 3,6 s do fecho com a logo). Os tempos são estimados no ritmo da Alexa no vídeo de venda (cerca de 12,8 caracteres por segundo); os definitivos saem da locução.
+**Duração:** **63,4 s**, medidos na locução real: a voz vai de 0,3 a 59,8 s, e o fecho com a logo fica até 63,4 s.
 
 **Tom:** leve e direto, falando com o dono da pousada. Começa na dor de dividir uma senha só e chega na solução: cada um com o seu acesso.
 
@@ -104,9 +104,9 @@ O app não mostra nenhuma outra regra de acesso além das descrições dos papé
 4. Toque em Mais e depois em Usuários.
 5. Aqui está a sua equipe, com o papel de cada um.
 6. Para chamar alguém novo, toque em Convidar usuário.
-7. Coloque o nome, o i-mêil e escolha o papel: Administrador, Operação ou Caixa.
+7. Coloque o nome, o e-mail e escolha o papel: Administrador, Operação ou Caixa.
 8. Cada papel já mostra o que a pessoa pode fazer.
-9. Enviou o convite: a pessoa recebe por i-mêil e entra com o papel escolhido.
+9. Enviou o convite: a pessoa recebe por e-mail e entra com o papel escolhido.
 10. Mudou de função? Toque em Alterar papel e salve.
 11. Saiu da equipe? Desative. A pessoa perde o acesso, e o histórico continua.
 12. Se voltar, é só reativar.
@@ -114,51 +114,78 @@ O app não mostra nenhuma outra regra de acesso além das descrições dos papé
 
 **Pronúncia:**
 - "FAZLO" vai como "Fázlo" e "Hospeda" como "Hospéda", como no vídeo de venda.
-- **"e-mail":** a versão final depende das amostras A ("e-mail") e B ("i-mêil"). O texto acima usa a B só como marcador; vale a que você escolher.
+- **"e-mail"** fica escrito "e-mail" (amostra A, aprovada em 20/11/2026; está nas regras da série).
 - Esta narração não tem números.
 
-## 4. Linha do tempo
+## 4. Linha do tempo (tempos reais da locução)
 
 As telas são sempre a tela inteira do celular, como no vídeo de venda.
 - **Câmera:** aproxima no ponto falado.
-- **Destaque:** o contorno limão se desenha e o toque aparece como uma onda.
-- **Estados:** a tela troca de estado com fusão rápida.
-- **Janela:** o dado salta da tela numa janela, recortado da mesma captura.
+- **Contorno e toque:** o contorno limão se desenha (âmbar no "Inativo") e o toque aparece como onda.
+- **Estados:** a tela troca de estado no lugar. Os painéis sobem de baixo, a lista rola, e a digitação revela o texto da própria captura, letra a letra.
+- **Janelas:** o dado salta da tela numa janela recortada da mesma captura.
 
-| Tempo | Frase | Tela (inteira) | Toque e navegação | Janela que salta | Estado que muda | Texto em destaque | Transição |
-|---|---|---|---|---|---|---|---|
-| 0,0–4,0 | 1 | **Sem tela (gancho).** | — | — | — | No topo, desde o quadro 0: "Ainda divide uma senha só com toda a equipe?" (é a miniatura) | Entra com um impacto. |
-| 4,0–10,7 | 2 | **Sem tela.** | — | — | Um bilhete âmbar "Senha da recepção ••••••" passa por três avatares: Recepção, Caixa e uma pessoa que sai com um "?" âmbar. | "de mão em mão" | O bilhete se rasga ao fim da frase. |
-| 10,7–15,5 | 3 | **Marca.** | — | — | O logo FAZLO Hospeda estoura em limão. Em volta, três avatares com uma chave limão cada, todos com margem livre e sem encostar no logo. | Título "Sua equipe no Hospeda" e o selo "FAZLO Hospeda na prática". | O celular entra girando. |
-| 15,5–18,5 | 4 | `inicio` → `menu-mais` | Toque em **Mais**; o menu abre. Contorno e toque em **Usuários**, na seção "Administração". | — | Início → menu → Usuários | "Mais", "Usuários" | Fusão no toque. |
-| 18,5–22,6 | 5 | `usuarios` | A câmera desce pela lista. | Os selos de papel saltam: "Administrador", "Caixa", "Operação". | — | "papel de cada um" | — |
-| 22,6–27,0 | 6 | `usuarios` → `convidar` | Contorno e toque em **+ Convidar usuário**. | — | O painel sobe de baixo. | "Convidar usuário" | O painel desliza. |
-| 27,0–33,8 | 7 | `convidar` → `convidar-preenchido` | Toque em "Nome", digitação de "Carla Mendes"; toque em "E-mail", digitação de "carla@pousadadaserra.exemplo". Toque em **Operação**. | — | Os campos se preenchem letra a letra, a opção "Operação" fica marcada e "Enviar convite" passa de cinza a preto. | "Administrador", "Operação", "Caixa" | — |
-| 33,8–38,1 | 8 | `convidar-preenchido` | Contorno nas três descrições, uma por vez. | A descrição de "Operação" salta: "…recebe pagamentos e faz estornos, mas não abre nem fecha o caixa." | — | "o que a pessoa pode fazer" | — |
-| 38,1–44,6 | 9 | `convidar-preenchido` → `usuarios-convite` | Toque em **Enviar convite**. | O aviso "Convite registrado…" salta da tela. | O painel desce. "3 ativos" vira "4 ativos" e o cartão da Carla Mendes entra na lista com "Operação" e "Ativo". | "recebe por e-mail" | O painel desce. |
-| 44,6–48,8 | 10 | `alterar-joao` → `usuarios-joao-operacao` | Toque em **Alterar papel** no cartão do João Pereira; o painel sobe. Toque em **Operação**, depois em **Salvar papel**. | O selo "Caixa" salta e vira "Operação". | O painel desce e aparece "Usuário atualizado com sucesso.". | "Alterar papel" | O painel sobe e desce. |
-| 48,8–55,0 | 11 | `desativar-mariana` → `usuarios-mariana-inativa` | Toque em **Desativar** no cartão da Mariana Costa. | A confirmação "Desativar Mariana Costa?" salta: "Mariana Costa perde o acesso a esta pousada. O histórico continua. Dá para reativar quando quiser." Toque em **Desativar**. | "Ativo" vira "Inativo" e aparece "3 ativos". | "perde o acesso", "o histórico continua" | Fusão. |
-| 55,0–57,6 | 12 | `inativos` → `inativos-reativado` | Toque em **Inativos 1**, depois em **Reativar**. | — | Como no app: o cartão da Mariana Costa sai do filtro "Inativos" ("Nenhum usuário neste filtro."), "Inativos 1" vira "Inativos 0" e "3 ativos" volta a "4 ativos". | "reativar" | — |
-| 57,6–61,1 | 13 | **Fecho.** | — | — | — | "Cada um com o seu acesso" e "você no controle" em limão. | O celular sai. |
-| 61,1–64,7 | — | **Logo.** | — | — | — | O logo FAZLO Hospeda e @fazlohospeda. A trilha resolve. | — |
+Os tempos saem das palavras da locução (`linha.json`): cada gesto cai na palavra que o descreve.
 
-**Ritmo:**
-- Cada tela fica de 2,5 a 7 s.
-- Na frase 7, a digitação ocupa a pausa maior depois da frase (0,8 s), para dar tempo de ler o formulário.
-- A legenda fica numa faixa própria embaixo, como no vídeo de venda.
+| Tempo (s) | Frase | Tela (inteira) | O que acontece (s) |
+|---|---|---|---|
+| 0,0–3,4 | 1 | **Sem tela (gancho).** | Desde o quadro 0 (miniatura): "Ainda divide / uma senha só / com toda a equipe?", três pessoas (Você, Recepção, Caixa) e o bilhete "Senha da recepção ••••••", sem senha escrita. O bilhete treme em "senha" (1,3). |
+| 3,4–9,4 | 2 | **Sem tela.** | O bilhete vai para Você (4,7) e para o Caixa (5,1) e volta (5,7). Em "sai" (6,4), a Recepção desce, vira um contorno tracejado com o rótulo "Saiu" e leva o bilhete junto. Interrogações âmbar aparecem sobre Você e o Caixa em "nem" (7,3) e sobre quem saiu em "ainda entra" (8,2). O bilhete se rasga entre 8,6 e 9,1. |
+| 9,4–13,6 | 3 | **Marca.** | Primeiro o selo "FAZLO Hospeda na prática". O logo estoura em limão em "FAZLO" (9,6) e o título "Sua equipe no Hospeda" entra em 10,1. Em "cada" (10,8), três pessoas entram embaixo, cada uma com a sua chave limão, e as chaves brilham em "próprio acesso" (12,1). Nada encosta no logo: a menor distância é de 186 px. |
+| 13,6–16,2 | 4 | `inicio` → `menu-mais` | A câmera desce até a barra do app, toque em **Mais** (14,3) e o menu abre (14,4). Depois, o contorno em **Usuários** (15,2) e o toque (15,7). |
+| 16,2–20,1 | 5 | `usuarios` | A câmera vai para os cartões (16,9). Em "papel" (18,6), os contornos passam pelos papéis Administrador, Caixa e Operação. |
+| 20,1–24,4 | 6 | `usuarios` → `convidar` | A câmera vai para "+ Convidar usuário" (22,0), com o contorno (22,5) e o toque (23,0). O painel sobe de baixo (23,1). |
+| 24,4–31,5 | 7 | `convidar` → `convidar-preenchido` | Toque em Nome (24,6) e "Carla Mendes" digitado de 24,7 a 25,5. Toque em E-mail (25,3) e "carla@pousadadaserra.exemplo" de 25,5 a 26,5. A câmera vai para as opções (26,4), com os contornos em Administrador (27,7), Operação (28,6) e Caixa (29,8). Toque em **Operação** (30,2): a opção fica marcada e "Enviar convite" fica preto. |
+| 31,5–35,1 | 8 | `convidar-preenchido` | Os contornos passam pelas três opções (31,5, 32,1 e 32,7). Em "pode fazer" (33,5), a opção **Operação** inteira, com título e descrição, salta numa janela até 34,5. |
+| 35,1–40,5 | 9 | → `usuarios-convite` | Toque em **Enviar convite** (35,1) e a lista volta (35,3). O aviso "Convite registrado…" salta (35,8 a 37,9). A câmera vai para o cartão da Carla Mendes, com "Operação" e "Ativo", e o contorno entra em 38,3. |
+| 40,5–46,1 | 10 | `usuarios-joao` → `alterar-joao` → `alterar-joao-operacao` → `usuarios-joao-operacao-topo` → `usuarios-joao-operacao` | Em "Mudou de função?", o selo **Caixa** do João Pereira salta (40,9 a 42,2). Contorno e toque em **Alterar papel** (42,3 e 42,7) e o painel sobe (42,8). Toque em **Operação** (43,3): "Salvar papel" fica preto. Toque em **Salvar papel** (43,9). A lista volta ao topo e o aviso "Usuário atualizado com sucesso." salta (44,3 a 44,8). A lista desce até o João (44,9) e o selo **Operação** salta (45,2 a 45,6). |
+| 46,1–52,5 | 11 | `usuarios-mariana` → `desativar-mariana` → `usuarios-mariana-inativa` | Contorno e toque em **Desativar** no cartão da Mariana Costa (46,9 e 47,3), e a confirmação sobe (47,5). O texto "Mariana Costa perde o acesso a esta pousada. O histórico continua. Dá para reativar quando quiser." salta (48,7 a 51,0). Toque em **Desativar** (51,2) e o cartão fica "Inativo", com contorno âmbar (51,6). |
+| 52,5–56,2 | 12 | `inativos` → `inativos-reativado` → `usuarios-mariana-reativada` | O filtro **Inativos 1** entra (52,5), com toque no filtro em 52,7. Contorno e toque em **Reativar** (53,5 e 53,9). O filtro fica vazio, com "4 ativos" (54,1). Toque em **Todos** (54,6) e o cartão da Mariana Costa volta como "Ativo" (54,7), com contorno em 55,2. |
+| 56,2–63,4 | 13 | **Fecho.** | O logo FAZLO Hospeda estoura em limão (56,2), com um halo que não chega no nome. "Cada um com o seu acesso," entra em 56,4 e "e você no controle." em 58,3, em limão. @fazlohospeda aparece em 60,4 e a trilha resolve até o fim. |
 
-**Telas a capturar na Demo (1170×2532):**
-- **Navegação e lista:** `inicio`, `menu-mais`, `usuarios`.
-- **Convite:** `convidar`, `convidar-preenchido`, `usuarios-convite`.
-- **Alterar papel:** `alterar-joao`, `alterar-joao-operacao` (o estado com "Operação" marcado e "Salvar papel" ativo), `usuarios-joao-operacao`.
-- **Desativar e reativar:** `desativar-mariana`, `usuarios-mariana-inativa`, `inativos`, `inativos-reativado`.
+**Legenda:**
+- Palavra por palavra, numa faixa própria embaixo, com a grafia oficial.
+- Fora da legenda ficam a frase 1 e a 13, porque já estão escritas na tela.
 
-As capturas estão em `telas/` (`scripts/capturar.cjs`), e a folha de contato em `aprovacao/folha-telas.jpg`.
+**Telas (Demo, 1170×2532, `telas/`):**
+- **As 13 aprovadas em 20/11:** `inicio`, `menu-mais`, `usuarios`, `convidar`, `convidar-preenchido`, `usuarios-convite`, `alterar-joao`, `alterar-joao-operacao`, `usuarios-joao-operacao`, `desativar-mariana`, `usuarios-mariana-inativa`, `inativos`, `inativos-reativado`. Na nova captura saíram idênticas pixel a pixel.
+- **As 2 pedidas:**
+  - `usuarios-joao-operacao-topo`: o aviso "Usuário atualizado com sucesso." no topo da lista;
+  - `usuarios-mariana-reativada`: depois de "Todos", o cartão da Mariana Costa de volta como "Ativo".
+- **2 de apoio:** a mesma lista um instante antes do toque, com o cartão à vista.
+  - `usuarios-joao`: o toque em "Alterar papel" do João Pereira;
+  - `usuarios-mariana`: o toque em "Desativar" da Mariana Costa.
+  - Sem elas, o toque cairia num cartão escondido atrás do painel.
+- **Medidas:** `scripts/capturar.cjs` também mede na própria Demo cada elemento citado (`telas/alvos.json`).
 
-Os estados intermediários da digitação são desenhados sobre `convidar` com a mesma fonte do app. Ficam escondidos os elementos da demonstração:
-- o selo "Demonstração";
-- a data do cabeçalho;
-- o botão "Quero usar" e o "Quero usar na minha pousada" do menu.
+### O que mudou depois da locução real
+1. **Duração:**
+   - A voz real (Alexa, seed 7100) ficou mais rápida que a estimativa: 10,4 letras/s.
+   - Com as pausas do roteiro, o vídeo daria 57,2 s, abaixo dos 60 s da série.
+   - A voz não foi acelerada nem cortada. Só ficaram mais longas as pausas onde a tela tem ação, para dar tempo de ler.
+
+     | Depois da frase | Pausa (s) | Ação na tela |
+     |---|---|---|
+     | 2 | 0,4 → 0,6 | — |
+     | 3 | 0,5 → 0,7 | — |
+     | 4 | 0,3 → 0,7 | menu |
+     | 5 | 0,4 → 0,8 | — |
+     | 6 | 0,3 → 0,6 | o painel sobe |
+     | 7 | 0,8 → 1,3 | a digitação e o toque em Operação |
+     | 8 | 0,7 → 1,0 | — |
+     | 9 | 0,6 → 1,0 | — |
+     | 10 | 0,3 → 1,6 | o aviso e a descida até o João |
+     | 11 | 0,4 → 1,2 | a confirmação e o "Inativo" |
+     | 12 | 0,6 → 2,0 | "Todos" e o cartão de volta |
+
+   - **Resultado:** 63,4 s, contra cerca de 65 s estimados.
+2. **Frase 10:** entraram o aviso no topo e a descida até o João, com as capturas pedidas.
+3. **Frase 12:** fecha no cartão da Mariana Costa "Ativo", em vez de terminar no filtro vazio, que só aparece de passagem.
+4. **Frase 8:** a janela mostra a opção **Operação inteira**. O recorte só da descrição deixava o texto encostado na borda.
+5. **Gancho:**
+   - As três pessoas ficam em linha.
+   - Quem sai não sai do quadro: vira um contorno tracejado com o rótulo "Saiu", ainda com o bilhete. Assim nada fica cortado na borda.
+6. **Toque em "Mais":** a barra do app fica no pé do palco, então esse toque tem a onda menor, para não chegar perto da legenda.
 
 ## 5. Dados fictícios
 

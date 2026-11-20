@@ -35,6 +35,38 @@ function preparar([TROCAS, INICIAIS]) {
   alvos.forEach((e) => { e.style.visibility = 'hidden'; });
   return { trocas, escondidos: alvos.length };
 }
+// Retângulos (px da captura, 3x) dos elementos citados no vídeo: [chave, texto, {em: nome da pessoa, sobe, exato}]
+function medir(lista) {
+  const vis = (e) => { const r = e.getBoundingClientRect(); return r.width > 0 && r.height > 0 && r.bottom > 0 && r.top < innerHeight && getComputedStyle(e).visibility !== 'hidden'; };
+  const cartao = (src) => {                                      // o cartão inteiro da pessoa
+    const re = new RegExp(src);
+    for (const b of document.querySelectorAll('button')) {
+      if (!/^(Alterar papel)$/.test(b.innerText.trim()) || !b.getClientRects().length) continue;
+      let p = b; while (p && !re.test(p.innerText || '')) p = p.parentElement;
+      if (!p || (p.innerText.match(/Alterar papel/g) || []).length !== 1) continue;
+      while (p.parentElement && (p.parentElement.innerText.match(/Alterar papel/g) || []).length === 1 && !/Uma pessoa só pode|Convidar usuário|Nenhum usuário/.test(p.parentElement.innerText)) p = p.parentElement;
+      return p;
+    }
+    return null;
+  };
+  const out = {};
+  for (const [k, texto, o = {}] of lista) {
+    let raiz = document.body;
+    if (o.raiz) raiz = [...document.querySelectorAll(o.raiz)].filter(vis).pop() || raiz;
+    if (o.em) { raiz = cartao(o.em); if (!raiz) { out[k] = null; continue; } }
+    let e;
+    if (texto === '*') e = raiz;
+    else {
+      const cands = [...raiz.querySelectorAll('*')].filter((x) => vis(x) && (o.exato ? (x.innerText || x.placeholder || '').trim() === texto : ((x.innerText || '').trim().startsWith(texto) || x.placeholder === texto)));
+      e = cands.sort((a, b) => (a.innerText || '').length - (b.innerText || '').length)[0];
+    }
+    if (!e) { out[k] = null; continue; }
+    for (let i = 0; i < (o.sobe || 0); i++) e = e.parentElement;
+    if (o.label) e = e.closest('label') || e;
+    const r = e.getBoundingClientRect(); out[k] = [r.left, r.top, r.right, r.bottom].map((v) => Math.round(v * 3));
+  }
+  return out;
+}
 (async () => {
   fs.mkdirSync(OUT, { recursive: true });
   const nav = await chromium.launch();
@@ -42,7 +74,8 @@ function preparar([TROCAS, INICIAIS]) {
   const pag = await ctx.newPage();
   const CONF = {};
   const espera = (ms = 900) => pag.waitForTimeout(ms);
-  const foto = async (nome) => {
+  const ALVOS = {};
+  const foto = async (nome, alvos = []) => {
     await espera(700);
     let r, achados = [];
     for (let i = 0; i < 3; i++) {
@@ -54,6 +87,9 @@ function preparar([TROCAS, INICIAIS]) {
     if (achados.length) { console.error(`PARADO em ${nome}: sobrou ${achados.join(', ')}`); await nav.close(); process.exit(1); }
     await pag.screenshot({ path: path.join(OUT, nome + '.png') });
     CONF[nome] = { ...r, proibidos: 0 };
+    ALVOS[nome] = await pag.evaluate(medir, alvos);
+    const falta = Object.entries(ALVOS[nome]).filter(([, v]) => !v).map(([k]) => k);
+    if (falta.length) console.error(`  ${nome}: sem medida para ${falta.join(', ')}`);
     console.log(nome, JSON.stringify(CONF[nome]));
   };
   // o botão (rótulo) dentro do cartão da pessoa: o menor bloco que contém o nome e um único "Alterar papel"
@@ -75,40 +111,53 @@ function preparar([TROCAS, INICIAIS]) {
 
   await pag.goto('https://demo.fazlohospeda.com.br/', { waitUntil: 'networkidle' });
   await pag.getByText('Entrar na demonstração').click(); await espera(2500);
-  await foto('inicio');
+  const PAPEIS = [['admin', 'Administrador'], ['op', 'Operação'], ['cx', 'Caixa']];
+  const opcoes = PAPEIS.map(([k, n]) => [`opt-${k}`, n, { exato: true, raiz: '[role=dialog]', label: true }]);
+  await foto('inicio', [['mais', 'Mais', { exato: true, sobe: 1 }]]);
   await pag.getByText('Mais', { exact: true }).click(); await espera();
-  await foto('menu-mais');
+  await foto('menu-mais', [['usuarios', 'Usuários', { exato: true, raiz: '[data-testid=tenant-more-menu]', sobe: 1 }]]);
   await pag.locator('[data-testid=tenant-more-menu]').getByText('Usuários', { exact: true }).first().click(); await espera(2000);
-  await foto('usuarios');
+  await foto('usuarios', [['titulo', 'Usuários', { exato: true }], ['ativos', '3 ativos', { exato: true }], ['convidar', 'Convidar usuário', { sobe: 0 }],
+    ['paulo', '*', { em: 'Administrador Demo|Paulo Andrade' }], ['joao', '*', { em: 'João (Caixa|Pereira)' }], ['mariana', '*', { em: 'Mariana (Recepção|Costa)' }],
+    ['papel-paulo', 'Administrador', { em: 'Administrador Demo|Paulo Andrade', exato: true }], ['papel-joao', 'Caixa', { em: 'João (Caixa|Pereira)', exato: true }],
+    ['papel-mariana', 'Operação', { em: 'Mariana (Recepção|Costa)', exato: true }]]);
   await pag.getByRole('button', { name: 'Convidar usuário' }).click();
-  await foto('convidar');
+  await foto('convidar', [['nome', 'Nome completo'], ['email', 'nome@email.com'], ...opcoes, ['enviar', 'Enviar convite', { exato: true, raiz: '[role=dialog]' }]]);
   await pag.getByPlaceholder('Nome completo').fill('Carla Mendes');
   await pag.getByPlaceholder('nome@email.com').fill('carla@pousadadaserra.exemplo');
   await pag.locator('input[value=operations]').check({ force: true });
-  await foto('convidar-preenchido');
+  await foto('convidar-preenchido', [...opcoes, ['desc-op', 'Reservas, hospedagens', { raiz: '[role=dialog]' }], ['enviar', 'Enviar convite', { exato: true, raiz: '[role=dialog]' }]]);
   await pag.getByRole('button', { name: 'Enviar convite' }).click(); await espera(1200);
-  await foto('usuarios-convite');
+  await foto('usuarios-convite', [['aviso', 'Convite registrado', {}], ['ativos', '4 ativos', { exato: true }], ['carla', '*', { em: 'Carla Mendes' }]]);
   // Alterar papel: João Pereira, de Caixa para Operação
   await centraliza(await botao(/João (Caixa|Pereira)/, 'Alterar papel')); await espera(400);
+  await foto('usuarios-joao', [['joao', '*', { em: 'João (Caixa|Pereira)' }], ['alterar', 'Alterar papel', { em: 'João (Caixa|Pereira)', exato: true }], ['papel', 'Caixa', { em: 'João (Caixa|Pereira)', exato: true }]]);
   await (await botao(/João (Caixa|Pereira)/, 'Alterar papel')).click();
-  await foto('alterar-joao');
+  await foto('alterar-joao', [...opcoes, ['salvar', 'Salvar papel', { exato: true, raiz: '[role=dialog]' }]]);
   await pag.locator('[role=dialog] input[value=operations]').check({ force: true });
-  await foto('alterar-joao-operacao');
+  await foto('alterar-joao-operacao', [...opcoes, ['salvar', 'Salvar papel', { exato: true, raiz: '[role=dialog]' }]]);
   await pag.locator('[role=dialog]').getByRole('button', { name: 'Salvar papel', exact: true }).click(); await espera(1200);
+  await pag.evaluate(() => window.scrollTo(0, 0)); await espera(400);
+  await foto('usuarios-joao-operacao-topo', [['aviso', 'Usuário atualizado com sucesso.', {}]]);
   await centraliza(await botao(/João (Caixa|Pereira)/, 'Alterar papel')); await espera(400);
-  await foto('usuarios-joao-operacao');
+  await foto('usuarios-joao-operacao', [['joao', '*', { em: 'João (Caixa|Pereira)' }], ['papel', 'Operação', { em: 'João (Caixa|Pereira)', exato: true }]]);
   // Desativar: Mariana Costa
   await centraliza(await botao(/Mariana (Recepção|Costa)/, 'Desativar')); await espera(400);
+  await foto('usuarios-mariana', [['mariana', '*', { em: 'Mariana (Recepção|Costa)' }], ['desativar', 'Desativar', { em: 'Mariana (Recepção|Costa)', exato: true }]]);
   await (await botao(/Mariana (Recepção|Costa)/, 'Desativar')).click();
-  await foto('desativar-mariana');
+  await foto('desativar-mariana', [['titulo', 'Desativar Mariana', {}], ['texto', 'Mariana Costa perde o acesso', {}], ['texto0', 'Mariana Recepção perde o acesso', {}], ['desativar', 'Desativar', { exato: true, raiz: '[role=dialog]' }]]);
   await pag.locator('[role=dialog]').getByRole('button', { name: 'Desativar', exact: true }).click(); await espera(1200);
   await centraliza(await botao(/Mariana (Recepção|Costa)/, 'Reativar')); await espera(400);
-  await foto('usuarios-mariana-inativa');
+  await foto('usuarios-mariana-inativa', [['mariana', '*', { em: 'Mariana (Recepção|Costa)' }], ['estado', 'Inativo', { em: 'Mariana (Recepção|Costa)', exato: true }]]);
   await pag.evaluate(() => window.scrollTo(0, 0)); await espera(300);
   await pag.getByRole('button', { name: /^Inativos/ }).click(); await espera();
-  await foto('inativos');
+  await foto('inativos', [['chip', 'Inativos', {}], ['mariana', '*', { em: 'Mariana (Recepção|Costa)' }], ['reativar', 'Reativar', { exato: true }], ['ativos', '3 ativos', { exato: true }]]);
   await pag.getByRole('button', { name: 'Reativar', exact: true }).first().click(); await espera(1200);
-  await foto('inativos-reativado');
+  await foto('inativos-reativado', [['vazio', 'Nenhum usuário neste filtro.', {}], ['ativos', '4 ativos', { exato: true }], ['todos', 'Todos', {}]]);
+  await pag.getByRole('button', { name: /^Todos/ }).click(); await espera();
+  await centraliza(await botao(/Mariana (Recepção|Costa)/, 'Desativar')); await espera(400);
+  await foto('usuarios-mariana-reativada', [['mariana', '*', { em: 'Mariana (Recepção|Costa)' }], ['estado', 'Ativo', { em: 'Mariana (Recepção|Costa)', exato: true }]]);
+  fs.writeFileSync(path.join(OUT, 'alvos.json'), JSON.stringify(ALVOS, null, 1));
   fs.writeFileSync(path.join(OUT, 'conferencia.json'), JSON.stringify({ data: new Date().toISOString().slice(0, 10), proibidos: PROIBIDO.map(String), telas: CONF }, null, 1));
   await nav.close();
 })();

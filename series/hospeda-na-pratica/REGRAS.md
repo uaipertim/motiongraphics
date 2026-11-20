@@ -16,6 +16,7 @@ O vídeo curto de venda do Hospeda ([`reels/venda-curta-hospeda`](../../reels/ve
   - "Hospeda" escrito como "Hospéda";
   - "WhatsApp" escrito como "Uátsap";
   - números e unidades por extenso.
+  - "e-mail" fica escrito "e-mail" (decidido em 20/11/2026 pela amostra A do episódio 2; a grafia "i-mêil" foi descartada).
 
 ## Legenda
 Palavra por palavra, no padrão dos vídeos narrados, com a grafia oficial na tela e as palavras-chave em verde-limão.

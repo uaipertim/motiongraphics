@@ -1,0 +1,347 @@
+{
+ "id": "hospeda-na-pratica-02-sua-equipe",
+ "marca": "@fazlohospeda",
+ "voz": {
+  "nome": "Alexa - Soft, Clear and Friendly",
+  "voice_id": "sXSV9RZ095VZyL64w3ap",
+  "modelo": "eleven_v4",
+  "stability": 0.5,
+  "similarity_boost": 0.75
+ },
+ "pronuncia": {
+  "Hospeda": "Hospéda",
+  "FAZLO": "Fázlo"
+ },
+ "nota": "Roteiro aprovado em 20/11/2026 (13 frases; 'e-mail' escrito como 'e-mail', amostra A). 'chave': palavras em limão na legenda; 'id': o instante que dispara a animação; 'pausa': silêncio depois da frase.",
+ "narracao": "Ainda divide uma senha só com toda a equipe? A senha passa de mão em mão, e quando alguém sai, você nem sabe quem ainda entra. No FAZLO Hospeda, cada pessoa tem o seu próprio acesso. Toque em Mais e depois em Usuários. Aqui está a sua equipe, com o papel de cada um. Para chamar alguém novo, toque em Convidar usuário. Coloque o nome, o e-mail e escolha o papel: Administrador, Operação ou Caixa. Cada papel já mostra o que a pessoa pode fazer. Enviou o convite: a pessoa recebe por e-mail e entra com o papel escolhido. Mudou de função? Toque em Alterar papel e salve. Saiu da equipe? Desative. A pessoa perde o acesso, e o histórico continua. Se voltar, é só reativar. Cada um com o seu acesso, e você no controle.",
+ "frases": [
+  {
+   "id": "g1",
+   "pausa": 0.3,
+   "tokens": [
+    {
+     "fala": "Ainda divide uma"
+    },
+    {
+     "fala": "senha",
+     "id": "senha",
+     "chave": true
+    },
+    {
+     "fala": "só com toda a"
+    },
+    {
+     "fala": "equipe?",
+     "id": "equipe",
+     "chave": true
+    }
+   ]
+  },
+  {
+   "id": "g2",
+   "pausa": 0.6,
+   "tokens": [
+    {
+     "fala": "A senha passa de"
+    },
+    {
+     "fala": "mão em mão,",
+     "id": "mao",
+     "chave": true
+    },
+    {
+     "fala": "e quando alguém"
+    },
+    {
+     "fala": "sai,",
+     "id": "sai",
+     "chave": true
+    },
+    {
+     "fala": "você nem sabe quem"
+    },
+    {
+     "fala": "ainda entra.",
+     "id": "entra",
+     "chave": true
+    }
+   ]
+  },
+  {
+   "id": "marca",
+   "pausa": 0.7,
+   "tokens": [
+    {
+     "fala": "No"
+    },
+    {
+     "fala": "FAZLO Hospeda,",
+     "id": "fazlo",
+     "chave": true
+    },
+    {
+     "fala": "cada pessoa tem o seu"
+    },
+    {
+     "fala": "próprio acesso.",
+     "id": "acesso",
+     "chave": true
+    }
+   ]
+  },
+  {
+   "id": "caminho",
+   "pausa": 0.7,
+   "tokens": [
+    {
+     "fala": "Toque em"
+    },
+    {
+     "fala": "Mais",
+     "id": "mais",
+     "chave": true
+    },
+    {
+     "fala": "e depois em"
+    },
+    {
+     "fala": "Usuários.",
+     "id": "usuarios",
+     "chave": true
+    }
+   ]
+  },
+  {
+   "id": "lista",
+   "pausa": 0.8,
+   "tokens": [
+    {
+     "fala": "Aqui está a sua"
+    },
+    {
+     "fala": "equipe,",
+     "id": "equipe2",
+     "chave": true
+    },
+    {
+     "fala": "com o"
+    },
+    {
+     "fala": "papel",
+     "id": "papel",
+     "chave": true
+    },
+    {
+     "fala": "de cada um."
+    }
+   ]
+  },
+  {
+   "id": "convidar",
+   "pausa": 0.6,
+   "tokens": [
+    {
+     "fala": "Para chamar alguém novo, toque em"
+    },
+    {
+     "fala": "Convidar usuário.",
+     "id": "convidar",
+     "chave": true
+    }
+   ]
+  },
+  {
+   "id": "form",
+   "pausa": 1.3,
+   "tokens": [
+    {
+     "fala": "Coloque o"
+    },
+    {
+     "fala": "nome,",
+     "id": "nome",
+     "chave": true
+    },
+    {
+     "fala": "o"
+    },
+    {
+     "fala": "e-mail",
+     "id": "email",
+     "chave": true
+    },
+    {
+     "fala": "e escolha o"
+    },
+    {
+     "fala": "papel:",
+     "id": "papel2"
+    },
+    {
+     "fala": "Administrador,",
+     "id": "adm",
+     "chave": true
+    },
+    {
+     "fala": "Operação",
+     "id": "op",
+     "chave": true
+    },
+    {
+     "fala": "ou"
+    },
+    {
+     "fala": "Caixa.",
+     "id": "cx",
+     "chave": true
+    }
+   ]
+  },
+  {
+   "id": "papeis",
+   "pausa": 1.0,
+   "tokens": [
+    {
+     "fala": "Cada papel já"
+    },
+    {
+     "fala": "mostra",
+     "id": "mostra"
+    },
+    {
+     "fala": "o que a pessoa"
+    },
+    {
+     "fala": "pode fazer.",
+     "id": "fazer",
+     "chave": true
+    }
+   ]
+  },
+  {
+   "id": "envio",
+   "pausa": 1.0,
+   "tokens": [
+    {
+     "fala": "Enviou o convite:",
+     "id": "enviou",
+     "chave": true
+    },
+    {
+     "fala": "a pessoa recebe por"
+    },
+    {
+     "fala": "e-mail",
+     "id": "email2",
+     "chave": true
+    },
+    {
+     "fala": "e"
+    },
+    {
+     "fala": "entra",
+     "id": "entra2"
+    },
+    {
+     "fala": "com o papel escolhido."
+    }
+   ]
+  },
+  {
+   "id": "alterar",
+   "pausa": 1.6,
+   "tokens": [
+    {
+     "fala": "Mudou de função?",
+     "id": "funcao",
+     "chave": true
+    },
+    {
+     "fala": "Toque em"
+    },
+    {
+     "fala": "Alterar papel",
+     "id": "alterar",
+     "chave": true
+    },
+    {
+     "fala": "e"
+    },
+    {
+     "fala": "salve.",
+     "id": "salve",
+     "chave": true
+    }
+   ]
+  },
+  {
+   "id": "desativar",
+   "pausa": 1.2,
+   "tokens": [
+    {
+     "fala": "Saiu da equipe?",
+     "id": "saiu"
+    },
+    {
+     "fala": "Desative.",
+     "id": "desative",
+     "chave": true
+    },
+    {
+     "fala": "A pessoa"
+    },
+    {
+     "fala": "perde o acesso,",
+     "id": "perde",
+     "chave": true
+    },
+    {
+     "fala": "e o"
+    },
+    {
+     "fala": "histórico continua.",
+     "id": "historico",
+     "chave": true
+    }
+   ]
+  },
+  {
+   "id": "reativar",
+   "pausa": 2.0,
+   "tokens": [
+    {
+     "fala": "Se voltar, é só",
+     "id": "voltar"
+    },
+    {
+     "fala": "reativar.",
+     "id": "reativar",
+     "chave": true
+    }
+   ]
+  },
+  {
+   "id": "cta",
+   "pausa": 0.0,
+   "tokens": [
+    {
+     "fala": "Cada um com o seu",
+     "id": "cada"
+    },
+    {
+     "fala": "acesso,",
+     "id": "acesso2",
+     "chave": true
+    },
+    {
+     "fala": "e você no"
+    },
+    {
+     "fala": "controle.",
+     "id": "controle",
+     "chave": true
+    }
+   ]
+  }
+ ]
+}
