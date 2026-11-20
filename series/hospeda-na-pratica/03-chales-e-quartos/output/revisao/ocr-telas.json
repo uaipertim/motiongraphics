@@ -1,0 +1,95 @@
+{
+ "modo": "telas",
+ "quadros": 22,
+ "com_achados": {},
+ "todos": {
+  "acomodacoes-ipe08-550-topo.png": {
+   "achados": [],
+   "letras_lidas": 511
+  },
+  "acomodacoes-ipe08-550.png": {
+   "achados": [],
+   "letras_lidas": 573
+  },
+  "acomodacoes-ipe08.png": {
+   "achados": [],
+   "letras_lidas": 573
+  },
+  "acomodacoes-jabuticaba-topo.png": {
+   "achados": [],
+   "letras_lidas": 527
+  },
+  "acomodacoes-pedra06-aviso.png": {
+   "achados": [],
+   "letras_lidas": 510
+  },
+  "acomodacoes-pedra06.png": {
+   "achados": [],
+   "letras_lidas": 586
+  },
+  "acomodacoes-serra01-inativa.png": {
+   "achados": [],
+   "letras_lidas": 571
+  },
+  "acomodacoes-serra01.png": {
+   "achados": [],
+   "letras_lidas": 573
+  },
+  "acomodacoes.png": {
+   "achados": [],
+   "letras_lidas": 460
+  },
+  "bloquear-pedra06-datas.png": {
+   "achados": [],
+   "letras_lidas": 217
+  },
+  "bloquear-pedra06-preenchido.png": {
+   "achados": [],
+   "letras_lidas": 184
+  },
+  "bloquear-pedra06.png": {
+   "achados": [],
+   "letras_lidas": 217
+  },
+  "bloquear-periodo-26-28.png": {
+   "achados": [],
+   "letras_lidas": 191
+  },
+  "bloquear-periodo-26.png": {
+   "achados": [],
+   "letras_lidas": 216
+  },
+  "bloquear-periodo.png": {
+   "achados": [],
+   "letras_lidas": 206
+  },
+  "desativar-serra01.png": {
+   "achados": [],
+   "letras_lidas": 259
+  },
+  "editar-ipe08-550.png": {
+   "achados": [],
+   "letras_lidas": 315
+  },
+  "editar-ipe08.png": {
+   "achados": [],
+   "letras_lidas": 315
+  },
+  "inicio.png": {
+   "achados": [],
+   "letras_lidas": 386
+  },
+  "menu-mais.png": {
+   "achados": [],
+   "letras_lidas": 235
+  },
+  "nova-preenchida.png": {
+   "achados": [],
+   "letras_lidas": 351
+  },
+  "nova.png": {
+   "achados": [],
+   "letras_lidas": 395
+  }
+ }
+}

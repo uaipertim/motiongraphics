@@ -1,6 +1,6 @@
-# Episódio 3: Chalés e quartos (roteiro para aprovação)
+# Episódio 3: Chalés e quartos (roteiro aprovado com ajustes em 20/11/2026)
 
-**Status:** só planejamento. Não gerei voz, não renderizei e não criei composição. Segue as [regras da série](../REGRAS.md). Vai ao ar na quarta, 25/11, às 19h ([programação](../PROGRAMACAO.md)).
+**Status:** roteiro aprovado com ajustes em 20/11/2026. Narrado e renderizado como **primeira prévia** (72,1 s), para aprovação; ver o [README](README.md). Segue as [regras da série](../REGRAS.md). Vai ao ar na quarta, 25/11, às 19h ([programação](../PROGRAMACAO.md)).
 
 ## 1. Levantamento da tela (Demo, 20/11/2026)
 
@@ -108,40 +108,25 @@ Nesta área não aparece:
 
 Só os mesmos elementos da demonstração do episódio 2 precisam sumir: o selo "Demonstração" (também no menu), a data do cabeçalho, "Quero usar" e "Quero usar na minha pousada". Os nomes das acomodações e os valores são dados fictícios da Demo.
 
-## 2. Pontos para você decidir antes da produção
+## 2. Decisões e verificação (20/11/2026)
 
-1. **Defeito na Demo: a capacidade no Editar.** O formulário "Editar" abre com uma capacidade diferente da lista em 5 das 11 acomodações. Ao salvar, o número do formulário substitui o da lista (prints 4 e 5 da folha).
-
-   | Acomodação | Lista | Formulário |
-   |---|---|---|
-   | Bica D’Água 03 | 3 | 2 |
-   | Chalé de Pedra 05 | 6 | 4 |
-   | Chalé de Pedra 06 | 6 | 4 |
-   | Chalé de Pedra 07 | 6 | 4 |
-   | Chalé Serra 01 | 3 | 2 |
-
-   - **No vídeo:** a edição usa o **Ipê 08**, que tem 2 na lista e 2 no formulário, então nada muda sozinho.
-   - **Para a equipe do app:** vale investigar, como no caso da Bica D’Água 01.
-2. **"Bloqueada" antes do período.** Bloqueei a Bica D’Água 02 de 26 a 28/11, com a Demo no dia 20/11, e o cartão já ficou "Bloqueada" na hora. A contagem continuou em "10 ativas".
-   - **No vídeo:** a narração não fala de quando o bloqueio começa. Só diz "bloqueie as datas e anote o motivo".
-   - **Para confirmar:** se esse é o comportamento esperado.
-3. **"A FAZLO cadastra as acomodações para você?"** Não afirmei isso. Se o Willian confirmar, dá para trocar a última frase. Sugestão: "E no começo, a FAZLO configura tudo com você."
-4. **A recepção vê os valores na Nova reserva?** Pelo papel, quem é "Operação" não acessa esta área. Por isso o fecho não diz que "a recepção vê os valores aqui".
-   - **O que o app garante:** o aviso de que, sem as três tarifas, a Nova reserva bloqueia (frase 9).
-   - **Se quiser mostrar o valor calculado na reserva:** preciso de um print da Nova reserva com o total, ou fica para o episódio 6.
-5. **Valores da acomodação nova.** A Nova acomodação já abre com R$ 350,00, R$ 450,00 e R$ 550,00 na Demo. No vídeo, os três valores são digitados por cima.
+1. **O "750" do print 4 não é defeito.**
+   - **Verificação:** com a Demo recarregada e sem digitar nada (Mais → Acomodações → Editar no Chalé de Pedra 05), o campo "Tarifa de fim de semana" abre com **R$ 720,00**, igual à lista ([`aprovacao/verificacao-750.png`](aprovacao/verificacao-750.png)).
+   - **Origem:** o R$ 750,00 do print 4 foi digitado por mim no teste de 20/11, antes do print. A legenda da folha foi corrigida.
+   - **Continua valendo:** nessa mesma verificação, a **capacidade** do Chalé de Pedra 05 abre com 4, e a lista diz 6. Ninguém digitou nada.
+2. **Capacidade no Editar.** O vídeo edita o Ipê 08, em que a capacidade do formulário bate com a da lista (2 e 2).
+3. **Selo "Bloqueada".** Tem um defeito no app: ignora as datas do bloqueio. Por isso:
+   - **Liberar antes de capturar:** o Chalé de Pedra 07 foi liberado antes das capturas.
+   - **Na captura:** nenhuma tela foi salva com um "Bloqueada" visível. O script confere isso em cada uma (`telas/conferencia.json`).
+   - **No bloqueio do Chalé de Pedra 06:** o vídeo mostra só o aviso "Chalé de Pedra 06 bloqueada no período informado.", saltando numa janela. O cartão bloqueado e o botão "Liberar" não aparecem.
+4. **Frase 9 cortada.** A frase "Sem as três tarifas…" e a cena dela saíram. O toque em "Salvar acomodação" do Chalé Jabuticaba e o aviso "…cadastrada com tarifas por período." fecham a frase 8.
+5. **Fecho aprovado.** As duas últimas frases ficam: "Tudo cadastrado no Hospeda, e fácil de ajustar quando precisar. E no começo, a FAZLO configura tudo com você." Na tela, "a FAZLO configura tudo com você." fica em limão.
 
 ## 3. Roteiro
 
 **Título na tela:** "Chalés e quartos", com o selo da série "FAZLO Hospeda na prática".
 
-**Duração:** cerca de **73 s**: 69 s de fala com as pausas de leitura, mais 3,6 s do fecho com a logo.
-- A estimativa usa o ritmo real da Alexa no episódio 2, de 10,4 letras por segundo.
-- Os tempos definitivos saem da locução.
-
-**Tom:** leve e direto, para o dono da pousada.
-- **Dor:** o valor e a capacidade de cada chalé guardados na cabeça, e a recepção sem saber o que vale para cada um.
-- **Solução:** tudo cadastrado no Hospeda, fácil de ajustar.
+**Duração:** **72,1 s**, pela locução real: a voz vai de 0,3 a 68,5 s, e o fecho com a logo segue até 72,1 s.
 
 ### Narração: tela e legenda (grafia oficial)
 1. O valor de cada chalé ainda mora na sua cabeça?
@@ -152,82 +137,71 @@ Só os mesmos elementos da demonstração do episódio 2 precisam sumir: o selo 
 6. Mudou o preço? Toque em Editar, ajuste o valor e salve.
 7. Pronto: a lista já mostra o valor novo.
 8. Chalé novo? Toque em Nova acomodação e preencha nome, tipo, capacidade e as três tarifas.
-9. Sem as três tarifas, a Nova reserva bloqueia e diz qual falta.
-10. Chalé em obra? Bloqueie as datas e anote o motivo.
-11. Deixou de alugar? Desative: ele sai das reservas novas, e o que já existe continua.
-12. Tudo cadastrado no Hospeda, e fácil de ajustar quando precisar.
+9. Chalé em obra? Bloqueie as datas e anote o motivo.
+10. Deixou de alugar? Desative: ele sai das reservas novas, e o que já existe continua.
+11. Tudo cadastrado no Hospeda, e fácil de ajustar quando precisar.
+12. E no começo, a FAZLO configura tudo com você.
 
 ### Narração: texto enviado à voz
-1. O valor de cada chalé ainda mora na sua cabeça?
-2. Aí a recepção não sabe quanto cobrar, nem quantas pessoas cabem em cada um.
-3. No Fázlo Hospéda, cada chalé e cada quarto fica cadastrado, com tipo, capacidade e valores.
-4. Toque em Mais e depois em Acomodações.
-5. Cada um mostra o tipo, quantas pessoas cabem e três valores: semana, fim de semana e feriado.
-6. Mudou o preço? Toque em Editar, ajuste o valor e salve.
-7. Pronto: a lista já mostra o valor novo.
-8. Chalé novo? Toque em Nova acomodação e preencha nome, tipo, capacidade e as três tarifas.
-9. Sem as três tarifas, a Nova reserva bloqueia e diz qual falta.
-10. Chalé em obra? Bloqueie as datas e anote o motivo.
-11. Deixou de alugar? Desative: ele sai das reservas novas, e o que já existe continua.
-12. Tudo cadastrado no Hospéda, e fácil de ajustar quando precisar.
+É o mesmo texto, com "Fázlo" e "Hospéda" no lugar de "FAZLO" e "Hospeda" nas frases 3, 11 e 12. A voz não fala nenhum valor: os valores ficam só na tela.
 
-**Pronúncia:**
-- "FAZLO" vai como "Fázlo" e "Hospeda" como "Hospéda".
-- Esta narração não fala números nem valores: os valores ficam só na tela.
+## 4. Linha do tempo (tempos reais da locução)
 
-## 4. Linha do tempo (estimada)
+- **Câmera:**
+  - aproxima a **2×** em cada ponto de toque e depois abre para ler;
+  - nos antes e depois, mostra **dois celulares lado a lado**, que saem juntos do centro e se separam, com "Antes" e "Depois" em cima.
+- **Destaques:** contorno limão (âmbar no "Inativo"), onda no toque e janelas recortadas da mesma captura.
+- **Estados:** os painéis sobem; a digitação revela o texto da própria captura, letra a letra.
 
-As telas são sempre a tela inteira do celular, e os destaques seguem o episódio 2: contorno limão, onda no toque, janela recortada da mesma captura e estado trocando no lugar. Nos enquadramentos há mais variação que no episódio 2:
-- **Close no toque:** a câmera chega a 2× no ponto onde o dedo vai tocar, sempre por pouco tempo, e abre de novo para ler.
-- **Dois celulares lado a lado:** no antes e depois das frases 7 e 11, com "Antes" e "Depois" em mono acima de cada um.
-- **A tela não sai do palco:** a legenda fica sempre na faixa de baixo, como no episódio 2.
+| Tempo (s) | Frase | Tela (inteira) | O que acontece (s) |
+|---|---|---|---|
+| 0,0–3,5 | 1 | **Sem tela (gancho).** | Desde o quadro 0 (miniatura): "O valor de cada / chalé ainda mora / na sua cabeça?", com "na sua cabeça?" em âmbar. Aparecem o caderno de preços rabiscado ("Chalé 5 — R$ 6__?", "cabem 2? 3?") e o avatar "Recepção". |
+| 3,5–8,6 | 2 | **Sem tela.** | Em "quanto cobrar" (5,1), salta o balão âmbar "R$ ?" e o caderno treme. Em "quantas pessoas" (6,5), salta o balão "? pessoas". O caderno se fecha entre 7,9 e 8,3. |
+| 8,6–16,5 | 3 | **Marca.** | Selo da série. O logo estoura em "FAZLO" (8,9) e o título "Chalés e quartos" entra (9,4). Em "cadastrado" (12,3), entram os selos "Chalé", "Quarto" e "Suíte", que pulsam em "tipo", "capacidade" e "valores". Nada encosta no logo: a menor distância é de 265 px. |
+| 16,5–18,9 | 4 | `inicio` → `menu-mais` | Close na barra e toque em **Mais** (17,2); o menu abre (17,3). Close em **Acomodações**, com contorno (18,0) e toque (18,5). |
+| 18,9–27,6 | 5 | `acomodacoes` | Close no cartão da Bica D’Água 01. "Suíte · até 2 pessoas" salta (21,2 a 23,0), depois a fileira Semana, Fim de semana e Feriado (23,3 a 24,5). Contornos em "semana" (24,6), "fim de semana" (25,4) e "feriado" (26,5). |
+| 27,6–34,0 | 6 | `acomodacoes-ipe08` → `editar-ipe08` → `editar-ipe08-550` → `acomodacoes-ipe08-550-topo` | Contorno no "Fim de semana R$ 520,00" do Ipê 08 em "preço" (28,5). Close no **Editar** e toque (30,0); o painel sobe. Toque no campo e "R$ 550,00" digitado (31,1 a 31,7). Close e toque em **Salvar acomodação** (31,8). O aviso "Acomodação atualizada com sucesso." salta (32,2 a 33,5). |
+| 34,0–37,0 | 7 | **Dois celulares:** `acomodacoes-ipe08` (Antes) e `acomodacoes-ipe08-550` (Depois) | Contorno no R$ 520,00 de antes (34,4) e no R$ 550,00 de depois, em "valor novo" (35,3). |
+| 37,0–45,8 | 8 | `acomodacoes-ipe08-550-topo` → `nova` → `nova-preenchida` → `acomodacoes-jabuticaba-topo` | Close no **+ Nova acomodação** e toque (38,4); o painel sobe. "Chalé Jabuticaba" digitado (40,0 a 40,8). Contorno na Categoria "Chalé" em "tipo" (41,1). Capacidade "4" (41,4). As três tarifas digitadas: R$ 420,00, R$ 520,00 e R$ 620,00 (41,8 a 43,1). Close e toque em **Salvar acomodação** (43,5). O aviso "Acomodação "Chalé Jabuticaba" cadastrada com tarifas por período." salta (43,9 a 45,3). |
+| 45,8–53,9 | 9 | `acomodacoes-pedra06` → `bloquear-pedra06` → `bloquear-periodo` → `-26` → `-26-28` → `bloquear-pedra06-datas` → `bloquear-pedra06-preenchido` → `acomodacoes-pedra06-aviso` | **8,4 s de tela.** Close no **Bloquear** do Chalé de Pedra 06 e toque (47,1); o painel sobe. Toque em Início (47,8) e o calendário sobe. Toques no **26** (48,4) e no **28** (49,0), com contorno em "26/11 → 28/11". Toque em **Confirmar período** (49,6). "Pintura da varanda" digitado (50,2 a 51,2). Close e toque em **Bloquear** (51,4). Só o aviso "Chalé de Pedra 06 bloqueada no período informado." salta (51,8 a 53,4). O cartão bloqueado não aparece. |
+| 53,9–58,9 | 10 | `acomodacoes-serra01` → `desativar-serra01` | Close no **Desativar** do Chalé Serra 01, com contorno (54,7) e toque (55,2); a confirmação sobe. O aviso âmbar "Chalé Serra 01 tem 1 reserva futura. Ela continua valendo; a acomodação só deixa de aceitar reservas novas." salta (56,5 a 58,3). Toque em **Desativar** (58,5). |
+| 58,9–60,7 | 10 | **Dois celulares:** `acomodacoes-serra01` (Antes) e `acomodacoes-serra01-inativa` (Depois) | Contorno limão no "Ativa" (59,2) e contorno âmbar no "Inativa" (59,7), em "continua". |
+| 60,7–68,5 | 11–12 | **Fecho.** | O logo estoura em limão (60,7). "Tudo cadastrado no Hospeda," entra em 60,9 e "e fácil de ajustar quando precisar." em 62,8. "E no começo," entra em 65,3 e "a FAZLO configura tudo com você." em limão, em 66,3. |
+| 68,5–72,1 | — | **Logo.** | @fazlohospeda aparece em 69,1. A trilha resolve. |
 
-| Tempo (s) | Frase | Tela (inteira) | Toque e navegação | Janela que salta | Estado que muda | Texto em destaque | Transição |
-|---|---|---|---|---|---|---|---|
-| 0,0–4,1 | 1 | **Sem tela (gancho).** | — | — | No alto, desde o quadro 0 (miniatura): "O valor de cada chalé / ainda mora / na sua cabeça?". Embaixo, um caderno com três chalés riscados e reescritos ("Chalé 5 – R$ 6__?"). | "na sua cabeça?" em âmbar | Entra com impacto. |
-| 4,1–10,4 | 2 | **Sem tela.** | — | — | O avatar "Recepção" com dois balões âmbar, "R$ ?" e "? pessoas". O caderno treme. | "quanto cobrar", "quantas pessoas" | O caderno se fecha. |
-| 10,4–18,0 | 3 | **Marca.** | — | — | Selo da série, e o logo estoura em limão. Entra o título "Chalés e quartos". Embaixo, três selinhos "Chalé", "Quarto" e "Suíte", todos com margem livre do logo. | "cadastrado" | O celular entra girando. |
-| 18,0–21,7 | 4 | `inicio` → `menu-mais` | **Close 2×** na barra e toque em **Mais**. O menu abre, close em **Cadastros → Acomodações** e toque. | — | Início → menu → Acomodações | "Mais", "Acomodações" | Fusão no toque. |
-| 21,7–29,6 | 5 | `acomodacoes` | A câmera desce pelo cartão da Bica D’Água 01. | Saltam em sequência: "Suíte · até 2 pessoas" e depois a fileira "Semana / Fim de semana / Feriado". | Contornos em "Semana", "Fim de semana" e "Feriado", um em cada palavra falada. | "tipo", "pessoas", "semana", "fim de semana", "feriado" | — |
-| 29,6–34,7 | 6 | `acomodacoes-ipe08` → `editar-ipe08` → `editar-ipe08-550` | A lista rola até o **Ipê 08**. Close no **Editar** e toque, e o painel sobe. Toque em "Tarifa de fim de semana" e digitação de "550", que vira "R$ 550,00". Toque em **Salvar acomodação**. | — | "R$ 520,00" vira "R$ 550,00" no campo. | "Editar", "salve" | O painel sobe e desce. |
-| 34,7–38,4 | 7 | **Dois celulares:** `acomodacoes-ipe08` (Antes) e `acomodacoes-ipe08-550` (Depois) | — | O aviso "Acomodação atualizada com sucesso." salta sobre o celular da direita. | Contorno limão em "R$ 520,00" (antes) e em "R$ 550,00" (depois). | "valor novo" | Os dois celulares se separam do centro; depois o "Antes" sai. |
-| 38,4–46,0 | 8 | `acomodacoes` → `nova` → `nova-preenchida` | Close no **+ Nova acomodação** e toque, e o painel sobe. Digitação de "Chalé Jabuticaba". A Categoria fica "Chalé". A capacidade vira "4". Os valores são digitados: R$ 420,00, R$ 520,00 e R$ 620,00. | — | Os campos se preenchem e "Salvar acomodação" fica preto. | "nome", "tipo", "capacidade", "três tarifas" | — |
-| 46,0–51,9 | 9 | `nova-preenchida` | Toque em **Salvar acomodação** no fim da frase. | O aviso do próprio formulário salta: "As três tarifas são obrigatórias. Sem elas, a Nova reserva bloqueia e diz qual falta." | O painel desce. O aviso "…cadastrada com tarifas por período." aparece e o cartão do Chalé Jabuticaba fica "Ativa" (`acomodacoes-jabuticaba`). | "três tarifas", "bloqueia" | O painel desce. |
-| 51,9–56,7 | 10 | `acomodacoes-pedra06` → `bloquear-pedra06` → `bloquear-periodo` → `bloquear-pedra06-preenchido` → `acomodacoes-pedra06-bloqueada` | Close no **Bloquear** do Chalé de Pedra 06 e toque. Toque em Início, e no calendário toques no 26 e no 28 e em "Confirmar período". Digitação de "Pintura da varanda". Toque em **Bloquear**. | — | O cartão fica "Bloqueada" (âmbar) e o botão vira "Liberar". | "obra", "datas", "motivo" | O painel sobe e desce. |
-| 56,7–64,1 | 11 | `acomodacoes-serra01` → `desativar-serra01` → **dois celulares:** `acomodacoes-serra01` (Antes) e `acomodacoes-serra01-inativa` (Depois) | Close no **Desativar** do Chalé Serra 01 e toque, e a confirmação sobe. | O aviso âmbar salta: "Chalé Serra 01 tem 1 reserva futura. Ela continua valendo; a acomodação só deixa de aceitar reservas novas." | Toque em **Desativar**. Lado a lado: "Ativa" e "10 ativas" antes, "Inativa" e "9 ativas" depois. | "reservas novas", "continua" | Os dois celulares se separam do centro. |
-| 64,1–69,1 | 12 | **Fecho.** | — | — | O logo FAZLO Hospeda estoura em limão, sem nada encostando. | "Tudo cadastrado no Hospeda," e "fácil de ajustar quando precisar." (em limão) | O celular sai. |
-| 69,1–72,7 | — | **Logo.** | — | — | — | O logo e @fazlohospeda. A trilha resolve. | — |
+**Legenda:**
+- Palavra por palavra, numa faixa própria embaixo.
+- Fora da legenda ficam a frase 1 e o fecho, porque já estão escritos na tela.
 
-**Ritmo:**
-- Cada tela fica de 2,5 a 7 s.
-- As pausas maiores ficam onde há digitação ou painel (frases 6, 8, 9 e 11).
-- Depois da locução, se o vídeo ficar abaixo de 60 s ou alguma ação ficar corrida, alongo só as pausas, como no episódio 2.
+### O que mudou na linha do tempo depois da locução real
+1. **Duração:** a voz real ficou no ritmo da estimativa (10,2 letras/s). Com as pausas do roteiro, o vídeo daria 68,9 s, mas o bloqueio teria só 5,8 s de tela.
+   - Para chegar aos **8 s pedidos** (calendário, motivo e aviso com tempo para ler), a pausa depois da frase 9 passou de 1,0 para 4,5 s. A cena ficou com 8,4 s.
+   - A pausa depois da frase 8 passou de 1,2 para 2,3 s. Assim o aviso "…cadastrada com tarifas por período." fica 1,4 s na janela; antes eram 0,8 s.
+   - **Resultado:** 72,1 s, contra os ~73 s estimados.
+2. **Frase 9 cortada:** como pedido, o "Salvar" e o aviso da acomodação nova fecham a frase 8.
+3. **Bloqueio:** a janela agora mostra só o aviso. O cartão "Bloqueada" e o botão "Liberar" saíram, porque o selo tem defeito.
+4. **Fecho:** passou a ter quatro linhas, e o vídeo encerra em "a FAZLO configura tudo com você." em limão.
+5. **Antes e depois:** o aviso de "Acomodação atualizada" salta antes dos dois celulares, sobre a tela da lista, e não sobre o celular da direita.
 
 ## 5. Dados fictícios e telas
 
-**Dados:** os nomes e valores da Demo (tabela acima), mais os criados no vídeo:
-
 | No vídeo | Dado |
 |---|---|
+| Lista | os dados da Demo (tabela da seção 1), com o Chalé de Pedra 07 já liberado |
 | Valor editado | Ipê 08 (Quarto · até 2 pessoas): fim de semana de R$ 520,00 para **R$ 550,00** |
-| Acomodação nova | **Chalé Jabuticaba**, o nome do próprio exemplo do app. Chalé · 4 pessoas · R$ 420,00 / R$ 520,00 / R$ 620,00 |
-| Bloqueio | **Chalé de Pedra 06**, de 26/11 a 28/11, motivo "Pintura da varanda" |
+| Acomodação nova | **Chalé Jabuticaba**: Chalé · 4 pessoas · R$ 420,00 / R$ 520,00 / R$ 620,00 |
+| Bloqueio | **Chalé de Pedra 06**, de 26/11 a 28/11, motivo "Pintura da varanda" (só o aviso aparece) |
 | Desativada | **Chalé Serra 01**, que tem 1 reserva futura |
 
-Os nomes das pousadas não aparecem nesta área. Também não aparece nenhum e-mail, senha, código, token ou link iCal.
+**Telas:** 22 capturas da Demo recarregada, 1170×2532, em `telas/`, com a folha em [`aprovacao/folha-telas.jpg`](aprovacao/folha-telas.jpg).
+- **Caminho:** `inicio`, `menu-mais`.
+- **Lista:** `acomodacoes`, `acomodacoes-ipe08`.
+- **Editar:** `editar-ipe08`, `editar-ipe08-550`, `acomodacoes-ipe08-550-topo`, `acomodacoes-ipe08-550`.
+- **Nova:** `nova`, `nova-preenchida`, `acomodacoes-jabuticaba-topo`.
+- **Bloquear:** `acomodacoes-pedra06`, `bloquear-pedra06`, `bloquear-periodo`, `bloquear-periodo-26`, `bloquear-periodo-26-28`, `bloquear-pedra06-datas`, `bloquear-pedra06-preenchido`, `acomodacoes-pedra06-aviso`.
+- **Desativar:** `acomodacoes-serra01`, `desativar-serra01`, `acomodacoes-serra01-inativa`.
 
-**Telas a capturar (Demo, 1170×2532):** a captura é como no episódio 2, com a conferência do texto da página e o OCR antes de salvar.
-
-| Etapa | Telas |
-|---|---|
-| Caminho | `inicio`, `menu-mais` |
-| Lista | `acomodacoes` (topo), `acomodacoes-ipe08` (rolada até o Ipê 08) |
-| Editar | `editar-ipe08`, `editar-ipe08-550`, `acomodacoes-ipe08-550-topo` (com o aviso), `acomodacoes-ipe08-550` (o cartão) |
-| Nova | `nova`, `nova-preenchida`, `acomodacoes-jabuticaba-topo` (com o aviso), `acomodacoes-jabuticaba` (o cartão) |
-| Bloquear | `acomodacoes-pedra06`, `bloquear-pedra06`, `bloquear-periodo`, `bloquear-pedra06-preenchido`, `acomodacoes-pedra06-bloqueada` |
-| Desativar | `acomodacoes-serra01`, `desativar-serra01`, `acomodacoes-serra01-inativa` |
-
-**Ficam escondidos:** o selo "Demonstração" (também no menu), a data do cabeçalho, "Quero usar" e "Quero usar na minha pousada".
+**Ficam escondidos:** o selo "Demonstração", a data do cabeçalho, "Quero usar" e "Quero usar na minha pousada".
 
 ## 6. Fecho
-O logo do FAZLO Hospeda estoura em limão, sem nenhum elemento encostando nele, com @fazlohospeda embaixo. A trilha resolve no último tempo, como nos episódios anteriores.
+O logo do FAZLO Hospeda estoura em limão, sem nada encostando nele, e o halo do compasso não chega ao nome. Embaixo vêm as quatro linhas do fecho e @fazlohospeda. A trilha resolve no último tempo.

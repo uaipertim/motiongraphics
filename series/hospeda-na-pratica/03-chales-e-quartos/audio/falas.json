@@ -1,0 +1,865 @@
+{
+ "texto": "O valor de cada chalé ainda mora na sua cabeça? Aí a recepção não sabe quanto cobrar, nem quantas pessoas cabem em cada um. No FAZLO Hospeda, cada chalé e cada quarto fica cadastrado, com tipo, capacidade e valores. Toque em Mais e depois em Acomodações. Cada um mostra o tipo, quantas pessoas cabem e três valores: semana, fim de semana e feriado. Mudou o preço? Toque em Editar, ajuste o valor e salve. Pronto: a lista já mostra o valor novo. Chalé novo? Toque em Nova acomodação e preencha nome, tipo, capacidade e as três tarifas. Chalé em obra? Bloqueie as datas e anote o motivo. Deixou de alugar? Desative: ele sai das reservas novas, e o que já existe continua. Tudo cadastrado no Hospeda, e fácil de ajustar quando precisar. E no começo, a FAZLO configura tudo com você.",
+ "enviado": "O valor de cada chalé ainda mora na sua cabeça? Aí a recepção não sabe quanto cobrar, nem quantas pessoas cabem em cada um. No Fázlo Hospéda, cada chalé e cada quarto fica cadastrado, com tipo, capacidade e valores. Toque em Mais e depois em Acomodações. Cada um mostra o tipo, quantas pessoas cabem e três valores: semana, fim de semana e feriado. Mudou o preço? Toque em Editar, ajuste o valor e salve. Pronto: a lista já mostra o valor novo. Chalé novo? Toque em Nova acomodação e preencha nome, tipo, capacidade e as três tarifas. Chalé em obra? Bloqueie as datas e anote o motivo. Deixou de alugar? Desative: ele sai das reservas novas, e o que já existe continua. Tudo cadastrado no Hospéda, e fácil de ajustar quando precisar. E no começo, a Fázlo configura tudo com você.",
+ "voz": {
+  "nome": "Alexa - Soft, Clear and Friendly",
+  "voice_id": "sXSV9RZ095VZyL64w3ap",
+  "modelo": "eleven_v4",
+  "stability": 0.5,
+  "similarity_boost": 0.75
+ },
+ "seed": 7100,
+ "formato": "mp3_44100_192",
+ "ritmo_letras_s": 10.2,
+ "fim_da_fala_s": 59.67,
+ "duracao_audio": 59.84,
+ "palavras": [
+  {
+   "w": "O",
+   "falado": "O",
+   "t0": 0.0,
+   "t1": 0.08
+  },
+  {
+   "w": "valor",
+   "falado": "valor",
+   "t0": 0.24,
+   "t1": 0.4
+  },
+  {
+   "w": "de",
+   "falado": "de",
+   "t0": 0.48,
+   "t1": 0.64
+  },
+  {
+   "w": "cada",
+   "falado": "cada",
+   "t0": 0.68,
+   "t1": 0.88
+  },
+  {
+   "w": "chalé",
+   "falado": "chalé",
+   "t0": 0.96,
+   "t1": 1.36
+  },
+  {
+   "w": "ainda",
+   "falado": "ainda",
+   "t0": 1.48,
+   "t1": 1.68
+  },
+  {
+   "w": "mora",
+   "falado": "mora",
+   "t0": 1.76,
+   "t1": 2.0
+  },
+  {
+   "w": "na",
+   "falado": "na",
+   "t0": 2.08,
+   "t1": 2.16
+  },
+  {
+   "w": "sua",
+   "falado": "sua",
+   "t0": 2.2,
+   "t1": 2.32
+  },
+  {
+   "w": "cabeça?",
+   "falado": "cabeça?",
+   "t0": 2.4,
+   "t1": 2.96
+  },
+  {
+   "w": "Aí",
+   "falado": "Aí",
+   "t0": 3.44,
+   "t1": 3.68
+  },
+  {
+   "w": "a",
+   "falado": "a",
+   "t0": 3.72,
+   "t1": 3.76
+  },
+  {
+   "w": "recepção",
+   "falado": "recepção",
+   "t0": 3.84,
+   "t1": 4.32
+  },
+  {
+   "w": "não",
+   "falado": "não",
+   "t0": 4.4,
+   "t1": 4.56
+  },
+  {
+   "w": "sabe",
+   "falado": "sabe",
+   "t0": 4.64,
+   "t1": 4.88
+  },
+  {
+   "w": "quanto",
+   "falado": "quanto",
+   "t0": 4.96,
+   "t1": 5.2
+  },
+  {
+   "w": "cobrar,",
+   "falado": "cobrar,",
+   "t0": 5.32,
+   "t1": 5.68
+  },
+  {
+   "w": "nem",
+   "falado": "nem",
+   "t0": 6.08,
+   "t1": 6.24
+  },
+  {
+   "w": "quantas",
+   "falado": "quantas",
+   "t0": 6.36,
+   "t1": 6.64
+  },
+  {
+   "w": "pessoas",
+   "falado": "pessoas",
+   "t0": 6.72,
+   "t1": 7.12
+  },
+  {
+   "w": "cabem",
+   "falado": "cabem",
+   "t0": 7.24,
+   "t1": 7.44
+  },
+  {
+   "w": "em",
+   "falado": "em",
+   "t0": 7.52,
+   "t1": 7.6
+  },
+  {
+   "w": "cada",
+   "falado": "cada",
+   "t0": 7.68,
+   "t1": 7.84
+  },
+  {
+   "w": "um.",
+   "falado": "um.",
+   "t0": 7.92,
+   "t1": 8.08
+  },
+  {
+   "w": "No",
+   "falado": "No",
+   "t0": 8.56,
+   "t1": 8.72
+  },
+  {
+   "w": "FAZLO",
+   "falado": "Fázlo",
+   "t0": 8.76,
+   "t1": 9.12
+  },
+  {
+   "w": "Hospeda,",
+   "falado": "Hospéda,",
+   "t0": 9.2,
+   "t1": 9.6
+  },
+  {
+   "w": "cada",
+   "falado": "cada",
+   "t0": 10.0,
+   "t1": 10.24
+  },
+  {
+   "w": "chalé",
+   "falado": "chalé",
+   "t0": 10.32,
+   "t1": 10.8
+  },
+  {
+   "w": "e",
+   "falado": "e",
+   "t0": 10.84,
+   "t1": 10.88
+  },
+  {
+   "w": "cada",
+   "falado": "cada",
+   "t0": 11.04,
+   "t1": 11.28
+  },
+  {
+   "w": "quarto",
+   "falado": "quarto",
+   "t0": 11.44,
+   "t1": 11.84
+  },
+  {
+   "w": "fica",
+   "falado": "fica",
+   "t0": 11.88,
+   "t1": 12.08
+  },
+  {
+   "w": "cadastrado,",
+   "falado": "cadastrado,",
+   "t0": 12.16,
+   "t1": 12.88
+  },
+  {
+   "w": "com",
+   "falado": "com",
+   "t0": 13.2,
+   "t1": 13.28
+  },
+  {
+   "w": "tipo,",
+   "falado": "tipo,",
+   "t0": 13.44,
+   "t1": 13.84
+  },
+  {
+   "w": "capacidade",
+   "falado": "capacidade",
+   "t0": 14.12,
+   "t1": 14.88
+  },
+  {
+   "w": "e",
+   "falado": "e",
+   "t0": 15.04,
+   "t1": 15.08
+  },
+  {
+   "w": "valores.",
+   "falado": "valores.",
+   "t0": 15.12,
+   "t1": 15.76
+  },
+  {
+   "w": "Toque",
+   "falado": "Toque",
+   "t0": 16.24,
+   "t1": 16.56
+  },
+  {
+   "w": "em",
+   "falado": "em",
+   "t0": 16.64,
+   "t1": 16.72
+  },
+  {
+   "w": "Mais",
+   "falado": "Mais",
+   "t0": 16.96,
+   "t1": 17.2
+  },
+  {
+   "w": "e",
+   "falado": "e",
+   "t0": 17.36,
+   "t1": 17.4
+  },
+  {
+   "w": "depois",
+   "falado": "depois",
+   "t0": 17.44,
+   "t1": 17.84
+  },
+  {
+   "w": "em",
+   "falado": "em",
+   "t0": 17.92,
+   "t1": 18.0
+  },
+  {
+   "w": "Acomodações.",
+   "falado": "Acomodações.",
+   "t0": 18.08,
+   "t1": 18.96
+  },
+  {
+   "w": "Cada",
+   "falado": "Cada",
+   "t0": 19.44,
+   "t1": 19.68
+  },
+  {
+   "w": "um",
+   "falado": "um",
+   "t0": 19.76,
+   "t1": 19.92
+  },
+  {
+   "w": "mostra",
+   "falado": "mostra",
+   "t0": 20.0,
+   "t1": 20.32
+  },
+  {
+   "w": "o",
+   "falado": "o",
+   "t0": 20.4,
+   "t1": 20.48
+  },
+  {
+   "w": "tipo,",
+   "falado": "tipo,",
+   "t0": 20.68,
+   "t1": 20.88
+  },
+  {
+   "w": "quantas",
+   "falado": "quantas",
+   "t0": 21.2,
+   "t1": 21.52
+  },
+  {
+   "w": "pessoas",
+   "falado": "pessoas",
+   "t0": 21.6,
+   "t1": 22.0
+  },
+  {
+   "w": "cabem",
+   "falado": "cabem",
+   "t0": 22.16,
+   "t1": 22.4
+  },
+  {
+   "w": "e",
+   "falado": "e",
+   "t0": 22.56,
+   "t1": 22.64
+  },
+  {
+   "w": "três",
+   "falado": "três",
+   "t0": 22.8,
+   "t1": 23.04
+  },
+  {
+   "w": "valores:",
+   "falado": "valores:",
+   "t0": 23.12,
+   "t1": 23.6
+  },
+  {
+   "w": "semana,",
+   "falado": "semana,",
+   "t0": 24.12,
+   "t1": 24.56
+  },
+  {
+   "w": "fim",
+   "falado": "fim",
+   "t0": 24.88,
+   "t1": 25.04
+  },
+  {
+   "w": "de",
+   "falado": "de",
+   "t0": 25.08,
+   "t1": 25.12
+  },
+  {
+   "w": "semana",
+   "falado": "semana",
+   "t0": 25.2,
+   "t1": 25.68
+  },
+  {
+   "w": "e",
+   "falado": "e",
+   "t0": 25.84,
+   "t1": 25.92
+  },
+  {
+   "w": "feriado.",
+   "falado": "feriado.",
+   "t0": 26.0,
+   "t1": 26.56
+  },
+  {
+   "w": "Mudou",
+   "falado": "Mudou",
+   "t0": 27.04,
+   "t1": 27.28
+  },
+  {
+   "w": "o",
+   "falado": "o",
+   "t0": 27.36,
+   "t1": 27.44
+  },
+  {
+   "w": "preço?",
+   "falado": "preço?",
+   "t0": 27.52,
+   "t1": 27.92
+  },
+  {
+   "w": "Toque",
+   "falado": "Toque",
+   "t0": 28.32,
+   "t1": 28.56
+  },
+  {
+   "w": "em",
+   "falado": "em",
+   "t0": 28.64,
+   "t1": 28.72
+  },
+  {
+   "w": "Editar,",
+   "falado": "Editar,",
+   "t0": 29.0,
+   "t1": 29.28
+  },
+  {
+   "w": "ajuste",
+   "falado": "ajuste",
+   "t0": 29.6,
+   "t1": 30.08
+  },
+  {
+   "w": "o",
+   "falado": "o",
+   "t0": 30.107,
+   "t1": 30.133
+  },
+  {
+   "w": "valor",
+   "falado": "valor",
+   "t0": 30.16,
+   "t1": 30.56
+  },
+  {
+   "w": "e",
+   "falado": "e",
+   "t0": 30.72,
+   "t1": 30.8
+  },
+  {
+   "w": "salve.",
+   "falado": "salve.",
+   "t0": 30.88,
+   "t1": 31.36
+  },
+  {
+   "w": "Pronto:",
+   "falado": "Pronto:",
+   "t0": 31.72,
+   "t1": 32.08
+  },
+  {
+   "w": "a",
+   "falado": "a",
+   "t0": 32.44,
+   "t1": 32.48
+  },
+  {
+   "w": "lista",
+   "falado": "lista",
+   "t0": 32.56,
+   "t1": 32.88
+  },
+  {
+   "w": "já",
+   "falado": "já",
+   "t0": 32.96,
+   "t1": 33.12
+  },
+  {
+   "w": "mostra",
+   "falado": "mostra",
+   "t0": 33.2,
+   "t1": 33.52
+  },
+  {
+   "w": "o",
+   "falado": "o",
+   "t0": 33.56,
+   "t1": 33.6
+  },
+  {
+   "w": "valor",
+   "falado": "valor",
+   "t0": 33.76,
+   "t1": 33.92
+  },
+  {
+   "w": "novo.",
+   "falado": "novo.",
+   "t0": 34.0,
+   "t1": 34.32
+  },
+  {
+   "w": "Chalé",
+   "falado": "Chalé",
+   "t0": 34.8,
+   "t1": 35.12
+  },
+  {
+   "w": "novo?",
+   "falado": "novo?",
+   "t0": 35.2,
+   "t1": 35.6
+  },
+  {
+   "w": "Toque",
+   "falado": "Toque",
+   "t0": 36.0,
+   "t1": 36.32
+  },
+  {
+   "w": "em",
+   "falado": "em",
+   "t0": 36.36,
+   "t1": 36.4
+  },
+  {
+   "w": "Nova",
+   "falado": "Nova",
+   "t0": 36.48,
+   "t1": 36.72
+  },
+  {
+   "w": "acomodação",
+   "falado": "acomodação",
+   "t0": 36.8,
+   "t1": 37.52
+  },
+  {
+   "w": "e",
+   "falado": "e",
+   "t0": 37.6,
+   "t1": 37.68
+  },
+  {
+   "w": "preencha",
+   "falado": "preencha",
+   "t0": 37.76,
+   "t1": 38.24
+  },
+  {
+   "w": "nome,",
+   "falado": "nome,",
+   "t0": 38.32,
+   "t1": 38.72
+  },
+  {
+   "w": "tipo,",
+   "falado": "tipo,",
+   "t0": 39.16,
+   "t1": 39.36
+  },
+  {
+   "w": "capacidade",
+   "falado": "capacidade",
+   "t0": 39.52,
+   "t1": 40.32
+  },
+  {
+   "w": "e",
+   "falado": "e",
+   "t0": 40.48,
+   "t1": 40.56
+  },
+  {
+   "w": "as",
+   "falado": "as",
+   "t0": 40.64,
+   "t1": 40.72
+  },
+  {
+   "w": "três",
+   "falado": "três",
+   "t0": 40.8,
+   "t1": 41.04
+  },
+  {
+   "w": "tarifas.",
+   "falado": "tarifas.",
+   "t0": 41.12,
+   "t1": 41.68
+  },
+  {
+   "w": "Chalé",
+   "falado": "Chalé",
+   "t0": 42.16,
+   "t1": 42.453
+  },
+  {
+   "w": "em",
+   "falado": "em",
+   "t0": 42.507,
+   "t1": 42.56
+  },
+  {
+   "w": "obra?",
+   "falado": "obra?",
+   "t0": 42.64,
+   "t1": 42.96
+  },
+  {
+   "w": "Bloqueie",
+   "falado": "Bloqueie",
+   "t0": 43.36,
+   "t1": 43.76
+  },
+  {
+   "w": "as",
+   "falado": "as",
+   "t0": 43.84,
+   "t1": 43.92
+  },
+  {
+   "w": "datas",
+   "falado": "datas",
+   "t0": 44.0,
+   "t1": 44.4
+  },
+  {
+   "w": "e",
+   "falado": "e",
+   "t0": 44.48,
+   "t1": 44.56
+  },
+  {
+   "w": "anote",
+   "falado": "anote",
+   "t0": 44.64,
+   "t1": 44.96
+  },
+  {
+   "w": "o",
+   "falado": "o",
+   "t0": 45.0,
+   "t1": 45.04
+  },
+  {
+   "w": "motivo.",
+   "falado": "motivo.",
+   "t0": 45.16,
+   "t1": 45.6
+  },
+  {
+   "w": "Deixou",
+   "falado": "Deixou",
+   "t0": 46.0,
+   "t1": 46.32
+  },
+  {
+   "w": "de",
+   "falado": "de",
+   "t0": 46.36,
+   "t1": 46.4
+  },
+  {
+   "w": "alugar?",
+   "falado": "alugar?",
+   "t0": 46.44,
+   "t1": 46.88
+  },
+  {
+   "w": "Desative:",
+   "falado": "Desative:",
+   "t0": 47.28,
+   "t1": 47.92
+  },
+  {
+   "w": "ele",
+   "falado": "ele",
+   "t0": 48.36,
+   "t1": 48.48
+  },
+  {
+   "w": "sai",
+   "falado": "sai",
+   "t0": 48.56,
+   "t1": 48.72
+  },
+  {
+   "w": "das",
+   "falado": "das",
+   "t0": 48.8,
+   "t1": 48.88
+  },
+  {
+   "w": "reservas",
+   "falado": "reservas",
+   "t0": 48.96,
+   "t1": 49.44
+  },
+  {
+   "w": "novas,",
+   "falado": "novas,",
+   "t0": 49.52,
+   "t1": 49.92
+  },
+  {
+   "w": "e",
+   "falado": "e",
+   "t0": 50.12,
+   "t1": 50.16
+  },
+  {
+   "w": "o",
+   "falado": "o",
+   "t0": 50.2,
+   "t1": 50.24
+  },
+  {
+   "w": "que",
+   "falado": "que",
+   "t0": 50.28,
+   "t1": 50.32
+  },
+  {
+   "w": "já",
+   "falado": "já",
+   "t0": 50.4,
+   "t1": 50.56
+  },
+  {
+   "w": "existe",
+   "falado": "existe",
+   "t0": 50.68,
+   "t1": 51.12
+  },
+  {
+   "w": "continua.",
+   "falado": "continua.",
+   "t0": 51.2,
+   "t1": 51.84
+  },
+  {
+   "w": "Tudo",
+   "falado": "Tudo",
+   "t0": 52.24,
+   "t1": 52.48
+  },
+  {
+   "w": "cadastrado",
+   "falado": "cadastrado",
+   "t0": 52.52,
+   "t1": 53.12
+  },
+  {
+   "w": "no",
+   "falado": "no",
+   "t0": 53.2,
+   "t1": 53.28
+  },
+  {
+   "w": "Hospeda,",
+   "falado": "Hospéda,",
+   "t0": 53.387,
+   "t1": 53.84
+  },
+  {
+   "w": "e",
+   "falado": "e",
+   "t0": 54.12,
+   "t1": 54.16
+  },
+  {
+   "w": "fácil",
+   "falado": "fácil",
+   "t0": 54.32,
+   "t1": 54.64
+  },
+  {
+   "w": "de",
+   "falado": "de",
+   "t0": 54.72,
+   "t1": 54.76
+  },
+  {
+   "w": "ajustar",
+   "falado": "ajustar",
+   "t0": 54.8,
+   "t1": 55.2
+  },
+  {
+   "w": "quando",
+   "falado": "quando",
+   "t0": 55.28,
+   "t1": 55.44
+  },
+  {
+   "w": "precisar.",
+   "falado": "precisar.",
+   "t0": 55.52,
+   "t1": 56.08
+  },
+  {
+   "w": "E",
+   "falado": "E",
+   "t0": 56.48,
+   "t1": 56.56
+  },
+  {
+   "w": "no",
+   "falado": "no",
+   "t0": 56.6,
+   "t1": 56.64
+  },
+  {
+   "w": "começo,",
+   "falado": "começo,",
+   "t0": 56.72,
+   "t1": 57.2
+  },
+  {
+   "w": "a",
+   "falado": "a",
+   "t0": 57.48,
+   "t1": 57.52
+  },
+  {
+   "w": "FAZLO",
+   "falado": "Fázlo",
+   "t0": 57.68,
+   "t1": 58.08
+  },
+  {
+   "w": "configura",
+   "falado": "configura",
+   "t0": 58.24,
+   "t1": 58.56
+  },
+  {
+   "w": "tudo",
+   "falado": "tudo",
+   "t0": 58.8,
+   "t1": 59.04
+  },
+  {
+   "w": "com",
+   "falado": "com",
+   "t0": 59.12,
+   "t1": 59.2
+  },
+  {
+   "w": "você.",
+   "falado": "você.",
+   "t0": 59.28,
+   "t1": 59.67
+  }
+ ],
+ "quando": "2026-11-20 13:30"
+}

@@ -1,0 +1,382 @@
+{
+ "id": "hospeda-na-pratica-03-chales-e-quartos",
+ "marca": "@fazlohospeda",
+ "voz": {
+  "nome": "Alexa - Soft, Clear and Friendly",
+  "voice_id": "sXSV9RZ095VZyL64w3ap",
+  "modelo": "eleven_v4",
+  "stability": 0.5,
+  "similarity_boost": 0.75
+ },
+ "pronuncia": {
+  "Hospeda": "Hospéda",
+  "FAZLO": "Fázlo"
+ },
+ "nota": "Roteiro aprovado com ajustes em 20/11/2026 (12 frases; a antiga frase 9 saiu; fecho em duas frases). Valores só na tela, nunca na voz.",
+ "narracao": "O valor de cada chalé ainda mora na sua cabeça? Aí a recepção não sabe quanto cobrar, nem quantas pessoas cabem em cada um. No FAZLO Hospeda, cada chalé e cada quarto fica cadastrado, com tipo, capacidade e valores. Toque em Mais e depois em Acomodações. Cada um mostra o tipo, quantas pessoas cabem e três valores: semana, fim de semana e feriado. Mudou o preço? Toque em Editar, ajuste o valor e salve. Pronto: a lista já mostra o valor novo. Chalé novo? Toque em Nova acomodação e preencha nome, tipo, capacidade e as três tarifas. Chalé em obra? Bloqueie as datas e anote o motivo. Deixou de alugar? Desative: ele sai das reservas novas, e o que já existe continua. Tudo cadastrado no Hospeda, e fácil de ajustar quando precisar. E no começo, a FAZLO configura tudo com você.",
+ "frases": [
+  {
+   "id": "g1",
+   "pausa": 0.3,
+   "tokens": [
+    {
+     "fala": "O"
+    },
+    {
+     "fala": "valor",
+     "id": "valor",
+     "chave": true
+    },
+    {
+     "fala": "de cada"
+    },
+    {
+     "fala": "chalé",
+     "id": "chale",
+     "chave": true
+    },
+    {
+     "fala": "ainda mora na"
+    },
+    {
+     "fala": "sua cabeça?",
+     "id": "cabeca",
+     "chave": true
+    }
+   ]
+  },
+  {
+   "id": "g2",
+   "pausa": 0.5,
+   "tokens": [
+    {
+     "fala": "Aí a"
+    },
+    {
+     "fala": "recepção",
+     "id": "recepcao",
+     "chave": true
+    },
+    {
+     "fala": "não sabe"
+    },
+    {
+     "fala": "quanto cobrar,",
+     "id": "cobrar",
+     "chave": true
+    },
+    {
+     "fala": "nem"
+    },
+    {
+     "fala": "quantas pessoas",
+     "id": "pessoas",
+     "chave": true
+    },
+    {
+     "fala": "cabem em cada um."
+    }
+   ]
+  },
+  {
+   "id": "marca",
+   "pausa": 0.6,
+   "tokens": [
+    {
+     "fala": "No"
+    },
+    {
+     "fala": "FAZLO Hospeda,",
+     "id": "fazlo",
+     "chave": true
+    },
+    {
+     "fala": "cada chalé e cada quarto fica"
+    },
+    {
+     "fala": "cadastrado,",
+     "id": "cadastrado",
+     "chave": true
+    },
+    {
+     "fala": "com"
+    },
+    {
+     "fala": "tipo,",
+     "id": "tipo0"
+    },
+    {
+     "fala": "capacidade",
+     "id": "cap0"
+    },
+    {
+     "fala": "e"
+    },
+    {
+     "fala": "valores.",
+     "id": "valores0"
+    }
+   ]
+  },
+  {
+   "id": "caminho",
+   "pausa": 0.7,
+   "tokens": [
+    {
+     "fala": "Toque em"
+    },
+    {
+     "fala": "Mais",
+     "id": "mais",
+     "chave": true
+    },
+    {
+     "fala": "e depois em"
+    },
+    {
+     "fala": "Acomodações.",
+     "id": "acomodacoes",
+     "chave": true
+    }
+   ]
+  },
+  {
+   "id": "lista",
+   "pausa": 0.9,
+   "tokens": [
+    {
+     "fala": "Cada um mostra o"
+    },
+    {
+     "fala": "tipo,",
+     "id": "tipo",
+     "chave": true
+    },
+    {
+     "fala": "quantas"
+    },
+    {
+     "fala": "pessoas",
+     "id": "pessoas2",
+     "chave": true
+    },
+    {
+     "fala": "cabem e"
+    },
+    {
+     "fala": "três valores:",
+     "id": "valores",
+     "chave": true
+    },
+    {
+     "fala": "semana,",
+     "id": "semana",
+     "chave": true
+    },
+    {
+     "fala": "fim de semana",
+     "id": "fds",
+     "chave": true
+    },
+    {
+     "fala": "e"
+    },
+    {
+     "fala": "feriado.",
+     "id": "feriado",
+     "chave": true
+    }
+   ]
+  },
+  {
+   "id": "editar",
+   "pausa": 1.0,
+   "tokens": [
+    {
+     "fala": "Mudou o"
+    },
+    {
+     "fala": "preço?",
+     "id": "preco",
+     "chave": true
+    },
+    {
+     "fala": "Toque em"
+    },
+    {
+     "fala": "Editar,",
+     "id": "editar",
+     "chave": true
+    },
+    {
+     "fala": "ajuste o"
+    },
+    {
+     "fala": "valor",
+     "id": "valor2"
+    },
+    {
+     "fala": "e"
+    },
+    {
+     "fala": "salve.",
+     "id": "salve",
+     "chave": true
+    }
+   ]
+  },
+  {
+   "id": "depois",
+   "pausa": 0.8,
+   "tokens": [
+    {
+     "fala": "Pronto:",
+     "id": "pronto"
+    },
+    {
+     "fala": "a lista já mostra o"
+    },
+    {
+     "fala": "valor novo.",
+     "id": "novo",
+     "chave": true
+    }
+   ]
+  },
+  {
+   "id": "nova",
+   "pausa": 2.3,
+   "tokens": [
+    {
+     "fala": "Chalé novo?",
+     "id": "chalenovo"
+    },
+    {
+     "fala": "Toque em"
+    },
+    {
+     "fala": "Nova acomodação",
+     "id": "nova",
+     "chave": true
+    },
+    {
+     "fala": "e preencha"
+    },
+    {
+     "fala": "nome,",
+     "id": "nome",
+     "chave": true
+    },
+    {
+     "fala": "tipo,",
+     "id": "tipo2",
+     "chave": true
+    },
+    {
+     "fala": "capacidade",
+     "id": "cap2",
+     "chave": true
+    },
+    {
+     "fala": "e as"
+    },
+    {
+     "fala": "três tarifas.",
+     "id": "tarifas",
+     "chave": true
+    }
+   ]
+  },
+  {
+   "id": "bloquear",
+   "pausa": 4.5,
+   "tokens": [
+    {
+     "fala": "Chalé em obra?",
+     "id": "obra",
+     "chave": true
+    },
+    {
+     "fala": "Bloqueie",
+     "id": "bloqueie",
+     "chave": true
+    },
+    {
+     "fala": "as"
+    },
+    {
+     "fala": "datas",
+     "id": "datas",
+     "chave": true
+    },
+    {
+     "fala": "e anote o"
+    },
+    {
+     "fala": "motivo.",
+     "id": "motivo",
+     "chave": true
+    }
+   ]
+  },
+  {
+   "id": "desativar",
+   "pausa": 1.2,
+   "tokens": [
+    {
+     "fala": "Deixou de alugar?",
+     "id": "alugar"
+    },
+    {
+     "fala": "Desative:",
+     "id": "desative",
+     "chave": true
+    },
+    {
+     "fala": "ele sai das"
+    },
+    {
+     "fala": "reservas novas,",
+     "id": "novas",
+     "chave": true
+    },
+    {
+     "fala": "e o que já existe"
+    },
+    {
+     "fala": "continua.",
+     "id": "continua",
+     "chave": true
+    }
+   ]
+  },
+  {
+   "id": "cta",
+   "pausa": 0.5,
+   "tokens": [
+    {
+     "fala": "Tudo cadastrado no Hospeda,",
+     "id": "tudo"
+    },
+    {
+     "fala": "e fácil de ajustar quando precisar.",
+     "id": "facil"
+    }
+   ]
+  },
+  {
+   "id": "cta2",
+   "pausa": 0.0,
+   "tokens": [
+    {
+     "fala": "E no começo,",
+     "id": "comeco"
+    },
+    {
+     "fala": "a FAZLO configura tudo com você.",
+     "id": "configura"
+    }
+   ]
+  }
+ ]
+}

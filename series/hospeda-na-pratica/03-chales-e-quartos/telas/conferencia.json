@@ -1,0 +1,128 @@
+{
+ "data": "2026-11-20",
+ "proibidos": [
+  "/fazlodigital/i",
+  "/\\bDemo\\b/",
+  "/Demonstra/i",
+  "/senha/i",
+  "/c[oó]digo/i",
+  "/token/i",
+  "/Quero usar/",
+  "/\\.ics\\b/i",
+  "/ical/i",
+  "/https?:\\/\\//i"
+ ],
+ "regra_extra": "nenhum \"Bloqueada\" dentro da tela",
+ "telas": {
+  "inicio": {
+   "escondidos": 10,
+   "proibidos": 0,
+   "bloqueada_na_tela": 0
+  },
+  "menu-mais": {
+   "escondidos": 8,
+   "proibidos": 0,
+   "bloqueada_na_tela": 0
+  },
+  "acomodacoes": {
+   "escondidos": 5,
+   "proibidos": 0,
+   "bloqueada_na_tela": 0
+  },
+  "acomodacoes-ipe08": {
+   "escondidos": 5,
+   "proibidos": 0,
+   "bloqueada_na_tela": 0
+  },
+  "editar-ipe08": {
+   "escondidos": 5,
+   "proibidos": 0,
+   "bloqueada_na_tela": 0
+  },
+  "editar-ipe08-550": {
+   "escondidos": 5,
+   "proibidos": 0,
+   "bloqueada_na_tela": 0
+  },
+  "acomodacoes-ipe08-550-topo": {
+   "escondidos": 5,
+   "proibidos": 0,
+   "bloqueada_na_tela": 0
+  },
+  "acomodacoes-ipe08-550": {
+   "escondidos": 5,
+   "proibidos": 0,
+   "bloqueada_na_tela": 0
+  },
+  "nova": {
+   "escondidos": 5,
+   "proibidos": 0,
+   "bloqueada_na_tela": 0
+  },
+  "nova-preenchida": {
+   "escondidos": 5,
+   "proibidos": 0,
+   "bloqueada_na_tela": 0
+  },
+  "acomodacoes-jabuticaba-topo": {
+   "escondidos": 5,
+   "proibidos": 0,
+   "bloqueada_na_tela": 0
+  },
+  "acomodacoes-pedra06": {
+   "escondidos": 5,
+   "proibidos": 0,
+   "bloqueada_na_tela": 0
+  },
+  "bloquear-pedra06": {
+   "escondidos": 5,
+   "proibidos": 0,
+   "bloqueada_na_tela": 0
+  },
+  "bloquear-periodo": {
+   "escondidos": 5,
+   "proibidos": 0,
+   "bloqueada_na_tela": 0
+  },
+  "bloquear-periodo-26": {
+   "escondidos": 5,
+   "proibidos": 0,
+   "bloqueada_na_tela": 0
+  },
+  "bloquear-periodo-26-28": {
+   "escondidos": 5,
+   "proibidos": 0,
+   "bloqueada_na_tela": 0
+  },
+  "bloquear-pedra06-datas": {
+   "escondidos": 5,
+   "proibidos": 0,
+   "bloqueada_na_tela": 0
+  },
+  "bloquear-pedra06-preenchido": {
+   "escondidos": 5,
+   "proibidos": 0,
+   "bloqueada_na_tela": 0
+  },
+  "acomodacoes-pedra06-aviso": {
+   "escondidos": 5,
+   "proibidos": 0,
+   "bloqueada_na_tela": 0
+  },
+  "acomodacoes-serra01": {
+   "escondidos": 5,
+   "proibidos": 0,
+   "bloqueada_na_tela": 0
+  },
+  "desativar-serra01": {
+   "escondidos": 5,
+   "proibidos": 0,
+   "bloqueada_na_tela": 0
+  },
+  "acomodacoes-serra01-inativa": {
+   "escondidos": 5,
+   "proibidos": 0,
+   "bloqueada_na_tela": 0
+  }
+ }
+}

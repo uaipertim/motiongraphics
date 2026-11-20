@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>FAZLO Hospeda na prática — Chalés e quartos</title>
+<style>
+  @font-face { font-family: 'FL Display'; src: url('fonts/InterDisplay-SemiBold.otf') format('opentype'); font-weight: 600; }
+  @font-face { font-family: 'FL Display'; src: url('fonts/InterDisplay-Bold.otf') format('opentype'); font-weight: 700; }
+  @font-face { font-family: 'FL Display'; src: url('fonts/InterDisplay-ExtraBold.otf') format('opentype'); font-weight: 800; }
+  @font-face { font-family: 'FL Display'; src: url('fonts/InterDisplay-Black.otf') format('opentype'); font-weight: 900; }
+  @font-face { font-family: 'FL Mono'; src: url('fonts/JetBrainsMonoNL-Bold.ttf') format('truetype'); font-weight: 700; }
+  html, body { margin: 0; background: #000; }
+  canvas { display: block; width: 1080px; height: 1920px; }
+</style>
+</head>
+<body>
+<canvas id="c" width="1080" height="1920"></canvas>
+<script src="anim.js"></script>
+<script src="plano.js"></script>
+<script>
+  const q = new URLSearchParams(location.search);
+  const carrega = (src) => new Promise((ok, erro) => { const i = new Image(); i.onload = () => ok(i); i.onerror = erro; i.src = src; });
+  window.ready = (async () => {
+    await Promise.all(['900 40px "FL Display"', '800 40px "FL Display"', '700 40px "FL Display"', '700 40px "FL Mono"'].map((f) => document.fonts.load(f)));
+    const plano = window.montaPlano(await (await fetch('../linha.json')).json(), await (await fetch('../telas/alvos.json')).json(), await (await fetch('../telas/textos.json')).json());
+    const nomes = new Set();
+    plano.telas.forEach((s) => { nomes.add(s.img); (s.estados || []).forEach((e) => nomes.add(e.img)); (s.digita || []).forEach((e) => nomes.add(e.img)); (s.saltos || []).forEach((j) => j.img && nomes.add(j.img)); });
+    (plano.duplas || []).forEach((d) => d.lados.forEach((l) => nomes.add(l.img)));
+    const imgs = {};
+    await Promise.all([...nomes].map(async (n) => { imgs[n] = await carrega(`../telas/${n}.png`); }));
+    const logo = await carrega('fazlo-hospeda-logo-alpha.png');
+    CURTO.init(imgs, logo, plano);
+    const ctx = document.getElementById('c').getContext('2d');
+    window.frameAt = (t) => { CURTO.renderAt(ctx, t); return document.getElementById('c').toDataURL('image/png'); };
+  })();
+</script>
+</body>
+</html>

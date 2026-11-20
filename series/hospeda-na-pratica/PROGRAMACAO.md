@@ -8,7 +8,7 @@
 | Data (19h) | Dia | Ep. | Tema | Situação |
 |---|---|---|---|---|
 | 23/11/2026 | seg | 2 | Sua equipe no Hospeda | pronto (commit 6eb756c: vídeo e capa) |
-| 25/11/2026 | qua | 3 | Chalés e quartos | em produção |
+| 25/11/2026 | qua | 3 | Chalés e quartos | em produção (roteiro aprovado; prévia para aprovação) |
 | 27/11/2026 | sex | 4 | Produtos da comanda | pendente |
 | 30/11/2026 | seg | 5 | A pousada num olhar | pendente |
 | 02/12/2026 | qua | 6 | Nova reserva em segundos | pendente |
@@ -21,6 +21,6 @@
 | 18/12/2026 | sex | 13 | Fechamento conferido | pendente |
 | 21/12/2026 | seg | 14 | Relatórios | pendente |
 | 23/12/2026 | qua | 15 | Day Use: o visitante que vem só passar o dia | pendente |
-| 25/12/2026 | sex | 1 | Primeiro acesso | pendente (prints à parte) |
+| 28/12/2026 | seg | 1 | Primeiro acesso | pendente (prints à parte) |
 
-**Para confirmar:** pela ordem, o "Primeiro acesso" cai na sexta, **25/12, dia de Natal**. Falta o Willian decidir se mantém a data ou passa para a segunda, 28/12.
+**Decidido em 20/11/2026:** o "Primeiro acesso" sai na segunda, **28/12**, e não mais na sexta, 25/12 (Natal). Não há episódio da série em 25/12.
