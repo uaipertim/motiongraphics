@@ -61,8 +61,45 @@ Padrão definido no episódio 2 (20/11/2026). Modelo: [`02-sua-equipe/capa/capa.
 - **Sem número de episódio:** nada de "ep. 2" ou "parte 1".
 - **Conferência:** `capa/render.cjs` gera a capa e o recorte do feed (`capa-no-feed.jpg`) e confere a área segura e as sobreposições. O OCR procura o mesmo texto proibido dos vídeos (`capa/revisao/`).
 
+## Entrega: versão única (regra de 20/11/2026)
+- Os vídeos da série são **só para o Instagram**.
+- Entregar **apenas o mestre 1080×1920**.
+- Não gerar versão WhatsApp nem qualquer outra versão do mesmo vídeo.
+
+## Estrutura variada (regra de 20/11/2026)
+Os episódios 2, 3 e 4 ficaram com o mesmo esqueleto (tabela abaixo). Daqui em diante:
+- **Cada episódio tem uma estrutura própria**, diferente das já usadas.
+- **Antes do roteiro**, a sessão apresenta a estrutura escolhida, em poucas linhas, e explica por que ela é diferente das anteriores, para aprovação.
+- **Formas possíveis**, sem se limitar a elas:
+  - começar pelo resultado e depois mostrar como chegou lá;
+  - plano-sequência pelo app, sem cortes;
+  - desafio com cronômetro;
+  - tela dividida do início ao fim (jeito antigo × Hospeda);
+  - pergunta e resposta (as dúvidas do dono respondidas na tela);
+  - navegação em forma de trilha rápida, sem repetir "Toque em Mais e depois em…".
+- **O que não muda:**
+  - a identidade: preto e limão, tipografia forte;
+  - a voz Alexa;
+  - a legenda palavra por palavra;
+  - telas inteiras e reais da Demo, com dados fictícios;
+  - tempo para ler;
+  - o fecho com a logo do FAZLO Hospeda.
+- **Registro:** a cada episódio pronto, acrescentar uma linha na tabela abaixo.
+
+### Estruturas já usadas
+
+| Ep. | Tema | Estrutura |
+|---|---|---|
+| 2 | Sua equipe no Hospeda | Gancho com avatares e bilhete → bloco da logo com três selos → "Toque em Mais e depois em Usuários" → lista → convidar (novo) → alterar papel (editar) → desativar e reativar → fecho |
+| 3 | Chalés e quartos | Gancho com caderno e avatar → bloco da logo com três selos → "Toque em Mais e depois em Acomodações" → lista → editar → antes e depois (dois celulares) → novo → bloquear → desativar → antes e depois → fecho |
+| 4 | Produtos da comanda | Gancho com papel colado e avatares → bloco da logo com três selos → "Toque em Mais e depois em Produtos e serviços" → lista por categoria → busca → editar → antes e depois (com close nos cartões) → novo → desativar → antes e depois → fecho |
+
+**Esqueleto comum dos três (não repetir):** gancho com avatares e bilhete → bloco da logo com três selos → "Toque em Mais e depois em…" → lista → editar → antes e depois → novo → desativar → fecho.
+
 ## Fluxo
-Antes de produzir cada episódio, entregar o roteiro e a linha do tempo para aprovação.
+Antes de produzir cada episódio:
+1. apresentar a **estrutura** escolhida (seção "Estrutura variada"), para aprovação;
+2. entregar o **roteiro e a linha do tempo**, para aprovação.
 
 ## Avisos da Demo
 Até a próxima atualização da Demo, na Nova reserva uma data bloqueada pelo Airbnb ou pelo Booking aparece como livre. Nos episódios 6 e 8, nunca mostrar a Nova reserva numa data bloqueada pelo canal.

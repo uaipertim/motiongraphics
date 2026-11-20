@@ -1,10 +1,11 @@
 # FAZLO Hospeda na prática, episódio 4: Produtos da comanda (primeira prévia)
 
-Segue as [regras da série](../REGRAS.md). O roteiro aprovado e a linha do tempo com os tempos reais estão no [`ROTEIRO.md`](ROTEIRO.md). Vai ao ar na sexta, 27/11, às 19h. **Prévia para aprovação; não publicar.**
+Segue as [regras da série](../REGRAS.md). O roteiro aprovado e a linha do tempo com os tempos reais estão no [`ROTEIRO.md`](ROTEIRO.md). Vai ao ar na sexta, 27/11, às 19h. **Vídeo aprovado (commit 70d6ce9); capa para aprovação. Não publicar.**
 
 ## Arquivos
 - ▶ **Prévia (mestre):** [`output/hospeda-na-pratica-04-produtos-da-comanda.mp4`](output/hospeda-na-pratica-04-produtos-da-comanda.mp4): 1080×1920, 60 fps, 74,7 s, 33 MB.
-- **Versão WhatsApp:** [`output/hospeda-na-pratica-04-produtos-da-comanda-whatsapp.mp4`](output/hospeda-na-pratica-04-produtos-da-comanda-whatsapp.mp4): 30 fps, CRF 27, 9,1 MB.
+- **Versão WhatsApp** (feita antes da regra de versão única de 20/11/2026; dos próximos episódios em diante só sai o mestre): [`output/hospeda-na-pratica-04-produtos-da-comanda-whatsapp.mp4`](output/hospeda-na-pratica-04-produtos-da-comanda-whatsapp.mp4): 30 fps, CRF 27, 9,1 MB.
+- **Capa (para aprovação):** [`capa/capa.jpg`](capa/capa.jpg) e o recorte do feed, 4:5: [`capa/capa-no-feed.jpg`](capa/capa-no-feed.jpg).
 - **Quadros-chave:** [`aprovacao/quadros-chave.jpg`](aprovacao/quadros-chave.jpg), 12 quadros.
 - **Telas:** [`aprovacao/folha-telas.jpg`](aprovacao/folha-telas.jpg), 17 capturas.
 - **Levantamento:** [`aprovacao/folha-levantamento-demo.jpg`](aprovacao/folha-levantamento-demo.jpg).
