@@ -1,0 +1,82 @@
+{
+ "data": "2026-11-20",
+ "proibidos": [
+  "/fazlodigital/i",
+  "/\\bDemo\\b/",
+  "/Demonstra/i",
+  "/Jo[aã]o Caixa/",
+  "/Mariana Recep/",
+  "/Recepção/",
+  "/senha/i",
+  "/c[oó]digo/i",
+  "/token/i",
+  "/Quero usar/"
+ ],
+ "telas": {
+  "inicio": {
+   "trocas": 0,
+   "escondidos": 10,
+   "proibidos": 0
+  },
+  "menu-mais": {
+   "trocas": 0,
+   "escondidos": 8,
+   "proibidos": 0
+  },
+  "usuarios": {
+   "trocas": 18,
+   "escondidos": 5,
+   "proibidos": 0
+  },
+  "convidar": {
+   "trocas": 0,
+   "escondidos": 5,
+   "proibidos": 0
+  },
+  "convidar-preenchido": {
+   "trocas": 0,
+   "escondidos": 5,
+   "proibidos": 0
+  },
+  "usuarios-convite": {
+   "trocas": 0,
+   "escondidos": 5,
+   "proibidos": 0
+  },
+  "alterar-joao": {
+   "trocas": 2,
+   "escondidos": 5,
+   "proibidos": 0
+  },
+  "alterar-joao-operacao": {
+   "trocas": 0,
+   "escondidos": 5,
+   "proibidos": 0
+  },
+  "usuarios-joao-operacao": {
+   "trocas": 0,
+   "escondidos": 5,
+   "proibidos": 0
+  },
+  "desativar-mariana": {
+   "trocas": 3,
+   "escondidos": 5,
+   "proibidos": 0
+  },
+  "usuarios-mariana-inativa": {
+   "trocas": 0,
+   "escondidos": 5,
+   "proibidos": 0
+  },
+  "inativos": {
+   "trocas": 0,
+   "escondidos": 5,
+   "proibidos": 0
+  },
+  "inativos-reativado": {
+   "trocas": 0,
+   "escondidos": 5,
+   "proibidos": 0
+  }
+ }
+}

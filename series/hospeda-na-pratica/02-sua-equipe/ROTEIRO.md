@@ -1,6 +1,6 @@
-# Episódio 2: Sua equipe no Hospeda (roteiro para aprovação)
+# Episódio 2: Sua equipe no Hospeda (roteiro aprovado com ajustes em 20/11/2026)
 
-**Status:** só planejamento. Nenhuma voz foi gerada e nada foi renderizado. Segue as [regras da série](../REGRAS.md).
+**Status:** roteiro aprovado com ajustes em 20/11/2026. As telas foram capturadas e há 2 amostras de voz da frase 7 para aprovação. O vídeo ainda não foi narrado nem renderizado. Segue as [regras da série](../REGRAS.md).
 
 ## 1. Levantamento da tela (Demo, 20/11/2026)
 
@@ -60,26 +60,25 @@ A área existe e funciona na Demo (`demo.fazlohospeda.com.br`), no celular a 390
 ### O que o vídeo não diz
 O app não mostra nenhuma outra regra de acesso além das descrições dos papéis. O vídeo usa essas descrições exatamente como estão, sem completar nada.
 
-## 2. Pontos para você decidir antes da produção
+## 2. Decisões (20/11/2026)
 
-1. **E-mails reais na Demo.** Os usuários que já vêm na Demo usam o domínio real `fazlodigital.com.br`, e a regra da série proíbe e-mail real na tela. Esses e-mails aparecem na lista, no painel "Alterar papel" e na confirmação "Desativar".
-   - **Proposta:** na captura, trocar só o texto exibido no próprio navegador, do mesmo jeito que hoje escondemos o selo "Demonstração". O layout não muda.
+1. **E-mails reais na Demo:** na captura, só o texto exibido no navegador é trocado; o layout não muda. A troca vale em todo lugar: cartões, painel "Alterar papel", confirmação "Desativar" e avisos.
 
-     | Na Demo | No vídeo |
-     |---|---|
-     | Administrador Demo (você), demo@fazlodigital.com.br | **Paulo Andrade (você)**, paulo@pousadadaserra.exemplo, iniciais PA |
-     | joao@fazlodigital.com.br | joao@pousadadaserra.exemplo |
-     | mariana@fazlodigital.com.br | mariana@pousadadaserra.exemplo |
+   | Na Demo | No vídeo |
+   |---|---|
+   | Administrador Demo (você), demo@fazlodigital.com.br, AD | **Paulo Andrade (você)**, paulo@pousadadaserra.exemplo, PA |
+   | João Caixa, joao@fazlodigital.com.br, JC | **João Pereira**, joao@pousadadaserra.exemplo, JP |
+   | Mariana Recepção, mariana@fazlodigital.com.br, MR | **Mariana Costa**, mariana@pousadadaserra.exemplo, MC |
 
-   - **Alternativa:** a equipe do app troca esses dados na própria Demo.
-2. **Estado da pessoa convidada.** Na Demo, quem acabou de ser convidado já aparece como "Ativo" na lista. Na produção, se aparece um estado de convite pendente antes do primeiro acesso, preciso de um print dele. Sem esse print, o vídeo mostra o que a Demo mostra, e a narração não fala do estado.
-3. **Gancho sem senha na tela.** A regra proíbe mostrar senha. O gancho mostra um bilhete "Senha da recepção" só com pontos (••••••), sem nenhuma senha escrita, nem inventada.
+2. **Estado da pessoa convidada:** o vídeo segue o que a Demo mostra ("Ativo"). A narração não fala do estado.
+3. **Pronúncia de "e-mail":** duas amostras da frase 7, para escolher (`aprovacao/vozes/`).
+4. **Gancho sem senha na tela:** o bilhete "Senha da recepção" mostra só pontos (••••••).
 
 ## 3. Roteiro
 
 **Título na tela:** "Sua equipe no Hospeda", com o selo da série "FAZLO Hospeda na prática".
 
-**Duração:** cerca de **69 s** (65 s de fala com as pausas de leitura, mais 3,6 s do fecho com a logo). Os tempos são estimados no ritmo da Alexa no vídeo de venda (cerca de 12,8 caracteres por segundo); os definitivos saem da locução.
+**Duração:** cerca de **65 s** (61 s de fala com as pausas de leitura, mais 3,6 s do fecho com a logo). Os tempos são estimados no ritmo da Alexa no vídeo de venda (cerca de 12,8 caracteres por segundo); os definitivos saem da locução.
 
 **Tom:** leve e direto, falando com o dono da pousada. Começa na dor de dividir uma senha só e chega na solução: cada um com o seu acesso.
 
@@ -94,10 +93,9 @@ O app não mostra nenhuma outra regra de acesso além das descrições dos papé
 8. Cada papel já mostra o que a pessoa pode fazer.
 9. Enviou o convite: a pessoa recebe por e-mail e entra com o papel escolhido.
 10. Mudou de função? Toque em Alterar papel e salve.
-11. E sempre fica pelo menos um Administrador ativo.
-12. Saiu da equipe? Desative. A pessoa perde o acesso, e o histórico continua.
-13. Se voltar, é só reativar.
-14. Cada um com o seu acesso, e você no controle.
+11. Saiu da equipe? Desative. A pessoa perde o acesso, e o histórico continua.
+12. Se voltar, é só reativar.
+13. Cada um com o seu acesso, e você no controle.
 
 ### Narração: texto enviado à voz
 1. Ainda divide uma senha só com toda a equipe?
@@ -110,14 +108,13 @@ O app não mostra nenhuma outra regra de acesso além das descrições dos papé
 8. Cada papel já mostra o que a pessoa pode fazer.
 9. Enviou o convite: a pessoa recebe por i-mêil e entra com o papel escolhido.
 10. Mudou de função? Toque em Alterar papel e salve.
-11. E sempre fica pelo menos um Administrador ativo.
-12. Saiu da equipe? Desative. A pessoa perde o acesso, e o histórico continua.
-13. Se voltar, é só reativar.
-14. Cada um com o seu acesso, e você no controle.
+11. Saiu da equipe? Desative. A pessoa perde o acesso, e o histórico continua.
+12. Se voltar, é só reativar.
+13. Cada um com o seu acesso, e você no controle.
 
 **Pronúncia:**
 - "FAZLO" vai como "Fázlo" e "Hospeda" como "Hospéda", como no vídeo de venda.
-- **"e-mail" vai como "i-mêil":** a grafia "e-mail" pode ser lida como "é-mail". Antes de narrar, testo as duas formas e mando as amostras.
+- **"e-mail":** a versão final depende das amostras A ("e-mail") e B ("i-mêil"). O texto acima usa a B só como marcador; vale a que você escolher.
 - Esta narração não tem números.
 
 ## 4. Linha do tempo
@@ -139,12 +136,11 @@ As telas são sempre a tela inteira do celular, como no vídeo de venda.
 | 27,0–33,8 | 7 | `convidar` → `convidar-preenchido` | Toque em "Nome", digitação de "Carla Mendes"; toque em "E-mail", digitação de "carla@pousadadaserra.exemplo". Toque em **Operação**. | — | Os campos se preenchem letra a letra, a opção "Operação" fica marcada e "Enviar convite" passa de cinza a preto. | "Administrador", "Operação", "Caixa" | — |
 | 33,8–38,1 | 8 | `convidar-preenchido` | Contorno nas três descrições, uma por vez. | A descrição de "Operação" salta: "…recebe pagamentos e faz estornos, mas não abre nem fecha o caixa." | — | "o que a pessoa pode fazer" | — |
 | 38,1–44,6 | 9 | `convidar-preenchido` → `usuarios-convite` | Toque em **Enviar convite**. | O aviso "Convite registrado…" salta da tela. | O painel desce. "3 ativos" vira "4 ativos" e o cartão da Carla Mendes entra na lista com "Operação" e "Ativo". | "recebe por e-mail" | O painel desce. |
-| 44,6–48,7 | 10 | `alterar-mariana` → `usuarios-mariana-admin` | Toque em **Alterar papel** no cartão da Mariana Recepção; o painel sobe. Toque em **Administrador**, depois em **Salvar papel**. | O selo "Operação" salta e vira "Administrador". | O painel desce e aparece "Usuário atualizado com sucesso.". | "Alterar papel" | O painel sobe e desce. |
-| 48,7–52,9 | 11 | `usuarios-mariana-admin` (rodapé) | A câmera desce até o rodapé. | "Sempre fica pelo menos um Administrador ativo." salta. | — | "Administrador ativo" | — |
-| 52,9–59,1 | 12 | `desativar-joao` → `usuarios-joao-inativo` | Toque em **Desativar** no cartão do João Caixa. | A confirmação salta: "João Caixa perde o acesso a esta pousada. O histórico continua." Toque em **Desativar**. | "Ativo" vira "Inativo" e "3 ativos" aparece. | "perde o acesso", "o histórico continua" | Fusão. |
-| 59,1–61,6 | 13 | `inativos` → `inativos-reativado` | Toque em **Inativos 1**, depois em **Reativar**. | — | "Inativo" vira "Ativo". | "reativar" | — |
-| 61,6–65,2 | 14 | **Fecho.** | — | — | — | "Cada um com o seu acesso" e "você no controle" em limão. | O celular sai. |
-| 65,2–68,8 | — | **Logo.** | — | — | — | O logo FAZLO Hospeda e @fazlohospeda. A trilha resolve. | — |
+| 44,6–48,8 | 10 | `alterar-joao` → `usuarios-joao-operacao` | Toque em **Alterar papel** no cartão do João Pereira; o painel sobe. Toque em **Operação**, depois em **Salvar papel**. | O selo "Caixa" salta e vira "Operação". | O painel desce e aparece "Usuário atualizado com sucesso.". | "Alterar papel" | O painel sobe e desce. |
+| 48,8–55,0 | 11 | `desativar-mariana` → `usuarios-mariana-inativa` | Toque em **Desativar** no cartão da Mariana Costa. | A confirmação "Desativar Mariana Costa?" salta: "Mariana Costa perde o acesso a esta pousada. O histórico continua. Dá para reativar quando quiser." Toque em **Desativar**. | "Ativo" vira "Inativo" e aparece "3 ativos". | "perde o acesso", "o histórico continua" | Fusão. |
+| 55,0–57,6 | 12 | `inativos` → `inativos-reativado` | Toque em **Inativos 1**, depois em **Reativar**. | — | Como no app: o cartão da Mariana Costa sai do filtro "Inativos" ("Nenhum usuário neste filtro."), "Inativos 1" vira "Inativos 0" e "3 ativos" volta a "4 ativos". | "reativar" | — |
+| 57,6–61,1 | 13 | **Fecho.** | — | — | — | "Cada um com o seu acesso" e "você no controle" em limão. | O celular sai. |
+| 61,1–64,7 | — | **Logo.** | — | — | — | O logo FAZLO Hospeda e @fazlohospeda. A trilha resolve. | — |
 
 **Ritmo:**
 - Cada tela fica de 2,5 a 7 s.
@@ -154,8 +150,10 @@ As telas são sempre a tela inteira do celular, como no vídeo de venda.
 **Telas a capturar na Demo (1170×2532):**
 - **Navegação e lista:** `inicio`, `menu-mais`, `usuarios`.
 - **Convite:** `convidar`, `convidar-preenchido`, `usuarios-convite`.
-- **Alterar papel:** `alterar-mariana`, `usuarios-mariana-admin`.
-- **Desativar e reativar:** `desativar-joao`, `usuarios-joao-inativo`, `inativos`, `inativos-reativado`.
+- **Alterar papel:** `alterar-joao`, `alterar-joao-operacao` (o estado com "Operação" marcado e "Salvar papel" ativo), `usuarios-joao-operacao`.
+- **Desativar e reativar:** `desativar-mariana`, `usuarios-mariana-inativa`, `inativos`, `inativos-reativado`.
+
+As capturas estão em `telas/` (`scripts/capturar.cjs`), e a folha de contato em `aprovacao/folha-telas.jpg`.
 
 Os estados intermediários da digitação são desenhados sobre `convidar` com a mesma fonte do app. Ficam escondidos os elementos da demonstração:
 - o selo "Demonstração";
@@ -168,10 +166,10 @@ Os estados intermediários da digitação são desenhados sobre `convidar` com a
 |---|---|---|
 | Paulo Andrade (você), o dono | paulo@pousadadaserra.exemplo | Administrador |
 | Carla Mendes (convidada no vídeo) | carla@pousadadaserra.exemplo | Operação |
-| Mariana Recepção (já na Demo) | mariana@pousadadaserra.exemplo | Operação → Administrador |
-| João Caixa (já na Demo) | joao@pousadadaserra.exemplo | Caixa; é desativado e depois reativado |
+| João Pereira (na Demo: João Caixa) | joao@pousadadaserra.exemplo | Caixa → Operação |
+| Mariana Costa (na Demo: Mariana Recepção) | mariana@pousadadaserra.exemplo | Operação; é desativada e depois reativada |
 
-- **Paulo Andrade e os e-mails da Mariana e do João:** dependem do ponto 1 da seção 2. Hoje a Demo mostra "Administrador Demo" e e-mails em `fazlodigital.com.br`.
+- **Paulo Andrade, João Pereira e Mariana Costa:** trocados só no texto exibido durante a captura (seção 2).
 - **Pousada:** Pousada da Serra, só no domínio fictício dos e-mails; o nome não aparece em caixa alta.
 - **O que nunca aparece:** senha, código, token e link de calendário.
 
