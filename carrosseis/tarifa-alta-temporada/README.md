@@ -32,16 +32,20 @@ AAC silenciosa. Não tem trilha, narração nem legenda na tela.
 - **Tipos de movimento:** número contando, barras crescendo, item sendo marcado, cartão entrando com leve deslocamento
   e selo surgindo. Nenhum texto entra letra por letra; títulos e apoios já estão na tela desde o quadro 0.
 - **Capa:** o quadro 0 já está completo e legível (é ele que aparece na grade e na prévia). Título, chip e
-  "ARRASTA →" ficam parados. O movimento é a escala gravada ao fundo virando um **MEDIDOR** (revisão de 2026-11-20):
-  - **Ponteiro:** traço preto #0A0A0A a 33%, com a espessura dos traços maiores da escala e o pivô fora do quadro, no
-    mesmo centro da escala.
-  - **Faixa de pico:** uma faixa mais escura no aro marca a região "pico".
-  - **Tempos:** o ponteiro sobe de "normal" até "pico" entre 0,3 s e 2,0 s (easing suave, com um leve assentamento no
-    fim), fica em "pico" até 6,2 s e volta devagar. A escala gira 20° junto com ele.
-  - **Loop:** no último quadro (6,967 s), o ponteiro e a escala já estão na posição do quadro 0, então o loop fecha
-    sem salto.
-  - **Camadas:** o ponteiro é fundo; quando cruza o texto, passa por trás dele.
+  "ARRASTA →" ficam parados. O fundo é um **MEDIDOR** (2ª revisão de 2026-11-20); a escala e a faixa de pico NÃO
+  giram, só a agulha se move.
+  - **Escala e faixa de pico:** a escala gravada ao fundo fica parada. A região "pico" é uma faixa mais escura no aro,
+    parada e inteira no quadro, no alto à direita (x 760–981, y 225–318), acima do chip e do título.
+  - **Agulha:** preta #0A0A0A a 45%, com a espessura dos traços maiores. O pivô fica no centro da escala, fora do
+    quadro; a agulha vai do raio 820 até a ponta no raio 1070, encostando no aro, e some aos poucos para o lado do
+    pivô.
+  - **Percurso:** começa na região "normal" (190°: embaixo à esquerda, abaixo da última linha do título, sem cortá-la).
+    Sobe entre 0,3 s e 2,0 s, com um leve assentamento, até o meio da faixa de pico (253°), e fica lá até 6,2 s.
+  - **Loop:** a agulha volta devagar e chega à posição inicial no último quadro (6,967 s), igual ao quadro 0.
+  - **Dentro do quadro:** a ponta fica dentro do quadro em todo o percurso, e a agulha nunca toca o chip nem o
+    "ARRASTA →". Quando cruza o título, passa por trás dele.
   - O pontinho do chip ainda pulsa, e a seta do "ARRASTA →" dá um empurrãozinho a cada 1,75 s.
+  - **Folha de contato da capa** (0 s, 1 s, 2 s, 4 s e 6,9 s): [`output/revisao/capa-medidor.jpg`](output/revisao/capa-medidor.jpg).
 - **Canto do ícone de som:** os 140×140 px de baixo à direita ficam livres, porque é onde o Instagram põe o ícone de
   som no vídeo. Por isso o "ARRASTA →" e o texto de apoio sobem para y ≈ 1146–1166 (nos estáticos, ficam em 1252).
 - **Selo "EXEMPLO FICTÍCIO":** no alto, à direita, na linha da trilha de passos (slides 04–07).
@@ -89,7 +93,8 @@ A conferência mede tudo nos próprios MP4 (os quadros saem pelo ffmpeg):
   o ruído do H.264.
 - **Capa:**
   - o quadro 0 já tem o título inteiro;
-  - o movimento entre 0 s e 2,0 s: 19.785 px mudam mais de 20 níveis de brilho e 18.577 px mudam mais de 40. Antes do
-    medidor eram 11.672 e 4.645 px;
-  - o quadro final e o quadro 0 são idênticos nos quadros do render (0 px). No MP4 sobram ~90 px de ruído do H.264 nas
+  - o medidor: a ponta da agulha fica dentro do quadro em todos os 210 quadros (pela geometria do render,
+    `render.cjs geo`), a agulha nunca toca o chip nem o "ARRASTA →", a faixa de pico fica inteira no quadro e a ponta
+    fica no meio dela de 2,0 s a 6,2 s;
+  - o quadro final e o quadro 0 são idênticos nos quadros do render (0 px). No MP4 sobra um pouco de ruído do H.264 nas
     bordas das letras (o quadro 0 é quadro-chave e o final, não).

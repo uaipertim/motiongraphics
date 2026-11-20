@@ -7,6 +7,7 @@
  *   node scripts/render.cjs            -> output/01.mp4 … 08.mp4 + output/png/01.png … 08.png (o último quadro de cada)
  *   node scripts/render.cjs 1,4        -> só os slides pedidos
  *   node scripts/render.cjs stills 2:0.5,4:1.2 [--dir output/stills]   -> quadros soltos (slide:segundo)
+ *   node scripts/render.cjs geo        -> (JSON) a agulha do medidor da capa em cada quadro + as caixas do chip e do "ARRASTA →"
  * Depois: python3 scripts/previa.py  -> output/previa.jpg + revisão (ffprobe, margens, canto do som, estabilidade)
  */
 const http = require('http'), fs = require('fs'), path = require('path');
@@ -31,6 +32,14 @@ const grab = async (page, n, t) => { await page.evaluate(([n, t]) => window.fram
   const srv = await serve(), port = srv.address().port;
   const browser = await chromium.launch({ args: ['--disable-gpu-vsync', '--font-render-hinting=none'] });
   try {
+    if (args[0] === 'geo') {
+      // a geometria do medidor da capa em todos os quadros (para a conferência): a agulha e as caixas do chip e do "ARRASTA →"
+      const page = await openPage(browser, port);
+      const g = await page.evaluate(() => { window.frameAt(1, 0); const n = Math.round(CARROSSEL.DUR * CARROSSEL.FPS);
+        return { caixas: CARROSSEL.CAIXAS, med: CARROSSEL.MED, quadros: Array.from({ length: n }, (_, i) => ({ t: i / CARROSSEL.FPS, ...CARROSSEL.agulha(i / CARROSSEL.FPS) })) }; });
+      process.stdout.write(JSON.stringify(g));
+      return;
+    }
     if (args[0] === 'stills') {
       const dir = path.resolve(ROOT, opt('dir', 'output/stills')); fs.mkdirSync(dir, { recursive: true });
       const page = await openPage(browser, port);

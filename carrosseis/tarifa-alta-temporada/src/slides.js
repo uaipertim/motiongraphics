@@ -247,6 +247,7 @@
     const chars = [...'ARRASTA'], ws = chars.map((ch) => ctx.measureText(ch).width);
     const textW = ws.reduce((a, b) => a + b, 0) + sp * (chars.length - 1);
     let x = right - 3 - aw - gap - textW - 12;
+    CAIXAS.arrasta = [x, y - 32, right + 3, y + 8];
     ctx.fillStyle = textColor;
     chars.forEach((ch, i) => { ctx.fillText(ch, x, y); x += ws[i] + sp; });
     const nud = 12 * Math.pow(Math.max(0, Math.sin(TAU * t / 1.75)), 2);          // 0–12 px, sempre dentro da margem
@@ -254,18 +255,26 @@
     ctx.strokeStyle = arrowColor; ctx.lineWidth = 6; ctx.lineCap = 'round'; ctx.lineJoin = 'round';
     ctx.beginPath(); ctx.moveTo(ax - aw, y - 12); ctx.lineTo(ax, y - 12); ctx.moveTo(ax - 20, y - 30); ctx.lineTo(ax, y - 12); ctx.lineTo(ax - 20, y + 6); ctx.stroke();
   }
-  // a capa vira um MEDIDOR: a escala gravada ao fundo (a mesma dos outros carrosséis, com o centro fora do quadro, em
-  // 1180, 1280) ganha um ponteiro (traço preto a 33%, a espessura dos traços maiores da escala) com o pivô no mesmo
-  // centro. O ponteiro sobe da região "normal" até a região "pico" (a faixa mais escura da escala) entre 0,3 s e 2,0 s,
-  // com um leve assentamento no fim, fica em "pico" até 6,2 s e volta devagar até 7,0 s: o quadro final é o quadro 0
-  // e o loop fecha sem salto. A escala gira junto (20°). Tudo isso é fundo: o título, o chip e o "ARRASTA →" vêm por cima.
-  const MED = { cx: 1180, cy: 1280, a0: (200 * Math.PI) / 180, a1: (252 * Math.PI) / 180, giro: (20 * Math.PI) / 180, pico: [(236 * Math.PI) / 180, (262 * Math.PI) / 180] };
+  // a capa vira um MEDIDOR (revisão de 2026-11-20, 2ª): a escala gravada ao fundo (a mesma dos outros carrosséis,
+  // centro fora do quadro em 1180, 1280) fica PARADA, com a região "pico" marcada no aro por uma faixa mais escura,
+  // inteira dentro do quadro (no alto, à direita, acima do chip e do título). SÓ O PONTEIRO SE MOVE: uma agulha preta
+  // (45%, a espessura dos traços maiores) sobre o raio da escala, com o pivô no centro dela (fora do quadro); a
+  // agulha vai do raio 820 até a ponta no raio 1070, encostando no aro, e some aos poucos para o lado do pivô. A ponta
+  // fica dentro do quadro em todo o percurso, e a agulha nunca chega perto do "ARRASTA →" nem do chip.
+  //   0,3–2,0 s: sobe de "normal" (190°, embaixo à esquerda, sob a última linha do título) até o meio da faixa de pico
+  //   (253°), com um leve assentamento; fica lá até 6,2 s; volta devagar e chega em casa no último quadro (= quadro 0).
+  const GRAU = Math.PI / 180;
+  const MED = { cx: 1180, cy: 1280, a0: 190 * GRAU, a1: 253 * GRAU, r0: 820, r1: 1070, pico: [247 * GRAU, 259 * GRAU], rPico: 1060, wPico: 30, alfa: 0.45 };
   const eSettle = (x) => { if (x <= 0) return 0; if (x >= 1) return 1; const c1 = 0.9, c3 = c1 + 1; return 1 + c3 * Math.pow(x - 1, 3) + c1 * Math.pow(x - 1, 2); };
   const medidor = (t) => (t < 6.2 ? eSettle(p(t, 0.3, 2.0)) : 1 - eIO(p(t, 6.2, DUR - 1 / FPS)));   // 0 = normal, 1 = pico (no último quadro, já em casa)
+  // a agulha no instante t: a base (raio 820) e a ponta (raio 1070), em coordenadas do quadro
+  function agulha(t) {
+    const a = MED.a0 + (MED.a1 - MED.a0) * medidor(t), c = Math.cos(a), s_ = Math.sin(a);
+    return { a, base: [MED.cx + MED.r0 * c, MED.cy + MED.r0 * s_], ponta: [MED.cx + MED.r1 * c, MED.cy + MED.r1 * s_] };
+  }
   function limeBackground(ctx, t = 0) {
-    const u = medidor(t);
     ctx.fillStyle = C.lime; ctx.fillRect(0, 0, W, H);
-    ctx.save(); ctx.translate(MED.cx, MED.cy); ctx.rotate(0.385 + MED.giro * u); ctx.lineCap = 'round';
+    ctx.save(); ctx.translate(MED.cx, MED.cy); ctx.rotate(0.385); ctx.lineCap = 'round';
     for (let j = 0; j < 180; j++) {
       const a = (j / 180) * TAU, r1 = 1180, r0 = j % 10 === 0 ? 1080 : j % 5 === 0 ? 1120 : 1150;
       ctx.beginPath(); ctx.moveTo(r0 * Math.cos(a), r0 * Math.sin(a)); ctx.lineTo(r1 * Math.cos(a), r1 * Math.sin(a));
@@ -273,16 +282,17 @@
     }
     for (const r of [1000, 1010, 760]) { ctx.beginPath(); ctx.arc(0, 0, r, 0, TAU); ctx.strokeStyle = rgba(C.limeDeep, 0.3); ctx.lineWidth = 3; ctx.stroke(); }
     ctx.restore();
-    // a região "pico" da escala (uma faixa mais escura no aro, no mesmo verde da escala), girando com ela
-    ctx.save(); ctx.translate(MED.cx, MED.cy); ctx.rotate(MED.giro * u);
-    ctx.beginPath(); ctx.arc(0, 0, 1036, MED.pico[0], MED.pico[1]); ctx.strokeStyle = rgba(C.limeDeep, 0.5); ctx.lineWidth = 34; ctx.lineCap = 'butt'; ctx.stroke();
-    ctx.restore();
-    // o ponteiro: do pivô (fora do quadro) até o aro dos traços; vai de "normal" (200°) até "pico" (252°, com o giro da escala)
-    const a = MED.a0 + (MED.a1 - MED.a0) * u + MED.giro * u;
-    ctx.save(); ctx.strokeStyle = rgba(C.ink, 0.33); ctx.lineWidth = 5; ctx.lineCap = 'round';
-    ctx.beginPath(); ctx.moveTo(MED.cx + 120 * Math.cos(a), MED.cy + 120 * Math.sin(a)); ctx.lineTo(MED.cx + 1172 * Math.cos(a), MED.cy + 1172 * Math.sin(a)); ctx.stroke();
+    // a região "pico": a faixa mais escura no aro (parada, inteira no quadro)
+    ctx.beginPath(); ctx.arc(MED.cx, MED.cy, MED.rPico, MED.pico[0], MED.pico[1]); ctx.strokeStyle = rgba(C.limeDeep, 0.55); ctx.lineWidth = MED.wPico; ctx.lineCap = 'butt'; ctx.stroke();
+    // a agulha (some aos poucos para o lado do pivô, que fica fora do quadro)
+    const g = agulha(t), gr = ctx.createLinearGradient(g.base[0], g.base[1], g.ponta[0], g.ponta[1]);
+    gr.addColorStop(0, rgba(C.ink, 0)); gr.addColorStop(0.45, rgba(C.ink, MED.alfa)); gr.addColorStop(1, rgba(C.ink, MED.alfa));
+    ctx.save(); ctx.strokeStyle = gr; ctx.lineWidth = 5; ctx.lineCap = 'round';
+    ctx.beginPath(); ctx.moveTo(g.base[0], g.base[1]); ctx.lineTo(g.ponta[0], g.ponta[1]); ctx.stroke();
+    ctx.beginPath(); ctx.arc(g.ponta[0], g.ponta[1], 7, 0, TAU); ctx.fillStyle = rgba(C.ink, MED.alfa); ctx.fill();   // a pontinha
     ctx.restore();
   }
+  const CAIXAS = {};   // (conferência) as caixas do chip e do "ARRASTA →" na capa
   const W_ = C.white, Li = C.lime, INK = C.ink;
   const mid = (t, sp) => (t.bottom + sp.top) / 2;
   const titulo2 = (ctx, a, b, o = {}) => title(ctx, [{ t: a, c: W_ }, { t: b, c: Li, br: true }], L.titleTop, Object.assign({ lines: 2, max: 84 }, o));
@@ -316,6 +326,8 @@
         { lines: 4, max: 170, maxH: 760, lh: 1.0, vcenter: [320, 1100], maxW: CW - 8, x: M + 2 });
       // o chip: o pontinho da frente pulsa (2 vezes em 7 s)
       const c = chip(ctx, M + 2, tt.top - 74, 'ALTA TEMPORADA', { size: 32, stroke: INK, color: INK, lw: 3, padX: 24 + 34 });
+      CAIXAS.chip = [c.left, tt.top - 74 - 32 * 0.95, c.left + c.w, tt.top - 74 + 32 * 0.95];
+      CAIXAS.titulo = [M, tt.top, M + CW, tt.bottom];
       const pr = 8 + 3 * (0.5 - 0.5 * Math.cos(TAU * t / 3.5));
       ctx.beginPath(); ctx.arc(c.left + 30, tt.top - 74, pr, 0, TAU); ctx.fillStyle = INK; ctx.fill();
       swipe(ctx, INK, INK, t);
@@ -486,6 +498,6 @@
     background(ctx, t);
     SLIDES[n](ctx, t);
   }
-  window.CARROSSEL = { init, render, W, H, N: 8, DUR, FPS };
+  window.CARROSSEL = { init, render, W, H, N: 8, DUR, FPS, agulha, CAIXAS, MED };
   window.__LINHAS = () => LINHAS.slice();
 })();

@@ -1,7 +1,7 @@
 TARIFA DE DEZEMBRO (carrossel animado) — conferência
 
 FFPROBE
-OK     01.mp4: 1080×1350, 30 fps, 7.00 s (210 quadros), h264 yuv420p High, áudio aac 48000 Hz 2 canais, 0.29 MB
+OK     01.mp4: 1080×1350, 30 fps, 7.00 s (210 quadros), h264 yuv420p High, áudio aac 48000 Hz 2 canais, 0.14 MB
 OK     02.mp4: 1080×1350, 30 fps, 7.00 s (210 quadros), h264 yuv420p High, áudio aac 48000 Hz 2 canais, 0.36 MB
 OK     03.mp4: 1080×1350, 30 fps, 7.00 s (210 quadros), h264 yuv420p High, áudio aac 48000 Hz 2 canais, 0.29 MB
 OK     04.mp4: 1080×1350, 30 fps, 7.00 s (210 quadros), h264 yuv420p High, áudio aac 48000 Hz 2 canais, 0.31 MB
@@ -13,10 +13,14 @@ OK     08.mp4: 1080×1350, 30 fps, 7.00 s (210 quadros), h264 yuv420p High, áud
 MARGENS, CANTO DO SOM E ESTABILIDADE (quadros a cada 0,1 s, tirados do MP4)
 OK     slide 01: conteúdo em x 81–999 em todos os quadros (margem de 80 px)
 OK     slide 01: canto do ícone de som (x ≥ 940, y ≥ 1210) livre em todos os quadros
-OK     slide 01 (capa): o quadro 0 já está completo — na área do título, 35 px diferentes do último quadro (só o pontinho do chip pulsa)
-       slide 01 (capa): o título, o chip e o "ARRASTA →" ficam parados; depois de 2,5 s mudam no máximo 876 px do conteúdo (a seta e o pontinho do chip; o medidor ao fundo não conta)
-OK     slide 01 (capa): movimento entre 0 s e 2,0 s: 19785 px com o brilho diferente em > 20 níveis e 18577 px em > 40 (antes do medidor: 11.672 e 4.645 px); é o ponteiro subindo de "normal" a "pico" e a escala girando junto
-OK     slide 01 (capa): loop — o quadro final (6,967 s) e o quadro 0 batem: 0 px diferentes nos quadros do render (o ponteiro e a escala já voltaram; a seta e o pontinho do chip estão na posição do quadro 0). No MP4, 93 px de ruído do H.264 nas bordas das letras
+OK     slide 01 (capa): o quadro 0 já está completo — na área do título, 15 px diferentes do último quadro (só o pontinho do chip pulsa)
+       slide 01 (capa): o título, o chip e o "ARRASTA →" ficam parados; depois de 2,5 s mudam no máximo 881 px do conteúdo (a seta e o pontinho do chip; o medidor ao fundo não conta)
+OK     slide 01 (capa): a ponta da agulha fica dentro do quadro em todos os 210 quadros (x 126–901, y 247–1094)
+OK     slide 01 (capa): a agulha nunca toca a área do chip nem a do "ARRASTA →" (com 12 px de folga), em nenhum quadro
+OK     slide 01 (capa): a faixa de pico fica parada e inteira no quadro (x 760–981, y 225–318)
+OK     slide 01 (capa): de 2,0 s a 6,2 s a ponta fica sobre o meio da faixa de pico (253°)
+       slide 01 (capa): movimento entre 0 s e 2,0 s: 3794 px com o brilho diferente em > 20 níveis (só a agulha se move; a escala e a faixa ficam paradas)
+OK     slide 01 (capa): loop — o quadro final (6,967 s) e o quadro 0 batem: 0 px diferentes nos quadros do render (a agulha já voltou à posição inicial; a seta e o pontinho do chip estão na posição do quadro 0). No MP4, 41 px de ruído do H.264 nas bordas das letras
 OK     slide 02: conteúdo em x 82–985 em todos os quadros (margem de 80 px)
 OK     slide 02: canto do ícone de som (x ≥ 940, y ≥ 1210) livre em todos os quadros
 OK     slide 02: animação terminada até 2,5 s (de 2,5 s a 6,97 s, no máximo 0 px mudam mais de 40 níveis de brilho; tolerância de ruído do vídeo: 50 px)

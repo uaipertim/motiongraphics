@@ -5,6 +5,7 @@ Prévia e conferência do carrossel ANIMADO "Tarifa de dezembro" (roda depois de
     python3 scripts/previa.py  ->  output/previa.jpg                 (folha de contato: 0 s, 1 s, 2,5 s e 6,9 s de cada slide)
                                    output/revisao/conferencia.txt     (ffprobe, margens, canto do som, estabilidade, capa)
                                    output/revisao/capa-na-grade.jpg   (o quadro 0 da capa no recorte 3:4 da grade)
+                                   output/revisao/capa-medidor.jpg    (a capa em 0 s, 1 s, 2 s, 4 s e 6,9 s, grande)
 
 Tudo é medido nos próprios MP4 (os quadros saem do vídeo pelo ffmpeg):
   • ffprobe: 1080×1350, 30 fps, 7 s, H.264 yuv420p, faixa de áudio AAC, arquivo < 15 MB;
@@ -15,8 +16,9 @@ Tudo é medido nos próprios MP4 (os quadros saem do vídeo pelo ffmpeg):
   • estabilidade: de 2,5 s até o fim, o conteúdo não muda (nenhum pixel com o brilho diferente em mais de 40 níveis,
     com 50 px de tolerância para o ruído do H.264; a luz de fundo, que respira devagar, fica abaixo disso). Na capa,
     só o movimento ambiente: a seta e o pontinho do chip;
-  • capa: o quadro 0 já tem o título inteiro (igual ao último quadro na área do título); o medidor do fundo se mexe
-    bastante entre 0 s e 2,0 s (> 20.000 px); o quadro final e o quadro 0 batem (o loop fecha sem salto).
+  • capa: o quadro 0 já tem o título inteiro (igual ao último quadro na área do título). O medidor: a ponta da agulha
+    fica dentro do quadro em todos os quadros, a agulha nunca toca o chip nem o "ARRASTA →", a faixa de pico (parada)
+    fica inteira no quadro, a ponta fica no meio da faixa de 2,0 s a 6,2 s, e o quadro final e o quadro 0 batem.
 """
 import json
 import os
@@ -120,14 +122,28 @@ for n in range(1, N + 1):
         ok(dif_tit < 400, f'slide 01 (capa): o quadro 0 já está completo — na área do título, {dif_tit} px diferentes do último quadro (só o pontinho do chip pulsa)')
         fora = max(int((conteudo(q, True) != ult)[:, :].sum()) for t, q in zip(amostras, todos) if t >= 2.5)
         rel.append(f'       slide 01 (capa): o título, o chip e o "ARRASTA →" ficam parados; depois de 2,5 s mudam no máximo {fora} px do conteúdo (a seta e o pontinho do chip; o medidor ao fundo não conta)')
-        # o medidor: quanto da capa se mexe entre 0 s e 2,0 s (o ponteiro subindo e a escala girando), e o loop.
-        # Antes do medidor (commit 0d4675a): 11.672 px com o brilho diferente em > 20 níveis e 4.645 px em > 40.
+        # o medidor: a geometria da agulha em TODOS os quadros (render.cjs geo): a ponta dentro do quadro, a agulha longe
+        # do chip e do "ARRASTA →", e a faixa de pico (parada) inteira no quadro
+        g = json.loads(subprocess.run(['node', os.path.join(ROOT, 'scripts', 'render.cjs'), 'geo'], check=True, capture_output=True, text=True).stdout)
+        cx_ = g['caixas']
+        def toca(q, caixa, folga=12):
+            (x0, y0), (x1, y1) = q['base'], q['ponta']
+            bx0, by0, bx1, by1 = caixa[0] - folga, caixa[1] - folga, caixa[2] + folga, caixa[3] + folga
+            return any(bx0 <= x0 + (x1 - x0) * k / 200 <= bx1 and by0 <= y0 + (y1 - y0) * k / 200 <= by1 for k in range(201))
+        fora_q = [q['t'] for q in g['quadros'] if not (6 <= q['ponta'][0] <= W - 6 and 6 <= q['ponta'][1] <= H - 6)]
+        ok(not fora_q, f'slide 01 (capa): a ponta da agulha fica dentro do quadro em todos os {len(g["quadros"])} quadros '
+           f'(x {min(q["ponta"][0] for q in g["quadros"]):.0f}–{max(q["ponta"][0] for q in g["quadros"]):.0f}, y {min(q["ponta"][1] for q in g["quadros"]):.0f}–{max(q["ponta"][1] for q in g["quadros"]):.0f})')
+        ch_, ar_ = [q['t'] for q in g['quadros'] if toca(q, cx_['chip'])], [q['t'] for q in g['quadros'] if toca(q, cx_['arrasta'])]
+        ok(not ch_ and not ar_, 'slide 01 (capa): a agulha nunca toca a área do chip nem a do "ARRASTA →" (com 12 px de folga), em nenhum quadro')
+        md = g['med']
+        pts = [(md['cx'] + r * np.cos(a), md['cy'] + r * np.sin(a)) for a in np.linspace(md['pico'][0], md['pico'][1], 30) for r in (md['rPico'] - md['wPico'] / 2, md['rPico'] + md['wPico'] / 2)]
+        ok(all(0 <= x <= W and 0 <= y <= H for x, y in pts), f'slide 01 (capa): a faixa de pico fica parada e inteira no quadro (x {min(x for x, _ in pts):.0f}–{max(x for x, _ in pts):.0f}, y {min(y for _, y in pts):.0f}–{max(y for _, y in pts):.0f})')
+        q_ = [q for q in g['quadros'] if 2.0 <= q['t'] <= 6.2]
+        meio = (md['pico'][0] + md['pico'][1]) / 2
+        ok(all(abs(q['a'] - meio) < 0.5 * np.pi / 180 for q in q_), f'slide 01 (capa): de 2,0 s a 6,2 s a ponta fica sobre o meio da faixa de pico ({np.degrees(meio):.0f}°)')
         lum = lambda q: q @ [0.2126, 0.7152, 0.0722]
         q2 = quadros(f, [2.0])[0]
-        d02 = np.abs(lum(q2) - lum(todos[0]))
-        m20, m40 = int((d02 > 20).sum()), int((d02 > 40).sum())
-        ok(m20 > 1.5 * 11672 and m40 > 2 * 4645, f'slide 01 (capa): movimento entre 0 s e 2,0 s: {m20} px com o brilho diferente em > 20 níveis e {m40} px em > 40 '
-           f'(antes do medidor: 11.672 e 4.645 px); é o ponteiro subindo de "normal" a "pico" e a escala girando junto')
+        rel.append(f'       slide 01 (capa): movimento entre 0 s e 2,0 s: {int((np.abs(lum(q2) - lum(todos[0])) > 20).sum())} px com o brilho diferente em > 20 níveis (só a agulha se move; a escala e a faixa ficam paradas)')
         # o loop: o quadro final (209, 6,967 s) e o quadro 0 têm de ser IGUAIS no render (os quadros que vão para o vídeo).
         # No MP4 sobra só o ruído do H.264 (o quadro 0 é quadro-chave; o final, não), espalhado nas bordas das letras.
         with tempfile.TemporaryDirectory() as tmp:
@@ -136,10 +152,21 @@ for n in range(1, N + 1):
         loop_r = int((np.abs(lum(r1) - lum(r0)) > 40).sum())
         loop_v = int((np.abs(lum(todos[-1]) - lum(todos[0])) > 40).sum())
         ok(loop_r == 0, f'slide 01 (capa): loop — o quadro final (6,967 s) e o quadro 0 batem: {loop_r} px diferentes nos quadros do render '
-           f'(o ponteiro e a escala já voltaram; a seta e o pontinho do chip estão na posição do quadro 0). No MP4, {loop_v} px de ruído do H.264 nas bordas das letras')
+           f'(a agulha já voltou à posição inicial; a seta e o pontinho do chip estão na posição do quadro 0). No MP4, {loop_v} px de ruído do H.264 nas bordas das letras')
     else:
         ok(pior[1] <= 50, f'slide {n:02d}: animação terminada até 2,5 s (de 2,5 s a 6,97 s, no máximo {pior[1]} px mudam mais de 40 níveis de brilho; tolerância de ruído do vídeo: 50 px)')
 sheet.save(os.path.join(OUT, 'previa.jpg'), quality=90)
+
+# ---------------------------------------------------------------- a folha de contato da capa (o medidor), grande
+TC = [0.0, 1.0, 2.0, 4.0, 6.9]
+qc = quadros(os.path.join(OUT, '01.mp4'), TC)
+CW_, CH_ = 540, 675
+fc = Image.new('RGB', (len(TC) * (CW_ + G) + G, CH_ + 2 * G + 50), (28, 28, 28))
+dc = ImageDraw.Draw(fc)
+for j, (t, q) in enumerate(zip(TC, qc)):
+    fc.paste(Image.fromarray(q.astype(np.uint8)).resize((CW_, CH_), Image.LANCZOS), (G + j * (CW_ + G), G + 50))
+    dc.text((G + j * (CW_ + G), 14), f'{t:.1f} s', font=font2, fill=(175, 250, 39))
+fc.save(os.path.join(REV, 'capa-medidor.jpg'), quality=92)
 
 # ---------------------------------------------------------------- a capa na grade (recorte 3:4, quadro 0)
 crop_x = int((W - H * 3 / 4) / 2)
