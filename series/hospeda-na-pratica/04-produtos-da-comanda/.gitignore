@@ -1,0 +1,5 @@
+output/quadros/
+output/info.json
+audio/*.wav
+!audio/voz.wav
+!audio/voz-montada.wav

@@ -1,0 +1,75 @@
+{
+ "modo": "telas",
+ "quadros": 17,
+ "com_achados": {},
+ "todos": {
+  "desativar-refrigerante.png": {
+   "achados": [],
+   "letras_lidas": 227
+  },
+  "editar-cerveja-16.png": {
+   "achados": [],
+   "letras_lidas": 346
+  },
+  "editar-cerveja.png": {
+   "achados": [],
+   "letras_lidas": 346
+  },
+  "inicio.png": {
+   "achados": [],
+   "letras_lidas": 386
+  },
+  "menu-mais.png": {
+   "achados": [],
+   "letras_lidas": 235
+  },
+  "novo-nome.png": {
+   "achados": [],
+   "letras_lidas": 314
+  },
+  "novo-preenchido.png": {
+   "achados": [],
+   "letras_lidas": 312
+  },
+  "novo.png": {
+   "achados": [],
+   "letras_lidas": 334
+  },
+  "produtos-busca-16.png": {
+   "achados": [],
+   "letras_lidas": 269
+  },
+  "produtos-busca.png": {
+   "achados": [],
+   "letras_lidas": 269
+  },
+  "produtos-categorias.png": {
+   "achados": [],
+   "letras_lidas": 358
+  },
+  "produtos-cerveja-16-aviso.png": {
+   "achados": [],
+   "letras_lidas": 312
+  },
+  "produtos-limpa.png": {
+   "achados": [],
+   "letras_lidas": 323
+  },
+  "produtos-pao-aviso.png": {
+   "achados": [],
+   "letras_lidas": 352
+  },
+  "produtos-refrigerante-inativo.png": {
+   "achados": [],
+   "letras_lidas": 370
+  },
+  "produtos-refrigerante.png": {
+   "achados": [],
+   "letras_lidas": 362
+  },
+  "produtos.png": {
+   "achados": [],
+   "letras_lidas": 323
+  }
+ }
+}

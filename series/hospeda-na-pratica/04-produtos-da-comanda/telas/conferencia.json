@@ -1,0 +1,100 @@
+{
+ "data": "2026-11-20",
+ "proibidos": [
+  "/fazlodigital/i",
+  "/\\bDemo\\b/",
+  "/Demonstra/i",
+  "/senha/i",
+  "/c[oó]digo/i",
+  "/token/i",
+  "/Quero usar/",
+  "/\\.ics\\b/i",
+  "/ical/i",
+  "/https?:\\/\\//i"
+ ],
+ "regra_extra": "capturas \"limpa\": nenhum aviso do app dentro da tela",
+ "telas": {
+  "inicio": {
+   "escondidos": 10,
+   "proibidos": 0
+  },
+  "menu-mais": {
+   "escondidos": 8,
+   "proibidos": 0
+  },
+  "produtos": {
+   "escondidos": 5,
+   "proibidos": 0,
+   "limpa": true,
+   "aviso_na_tela": 0
+  },
+  "produtos-categorias": {
+   "escondidos": 5,
+   "proibidos": 0,
+   "limpa": true,
+   "aviso_na_tela": 0
+  },
+  "produtos-busca": {
+   "escondidos": 5,
+   "proibidos": 0,
+   "limpa": true,
+   "aviso_na_tela": 0
+  },
+  "editar-cerveja": {
+   "escondidos": 5,
+   "proibidos": 0
+  },
+  "editar-cerveja-16": {
+   "escondidos": 5,
+   "proibidos": 0
+  },
+  "produtos-cerveja-16-aviso": {
+   "escondidos": 5,
+   "proibidos": 0
+  },
+  "produtos-busca-16": {
+   "escondidos": 5,
+   "proibidos": 0,
+   "limpa": true,
+   "aviso_na_tela": 0
+  },
+  "produtos-limpa": {
+   "escondidos": 5,
+   "proibidos": 0,
+   "limpa": true,
+   "aviso_na_tela": 0
+  },
+  "novo": {
+   "escondidos": 5,
+   "proibidos": 0
+  },
+  "novo-nome": {
+   "escondidos": 5,
+   "proibidos": 0
+  },
+  "novo-preenchido": {
+   "escondidos": 5,
+   "proibidos": 0
+  },
+  "produtos-pao-aviso": {
+   "escondidos": 5,
+   "proibidos": 0
+  },
+  "produtos-refrigerante": {
+   "escondidos": 5,
+   "proibidos": 0,
+   "limpa": true,
+   "aviso_na_tela": 0
+  },
+  "desativar-refrigerante": {
+   "escondidos": 5,
+   "proibidos": 0
+  },
+  "produtos-refrigerante-inativo": {
+   "escondidos": 5,
+   "proibidos": 0,
+   "limpa": true,
+   "aviso_na_tela": 0
+  }
+ }
+}

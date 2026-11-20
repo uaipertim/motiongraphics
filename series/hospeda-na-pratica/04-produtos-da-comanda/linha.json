@@ -1,0 +1,1163 @@
+{
+ "audio": "audio/voz-montada.wav",
+ "inicio_voz": 0.3,
+ "fim_voz": 71.116,
+ "duracao": 74.716,
+ "marca": "@fazlohospeda",
+ "pausas": [
+  {
+   "depois_de": "g1",
+   "antes_s": 0.475,
+   "depois_s": 0.3
+  },
+  {
+   "depois_de": "g2",
+   "antes_s": 0.527,
+   "depois_s": 0.5
+  },
+  {
+   "depois_de": "marca",
+   "antes_s": 0.448,
+   "depois_s": 0.6
+  },
+  {
+   "depois_de": "caminho",
+   "antes_s": 0.4,
+   "depois_s": 0.7
+  },
+  {
+   "depois_de": "lista",
+   "antes_s": 0.48,
+   "depois_s": 0.8
+  },
+  {
+   "depois_de": "busca",
+   "antes_s": 0.456,
+   "depois_s": 0.8
+  },
+  {
+   "depois_de": "editar",
+   "antes_s": 0.355,
+   "depois_s": 0.6
+  },
+  {
+   "depois_de": "regra",
+   "antes_s": 0.435,
+   "depois_s": 5.5
+  },
+  {
+   "depois_de": "novo",
+   "antes_s": 0.406,
+   "depois_s": 3.0
+  },
+  {
+   "depois_de": "desativar",
+   "antes_s": 0.457,
+   "depois_s": 3.8
+  },
+  {
+   "depois_de": "cta",
+   "antes_s": 0.335,
+   "depois_s": 0.5
+  }
+ ],
+ "frases": [
+  {
+   "id": "g1",
+   "pausa": 0.3,
+   "palavras": [
+    {
+     "w": "O",
+     "t0": 0.3,
+     "t1": 0.38,
+     "chave": false,
+     "id": null
+    },
+    {
+     "w": "preço",
+     "t0": 0.46,
+     "t1": 0.7,
+     "chave": true,
+     "id": "preco"
+    },
+    {
+     "w": "da",
+     "t0": 0.74,
+     "t1": 0.78,
+     "chave": true,
+     "id": null
+    },
+    {
+     "w": "cerveja",
+     "t0": 0.86,
+     "t1": 1.42,
+     "chave": true,
+     "id": null
+    },
+    {
+     "w": "ainda",
+     "t0": 1.5,
+     "t1": 1.66,
+     "chave": false,
+     "id": null
+    },
+    {
+     "w": "está",
+     "t0": 1.78,
+     "t1": 1.94,
+     "chave": false,
+     "id": null
+    },
+    {
+     "w": "num",
+     "t0": 1.98,
+     "t1": 2.06,
+     "chave": false,
+     "id": null
+    },
+    {
+     "w": "papel",
+     "t0": 2.14,
+     "t1": 2.54,
+     "chave": true,
+     "id": "papel"
+    },
+    {
+     "w": "colado",
+     "t0": 2.66,
+     "t1": 2.94,
+     "chave": true,
+     "id": "balcao"
+    },
+    {
+     "w": "no",
+     "t0": 2.98,
+     "t1": 3.02,
+     "chave": true,
+     "id": null
+    },
+    {
+     "w": "balcão?",
+     "t0": 3.1,
+     "t1": 3.58,
+     "chave": true,
+     "id": null
+    }
+   ],
+   "t0": 0.3,
+   "t1": 3.58
+  },
+  {
+   "id": "g2",
+   "pausa": 0.5,
+   "palavras": [
+    {
+     "w": "Aí",
+     "t0": 3.965,
+     "t1": 4.205,
+     "chave": false,
+     "id": null
+    },
+    {
+     "w": "cada",
+     "t0": 4.365,
+     "t1": 4.685,
+     "chave": true,
+     "id": "cobra"
+    },
+    {
+     "w": "um",
+     "t0": 4.765,
+     "t1": 4.925,
+     "chave": true,
+     "id": null
+    },
+    {
+     "w": "cobra",
+     "t0": 5.005,
+     "t1": 5.245,
+     "chave": true,
+     "id": null
+    },
+    {
+     "w": "de",
+     "t0": 5.285,
+     "t1": 5.325,
+     "chave": true,
+     "id": null
+    },
+    {
+     "w": "um",
+     "t0": 5.405,
+     "t1": 5.485,
+     "chave": true,
+     "id": null
+    },
+    {
+     "w": "jeito,",
+     "t0": 5.565,
+     "t1": 5.965,
+     "chave": true,
+     "id": null
+    },
+    {
+     "w": "e",
+     "t0": 6.125,
+     "t1": 6.205,
+     "chave": false,
+     "id": null
+    },
+    {
+     "w": "ninguém",
+     "t0": 6.325,
+     "t1": 6.605,
+     "chave": false,
+     "id": null
+    },
+    {
+     "w": "sabe",
+     "t0": 6.685,
+     "t1": 6.925,
+     "chave": false,
+     "id": null
+    },
+    {
+     "w": "ao",
+     "t0": 7.005,
+     "t1": 7.085,
+     "chave": false,
+     "id": null
+    },
+    {
+     "w": "certo",
+     "t0": 7.165,
+     "t1": 7.485,
+     "chave": false,
+     "id": null
+    },
+    {
+     "w": "quanto",
+     "t0": 7.645,
+     "t1": 7.965,
+     "chave": false,
+     "id": null
+    },
+    {
+     "w": "custa",
+     "t0": 8.045,
+     "t1": 8.312,
+     "chave": false,
+     "id": null
+    },
+    {
+     "w": "o",
+     "t0": 8.338,
+     "t1": 8.365,
+     "chave": false,
+     "id": null
+    },
+    {
+     "w": "passeio.",
+     "t0": 8.405,
+     "t1": 8.925,
+     "chave": true,
+     "id": "passeio"
+    }
+   ],
+   "t0": 3.965,
+   "t1": 8.925
+  },
+  {
+   "id": "marca",
+   "pausa": 0.6,
+   "palavras": [
+    {
+     "w": "No",
+     "t0": 9.458,
+     "t1": 9.538,
+     "chave": false,
+     "id": null
+    },
+    {
+     "w": "FAZLO",
+     "t0": 9.618,
+     "t1": 9.938,
+     "chave": true,
+     "id": "fazlo"
+    },
+    {
+     "w": "Hospeda,",
+     "t0": 10.045,
+     "t1": 10.498,
+     "chave": true,
+     "id": null
+    },
+    {
+     "w": "cada",
+     "t0": 10.818,
+     "t1": 11.058,
+     "chave": false,
+     "id": null
+    },
+    {
+     "w": "produto",
+     "t0": 11.138,
+     "t1": 11.618,
+     "chave": false,
+     "id": "produto0"
+    },
+    {
+     "w": "e",
+     "t0": 11.698,
+     "t1": 11.778,
+     "chave": false,
+     "id": null
+    },
+    {
+     "w": "cada",
+     "t0": 11.818,
+     "t1": 12.098,
+     "chave": false,
+     "id": null
+    },
+    {
+     "w": "serviço",
+     "t0": 12.178,
+     "t1": 12.658,
+     "chave": false,
+     "id": "servico0"
+    },
+    {
+     "w": "fica",
+     "t0": 12.698,
+     "t1": 12.898,
+     "chave": false,
+     "id": null
+    },
+    {
+     "w": "cadastrado,",
+     "t0": 12.978,
+     "t1": 13.778,
+     "chave": true,
+     "id": "cadastrado"
+    },
+    {
+     "w": "com",
+     "t0": 14.018,
+     "t1": 14.098,
+     "chave": false,
+     "id": null
+    },
+    {
+     "w": "o",
+     "t0": 14.151,
+     "t1": 14.205,
+     "chave": false,
+     "id": null
+    },
+    {
+     "w": "preço",
+     "t0": 14.258,
+     "t1": 14.578,
+     "chave": true,
+     "id": "certo"
+    },
+    {
+     "w": "certo.",
+     "t0": 14.738,
+     "t1": 15.218,
+     "chave": true,
+     "id": null
+    }
+   ],
+   "t0": 9.458,
+   "t1": 15.218
+  },
+  {
+   "id": "caminho",
+   "pausa": 0.7,
+   "palavras": [
+    {
+     "w": "Toque",
+     "t0": 15.85,
+     "t1": 16.17,
+     "chave": false,
+     "id": null
+    },
+    {
+     "w": "em",
+     "t0": 16.25,
+     "t1": 16.33,
+     "chave": false,
+     "id": null
+    },
+    {
+     "w": "Mais",
+     "t0": 16.57,
+     "t1": 16.81,
+     "chave": true,
+     "id": "mais"
+    },
+    {
+     "w": "e",
+     "t0": 16.89,
+     "t1": 16.93,
+     "chave": false,
+     "id": null
+    },
+    {
+     "w": "depois",
+     "t0": 16.97,
+     "t1": 17.29,
+     "chave": false,
+     "id": null
+    },
+    {
+     "w": "em",
+     "t0": 17.37,
+     "t1": 17.45,
+     "chave": false,
+     "id": null
+    },
+    {
+     "w": "Produtos",
+     "t0": 17.61,
+     "t1": 18.01,
+     "chave": true,
+     "id": "produtos"
+    },
+    {
+     "w": "e",
+     "t0": 18.05,
+     "t1": 18.09,
+     "chave": true,
+     "id": null
+    },
+    {
+     "w": "serviços.",
+     "t0": 18.17,
+     "t1": 18.81,
+     "chave": true,
+     "id": null
+    }
+   ],
+   "t0": 15.85,
+   "t1": 18.81
+  },
+  {
+   "id": "lista",
+   "pausa": 0.8,
+   "palavras": [
+    {
+     "w": "Fica",
+     "t0": 19.51,
+     "t1": 19.75,
+     "chave": false,
+     "id": null
+    },
+    {
+     "w": "tudo",
+     "t0": 19.91,
+     "t1": 20.15,
+     "chave": false,
+     "id": null
+    },
+    {
+     "w": "separado",
+     "t0": 20.23,
+     "t1": 20.71,
+     "chave": false,
+     "id": null
+    },
+    {
+     "w": "por",
+     "t0": 20.79,
+     "t1": 20.87,
+     "chave": false,
+     "id": null
+    },
+    {
+     "w": "categoria:",
+     "t0": 21.19,
+     "t1": 21.51,
+     "chave": true,
+     "id": "categoria"
+    },
+    {
+     "w": "bebidas,",
+     "t0": 22.07,
+     "t1": 22.71,
+     "chave": true,
+     "id": "bebidas"
+    },
+    {
+     "w": "alimentos,",
+     "t0": 22.87,
+     "t1": 23.59,
+     "chave": true,
+     "id": "alimentos"
+    },
+    {
+     "w": "restaurante,",
+     "t0": 23.67,
+     "t1": 24.47,
+     "chave": true,
+     "id": "restaurante"
+    },
+    {
+     "w": "experiências.",
+     "t0": 24.63,
+     "t1": 25.51,
+     "chave": true,
+     "id": "experiencias"
+    }
+   ],
+   "t0": 19.51,
+   "t1": 25.51
+  },
+  {
+   "id": "busca",
+   "pausa": 0.8,
+   "palavras": [
+    {
+     "w": "Procurando",
+     "t0": 26.31,
+     "t1": 26.71,
+     "chave": false,
+     "id": "procurando"
+    },
+    {
+     "w": "um",
+     "t0": 26.79,
+     "t1": 26.87,
+     "chave": false,
+     "id": null
+    },
+    {
+     "w": "item?",
+     "t0": 27.07,
+     "t1": 27.27,
+     "chave": false,
+     "id": null
+    },
+    {
+     "w": "É",
+     "t0": 27.59,
+     "t1": 27.67,
+     "chave": false,
+     "id": null
+    },
+    {
+     "w": "só",
+     "t0": 27.83,
+     "t1": 27.99,
+     "chave": false,
+     "id": null
+    },
+    {
+     "w": "buscar",
+     "t0": 28.07,
+     "t1": 28.39,
+     "chave": true,
+     "id": "buscar"
+    },
+    {
+     "w": "pelo",
+     "t0": 28.43,
+     "t1": 28.63,
+     "chave": false,
+     "id": null
+    },
+    {
+     "w": "nome.",
+     "t0": 28.83,
+     "t1": 29.03,
+     "chave": false,
+     "id": null
+    }
+   ],
+   "t0": 26.31,
+   "t1": 29.03
+  },
+  {
+   "id": "editar",
+   "pausa": 0.6,
+   "palavras": [
+    {
+     "w": "O",
+     "t0": 29.854,
+     "t1": 29.894,
+     "chave": false,
+     "id": null
+    },
+    {
+     "w": "preço",
+     "t0": 29.934,
+     "t1": 30.174,
+     "chave": true,
+     "id": "mudou"
+    },
+    {
+     "w": "mudou?",
+     "t0": 30.254,
+     "t1": 30.654,
+     "chave": true,
+     "id": null
+    },
+    {
+     "w": "Toque",
+     "t0": 31.134,
+     "t1": 31.454,
+     "chave": false,
+     "id": null
+    },
+    {
+     "w": "em",
+     "t0": 31.494,
+     "t1": 31.534,
+     "chave": false,
+     "id": null
+    },
+    {
+     "w": "Editar,",
+     "t0": 31.694,
+     "t1": 32.254,
+     "chave": true,
+     "id": "editar"
+    },
+    {
+     "w": "ajuste",
+     "t0": 32.574,
+     "t1": 33.214,
+     "chave": true,
+     "id": "ajuste"
+    },
+    {
+     "w": "e",
+     "t0": 33.294,
+     "t1": 33.374,
+     "chave": false,
+     "id": null
+    },
+    {
+     "w": "salve.",
+     "t0": 33.454,
+     "t1": 33.854,
+     "chave": true,
+     "id": "salve"
+    }
+   ],
+   "t0": 29.854,
+   "t1": 33.854
+  },
+  {
+   "id": "regra",
+   "pausa": 5.5,
+   "palavras": [
+    {
+     "w": "O",
+     "t0": 34.499,
+     "t1": 34.579,
+     "chave": false,
+     "id": null
+    },
+    {
+     "w": "preço",
+     "t0": 34.659,
+     "t1": 34.979,
+     "chave": true,
+     "id": "preconovo"
+    },
+    {
+     "w": "novo",
+     "t0": 35.059,
+     "t1": 35.379,
+     "chave": true,
+     "id": null
+    },
+    {
+     "w": "vale",
+     "t0": 35.499,
+     "t1": 35.619,
+     "chave": false,
+     "id": null
+    },
+    {
+     "w": "para",
+     "t0": 35.699,
+     "t1": 35.779,
+     "chave": false,
+     "id": null
+    },
+    {
+     "w": "os",
+     "t0": 35.859,
+     "t1": 35.939,
+     "chave": false,
+     "id": null
+    },
+    {
+     "w": "próximos",
+     "t0": 36.019,
+     "t1": 36.419,
+     "chave": true,
+     "id": "proximos"
+    },
+    {
+     "w": "lançamentos;",
+     "t0": 36.499,
+     "t1": 37.219,
+     "chave": true,
+     "id": null
+    },
+    {
+     "w": "o",
+     "t0": 37.499,
+     "t1": 37.539,
+     "chave": false,
+     "id": "lancado"
+    },
+    {
+     "w": "que",
+     "t0": 37.579,
+     "t1": 37.619,
+     "chave": false,
+     "id": null
+    },
+    {
+     "w": "já",
+     "t0": 37.699,
+     "t1": 37.779,
+     "chave": false,
+     "id": null
+    },
+    {
+     "w": "foi",
+     "t0": 37.859,
+     "t1": 37.979,
+     "chave": false,
+     "id": null
+    },
+    {
+     "w": "lançado",
+     "t0": 38.019,
+     "t1": 38.499,
+     "chave": false,
+     "id": null
+    },
+    {
+     "w": "mantém",
+     "t0": 38.659,
+     "t1": 39.059,
+     "chave": false,
+     "id": null
+    },
+    {
+     "w": "o",
+     "t0": 39.099,
+     "t1": 39.139,
+     "chave": false,
+     "id": null
+    },
+    {
+     "w": "preço",
+     "t0": 39.219,
+     "t1": 39.459,
+     "chave": true,
+     "id": "epoca"
+    },
+    {
+     "w": "da",
+     "t0": 39.499,
+     "t1": 39.539,
+     "chave": true,
+     "id": null
+    },
+    {
+     "w": "época.",
+     "t0": 39.619,
+     "t1": 40.019,
+     "chave": true,
+     "id": null
+    }
+   ],
+   "t0": 34.499,
+   "t1": 40.019
+  },
+  {
+   "id": "novo",
+   "pausa": 3.0,
+   "palavras": [
+    {
+     "w": "Produto",
+     "t0": 45.565,
+     "t1": 45.885,
+     "chave": true,
+     "id": "produtonovo"
+    },
+    {
+     "w": "novo?",
+     "t0": 45.965,
+     "t1": 46.365,
+     "chave": true,
+     "id": null
+    },
+    {
+     "w": "Toque",
+     "t0": 46.765,
+     "t1": 47.085,
+     "chave": false,
+     "id": null
+    },
+    {
+     "w": "em",
+     "t0": 47.165,
+     "t1": 47.245,
+     "chave": false,
+     "id": null
+    },
+    {
+     "w": "Novo",
+     "t0": 47.325,
+     "t1": 47.565,
+     "chave": true,
+     "id": "novo"
+    },
+    {
+     "w": "produto",
+     "t0": 47.645,
+     "t1": 48.045,
+     "chave": true,
+     "id": null
+    },
+    {
+     "w": "ou",
+     "t0": 48.085,
+     "t1": 48.125,
+     "chave": true,
+     "id": null
+    },
+    {
+     "w": "serviço",
+     "t0": 48.205,
+     "t1": 48.765,
+     "chave": true,
+     "id": null
+    },
+    {
+     "w": "e",
+     "t0": 48.845,
+     "t1": 48.925,
+     "chave": false,
+     "id": null
+    },
+    {
+     "w": "preencha",
+     "t0": 49.005,
+     "t1": 49.485,
+     "chave": false,
+     "id": null
+    },
+    {
+     "w": "nome,",
+     "t0": 49.565,
+     "t1": 49.965,
+     "chave": true,
+     "id": "nome"
+    },
+    {
+     "w": "categoria",
+     "t0": 50.405,
+     "t1": 50.765,
+     "chave": true,
+     "id": "categoria2"
+    },
+    {
+     "w": "e",
+     "t0": 50.925,
+     "t1": 51.005,
+     "chave": false,
+     "id": null
+    },
+    {
+     "w": "preço.",
+     "t0": 51.085,
+     "t1": 51.485,
+     "chave": true,
+     "id": "preco2"
+    }
+   ],
+   "t0": 45.565,
+   "t1": 51.485
+  },
+  {
+   "id": "desativar",
+   "pausa": 3.8,
+   "palavras": [
+    {
+     "w": "Deixou",
+     "t0": 54.558,
+     "t1": 54.798,
+     "chave": true,
+     "id": "vender"
+    },
+    {
+     "w": "de",
+     "t0": 54.878,
+     "t1": 54.958,
+     "chave": true,
+     "id": null
+    },
+    {
+     "w": "vender?",
+     "t0": 55.091,
+     "t1": 55.358,
+     "chave": true,
+     "id": null
+    },
+    {
+     "w": "Desative:",
+     "t0": 55.758,
+     "t1": 56.478,
+     "chave": true,
+     "id": "desative"
+    },
+    {
+     "w": "ele",
+     "t0": 56.918,
+     "t1": 57.038,
+     "chave": false,
+     "id": null
+    },
+    {
+     "w": "não",
+     "t0": 57.118,
+     "t1": 57.198,
+     "chave": true,
+     "id": "naoaparece"
+    },
+    {
+     "w": "aparece",
+     "t0": 57.278,
+     "t1": 57.758,
+     "chave": true,
+     "id": null
+    },
+    {
+     "w": "mais",
+     "t0": 57.838,
+     "t1": 58.078,
+     "chave": true,
+     "id": null
+    },
+    {
+     "w": "na",
+     "t0": 58.118,
+     "t1": 58.158,
+     "chave": false,
+     "id": "lancar"
+    },
+    {
+     "w": "hora",
+     "t0": 58.238,
+     "t1": 58.318,
+     "chave": false,
+     "id": null
+    },
+    {
+     "w": "de",
+     "t0": 58.398,
+     "t1": 58.478,
+     "chave": false,
+     "id": null
+    },
+    {
+     "w": "lançar,",
+     "t0": 58.598,
+     "t1": 58.958,
+     "chave": false,
+     "id": null
+    },
+    {
+     "w": "e",
+     "t0": 59.158,
+     "t1": 59.198,
+     "chave": false,
+     "id": null
+    },
+    {
+     "w": "o",
+     "t0": 59.238,
+     "t1": 59.278,
+     "chave": false,
+     "id": null
+    },
+    {
+     "w": "histórico",
+     "t0": 59.398,
+     "t1": 59.838,
+     "chave": true,
+     "id": "historico"
+    },
+    {
+     "w": "continua.",
+     "t0": 59.918,
+     "t1": 60.558,
+     "chave": true,
+     "id": null
+    }
+   ],
+   "t0": 54.558,
+   "t1": 60.558
+  },
+  {
+   "id": "cta",
+   "pausa": 0.5,
+   "palavras": [
+    {
+     "w": "Tudo",
+     "t0": 64.381,
+     "t1": 64.621,
+     "chave": false,
+     "id": "tudo"
+    },
+    {
+     "w": "com",
+     "t0": 64.701,
+     "t1": 64.781,
+     "chave": false,
+     "id": null
+    },
+    {
+     "w": "o",
+     "t0": 64.808,
+     "t1": 64.834,
+     "chave": false,
+     "id": null
+    },
+    {
+     "w": "preço",
+     "t0": 64.861,
+     "t1": 65.181,
+     "chave": false,
+     "id": null
+    },
+    {
+     "w": "certo,",
+     "t0": 65.341,
+     "t1": 65.741,
+     "chave": false,
+     "id": null
+    },
+    {
+     "w": "pronto",
+     "t0": 66.021,
+     "t1": 66.301,
+     "chave": false,
+     "id": "pronto"
+    },
+    {
+     "w": "para",
+     "t0": 66.381,
+     "t1": 66.541,
+     "chave": false,
+     "id": null
+    },
+    {
+     "w": "lançar",
+     "t0": 66.621,
+     "t1": 66.861,
+     "chave": false,
+     "id": null
+    },
+    {
+     "w": "na",
+     "t0": 66.941,
+     "t1": 67.021,
+     "chave": false,
+     "id": null
+    },
+    {
+     "w": "comanda.",
+     "t0": 67.101,
+     "t1": 67.501,
+     "chave": false,
+     "id": null
+    }
+   ],
+   "t0": 64.381,
+   "t1": 67.501
+  },
+  {
+   "id": "cta2",
+   "pausa": 0.0,
+   "palavras": [
+    {
+     "w": "E",
+     "t0": 68.066,
+     "t1": 68.146,
+     "chave": false,
+     "id": "comeco"
+    },
+    {
+     "w": "no",
+     "t0": 68.186,
+     "t1": 68.226,
+     "chave": false,
+     "id": null
+    },
+    {
+     "w": "começo,",
+     "t0": 68.306,
+     "t1": 68.786,
+     "chave": false,
+     "id": null
+    },
+    {
+     "w": "a",
+     "t0": 68.986,
+     "t1": 69.026,
+     "chave": false,
+     "id": "configura"
+    },
+    {
+     "w": "FAZLO",
+     "t0": 69.106,
+     "t1": 69.506,
+     "chave": false,
+     "id": null
+    },
+    {
+     "w": "configura",
+     "t0": 69.666,
+     "t1": 69.986,
+     "chave": false,
+     "id": null
+    },
+    {
+     "w": "tudo",
+     "t0": 70.226,
+     "t1": 70.466,
+     "chave": false,
+     "id": null
+    },
+    {
+     "w": "com",
+     "t0": 70.546,
+     "t1": 70.626,
+     "chave": false,
+     "id": null
+    },
+    {
+     "w": "você.",
+     "t0": 70.706,
+     "t1": 71.106,
+     "chave": false,
+     "id": null
+    }
+   ],
+   "t0": 68.066,
+   "t1": 71.106
+  }
+ ]
+}

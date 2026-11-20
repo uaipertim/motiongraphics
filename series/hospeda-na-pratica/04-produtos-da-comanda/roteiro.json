@@ -1,0 +1,362 @@
+{
+ "id": "hospeda-na-pratica-04-produtos-da-comanda",
+ "marca": "@fazlohospeda",
+ "voz": {
+  "nome": "Alexa - Soft, Clear and Friendly",
+  "voice_id": "sXSV9RZ095VZyL64w3ap",
+  "modelo": "eleven_v4",
+  "stability": 0.5,
+  "similarity_boost": 0.75
+ },
+ "pronuncia": {
+  "Hospeda": "Hospéda",
+  "FAZLO": "Fázlo"
+ },
+ "nota": "Roteiro aprovado em 20/11/2026 (frase 10 ajustada). Valores só na tela, nunca na voz.",
+ "narracao": "O preço da cerveja ainda está num papel colado no balcão? Aí cada um cobra de um jeito, e ninguém sabe ao certo quanto custa o passeio. No FAZLO Hospeda, cada produto e cada serviço fica cadastrado, com o preço certo. Toque em Mais e depois em Produtos e serviços. Fica tudo separado por categoria: bebidas, alimentos, restaurante, experiências. Procurando um item? É só buscar pelo nome. O preço mudou? Toque em Editar, ajuste e salve. O preço novo vale para os próximos lançamentos; o que já foi lançado mantém o preço da época. Produto novo? Toque em Novo produto ou serviço e preencha nome, categoria e preço. Deixou de vender? Desative: ele não aparece mais na hora de lançar, e o histórico continua. Tudo com o preço certo, pronto para lançar na comanda. E no começo, a FAZLO configura tudo com você.",
+ "frases": [
+  {
+   "id": "g1",
+   "pausa": 0.3,
+   "tokens": [
+    {
+     "fala": "O"
+    },
+    {
+     "fala": "preço da cerveja",
+     "id": "preco",
+     "chave": true
+    },
+    {
+     "fala": "ainda está num"
+    },
+    {
+     "fala": "papel",
+     "id": "papel",
+     "chave": true
+    },
+    {
+     "fala": "colado no balcão?",
+     "id": "balcao",
+     "chave": true
+    }
+   ]
+  },
+  {
+   "id": "g2",
+   "pausa": 0.5,
+   "tokens": [
+    {
+     "fala": "Aí"
+    },
+    {
+     "fala": "cada um cobra de um jeito,",
+     "id": "cobra",
+     "chave": true
+    },
+    {
+     "fala": "e ninguém sabe ao certo quanto custa o"
+    },
+    {
+     "fala": "passeio.",
+     "id": "passeio",
+     "chave": true
+    }
+   ]
+  },
+  {
+   "id": "marca",
+   "pausa": 0.6,
+   "tokens": [
+    {
+     "fala": "No"
+    },
+    {
+     "fala": "FAZLO Hospeda,",
+     "id": "fazlo",
+     "chave": true
+    },
+    {
+     "fala": "cada"
+    },
+    {
+     "fala": "produto",
+     "id": "produto0"
+    },
+    {
+     "fala": "e cada"
+    },
+    {
+     "fala": "serviço",
+     "id": "servico0"
+    },
+    {
+     "fala": "fica"
+    },
+    {
+     "fala": "cadastrado,",
+     "id": "cadastrado",
+     "chave": true
+    },
+    {
+     "fala": "com o"
+    },
+    {
+     "fala": "preço certo.",
+     "id": "certo",
+     "chave": true
+    }
+   ]
+  },
+  {
+   "id": "caminho",
+   "pausa": 0.7,
+   "tokens": [
+    {
+     "fala": "Toque em"
+    },
+    {
+     "fala": "Mais",
+     "id": "mais",
+     "chave": true
+    },
+    {
+     "fala": "e depois em"
+    },
+    {
+     "fala": "Produtos e serviços.",
+     "id": "produtos",
+     "chave": true
+    }
+   ]
+  },
+  {
+   "id": "lista",
+   "pausa": 0.8,
+   "tokens": [
+    {
+     "fala": "Fica tudo separado por"
+    },
+    {
+     "fala": "categoria:",
+     "id": "categoria",
+     "chave": true
+    },
+    {
+     "fala": "bebidas,",
+     "id": "bebidas",
+     "chave": true
+    },
+    {
+     "fala": "alimentos,",
+     "id": "alimentos",
+     "chave": true
+    },
+    {
+     "fala": "restaurante,",
+     "id": "restaurante",
+     "chave": true
+    },
+    {
+     "fala": "experiências.",
+     "id": "experiencias",
+     "chave": true
+    }
+   ]
+  },
+  {
+   "id": "busca",
+   "pausa": 0.8,
+   "tokens": [
+    {
+     "fala": "Procurando um item?",
+     "id": "procurando"
+    },
+    {
+     "fala": "É só"
+    },
+    {
+     "fala": "buscar",
+     "id": "buscar",
+     "chave": true
+    },
+    {
+     "fala": "pelo nome."
+    }
+   ]
+  },
+  {
+   "id": "editar",
+   "pausa": 0.6,
+   "tokens": [
+    {
+     "fala": "O"
+    },
+    {
+     "fala": "preço mudou?",
+     "id": "mudou",
+     "chave": true
+    },
+    {
+     "fala": "Toque em"
+    },
+    {
+     "fala": "Editar,",
+     "id": "editar",
+     "chave": true
+    },
+    {
+     "fala": "ajuste",
+     "id": "ajuste",
+     "chave": true
+    },
+    {
+     "fala": "e"
+    },
+    {
+     "fala": "salve.",
+     "id": "salve",
+     "chave": true
+    }
+   ]
+  },
+  {
+   "id": "regra",
+   "pausa": 5.5,
+   "tokens": [
+    {
+     "fala": "O"
+    },
+    {
+     "fala": "preço novo",
+     "id": "preconovo",
+     "chave": true
+    },
+    {
+     "fala": "vale para os"
+    },
+    {
+     "fala": "próximos lançamentos;",
+     "id": "proximos",
+     "chave": true
+    },
+    {
+     "fala": "o que já foi lançado",
+     "id": "lancado"
+    },
+    {
+     "fala": "mantém o"
+    },
+    {
+     "fala": "preço da época.",
+     "id": "epoca",
+     "chave": true
+    }
+   ]
+  },
+  {
+   "id": "novo",
+   "pausa": 3.0,
+   "tokens": [
+    {
+     "fala": "Produto novo?",
+     "id": "produtonovo",
+     "chave": true
+    },
+    {
+     "fala": "Toque em"
+    },
+    {
+     "fala": "Novo produto ou serviço",
+     "id": "novo",
+     "chave": true
+    },
+    {
+     "fala": "e preencha"
+    },
+    {
+     "fala": "nome,",
+     "id": "nome",
+     "chave": true
+    },
+    {
+     "fala": "categoria",
+     "id": "categoria2",
+     "chave": true
+    },
+    {
+     "fala": "e"
+    },
+    {
+     "fala": "preço.",
+     "id": "preco2",
+     "chave": true
+    }
+   ]
+  },
+  {
+   "id": "desativar",
+   "pausa": 3.8,
+   "tokens": [
+    {
+     "fala": "Deixou de vender?",
+     "id": "vender",
+     "chave": true
+    },
+    {
+     "fala": "Desative:",
+     "id": "desative",
+     "chave": true
+    },
+    {
+     "fala": "ele"
+    },
+    {
+     "fala": "não aparece mais",
+     "id": "naoaparece",
+     "chave": true
+    },
+    {
+     "fala": "na hora de lançar,",
+     "id": "lancar"
+    },
+    {
+     "fala": "e o"
+    },
+    {
+     "fala": "histórico continua.",
+     "id": "historico",
+     "chave": true
+    }
+   ]
+  },
+  {
+   "id": "cta",
+   "pausa": 0.5,
+   "tokens": [
+    {
+     "fala": "Tudo com o preço certo,",
+     "id": "tudo"
+    },
+    {
+     "fala": "pronto para lançar na comanda.",
+     "id": "pronto"
+    }
+   ]
+  },
+  {
+   "id": "cta2",
+   "pausa": 0.0,
+   "tokens": [
+    {
+     "fala": "E no começo,",
+     "id": "comeco"
+    },
+    {
+     "fala": "a FAZLO configura tudo com você.",
+     "id": "configura"
+    }
+   ]
+  }
+ ]
+}
