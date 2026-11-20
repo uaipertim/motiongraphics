@@ -1,12 +1,13 @@
-# FAZLO Hospeda na prática, episódio 2: Sua equipe no Hospeda (primeira prévia)
+# FAZLO Hospeda na prática, episódio 2: Sua equipe no Hospeda (vídeo aprovado em 20/11/2026)
 
-Segue as [regras da série](../REGRAS.md). O roteiro aprovado e a linha do tempo, com os tempos reais da locução, estão no [`ROTEIRO.md`](ROTEIRO.md). **Prévia para aprovação; não publicar.**
+Segue as [regras da série](../REGRAS.md). O roteiro aprovado e a linha do tempo, com os tempos reais da locução, estão no [`ROTEIRO.md`](ROTEIRO.md). **Vídeo aprovado (commit e1b0676); capa para aprovação. Não publicar.**
 
 ## Arquivos
 - ▶ **Prévia (mestre):** [`output/hospeda-na-pratica-02-sua-equipe.mp4`](output/hospeda-na-pratica-02-sua-equipe.mp4): 1080×1920, 60 fps, 63,4 s, 31 MB.
 - **Versão WhatsApp:** [`output/hospeda-na-pratica-02-sua-equipe-whatsapp.mp4`](output/hospeda-na-pratica-02-sua-equipe-whatsapp.mp4): 1080×1920, 30 fps, CRF 27, 8,4 MB.
 - **Quadros-chave:** [`aprovacao/quadros-chave.jpg`](aprovacao/quadros-chave.jpg), 12 quadros.
 - **Miniatura:** [`output/miniatura.jpg`](output/miniatura.jpg), o quadro 0.
+- **Capa (para aprovação):** [`capa/capa.jpg`](capa/capa.jpg) e o recorte do feed, 4:5: [`capa/capa-no-feed.jpg`](capa/capa-no-feed.jpg). O padrão está nas [regras da série](../REGRAS.md#capa).
 - **Telas:** [`aprovacao/folha-telas.jpg`](aprovacao/folha-telas.jpg), as 13 aprovadas.
 
 ## Como foi feito

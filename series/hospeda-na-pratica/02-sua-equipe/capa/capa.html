@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="pt-BR"><head><meta charset="utf-8"><title>Capa — Sua equipe no Hospeda</title>
+<style>
+  @font-face { font-family: 'FL Display'; src: url('../src/fonts/InterDisplay-Black.otf') format('opentype'); font-weight: 900; }
+  @font-face { font-family: 'FL Display'; src: url('../src/fonts/InterDisplay-ExtraBold.otf') format('opentype'); font-weight: 800; }
+  @font-face { font-family: 'FL Mono'; src: url('../src/fonts/JetBrainsMonoNL-ExtraBold.ttf') format('truetype'); font-weight: 800; }
+  html, body { margin: 0; background: #000; } canvas { display: block; }
+</style></head>
+<body><canvas id="c" width="1080" height="1920"></canvas>
+<script>
+/*
+ * Capa da série "FAZLO Hospeda na prática" (padrão definido no episódio 2; ver ../../REGRAS.md, seção "Capa").
+ * Base de estilo: capas v4 (logo pequena no topo, chip mono, título forte com limão, fundo preto com textura e brilho)
+ * e a miniatura do vídeo curto de venda. No lugar da ilustração: a TELA INTEIRA do app num celular, com UM destaque
+ * saltando numa janela recortada da mesma captura.
+ * Tudo o que importa fica no recorte 4:5 do feed (1080×1350, y 285–1635), com folga de 60 px: x 60–1020, y 345–1575;
+ * e fora do canto do play (x ≥ 860, y 240–440) e da faixa do contador (y 1560–1680).
+ */
+const W = 1080, H = 1920, LIME = '#AFFA27', IW = 1170, IH = 2532, TAU = Math.PI * 2;
+const D = "'FL Display', sans-serif", MONO = "'FL Mono', monospace";
+const EP = {   // o que muda de um episódio para outro
+  tela: '../telas/usuarios.png',
+  destaque: [48, 618, 1122, 762],                    // "+ Convidar usuário" (telas/alvos.json → usuarios.convidar)
+  titulo: [[['Sua ', '#FFFFFF'], ['equipe', LIME]], [['no Hospeda', '#FFFFFF']]],
+};
+const L = { logoY: 392, celTopo: 452, celAlt: 660, celX: 400, janelaLarg: 640, janelaX: 662, chipY: 1180, base1: 1352, base2: 1500, titulo: 150 };
+const carrega = (s) => new Promise((ok) => { const i = new Image(); i.onload = () => ok(i); i.src = s; });
+function rr(c, x, y, w, h, r) { c.beginPath(); c.roundRect(x, y, w, h, r); }
+window.ready = (async () => {
+  await Promise.all(['900 40px "FL Display"', '800 40px "FL Display"', '800 30px "FL Mono"'].map((f) => document.fonts.load(f)));
+  const [tela, logo] = await Promise.all([carrega(EP.tela), carrega('../src/fazlo-hospeda-logo-alpha.png')]);
+  const c = document.getElementById('c').getContext('2d'), cx = {};
+  // fundo: preto com leve tom, grade de pontinhos e vinheta (como as capas v4)
+  let g = c.createLinearGradient(0, 0, 0, H); g.addColorStop(0, '#0A1714'); g.addColorStop(1, '#060707'); c.fillStyle = g; c.fillRect(0, 0, W, H);
+  c.fillStyle = 'rgba(255,255,255,0.05)'; for (let y = 12; y < H; y += 24) for (let x = 12; x < W; x += 24) c.fillRect(x - 1, y - 1, 2, 2);
+  g = c.createRadialGradient(540, 900, 380, 540, 900, 1250); g.addColorStop(0, 'rgba(0,0,0,0)'); g.addColorStop(1, 'rgba(0,0,0,0.5)'); c.fillStyle = g; c.fillRect(0, 0, W, H);
+  // brilho limão difuso atrás do celular
+  const k = L.celAlt / IH, cw = IW * k, x0 = L.celX - cw / 2, y0 = L.celTopo;
+  g = c.createRadialGradient(L.celX + 60, y0 + L.celAlt * 0.42, 40, L.celX + 60, y0 + L.celAlt * 0.42, 520); g.addColorStop(0, 'rgba(175,250,39,0.22)'); g.addColorStop(1, 'rgba(175,250,39,0)');
+  c.fillStyle = g; c.fillRect(0, 0, W, H);
+  // logo pequena no topo
+  const d = 54; c.font = `800 30px ${D}`; const nw = c.measureText('FAZLO Hospeda').width, gw = d + 14 + nw, lx = 540 - gw / 2;
+  c.drawImage(logo, lx, L.logoY - d / 2, d, d);
+  c.textBaseline = 'middle'; c.fillStyle = '#FFFFFF'; c.fillText('FAZLO', lx + d + 14, L.logoY + 1);
+  c.fillStyle = LIME; c.fillText('Hospeda', lx + d + 14 + c.measureText('FAZLO ').width, L.logoY + 1);
+  cx.logo = [lx, L.logoY - d / 2, lx + gw, L.logoY + d / 2];
+  // o celular com a tela inteira
+  const pad = 11, rad = 128 * k;
+  c.save(); c.shadowColor = 'rgba(0,0,0,0.7)'; c.shadowBlur = 50; c.shadowOffsetY = 20;
+  rr(c, x0 - pad, y0 - pad, cw + 2 * pad, L.celAlt + 2 * pad, rad + pad); c.fillStyle = '#141513'; c.fill(); c.restore();
+  rr(c, x0 - pad, y0 - pad, cw + 2 * pad, L.celAlt + 2 * pad, rad + pad); c.strokeStyle = '#3A3D37'; c.lineWidth = 2.5; c.stroke();
+  c.save(); rr(c, x0, y0, cw, L.celAlt, rad); c.clip(); c.imageSmoothingQuality = 'high'; c.drawImage(tela, x0, y0, cw, L.celAlt); c.restore();
+  cx.celular = [x0 - pad, y0 - pad, x0 + cw + pad, y0 + L.celAlt + pad];
+  // o contorno limão no botão, na tela
+  const [a0, b0, a1, b1] = EP.destaque, bx0 = x0 + a0 * k - 5, by0 = y0 + b0 * k - 5, bx1 = x0 + a1 * k + 5, by1 = y0 + b1 * k + 5;
+  c.save(); rr(c, bx0, by0, bx1 - bx0, by1 - by0, 10); c.strokeStyle = LIME; c.lineWidth = 4; c.shadowColor = LIME; c.shadowBlur = 16; c.stroke(); c.restore();
+  // UM destaque saltando: a janela com o pedaço da própria captura, ampliado, borda limão, de leve inclinado
+  const jw = L.janelaLarg, jh = jw * (b1 - b0) / (a1 - a0), jx = L.janelaX - jw / 2, jy = by1 + 34;
+  c.save(); c.translate(L.janelaX, jy + jh / 2); c.rotate(-2.5 * Math.PI / 180); c.translate(-L.janelaX, -(jy + jh / 2));
+  c.shadowColor = 'rgba(0,0,0,0.65)'; c.shadowBlur = 44; c.shadowOffsetY = 18; rr(c, jx, jy, jw, jh, 22); c.fillStyle = '#fff'; c.fill(); c.shadowColor = 'transparent';
+  c.save(); rr(c, jx, jy, jw, jh, 22); c.clip(); c.drawImage(tela, a0, b0, a1 - a0, b1 - b0, jx, jy, jw, jh); c.restore();
+  rr(c, jx, jy, jw, jh, 22); c.strokeStyle = LIME; c.lineWidth = 7; c.shadowColor = LIME; c.shadowBlur = 26; c.stroke(); c.restore();
+  const s = Math.sin(2.5 * Math.PI / 180) * jw / 2; cx.janela = [jx - 8, jy - s - 8, jx + jw + 8, jy + jh + s + 8];
+  // o chip da série, logo acima do título
+  c.font = `800 26px ${MONO}`; c.letterSpacing = '3px';
+  const chip = 'FAZLO Hospeda na prática', chw = c.measureText(chip).width + 34 + 52, chh = 58, cx0 = 540 - chw / 2;
+  rr(c, cx0, L.chipY - chh / 2, chw, chh, chh / 2); c.fillStyle = 'rgba(22,26,24,0.9)'; c.fill(); c.lineWidth = 2; c.strokeStyle = 'rgba(255,255,255,0.16)'; c.stroke();
+  c.beginPath(); c.arc(cx0 + 30, L.chipY, 7, 0, TAU); c.fillStyle = LIME; c.fill();
+  c.fillStyle = '#E8EAE4'; c.textBaseline = 'middle'; c.fillText(chip, cx0 + 52, L.chipY + 2); c.letterSpacing = '0px';
+  cx.chip = [cx0, L.chipY - chh / 2, cx0 + chw, L.chipY + chh / 2];
+  // o título
+  c.textBaseline = 'alphabetic'; c.font = `900 ${L.titulo}px ${D}`; c.letterSpacing = `${-0.03 * L.titulo}px`;
+  EP.titulo.forEach((linha, i) => {
+    const base = i ? L.base2 : L.base1, larg = linha.reduce((a, [t]) => a + c.measureText(t).width, 0); let x = 540 - larg / 2;
+    for (const [t, cor] of linha) {
+      c.save(); c.fillStyle = cor; if (cor === LIME) { c.shadowColor = 'rgba(175,250,39,0.5)'; c.shadowBlur = 30; } c.fillText(t, x, base); c.restore();
+      x += c.measureText(t).width;
+    }
+    const m = c.measureText(linha.map(([t]) => t).join(''));
+    cx['titulo' + (i + 1)] = [540 - larg / 2, base - m.actualBoundingBoxAscent, 540 + larg / 2, base + m.actualBoundingBoxDescent];
+  });
+  window.CAIXAS = cx;
+})();
+</script></body></html>

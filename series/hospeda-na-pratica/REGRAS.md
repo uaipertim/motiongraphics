@@ -45,6 +45,22 @@ Fundo preto com verde-limão, tipografia forte, minimalista e moderno. Nunca com
 - E-mails fictícios usam domínio inexistente (ex.: ana@pousadadaserra.exemplo).
 - Nome de pousada nunca em caixa alta (ex.: Pousada da Serra).
 
+## Capa
+Padrão definido no episódio 2 (20/11/2026). Modelo: [`02-sua-equipe/capa/capa.html`](02-sua-equipe/capa/capa.html). A base de estilo são as capas v4 dos Reels e a miniatura do vídeo curto de venda; a capa não copia nenhuma delas.
+- **Formato:** 1080×1920.
+- **Área segura:** tudo o que importa fica no recorte 4:5 do feed (1080×1350, y 285–1635), com folga de 60 px: x 60–1020, y 345–1575. Ficam livres:
+  - o canto do play (x ≥ 860, y 240–440);
+  - a faixa do contador (y 1560–1680).
+- **De cima para baixo:**
+  1. **Logo pequena**, centrada: o símbolo, "FAZLO" em branco e "Hospeda" em limão.
+  2. **Celular** com a **tela inteira** do app, a captura do episódio com os dados fictícios. Fica um pouco à esquerda, com um brilho limão difuso atrás.
+  3. **Um único destaque** saltando numa janela recortada da mesma captura, com borda limão, levemente inclinada, saindo do celular para a direita. O ponto de origem fica com um contorno limão na tela.
+  4. **Selo da série**: um chip escuro em fonte mono, com ponto limão e o texto "FAZLO Hospeda na prática".
+  5. **Título** grande em Inter Display 900, sem caixa alta, em 2 linhas, com uma palavra-chave em limão (com halo).
+- **Fundo:** preto com leve tom verde-petróleo, grade de pontinhos e vinheta, minimalista.
+- **Sem número de episódio:** nada de "ep. 2" ou "parte 1".
+- **Conferência:** `capa/render.cjs` gera a capa e o recorte do feed (`capa-no-feed.jpg`) e confere a área segura e as sobreposições. O OCR procura o mesmo texto proibido dos vídeos (`capa/revisao/`).
+
 ## Fluxo
 Antes de produzir cada episódio, entregar o roteiro e a linha do tempo para aprovação.
 
