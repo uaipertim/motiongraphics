@@ -1,11 +1,13 @@
 TARIFA DE DEZEMBRO v2 — conferência do slide 02 (10 s)
 
-OK     02.mp4: 1080×1350, 30 fps, 10.00 s (300 quadros), h264 yuv420p, áudio aac 48000 Hz, 2.34 MB
+OK     02.mp4: 1080×1350, 30 fps, 10.00 s (300 quadros), h264 yuv420p, áudio aac 48000 Hz, 2.26 MB
 OK     margens: conteúdo em x 80–1000 em todos os quadros (a cada 0,1 s)
 OK     canto do ícone de som (x ≥ 940, y ≥ 1210) livre em todos os quadros
 OK     texto do topo fixo: nas caixas do texto, os quadros do motor (a cada 0,5 s, 21 quadros) são idênticos ao quadro 0 (0 px); no MP4, 65 px de ruído do H.264 nas bordas das letras
 OK     loop: o último quadro (9.967 s) e o quadro 0 batem: 0 px diferentes nos quadros do motor (no MP4: 65 px de ruído)
 OK     valores do roteiro: R$ 300, R$ 450, R$ 150, R$ 1.800
+OK     moedas/notas: 765 posições em 300 quadros; nenhuma sobrepõe chalé, preço ou contador, nem entra no canto do som
+OK     "visualizado" → divisor: 28 px entre a base do "visualizado" e a linha do divisor (mínimo 24)
 OK     contas: 4 chalés × 3 noites × R$ 150 = R$ 1.800 (o contador para em R$ 1.800)
 
 RESULTADO: aprovado

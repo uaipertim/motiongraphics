@@ -494,7 +494,7 @@
       const tt = title(ctx, [{ t: 'Subir o preço em cima da hora assusta quem já perguntou.', c: W_ }, { t: 'Não subir deixa dinheiro na mesa.', c: Li, br: true }],
         176, { max: 66, maxH: 300, lh: 1.08 });
       CAIXAS.texto = [[M, tt.top - 6, M + CW, tt.bottom + 6]];
-      const k0 = saida(t), YA = tt.bottom + 36, YD = YA + 418, YB = YD + 30;
+      const k0 = saida(t), YA = tt.bottom + 36, YD = YA + 422, YB = YD + 30;
       palco(ctx, t, YA, 1180, k0);
       camada(ctx, k0, () => {
         // ---- os rótulos das duas metades e o divisor
@@ -510,7 +510,7 @@
         // ---- (a) a conversa (fica na tela; no fim esmaece até 45%)
         const esm = 1 - 0.55 * eIO(p(t, 3.9, 4.6));
         camada(ctx, esm, () => {
-          const XA = M + 88, R = M + CW, Y0 = YA + 22, SL = [0, 80, 160, 208, 288, 376], y = (i) => Y0 + SL[i], BS = { size: 34 };
+          const XA = M + 88, R = M + CW, Y0 = YA + 22, SL = [0, 80, 160, 208, 288, 368], y = (i) => Y0 + SL[i], BS = { size: 34 };
           const someAv = p(t, 3.55, 4.1);
           if (t >= 0.25) {
             camada(ctx, (1 - someAv) * cl((t - 0.25) / 0.2), () => avatar(ctx, M + 34, y(0) + 37, 32, C.gray));
@@ -538,6 +538,7 @@
             setFont(ctx, DISPLAY, 24, 900, 0, 'center'); ctx.fillStyle = INK; ctx.fillText('!', b.x0 + b.w - 4, b.y + 12);
             ctx.restore();
           });
+          CAIXAS.visualizado = y(5) + 4; CAIXAS.divisor = YD;
           surge(ctx, t, 3.45, XA, y(5), () => {
             monoLab(ctx, 'VISUALIZADO', XA + 4, y(5) + 4, C.gray, 20, 'left', 2);
             const xx = XA + 4 + tw(ctx, 'VISUALIZADO', MONO, 20, 800, 2) + 12;
@@ -548,6 +549,7 @@
         // ---- (b) à esquerda, os 4 chalés (2 × 2) acendem LOTADO a R$ 300; à direita, o contador e a mesa
         if (t >= 4.4) {
           const xs = [M + 100, M + 340, M + 580, M + 820], yb = YB + 180;
+          CAIXAS.protegidas = xs.map((x) => [x - 80, yb - 180, x + 80, yb + 14]).concat([[M, YB + 222, M + 470, YB + 368]]);
           xs.forEach((x, i) => {
             const a0 = 4.5 + i * 0.12, tr_ = eOut(p(t, a0, a0 + 0.6)), ac = eOut(p(t, 5.2 + i * 0.18, 5.5 + i * 0.18));
             const tremula = ac >= 1 ? 0.85 + 0.15 * Math.sin(t * 3 + i * 1.7) : ac;
@@ -570,14 +572,17 @@
           // a mesa (à direita) e as moedas/notas que escapam dela (somem antes da margem)
           const ym = YB + 352;
           camada(ctx, cl((t - 6.0) / 0.3), () => {
-            rr(ctx, xm, ym, xr - xm - 30, 10, 5); ctx.fillStyle = '#2C2C29'; ctx.fill();
+            const mesaFim = xr - 170; rr(ctx, xm, ym, mesaFim - xm, 10, 5); ctx.fillStyle = '#2C2C29'; ctx.fill();
             for (let i = 0; i < 7; i++) { const x = xm + 30 + i * 20; for (let j = 0; j < 3 - (i % 2); j++) { ctx.beginPath(); ctx.ellipse(x, ym - 8 - j * 9, 18, 6, 0, 0, TAU); ctx.fillStyle = rgba(C.lime, 0.85); ctx.fill(); } }
             for (let i = 0; i < 28; i++) {
               const nasc = 6.2 + i * 0.16, life = 1.3, u = (t - nasc) / life;
               if (u <= 0 || u >= 1) continue;
-              const sx = xm + 120 + hash(i, 2) * 160, ex = sx + 60 + 90 * hash(i, 3), ey = ym - 70 - 60 * hash(i, 6);
-              const x = sx + (ex - sx) * eOut(u), yv = ym - 14 + (ey - ym) * eOut(u) - 30 * Math.sin(Math.PI * u), al = Math.sin(Math.PI * u) * 0.9;
-              if (x > 962) continue;
+              // da ponta da mesa para a direita, caindo um pouco (nunca sobe até os chalés nem vai para o contador; para
+              // antes da margem e acima do canto do ícone de som)
+              const sx = mesaFim - 40 + 30 * hash(i, 2), ex = 900 + 70 * hash(i, 3), ey = Math.min(1180, ym + 2 + 8 * hash(i, 6));
+              const x = sx + (ex - sx) * eOut(u), yv = ym - 18 + (ey - ym + 18) * eIn(u) - 10 * Math.sin(Math.PI * u), al = Math.sin(Math.PI * u) * 0.9;
+              if (x > 982) continue;
+              (CAIXAS.moedas = CAIXAS.moedas || []).push([x, yv, 24]);
               ctx.save(); ctx.translate(x, yv); ctx.rotate((hash(i, 8) - 0.5) * 3 * u); ctx.globalAlpha *= al;
               if (i % 3) { ctx.beginPath(); ctx.ellipse(0, 0, 15, 15, 0, 0, TAU); ctx.strokeStyle = C.lime; ctx.lineWidth = 3; ctx.stroke(); setFont(ctx, MONO, 15, 800, 0, 'center'); ctx.fillStyle = C.lime; ctx.fillText('$', 0, 5); }
               else { rr(ctx, -22, -12, 44, 24, 4); ctx.strokeStyle = C.lime; ctx.lineWidth = 3; ctx.stroke(); ctx.beginPath(); ctx.arc(0, 0, 5, 0, TAU); ctx.stroke(); }

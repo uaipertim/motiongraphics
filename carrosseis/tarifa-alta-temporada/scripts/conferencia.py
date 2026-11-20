@@ -103,6 +103,15 @@ def confere(n):
     fora = sorted(reais - {'150', '300', '360', '450', '1.800'})
     ok(not falta and not fora, f'valores do roteiro: {", ".join(VALORES.get(n, [])) or "(sem valores)"}' + (f' (faltando: {falta})' if falta else '') + (f' (fora do roteiro: {fora})' if fora else ''))
     if n == 2:
+        # as moedas/notas que escapam da mesa: em nenhum quadro sobrepõem chalé, preço ou contador; nem o canto do som
+        g = json.loads(subprocess.run(['node', os.path.join(ROOT, 'scripts', 'render.cjs'), 'moedas'], check=True, capture_output=True, text=True).stdout)
+        bate = [q['t'] for q in g for (x, y, r) in q['moedas'] for (a0, b0, a1, b1) in q['protegidas'] if a0 - r < x < a1 + r and b0 - r < y < b1 + r]
+        canto_ = [q['t'] for q in g for (x, y, r) in q['moedas'] if x + r > 940 and y + r > 1210]
+        nm = sum(len(q['moedas']) for q in g)
+        ok(not bate and not canto_, f'moedas/notas: {nm} posições em {len(g)} quadros; nenhuma sobrepõe chalé, preço ou contador, nem entra no canto do som'
+           + (f' (sobrepõe em {sorted(set(round(t_, 2) for t_ in bate))[:5]})' if bate else '') + (f' (canto em {sorted(set(round(t_, 2) for t_ in canto_))[:5]})' if canto_ else ''))
+        folga = min(q['div'] - q['vis'] for q in g if q.get('vis') and q.get('div'))
+        ok(folga >= 24, f'"visualizado" → divisor: {folga:.0f} px entre a base do "visualizado" e a linha do divisor (mínimo 24)')
         ok(4 * 3 * 150 == 1800, 'contas: 4 chalés × 3 noites × R$ 150 = R$ 1.800 (o contador para em R$ 1.800)')
     if n in (1, 4, 8):
         ok(round(300 * 1.2) == 360 and round(300 * 1.5) == 450, 'contas: R$ 300 × 1,2 = R$ 360 (+20%); R$ 300 × 1,5 = R$ 450 (+50%)')

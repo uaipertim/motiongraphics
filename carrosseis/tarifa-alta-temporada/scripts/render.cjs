@@ -32,6 +32,15 @@ const grab = async (page, n, t) => { await page.evaluate(([n, t]) => window.fram
   const srv = await serve(), port = srv.address().port;
   const browser = await chromium.launch({ args: ['--disable-gpu-vsync', '--font-render-hinting=none'] });
   try {
+    if (args[0] === 'moedas') {
+      // (conferência do 02) em cada quadro: as moedas/notas no ar e as caixas protegidas (chalés, preços, contador)
+      const page = await openPage(browser, port);
+      const r = await page.evaluate(() => { const n = Math.round(CARROSSEL.durDe(2) * CARROSSEL.FPS), out = [];
+        for (let i = 0; i < n; i++) { window.frameAt(2, i / CARROSSEL.FPS); out.push({ t: i / CARROSSEL.FPS, moedas: CARROSSEL.CAIXAS.moedas || [], protegidas: CARROSSEL.CAIXAS.protegidas || [], vis: CARROSSEL.CAIXAS.visualizado, div: CARROSSEL.CAIXAS.divisor }); }
+        return out; });
+      process.stdout.write(JSON.stringify(r));
+      return;
+    }
     if (args[0] === 'caixas') {
       // (conferência) as caixas do texto fixo do slide n, a duração e as linhas de texto: JSON
       const n = Number(args[1]), page = await openPage(browser, port);
