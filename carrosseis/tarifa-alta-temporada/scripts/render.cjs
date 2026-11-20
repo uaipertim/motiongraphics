@@ -1,13 +1,13 @@
 #!/usr/bin/env node
 /*
- * Carrossel ANIMADO "Tarifa de dezembro: quando e quanto subir?" — 8 vídeos 1080x1350 (4:5), 7 s, 30 fps.
+ * Carrossel ANIMADO "Tarifa de dezembro: quando e quanto subir?" (v2) — 8 vídeos 1080x1350 (4:5), 9–10 s, 30 fps.
  * O pipeline dos Reels educativos (reels/educativo/<reel>/scripts/render.cjs): sobe um servidor estático, abre
  * src/index.html?render no Chromium (Playwright), desenha cada quadro (window.frameAt) e manda as capturas para o
  * ffmpeg (H.264 yuv420p), com uma faixa de áudio AAC silenciosa (sem trilha, sem narração).
- *   node scripts/render.cjs            -> output/01.mp4 … 08.mp4 + output/png/01.png … 08.png (o último quadro de cada)
+ *   node scripts/render.cjs            -> output/01.mp4 … 08.mp4 + output/png/01.png … 08.png (o estado final de cada cena)
  *   node scripts/render.cjs 1,4        -> só os slides pedidos
  *   node scripts/render.cjs stills 2:0.5,4:1.2 [--dir output/stills]   -> quadros soltos (slide:segundo)
- *   node scripts/render.cjs geo        -> (JSON) a agulha do medidor da capa em cada quadro + as caixas do chip e do "ARRASTA →"
+ *   node scripts/render.cjs caixas 2   -> (JSON) as caixas do texto fixo do slide, a duração e as linhas de texto
  * Depois: python3 scripts/previa.py  -> output/previa.jpg + revisão (ffprobe, margens, canto do som, estabilidade)
  */
 const http = require('http'), fs = require('fs'), path = require('path');
@@ -32,12 +32,11 @@ const grab = async (page, n, t) => { await page.evaluate(([n, t]) => window.fram
   const srv = await serve(), port = srv.address().port;
   const browser = await chromium.launch({ args: ['--disable-gpu-vsync', '--font-render-hinting=none'] });
   try {
-    if (args[0] === 'geo') {
-      // a geometria do medidor da capa em todos os quadros (para a conferência): a agulha e as caixas do chip e do "ARRASTA →"
-      const page = await openPage(browser, port);
-      const g = await page.evaluate(() => { window.frameAt(1, 0); const n = Math.round(CARROSSEL.DUR * CARROSSEL.FPS);
-        return { caixas: CARROSSEL.CAIXAS, med: CARROSSEL.MED, quadros: Array.from({ length: n }, (_, i) => ({ t: i / CARROSSEL.FPS, ...CARROSSEL.agulha(i / CARROSSEL.FPS) })) }; });
-      process.stdout.write(JSON.stringify(g));
+    if (args[0] === 'caixas') {
+      // (conferência) as caixas do texto fixo do slide n, a duração e as linhas de texto: JSON
+      const n = Number(args[1]), page = await openPage(browser, port);
+      const r = await page.evaluate((n) => { const l = window.frameAt(n, 0); return { caixas: JSON.parse(JSON.stringify(CARROSSEL.CAIXAS)), dur: CARROSSEL.durDe(n), fps: CARROSSEL.FPS, linhas: l }; }, n);
+      process.stdout.write(JSON.stringify(r));
       return;
     }
     if (args[0] === 'stills') {
@@ -48,17 +47,17 @@ const grab = async (page, n, t) => { await page.evaluate(([n, t]) => window.fram
     }
     const only = (args[0] || '').split(',').filter(Boolean).map(Number);
     const page0 = await openPage(browser, port);
-    const { N, DUR, FPS } = await page0.evaluate(() => ({ N: CARROSSEL.N, DUR: CARROSSEL.DUR, FPS: CARROSSEL.FPS })); await page0.close();
-    const total = Math.round(DUR * FPS), workers = Number(opt('workers', 4));
+    const { N, DURS, FPS } = await page0.evaluate(() => ({ N: CARROSSEL.N, DURS: Array.from({ length: CARROSSEL.N }, (_, i) => CARROSSEL.durDe(i + 1)), FPS: CARROSSEL.FPS })); await page0.close();
+    const workers = Number(opt('workers', 4));
     fs.mkdirSync(path.join(ROOT, 'output', 'png'), { recursive: true });
     const pages = await Promise.all(Array.from({ length: workers }, () => openPage(browser, port)));
     const linhas = [];
     for (let n = 1; n <= N; n++) {
       if (only.length && !only.includes(n)) continue;
-      const nn = String(n).padStart(2, '0'), out = path.join(ROOT, 'output', `${nn}.mp4`);
+      const nn = String(n).padStart(2, '0'), out = path.join(ROOT, 'output', `${nn}.mp4`), total = Math.round(DURS[n - 1] * FPS);   // (a duração de cada slide)
       const ff = spawn('ffmpeg', ['-y', '-loglevel', 'error', '-f', 'image2pipe', '-framerate', String(FPS), '-c:v', 'png', '-i', '-',
         '-f', 'lavfi', '-i', 'anullsrc=channel_layout=stereo:sample_rate=48000',
-        '-map', '0:v', '-map', '1:a', '-c:v', 'libx264', '-preset', 'slow', '-crf', '18', '-pix_fmt', 'yuv420p', '-profile:v', 'high', '-r', String(FPS),
+        '-map', '0:v', '-map', '1:a', '-c:v', 'libx264', '-preset', 'slow', '-crf', '12', '-tune', 'animation', '-pix_fmt', 'yuv420p', '-profile:v', 'high', '-r', String(FPS),
         '-color_primaries', 'bt709', '-color_trc', 'bt709', '-colorspace', 'bt709', '-c:a', 'aac', '-b:a', '128k', '-t', (total / FPS).toFixed(4), '-movflags', '+faststart', out], { stdio: ['pipe', 'inherit', 'inherit'] });
       const ffDone = new Promise((r, j) => ff.on('close', (c) => (c === 0 ? r() : j(new Error('ffmpeg ' + c)))));
       const pending = new Map(); let next = 0, written = 0, last = null;
@@ -66,7 +65,8 @@ const grab = async (page, n, t) => { await page.evaluate(([n, t]) => window.fram
       let flushing = Promise.resolve();
       await Promise.all(pages.map(async (page) => { while (true) { const i = next++; if (i >= total) break; while (i - written > 60) await new Promise((r) => setTimeout(r, 5)); pending.set(i, await grab(page, n, i / FPS)); flushing = flushing.then(flush); } }));
       await flushing; await flush(); ff.stdin.end(); await ffDone;
-      fs.writeFileSync(path.join(ROOT, 'output', 'png', `${nn}.png`), last);           // a versão estática de segurança (o último quadro)
+      // a versão estática de segurança: o estado final da cena (antes de ela se dissolver para o loop)
+      fs.writeFileSync(path.join(ROOT, 'output', 'png', `${nn}.png`), await grab(pages[0], n, await pages[0].evaluate((n) => CARROSSEL.poseDe(n), n)));
       linhas.push(...(await pages[0].evaluate(([n, t]) => window.frameAt(n, t), [n, (total - 1) / FPS])).map((l) => ({ ...l, slide: n })));
       console.log('slide', nn, '->', path.relative(ROOT, out));
     }

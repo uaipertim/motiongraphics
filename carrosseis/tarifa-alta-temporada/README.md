@@ -24,6 +24,40 @@ AAC silenciosa. Não tem trilha, narração nem legenda na tela.
 
 ![prévia](output/previa.jpg)
 
+## v2 — refação em cenas (2026-11-20) · ETAPA 1: storyboard + slide 02
+
+**Nova direção:** cada slide é uma pequena CENA animada que conta a ideia sozinha, com camadas, profundidade e
+coreografia. O texto do slide fica FIXO no topo desde o quadro 0 e nunca se mexe; a cena acontece abaixo dele.
+
+- **Ritmo:** 9 s por slide (10 s no 02). A cena tem começo, meio e fim até ~6,5 s (~8 s no 02). Depois o estado final
+  fica vivo (brilho, partículas leves, pulsos). Nos últimos 0,75 s, a cena se dissolve suavemente de volta ao quadro 0
+  (só o texto), então o loop não salta. Na capa não há dissolução: o letreiro volta sozinho a R$ 300.
+- **Movimento:** entradas com mola (overshoot), números rolando tipo odômetro, letreiro de aeroporto (split-flap, com
+  o flap visível), carimbos com impacto e poeira, morph do mapa nas barras, parallax leve e sombras e brilhos suaves.
+- **Âmbar:** #E8A317, só para alerta (no 02: o balão do susto e o "deixou de entrar").
+- **Storyboard de todos os slides** (4 quadros-chave cada: início, meio, clímax, final):
+  [`output/revisao/storyboard.jpg`](output/revisao/storyboard.jpg).
+- **Slide 02 completo, como prova de qualidade:** [`output/02.mp4`](output/02.mp4) (10 s). Conferência:
+  [`output/revisao/conferencia-02.txt`](output/revisao/conferencia-02.txt). Cenas do 02:
+  - (a) a conversa: o hóspede pergunta, a pousada responde R$ 300, "3 dias depois", "Agora está R$ 450", o susto em
+    âmbar e o "visualizado"; a conversa esmaece e o hóspede some;
+  - (b) 4 chalés acendem LOTADO a R$ 300 e o contador "deixou de entrar" rola até R$ 1.800 (4 chalés × 3 noites ×
+    R$ 150), com moedas e notas escapando da mesa.
+- **Aguardando aprovação para a ETAPA 2** (renderizar os outros 7). Até lá, `output/01.mp4` e `03.mp4`–`08.mp4` e a
+  `output/previa.jpg` ainda são da v1 (a versão anterior, abaixo).
+
+```bash
+python3 scripts/storyboard.py         # o storyboard (quadros do próprio motor)
+node scripts/render.cjs 2             # um slide (o MP4 + o PNG de segurança: o estado final da cena)
+python3 scripts/conferencia.py 2      # ffprobe, margens, canto do som, texto fixo, loop e contas
+```
+
+**Codificação:** CRF 12 com `-tune animation`. Com CRF 18 o quadro-chave inicial deixava as bordas das letras
+diferentes dos quadros seguintes (até 434 px); agora sobram ~80 px de ruído. No motor, o texto e o loop são idênticos
+(0 px).
+
+## v1 (a versão anterior, animação mínima)
+
 ## As regras da animação
 
 - **Tempo:** a animação fica nos primeiros 2 s. De 2,5 s até 7 s o slide fica completo e parado para a leitura.

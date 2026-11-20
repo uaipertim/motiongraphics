@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>FAZLO Hospeda — Carrossel animado · Tarifa de dezembro</title>
+<title>FAZLO Hospeda — Carrossel animado v2 · Tarifa de dezembro</title>
 <style>
   @font-face { font-family: 'C1 Display'; src: url('fonts/InterDisplay-SemiBold.otf') format('opentype'); font-weight: 600; }
   @font-face { font-family: 'C1 Display'; src: url('fonts/InterDisplay-Bold.otf') format('opentype'); font-weight: 700; }
@@ -38,8 +38,8 @@
     }
     if (!render) {
       const t0 = performance.now();
-      const loop = () => { const t = ((performance.now() - t0) / 1000) % CARROSSEL.DUR;
-        for (let n = 1; n <= CARROSSEL.N; n++) CARROSSEL.render(document.getElementById('s' + n).getContext('2d'), n, t);
+      const loop = () => { const seg = (performance.now() - t0) / 1000;
+        for (let n = 1; n <= CARROSSEL.N; n++) CARROSSEL.render(document.getElementById('s' + n).getContext('2d'), n, seg % CARROSSEL.durDe(n));
         requestAnimationFrame(loop); };
       loop();
     }

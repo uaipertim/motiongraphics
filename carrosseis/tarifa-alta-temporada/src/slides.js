@@ -1,11 +1,11 @@
 /* =====================================================================
-   FAZLO Hospeda — CARROSSEL ANIMADO "Tarifa de dezembro: quando e quanto subir?" · Pilar DICA (piloto)
-   8 slides em vídeo, 1080x1350 (4:5), 7 s a 30 fps
+   FAZLO Hospeda — CARROSSEL ANIMADO "Tarifa de dezembro: quando e quanto subir?" · Pilar DICA (piloto, v2)
+   8 slides em vídeo, 1080x1350 (4:5), 9–10 s a 30 fps
 
    O motor dos carrosséis estáticos (o mesmo do "Nada de consumo fora da conta"): cores, fontes, margem de 80 px, capa
-   LIMÃO com texto preto, trilha de passos 01–05 e cards rotulados em mono. Aqui, cada slide é desenhado num instante t:
-   a animação fica nos primeiros 2 s e, de 2,5 s a 7 s, o slide fica completo e parado para a leitura (só a luz do fundo
-   e, na capa, a escala gravada se mexem devagar, voltando ao começo em 7 s: o loop não salta).
+   LIMÃO com texto preto, trilha de passos 01–05. Na v2, cada slide é uma pequena CENA animada que conta a ideia
+   sozinha, abaixo do texto do slide (fixo desde o quadro 0): começo, meio e fim (até ~6,5 s), o estado final vivo
+   (brilho, partículas, pulsos) e, no fim, a cena se dissolve suavemente de volta ao quadro 0 (o loop não salta).
    O canto de baixo à direita (140×140 px) fica livre: é onde o Instagram põe o ícone de som no vídeo.
    Os valores são um exemplo fictício (selo "EXEMPLO FICTÍCIO" nos slides com valores).
 
@@ -14,14 +14,18 @@
    ===================================================================== */
 (function () {
   'use strict';
-  const DUR = 7, FPS = 30;
+  const FPS = 30;
+  const DURS = { 1: 9, 2: 10, 3: 9, 4: 9, 5: 9, 6: 9, 7: 9, 8: 9 };   // a duração de cada slide (s)
+  // o instante do estado final de cada cena (antes de ela se dissolver): é a versão estática de segurança (output/png/)
+  const POSE = { 1: 0, 2: 9.0, 3: 7.6, 4: 7.6, 5: 7.6, 6: 7.6, 7: 7.6, 8: 7.6 };
+  let DUR = 9;                                                     // a do slide que está sendo desenhado
 
   const W = 1080, H = 1350, M = 80, CW = W - 2 * M;          // área útil: x 80–1000
   const DISPLAY = "'C1 Display', 'Inter Display', 'Inter', sans-serif";
   const MONO = "'C1 Mono', 'JetBrains Mono', monospace";
   const C = {
     bg: '#0A0A0A', bg0: '#050505', card: '#161616', border: '#3A3A3A',
-    lime: '#AFFA27', amber: '#FFB23F', limeD: '#8CD10C', limeDeep: '#5A8A0E', white: '#FFFFFF', gray: '#B9B9B1', grayM: '#8E8E88', grayD: '#5E5E59', ink: '#0A0A0A',
+    lime: '#AFFA27', amber: '#E8A317', off: '#F4F4F0', limeD: '#8CD10C', limeDeep: '#5A8A0E', white: '#FFFFFF', gray: '#B9B9B1', grayM: '#8E8E88', grayD: '#5E5E59', ink: '#0A0A0A',
   };
   const L = { trackY: 120, titleTop: 196, titleTop0: 164, titleMaxH: 360, supportBottom: 1146 };   // (o apoio termina acima do canto do ícone de som)
   const TRACK = 34;                      // trilha de passos (mono)
@@ -219,28 +223,181 @@
   }
 
   // =====================================================================
-  // ANIMAÇÃO (carrossel animado): cada slide é desenhado no instante t (0–7 s). O movimento fica nos primeiros 2 s;
-  // de 2,5 s até o fim o slide está completo e parado (só a luz de fundo respira, e volta igual em 7 s: o loop não salta).
+  // AS CENAS (v2): cada slide é uma pequena cena animada que conta a ideia sozinha, abaixo do texto do slide (que fica
+  // FIXO desde o quadro 0). A cena tem começo, meio e fim (até ~6,5 s; no 02, ~8 s), depois o estado final fica vivo
+  // (brilho, partículas, pulsos) e, nos últimos 0,75 s, se dissolve suavemente de volta ao quadro 0 (só o texto):
+  // o último quadro emenda no primeiro sem salto. Na capa, o letreiro volta sozinho a R$ 300.
   // =====================================================================
   const cl = (x) => Math.max(0, Math.min(1, x));
-  const p = (t, a, b) => cl((t - a) / (b - a));                         // progresso de a até b
-  const eOut = (x) => 1 - Math.pow(1 - x, 3);
-  const eIO = (x) => (x < 0.5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2);
-  const eBack = (x) => { const c1 = 1.5, c3 = c1 + 1; return x <= 0 ? 0 : 1 + c3 * Math.pow(x - 1, 3) + c1 * Math.pow(x - 1, 2); };
+  const p = (t, a, b) => cl((t - a) / (b - a));
+  const eOut = (x) => 1 - Math.pow(1 - cl(x), 3);
+  const eIn = (x) => Math.pow(cl(x), 3);
+  const eIO = (x) => { x = cl(x); return x < 0.5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2; };
+  const eBack = (x, s = 1.7) => { x = cl(x); const c3 = s + 1; return x <= 0 ? 0 : 1 + c3 * Math.pow(x - 1, 3) + s * Math.pow(x - 1, 2); };
+  // mola: passa um pouco do ponto e assenta (sem salto no fim)
+  const spr = (x) => (x <= 0 ? 0 : x >= 1 ? 1 : 1 - Math.exp(-5.4 * x) * Math.cos(8.6 * x));
+  const mola = (t, a, dur = 0.55) => spr(p(t, a, a + dur));
   const brl = (v) => 'R$ ' + Math.round(v).toLocaleString('pt-BR');
-  // um bloco que entra com leve deslocamento (de baixo) e opacidade
-  function entra(ctx, t, a, dur, draw, dy = 34) {
-    const k = eOut(p(t, a, a + dur));
-    if (k <= 0) return;
-    ctx.save(); ctx.globalAlpha *= k; ctx.translate(0, (1 - k) * dy); draw(); ctx.restore();
+  const W_ = C.white, Li = C.lime, INK = C.ink, OFF = C.off, AMB = C.amber;
+  const CAIXAS = {};                                         // (conferência) as caixas do texto fixo de cada slide
+  // a cena inteira some suavemente nos últimos 0,75 s (o quadro final = o quadro 0: só o texto)
+  const saida = (t) => 1 - eIO(p(t, DUR - 0.75, DUR - 1 / FPS));
+  function camada(ctx, a, fn) { if (a <= 0.001) return; ctx.save(); ctx.globalAlpha *= a; fn(); ctx.restore(); }
+  const monoLab = (ctx, s, x, y, cor = C.gray, size = 26, align = 'left', ls = 3) => { setFont(ctx, MONO, size, 800, ls, align); ctx.fillStyle = cor; ctx.fillText(s, x, y); };
+  function ficticio(ctx) { chip(ctx, M + CW, L.trackY, 'EXEMPLO FICTÍCIO', { size: 24, stroke: C.grayM, color: C.gray, lw: 2, align: 'right', h: 50, padX: 20 }); }
+  // brilho suave atrás de um elemento
+  function brilho(ctx, x, y, r, cor, a) { if (a <= 0) return; const g = ctx.createRadialGradient(x, y, 0, x, y, r); g.addColorStop(0, rgba(cor, a)); g.addColorStop(1, rgba(cor, 0)); ctx.fillStyle = g; ctx.fillRect(x - r, y - r, 2 * r, 2 * r); }
+  // partículas ambientes (pontinhos que piscam devagar) numa caixa
+  function faiscas(ctx, t, box, n, cor, seed, a = 1) {
+    for (let i = 0; i < n; i++) {
+      const x = box[0] + hash(seed, i) * (box[2] - box[0]), y0 = box[1] + hash(seed + 7, i) * (box[3] - box[1]);
+      const ph = hash(seed + 13, i), y = y0 - 18 * ((t * 0.25 + ph) % 1), k = Math.sin(Math.PI * ((t * 0.5 + ph) % 1));
+      ctx.beginPath(); ctx.arc(x, y, 1.6 + 1.6 * hash(seed + 3, i), 0, TAU); ctx.fillStyle = rgba(cor, 0.55 * k * a); ctx.fill();
+    }
   }
-  // o selo "EXEMPLO FICTÍCIO" (nos slides com valores): no alto, à direita, na linha da trilha de passos
-  function ficticio(ctx) {
-    chip(ctx, M + CW, L.trackY, 'EXEMPLO FICTÍCIO', { size: 24, stroke: C.grayM, color: C.gray, lw: 2, align: 'right', h: 50, padX: 20 });
+  // carimbo com impacto: entra grande e inclinado, bate (tremidinha) e solta poeira
+  function carimbo(ctx, cx, cy, text, ang, cor, t, t0, o = {}) {
+    const k = p(t, t0, t0 + 0.28); if (t < t0) return;
+    const size = o.size || 34, w = tw(ctx, text, MONO, size, 800, 3) - 3 + 2 * (o.pad || 28), h = size * 2.05;
+    const esc = k < 1 ? 1.9 - 0.9 * eIn(k) : 1, treme = t - t0 > 0.28 && t - t0 < 0.6 ? 5 * Math.sin((t - t0) * 70) * (1 - p(t, t0 + 0.28, t0 + 0.6)) : 0;
+    ctx.save(); ctx.translate(cx + treme, cy); ctx.rotate(ang); ctx.scale(esc, esc); ctx.globalAlpha *= Math.min(1, k * 1.6);
+    if (o.fill) { rr(ctx, -w / 2, -h / 2, w, h, 12); ctx.fillStyle = cor; ctx.fill(); }
+    rr(ctx, -w / 2, -h / 2, w, h, 12); ctx.strokeStyle = o.fill ? rgba(INK, 0.4) : cor; ctx.lineWidth = 5; ctx.stroke();
+    rr(ctx, -w / 2 + 8, -h / 2 + 8, w - 16, h - 16, 8); ctx.strokeStyle = o.fill ? rgba(INK, 0.35) : rgba(cor, 0.55); ctx.lineWidth = 2; ctx.stroke();
+    setFont(ctx, MONO, size, 800, 3, 'center'); ctx.fillStyle = o.fill ? INK : cor; ctx.fillText(text, 0, size * 0.36);
+    ctx.restore();
+    // a poeira do impacto
+    const pk = p(t, t0 + 0.22, t0 + 0.9);
+    if (pk > 0 && pk < 1) for (let i = 0; i < 14; i++) {
+      const a = (i / 14) * TAU + hash(i, 5), r = w * 0.45 + 70 * eOut(pk);
+      ctx.beginPath(); ctx.arc(cx + Math.cos(a) * r, cy + Math.sin(a) * r * 0.5, 3 * (1 - pk), 0, TAU); ctx.fillStyle = rgba(cor, 0.8 * (1 - pk)); ctx.fill();
+    }
   }
-
-  // "ARRASTA →" na margem direita, ACIMA do canto do ícone de som (140×140 px embaixo à direita, livre): a seta dá um
-  // empurrãozinho para a direita a cada 1,75 s (4 vezes em 7 s: o loop não salta)
+  // número rolando tipo ODÔMETRO (JetBrains Mono: largura fixa, nada pula). v: o valor no instante; fim: o valor final
+  function odometro(ctx, v, fim, x, y, size, o = {}) {
+    const pre = o.pre ?? 'R$ ', suf = o.suf ?? '', cor = o.cor || W_, nd = String(Math.round(fim)).length;
+    setFont(ctx, MONO, size, 800, 0);
+    const dw = ctx.measureText('0').width, sepw = ctx.measureText('.').width, prew = ctx.measureText(pre).width, sufw = ctx.measureText(suf).width;
+    const seps = nd >= 4 ? 1 : 0, total = prew + nd * dw + seps * sepw + sufw;
+    let xx = o.align === 'center' ? x - total / 2 : o.align === 'right' ? x - total : x;
+    ctx.fillStyle = cor; ctx.fillText(pre, xx, y); xx += prew;
+    const top = y - size * 0.86, hh = size * 1.12;
+    for (let i = nd - 1; i >= 0; i--) {
+      const pw = Math.pow(10, i), f = v / pw, d = Math.floor(f) % 10;
+      const fr = i === 0 ? f - Math.floor(f) : cl((v % pw) - (pw - 1));
+      const vis = v >= pw - 1 || i === 0;
+      if (!vis && o.zeros !== false) { ctx.save(); ctx.globalAlpha *= 0.22; ctx.fillStyle = cor; ctx.fillText('0', xx, y); ctx.restore(); }
+      if (vis) {
+        ctx.save(); ctx.beginPath(); ctx.rect(xx - 4, top, dw + 8, hh); ctx.clip();
+        ctx.fillStyle = cor; ctx.fillText(String(d), xx, y - fr * hh); ctx.fillText(String((d + 1) % 10), xx, y + (1 - fr) * hh);
+        ctx.restore();
+      }
+      xx += dw;
+      if (nd >= 4 && i === 3) { ctx.save(); if (v < 999) ctx.globalAlpha *= 0.22; ctx.fillStyle = cor; ctx.fillText('.', xx, y); ctx.restore(); xx += sepw; }
+    }
+    if (suf) { ctx.fillStyle = cor; ctx.fillText(suf, xx, y); }
+    return { x0: xx - total + (suf ? sufw : 0), w: total };
+  }
+  // ---------------------------------------------------------------- o letreiro de aeroporto (split-flap)
+  // uma célula: k 0→0,5 a metade de cima do caractere antigo cai (dobra no meio); 0,5→1 a metade de baixo do novo desce
+  function flapCell(ctx, x, y, w, h, de, para, k, o = {}) {
+    const fg = o.fg || OFF, bg = o.bg || '#1A1A18', size = o.size || h * 0.78, hy = y + h / 2;
+    const meia = (ch, parte, sy, sombra) => {
+      ctx.save(); ctx.beginPath(); ctx.rect(x, parte === 'cima' ? y : hy, w, h / 2); ctx.clip();
+      if (sy !== 1) { ctx.translate(0, hy); ctx.scale(1, Math.max(0.001, sy)); ctx.translate(0, -hy); }
+      rr(ctx, x, y, w, h, 12); ctx.fillStyle = bg; ctx.fill();
+      setFont(ctx, MONO, size, 800, 0, 'center'); ctx.fillStyle = fg; ctx.fillText(ch, x + w / 2, y + h / 2 + size * 0.36);
+      if (sombra > 0) { ctx.fillStyle = `rgba(0,0,0,${sombra})`; ctx.fillRect(x, y, w, h); }
+      ctx.restore();
+    };
+    if (k <= 0 || de === para) { meia(para, 'cima', 1, 0); meia(para, 'baixo', 1, 0); }
+    else if (k < 0.5) { meia(para, 'cima', 1, 0); meia(de, 'baixo', 1, 0.25 * k); meia(de, 'cima', 1 - 2 * k, 0.55 * k * 2); }
+    else { meia(para, 'cima', 1, 0); meia(de, 'baixo', 1, 0.25); meia(para, 'baixo', 2 * k - 1, 0.5 * (1 - (2 * k - 1))); }
+    // a dobradiça e os pininhos
+    ctx.fillStyle = 'rgba(0,0,0,0.85)'; ctx.fillRect(x, hy - 1.5, w, 3);
+    ctx.fillStyle = '#3A3A36'; ctx.fillRect(x - 3, hy - 6, 6, 12); ctx.fillRect(x + w - 3, hy - 6, 6, 12);
+  }
+  // a sequência de caracteres por onde uma célula passa (como no letreiro de verdade: sempre para a frente)
+  const ciclo = (a, b) => { const out = [a]; let d = +a; while (String(d) !== b) { d = (d + 1) % 10; out.push(String(d)); } return out; };
+  function flapEm(t, t0, seq, passo) {
+    if (t < t0 || seq.length < 2) return { de: seq[0], para: seq[0], k: 0 };
+    const f = (t - t0) / passo, i = Math.floor(f);
+    if (i >= seq.length - 1) return { de: seq[seq.length - 1], para: seq[seq.length - 1], k: 0 };
+    return { de: seq[i], para: seq[i + 1], k: f - i };
+  }
+  // ---------------------------------------------------------------- ícones de linha
+  function chale(ctx, cx, by, w, cor, o = {}) {
+    const lw = o.lw || Math.max(3, w * 0.035), aceso = o.aceso || 0, tr = o.traco ?? 1;
+    ctx.save(); ctx.lineJoin = 'round'; ctx.lineCap = 'round'; ctx.lineWidth = lw; ctx.strokeStyle = cor;
+    if (tr < 1) { ctx.setLineDash([w * 4 * tr, w * 4]); }
+    ctx.beginPath();
+    ctx.moveTo(cx - w * 0.42, by); ctx.lineTo(cx - w * 0.42, by - w * 0.5); ctx.lineTo(cx, by - w * 0.86); ctx.lineTo(cx + w * 0.42, by - w * 0.5); ctx.lineTo(cx + w * 0.42, by); ctx.closePath();
+    ctx.moveTo(cx - w * 0.54, by - w * 0.4); ctx.lineTo(cx, by - w * 0.86); ctx.lineTo(cx + w * 0.54, by - w * 0.4);
+    ctx.stroke(); ctx.setLineDash([]);
+    if (aceso > 0) { brilho(ctx, cx + w * 0.16, by - w * 0.3, w * 0.6, C.lime, 0.35 * aceso); }
+    if (tr >= 1) {
+      rr(ctx, cx - w * 0.3, by - w * 0.36, w * 0.2, w * 0.36, 3); ctx.stroke();                                  // a porta
+      rr(ctx, cx + w * 0.06, by - w * 0.4, w * 0.22, w * 0.18, 3);                                              // a janela
+      if (aceso > 0) { ctx.fillStyle = rgba(C.lime, aceso); ctx.fill(); }
+      ctx.stroke();
+    }
+    ctx.restore();
+  }
+  function arvore(ctx, cx, by, s, cor, k = 1) {
+    ctx.save(); ctx.strokeStyle = cor; ctx.lineWidth = 3; ctx.lineJoin = 'round'; ctx.lineCap = 'round';
+    ctx.setLineDash([400 * k, 400]);
+    ctx.beginPath(); ctx.moveTo(cx, by - s); ctx.lineTo(cx - s * 0.45, by - s * 0.45); ctx.lineTo(cx - s * 0.2, by - s * 0.45); ctx.lineTo(cx - s * 0.5, by - s * 0.05);
+    ctx.lineTo(cx + s * 0.5, by - s * 0.05); ctx.lineTo(cx + s * 0.2, by - s * 0.45); ctx.lineTo(cx + s * 0.45, by - s * 0.45); ctx.closePath();
+    ctx.moveTo(cx, by - s * 0.05); ctx.lineTo(cx, by + s * 0.12); ctx.stroke(); ctx.setLineDash([]);
+    ctx.restore();
+  }
+  function fogos(ctx, cx, cy, s, cor, k = 1) {
+    ctx.save(); ctx.strokeStyle = cor; ctx.lineWidth = 3; ctx.lineCap = 'round';
+    for (let i = 0; i < 8; i++) {
+      const a = (i / 8) * TAU, r0 = s * 0.18 * k, r1 = s * 0.5 * k;
+      ctx.beginPath(); ctx.moveTo(cx + Math.cos(a) * r0, cy + Math.sin(a) * r0); ctx.lineTo(cx + Math.cos(a) * r1, cy + Math.sin(a) * r1); ctx.stroke();
+      ctx.beginPath(); ctx.arc(cx + Math.cos(a + 0.4) * s * 0.42 * k, cy + Math.sin(a + 0.4) * s * 0.42 * k, 2, 0, TAU); ctx.fillStyle = cor; ctx.fill();
+    }
+    ctx.restore();
+  }
+  function relogio(ctx, cx, cy, r, cor, ang) {
+    ctx.save(); ctx.strokeStyle = cor; ctx.lineWidth = 3; ctx.lineCap = 'round';
+    ctx.beginPath(); ctx.arc(cx, cy, r, 0, TAU); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(cx, cy); ctx.lineTo(cx + Math.cos(ang) * r * 0.65, cy + Math.sin(ang) * r * 0.65); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(cx, cy); ctx.lineTo(cx + Math.cos(ang / 12 - 1.2) * r * 0.45, cy + Math.sin(ang / 12 - 1.2) * r * 0.45); ctx.stroke();
+    ctx.restore();
+  }
+  function marcador(ctx, cx, cy, s, cor) {             // o ícone de salvar
+    ctx.beginPath(); ctx.moveTo(cx - s * 0.36, cy - s * 0.5); ctx.lineTo(cx + s * 0.36, cy - s * 0.5); ctx.lineTo(cx + s * 0.36, cy + s * 0.52);
+    ctx.lineTo(cx, cy + s * 0.26); ctx.lineTo(cx - s * 0.36, cy + s * 0.52); ctx.closePath(); ctx.fillStyle = cor; ctx.fill();
+  }
+  // o balão de conversa genérico: lado 'esq' (o hóspede: escuro, borda) ou 'dir' (a pousada: limão, texto preto)
+  function balao(ctx, x, y, text, lado, o = {}) {
+    const size = o.size || 36, padX = 30, h = size * 2.15, w = tw(ctx, text, DISPLAY, size, 700, -0.3) + 2 * padX;
+    const x0 = lado === 'dir' ? x - w : x, raio = lado === 'esq' ? [30, 30, 30, 8] : [30, 30, 8, 30];
+    ctx.save();
+    if (lado === 'dir') { ctx.shadowColor = rgba(C.lime, 0.25); ctx.shadowBlur = 36; }
+    else { ctx.shadowColor = 'rgba(0,0,0,0.6)'; ctx.shadowBlur = 30; }
+    ctx.beginPath(); ctx.roundRect(x0, y, w, h, raio); ctx.fillStyle = lado === 'dir' ? C.lime : (o.fundo || '#1C1D1A'); ctx.fill(); ctx.restore();
+    if (lado === 'esq') { ctx.beginPath(); ctx.roundRect(x0, y, w, h, raio); ctx.strokeStyle = o.borda || rgba(C.white, 0.18); ctx.lineWidth = o.bw || 2.5; ctx.stroke(); }
+    setFont(ctx, DISPLAY, size, 700, -0.3); ctx.fillStyle = lado === 'dir' ? INK : C.white; ctx.fillText(text, x0 + padX, y + h / 2 + size * 0.36);
+    LINHAS.push({ tag: 'balão', texto: text, sozinha: false });
+    return { x0, y, w, h };
+  }
+  function avatar(ctx, cx, cy, r, cor) {
+    ctx.save(); ctx.strokeStyle = cor; ctx.lineWidth = 3;
+    ctx.beginPath(); ctx.arc(cx, cy, r, 0, TAU); ctx.stroke();
+    ctx.beginPath(); ctx.arc(cx, cy - r * 0.22, r * 0.3, 0, TAU); ctx.stroke();
+    ctx.beginPath(); ctx.arc(cx, cy + r * 0.62, r * 0.52, Math.PI * 1.15, Math.PI * 1.85); ctx.stroke();
+    ctx.restore();
+  }
+  // um elemento que entra com mola a partir de um ponto (escala + leve subida)
+  function surge(ctx, t, t0, ox, oy, fn, o = {}) {
+    if (t < t0) return;
+    const k = mola(t, t0, o.dur || 0.55), a = cl((t - t0) / 0.18);
+    ctx.save(); ctx.globalAlpha *= a; ctx.translate(ox, oy + (1 - k) * (o.dy ?? 26)); ctx.scale(0.6 + 0.4 * k, 0.6 + 0.4 * k); ctx.translate(-ox, -oy); fn(k); ctx.restore();
+  }
+  // "ARRASTA →" na margem direita, ACIMA do canto do ícone de som: a seta dá um empurrãozinho a cada 1,5 s
   function swipe(ctx, textColor, arrowColor, t = 0) {
     const right = M + CW, aw = 64, gap = 26, y = 1166, size = 34, sp = 4;
     setFont(ctx, MONO, size, 800, 0);
@@ -250,254 +407,536 @@
     CAIXAS.arrasta = [x, y - 32, right + 3, y + 8];
     ctx.fillStyle = textColor;
     chars.forEach((ch, i) => { ctx.fillText(ch, x, y); x += ws[i] + sp; });
-    const nud = 12 * Math.pow(Math.max(0, Math.sin(TAU * t / 1.75)), 2);          // 0–12 px, sempre dentro da margem
+    const nud = 12 * Math.pow(Math.max(0, Math.sin(TAU * t / 1.5)), 2);
     const ax = right - 3 - 12 + nud;
     ctx.strokeStyle = arrowColor; ctx.lineWidth = 6; ctx.lineCap = 'round'; ctx.lineJoin = 'round';
     ctx.beginPath(); ctx.moveTo(ax - aw, y - 12); ctx.lineTo(ax, y - 12); ctx.moveTo(ax - 20, y - 30); ctx.lineTo(ax, y - 12); ctx.lineTo(ax - 20, y + 6); ctx.stroke();
   }
-  // a capa vira um MEDIDOR (revisão de 2026-11-20, 2ª): a escala gravada ao fundo (a mesma dos outros carrosséis,
-  // centro fora do quadro em 1180, 1280) fica PARADA, com a região "pico" marcada no aro por uma faixa mais escura,
-  // inteira dentro do quadro (no alto, à direita, acima do chip e do título). SÓ O PONTEIRO SE MOVE: uma agulha preta
-  // (45%, a espessura dos traços maiores) sobre o raio da escala, com o pivô no centro dela (fora do quadro); a
-  // agulha vai do raio 820 até a ponta no raio 1070, encostando no aro, e some aos poucos para o lado do pivô. A ponta
-  // fica dentro do quadro em todo o percurso, e a agulha nunca chega perto do "ARRASTA →" nem do chip.
-  //   0,3–2,0 s: sobe de "normal" (190°, embaixo à esquerda, sob a última linha do título) até o meio da faixa de pico
-  //   (253°), com um leve assentamento; fica lá até 6,2 s; volta devagar e chega em casa no último quadro (= quadro 0).
-  const GRAU = Math.PI / 180;
-  const MED = { cx: 1180, cy: 1280, a0: 190 * GRAU, a1: 253 * GRAU, r0: 820, r1: 1070, pico: [247 * GRAU, 259 * GRAU], rPico: 1060, wPico: 30, alfa: 0.45 };
-  const eSettle = (x) => { if (x <= 0) return 0; if (x >= 1) return 1; const c1 = 0.9, c3 = c1 + 1; return 1 + c3 * Math.pow(x - 1, 3) + c1 * Math.pow(x - 1, 2); };
-  const medidor = (t) => (t < 6.2 ? eSettle(p(t, 0.3, 2.0)) : 1 - eIO(p(t, 6.2, DUR - 1 / FPS)));   // 0 = normal, 1 = pico (no último quadro, já em casa)
-  // a agulha no instante t: a base (raio 820) e a ponta (raio 1070), em coordenadas do quadro
-  function agulha(t) {
-    const a = MED.a0 + (MED.a1 - MED.a0) * medidor(t), c = Math.cos(a), s_ = Math.sin(a);
-    return { a, base: [MED.cx + MED.r0 * c, MED.cy + MED.r0 * s_], ponta: [MED.cx + MED.r1 * c, MED.cy + MED.r1 * s_] };
-  }
-  function limeBackground(ctx, t = 0) {
+  // a escala gravada ao fundo da capa limão (a mesma dos outros carrosséis), parada e sutil
+  function limeBackground(ctx) {
     ctx.fillStyle = C.lime; ctx.fillRect(0, 0, W, H);
-    ctx.save(); ctx.translate(MED.cx, MED.cy); ctx.rotate(0.385); ctx.lineCap = 'round';
+    ctx.save(); ctx.translate(1180, 1280); ctx.rotate(0.385); ctx.lineCap = 'round';
     for (let j = 0; j < 180; j++) {
       const a = (j / 180) * TAU, r1 = 1180, r0 = j % 10 === 0 ? 1080 : j % 5 === 0 ? 1120 : 1150;
       ctx.beginPath(); ctx.moveTo(r0 * Math.cos(a), r0 * Math.sin(a)); ctx.lineTo(r1 * Math.cos(a), r1 * Math.sin(a));
-      ctx.strokeStyle = rgba(C.limeDeep, j % 10 === 0 ? 0.55 : 0.3); ctx.lineWidth = j % 10 === 0 ? 5 : 3; ctx.stroke();
+      ctx.strokeStyle = rgba(C.limeDeep, j % 10 === 0 ? 0.5 : 0.28); ctx.lineWidth = j % 10 === 0 ? 5 : 3; ctx.stroke();
     }
-    for (const r of [1000, 1010, 760]) { ctx.beginPath(); ctx.arc(0, 0, r, 0, TAU); ctx.strokeStyle = rgba(C.limeDeep, 0.3); ctx.lineWidth = 3; ctx.stroke(); }
-    ctx.restore();
-    // a região "pico": a faixa mais escura no aro (parada, inteira no quadro)
-    ctx.beginPath(); ctx.arc(MED.cx, MED.cy, MED.rPico, MED.pico[0], MED.pico[1]); ctx.strokeStyle = rgba(C.limeDeep, 0.55); ctx.lineWidth = MED.wPico; ctx.lineCap = 'butt'; ctx.stroke();
-    // a agulha (some aos poucos para o lado do pivô, que fica fora do quadro)
-    const g = agulha(t), gr = ctx.createLinearGradient(g.base[0], g.base[1], g.ponta[0], g.ponta[1]);
-    gr.addColorStop(0, rgba(C.ink, 0)); gr.addColorStop(0.45, rgba(C.ink, MED.alfa)); gr.addColorStop(1, rgba(C.ink, MED.alfa));
-    ctx.save(); ctx.strokeStyle = gr; ctx.lineWidth = 5; ctx.lineCap = 'round';
-    ctx.beginPath(); ctx.moveTo(g.base[0], g.base[1]); ctx.lineTo(g.ponta[0], g.ponta[1]); ctx.stroke();
-    ctx.beginPath(); ctx.arc(g.ponta[0], g.ponta[1], 7, 0, TAU); ctx.fillStyle = rgba(C.ink, MED.alfa); ctx.fill();   // a pontinha
+    for (const r of [1000, 1010, 760]) { ctx.beginPath(); ctx.arc(0, 0, r, 0, TAU); ctx.strokeStyle = rgba(C.limeDeep, 0.28); ctx.lineWidth = 3; ctx.stroke(); }
     ctx.restore();
   }
-  const CAIXAS = {};   // (conferência) as caixas do chip e do "ARRASTA →" na capa
-  const W_ = C.white, Li = C.lime, INK = C.ink;
-  const mid = (t, sp) => (t.bottom + sp.top) / 2;
-  const titulo2 = (ctx, a, b, o = {}) => title(ctx, [{ t: a, c: W_ }, { t: b, c: Li, br: true }], L.titleTop, Object.assign({ lines: 2, max: 84 }, o));
-  const monoLab = (ctx, s, x, y, cor = C.lime, size = 28, align = 'left') => { setFont(ctx, MONO, size, 800, 3, align); ctx.fillStyle = cor; ctx.fillText(s, x, y); };
+  // o texto fixo dos slides internos: a trilha, o título de 2 linhas (branco + limão) e o apoio
+  function topo(ctx, passo, a, b, apoio, fict) {
+    if (passo) track(ctx, passo);
+    if (fict) ficticio(ctx);
+    const sp = support(ctx, apoio);
+    const tt = title(ctx, [{ t: a, c: W_ }, { t: b, c: Li, br: true }], L.titleTop, { lines: 2, max: 84 });
+    CAIXAS.texto = [[M, tt.top - 6, M + CW, tt.bottom + 6], [M, sp.top - 6, M + CW, L.supportBottom + 14]];
+    return { tt, sp, y0: tt.bottom + 34, y1: sp.top - 34 };            // a faixa da cena
+  }
+  // o fundo de cada cena (atrás de tudo): uma luz limão que respira devagar no meio da faixa da cena
+  function palco(ctx, t, y0, y1, a = 1) { brilho(ctx, 540, (y0 + y1) / 2, 520, C.lime, (0.045 + 0.02 * Math.sin(TAU * t / DUR)) * a); }
 
-  // ---------------------------------------------------------------- desenhos dos slides
-  // 02 · a etiqueta de preço subindo de repente (âmbar) e o dinheiro parado na mesa (limão)
-  function etiqueta(ctx, cx, cy, s, cor) {
-    ctx.save(); ctx.translate(cx, cy); ctx.rotate(-0.12); ctx.scale(s, s);
-    ctx.beginPath(); ctx.moveTo(-120, -64); ctx.lineTo(70, -64); ctx.lineTo(130, 0); ctx.lineTo(70, 64); ctx.lineTo(-120, 64); ctx.closePath();
-    ctx.fillStyle = C.card; ctx.fill(); ctx.strokeStyle = cor; ctx.lineWidth = 5; ctx.lineJoin = 'round'; ctx.stroke();
-    ctx.beginPath(); ctx.arc(84, 0, 12, 0, TAU); ctx.strokeStyle = cor; ctx.lineWidth = 4; ctx.stroke();
-    setFont(ctx, MONO, 62, 800, 0, 'center'); ctx.fillStyle = cor; ctx.fillText('R$', -22, 22);
-    ctx.restore();
+  // =====================================================================
+  // OS SLIDES
+  // =====================================================================
+  // 01 · capa: o título parado desde o quadro 0; embaixo, o letreiro de aeroporto vira R$ 300 → 360 → 450 → 300
+  const CAPA_SEQ = (() => {
+    // [instante, célula, sequência, passo]: as dezenas e as unidades de centena viram como no letreiro (sempre para a frente)
+    return [
+      [1.3, 4, ciclo('0', '6'), 0.075],                              // R$ 300 → R$ 360
+      [3.7, 3, ciclo('3', '4'), 0.12], [3.7, 4, ciclo('6', '5'), 0.06],   // R$ 360 → R$ 450
+      [6.5, 3, ciclo('4', '3'), 0.06], [6.5, 4, ciclo('5', '0'), 0.08],   // R$ 450 → R$ 300 (o loop)
+    ];
+  })();
+  function letreiroCapa(t) {
+    const cel = ['R', '$', ' ', '3', '0', '0'].map((c) => ({ de: c, para: c, k: 0 }));
+    for (const [t0, i, seq, passo] of CAPA_SEQ) { if (t >= t0) cel[i] = flapEm(t, t0, seq, passo); }
+    return cel;
   }
-  function moeda(ctx, x, y, cor) {
-    ctx.beginPath(); ctx.ellipse(x, y + 8, 58, 18, 0, 0, TAU); ctx.fillStyle = rgba(cor, 0.55); ctx.fill();
-    ctx.beginPath(); ctx.ellipse(x, y, 58, 18, 0, 0, TAU); ctx.fillStyle = cor; ctx.fill();
-    ctx.beginPath(); ctx.ellipse(x, y, 40, 11, 0, 0, TAU); ctx.strokeStyle = rgba(C.ink, 0.35); ctx.lineWidth = 3; ctx.stroke();
-  }
-  // 03 · dezembro em faixas de demanda
-  const DIAS = 31, ALTA = [18, 19, 20, 21, 22, 23, 26, 27, 28, 29], PICO = [24, 25, 30, 31];
-  const faixaDe = (d) => (PICO.includes(d) ? 'pico' : ALTA.includes(d) ? 'alta' : 'normal');
-  const COR_FAIXA = { normal: '#6E6E68', alta: '#F4F4F0', pico: C.lime };   // (o âmbar é só para alertas)
-
   const SLIDES = {
-    // 01 · capa limão: completa no quadro 0; o movimento fica na escala do fundo, no chip e no "ARRASTA →"
     1(ctx, t) {
-      limeBackground(ctx, t);
+      limeBackground(ctx);
       const tt = title(ctx, [{ t: 'Tarifa de', c: INK }, { t: 'dezembro:', c: INK, br: true }, { t: 'quando e', c: INK, br: true }, { t: 'quanto subir?', c: INK, br: true }], 0,
-        { lines: 4, max: 170, maxH: 760, lh: 1.0, vcenter: [320, 1100], maxW: CW - 8, x: M + 2 });
-      // o chip: o pontinho da frente pulsa (2 vezes em 7 s)
-      const c = chip(ctx, M + 2, tt.top - 74, 'ALTA TEMPORADA', { size: 32, stroke: INK, color: INK, lw: 3, padX: 24 + 34 });
-      CAIXAS.chip = [c.left, tt.top - 74 - 32 * 0.95, c.left + c.w, tt.top - 74 + 32 * 0.95];
-      CAIXAS.titulo = [M, tt.top, M + CW, tt.bottom];
-      const pr = 8 + 3 * (0.5 - 0.5 * Math.cos(TAU * t / 3.5));
-      ctx.beginPath(); ctx.arc(c.left + 30, tt.top - 74, pr, 0, TAU); ctx.fillStyle = INK; ctx.fill();
+        { lines: 4, max: 140, maxH: 480, lh: 1.0, vcenter: [330, 790], maxW: CW - 8, x: M + 2 });
+      const c = chip(ctx, M + 2, tt.top - 70, 'ALTA TEMPORADA', { size: 32, stroke: INK, color: INK, lw: 3, padX: 24 + 34 });
+      const pr = 8 + 3 * (0.5 - 0.5 * Math.cos(TAU * t / 3));
+      ctx.beginPath(); ctx.arc(c.left + 30, tt.top - 70, pr, 0, TAU); ctx.fillStyle = INK; ctx.fill();
+      CAIXAS.texto = [[M, tt.top - 110, M + CW, tt.bottom + 6]];
+      // o letreiro (painel preto com sombra e reflexo)
+      const bx = M, by = 846, bw = CW, bh = 250, cw = 124, ch = 158, gap = 14;
+      ctx.save(); ctx.shadowColor = 'rgba(10,10,10,0.35)'; ctx.shadowBlur = 40; ctx.shadowOffsetY = 18;
+      rr(ctx, bx, by, bw, bh, 28); ctx.fillStyle = INK; ctx.fill(); ctx.restore();
+      rr(ctx, bx + 6, by + 6, bw - 12, bh - 12, 24); ctx.strokeStyle = '#2A2A27'; ctx.lineWidth = 2; ctx.stroke();
+      const cel = letreiroCapa(t), x0 = bx + (bw - (6 * cw + 5 * gap)) / 2, y0 = by + 56;
+      cel.forEach((c_, i) => flapCell(ctx, x0 + i * (cw + gap), y0, cw, ch, c_.de, c_.para, c_.k, { size: 122 }));
+      // o rótulo de cima: a faixa do preço (troca junto com a virada)
+      const faixa = t < 1.55 || t >= 6.9 ? ['NORMAL', ''] : t < 4.05 ? ['ALTA', '+20%'] : t < 6.9 ? ['PICO', '+50%'] : ['NORMAL', ''];
+      monoLab(ctx, 'DIÁRIA · ' + faixa[0], bx + 40, by + 40, C.lime, 24);
+      if (faixa[1]) monoLab(ctx, faixa[1], bx + bw - 40, by + 40, C.lime, 24, 'right');
+      // o reflexo que passa pelo vidro do letreiro a cada virada
+      for (const tv of [1.3, 3.7, 6.5]) {
+        const k = p(t, tv, tv + 0.9); if (k <= 0 || k >= 1) continue;
+        ctx.save(); rr(ctx, bx, by, bw, bh, 28); ctx.clip();
+        const xx = bx - 200 + (bw + 400) * eIO(k), g = ctx.createLinearGradient(xx - 120, 0, xx + 120, 0);
+        g.addColorStop(0, 'rgba(255,255,255,0)'); g.addColorStop(0.5, 'rgba(255,255,255,0.10)'); g.addColorStop(1, 'rgba(255,255,255,0)');
+        ctx.fillStyle = g; ctx.fillRect(bx, by, bw, bh); ctx.restore();
+      }
+      setFont(ctx, MONO, 18, 700, 2, 'right'); ctx.fillStyle = '#5E5E59'; ctx.fillText('EXEMPLO FICTÍCIO', bx + bw - 40, by + bh - 12);
       swipe(ctx, INK, INK, t);
+      LINHAS.push({ tag: 'letreiro', texto: 'R$ 300 → R$ 360 → R$ 450 → R$ 300', sozinha: false });
     },
-    // 02 · o problema
+
+    // 02 · o problema: (a) subir em cima da hora → o hóspede some; (b) não subir → o dinheiro que deixou de entrar
     2(ctx, t) {
+      ficticio(ctx);
       const tt = title(ctx, [{ t: 'Subir o preço em cima da hora assusta quem já perguntou.', c: W_ }, { t: 'Não subir deixa dinheiro na mesa.', c: Li, br: true }],
-        L.titleTop0 + 40, { max: 96, maxH: 600, lh: 1.06 });
-      const cy = (tt.bottom + 1150) / 2;
-      ctx.save(); ctx.translate(540, cy); ctx.scale(1.45, 1.45); ctx.translate(-540, -cy);       // o desenho, maior
-      // à esquerda: a etiqueta sobe de repente (âmbar), com a seta
-      const k = eBack(p(t, 0.25, 0.95)), y = cy + 40 - 90 * k;
-      ctx.save(); ctx.globalAlpha = cl(p(t, 0.15, 0.4)); etiqueta(ctx, 372, y, 1, C.amber); ctx.restore();
-      entra(ctx, t, 0.5, 0.45, () => {
-        ctx.strokeStyle = C.amber; ctx.lineWidth = 9; ctx.lineCap = 'round'; ctx.lineJoin = 'round';
-        ctx.beginPath(); ctx.moveTo(530, cy + 90); ctx.lineTo(530, cy - 120); ctx.moveTo(496, cy - 86); ctx.lineTo(530, cy - 120); ctx.lineTo(564, cy - 86); ctx.stroke();
-      }, 20);
-      // à direita: a mesa e as moedas que ficaram nela (limão)
-      entra(ctx, t, 0.6, 0.4, () => { ctx.fillStyle = '#2A2A27'; rr(ctx, 590, cy + 110, 240, 22, 11); ctx.fill(); }, 0);
-      const pilhas = [[640, 4, 0.8], [715, 6, 1.0], [782, 3, 1.2]];
-      pilhas.forEach(([x, n, a]) => {
-        for (let i = 0; i < n; i++) {
-          const k2 = eOut(p(t, a + i * 0.07, a + i * 0.07 + 0.3));
-          if (k2 <= 0) continue;
-          ctx.save(); ctx.globalAlpha = k2; moeda(ctx, x, cy + 92 - i * 26 - (1 - k2) * 40, C.lime); ctx.restore();
+        176, { max: 66, maxH: 300, lh: 1.08 });
+      CAIXAS.texto = [[M, tt.top - 6, M + CW, tt.bottom + 6]];
+      const Y0 = tt.bottom + 50, k0 = saida(t);
+      palco(ctx, t, Y0, 1120, k0);
+      camada(ctx, k0, () => {
+        // ---- (a) a conversa
+        const fadeA = 1 - eIO(p(t, 3.9, 4.7)), sobeA = -50 * eIO(p(t, 3.9, 4.7));
+        camada(ctx, fadeA, () => {
+          ctx.save(); ctx.translate(0, sobeA);
+          const XA = M + 96, R = M + CW, SL = [0, 118, 236, 322, 440, 556], y = (i) => Y0 + SL[i], BS = { size: 42 };
+          // o hóspede (avatar genérico); some aos pedaços no fim
+          const someAv = p(t, 3.55, 4.1);
+          if (t >= 0.25) {
+            camada(ctx, (1 - someAv) * cl((t - 0.25) / 0.2), () => avatar(ctx, M + 38, y(0) + 45, 36, C.gray));
+            if (someAv > 0 && someAv < 1) for (let i = 0; i < 16; i++) {
+              const a = hash(i, 9) * TAU, r = 10 + 90 * eOut(someAv) * hash(i, 4);
+              ctx.beginPath(); ctx.arc(Math.max(M + 4, M + 38 + Math.cos(a) * r * 0.6 + 30 * someAv), y(0) + 45 + Math.sin(a) * r - 40 * someAv, 2.4, 0, TAU);   // (sobe e vai para a direita: nunca passa da margem) ctx.fillStyle = rgba(C.gray, 1 - someAv); ctx.fill();
+            }
+          }
+          surge(ctx, t, 0.3, XA, y(0) + 80, () => balao(ctx, XA, y(0), 'Quanto fica a diária no Natal?', 'esq', BS));
+          surge(ctx, t, 0.95, R, y(1) + 80, () => balao(ctx, R, y(1), 'R$ 300', 'dir', BS));
+          // "3 dias depois": o reloginho gira rápido
+          surge(ctx, t, 1.55, 540, y(2) + 30, () => {
+            const w = tw(ctx, '3 DIAS DEPOIS', MONO, 26, 800, 3) + 96;
+            rr(ctx, 540 - w / 2, y(2) + 4, w, 52, 26); ctx.fillStyle = '#161615'; ctx.fill(); ctx.strokeStyle = '#3A3A36'; ctx.lineWidth = 2; ctx.stroke();
+            relogio(ctx, 540 - w / 2 + 30, y(2) + 30, 13, C.gray, -Math.PI / 2 + TAU * 3 * eIO(p(t, 1.6, 2.3)));
+            monoLab(ctx, '3 DIAS DEPOIS', 540 - w / 2 + 60, y(2) + 40, C.gray, 26);
+          }, { dy: 10 });
+          surge(ctx, t, 2.2, R, y(3) + 80, () => balao(ctx, R, y(3), 'Agora está R$ 450', 'dir', BS));
+          // o susto (âmbar): o balão chega tremendo
+          const tr = t > 2.9 && t < 3.4 ? 5 * Math.sin((t - 2.9) * 60) * (1 - p(t, 2.9, 3.4)) : 0;
+          surge(ctx, t, 2.9, XA, y(4) + 80, () => {
+            ctx.save(); ctx.translate(tr, 0);
+            const b = balao(ctx, XA, y(4), 'Ué, semana passada era 300…', 'esq', { borda: AMB, bw: 3.5, fundo: '#1F1B12', size: 42 });
+            brilho(ctx, b.x0 + b.w, b.y, 60, AMB, 0.35);
+            ctx.beginPath(); ctx.arc(b.x0 + b.w - 4, b.y + 4, 17, 0, TAU); ctx.fillStyle = AMB; ctx.fill();
+            setFont(ctx, DISPLAY, 26, 900, 0, 'center'); ctx.fillStyle = INK; ctx.fillText('!', b.x0 + b.w - 4, b.y + 13);
+            ctx.restore();
+          });
+          // visualizado (e ninguém responde)
+          surge(ctx, t, 3.45, XA, y(5) + 10, () => {
+            monoLab(ctx, 'VISUALIZADO', XA + 4, y(5) + 6, C.grayM, 22);
+            const xx = XA + 4 + tw(ctx, 'VISUALIZADO', MONO, 22, 800, 3) + 14;
+            ctx.strokeStyle = C.grayM; ctx.lineWidth = 3; ctx.lineCap = 'round';
+            for (const d of [0, 11]) { ctx.beginPath(); ctx.moveTo(xx + d, y(5) - 2); ctx.lineTo(xx + d + 6, y(5) + 4); ctx.lineTo(xx + d + 16, y(5) - 8); ctx.stroke(); }
+          }, { dy: 6 });
+          ctx.restore();
+        });
+        // ---- (b) os quatro chalés lotados a R$ 300 e o que deixou de entrar
+        if (t >= 4.4) {
+          const yb = Y0 + 290, xs = [190, 420, 660, 890];
+          xs.forEach((x, i) => {
+            const a0 = 4.5 + i * 0.12, tr_ = eOut(p(t, a0, a0 + 0.6)), ac = eOut(p(t, 5.3 + i * 0.18, 5.6 + i * 0.18));
+            const tremula = ac >= 1 ? 0.85 + 0.15 * Math.sin(t * 3 + i * 1.7) : ac;
+            camada(ctx, cl((t - a0) / 0.2), () => chale(ctx, x, yb, 176, ac > 0 ? C.white : C.gray, { traco: tr_, aceso: tremula }));
+            surge(ctx, t, 5.3 + i * 0.18, x, yb - 150, () => {
+              const s = 'LOTADO', w = tw(ctx, s, MONO, 22, 800, 2) + 30;
+              rr(ctx, x - w / 2, yb - 212, w, 40, 20); ctx.fillStyle = C.lime; ctx.fill();
+              setFont(ctx, MONO, 22, 800, 2, 'center'); ctx.fillStyle = INK; ctx.fillText(s, x, yb - 184);
+            }, { dy: 14 });
+            surge(ctx, t, 5.45 + i * 0.18, x, yb + 40, () => monoLab(ctx, 'R$ 300', x, yb + 48, C.white, 30, 'center', 1), { dy: 8 });
+          });
+          // o contador do que deixou de entrar (âmbar = alerta), rolando até R$ 1.800
+          const yc = yb + 150;
+          surge(ctx, t, 6.0, 540, yc + 80, () => {
+            monoLab(ctx, 'DEIXOU DE ENTRAR', 540, yc + 10, C.gray, 28, 'center');
+            const v = 1800 * eOut(p(t, 6.15, 7.6));
+            brilho(ctx, 540, yc + 90, 320, AMB, 0.12 + 0.04 * Math.sin(t * 4));
+            odometro(ctx, v, 1800, 540, yc + 128, 124, { cor: AMB, align: 'center' });
+            monoLab(ctx, '4 CHALÉS × 3 NOITES × R$ 150', 540, yc + 186, C.grayM, 24, 'center', 2);
+          }, { dy: 20 });
+          // a mesa e as moedas/notas que escapam dela (somem antes da margem)
+          const ym = yc + 262;
+          camada(ctx, cl((t - 6.1) / 0.3), () => {
+            rr(ctx, 200, ym, 680, 10, 5); ctx.fillStyle = '#2C2C29'; ctx.fill();
+            for (let i = 0; i < 26; i++) {
+              const nasc = 6.3 + i * 0.17, life = 1.3, u = (t - nasc) / life;
+              if (u <= 0 || u >= 1) continue;
+              const sx = 800 + hash(i, 2) * 80, ex = sx + 40 + 50 * hash(i, 3), ey = ym - 30 - 70 * hash(i, 6);   // (pela direita, longe do contador)
+              const x = sx + (ex - sx) * eOut(u), yv = ym - 14 + (ey - ym) * eOut(u) - 60 * Math.sin(Math.PI * u), al = Math.sin(Math.PI * u) * 0.9;
+              if (x > 960) continue;
+              ctx.save(); ctx.translate(x, yv); ctx.rotate((hash(i, 8) - 0.5) * 3 * u); ctx.globalAlpha *= al;
+              if (i % 3) { ctx.beginPath(); ctx.ellipse(0, 0, 16, 16, 0, 0, TAU); ctx.strokeStyle = C.lime; ctx.lineWidth = 3; ctx.stroke(); setFont(ctx, MONO, 16, 800, 0, 'center'); ctx.fillStyle = C.lime; ctx.fillText('$', 0, 6); }
+              else { rr(ctx, -24, -13, 48, 26, 4); ctx.strokeStyle = C.lime; ctx.lineWidth = 3; ctx.stroke(); ctx.beginPath(); ctx.arc(0, 0, 6, 0, TAU); ctx.stroke(); }
+              ctx.restore();
+            }
+            // as moedas ainda paradas na mesa
+            for (let i = 0; i < 6; i++) { const x = 790 + i * 16; for (let j = 0; j < 3 - (i % 2); j++) { ctx.beginPath(); ctx.ellipse(x, ym - 8 - j * 9, 18, 6, 0, 0, TAU); ctx.fillStyle = rgba(C.lime, 0.85); ctx.fill(); } }
+          });
+          faiscas(ctx, t, [100, yb - 290, 980, yb + 20], 18, C.lime, 21, cl((t - 6) / 0.5));
         }
       });
-      ctx.restore();
+      LINHAS.push({ tag: 'dados', texto: '4 chalés × 3 noites × R$ 150 = R$ 1.800', sozinha: false });
     },
-    // 03 · passo 1: as datas por demanda (a faixa de dezembro pinta em três cores, da esquerda para a direita: normal
-    // cinza, alta off-white, pico limão)
+
+    // 03 · as datas: o calendário de dezembro monta em cascata; uma onda pinta as faixas; o pico acende com ícones
     3(ctx, t) {
-      track(ctx, 1);
-      const sp = support(ctx, 'Normal, alta e pico, cada uma com o seu valor.');
-      const tt = titulo2(ctx, 'Separe as datas', 'por demanda.');
-      const m = mid(tt, sp), gap = 4, w = (CW - gap * (DIAS - 1)) / DIAS, h = 150, y0 = m - 150;
-      monoLab(ctx, 'DEZEMBRO', M, y0 - 30, C.gray, 28);
-      for (let d = 1; d <= DIAS; d++) {
-        const x = M + (d - 1) * (w + gap), f = faixaDe(d), k = eOut(p(t, 0.25 + (d - 1) * 0.035, 0.25 + (d - 1) * 0.035 + 0.3));
-        rr(ctx, x, y0, w, h, 6); ctx.fillStyle = '#1C1C1A'; ctx.fill();
-        if (k > 0) { const hh = h * k; rr(ctx, x, y0 + h - hh, w, hh, 6); ctx.fillStyle = COR_FAIXA[f]; ctx.fill(); }
-      }
-      // os dias de referência embaixo da faixa
-      const marca = (d, s) => { const x = M + (d - 1) * (w + gap) + w / 2; monoLab(ctx, s, x, y0 + h + 40, C.gray, 24, 'center'); };
-      entra(ctx, t, 1.2, 0.4, () => { marca(1, '1'); marca(18, '18'); marca(24, '24'); marca(31, '31'); }, 10);
-      // a legenda das três faixas
-      const ly = y0 + h + 130, itens = [['NORMAL', COR_FAIXA.normal], ['ALTA', COR_FAIXA.alta], ['PICO · 24–25 E 30–31', COR_FAIXA.pico]];
-      let x = M;
-      itens.forEach(([s, cor], i) => entra(ctx, t, 1.3 + i * 0.15, 0.4, () => {
-        rr(ctx, x, ly - 26, 34, 34, 8); ctx.fillStyle = cor; ctx.fill();
-        monoLab(ctx, s, x + 48, ly, C.white, 28);
-      }, 14) || (x += 48 + tw(ctx, s, MONO, 28, 800, 3) + 44));
-      LINHAS.push({ tag: 'faixa', texto: 'DEZEMBRO · NORMAL · ALTA · PICO · 24–25 E 30–31', sozinha: false });
+      const { y0, y1 } = topo(ctx, 1, 'Separe as datas', 'por demanda.', 'Normal, alta e pico, cada uma com o seu valor.');
+      const k0 = saida(t); palco(ctx, t, y0, y1, k0);
+      camada(ctx, k0, () => {
+        const gap = 12, cw = (CW - 6 * gap) / 7, chh = 100, gy = y0 + 50, dow = ['D', 'S', 'T', 'Q', 'Q', 'S', 'S'];
+        dow.forEach((d, i) => camada(ctx, cl((t - 0.1 - i * 0.04) / 0.3), () => monoLab(ctx, d, M + i * (cw + gap) + cw / 2, gy - 16, C.grayM, 22, 'center', 0)));
+        // dezembro de 2026 começa numa terça
+        for (let d = 1; d <= 31; d++) {
+          const pos = d + 1, col = pos % 7, row = Math.floor(pos / 7), x = M + col * (cw + gap), y = gy + row * (chh + gap);
+          const a0 = 0.2 + (col + row) * 0.07, k = mola(t, a0, 0.5);
+          if (t < a0) continue;
+          const f = faixaDe(d), onda = 1.6 + (col * 0.6 + row) * 0.12, pin = eOut(p(t, onda, onda + 0.35));
+          const cor = f === 'pico' ? C.lime : f === 'alta' ? OFF : '#3A3A37';
+          ctx.save(); ctx.translate(x + cw / 2, y + chh / 2); ctx.scale(0.5 + 0.5 * k, 0.5 + 0.5 * k); ctx.globalAlpha *= cl((t - a0) / 0.15);
+          rr(ctx, -cw / 2, -chh / 2, cw, chh, 14); ctx.fillStyle = '#161615'; ctx.fill();
+          if (pin > 0) { ctx.save(); rr(ctx, -cw / 2, -chh / 2, cw, chh, 14); ctx.clip(); ctx.fillStyle = cor; ctx.fillRect(-cw / 2, chh / 2 - chh * pin, cw, chh * pin); ctx.restore(); }
+          rr(ctx, -cw / 2, -chh / 2, cw, chh, 14); ctx.strokeStyle = '#2C2C29'; ctx.lineWidth = 2; ctx.stroke();
+          const escuro = pin > 0.6 && f !== 'normal';
+          setFont(ctx, MONO, 34, 800, 0, 'left'); ctx.fillStyle = escuro ? INK : C.white; ctx.fillText(String(d), -cw / 2 + 14, -chh / 2 + 42);
+          // os ícones do pico (árvore no 24–25, fogos no 30–31) e o brilho que pulsa
+          if (f === 'pico') {
+            const ki = eOut(p(t, 3.3 + (d % 2) * 0.12, 3.9 + (d % 2) * 0.12));
+            if (ki > 0) {
+              if (d <= 25) arvore(ctx, cw / 2 - 30, chh / 2 - 12, 40, INK, ki); else fogos(ctx, cw / 2 - 30, chh / 2 - 30, 46, INK, ki);
+            }
+          }
+          ctx.restore();
+          if (f === 'pico' && t > 3.6) brilho(ctx, x + cw / 2, y + chh / 2, 110, C.lime, 0.16 + 0.1 * Math.sin(TAU * (t - 3.6) / 1.4));
+        }
+        // a frente da onda (uma faixa de luz que atravessa o calendário)
+        const ko = p(t, 1.5, 2.9);
+        if (ko > 0 && ko < 1) { const xx = M - 100 + (CW + 300) * eIO(ko); brilho(ctx, xx, gy + 2.5 * (chh + gap), 260, C.white, 0.08); }
+        // a legenda das três faixas
+        const ly = gy + 5 * (chh + gap) + 34, itens = [['NORMAL', '#5E5E59'], ['ALTA · 18–23 E 26–29', OFF], ['PICO · 24–25 E 30–31', C.lime]];
+        let x = M;
+        itens.forEach(([s, cor], i) => {
+          surge(ctx, t, 4.0 + i * 0.15, x + 20, ly, () => { rr(ctx, x, ly - 24, 30, 30, 8); ctx.fillStyle = cor; ctx.fill(); monoLab(ctx, s, x + 42, ly, C.white, 22, 'left', 2); }, { dy: 10 });
+          x += 42 + tw(ctx, s, MONO, 22, 800, 2) + 34;
+        });
+      });
     },
-    // 04 · passo 2: o valor de cada faixa (barras crescendo, números contando)
+
+    // 04 · os valores: uma escada de três degraus; o chalé sobe e, em cada degrau, cai uma etiqueta balançando
     4(ctx, t) {
-      track(ctx, 2); ficticio(ctx);
-      const sp = support(ctx, 'Preço pensado com calma, resposta rápida no WhatsApp.');
-      const tt = titulo2(ctx, 'Defina o valor de cada', 'faixa antes de abrir.');
-      const rows = [['NORMAL', 300, '', COR_FAIXA.normal], ['ALTA', 360, '+20%', COR_FAIXA.alta], ['PICO', 450, '+50%', C.lime]];
-      const rh = 150, gap = 40, total = rows.length * rh + (rows.length - 1) * gap;
-      let y = mid(tt, sp) - total / 2;
-      rows.forEach(([lab, v, pct, cor], i) => {
-        const a = 0.2 + i * 0.25, k = eOut(p(t, a, a + 1.1));
-        monoLab(ctx, lab, M, y + 30, C.gray, 30);
-        setFont(ctx, DISPLAY, 64, 900, -1.5, 'right'); ctx.fillStyle = C.white; ctx.fillText(brl(v * k), M + CW, y + 52);
-        if (pct) { const xv = M + CW - tw(ctx, brl(v), DISPLAY, 64, 900, -1.5) - 26;     // (a largura do valor final: o selo não pula)
-          entra(ctx, t, a + 1.0, 0.35, () => { setFont(ctx, MONO, 32, 800, 1, 'right'); ctx.fillStyle = cor; ctx.fillText(pct, xv, y + 50); }, 10); }
-        rr(ctx, M, y + 80, CW, 56, 14); ctx.fillStyle = '#1C1C1A'; ctx.fill();
-        if (k > 0) { rr(ctx, M, y + 80, CW * (v / 450) * k, 56, 14); ctx.fillStyle = cor; ctx.fill(); }
-        y += rh + gap;
+      const { y0, y1 } = topo(ctx, 2, 'Defina o valor de cada', 'faixa antes de abrir.', 'Preço pensado com calma, resposta rápida no WhatsApp.', true);
+      const k0 = saida(t); palco(ctx, t, y0, y1, k0);
+      camada(ctx, k0, () => {
+        const base = y1 + 10, sw = 290, gx = 12, alt = [96, 192, 288], x0 = M + (CW - 3 * sw - 2 * gx) / 2;
+        const DEG = [['NORMAL', 300, '', '#5E5E59'], ['ALTA', 360, '+20%', OFF], ['PICO', 450, '+50%', C.lime]];
+        // os degraus sobem do chão, em sequência (com um pouco de profundidade: a face de cima mais clara)
+        DEG.forEach(([lab, , , cor], i) => {
+          const k = mola(t, 0.2 + i * 0.15, 0.6), x = x0 + i * (sw + gx), h = alt[i] * k, top = base - h;
+          if (k <= 0) return;
+          rr(ctx, x, top, sw, h, 14); ctx.fillStyle = '#171716'; ctx.fill(); ctx.strokeStyle = '#2C2C29'; ctx.lineWidth = 2; ctx.stroke();
+          rr(ctx, x, top, sw, 14, 7); ctx.fillStyle = cor; ctx.fill();
+          if (h > 50) monoLab(ctx, lab, x + sw / 2, Math.min(base - 22, top + 58), C.gray, 24, 'center');
+        });
+        // o chalé pula de degrau em degrau (amassa ao cair, estica ao pular)
+        const pulos = [0.9, 2.3, 3.7], pos = (i) => [x0 + i * (sw + gx) + sw / 2, base - alt[i]];
+        let cx = x0 - 90, cy = base, sq = 1;
+        if (t >= 0.6) {
+          cx = x0 + sw / 2 - 160 * (1 - eOut(p(t, 0.6, 0.9))); cy = base;
+          pulos.forEach((tp, i) => {
+            const [px, py] = pos(i), [ax, ay] = i ? pos(i - 1) : [x0 + sw / 2 - 160, base];
+            const u = p(t, tp, tp + 0.45);
+            if (u > 0) { cx = ax + (px - ax) * eIO(u); cy = ay + (py - ay) * u - 150 * Math.sin(Math.PI * u); }
+            const pouso = t - (tp + 0.45);
+            if (pouso > 0 && pouso < 0.4) sq = 1 - 0.18 * Math.sin(Math.PI * pouso / 0.4) * Math.exp(-pouso * 4);
+          });
+        }
+        if (t >= 0.6) camada(ctx, cl((t - 0.6) / 0.2), () => {
+          ctx.save(); ctx.translate(cx, cy); ctx.scale(1 + (1 - sq) * 0.6, sq); brilho(ctx, 0, -50, 110, C.lime, 0.22); chale(ctx, 0, 0, 110, C.lime, { aceso: 1 }); ctx.restore();
+        });
+        // as etiquetas caem e balançam presas por um fio (o número rola até o valor)
+        DEG.forEach(([lab, v, pct, cor], i) => {
+          const tc = pulos[i] + 0.5; if (t < tc) return;
+          const [px, py] = pos(i), topoFio = py - 330, cai = eOut(p(t, tc, tc + 0.35)), dt = t - tc;
+          const ang = 0.35 * Math.exp(-dt * 1.6) * Math.sin(dt * 7) + 0.03 * Math.sin(t * 1.8 + i);
+          const fio = 70 + 60 * cai;
+          ctx.save(); ctx.translate(px, topoFio - 120 * (1 - cai)); ctx.rotate(ang); ctx.globalAlpha *= cl(dt / 0.15);
+          ctx.strokeStyle = '#5E5E59'; ctx.lineWidth = 2; ctx.beginPath(); ctx.moveTo(0, -30); ctx.lineTo(0, fio); ctx.stroke();
+          const tw_ = 236, th_ = 104, ty = fio;
+          ctx.shadowColor = 'rgba(0,0,0,0.6)'; ctx.shadowBlur = 24; ctx.shadowOffsetY = 10;
+          ctx.beginPath(); ctx.moveTo(-tw_ / 2, ty + 18); ctx.lineTo(-tw_ / 2 + 18, ty); ctx.lineTo(tw_ / 2 - 18, ty); ctx.lineTo(tw_ / 2, ty + 18); ctx.lineTo(tw_ / 2, ty + th_); ctx.lineTo(-tw_ / 2, ty + th_); ctx.closePath();
+          ctx.fillStyle = i === 2 ? C.lime : '#1C1C1A'; ctx.fill(); ctx.shadowColor = 'transparent';
+          ctx.strokeStyle = i === 2 ? C.lime : cor; ctx.lineWidth = 3; ctx.stroke();
+          ctx.beginPath(); ctx.arc(0, ty + 14, 6, 0, TAU); ctx.strokeStyle = i === 2 ? INK : cor; ctx.stroke();
+          odometro(ctx, v * eOut(p(t, tc + 0.1, tc + 0.9)), v, 0, ty + 78, 46, { cor: i === 2 ? INK : C.white, align: 'center' });
+          ctx.restore();
+          if (pct) surge(ctx, t, tc + 0.8, px + 128, topoFio + 80, () => {
+            const w = tw(ctx, pct, MONO, 24, 800, 1) + 26;
+            rr(ctx, px + 100, topoFio + 60, w, 40, 20); ctx.fillStyle = i === 2 ? C.lime : OFF; ctx.fill();
+            setFont(ctx, MONO, 24, 800, 1, 'center'); ctx.fillStyle = INK; ctx.fillText(pct, px + 100 + w / 2, topoFio + 88);
+          }, { dy: 10 });
+        });
+        if (t > 4.6) { const kb = p(t, 4.5, 5.3); faiscas(ctx, t, [x0 + 2 * (sw + gx), base - alt[2] - 420, x0 + 3 * sw + 2 * gx, base - alt[2] - 60], 16, C.lime, 44, kb); }
       });
       LINHAS.push({ tag: 'dados', texto: 'NORMAL R$ 300 · ALTA R$ 360 +20% · PICO R$ 450 +50%', sozinha: false });
     },
-    // 05 · passo 3: a reserva confirmada fica com o valor combinado; a tabela nova vale só para a reserva nova
+
+    // 05 · a reserva confirmada: o quadro de preços vira para R$ 360; o ticket de outubro, carimbado, NÃO muda; sai um
+    //      ticket novo impresso com R$ 360
     5(ctx, t) {
-      track(ctx, 3); ficticio(ctx);
-      const sp = support(ctx, 'Tabela nova vale só para reserva nova.');
-      const tt = titulo2(ctx, 'Reserva confirmada fica', 'com o valor combinado.');
-      const ch = 290, gap = 36, y0 = mid(tt, sp) - (2 * ch + gap) / 2;
-      // a reserva de outubro: R$ 300 → continua R$ 300, com o check
-      entra(ctx, t, 0.1, 0.5, () => {
-        card(ctx, M, y0, CW, ch, { r: 32 });
-        monoLab(ctx, 'RESERVA CONFIRMADA EM OUTUBRO', M + 48, y0 + 66, C.lime, 28);
-        setFont(ctx, DISPLAY, 40, 700, -0.4); ctx.fillStyle = C.gray; ctx.fillText('R$ 300  →  continua', M + 48, y0 + 140);
-        setFont(ctx, DISPLAY, 84, 900, -2); ctx.fillStyle = C.white; ctx.fillText('R$ 300', M + 48, y0 + 240);
-      });
-      const kc = eBack(p(t, 0.75, 1.15));
-      if (kc > 0) {
-        const cx = M + CW - 48 - 52, cy = y0 + ch / 2;
-        ctx.save(); ctx.translate(cx, cy); ctx.scale(kc, kc); ctx.shadowColor = rgba(C.lime, 0.35); ctx.shadowBlur = 40;
-        ctx.beginPath(); ctx.arc(0, 0, 52, 0, TAU); ctx.fillStyle = C.lime; ctx.fill(); ctx.shadowBlur = 0; checkIcon(INK)(ctx, 74); ctx.restore();
-      }
-      // a reserva nova de dezembro: a tabela nova (R$ 300 → R$ 360, contando)
-      const y1 = y0 + ch + gap, kv = eOut(p(t, 1.0, 1.8));
-      entra(ctx, t, 0.6, 0.5, () => {
-        ctx.save(); ctx.shadowColor = rgba(C.lime, 0.25); ctx.shadowBlur = 50; card(ctx, M, y1, CW, ch, { fill: C.lime, stroke: C.lime, r: 32 }); ctx.restore();
-        monoLab(ctx, 'RESERVA NOVA DE DEZEMBRO', M + 48, y1 + 66, C.ink, 28);
-        setFont(ctx, DISPLAY, 40, 700, -0.4); ctx.fillStyle = 'rgba(10,10,10,0.7)'; ctx.fillText('tabela nova', M + 48, y1 + 140);
-        setFont(ctx, DISPLAY, 84, 900, -2); ctx.fillStyle = C.ink; ctx.fillText(brl(300 + 60 * kv), M + 48, y1 + 240);
-      });
-      LINHAS.push({ tag: 'dados', texto: 'RESERVA CONFIRMADA EM OUTUBRO R$ 300 → continua R$ 300 · RESERVA NOVA DE DEZEMBRO R$ 360', sozinha: false });
-    },
-    // 06 · passo 4: a mesma tabela em todo lugar (três etiquetas com o mesmo R$ 360)
-    6(ctx, t) {
-      track(ctx, 4); ficticio(ctx);
-      const sp = support(ctx, 'WhatsApp, Instagram e recepção falando o mesmo preço.');
-      const tt = titulo2(ctx, 'A mesma tabela', 'em todo lugar.');
-      const ch = 150, gap = 28, total = 3 * ch + 2 * gap;
-      let y = mid(tt, sp) - total / 2;
-      ['WHATSAPP', 'INSTAGRAM', 'RECEPÇÃO'].forEach((lab, i) => {
-        const a = 0.2 + i * 0.25, k = eOut(p(t, a, a + 0.55)), yy = y;
-        if (k > 0) {
-          ctx.save(); ctx.globalAlpha = k; ctx.translate((1 - k) * 60, 0);
-          card(ctx, M, yy, CW, ch, { r: 30 });
-          ctx.beginPath(); ctx.arc(M + 56, yy + ch / 2, 13, 0, TAU); ctx.fillStyle = C.lime; ctx.fill();        // o furinho da etiqueta
-          monoLab(ctx, lab, M + 96, yy + ch / 2 + 11, C.gray, 32);
-          setFont(ctx, DISPLAY, 80, 900, -2, 'right'); ctx.fillStyle = C.lime; ctx.fillText('R$ 360', M + CW - 48, yy + ch / 2 + 29);
+      const { y0, y1 } = topo(ctx, 3, 'Reserva confirmada fica', 'com o valor combinado.', 'Tabela nova vale só para reserva nova.', true);
+      const k0 = saida(t); palco(ctx, t, y0, y1, k0);
+      camada(ctx, k0, () => {
+        // o quadro de preços (split-flap), em cima
+        const by = y0 + 6, bh = 170;
+        surge(ctx, t, 0.2, 540, by + bh / 2, () => {
+          rr(ctx, M, by, CW, bh, 24); ctx.fillStyle = '#121211'; ctx.fill(); ctx.strokeStyle = '#2C2C29'; ctx.lineWidth = 2; ctx.stroke();
+          monoLab(ctx, 'TABELA · DIÁRIA DE DEZEMBRO', M + 32, by + 40, C.lime, 22);
+          const cel = ['R', '$', ' ', '3', '0', '0'].map((c) => ({ de: c, para: c, k: 0 }));
+          if (t >= 3.0) cel[4] = flapEm(t, 3.0, ciclo('0', '6'), 0.075);
+          const cw = 74, ch = 100, gap = 10, x0 = M + CW - 32 - (6 * cw + 5 * gap);
+          cel.forEach((c_, i) => { if (c_.para === ' ' && c_.de === ' ') return; flapCell(ctx, x0 + i * (cw + gap), by + 52, cw, ch, c_.de, c_.para, c_.k, { size: 78 }); });
+          const nova = t >= 3.5;
+          monoLab(ctx, nova ? 'NOVA' : 'ATUAL', M + 32, by + 140, nova ? C.lime : C.gray, 24);
+        }, { dy: 16 });
+        // o ticket de outubro (à esquerda) e o carimbo; quando o quadro vira, ele não muda (um cadeado brilha)
+        const ty = by + bh + 50, tw_ = 420, th_ = y1 - ty;
+        const ticket = (x, y, w, h, linhas, cor) => {
+          ctx.save(); ctx.shadowColor = 'rgba(0,0,0,0.55)'; ctx.shadowBlur = 30; ctx.shadowOffsetY = 12;
+          ctx.beginPath(); ctx.moveTo(x, y);
+          for (let i = 0; i <= 14; i++) ctx.lineTo(x + (w / 14) * i, y + (i % 2 ? 10 : 0));       // a borda serrilhada de cima
+          ctx.lineTo(x + w, y + h); ctx.lineTo(x, y + h); ctx.closePath(); ctx.fillStyle = OFF; ctx.fill(); ctx.restore();
+          linhas.forEach(([s, sz, c_, yy]) => { setFont(ctx, MONO, sz, 800, 1); ctx.fillStyle = c_; ctx.fillText(s, x + 30, y + yy); });
+          ctx.strokeStyle = 'rgba(10,10,10,0.18)'; ctx.setLineDash([8, 8]); ctx.lineWidth = 2; ctx.beginPath(); ctx.moveTo(x + 30, y + 150); ctx.lineTo(x + w - 30, y + 150); ctx.stroke(); ctx.setLineDash([]);
+        };
+        surge(ctx, t, 0.7, M + tw_ / 2, ty + th_ / 2, () => {
+          ticket(M, ty, tw_, th_, [['RESERVA · FEITA EM', 22, '#5E5E59', 62], ['OUTUBRO', 40, INK, 112], ['CHALÉ 2 · 3 NOITES', 22, '#5E5E59', 196], ['ENTRADA 26/12', 22, '#5E5E59', 236]], OFF);
+        });
+        carimbo(ctx, M + tw_ / 2, ty + th_ - 92, 'CONFIRMADA · R$ 300', -0.08, '#2E7D16', t, 1.6, { size: 28, pad: 22 });
+        if (t > 3.1) { const kp = p(t, 3.1, 3.5), pul = 0.5 + 0.5 * Math.sin(TAU * (t - 3.1) / 1.6);
+          camada(ctx, kp, () => { brilho(ctx, M + tw_ - 40, ty + 50, 70, C.lime, 0.2 + 0.15 * pul);
+            ctx.save(); ctx.translate(M + tw_ - 44, ty + 54); ctx.strokeStyle = INK; ctx.lineWidth = 4; ctx.lineCap = 'round';
+            rr(ctx, -16, -4, 32, 26, 5); ctx.stroke(); ctx.beginPath(); ctx.arc(0, -4, 10, Math.PI, 0); ctx.stroke(); ctx.restore(); }); }
+        // a impressora (à direita) e o ticket novo saindo dela
+        const px = M + tw_ + 60, pw = CW - tw_ - 60;
+        surge(ctx, t, 3.7, px + pw / 2, ty + 40, () => {
+          rr(ctx, px, ty, pw, 70, 18); ctx.fillStyle = '#1F1F1D'; ctx.fill(); ctx.strokeStyle = '#3A3A36'; ctx.lineWidth = 2; ctx.stroke();
+          rr(ctx, px + 30, ty + 46, pw - 60, 8, 4); ctx.fillStyle = INK; ctx.fill();
+          ctx.beginPath(); ctx.arc(px + pw - 34, ty + 24, 6, 0, TAU); ctx.fillStyle = t > 4.0 && t < 5.6 ? C.lime : '#3A3A36'; ctx.fill();
+        }, { dy: 10 });
+        const sai_ = eIO(p(t, 4.1, 5.5)), nh = (th_ - 80) * sai_;
+        if (sai_ > 0) {
+          ctx.save(); ctx.beginPath(); ctx.rect(px, ty + 50, pw, th_); ctx.clip();
+          ctx.translate(0, ty + 50 + nh - (th_ - 80));
+          ctx.fillStyle = OFF; ctx.fillRect(px + 30, 0, pw - 60, th_ - 80);
+          [['RESERVA NOVA', 22, '#5E5E59', 56], ['R$ 360', 52, INK, 124], ['TABELA NOVA', 22, '#5E5E59', 172], ['ENTRADA 27/12', 22, '#5E5E59', 212]].forEach(([s, sz, c_, yy]) => { setFont(ctx, MONO, sz, 800, 1); ctx.fillStyle = c_; ctx.fillText(s, px + 56, yy); });
           ctx.restore();
+          if (sai_ >= 1) { const kk = p(t, 5.5, 5.9); brilho(ctx, px + pw / 2, ty + 50 + (th_ - 80) / 2, 200, C.lime, 0.15 * kk + 0.05 * Math.sin(t * 3)); }
         }
-        y += ch + gap;
       });
-      LINHAS.push({ tag: 'dados', texto: 'WHATSAPP R$ 360 · INSTAGRAM R$ 360 · RECEPÇÃO R$ 360', sozinha: false });
+      LINHAS.push({ tag: 'dados', texto: 'TABELA R$ 300 → R$ 360 · OUTUBRO CONFIRMADA R$ 300 · RESERVA NOVA R$ 360', sozinha: false });
     },
-    // 07 · passo 5: como cada faixa vendeu (ocupação em barras)
+
+    // 06 · a mesma tabela: a tabela emite pulsos sincronizados para o WhatsApp, o Instagram e a recepção (rótulos, sem
+    //      logos); os três acendem R$ 360 no mesmo instante, com um clique de sincronia
+    6(ctx, t) {
+      const { y0, y1 } = topo(ctx, 4, 'A mesma tabela', 'em todo lugar.', 'WhatsApp, Instagram e recepção falando o mesmo preço.', true);
+      const k0 = saida(t); palco(ctx, t, y0, y1, k0);
+      camada(ctx, k0, () => {
+        const tx = 540, ty = y0 + 20, tW = 380, tH = 230;
+        surge(ctx, t, 0.2, tx, ty + tH / 2, () => {
+          ctx.save(); ctx.shadowColor = rgba(C.lime, 0.25); ctx.shadowBlur = 40;
+          rr(ctx, tx - tW / 2, ty, tW, tH, 22); ctx.fillStyle = '#151514'; ctx.fill(); ctx.restore();
+          rr(ctx, tx - tW / 2, ty, tW, tH, 22); ctx.strokeStyle = C.lime; ctx.lineWidth = 2.5; ctx.stroke();
+          monoLab(ctx, 'TABELA', tx - tW / 2 + 28, ty + 40, C.lime, 22);
+          [['NORMAL', 'R$ 300'], ['ALTA', 'R$ 360'], ['PICO', 'R$ 450']].forEach(([a, b], i) => {
+            const yy = ty + 92 + i * 46, dest = i === 1;
+            if (dest) { rr(ctx, tx - tW / 2 + 16, yy - 32, tW - 32, 44, 10); ctx.fillStyle = rgba(C.lime, 0.16); ctx.fill(); }
+            monoLab(ctx, a, tx - tW / 2 + 28, yy, dest ? C.white : C.gray, 22, 'left', 2); monoLab(ctx, b, tx + tW / 2 - 28, yy, dest ? C.lime : C.gray, 24, 'right', 0);
+          });
+        });
+        // os três pontos (embaixo): balão de conversa, mensagem direta e a placa do balcão
+        const ey = y1 - 210, ew = 280, gx = (CW - 3 * ew) / 2;
+        const PT = [['WHATSAPP', 'balao'], ['INSTAGRAM', 'direct'], ['RECEPÇÃO', 'placa']];
+        const SYNC = 2.9;
+        PT.forEach(([lab, tipo], i) => {
+          const ex = M + i * (ew + gx), ecx = ex + ew / 2;
+          // a linha da tabela até o ponto (se desenha) e os pulsos que correm nela, chegando juntos
+          const ax = tx + (i - 1) * 110, ay = ty + tH, bx = ecx, byy = ey - 14;
+          const path = (u) => { const cx1 = ax, cy1 = ay + 120, cx2 = bx, cy2 = byy - 120; const v = 1 - u;
+            return [v * v * v * ax + 3 * v * v * u * cx1 + 3 * v * u * u * cx2 + u * u * u * bx, v * v * v * ay + 3 * v * v * u * cy1 + 3 * v * u * u * cy2 + u * u * u * byy]; };
+          const kd = eIO(p(t, 0.7, 1.5));
+          if (kd > 0) { ctx.save(); ctx.strokeStyle = rgba(C.lime, 0.35); ctx.lineWidth = 3; ctx.setLineDash([10, 10]); ctx.beginPath();
+            for (let s = 0; s <= 40 * kd; s++) { const [x, y] = path(s / 40); s ? ctx.lineTo(x, y) : ctx.moveTo(x, y); } ctx.stroke(); ctx.restore(); }
+          for (const t0 of [1.6, 2.15]) { const u = p(t, t0, t0 + 0.75); if (u > 0 && u < 1) { const [x, y] = path(eIO(u)); brilho(ctx, x, y, 40, C.lime, 0.6); ctx.beginPath(); ctx.arc(x, y, 7, 0, TAU); ctx.fillStyle = C.lime; ctx.fill(); } }
+          // pulsos ambientes depois da sincronia (sempre juntos)
+          if (t > 4.2) { const u = ((t - 4.2) % 1.6) / 1.1; if (u < 1) { const [x, y] = path(eIO(u)); ctx.beginPath(); ctx.arc(x, y, 5, 0, TAU); ctx.fillStyle = rgba(C.lime, 0.8 * Math.sin(Math.PI * u)); ctx.fill(); } }
+          surge(ctx, t, 0.9 + i * 0.12, ecx, ey + 90, () => {
+            const on = t >= SYNC, fl = on ? 1 - p(t, SYNC, SYNC + 0.5) : 0;
+            rr(ctx, ex, ey, ew, 200, 24); ctx.fillStyle = '#151514'; ctx.fill(); ctx.strokeStyle = on ? C.lime : '#3A3A36'; ctx.lineWidth = on ? 3 : 2; ctx.stroke();
+            if (fl > 0) brilho(ctx, ecx, ey + 100, 200, C.lime, 0.35 * fl);
+            ctx.save(); ctx.translate(ex + 50, ey + 50); ctx.strokeStyle = on ? C.lime : C.gray; ctx.lineWidth = 3; ctx.lineJoin = 'round'; ctx.lineCap = 'round';
+            if (tipo === 'balao') { ctx.beginPath(); ctx.roundRect(-22, -18, 44, 32, 10); ctx.stroke(); ctx.beginPath(); ctx.moveTo(-12, 14); ctx.lineTo(-18, 24); ctx.lineTo(-2, 14); ctx.stroke(); }
+            else if (tipo === 'direct') { ctx.beginPath(); ctx.moveTo(-22, -4); ctx.lineTo(22, -20); ctx.lineTo(8, 22); ctx.lineTo(2, 4); ctx.closePath(); ctx.stroke(); ctx.beginPath(); ctx.moveTo(2, 4); ctx.lineTo(22, -20); ctx.stroke(); }
+            else { ctx.beginPath(); ctx.roundRect(-24, -20, 48, 30, 6); ctx.stroke(); ctx.beginPath(); ctx.moveTo(-12, 10); ctx.lineTo(-18, 26); ctx.moveTo(12, 10); ctx.lineTo(18, 26); ctx.stroke(); }
+            ctx.restore();
+            monoLab(ctx, lab, ex + 88, ey + 60, on ? C.white : C.gray, 22, 'left', 2);
+            if (on) { const ks = mola(t, SYNC, 0.5); ctx.save(); ctx.translate(ecx, ey + 140); ctx.scale(ks, ks);
+              setFont(ctx, MONO, 52, 800, 0, 'center'); ctx.fillStyle = C.lime; ctx.fillText('R$ 360', 0, 18); ctx.restore(); }
+            else { monoLab(ctx, '· · ·', ecx, ey + 152, '#3A3A36', 40, 'center', 0); }
+          }, { dy: 14 });
+        });
+        // o "clique" de sincronia: um anel que sai da tabela no instante em que os três acendem
+        const kr = p(t, SYNC, SYNC + 0.7);
+        if (kr > 0 && kr < 1) { ctx.beginPath(); ctx.arc(tx, ty + tH / 2, 60 + 420 * eOut(kr), 0, TAU); ctx.strokeStyle = rgba(C.lime, 0.5 * (1 - kr)); ctx.lineWidth = 4; ctx.stroke(); }
+      });
+      LINHAS.push({ tag: 'dados', texto: 'WHATSAPP · INSTAGRAM · RECEPÇÃO = R$ 360', sozinha: false });
+    },
+
+    // 07 · como vendeu: o mapa de ocupação (6 chalés × 31 dias) preenche com reservas; depois se recolhe nas três barras
     7(ctx, t) {
-      track(ctx, 5); ficticio(ctx);
-      const sp = support(ctx, 'É essa anotação que ajusta a tabela do ano que vem.');
-      const tt = titulo2(ctx, 'Anote como', 'cada faixa vendeu.');
-      const m = mid(tt, sp), hMax = 380, base = m + hMax / 2 + 20, bw = 220, gapX = (CW - 3 * bw) / 2;
-      monoLab(ctx, 'OCUPAÇÃO', M, base - hMax - 92, C.gray, 28);
-      [['NORMAL', 55, COR_FAIXA.normal], ['ALTA', 80, COR_FAIXA.alta], ['PICO', 100, C.lime]].forEach(([lab, v, cor], i) => {
-        const x = M + i * (bw + gapX), a = 0.2 + i * 0.25, k = eOut(p(t, a, a + 1.1)), h = hMax * (v / 100) * k;
-        rr(ctx, x, base - hMax, bw, hMax, 18); ctx.fillStyle = '#1C1C1A'; ctx.fill();
-        if (h > 0) { rr(ctx, x, base - h, bw, h, 18); ctx.fillStyle = cor; ctx.fill(); }
-        setFont(ctx, DISPLAY, 64, 900, -1.5, 'center'); ctx.fillStyle = C.white; ctx.fillText(Math.round(v * k) + '%', x + bw / 2, base - h - 18);
-        monoLab(ctx, lab, x + bw / 2, base + 46, C.gray, 28, 'center');
+      const { y0, y1 } = topo(ctx, 5, 'Anote como', 'cada faixa vendeu.', 'É essa anotação que ajusta a tabela do ano que vem.', true);
+      const k0 = saida(t); palco(ctx, t, y0, y1, k0);
+      camada(ctx, k0, () => {
+        const lab = 54, cw = (CW - lab) / 31, ch = 46, gy = y0 + 40, mapa = MAPA();
+        const morph = eIO(p(t, 3.4, 4.6)), ocultaMapa = 1 - p(t, 3.3, 3.7);
+        // o mapa: as linhas dos chalés e as reservas entrando como blocos
+        camada(ctx, ocultaMapa, () => {
+          monoLab(ctx, 'OCUPAÇÃO · DEZEMBRO', M, gy - 14, C.gray, 22);
+          for (let r = 0; r < 6; r++) {
+            monoLab(ctx, 'C' + (r + 1), M, gy + r * (ch + 8) + 53, C.grayM, 20, 'left', 0);
+            for (let d = 0; d < 31; d++) { rr(ctx, M + lab + d * cw + 1, gy + r * (ch + 8) + 22, cw - 2, ch, 4); ctx.fillStyle = '#141413'; ctx.fill(); }
+          }
+        });
+        // as barras de destino (cada faixa: a ocupação dela)
+        const bw = 200, bH = 300, bx = (i) => M + 60 + i * ((CW - 120 - bw) / 2), bb = y1 - 34;
+        const BAR = [['NORMAL', 55, '#6E6E68'], ['ALTA', 80, OFF], ['PICO', 100, C.lime]];
+        mapa.forEach((c, j) => {
+          const ap = 0.3 + c.ordem * 2.4, k = eOut(p(t, ap, ap + 0.25)); if (k <= 0) return;
+          const x0 = M + lab + c.d0 * cw + 2, y0_ = gy + c.r * (ch + 8) + 22, w0 = c.n * cw - 4;
+          const fi = c.faixa === 'normal' ? 0 : c.faixa === 'alta' ? 1 : 2, cor = BAR[fi][2];
+          if (morph <= 0) { rr(ctx, x0, y0_, w0 * k, ch, 6); ctx.fillStyle = cor; ctx.fill(); return; }
+          // o recolhimento: cada bloco voa para dentro da barra da faixa dele, encolhendo
+          const tx = bx(fi) + bw * (0.15 + 0.7 * hash(j, 1)), ty = bb - bH * BAR[fi][1] / 100 * (0.1 + 0.85 * hash(j, 2));
+          const m = eIO(cl(morph * 1.25 - hash(j, 3) * 0.25));
+          const x = x0 + (tx - x0) * m, y = y0_ + (ty - y0_) * m - 80 * Math.sin(Math.PI * m), w = w0 + (16 - w0) * m;
+          camada(ctx, 1 - p(morph, 0.85, 1), () => { rr(ctx, x, y, Math.max(8, w), ch * (1 - 0.5 * m), 5); ctx.fillStyle = cor; ctx.fill(); });
+        });
+        // as barras (crescem enquanto os blocos chegam) e os percentuais rolando
+        BAR.forEach(([lb, v, cor], i) => {
+          const kb = eOut(p(t, 3.8, 4.9)); if (kb <= 0) return;
+          const h = bH * v / 100 * kb, x = bx(i);
+          camada(ctx, cl((t - 3.6) / 0.3), () => {
+            rr(ctx, x, bb - bH, bw, bH, 16); ctx.fillStyle = '#141413'; ctx.fill();
+            rr(ctx, x, bb - h, bw, h, 16); ctx.fillStyle = cor; ctx.fill();
+            odometro(ctx, v * kb, v, x + bw / 2, bb - h - 22, 50, { pre: '', suf: '%', cor: C.white, align: 'center', zeros: false });
+            monoLab(ctx, lb, x + bw / 2, bb + 32, C.gray, 22, 'center');
+          });
+        });
+        carimbo(ctx, bx(2) + bw / 2, bb - 150, 'LOTADO', -0.12, INK, t, 5.2, { size: 30, pad: 20 });
+        if (t > 5.6) faiscas(ctx, t, [bx(2) - 30, bb - bH - 80, bx(2) + bw + 30, bb - 20], 14, C.lime, 77, p(t, 5.6, 6.2));
       });
-      LINHAS.push({ tag: 'dados', texto: 'OCUPAÇÃO NORMAL 55% · ALTA 80% · PICO 100%', sozinha: false });
+      LINHAS.push({ tag: 'dados', texto: 'OCUPAÇÃO NORMAL 55% · ALTA 80% · PICO 100% · LOTADO', sozinha: false });
     },
-    // 08 · fecho: o selo de "salvar" surge; @fazlohospeda pequeno
+
+    // 08 · o fecho: o calendário, a tabela e o carimbo (em miniatura) se juntam, viram a folha "TABELA DE DEZEMBRO",
+    //      que dobra e entra no ícone de salvar (que pulsa)
     8(ctx, t) {
-      const tt = title(ctx, [{ t: 'Preço definido antes,', c: W_ }, { t: 'resposta rápida depois.', c: Li, br: true }], L.titleTop0 + 60, { max: 100, maxH: 520 });
-      // o traço limão embaixo do título se desenha
-      const k = eIO(p(t, 0.3, 1.0));
-      if (k > 0) { ctx.strokeStyle = C.lime; ctx.lineWidth = 8; ctx.lineCap = 'round'; ctx.beginPath(); ctx.moveTo(M + 4, tt.bottom + 40); ctx.lineTo(M + 4 + 260 * k, tt.bottom + 40); ctx.stroke(); }
-      // o selo de salvar (o marcador), no meio
-      const ks = eBack(p(t, 0.7, 1.15)), cx = 540, cy = (tt.bottom + 980) / 2 + 30;
-      if (ks > 0) {
-        ctx.save(); ctx.translate(cx, cy); ctx.scale(ks, ks);
-        ctx.shadowColor = rgba(C.lime, 0.3); ctx.shadowBlur = 50;
-        ctx.beginPath(); ctx.arc(0, 0, 110, 0, TAU); ctx.fillStyle = C.lime; ctx.fill(); ctx.shadowBlur = 0;
-        ctx.beginPath(); ctx.moveTo(-36, -52); ctx.lineTo(36, -52); ctx.lineTo(36, 56); ctx.lineTo(0, 28); ctx.lineTo(-36, 56); ctx.closePath();
-        ctx.fillStyle = INK; ctx.fill(); ctx.restore();
-      }
-      support(ctx, 'Salva pra montar a sua tabela.', { bottom: 1060, color: C.white, size: 44 });
+      const tt = title(ctx, [{ t: 'Preço definido antes,', c: W_ }, { t: 'resposta rápida depois.', c: Li, br: true }], L.titleTop0 + 40, { max: 92, maxH: 300 });
+      const sp = support(ctx, 'Salva pra montar a sua tabela.', { bottom: 1086, color: C.white, size: 44 });
       setFont(ctx, MONO, 28, 800, 1); ctx.fillStyle = C.grayM; ctx.fillText('@fazlohospeda', M, 1150);
       LINHAS.push({ tag: 'assinatura', texto: '@fazlohospeda', sozinha: false });
+      CAIXAS.texto = [[M, tt.top - 6, M + CW, tt.bottom + 6], [M, sp.top - 6, M + CW, 1160]];
+      const y0 = tt.bottom + 30, y1 = sp.top - 30, cy = (y0 + y1) / 2, k0 = saida(t);
+      palco(ctx, t, y0, y1, k0);
+      camada(ctx, k0, () => {
+        const junta = eIO(p(t, 1.7, 2.5)), folha = eIO(p(t, 2.4, 3.0)), dobra = eIO(p(t, 3.3, 3.9)), entra = eIO(p(t, 3.9, 4.6));
+        // as três miniaturas entram de profundidades diferentes (parallax) e se juntam no centro
+        const MINI = [[-300, -60, 0.2, 'cal'], [0, -110, 0.45, 'tab'], [300, -40, 0.7, 'car']];
+        if (folha < 1) MINI.forEach(([dx, dy, a0, tipo], i) => {
+          const k = mola(t, a0, 0.6); if (k <= 0) return;
+          const flut = 8 * Math.sin(t * 1.6 + i * 2), x = 540 + dx * (1 - junta) + (1 - k) * dx * 0.6, y = cy + dy * (1 - junta) + flut * (1 - junta) + (1 - k) * 60;
+          const s = (0.95 - 0.12 * i) * (1 - 0.35 * junta);
+          ctx.save(); ctx.translate(x, y); ctx.scale(s, s); ctx.rotate((i - 1) * 0.08 * (1 - junta)); ctx.globalAlpha *= cl((t - a0) / 0.2) * (1 - folha);
+          rr(ctx, -120, -90, 240, 180, 18); ctx.fillStyle = '#171716'; ctx.fill(); ctx.strokeStyle = '#3A3A36'; ctx.lineWidth = 2; ctx.stroke();
+          if (tipo === 'cal') { for (let r = 0; r < 4; r++) for (let c = 0; c < 6; c++) { rr(ctx, -96 + c * 33, -62 + r * 34, 27, 27, 5); ctx.fillStyle = (r === 3 && c > 3) ? C.lime : (r === 2 && c > 2) ? OFF : '#3A3A37'; ctx.fill(); } }
+          else if (tipo === 'tab') { [['NORMAL', '300'], ['ALTA', '360'], ['PICO', '450']].forEach(([a, b], j) => { monoLab(ctx, a, -96, -36 + j * 46, C.gray, 18, 'left', 1); monoLab(ctx, b, 96, -36 + j * 46, j === 2 ? C.lime : C.white, 22, 'right', 0); }); }
+          else { ctx.save(); ctx.rotate(-0.12); rr(ctx, -90, -30, 180, 60, 10); ctx.strokeStyle = C.lime; ctx.lineWidth = 4; ctx.stroke(); setFont(ctx, MONO, 26, 800, 2, 'center'); ctx.fillStyle = C.lime; ctx.fillText('LOTADO', 0, 9); ctx.restore(); }
+          ctx.restore();
+        });
+        // a folha "TABELA DE DEZEMBRO" (morph das três), que dobra ao meio e voa para o marcador
+        if (folha > 0 && entra < 1) {
+          const fw = 360 * (1 - 0.7 * entra), fh = 440 * (1 - 0.7 * entra), mx = 540, my = cy - 10 - 40 * entra;
+          ctx.save(); ctx.translate(mx, my); ctx.globalAlpha *= folha * (1 - p(entra, 0.7, 1)); ctx.scale(0.8 + 0.2 * folha, 0.8 + 0.2 * folha);
+          const metade = (cima, esc) => {
+            ctx.save(); if (!cima) { ctx.scale(1, esc); }
+            ctx.beginPath(); ctx.rect(-fw / 2, cima ? -fh / 2 : 0, fw, fh / 2); ctx.fillStyle = OFF; ctx.fill();
+            if (cima) { monoLab(ctx, 'TABELA DE', 0, -fh / 2 + 70 * (fh / 440), INK, 24 * (fw / 360), 'center', 2); monoLab(ctx, 'DEZEMBRO', 0, -fh / 2 + 110 * (fh / 440), INK, 30 * (fw / 360), 'center', 2);
+              [0, 1, 2].forEach((j) => { rr(ctx, -fw / 2 + 30 * (fw / 360), -fh / 2 + (150 + j * 22) * (fh / 440), fw - 60 * (fw / 360), 10 * (fh / 440), 4); ctx.fillStyle = j === 2 ? C.lime : 'rgba(10,10,10,0.25)'; ctx.fill(); }); }
+            else { [0, 1, 2].forEach((j) => { rr(ctx, -fw / 2 + 30 * (fw / 360), (40 + j * 40) * (fh / 440), fw - 60 * (fw / 360), 22 * (fh / 440), 6); ctx.fillStyle = ['#6E6E68', 'rgba(10,10,10,0.15)', C.lime][j]; ctx.fill(); }); }
+            if (!cima && esc < 1) { ctx.fillStyle = `rgba(0,0,0,${0.35 * (1 - esc)})`; ctx.fillRect(-fw / 2, 0, fw, fh / 2); }
+            ctx.restore();
+          };
+          ctx.shadowColor = 'rgba(0,0,0,0.5)'; ctx.shadowBlur = 40;
+          metade(true, 1); metade(false, 1 - 2 * Math.min(0.5, dobra) * 0.98 * (dobra < 0.5 ? 1 : 1));
+          ctx.restore();
+        }
+        // o marcador (salvar): aparece, recebe a folha e pulsa
+        const km = mola(t, 3.7, 0.6);
+        if (km > 0) {
+          const mx = 540, my = cy - 10, pul = t > 4.6 ? 0.5 + 0.5 * Math.sin(TAU * (t - 4.6) / 1.4) : 0, bate = t > 4.5 && t < 4.9 ? 1 + 0.12 * Math.sin(Math.PI * p(t, 4.5, 4.9)) : 1;
+          for (const fase of [0, 0.5]) { if (t <= 4.6) break; const u = ((t - 4.6) / 1.4 + fase) % 1; ctx.beginPath(); ctx.arc(mx, my, 110 + 120 * u, 0, TAU); ctx.strokeStyle = rgba(C.lime, 0.35 * (1 - u)); ctx.lineWidth = 3; ctx.stroke(); }
+          ctx.save(); ctx.translate(mx, my); ctx.scale(km * bate, km * bate);
+          ctx.shadowColor = rgba(C.lime, 0.3 + 0.2 * pul); ctx.shadowBlur = 60;
+          ctx.beginPath(); ctx.arc(0, 0, 110, 0, TAU); ctx.fillStyle = C.lime; ctx.fill(); ctx.shadowBlur = 0;
+          marcador(ctx, 0, 4, 104, INK); ctx.restore();
+        }
+      });
     },
   };
+  // o mapa de ocupação do 07 (fictício e fixo): reservas por chalé que somam 55% (normal: dias 1–17), 80% (alta) e 100%
+  // (pico) das noites; cada bloco é uma reserva de noites seguidas da mesma faixa
+  let _MAPA = null;
+  function MAPA() {
+    if (_MAPA) return _MAPA;
+    const occ = Array.from({ length: 6 }, () => Array(31).fill(false));
+    const faixaIdx = (d) => faixaDe(d + 1);
+    const alvo = { normal: Math.round(0.55 * 17 * 6), alta: Math.round(0.8 * 10 * 6), pico: 4 * 6 };
+    const conta = { normal: 0, alta: 0, pico: 0 };
+    // pico: tudo ocupado; alta e normal: preenche por chalé, em blocos, até bater o alvo exato
+    for (let r = 0; r < 6; r++) for (let d = 0; d < 31; d++) if (faixaIdx(d) === 'pico') { occ[r][d] = true; conta.pico++; }
+    let s = 1;
+    for (const f of ['alta', 'normal']) {
+      let guard = 0;
+      while (conta[f] < alvo[f] && guard++ < 5000) {
+        const r = Math.floor(hash(s, 1) * 6), d = Math.floor(hash(s, 2) * 31), n = 1 + Math.floor(hash(s, 3) * 3); s++;
+        for (let k = 0; k < n && conta[f] < alvo[f]; k++) { const dd = d + k; if (dd < 31 && faixaIdx(dd) === f && !occ[r][dd]) { occ[r][dd] = true; conta[f]++; } }
+      }
+    }
+    // junta noites seguidas da mesma faixa em blocos
+    const blocos = [];
+    for (let r = 0; r < 6; r++) { let d = 0; while (d < 31) { if (!occ[r][d]) { d++; continue; } const f = faixaIdx(d); let n = 1; while (d + n < 31 && occ[r][d + n] && faixaIdx(d + n) === f) n++; blocos.push({ r, d0: d, n, faixa: f }); d += n; } }
+    blocos.forEach((b, i) => { b.ordem = hash(i, 11); });
+    _MAPA = blocos; _MAPA.conta = conta; return _MAPA;
+  }
+  const DIAS = 31, ALTA = [18, 19, 20, 21, 22, 23, 26, 27, 28, 29], PICO = [24, 25, 30, 31];
+  function faixaDe(d) { return PICO.includes(d) ? 'pico' : ALTA.includes(d) ? 'alta' : 'normal'; }
 
   function init(img) { LOGO = img; }
   let LOGO = null;
-  function render(ctx, n, t = DUR) {
+  function render(ctx, n, t = 0) {
     if (ctx.canvas.width !== W || ctx.canvas.height !== H) { ctx.canvas.width = W; ctx.canvas.height = H; }
-    ctx.setTransform(1, 0, 0, 1, 0, 0); ctx.globalAlpha = 1; ctx.globalCompositeOperation = 'source-over';
-    LINHAS.length = 0;
+    ctx.setTransform(1, 0, 0, 1, 0, 0); ctx.globalAlpha = 1; ctx.globalCompositeOperation = 'source-over'; ctx.shadowColor = 'transparent';
+    DUR = DURS[n];
+    LINHAS.length = 0; for (const k in CAIXAS) delete CAIXAS[k];
     background(ctx, t);
     SLIDES[n](ctx, t);
   }
-  window.CARROSSEL = { init, render, W, H, N: 8, DUR, FPS, agulha, CAIXAS, MED };
+  window.CARROSSEL = { init, render, W, H, N: 8, FPS, durDe: (n) => DURS[n], poseDe: (n) => POSE[n], CAIXAS, mapa: () => { const m = MAPA(); return { blocos: m.length, conta: m.conta }; } };
   window.__LINHAS = () => LINHAS.slice();
 })();
