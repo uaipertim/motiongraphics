@@ -1,46 +1,95 @@
-TARIFA DE DEZEMBRO (carrossel animado) — conferência
+TARIFA DE DEZEMBRO v2 — conferência dos 8 slides
 
-FFPROBE
-OK     01.mp4: 1080×1350, 30 fps, 7.00 s (210 quadros), h264 yuv420p High, áudio aac 48000 Hz 2 canais, 0.14 MB
-OK     02.mp4: 1080×1350, 30 fps, 7.00 s (210 quadros), h264 yuv420p High, áudio aac 48000 Hz 2 canais, 0.36 MB
-OK     03.mp4: 1080×1350, 30 fps, 7.00 s (210 quadros), h264 yuv420p High, áudio aac 48000 Hz 2 canais, 0.29 MB
-OK     04.mp4: 1080×1350, 30 fps, 7.00 s (210 quadros), h264 yuv420p High, áudio aac 48000 Hz 2 canais, 0.31 MB
-OK     05.mp4: 1080×1350, 30 fps, 7.00 s (210 quadros), h264 yuv420p High, áudio aac 48000 Hz 2 canais, 0.37 MB
-OK     06.mp4: 1080×1350, 30 fps, 7.00 s (210 quadros), h264 yuv420p High, áudio aac 48000 Hz 2 canais, 0.34 MB
-OK     07.mp4: 1080×1350, 30 fps, 7.00 s (210 quadros), h264 yuv420p High, áudio aac 48000 Hz 2 canais, 0.30 MB
-OK     08.mp4: 1080×1350, 30 fps, 7.00 s (210 quadros), h264 yuv420p High, áudio aac 48000 Hz 2 canais, 0.28 MB
+TARIFA DE DEZEMBRO v2 — conferência do slide 01 (9 s)
 
-MARGENS, CANTO DO SOM E ESTABILIDADE (quadros a cada 0,1 s, tirados do MP4)
-OK     slide 01: conteúdo em x 81–999 em todos os quadros (margem de 80 px)
-OK     slide 01: canto do ícone de som (x ≥ 940, y ≥ 1210) livre em todos os quadros
-OK     slide 01 (capa): o quadro 0 já está completo — na área do título, 15 px diferentes do último quadro (só o pontinho do chip pulsa)
-       slide 01 (capa): o título, o chip e o "ARRASTA →" ficam parados; depois de 2,5 s mudam no máximo 881 px do conteúdo (a seta e o pontinho do chip; o medidor ao fundo não conta)
-OK     slide 01 (capa): a ponta da agulha fica dentro do quadro em todos os 210 quadros (x 126–901, y 247–1094)
-OK     slide 01 (capa): a agulha nunca toca a área do chip nem a do "ARRASTA →" (com 12 px de folga), em nenhum quadro
-OK     slide 01 (capa): a faixa de pico fica parada e inteira no quadro (x 760–981, y 225–318)
-OK     slide 01 (capa): de 2,0 s a 6,2 s a ponta fica sobre o meio da faixa de pico (253°)
-       slide 01 (capa): movimento entre 0 s e 2,0 s: 3794 px com o brilho diferente em > 20 níveis (só a agulha se move; a escala e a faixa ficam paradas)
-OK     slide 01 (capa): loop — o quadro final (6,967 s) e o quadro 0 batem: 0 px diferentes nos quadros do render (a agulha já voltou à posição inicial; a seta e o pontinho do chip estão na posição do quadro 0). No MP4, 41 px de ruído do H.264 nas bordas das letras
-OK     slide 02: conteúdo em x 82–985 em todos os quadros (margem de 80 px)
-OK     slide 02: canto do ícone de som (x ≥ 940, y ≥ 1210) livre em todos os quadros
-OK     slide 02: animação terminada até 2,5 s (de 2,5 s a 6,97 s, no máximo 0 px mudam mais de 40 níveis de brilho; tolerância de ruído do vídeo: 50 px)
-OK     slide 03: conteúdo em x 80–1000 em todos os quadros (margem de 80 px)
-OK     slide 03: canto do ícone de som (x ≥ 940, y ≥ 1210) livre em todos os quadros
-OK     slide 03: animação terminada até 2,5 s (de 2,5 s a 6,97 s, no máximo 0 px mudam mais de 40 níveis de brilho; tolerância de ruído do vídeo: 50 px)
-OK     slide 04: conteúdo em x 80–1000 em todos os quadros (margem de 80 px)
-OK     slide 04: canto do ícone de som (x ≥ 940, y ≥ 1210) livre em todos os quadros
-OK     slide 04: animação terminada até 2,5 s (de 2,5 s a 6,97 s, no máximo 16 px mudam mais de 40 níveis de brilho; tolerância de ruído do vídeo: 50 px)
-OK     slide 05: conteúdo em x 79–1000 em todos os quadros (margem de 80 px)
-OK     slide 05: canto do ícone de som (x ≥ 940, y ≥ 1210) livre em todos os quadros
-OK     slide 05: animação terminada até 2,5 s (de 2,5 s a 6,97 s, no máximo 16 px mudam mais de 40 níveis de brilho; tolerância de ruído do vídeo: 50 px)
-OK     slide 06: conteúdo em x 80–1000 em todos os quadros (margem de 80 px)
-OK     slide 06: canto do ícone de som (x ≥ 940, y ≥ 1210) livre em todos os quadros
-OK     slide 06: animação terminada até 2,5 s (de 2,5 s a 6,97 s, no máximo 0 px mudam mais de 40 níveis de brilho; tolerância de ruído do vídeo: 50 px)
-OK     slide 07: conteúdo em x 80–1000 em todos os quadros (margem de 80 px)
-OK     slide 07: canto do ícone de som (x ≥ 940, y ≥ 1210) livre em todos os quadros
-OK     slide 07: animação terminada até 2,5 s (de 2,5 s a 6,97 s, no máximo 0 px mudam mais de 40 níveis de brilho; tolerância de ruído do vídeo: 50 px)
-OK     slide 08: conteúdo em x 80–999 em todos os quadros (margem de 80 px)
-OK     slide 08: canto do ícone de som (x ≥ 940, y ≥ 1210) livre em todos os quadros
-OK     slide 08: animação terminada até 2,5 s (de 2,5 s a 6,97 s, no máximo 1 px mudam mais de 40 níveis de brilho; tolerância de ruído do vídeo: 50 px)
+OK     01.mp4: 1080×1350, 30 fps, 9.00 s (270 quadros), h264 yuv420p, áudio aac 48000 Hz, 0.37 MB
+OK     margens: conteúdo em x 80–999 em todos os quadros (a cada 0,1 s)
+OK     canto do ícone de som (x ≥ 940, y ≥ 1210) livre em todos os quadros
+OK     texto do topo fixo: nas caixas do texto, os quadros do motor (a cada 0,5 s, 19 quadros) são idênticos ao quadro 0 (0 px); no MP4, 11 px de ruído do H.264 nas bordas das letras
+OK     loop: o último quadro (8.967 s) e o quadro 0 batem: 0 px diferentes nos quadros do motor (no MP4: 11 px de ruído)
+OK     valores do roteiro: R$ 300, R$ 360, R$ 450
+OK     contas: R$ 300 × 1,2 = R$ 360 (+20%); R$ 300 × 1,5 = R$ 450 (+50%)
 
 RESULTADO: aprovado
+
+TARIFA DE DEZEMBRO v2 — conferência do slide 02 (10 s)
+
+OK     02.mp4: 1080×1350, 30 fps, 10.00 s (300 quadros), h264 yuv420p, áudio aac 48000 Hz, 2.34 MB
+OK     margens: conteúdo em x 80–1000 em todos os quadros (a cada 0,1 s)
+OK     canto do ícone de som (x ≥ 940, y ≥ 1210) livre em todos os quadros
+OK     texto do topo fixo: nas caixas do texto, os quadros do motor (a cada 0,5 s, 21 quadros) são idênticos ao quadro 0 (0 px); no MP4, 65 px de ruído do H.264 nas bordas das letras
+OK     loop: o último quadro (9.967 s) e o quadro 0 batem: 0 px diferentes nos quadros do motor (no MP4: 65 px de ruído)
+OK     valores do roteiro: R$ 300, R$ 450, R$ 150, R$ 1.800
+OK     contas: 4 chalés × 3 noites × R$ 150 = R$ 1.800 (o contador para em R$ 1.800)
+
+RESULTADO: aprovado
+
+TARIFA DE DEZEMBRO v2 — conferência do slide 03 (9 s)
+
+OK     03.mp4: 1080×1350, 30 fps, 9.00 s (270 quadros), h264 yuv420p, áudio aac 48000 Hz, 1.36 MB
+OK     margens: conteúdo em x 79–999 em todos os quadros (a cada 0,1 s)
+OK     canto do ícone de som (x ≥ 940, y ≥ 1210) livre em todos os quadros
+OK     texto do topo fixo: nas caixas do texto, os quadros do motor (a cada 0,5 s, 19 quadros) são idênticos ao quadro 0 (0 px); no MP4, 2 px de ruído do H.264 nas bordas das letras
+OK     loop: o último quadro (8.967 s) e o quadro 0 batem: 0 px diferentes nos quadros do motor (no MP4: 2 px de ruído)
+OK     valores do roteiro: (sem valores)
+
+RESULTADO: aprovado
+
+TARIFA DE DEZEMBRO v2 — conferência do slide 04 (9 s)
+
+OK     04.mp4: 1080×1350, 30 fps, 9.00 s (270 quadros), h264 yuv420p, áudio aac 48000 Hz, 1.68 MB
+OK     margens: conteúdo em x 80–1000 em todos os quadros (a cada 0,1 s)
+OK     canto do ícone de som (x ≥ 940, y ≥ 1210) livre em todos os quadros
+OK     texto do topo fixo: nas caixas do texto, os quadros do motor (a cada 0,5 s, 19 quadros) são idênticos ao quadro 0 (0 px); no MP4, 18 px de ruído do H.264 nas bordas das letras
+OK     loop: o último quadro (8.967 s) e o quadro 0 batem: 0 px diferentes nos quadros do motor (no MP4: 18 px de ruído)
+OK     valores do roteiro: R$ 300, R$ 360, +20%, R$ 450, +50%
+OK     contas: R$ 300 × 1,2 = R$ 360 (+20%); R$ 300 × 1,5 = R$ 450 (+50%)
+
+RESULTADO: aprovado
+
+TARIFA DE DEZEMBRO v2 — conferência do slide 05 (9 s)
+
+OK     05.mp4: 1080×1350, 30 fps, 9.00 s (270 quadros), h264 yuv420p, áudio aac 48000 Hz, 1.24 MB
+OK     margens: conteúdo em x 81–1000 em todos os quadros (a cada 0,1 s)
+OK     canto do ícone de som (x ≥ 940, y ≥ 1210) livre em todos os quadros
+OK     texto do topo fixo: nas caixas do texto, os quadros do motor (a cada 0,5 s, 19 quadros) são idênticos ao quadro 0 (0 px); no MP4, 6 px de ruído do H.264 nas bordas das letras
+OK     loop: o último quadro (8.967 s) e o quadro 0 batem: 0 px diferentes nos quadros do motor (no MP4: 6 px de ruído)
+OK     valores do roteiro: R$ 300, R$ 360
+
+RESULTADO: aprovado
+
+TARIFA DE DEZEMBRO v2 — conferência do slide 06 (9 s)
+
+OK     06.mp4: 1080×1350, 30 fps, 9.00 s (270 quadros), h264 yuv420p, áudio aac 48000 Hz, 1.39 MB
+OK     margens: conteúdo em x 78–1001 em todos os quadros (a cada 0,1 s)
+OK     canto do ícone de som (x ≥ 940, y ≥ 1210) livre em todos os quadros
+OK     texto do topo fixo: nas caixas do texto, os quadros do motor (a cada 0,5 s, 19 quadros) são idênticos ao quadro 0 (0 px); no MP4, 13 px de ruído do H.264 nas bordas das letras
+OK     loop: o último quadro (8.967 s) e o quadro 0 batem: 0 px diferentes nos quadros do motor (no MP4: 12 px de ruído)
+OK     valores do roteiro: R$ 360
+
+RESULTADO: aprovado
+
+TARIFA DE DEZEMBRO v2 — conferência do slide 07 (9 s)
+
+OK     07.mp4: 1080×1350, 30 fps, 9.00 s (270 quadros), h264 yuv420p, áudio aac 48000 Hz, 1.33 MB
+OK     margens: conteúdo em x 79–1001 em todos os quadros (a cada 0,1 s)
+OK     canto do ícone de som (x ≥ 940, y ≥ 1210) livre em todos os quadros
+OK     texto do topo fixo: nas caixas do texto, os quadros do motor (a cada 0,5 s, 19 quadros) são idênticos ao quadro 0 (0 px); no MP4, 17 px de ruído do H.264 nas bordas das letras
+OK     loop: o último quadro (8.967 s) e o quadro 0 batem: 0 px diferentes nos quadros do motor (no MP4: 17 px de ruído)
+OK     valores do roteiro: 55%, 80%, 100%
+
+RESULTADO: aprovado
+
+TARIFA DE DEZEMBRO v2 — conferência do slide 08 (9 s)
+
+OK     08.mp4: 1080×1350, 30 fps, 9.00 s (270 quadros), h264 yuv420p, áudio aac 48000 Hz, 1.67 MB
+OK     margens: conteúdo em x 81–1000 em todos os quadros (a cada 0,1 s)
+OK     canto do ícone de som (x ≥ 940, y ≥ 1210) livre em todos os quadros
+OK     texto do topo fixo: nas caixas do texto, os quadros do motor (a cada 0,5 s, 19 quadros) são idênticos ao quadro 0 (0 px); no MP4, 7 px de ruído do H.264 nas bordas das letras
+OK     loop: o último quadro (8.967 s) e o quadro 0 batem: 0 px diferentes nos quadros do motor (no MP4: 9 px de ruído)
+OK     valores do roteiro: R$ 300, R$ 360, R$ 450
+OK     contas: R$ 300 × 1,2 = R$ 360 (+20%); R$ 300 × 1,5 = R$ 450 (+50%)
+
+RESULTADO: aprovado
+
+RESULTADO GERAL: aprovado

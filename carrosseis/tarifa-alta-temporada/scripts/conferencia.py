@@ -13,9 +13,12 @@ Mede nos próprios MP4 (os quadros saem pelo ffmpeg, pelo número do quadro) e n
   • texto do topo: nas caixas do texto fixo (título, trilha, apoio), os quadros do motor (a cada 0,5 s) são idênticos
     ao quadro 0 (0 px com o brilho diferente em > 40 níveis); o ruído do H.264 no MP4 é informado à parte;
   • loop: o último quadro e o quadro 0, desenhados pelo motor, são iguais (0 px com o brilho diferente em > 40 níveis);
-  • contas: 4 × 3 × 150 = 1.800; 300 × 1,2 = 360; 300 × 1,5 = 450.
+  • valores: os do roteiro aparecem e nenhum outro valor em R$ aparece; contas: 4 × 3 × 150 = 1.800; 300 × 1,2 = 360;
+    300 × 1,5 = 450.
+  Sem argumentos, confere os 8 e grava também output/revisao/conferencia.txt (o geral).
 """
 import json
+import re
 import os
 import subprocess
 import sys
@@ -93,17 +96,29 @@ def confere(n):
     lp = int((np.abs(lum(r1) - lum(r0)) > 40).sum())
     lv = int((np.abs(lum(qs[-1]) - lum(qs[0])) > 40).sum())
     ok(lp == 0, f'loop: o último quadro ({(nq - 1) / fps:.3f} s) e o quadro 0 batem: {lp} px diferentes nos quadros do motor (no MP4: {lv} px de ruído)')
+    # os valores: os do roteiro aparecem, e nenhum outro valor em R$ aparece
+    dados = ' · '.join(l['texto'] for l in info['linhas'])
+    falta = [v_ for v_ in VALORES.get(n, []) if v_ not in dados]
+    reais = set(re.findall(r'R\$ ?([\d.]+)', dados))
+    fora = sorted(reais - {'150', '300', '360', '450', '1.800'})
+    ok(not falta and not fora, f'valores do roteiro: {", ".join(VALORES.get(n, [])) or "(sem valores)"}' + (f' (faltando: {falta})' if falta else '') + (f' (fora do roteiro: {fora})' if fora else ''))
     if n == 2:
-        ok(4 * 3 * 150 == 1800 and any('1.800' in l['texto'] for l in info['linhas']), 'contas: 4 chalés × 3 noites × R$ 150 = R$ 1.800 (o contador para em R$ 1.800)')
-    if n in (1, 4):
+        ok(4 * 3 * 150 == 1800, 'contas: 4 chalés × 3 noites × R$ 150 = R$ 1.800 (o contador para em R$ 1.800)')
+    if n in (1, 4, 8):
         ok(round(300 * 1.2) == 360 and round(300 * 1.5) == 450, 'contas: R$ 300 × 1,2 = R$ 360 (+20%); R$ 300 × 1,5 = R$ 450 (+50%)')
     res = 'RESULTADO: ' + ('aprovado' if not falhas else 'ajustar')
     txt = f'TARIFA DE DEZEMBRO v2 — conferência do slide {n:02d} ({dur:g} s)\n\n' + '\n'.join(rel + ['', res]) + '\n'
     os.makedirs(REV, exist_ok=True)
     open(os.path.join(REV, f'conferencia-{n:02d}.txt'), 'w').write(txt)
     print(txt)
-    return not falhas
+    return not falhas, txt
 
 
+VALORES = {1: ['R$ 300', 'R$ 360', 'R$ 450'], 2: ['R$ 300', 'R$ 450', 'R$ 150', 'R$ 1.800'], 4: ['R$ 300', 'R$ 360', '+20%', 'R$ 450', '+50%'],
+           5: ['R$ 300', 'R$ 360'], 6: ['R$ 360'], 7: ['55%', '80%', '100%'], 8: ['R$ 300', 'R$ 360', 'R$ 450']}
 alvos = [int(a) for a in sys.argv[1:]] or [n for n in range(1, 9) if os.path.exists(os.path.join(OUT, f'{n:02d}.mp4'))]
-sys.exit(0 if all([confere(n) for n in alvos]) else 1)
+res = [confere(n) for n in alvos]
+if not sys.argv[1:]:
+    geral = 'TARIFA DE DEZEMBRO v2 — conferência dos 8 slides\n\n' + '\n'.join(t_ for _, t_ in res) + '\nRESULTADO GERAL: ' + ('aprovado' if all(r for r, _ in res) else 'ajustar') + '\n'
+    open(os.path.join(REV, 'conferencia.txt'), 'w').write(geral)
+sys.exit(0 if all(r for r, _ in res) else 1)

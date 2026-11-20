@@ -24,39 +24,60 @@ AAC silenciosa. Não tem trilha, narração nem legenda na tela.
 
 ![prévia](output/previa.jpg)
 
-## v2 — refação em cenas (2026-11-20) · ETAPA 1: storyboard + slide 02
+## v2 — refação em cenas (2026-11-20) · ETAPAS 1 e 2: os 8 slides
 
-**Nova direção:** cada slide é uma pequena CENA animada que conta a ideia sozinha, com camadas, profundidade e
-coreografia. O texto do slide fica FIXO no topo desde o quadro 0 e nunca se mexe; a cena acontece abaixo dele.
+**A direção:** cada slide é uma pequena CENA animada que conta a ideia sozinha, com camadas, profundidade e
+coreografia. O texto do slide fica FIXO desde o quadro 0 e nunca se mexe; a cena acontece entre o título e o apoio.
 
-- **Ritmo:** 9 s por slide (10 s no 02). A cena tem começo, meio e fim até ~6,5 s (~8 s no 02). Depois o estado final
-  fica vivo (brilho, partículas leves, pulsos). Nos últimos 0,75 s, a cena se dissolve suavemente de volta ao quadro 0
-  (só o texto), então o loop não salta. Na capa não há dissolução: o letreiro volta sozinho a R$ 300.
-- **Movimento:** entradas com mola (overshoot), números rolando tipo odômetro, letreiro de aeroporto (split-flap, com
-  o flap visível), carimbos com impacto e poeira, morph do mapa nas barras, parallax leve e sombras e brilhos suaves.
-- **Âmbar:** #E8A317, só para alerta (no 02: o balão do susto e o "deixou de entrar").
-- **Storyboard de todos os slides** (4 quadros-chave cada: início, meio, clímax, final):
-  [`output/revisao/storyboard.jpg`](output/revisao/storyboard.jpg).
-- **Slide 02 completo, como prova de qualidade:** [`output/02.mp4`](output/02.mp4) (10 s). Conferência:
-  [`output/revisao/conferencia-02.txt`](output/revisao/conferencia-02.txt). Cenas do 02:
-  - (a) a conversa: o hóspede pergunta, a pousada responde R$ 300, "3 dias depois", "Agora está R$ 450", o susto em
-    âmbar e o "visualizado"; a conversa esmaece e o hóspede some;
-  - (b) 4 chalés acendem LOTADO a R$ 300 e o contador "deixou de entrar" rola até R$ 1.800 (4 chalés × 3 noites ×
-    R$ 150), com moedas e notas escapando da mesa.
-- **Aguardando aprovação para a ETAPA 2** (renderizar os outros 7). Até lá, `output/01.mp4` e `03.mp4`–`08.mp4` e a
-  `output/previa.jpg` ainda são da v1 (a versão anterior, abaixo).
+- **Formato:** 9 s por slide (10 s no 02), 1080×1350, 30 fps, H.264 yuv420p (CRF 12, `-tune animation`) e faixa AAC
+  silenciosa.
+- **Ritmo:** a cena tem começo, meio e fim até ~6,5 s (~7,5 s no 02). Depois o estado final fica vivo (brilho,
+  partículas leves, pulsos). Nos últimos 0,75 s, a cena se dissolve suavemente de volta ao quadro 0 (só o texto), e o
+  último quadro emenda no primeiro. Na capa não há dissolução: o letreiro volta sozinho a R$ 300.
+- **Altura:** o texto de apoio fica logo acima da faixa do ícone de som (base em y ~1180) e as cenas ocupam o espaço
+  entre o título e o apoio.
+- **Âmbar #E8A317:** só para alerta (no 02).
+- **Para postar, nesta ordem:** [`output/01.mp4`](output/01.mp4) … [`08.mp4`](output/08.mp4).
+- **Versão estática de segurança:** [`output/png/`](output/png), com o estado final de cada cena, antes de ela se
+  dissolver.
+- **Revisão:**
+  - prévia: [`output/previa.jpg`](output/previa.jpg) (0 s, 2 s, 4,5 s e o estado final);
+  - storyboard: [`output/revisao/storyboard.jpg`](output/revisao/storyboard.jpg) (início, meio, clímax e final);
+  - conferência: [`output/revisao/conferencia.txt`](output/revisao/conferencia.txt) (os 8 slides; e
+    `conferencia-NN.txt` por slide).
+
+| # | A cena |
+|---|---|
+| 01 | Capa limão. O título fica parado desde o quadro 0. Embaixo, um letreiro de aeroporto (split-flap, com o flap visível) vira R$ 300 → 360 → 450 e volta a 300 no loop. O rótulo do letreiro troca junto: DIÁRIA · NORMAL / ALTA +20% / PICO +50%. |
+| 02 | TELA DIVIDIDA. **Em cima, "SUBIU EM CIMA DA HORA" (âmbar):** a conversa (pergunta, R$ 300, "3 dias depois", "Agora está R$ 450", o susto em âmbar e o "visualizado"). No fim ela esmaece até 45%, mas continua legível, e o avatar do hóspede se desfaz. **Embaixo, "NÃO SUBIU" (cinza, no divisor):** 4 chalés acendem LOTADO a R$ 300 e o contador "deixou de entrar" rola até R$ 1.800 (4 chalés × 3 noites × R$ 150), com moedas e notas escapando da mesa. No estado final, as duas metades ficam na tela. |
+| 03 | O calendário de dezembro (grade de 7 colunas) monta em cascata. Uma onda pinta as faixas: normal em cinza, alta em off-white (18–23 e 26–29), pico em limão (24–25 e 30–31). Os dias de pico acendem com ícones de linha (árvore e fogos) e um brilho que pulsa. |
+| 04 | Uma escada de três degraus na largura útil. O chalé sobe degrau por degrau e, em cada degrau, cai e balança uma etiqueta com o número rolando: R$ 300, R$ 360 (+20%), R$ 450 (+50%). |
+| 05 | O quadro de preços (split-flap) vira de R$ 300 para R$ 360. O ticket de outubro recebe o carimbo "CONFIRMADA · R$ 300" com impacto e NÃO muda (um cadeado acende). Da impressora sai o ticket novo, do mesmo tamanho, com "RESERVA NOVA · R$ 360". |
+| 06 | A tabela emite pulsos sincronizados para três pontos (rótulos em texto, sem logos): o balão de conversa (WhatsApp), a mensagem direta (Instagram) e a placa do balcão (recepção). Os três acendem R$ 360 no mesmo instante, com um anel de sincronia. |
+| 07 | O mapa de ocupação (6 chalés × 31 dias) preenche com reservas enquanto um cursor percorre os dias, com as noites vendidas rolando até 128 / 186. Depois o mapa se recolhe (morph) nas três barras: 55% · 80% · 100%. A barra do pico recebe o carimbo LOTADO. |
+| 08 | O calendário, a tabela e o carimbo, em miniatura, entram de profundidades diferentes e se juntam na folha "TABELA DE DEZEMBRO" (normal R$ 300 · alta R$ 360 · pico R$ 450). A folha se inclina, e o ícone de salvar surge na frente dela e pulsa. No estado final, a folha continua visível atrás do ícone. |
 
 ```bash
-python3 scripts/storyboard.py         # o storyboard (quadros do próprio motor)
-node scripts/render.cjs 2             # um slide (o MP4 + o PNG de segurança: o estado final da cena)
-python3 scripts/conferencia.py 2      # ffprobe, margens, canto do som, texto fixo, loop e contas
+node scripts/render.cjs               # os 8 MP4 + output/png/ (o estado final de cada cena) + output/revisao/linhas.txt
+node scripts/render.cjs 2,4           # só os slides pedidos
+python3 scripts/conferencia.py        # ffprobe, margens, canto do som, texto fixo, loop, contas e valores (os 8)
+python3 scripts/previa.py             # output/previa.jpg + output/revisao/capa-na-grade.jpg
+python3 scripts/storyboard.py         # output/revisao/storyboard.jpg
 ```
 
-**Codificação:** CRF 12 com `-tune animation`. Com CRF 18 o quadro-chave inicial deixava as bordas das letras
-diferentes dos quadros seguintes (até 434 px); agora sobram ~80 px de ruído. No motor, o texto e o loop são idênticos
-(0 px).
+**Conferência:**
 
-## v1 (a versão anterior, animação mínima)
+- **ffprobe:** formato e duração.
+- **Margens e canto do som:** margens de 80 px e o canto do ícone de som livre, a cada 0,1 s nos MP4.
+- **Texto fixo:** idêntico ao quadro 0 nos quadros do motor, a cada 0,5 s (no MP4 sobra só o ruído do H.264 nas bordas
+  das letras).
+- **Loop:** o último quadro é igual ao quadro 0, nos quadros do motor.
+- **Valores:** só os do roteiro (nenhum R$ fora de 150, 300, 360, 450 e 1.800).
+- **Contas:** 300 × 1,2 = 360; 300 × 1,5 = 450; 4 × 3 × 150 = 1.800.
+
+Todos aprovados.
+
+## v1 (a versão anterior, animação mínima; os arquivos dela foram substituídos pela v2)
 
 ## As regras da animação
 
