@@ -1,0 +1,41 @@
+TARIFA DE DEZEMBRO (carrossel animado) — conferência
+
+FFPROBE
+OK     01.mp4: 1080×1350, 30 fps, 7.00 s (210 quadros), h264 yuv420p High, áudio aac 48000 Hz 2 canais, 0.30 MB
+OK     02.mp4: 1080×1350, 30 fps, 7.00 s (210 quadros), h264 yuv420p High, áudio aac 48000 Hz 2 canais, 0.36 MB
+OK     03.mp4: 1080×1350, 30 fps, 7.00 s (210 quadros), h264 yuv420p High, áudio aac 48000 Hz 2 canais, 0.29 MB
+OK     04.mp4: 1080×1350, 30 fps, 7.00 s (210 quadros), h264 yuv420p High, áudio aac 48000 Hz 2 canais, 0.31 MB
+OK     05.mp4: 1080×1350, 30 fps, 7.00 s (210 quadros), h264 yuv420p High, áudio aac 48000 Hz 2 canais, 0.37 MB
+OK     06.mp4: 1080×1350, 30 fps, 7.00 s (210 quadros), h264 yuv420p High, áudio aac 48000 Hz 2 canais, 0.34 MB
+OK     07.mp4: 1080×1350, 30 fps, 7.00 s (210 quadros), h264 yuv420p High, áudio aac 48000 Hz 2 canais, 0.30 MB
+OK     08.mp4: 1080×1350, 30 fps, 7.00 s (210 quadros), h264 yuv420p High, áudio aac 48000 Hz 2 canais, 0.28 MB
+
+MARGENS, CANTO DO SOM E ESTABILIDADE (quadros a cada 0,1 s, tirados do MP4)
+OK     slide 01: conteúdo em x 80–999 em todos os quadros (margem de 80 px)
+OK     slide 01: canto do ícone de som (x ≥ 940, y ≥ 1210) livre em todos os quadros
+OK     slide 01 (capa): o quadro 0 já está completo — na área do título, 25 px diferentes do último quadro (só o pontinho do chip pulsa)
+       slide 01 (capa): depois de 2,5 s mudam no máximo 925 px (a seta do "ARRASTA →" e o pontinho do chip; a escala ao fundo gira devagar e não conta)
+       slide 01 (capa): loop — o último quadro e o quadro 0 diferem em 28 px (a seta e o pontinho, no meio do movimento)
+OK     slide 02: conteúdo em x 82–985 em todos os quadros (margem de 80 px)
+OK     slide 02: canto do ícone de som (x ≥ 940, y ≥ 1210) livre em todos os quadros
+OK     slide 02: animação terminada até 2,5 s (de 2,5 s a 6,97 s, no máximo 0 px mudam mais de 40 níveis de brilho; tolerância de ruído do vídeo: 50 px)
+OK     slide 03: conteúdo em x 80–1000 em todos os quadros (margem de 80 px)
+OK     slide 03: canto do ícone de som (x ≥ 940, y ≥ 1210) livre em todos os quadros
+OK     slide 03: animação terminada até 2,5 s (de 2,5 s a 6,97 s, no máximo 0 px mudam mais de 40 níveis de brilho; tolerância de ruído do vídeo: 50 px)
+OK     slide 04: conteúdo em x 80–1000 em todos os quadros (margem de 80 px)
+OK     slide 04: canto do ícone de som (x ≥ 940, y ≥ 1210) livre em todos os quadros
+OK     slide 04: animação terminada até 2,5 s (de 2,5 s a 6,97 s, no máximo 16 px mudam mais de 40 níveis de brilho; tolerância de ruído do vídeo: 50 px)
+OK     slide 05: conteúdo em x 79–1000 em todos os quadros (margem de 80 px)
+OK     slide 05: canto do ícone de som (x ≥ 940, y ≥ 1210) livre em todos os quadros
+OK     slide 05: animação terminada até 2,5 s (de 2,5 s a 6,97 s, no máximo 16 px mudam mais de 40 níveis de brilho; tolerância de ruído do vídeo: 50 px)
+OK     slide 06: conteúdo em x 80–1000 em todos os quadros (margem de 80 px)
+OK     slide 06: canto do ícone de som (x ≥ 940, y ≥ 1210) livre em todos os quadros
+OK     slide 06: animação terminada até 2,5 s (de 2,5 s a 6,97 s, no máximo 0 px mudam mais de 40 níveis de brilho; tolerância de ruído do vídeo: 50 px)
+OK     slide 07: conteúdo em x 80–1000 em todos os quadros (margem de 80 px)
+OK     slide 07: canto do ícone de som (x ≥ 940, y ≥ 1210) livre em todos os quadros
+OK     slide 07: animação terminada até 2,5 s (de 2,5 s a 6,97 s, no máximo 0 px mudam mais de 40 níveis de brilho; tolerância de ruído do vídeo: 50 px)
+OK     slide 08: conteúdo em x 80–999 em todos os quadros (margem de 80 px)
+OK     slide 08: canto do ícone de som (x ≥ 940, y ≥ 1210) livre em todos os quadros
+OK     slide 08: animação terminada até 2,5 s (de 2,5 s a 6,97 s, no máximo 1 px mudam mais de 40 níveis de brilho; tolerância de ruído do vídeo: 50 px)
+
+RESULTADO: aprovado

@@ -1,0 +1,40 @@
+TARIFA DE DEZEMBRO — linhas de texto no último quadro (palavra sozinha numa linha = FALHA)
+
+ok     slide 01 texto: Tarifa de
+ok     slide 01 texto: dezembro:
+ok     slide 01 texto: quando e
+ok     slide 01 texto: quanto subir?
+ok     slide 02 texto: Subir o preço em
+ok     slide 02 texto: cima da hora assusta
+ok     slide 02 texto: quem já perguntou.
+ok     slide 02 texto: Não subir deixa
+ok     slide 02 texto: dinheiro na mesa.
+ok     slide 03 texto: Normal, alta e pico, cada uma com o seu valor.
+ok     slide 03 texto: Separe as datas
+ok     slide 03 texto: por demanda.
+ok     slide 03 faixa: DEZEMBRO · NORMAL · ALTA · PICO · 24–25 E 30–31
+ok     slide 04 texto: Preço pensado com calma, resposta rápida
+ok     slide 04 texto: no WhatsApp.
+ok     slide 04 texto: Defina o valor de cada
+ok     slide 04 texto: faixa antes de abrir.
+ok     slide 04 dados: NORMAL R$ 300 · ALTA R$ 360 +20% · PICO R$ 450 +50%
+ok     slide 05 texto: Tabela nova vale só para reserva nova.
+ok     slide 05 texto: Reserva confirmada fica
+ok     slide 05 texto: com o valor combinado.
+ok     slide 05 dados: RESERVA CONFIRMADA EM OUTUBRO R$ 300 → continua R$ 300 · RESERVA NOVA DE DEZEMBRO R$ 360
+ok     slide 06 texto: WhatsApp, Instagram e recepção falando o
+ok     slide 06 texto: mesmo preço.
+ok     slide 06 texto: A mesma tabela
+ok     slide 06 texto: em todo lugar.
+ok     slide 06 dados: WHATSAPP R$ 360 · INSTAGRAM R$ 360 · RECEPÇÃO R$ 360
+ok     slide 07 texto: É essa anotação que ajusta a tabela do ano
+ok     slide 07 texto: que vem.
+ok     slide 07 texto: Anote como
+ok     slide 07 texto: cada faixa vendeu.
+ok     slide 07 dados: OCUPAÇÃO NORMAL 55% · ALTA 80% · PICO 100%
+ok     slide 08 texto: Preço definido antes,
+ok     slide 08 texto: resposta rápida depois.
+ok     slide 08 texto: Salva pra montar a sua tabela.
+ok     slide 08 assinatura: @fazlohospeda
+
+RESULTADO: nenhuma palavra sozinha numa linha

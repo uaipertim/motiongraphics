@@ -15,6 +15,7 @@ Carrosséis estáticos para o Instagram da @fazlohospeda, com a mesma identidade
 | **Overbooking** | DICA | "Quarto vendido duas vezes?" | 8 · 1080×1350 (4:5) | `01.png` (limão) | [`overbooking/`](overbooking) |
 | **Check-out** | DICA | "Checklist do check-out sem surpresa" (par do 04) | 8 · 1080×1350 (4:5) | `01.png` (limão) | [`checkout/`](checkout) |
 | **Consumo** | DICA | "Nada de consumo fora da conta" | 8 · 1080×1350 (4:5) | `01.png` (limão) | [`consumo/`](consumo) |
+| **Tarifa de alta temporada** (piloto animado) | DICA | "Tarifa de dezembro: quando e quanto subir?" | animado · 8 × MP4 1080×1350 | `01.mp4` (limão) | [`tarifa-alta-temporada/`](tarifa-alta-temporada) |
 
 ## Capas — regra fixa (a partir de outubro de 2026)
 
