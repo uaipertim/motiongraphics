@@ -9,18 +9,9 @@ Usa a identidade e o motor dos carrosséis estáticos: o mesmo [`consumo/`](../c
 80 px, capa limão com texto preto (a regra fixa das capas, [`../README.md`](../README.md)), trilha de passos 01–05 e
 cards com rótulo em mono.
 
-**Formato:** 8 slides, cada um um vídeo MP4 de 1080×1350 (4:5), 7 s a 30 fps, H.264 yuv420p, com uma faixa de áudio
-AAC silenciosa. Não tem trilha, narração nem legenda na tela.
-
-▶ **Para postar, nesta ordem:** [`output/01.mp4`](output/01.mp4) (capa limão) · [`02.mp4`](output/02.mp4) ·
-[`03.mp4`](output/03.mp4) · [`04.mp4`](output/04.mp4) · [`05.mp4`](output/05.mp4) · [`06.mp4`](output/06.mp4) ·
-[`07.mp4`](output/07.mp4) · [`08.mp4`](output/08.mp4)
-
-**Versão estática de segurança:** [`output/png/01.png`](output/png) … `08.png`, o último quadro de cada slide.
-
-**Prévia** (quadros de 0 s, 1 s, 2,5 s e 6,9 s de cada slide): [`output/previa.jpg`](output/previa.jpg) ·
-**Conferência:** [`output/revisao/conferencia.txt`](output/revisao/conferencia.txt) ·
-**Legenda do post:** [`legenda.txt`](legenda.txt)
+**Formato (v2):** 8 slides, cada um um vídeo MP4 de 1080×1350 (4:5), 9 s (o 02, 10 s) a 30 fps, H.264 yuv420p, com
+uma faixa de áudio AAC silenciosa. Não tem trilha, narração nem legenda na tela. **Legenda do post:**
+[`legenda.txt`](legenda.txt).
 
 ![prévia](output/previa.jpg)
 
