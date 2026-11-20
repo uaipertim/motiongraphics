@@ -394,8 +394,8 @@
   // um elemento que entra com mola a partir de um ponto (escala + leve subida)
   function surge(ctx, t, t0, ox, oy, fn, o = {}) {
     if (t < t0) return;
-    const k = mola(t, t0, o.dur || 0.55), a = cl((t - t0) / 0.18);
-    ctx.save(); ctx.globalAlpha *= a; ctx.translate(ox, oy + (1 - k) * (o.dy ?? 26)); ctx.scale(0.6 + 0.4 * k, 0.6 + 0.4 * k); ctx.translate(-ox, -oy); fn(k); ctx.restore();
+    const k = mola(t, t0, o.dur || 0.55), a = cl((t - t0) / 0.18), kt = o.semSubir ? Math.min(k, 1) : k;
+    ctx.save(); ctx.globalAlpha *= a; ctx.translate(ox, oy + (1 - kt) * (o.dy ?? 26)); ctx.scale(0.6 + 0.4 * k, 0.6 + 0.4 * k); ctx.translate(-ox, -oy); fn(k); ctx.restore();
   }
   // "ARRASTA →" na margem direita, ACIMA do canto do ícone de som: a seta dá um empurrãozinho a cada 1,5 s
   function swipe(ctx, textColor, arrowColor, t = 0) {
@@ -434,6 +434,11 @@
     return { tt, sp, y0: tt.bottom + 34, y1: sp.top - 34 };            // a faixa da cena
   }
   // o fundo de cada cena (atrás de tudo): uma luz limão que respira devagar no meio da faixa da cena
+  // (conferência do 02) a caixa de um elemento da conversa como aparece no quadro (com a escala/posição da mola)
+  function marca(ctx, nome, x0, y0, x1, y1) {
+    const m = ctx.getTransform(), ps = [[x0, y0], [x1, y0], [x0, y1], [x1, y1]].map(([x, y]) => [m.a * x + m.c * y + m.e, m.b * x + m.d * y + m.f]);
+    (CAIXAS.conversa = CAIXAS.conversa || []).push([nome, Math.min(...ps.map((q) => q[0])), Math.min(...ps.map((q) => q[1])), Math.max(...ps.map((q) => q[0])), Math.max(...ps.map((q) => q[1]))]);
+  }
   function palco(ctx, t, y0, y1, a = 1) { brilho(ctx, 540, (y0 + y1) / 2, 520, C.lime, (0.045 + 0.02 * Math.sin(TAU * t / DUR)) * a); }
 
   // =====================================================================
@@ -492,9 +497,9 @@
     2(ctx, t) {
       ficticio(ctx);
       const tt = title(ctx, [{ t: 'Subir o preço em cima da hora assusta quem já perguntou.', c: W_ }, { t: 'Não subir deixa dinheiro na mesa.', c: Li, br: true }],
-        176, { max: 66, maxH: 300, lh: 1.08 });
+        166, { max: 66, maxH: 300, lh: 1.08 });
       CAIXAS.texto = [[M, tt.top - 6, M + CW, tt.bottom + 6]];
-      const k0 = saida(t), YA = tt.bottom + 36, YD = YA + 422, YB = YD + 30;
+      const k0 = saida(t), YA = tt.bottom + 30, YD = YA + 498, YB = YD + 26;
       palco(ctx, t, YA, 1180, k0);
       camada(ctx, k0, () => {
         // ---- os rótulos das duas metades e o divisor
@@ -504,13 +509,14 @@
           // o divisor: o rótulo "NÃO SUBIU" na própria linha, e a linha segue depois dele
           const lw_ = tw(ctx, 'NÃO SUBIU', MONO, 20, 800, 3) + 18;
           const g = ctx.createLinearGradient(M + lw_, 0, M + CW, 0); g.addColorStop(0, rgba(C.white, 0.22)); g.addColorStop(1, rgba(C.white, 0.02));
-          ctx.fillStyle = g; ctx.fillRect(M + lw_, YD, (CW - lw_) * kd, 2);
+          ctx.fillStyle = g; ctx.fillRect(M + lw_, YD, (CW - lw_) * kd, 2); marca(ctx, 'divisor', M, YD - 8, M + CW, YD + 9);
           camada(ctx, kd, () => monoLab(ctx, 'NÃO SUBIU', M, YD + 8, C.gray, 20, 'left', 3));
         }
         // ---- (a) a conversa (fica na tela; no fim esmaece até 45%)
         const esm = 1 - 0.55 * eIO(p(t, 3.9, 4.6));
         camada(ctx, esm, () => {
-          const XA = M + 88, R = M + CW, Y0 = YA + 22, SL = [0, 80, 160, 208, 288, 368], y = (i) => Y0 + SL[i], BS = { size: 34 };
+          const XA = M + 88, R = M + CW, Y0 = YA + 22, SL = [0, 94, 188, 252, 346, 446], y = (i) => Y0 + SL[i], BS = { size: 34 }, SO = { semSubir: true };
+          const bal = (nome, x, yy, txt, lado, o) => { const b = balao(ctx, x, yy, txt, lado, o); marca(ctx, nome, b.x0, b.y, b.x0 + b.w, b.y + b.h); return b; };
           const someAv = p(t, 3.55, 4.1);
           if (t >= 0.25) {
             camada(ctx, (1 - someAv) * cl((t - 0.25) / 0.2), () => avatar(ctx, M + 34, y(0) + 37, 32, C.gray));
@@ -520,36 +526,42 @@
               ctx.fillStyle = rgba(C.gray, 1 - someAv); ctx.fill();
             }
           }
-          surge(ctx, t, 0.3, XA, y(0) + 70, () => balao(ctx, XA, y(0), 'Quanto fica a diária no Natal?', 'esq', BS));
-          surge(ctx, t, 0.95, R, y(1) + 70, () => balao(ctx, R, y(1), 'R$ 300', 'dir', BS));
-          surge(ctx, t, 1.55, 540, y(2) + 22, () => {
+          surge(ctx, t, 0.3, XA, y(0), () => bal('pergunta', XA, y(0), 'Quanto fica a diária no Natal?', 'esq', BS), SO);
+          surge(ctx, t, 0.95, R, y(1), () => bal('R$ 300', R, y(1), 'R$ 300', 'dir', BS), SO);
+          surge(ctx, t, 1.55, 540, y(2), () => {
             const w = tw(ctx, '3 DIAS DEPOIS', MONO, 22, 800, 3) + 90;
+            marca(ctx, '3 dias depois', 540 - w / 2, y(2), 540 + w / 2, y(2) + 44);
             rr(ctx, 540 - w / 2, y(2), w, 44, 22); ctx.fillStyle = '#161615'; ctx.fill(); ctx.strokeStyle = '#3A3A36'; ctx.lineWidth = 2; ctx.stroke();
             relogio(ctx, 540 - w / 2 + 28, y(2) + 22, 12, C.gray, -Math.PI / 2 + TAU * 3 * eIO(p(t, 1.6, 2.3)));
             monoLab(ctx, '3 DIAS DEPOIS', 540 - w / 2 + 52, y(2) + 30, C.gray, 22);
-          }, { dy: 10 });
-          surge(ctx, t, 2.2, R, y(3) + 70, () => balao(ctx, R, y(3), 'Agora está R$ 450', 'dir', BS));
+          }, { dy: 10, semSubir: true });
+          surge(ctx, t, 2.2, R, y(3), () => bal('R$ 450', R, y(3), 'Agora está R$ 450', 'dir', BS), SO);
           const tr = t > 2.9 && t < 3.4 ? 5 * Math.sin((t - 2.9) * 60) * (1 - p(t, 2.9, 3.4)) : 0;
-          surge(ctx, t, 2.9, XA, y(4) + 70, () => {
+          surge(ctx, t, 2.9, XA, y(4), () => {
             ctx.save(); ctx.translate(tr, 0);
-            const b = balao(ctx, XA, y(4), 'Ué, semana passada era 300…', 'esq', { borda: AMB, bw: 3.5, fundo: '#1F1B12', size: 34 });
-            brilho(ctx, b.x0 + b.w, b.y, 56, AMB, 0.35);
-            ctx.beginPath(); ctx.arc(b.x0 + b.w - 4, b.y + 4, 16, 0, TAU); ctx.fillStyle = AMB; ctx.fill();
-            setFont(ctx, DISPLAY, 24, 900, 0, 'center'); ctx.fillStyle = INK; ctx.fillText('!', b.x0 + b.w - 4, b.y + 12);
+            const b = bal('Ué', XA, y(4), 'Ué, semana passada era 300…', 'esq', { borda: AMB, bw: 3.5, fundo: '#1F1B12', size: 34 });
+            // o selo "!" no canto superior direito do balão âmbar: o topo dele alinha com o topo do balão (não invade o vão)
+            const sx_ = b.x0 + b.w - 2, sy_ = b.y + 16;
+            brilho(ctx, sx_, sy_, 48, AMB, 0.3);
+            ctx.beginPath(); ctx.arc(sx_, sy_, 16, 0, TAU); ctx.fillStyle = AMB; ctx.fill();
+            setFont(ctx, DISPLAY, 24, 900, 0, 'center'); ctx.fillStyle = INK; ctx.fillText('!', sx_, sy_ + 8);
+            marca(ctx, 'selo !', sx_ - 16, sy_ - 16, sx_ + 16, sy_ + 16);
             ctx.restore();
-          });
+          }, SO);
+          // "visualizado ✓✓": abaixo do balão âmbar, alinhado à esquerda dele (base em y(5); topo das letras 15 px acima)
           CAIXAS.visualizado = y(5) + 4; CAIXAS.divisor = YD;
-          surge(ctx, t, 3.45, XA, y(5), () => {
-            monoLab(ctx, 'VISUALIZADO', XA + 4, y(5) + 4, C.gray, 20, 'left', 2);
-            const xx = XA + 4 + tw(ctx, 'VISUALIZADO', MONO, 20, 800, 2) + 12;
+          surge(ctx, t, 3.45, XA, y(5) - 15, () => {
+            monoLab(ctx, 'VISUALIZADO', XA, y(5), C.gray, 20, 'left', 2);
+            const xx = XA + tw(ctx, 'VISUALIZADO', MONO, 20, 800, 2) + 12;
             ctx.strokeStyle = C.gray; ctx.lineWidth = 3; ctx.lineCap = 'round';
-            for (const d of [0, 11]) { ctx.beginPath(); ctx.moveTo(xx + d, y(5) - 4); ctx.lineTo(xx + d + 6, y(5) + 2); ctx.lineTo(xx + d + 16, y(5) - 10); ctx.stroke(); }
-          }, { dy: 6 });
+            for (const d of [0, 11]) { ctx.beginPath(); ctx.moveTo(xx + d, y(5) - 6); ctx.lineTo(xx + d + 6, y(5)); ctx.lineTo(xx + d + 16, y(5) - 12); ctx.stroke(); }
+            marca(ctx, 'visualizado', XA, y(5) - 15, xx + 29, y(5) + 4);
+          }, { dy: 6, semSubir: true });
         });
         // ---- (b) à esquerda, os 4 chalés (2 × 2) acendem LOTADO a R$ 300; à direita, o contador e a mesa
         if (t >= 4.4) {
           const xs = [M + 100, M + 340, M + 580, M + 820], yb = YB + 180;
-          CAIXAS.protegidas = xs.map((x) => [x - 80, yb - 180, x + 80, yb + 14]).concat([[M, YB + 222, M + 470, YB + 368]]);
+          CAIXAS.protegidas = xs.map((x) => [x - 80, yb - 180, x + 80, yb + 14]).concat([[M, YB + 210, M + 470, YB + 356]]);
           xs.forEach((x, i) => {
             const a0 = 4.5 + i * 0.12, tr_ = eOut(p(t, a0, a0 + 0.6)), ac = eOut(p(t, 5.2 + i * 0.18, 5.5 + i * 0.18));
             const tremula = ac >= 1 ? 0.85 + 0.15 * Math.sin(t * 3 + i * 1.7) : ac;
@@ -562,24 +574,24 @@
             surge(ctx, t, 5.35 + i * 0.18, x, yb, () => monoLab(ctx, 'R$ 300', x, yb + 6, C.white, 26, 'center', 1), { dy: 8 });
           });
           const xc = M, xm = M + 520, xr = M + CW;
-          surge(ctx, t, 5.9, xc, YB + 280, () => {
-            monoLab(ctx, 'DEIXOU DE ENTRAR', xc, YB + 248, C.gray, 22, 'left');
+          surge(ctx, t, 5.9, xc, YB + 268, () => {
+            monoLab(ctx, 'DEIXOU DE ENTRAR', xc, YB + 236, C.gray, 22, 'left');
             const v = 1800 * eOut(p(t, 6.05, 7.5));
-            brilho(ctx, xc + 220, YB + 300, 280, AMB, 0.12 + 0.04 * Math.sin(t * 4));
-            odometro(ctx, v, 1800, xc - 4, YB + 326, 86, { cor: AMB });
-            monoLab(ctx, '4 CHALÉS × 3 NOITES × R$ 150', xc, YB + 362, C.grayM, 20, 'left', 2);
+            brilho(ctx, xc + 220, YB + 288, 280, AMB, 0.12 + 0.04 * Math.sin(t * 4));
+            odometro(ctx, v, 1800, xc - 4, YB + 314, 86, { cor: AMB });
+            monoLab(ctx, '4 CHALÉS × 3 NOITES × R$ 150', xc, YB + 350, C.grayM, 20, 'left', 2);
           }, { dy: 16 });
           // a mesa (à direita) e as moedas/notas que escapam dela (somem antes da margem)
-          const ym = YB + 352;
+          const ym = YB + 340;
           camada(ctx, cl((t - 6.0) / 0.3), () => {
-            const mesaFim = xr - 170; rr(ctx, xm, ym, mesaFim - xm, 10, 5); ctx.fillStyle = '#2C2C29'; ctx.fill();
+            const mesaFim = xr - 210; rr(ctx, xm, ym, mesaFim - xm, 10, 5); ctx.fillStyle = '#2C2C29'; ctx.fill();
             for (let i = 0; i < 7; i++) { const x = xm + 30 + i * 20; for (let j = 0; j < 3 - (i % 2); j++) { ctx.beginPath(); ctx.ellipse(x, ym - 8 - j * 9, 18, 6, 0, 0, TAU); ctx.fillStyle = rgba(C.lime, 0.85); ctx.fill(); } }
             for (let i = 0; i < 28; i++) {
               const nasc = 6.2 + i * 0.16, life = 1.3, u = (t - nasc) / life;
               if (u <= 0 || u >= 1) continue;
               // da ponta da mesa para a direita, caindo um pouco (nunca sobe até os chalés nem vai para o contador; para
-              // antes da margem e acima do canto do ícone de som)
-              const sx = mesaFim - 40 + 30 * hash(i, 2), ex = 900 + 70 * hash(i, 3), ey = Math.min(1180, ym + 2 + 8 * hash(i, 6));
+              // antes do canto do ícone de som: com a mesa nesta altura, x + 24 ≤ 940)
+              const sx = mesaFim - 40 + 30 * hash(i, 2), ex = 860 + 52 * hash(i, 3), ey = ym + 2 + 4 * hash(i, 6);
               const x = sx + (ex - sx) * eOut(u), yv = ym - 18 + (ey - ym + 18) * eIn(u) - 10 * Math.sin(Math.PI * u), al = Math.sin(Math.PI * u) * 0.9;
               if (x > 982) continue;
               (CAIXAS.moedas = CAIXAS.moedas || []).push([x, yv, 24]);

@@ -36,7 +36,7 @@ const grab = async (page, n, t) => { await page.evaluate(([n, t]) => window.fram
       // (conferência do 02) em cada quadro: as moedas/notas no ar e as caixas protegidas (chalés, preços, contador)
       const page = await openPage(browser, port);
       const r = await page.evaluate(() => { const n = Math.round(CARROSSEL.durDe(2) * CARROSSEL.FPS), out = [];
-        for (let i = 0; i < n; i++) { window.frameAt(2, i / CARROSSEL.FPS); out.push({ t: i / CARROSSEL.FPS, moedas: CARROSSEL.CAIXAS.moedas || [], protegidas: CARROSSEL.CAIXAS.protegidas || [], vis: CARROSSEL.CAIXAS.visualizado, div: CARROSSEL.CAIXAS.divisor }); }
+        for (let i = 0; i < n; i++) { window.frameAt(2, i / CARROSSEL.FPS); out.push({ t: i / CARROSSEL.FPS, moedas: CARROSSEL.CAIXAS.moedas || [], protegidas: CARROSSEL.CAIXAS.protegidas || [], vis: CARROSSEL.CAIXAS.visualizado, div: CARROSSEL.CAIXAS.divisor, conversa: CARROSSEL.CAIXAS.conversa || [] }); }
         return out; });
       process.stdout.write(JSON.stringify(r));
       return;

@@ -18,6 +18,7 @@ Mede nos próprios MP4 (os quadros saem pelo ffmpeg, pelo número do quadro) e n
   Sem argumentos, confere os 8 e grava também output/revisao/conferencia.txt (o geral).
 """
 import json
+import math
 import re
 import os
 import subprocess
@@ -110,6 +111,41 @@ def confere(n):
         nm = sum(len(q['moedas']) for q in g)
         ok(not bate and not canto_, f'moedas/notas: {nm} posições em {len(g)} quadros; nenhuma sobrepõe chalé, preço ou contador, nem entra no canto do som'
            + (f' (sobrepõe em {sorted(set(round(t_, 2) for t_ in bate))[:5]})' if bate else '') + (f' (canto em {sorted(set(round(t_, 2) for t_ in canto_))[:5]})' if canto_ else ''))
+        # a conversa: em cada quadro, as caixas de todos os elementos (balões, selo "!", "3 dias depois", "visualizado") e do
+        # divisor; nenhum par pode se tocar nem ficar a menos de 10 px (o selo é parte do balão âmbar)
+        def vao(a, b):
+            dx, dy = max(a[1] - b[3], b[1] - a[3]), max(a[2] - b[4], b[2] - a[4])
+            return dx if dy < 0 else dy if dx < 0 else math.hypot(dx, dy)
+        piores, ruins = {}, []
+        for q in g:
+            cs = q['conversa']
+            for i in range(len(cs)):
+                for j in range(i + 1, len(cs)):
+                    par = tuple(sorted((cs[i][0], cs[j][0])))
+                    if par == ('Ué', 'selo !'):
+                        continue
+                    v = vao(cs[i], cs[j])
+                    if par not in piores or v < piores[par][0]:
+                        piores[par] = (v, q['t'])
+                    if v < 10:
+                        ruins.append((round(q['t'], 2), par, round(v, 1)))
+        final = {c[0]: c for c in g[-36]['conversa']}  # 8,8 s: o estado final, antes da dissolução
+        ordem = ['pergunta', 'R$ 300', '3 dias depois', 'R$ 450', 'Ué']
+        vaos = [final[ordem[i + 1]][2] - final[ordem[i]][4] for i in range(len(ordem) - 1)]
+        # nos quadros de entrada (mola), o vão entre vizinhos da pilha também não cai abaixo de 20 px
+        vq = [cs[ordem[i + 1]][2] - cs[ordem[i]][4] for q in g for cs in [{c[0]: c for c in q['conversa']}] for i in range(len(ordem) - 1)
+              if ordem[i] in cs and ordem[i + 1] in cs]
+        ok(round(min(vq), 1) >= 20, f'conversa durante as entradas: o menor vão vertical entre vizinhos, em todos os quadros, é {min(vq):.1f} px (mínimo 20)')
+        ok(len(final) == 8 and round(min(vaos), 1) >= 20, 'conversa no estado final: vãos verticais entre balões e "3 dias depois" = '
+           + ', '.join(f'{v:.1f}' for v in vaos) + ' px (mínimo 20)')
+        sel, ue = final['selo !'], final['Ué']
+        ok(sel[2] >= ue[2] - 0.5 and sel[1] >= ue[1] and sel[1] < ue[3], f'selo "!" no canto superior direito do balão âmbar (topo do selo = topo do balão; folga até o "Agora está R$ 450": {vao(sel, final["R$ 450"]):.1f} px, mínimo 12)'
+           if vao(sel, final['R$ 450']) >= 12 else 'selo "!" a menos de 12 px de outro balão')
+        vz = final['visualizado'][2] - ue[4]
+        ok(10 <= vz <= 12 and abs(final['visualizado'][1] - ue[1]) < 0.5, f'"visualizado" abaixo do balão âmbar, alinhado à esquerda dele, {vz:.1f} px da borda inferior (10–12)')
+        pior = min(piores.items(), key=lambda kv: kv[1][0])
+        ok(not ruins, f'conversa em todos os {len(g)} quadros: {len(piores)} pares de elementos (+ divisor) sem toque e sempre ≥ 10 px; menor vão {pior[1][0]:.1f} px ({pior[0][0]} × {pior[0][1]}, {pior[1][1]:.2f} s)'
+           + (f' — FALHAS: {ruins[:6]}' if ruins else ''))
         folga = min(q['div'] - q['vis'] for q in g if q.get('vis') and q.get('div'))
         ok(folga >= 24, f'"visualizado" → divisor: {folga:.0f} px entre a base do "visualizado" e a linha do divisor (mínimo 24)')
         ok(4 * 3 * 150 == 1800, 'contas: 4 chalés × 3 noites × R$ 150 = R$ 1.800 (o contador para em R$ 1.800)')
