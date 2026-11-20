@@ -1,10 +1,11 @@
 # FAZLO Hospeda na prática, episódio 3: Chalés e quartos (primeira prévia)
 
-Segue as [regras da série](../REGRAS.md). O roteiro aprovado, as decisões e a linha do tempo com os tempos reais estão no [`ROTEIRO.md`](ROTEIRO.md). Vai ao ar na quarta, 25/11, às 19h. **Prévia para aprovação; não publicar.**
+Segue as [regras da série](../REGRAS.md). O roteiro aprovado, as decisões e a linha do tempo com os tempos reais estão no [`ROTEIRO.md`](ROTEIRO.md). Vai ao ar na quarta, 25/11, às 19h. **Vídeo aprovado (commit c2e5d9d); capa para aprovação. Não publicar.**
 
 ## Arquivos
 - ▶ **Prévia (mestre):** [`output/hospeda-na-pratica-03-chales-e-quartos.mp4`](output/hospeda-na-pratica-03-chales-e-quartos.mp4): 1080×1920, 60 fps, 72,1 s, 35 MB.
 - **Versão WhatsApp:** [`output/hospeda-na-pratica-03-chales-e-quartos-whatsapp.mp4`](output/hospeda-na-pratica-03-chales-e-quartos-whatsapp.mp4): 30 fps, CRF 27, 9,6 MB.
+- **Capa (para aprovação):** [`capa/capa.jpg`](capa/capa.jpg) e o recorte do feed, 4:5: [`capa/capa-no-feed.jpg`](capa/capa-no-feed.jpg), no padrão da seção "Capa" das [regras](../REGRAS.md#capa).
 - **Quadros-chave:** [`aprovacao/quadros-chave.jpg`](aprovacao/quadros-chave.jpg), 12 quadros.
 - **Telas:** [`aprovacao/folha-telas.jpg`](aprovacao/folha-telas.jpg), 22 capturas, e mais `acomodacoes-limpa`, da correção.
 - **Correção da frase 8:** [`aprovacao/frase8-inicio-corrigido.jpg`](aprovacao/frase8-inicio-corrigido.jpg).
