@@ -8,8 +8,8 @@
 | Data (19h) | Dia | Ep. | Tema | Situação |
 |---|---|---|---|---|
 | 23/11/2026 | seg | 2 | Sua equipe no Hospeda | pronto (commit 6eb756c: vídeo e capa) |
-| 25/11/2026 | qua | 3 | Chalés e quartos | em produção (roteiro aprovado; prévia para aprovação) |
-| 27/11/2026 | sex | 4 | Produtos da comanda | pendente |
+| 25/11/2026 | qua | 3 | Chalés e quartos | pronto (commit 1596402: vídeo e capa) |
+| 27/11/2026 | sex | 4 | Produtos da comanda | em produção |
 | 30/11/2026 | seg | 5 | A pousada num olhar | pendente |
 | 02/12/2026 | qua | 6 | Nova reserva em segundos | pendente |
 | 04/12/2026 | sex | 7 | Sinal e cancelamento | pendente |
