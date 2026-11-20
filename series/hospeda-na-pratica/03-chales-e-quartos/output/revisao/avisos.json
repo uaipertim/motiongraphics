@@ -1,0 +1,13 @@
+{
+ "verificados": 87,
+ "cobertos": [
+  {
+   "cena": "acomodacoes-ipe08-550-topo",
+   "tipo": "toque",
+   "t": 38.43,
+   "tela": "acomodacoes-ipe08-550-topo",
+   "aviso": true,
+   "cobre": true
+  }
+ ]
+}

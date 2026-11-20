@@ -6,7 +6,8 @@ Segue as [regras da série](../REGRAS.md). O roteiro aprovado, as decisões e a 
 - ▶ **Prévia (mestre):** [`output/hospeda-na-pratica-03-chales-e-quartos.mp4`](output/hospeda-na-pratica-03-chales-e-quartos.mp4): 1080×1920, 60 fps, 72,1 s, 35 MB.
 - **Versão WhatsApp:** [`output/hospeda-na-pratica-03-chales-e-quartos-whatsapp.mp4`](output/hospeda-na-pratica-03-chales-e-quartos-whatsapp.mp4): 30 fps, CRF 27, 9,6 MB.
 - **Quadros-chave:** [`aprovacao/quadros-chave.jpg`](aprovacao/quadros-chave.jpg), 12 quadros.
-- **Telas:** [`aprovacao/folha-telas.jpg`](aprovacao/folha-telas.jpg), 22 capturas.
+- **Telas:** [`aprovacao/folha-telas.jpg`](aprovacao/folha-telas.jpg), 22 capturas, e mais `acomodacoes-limpa`, da correção.
+- **Correção da frase 8:** [`aprovacao/frase8-inicio-corrigido.jpg`](aprovacao/frase8-inicio-corrigido.jpg).
 - **Levantamento:** [`aprovacao/folha-levantamento-demo.jpg`](aprovacao/folha-levantamento-demo.jpg), com a legenda do print 4 corrigida, e a verificação do "750" em [`aprovacao/verificacao-750.png`](aprovacao/verificacao-750.png).
 
 ## Como foi feito
@@ -36,6 +37,18 @@ O padrão é o do episódio 2, com o mesmo motor de animação, e quatro coisas 
   - **Marca:** os selos "Chalé", "Quarto" e "Suíte" nunca encostam no logo. A menor distância é de 265 px.
   - **Legenda e janelas:** a legenda não cobre nenhuma janela. A menor distância é de 676 px.
   - **Legenda e toques:** a legenda também não cobre nenhum toque. A tela e os toques ficam no palco, e a legenda fica pelo menos 25 px abaixo dele.
+
+## Correção da frase 8 (prévia aprovada com esta correção)
+- **O defeito:** a cena começava na captura da lista que ainda tinha o aviso "Acomodação atualizada com sucesso.", e ele cobria o "+ Nova acomodação" na hora do toque.
+- **A correção:**
+  - nova captura `acomodacoes-limpa`, no mesmo estado (Ipê 08 já com R$ 550,00), tirada depois de sair para o Início e voltar;
+  - o script recusa a captura se houver qualquer aviso na tela;
+  - as outras 22 capturas saíram idênticas pixel a pixel.
+- **Conferência do vídeo inteiro** (`scripts/conferir-avisos.cjs`, resultado em `output/revisao/avisos.json`):
+  - em cada toque e em cada contorno, no instante e 0,15 s e 0,3 s depois, vê qual captura está na tela e se algum aviso do app fica por cima;
+  - são 87 instantes, e nenhum fica coberto;
+  - na versão anterior, o mesmo teste acusa exatamente o toque do "+ Nova acomodação" (38,4 s).
+- **O que não mudou:** a duração (72,1 s) e todo o resto.
 
 ## Rodar
 ```bash

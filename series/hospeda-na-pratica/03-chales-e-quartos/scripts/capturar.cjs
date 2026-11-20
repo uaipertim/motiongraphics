@@ -23,6 +23,10 @@ function preparar() {
   alvos.forEach((e) => { e.style.visibility = 'hidden'; });
   return alvos.length;
 }
+function avisoNaTela() {                                          // algum aviso do app ("com sucesso", "bloqueada no período") dentro da janela?
+  return [...document.querySelectorAll('body *')].filter((e) => e.children.length === 0 && /com sucesso|bloqueada no período|cadastrada com tarifas/.test(e.textContent || '') && getComputedStyle(e).visibility !== 'hidden')
+    .map((e) => e.getBoundingClientRect()).filter((r) => r.width && r.bottom > 0 && r.top < innerHeight).length;
+}
 function bloqueadaNaTela() {                                       // algum "Bloqueada" visível dentro da janela?
   return [...document.querySelectorAll('body *')].filter((e) => e.children.length === 0 && /Bloqueada/.test(e.textContent || '') && getComputedStyle(e).visibility !== 'hidden')
     .map((e) => e.getBoundingClientRect()).filter((r) => r.width && r.bottom > 0 && r.top < innerHeight).length;
@@ -109,6 +113,12 @@ function medir(lista) {
   await foto('acomodacoes-ipe08-550-topo', [['aviso', 'Acomodação atualizada com sucesso.', {}], ['nova', 'Nova acomodação', {}]]);
   await rola('Ipê 08'); await espera(400);
   await foto('acomodacoes-ipe08-550', CARD('Ipê 08'));
+  // a lista limpa, no mesmo estado (Ipê 08 já com R$ 550,00), sem nenhum aviso na tela: sai para o Início e volta
+  await pag.getByRole('button', { name: 'Início', exact: true }).filter({ visible: true }).first().click(); await espera(1200);
+  await naLista(); await topo(); await espera(400);
+  if (await pag.evaluate(avisoNaTela)) { console.error('PARADO: aviso na lista limpa'); await nav.close(); process.exit(1); }
+  await foto('acomodacoes-limpa', [['nova', 'Nova acomodação', {}], ['ativas', '10 ativas', { exato: true }]]);
+  CONF['acomodacoes-limpa'].aviso_na_tela = 0;
   // NOVA: Chalé Jabuticaba
   await topo(); await espera(400);
   await pag.getByRole('button', { name: 'Nova acomodação' }).click(); await espera(900);

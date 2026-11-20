@@ -1,6 +1,6 @@
 {
  "modo": "telas",
- "quadros": 22,
+ "quadros": 23,
  "com_achados": {},
  "todos": {
   "acomodacoes-ipe08-550-topo.png": {
@@ -90,6 +90,11 @@
   "nova.png": {
    "achados": [],
    "letras_lidas": 395
+  },
+  "acomodacoes-limpa.png": {
+   "achados": [],
+   "letras_lidas": -1,
+   "nota": "conferida em 20/11/2026 na correção da frase 8 (tesseract, mesmas regras, sem achados)"
   }
  }
 }

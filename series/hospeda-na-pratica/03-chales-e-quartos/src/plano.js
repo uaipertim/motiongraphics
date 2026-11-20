@@ -73,9 +73,9 @@ window.montaPlano = function (LN, AL, TX) {
   // 5) Nova acomodação: Chalé Jabuticaba (o toque em Salvar e o aviso fecham a frase)
   const tNova = T('nova'), tNome = T('nome'), tCap = T('cap2'), tTar = T('tarifas');
   const NV = (k) => A('nova', k), tSalN = tTar + 0.75, fimN = F.bloquear.t0 - 0.15;
-  add({ img: 'acomodacoes-ipe08-550-topo', t0: fimD1, t1: fimN,
-    cam: [{ t: fimD1, z: 1.45, ...c(...folga(A('acomodacoes-ipe08-550-topo', 'nova'), 160)), d: 0.01 },
-      perto(tNova - 0.5, A('acomodacoes-ipe08-550-topo', 'nova')),
+  add({ img: 'acomodacoes-limpa', t0: fimD1, t1: fimN,   // a lista limpa: nenhum aviso cobre o + Nova acomodação
+    cam: [{ t: fimD1, z: 1.45, ...c(...folga(A('acomodacoes-limpa', 'nova'), 160)), d: 0.01 },
+      perto(tNova - 0.5, A('acomodacoes-limpa', 'nova')),
       zoom(tNova + 0.35, junta(NV('nome'), NV('categoria')), 1.55),
       zoom(tCap - 0.35, junta(NV('capacidade'), NV('tferiado')), 1.3),
       perto(tSalN - 0.35, NV('salvar'), 0.3),
@@ -88,7 +88,7 @@ window.montaPlano = function (LN, AL, TX) {
       { t: tCap + 0.35, d: 0.38, img: 'nova-preenchida', ret: NV('tsemana'), tx: X('nova-preenchida', 'tsemana'), n: 9 },
       { t: tCap + 0.8, d: 0.38, img: 'nova-preenchida', ret: NV('tfim'), tx: X('nova-preenchida', 'tfim'), n: 9 },
       { t: tCap + 1.25, d: 0.38, img: 'nova-preenchida', ret: NV('tferiado'), tx: X('nova-preenchida', 'tferiado'), n: 9 }],
-    toques: [{ t: tNova, ...pt(A('acomodacoes-ipe08-550-topo', 'nova')) }, { t: tNome - 0.4, ...pt(NV('nome')) }, { t: tCap - 0.2, ...pt(NV('capacidade')) },
+    toques: [{ t: tNova, ...pt(A('acomodacoes-limpa', 'nova')) }, { t: tNome - 0.4, ...pt(NV('nome')) }, { t: tCap - 0.2, ...pt(NV('capacidade')) },
       { t: tSalN, ...pt(NV('salvar')) }],
     aneis: [{ t: T('tipo2'), ret: NV('categoria'), ate: tCap - 0.1 }, { t: tTar, ret: junta(NV('tsemana'), NV('tferiado')), ate: tSalN - 0.4 }],
     saltos: [{ t: tSalN + 0.35, ate: fimN - 0.5, ret: folga(A('acomodacoes-jabuticaba-topo', 'aviso'), 6), img: 'acomodacoes-jabuticaba-topo', larg: 960, cy: 600 }] });

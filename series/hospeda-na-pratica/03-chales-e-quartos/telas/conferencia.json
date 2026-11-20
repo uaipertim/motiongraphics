@@ -54,6 +54,12 @@
    "proibidos": 0,
    "bloqueada_na_tela": 0
   },
+  "acomodacoes-limpa": {
+   "escondidos": 5,
+   "proibidos": 0,
+   "bloqueada_na_tela": 0,
+   "aviso_na_tela": 0
+  },
   "nova": {
    "escondidos": 5,
    "proibidos": 0,
