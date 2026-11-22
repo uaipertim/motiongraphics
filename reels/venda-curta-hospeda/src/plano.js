@@ -126,7 +126,7 @@ window.montaPlano = function (LN, opt) {
       layout: { logoY: 410, tituloY: 585, entre: 98, corpo: 88, celTopo: 880, celAlt: 600,
         selos: [['WhatsApp', '#25D366', 222, 1000, -1], ['Airbnb', '#FF5A5F', 862, 1140, 1], ['Booking', '#1E5BD9', 222, 1300, -1]] } },
   };
-  const capa = { img: 'inicio', ...CAPAS[(opt && opt.capa) || 'A'] };
+  const capa = { img: 'inicio', ...CAPAS[(opt && opt.capa) || 'A'] };   // escolhida em 22/11/2026: A
 
   return { duracao: LN.duracao, ganchos, caos, gaveta, marca, fecho, telas, legenda, capa, tom: (t) => (t < marca.t0 ? '#FFB23F' : '#AFFA27') };
 };

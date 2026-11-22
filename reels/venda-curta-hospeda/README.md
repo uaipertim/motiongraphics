@@ -7,6 +7,29 @@ Primeiro contato com donos de pousada. Roteiro aprovado em [`ROTEIRO.md`](ROTEIR
 - **Quadros da cena da marca:** [`aprovacao/quadros/marca-meio.jpg`](aprovacao/quadros/marca-meio.jpg) (13,06 s) e [`aprovacao/quadros/marca-mais-perto.jpg`](aprovacao/quadros/marca-mais-perto.jpg) (14,12 s, selos mais perto do logo).
 - **Miniatura:** [`output/miniatura.jpg`](output/miniatura.jpg) (quadro 0, já com a pergunta do gancho). **Folha de contato:** [`output/folha-contato.jpg`](output/folha-contato.jpg) (1 quadro por segundo).
 
+## Capa embutida no quadro 0 (miniatura do WhatsApp, 22/11/2026)
+- **Arquivos:**
+  - [`output/fazlo-hospeda-apresentacao-curta.mp4`](output/fazlo-hospeda-apresentacao-curta.mp4): mestre, 1080×1920, 60 fps, 68,1 s, 35,6 MB.
+  - [`output/fazlo-hospeda-apresentacao-curta-whatsapp.mp4`](output/fazlo-hospeda-apresentacao-curta-whatsapp.mp4): H.264 e AAC, 1080×1920, 30 fps, 9,7 MB.
+- **Capa (opção A, escolhida):** "Sua pousada / num lugar só", com "num lugar só" em limão.
+  - Logo do FAZLO Hospeda em destaque e a tela Início da Demo num celular.
+  - Os selos WhatsApp, Airbnb e Booking em volta, sem encostar em nada.
+  - Todo o conteúdo fica na área central: x 94–952, y 391–1459.
+  - O quadro 0 da outra opção (B) está em `aprovacao/capa/`.
+- **Sem pausa:**
+  - o quadro 0 é a capa completa;
+  - do quadro 1 em diante, os elementos já saem: o título sobe, o logo encolhe, o celular encolhe e desce e os selos saem para os lados, revelando a abertura original;
+  - em 0,6 s (quadro 36) a capa sumiu.
+  - Ela fica por cima do início que já existia (`capaCena` em `src/anim.js`): nada foi acrescentado nem congelado.
+- **Conferência:**
+  - **Duração:** 68,117 s, igual à do vídeo aprovado (4.087 quadros).
+  - **Áudio:** o decodificado é idêntico ao aprovado (mesmo MD5).
+  - **Imagem do quadro 37 em diante:** difere só pela recompressão (PSNR médio de 65,8 dB e mínimo de 49,7 dB).
+  - **Quadro 1:** 28% dos pixels já diferem do quadro 0. Na versão WhatsApp, 32%.
+  - **OCR do quadro 0:** sem nada proibido.
+- **Folha da transição:** os quadros 0, 1, 10, 20 e 36 estão em [`aprovacao/capa/transicao-quadros.jpg`](aprovacao/capa/transicao-quadros.jpg).
+- **Vídeo anterior:** os arquivos `fazlo-hospeda-curto*.mp4` continuam como estavam, sem capa.
+
 ## Ajuste da cena da marca (frase 4)
 Na primeira versão o selo "Airbnb" ficava por cima do "Hospeda" do logo e os três selos eram sugados por cima do símbolo. Agora:
 - **WhatsApp** e **Airbnb** ficam dos dois lados, acima do símbolo, e **Booking** fica embaixo do nome. O caderno não aparece nesta cena: ele sai junto com a cena da frase 2.

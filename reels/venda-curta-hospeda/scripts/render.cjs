@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 /*
  * node scripts/render.cjs info                     -> output/info.json (eventos de som, telas, legenda)
- * node scripts/render.cjs video --mix audio/mix.wav -> output/fazlo-hospeda-curto.mp4 (1080×1920, 60 fps)
+ * node scripts/render.cjs video --mix audio/mix.wav [--saida nome.mp4] -> output/fazlo-hospeda-curto.mp4 (1080×1920, 60 fps)
  */
 const http = require('http'), fs = require('fs'), path = require('path');
 const { spawn, execSync } = require('child_process');
@@ -22,7 +22,7 @@ srv.listen(0, '127.0.0.1', async () => {
     } else {
       const fps = Number(opt('fps', 60)), workers = Number(opt('workers', 4));
       const pg0 = await abre(); const dur = await pg0.evaluate(() => CURTO.DURATION); await pg0.close();
-      const total = Math.round(dur * fps), mudo = path.join(OUT, '.so-video.mp4'), saida = path.join(OUT, 'fazlo-hospeda-curto.mp4');
+      const total = Math.round(dur * fps), mudo = path.join(OUT, '.so-video.mp4'), saida = path.join(OUT, opt('saida', 'fazlo-hospeda-curto.mp4'));
       const ff = spawn('ffmpeg', ['-y', '-loglevel', 'error', '-f', 'image2pipe', '-framerate', String(fps), '-c:v', 'png', '-i', '-', '-c:v', 'libx264', '-preset', 'medium', '-crf', '16',
         '-pix_fmt', 'yuv420p', '-profile:v', 'high', '-color_primaries', 'bt709', '-color_trc', 'bt709', '-colorspace', 'bt709', '-movflags', '+faststart', mudo], { stdio: ['pipe', 'inherit', 'inherit'] });
       const fim = new Promise((ok, erro) => ff.on('close', (c) => (c === 0 ? ok() : erro(new Error('ffmpeg ' + c)))));
