@@ -325,6 +325,51 @@
     c.restore();
   }
 
+  // ------------------------------------------------------------------ capa embutida (quadro 0 = miniatura do WhatsApp)
+  // O quadro 0 é a capa completa. Do quadro 1 em diante os elementos já saem animados e revelam a abertura original;
+  // em 0,6 s a capa sumiu. Nada é acrescentado nem congelado: a capa fica POR CIMA do início que já existe.
+  const CAPA_FIM = 0.6;
+  function capaCena(c, t, k) {
+    if (!k || t >= CAPA_FIM) return;
+    const u = E.out(p(t, 0, CAPA_FIM)), a = 1 - u;                // u = 0 no quadro 0; já ~0,08 no quadro 1
+    // fundo das capas: tom escuro, grade de pontinhos, vinheta e brilho limão atrás do celular
+    c.save(); c.globalAlpha = a;
+    let g = c.createLinearGradient(0, 0, 0, H); g.addColorStop(0, '#0A1714'); g.addColorStop(1, '#060707'); c.fillStyle = g; c.fillRect(0, 0, W, H);
+    c.fillStyle = 'rgba(255,255,255,0.05)'; for (let y = 12; y < H; y += 24) for (let x = 12; x < W; x += 24) c.fillRect(x - 1, y - 1, 2, 2);
+    g = c.createRadialGradient(540, 1120, 40, 540, 1120, 620); g.addColorStop(0, 'rgba(175,250,39,0.22)'); g.addColorStop(1, 'rgba(175,250,39,0)'); c.fillStyle = g; c.fillRect(0, 0, W, H);
+    g = c.createRadialGradient(540, 960, 420, 540, 960, 1250); g.addColorStop(0, 'rgba(0,0,0,0)'); g.addColorStop(1, 'rgba(0,0,0,0.5)'); c.fillStyle = g; c.fillRect(0, 0, W, H);
+    c.restore();
+    const L = k.layout;
+    // logo em destaque: símbolo + "FAZLO" e a pílula "Hospeda"
+    c.save(); c.globalAlpha = a; c.translate(540, L.logoY - 220 * u); c.scale(1 - 0.5 * u, 1 - 0.5 * u);
+    M2 = M2 || document.createElement('canvas').getContext('2d');
+    font(M2, D, 112, 900, -2); const wf = M2.measureText('FAZLO').width; font(M2, D, 62, 800, -0.5); const wn = (wf + 26 + M2.measureText('Hospeda').width + 64) * 0.8;
+    const sw = 118, tot = sw + 26 + wn, x0 = -tot / 2;
+    logo(c, x0 + sw / 2, 0, sw); nome(c, x0 + sw + 26 + wn / 2, -2, 0.8);
+    c.restore();
+    // título grande, a palavra-chave em limão
+    k.titulo.forEach((linha, i) => {
+      const y = L.tituloY + i * L.entre - 320 * u;
+      font(c, D, L.corpo, 900, -0.03 * L.corpo); const larg = linha.reduce((s2, [tx]) => s2 + c.measureText(tx).width, 0); let x = 540 - larg / 2;
+      for (const [tx, cor] of linha) {
+        c.save(); c.globalAlpha = a; if (cor === 'lime') { c.shadowColor = 'rgba(175,250,39,0.5)'; c.shadowBlur = 30; }
+        txt(c, tx, x, y, { size: L.corpo, weight: 900, ls: -0.03 * L.corpo, color: cor === 'lime' ? C.lime : C.white }); c.restore();
+        font(c, D, L.corpo, 900, -0.03 * L.corpo); x += c.measureText(tx).width;
+      }
+    });
+    // o celular com a tela inteira (encolhe e desce em direção à primeira cena)
+    const ch = L.celAlt, kk = ch / IH, cw = IW * kk, es = 1 - 0.45 * u;
+    c.save(); c.globalAlpha = a; c.translate(540, L.celTopo + ch / 2 + 380 * u); c.scale(es, es);
+    const x0c = -cw / 2, y0c = -ch / 2, pad = 11, rad = 128 * kk;
+    c.save(); c.shadowColor = 'rgba(0,0,0,0.7)'; c.shadowBlur = 50; c.shadowOffsetY = 20; rr(c, x0c - pad, y0c - pad, cw + 2 * pad, ch + 2 * pad, rad + pad); c.fillStyle = C.bezel; c.fill(); c.restore();
+    rr(c, x0c - pad, y0c - pad, cw + 2 * pad, ch + 2 * pad, rad + pad); c.strokeStyle = '#3A3D37'; c.lineWidth = 2.5; c.stroke();
+    c.save(); rr(c, x0c, y0c, cw, ch, rad); c.clip(); c.imageSmoothingQuality = 'high'; c.drawImage(IMG[k.img], x0c, y0c, cw, ch); c.restore();
+    c.restore();
+    // os selos dos canais em volta do celular, sem encostar em nada (saem para fora)
+    for (const [nm, cor, x, y, lado] of L.selos) chipCanal(c, x + lado * 560 * u, y, nm, cor, 0.85 * (1 - 0.3 * u), 0);
+    c.globalAlpha = 1;
+  }
+
   // ------------------------------------------------------------------ legenda (palavra por palavra)
   function legenda(c, t) {
     const pg = (PLANO.legenda || []).find((g) => t >= g.t0 && t < g.t1);
@@ -359,6 +404,7 @@
     for (const m of PLANO.marcas || []) marca(c, t, m);
     fechoCena(c, t, PLANO.fecho);
     legenda(c, t);
+    capaCena(c, t, PLANO.capa);
   }
   function eventos() {
     const ev = [], P = PLANO;

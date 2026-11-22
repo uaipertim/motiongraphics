@@ -4,7 +4,7 @@
  *              toques: [{t, x, y}], estados: [{t, img}] } — coordenadas em px da captura (1170×2532).
  * Retângulos medidos na Demo (scripts/medir.cjs → telas/alvos.json) e conferidos sobre as capturas.
  */
-window.montaPlano = function (LN) {
+window.montaPlano = function (LN, opt) {
   const ids = {}, F = {};
   LN.frases.forEach((f) => { F[f.id] = f; f.palavras.forEach((w) => { if (w.id) ids[w.id] = w; }); });
   const T = (id) => { if (!ids[id]) throw new Error('id ' + id); return ids[id].t0; };
@@ -117,5 +117,16 @@ window.montaPlano = function (LN) {
       palavras: pg.map((w) => ({ w: w.w, t: w.t0, chave: w.chave })) }));
   });
 
-  return { duracao: LN.duracao, ganchos, caos, gaveta, marca, fecho, telas, legenda, tom: (t) => (t < marca.t0 ? '#FFB23F' : '#AFFA27') };
+  // ---- capa embutida no quadro 0 (miniatura do WhatsApp); some animada até 0,6 s, por cima da abertura original
+  const CAPAS = {
+    A: { titulo: [[['Sua pousada', 'branco']], [['num lugar só', 'lime']]],
+      layout: { logoY: 430, tituloY: 660, entre: 128, corpo: 126, celTopo: 840, celAlt: 620,
+        selos: [['WhatsApp', '#25D366', 222, 960, -1], ['Airbnb', '#FF5A5F', 862, 1110, 1], ['Booking', '#1E5BD9', 222, 1290, -1]] } },
+    B: { titulo: [[['Reservas, comandas', 'branco']], [['e caixa', 'branco']], [['num lugar só', 'lime']]],
+      layout: { logoY: 410, tituloY: 585, entre: 98, corpo: 88, celTopo: 880, celAlt: 600,
+        selos: [['WhatsApp', '#25D366', 222, 1000, -1], ['Airbnb', '#FF5A5F', 862, 1140, 1], ['Booking', '#1E5BD9', 222, 1300, -1]] } },
+  };
+  const capa = { img: 'inicio', ...CAPAS[(opt && opt.capa) || 'A'] };
+
+  return { duracao: LN.duracao, ganchos, caos, gaveta, marca, fecho, telas, legenda, capa, tom: (t) => (t < marca.t0 ? '#FFB23F' : '#AFFA27') };
 };
