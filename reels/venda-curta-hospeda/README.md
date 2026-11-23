@@ -7,6 +7,39 @@ Primeiro contato com donos de pousada. Roteiro aprovado em [`ROTEIRO.md`](ROTEIR
 - **Quadros da cena da marca:** [`aprovacao/quadros/marca-meio.jpg`](aprovacao/quadros/marca-meio.jpg) (13,06 s) e [`aprovacao/quadros/marca-mais-perto.jpg`](aprovacao/quadros/marca-mais-perto.jpg) (14,12 s, selos mais perto do logo).
 - **Miniatura:** [`output/miniatura.jpg`](output/miniatura.jpg) (quadro 0, já com a pergunta do gancho). **Folha de contato:** [`output/folha-contato.jpg`](output/folha-contato.jpg) (1 quadro por segundo).
 
+## Revisão de 23/11/2026 (aprovada; a versão final ainda não foi renderizada)
+- **O que muda:**
+  - as frases 5, 6 e 7 (canais1, canais2 e canais3), com tomada própria (`scripts/voz_trocas.py` → `audio/trocas/`);
+  - as cenas da integração;
+  - a chamada final, só na tela.
+  - A linha do tempo nova está no fim do [`ROTEIRO.md`](ROTEIRO.md). As outras 12 frases ficam com o áudio aprovado.
+- **Duração nova:** 71.4 s. O motivo está no ROTEIRO.
+- **Áudio das 3 frases** como ficam no vídeo: `aprovacao/vozes/canais1-nova.mp3`, `canais2-nova.mp3` e `canais3-nova.mp3`.
+- **Medições da mixagem nova** (prévia de teste: `audio/mix.wav` e o AAC 256 kbps `output/teste/mix-teste.m4a`):
+
+  | Medida | Resultado | Alvo |
+  |---|---|---|
+  | Loudness integrado | −14,0 LUFS | −14 a −16 |
+  | Pico real (true peak) | −2,2 dBTP no WAV, −2,1 dBTP no AAC | abaixo de −1 |
+  | Clipping | nenhum (maior amostra: 78% do máximo) | nenhum |
+  | LRA | 2,9 LU | — |
+  | Voz acima da trilha e dos efeitos, por frase | de 10,1 a 15,6 dB (frases novas: 10,9 a 11,2) | voz sempre acima |
+
+- **Legibilidade a 360 px:** [`aprovacao/legibilidade-360px.jpg`](aprovacao/legibilidade-360px.jpg).
+  - Janelas, selos, notas, legenda e chamada final leem-se bem.
+  - A nota "O Hospeda confere os canais / a cada 30 min" passou para duas linhas, com letra de 54 px, para ler a 360 px.
+- **Cena do alerta (26–33 s): a recapturar.**
+  - A captura atual mostra ao fundo o erro de exemplo do Booking ("…não consegue ler o calendário do Booking. Confira o link em Canais.").
+  - **Quando a Demo atualizada sair:**
+    - `node scripts/capturar-inicio.cjs` refaz `telas/inicio-conflito.png` e as medidas em `telas/inicio-conflito.json` (alerta, "Nada foi cancelado." e sino). O plano reposiciona janela e destaques sozinho.
+    - O script **recusa** a captura se houver na tela "não consegue ler", "Confira o link", "não lê o calendário" ou "Confira se o link".
+    - Em 23/11 o alerta só aparecia em "Precisa de atenção › Ver todos", com as datas "27/11 a 30/11". O script procura no Início e, se não achar, em "Ver todos".
+  - `python3 scripts/conferir-textos.py plano` (ou `video <arquivo>`) faz o OCR de um quadro a cada 0,25 s e recusa os mesmos textos e as promessas proibidas.
+    - Hoje acusa só os quadros de 26,25 a 30,75 s, com o erro de exemplo ao fundo.
+    - A narração passa.
+- **Quadros-chave da integração e da chamada:** [`aprovacao/revisao-integracao-quadros.jpg`](aprovacao/revisao-integracao-quadros.jpg).
+- **Não renderizar a versão final** até a Demo atualizada sair e a cena do alerta ser recapturada.
+
 ## Capa embutida no quadro 0 (miniatura do WhatsApp, 22/11/2026)
 - **Arquivos:**
   - [`output/fazlo-hospeda-apresentacao-curta.mp4`](output/fazlo-hospeda-apresentacao-curta.mp4): mestre, 1080×1920, 60 fps, 68,1 s, 35,6 MB.

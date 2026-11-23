@@ -1,0 +1,104 @@
+{
+ "modo": "plano",
+ "quadros": 286,
+ "narracao_promessas_proibidas": [],
+ "quadros_com_achados": {
+  "26.25": [
+   [
+    "erro de exemplo da Demo",
+    "não consegue ler"
+   ],
+   [
+    "erro de exemplo da Demo",
+    "Confira o link"
+   ]
+  ],
+  "26.50": [
+   [
+    "erro de exemplo da Demo",
+    "não consegue ler"
+   ],
+   [
+    "erro de exemplo da Demo",
+    "Confira o link"
+   ]
+  ],
+  "26.75": [
+   [
+    "erro de exemplo da Demo",
+    "não consegue ler"
+   ],
+   [
+    "erro de exemplo da Demo",
+    "Confira o link"
+   ]
+  ],
+  "27.00": [
+   [
+    "erro de exemplo da Demo",
+    "não consegue ler"
+   ],
+   [
+    "erro de exemplo da Demo",
+    "Confira o link"
+   ]
+  ],
+  "27.25": [
+   [
+    "erro de exemplo da Demo",
+    "não consegue ler"
+   ],
+   [
+    "erro de exemplo da Demo",
+    "Confira o link"
+   ]
+  ],
+  "27.50": [
+   [
+    "erro de exemplo da Demo",
+    "não consegue ler"
+   ],
+   [
+    "erro de exemplo da Demo",
+    "Confira o link"
+   ]
+  ],
+  "27.75": [
+   [
+    "erro de exemplo da Demo",
+    "não consegue ler"
+   ],
+   [
+    "erro de exemplo da Demo",
+    "Confira o link"
+   ]
+  ],
+  "28.00": [
+   [
+    "erro de exemplo da Demo",
+    "não consegue ler"
+   ],
+   [
+    "erro de exemplo da Demo",
+    "Confira o link"
+   ]
+  ],
+  "29.50": [
+   [
+    "erro de exemplo da Demo",
+    "não consegue ler"
+   ],
+   [
+    "erro de exemplo da Demo",
+    "Confira o link"
+   ]
+  ],
+  "30.75": [
+   [
+    "erro de exemplo da Demo",
+    "Confira o link"
+   ]
+  ]
+ },
+ "inicio_conflito_a_recapturar": true
+}

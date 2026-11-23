@@ -3,3 +3,4 @@ output/info.json
 audio/*.wav
 !audio/voz.wav
 !audio/voz-montada.wav
+audio/trocas/alt/

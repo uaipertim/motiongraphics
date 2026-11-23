@@ -146,6 +146,9 @@
       }
     }
     for (const j of s.saltos || []) salto(c, s, t, q, j);
+    const saiT = E.in(p(t, s.t1 - 0.3, s.t1));
+    for (const e of s.selos || []) seloLink(c, t, e, saiT);
+    for (const e of s.notas || []) nota(c, t, e, saiT);
   }
 
   // ------------------------------------------------------------------ cenas sem tela
@@ -301,21 +304,54 @@
   function fechoCena(c, t, f) {
     if (!f || t < f.t0) return;
     const u = E.back(p(t, f.t0, f.t0 + 0.55), 2);
+    // a chamada final (só na tela, sem voz): as linhas da oferta saem, a logo desce e a chamada entra ACIMA da logo
+    const uc = f.chamada != null ? E.io(p(t, f.chamada, f.chamada + 0.45)) : 0, sl = 1 - p(t, f.chamada ?? 1e9, (f.chamada ?? 1e9) + 0.25);
+    const ly = lerp(520, 1010, uc), le = lerp(1, 0.85, uc);
     // pulso no ritmo da trilha (120 BPM) e um anel limão a cada compasso: o fecho nunca fica parado
     const bt = Math.max(0, t - f.t0), pulso = 1 + 0.018 * Math.exp(-((bt % 0.5) / 0.12));
-    const ua2 = (bt % 2) / 2;
-    if (bt > 0.6) { c.beginPath(); c.arc(540, 410, 150 + 260 * E.out(ua2), 0, TAU); c.strokeStyle = rgba(C.lime, 0.35 * (1 - ua2)); c.lineWidth = 6; c.stroke(); }
-    c.save(); c.translate(540, 520); c.scale(clamp(u, 0, 1.2) * pulso, clamp(u, 0, 1.2) * pulso); logo(c, 0, -110, 300); nome(c, 0, 150, 0.95); c.restore();
-    const linha = (s, y, t0, cor, size) => {
-      const v = E.back(p(t, t0, t0 + 0.4), 2); if (v <= 0) return;
-      c.save(); c.translate(540, y); c.scale(v, v); txt(c, s, 0, 0, { size, weight: 900, align: 'center', color: cor, ls: -1.5 }); c.restore();
+    const ua2 = (bt % 2) / 2, ry = ly - 110 * le;
+    if (bt > 0.6) { c.beginPath(); c.arc(540, ry, (150 + 100 * E.out(ua2)) * le, 0, TAU); c.strokeStyle = rgba(C.lime, 0.35 * (1 - ua2)); c.lineWidth = 6; c.stroke(); }
+    c.save(); c.translate(540, ly); const es = clamp(u, 0, 1.2) * pulso * le; c.scale(es, es); logo(c, 0, -110, 300); nome(c, 0, 150, 0.95); c.restore();
+    const linha = (s2, y, t0, cor, size, a = 1) => {
+      const v = E.back(p(t, t0, t0 + 0.4), 2); if (v <= 0 || a <= 0) return;
+      font(c, D, size, 900, -1.5); const w = c.measureText(s2).width, sz = w > 960 ? size * 960 / w : size;
+      c.save(); c.globalAlpha = a; c.translate(540, y); c.scale(v, v); txt(c, s2, 0, 0, { size: sz, weight: 900, align: 'center', color: cor, ls: -1.5 }); c.restore();
     };
-    linha('30 dias para testar', 930, f.teste, C.lime, 96);
-    linha('e a FAZLO configura', 1060, f.configura - 0.05, C.white, 74);
-    linha('tudo para você.', 1150, f.configura + 0.35, C.white, 74);
+    linha('30 dias para testar', 930, f.teste, C.lime, 96, sl);
+    linha('e a FAZLO configura', 1060, f.configura - 0.05, C.white, 74, sl);
+    linha('tudo para você.', 1150, f.configura + 0.35, C.white, 74, sl);
+    if (f.chamada != null) {
+      linha('Quer ver funcionando?', 560, f.chamada + 0.35, C.white, 90);   // só depois de a logo passar: nada encosta nela
+      linha('É só responder esta conversa.', 675, f.chamada + 0.5, C.lime, 68);
+    }
     const ua = E.out(p(t, f.arroba, f.arroba + 0.5));
     if (ua > 0) txt(c, '@fazlohospeda', 540, 1300, { fam: MONO, size: 46, weight: 700, align: 'center', color: C.gray, alpha: ua });
   }
+  // selo sobre a tela (ex.: "Link de calendário"): pílula limão com o ícone de corrente
+  function seloLink(c, t, e, sai) {
+    const u = E.back(p(t, e.t, e.t + 0.45), 2.2); if (u <= 0) return;
+    const pul = (e.pulsos || []).reduce((a, tp) => a + 0.1 * Math.exp(-Math.pow((t - tp - 0.15) / 0.12, 2)), 0);
+    font(c, D, 52, 900, -1); const tw = c.measureText(e.texto).width, w = tw + 150, h = 100;
+    c.save(); c.globalAlpha = 1 - sai; c.translate(540, e.y); c.scale(clamp(u, 0, 1.2) * (1 + pul), clamp(u, 0, 1.2) * (1 + pul)); c.rotate(-0.025);
+    c.shadowColor = 'rgba(0,0,0,0.6)'; c.shadowBlur = 36; c.shadowOffsetY = 14; rr(c, -w / 2, -h / 2, w, h, h / 2); c.fillStyle = C.lime; c.fill(); c.shadowColor = 'transparent';
+    c.strokeStyle = C.ink; c.lineWidth = 7; c.lineCap = 'round'; const ix = -w / 2 + 62;
+    c.save(); c.translate(ix, 0); c.rotate(-Math.PI / 4); rr(c, -26, -11, 30, 22, 11); c.stroke(); rr(c, -4, -11, 30, 22, 11); c.stroke(); c.restore();
+    txt(c, e.texto, -w / 2 + 104, 18, { size: 52, weight: 900, color: C.ink, ls: -1 }); c.restore();
+  }
+  // nota sobre a tela (ex.: "O Hospeda confere os canais a cada 30 min"): cartão escuro com relógio limão
+  function nota(c, t, e, sai) {                                  // até 2 linhas (\n), letra grande: legível até em 360 px
+    const u = E.back(p(t, e.t, e.t + 0.45), 2); if (u <= 0) return;
+    const linhas = e.texto.split('\n'), size = 54, lh = 64;
+    font(c, D, size, 800, -0.5); const tw = Math.max(...linhas.map((l) => c.measureText(l).width)), w = tw + 150, h = 44 + lh * linhas.length;
+    c.save(); c.globalAlpha = 1 - sai; c.translate(540, e.y + 30 * (1 - clamp(u))); c.scale(clamp(u, 0, 1.15), clamp(u, 0, 1.15));
+    c.shadowColor = 'rgba(0,0,0,0.6)'; c.shadowBlur = 36; c.shadowOffsetY = 14; rr(c, -w / 2, -h / 2, w, h, 32); c.fillStyle = '#141513'; c.fill(); c.shadowColor = 'transparent';
+    rr(c, -w / 2, -h / 2, w, h, 32); c.strokeStyle = C.lime; c.lineWidth = 4; c.stroke();
+    const ix = -w / 2 + 62; c.beginPath(); c.arc(ix, 0, 26, 0, TAU); c.strokeStyle = C.lime; c.lineWidth = 6; c.stroke();
+    c.beginPath(); c.moveTo(ix, -14); c.lineTo(ix, 0); c.lineTo(ix + 12, 8); c.lineCap = 'round'; c.stroke();
+    linhas.forEach((l, k) => txt(c, l, -w / 2 + 112, -h / 2 + 22 + lh * k + size * 0.86, { size, weight: 800, color: k ? C.lime : C.white, ls: -0.5 }));
+    c.restore();
+  }
+
 
   function marca(c, t, m) {
     if (t < m.t0 || t >= m.t1) return;
@@ -419,8 +455,11 @@
       (s.saltos || []).forEach((j) => ev.push({ t: j.t, tipo: 'pop' }, { t: j.ate, tipo: 'volta' }));
       (s.toques || []).forEach((q) => ev.push({ t: q.t, tipo: 'toque' }));
       (s.estados || []).forEach((e) => ev.push({ t: e.t, tipo: 'desliza' }));
+      (s.selos || []).forEach((e) => ev.push({ t: e.t, tipo: 'pop' }));
+      (s.notas || []).forEach((e) => ev.push({ t: e.t, tipo: 'pop' }));
     }
-    if (P.fecho) ev.push({ t: P.fecho.t0, tipo: 'impacto' }, { t: P.fecho.teste, tipo: 'check' }, { t: P.fecho.configura, tipo: 'pop' }, { t: P.fecho.arroba, tipo: 'sino' });
+    if (P.fecho) ev.push({ t: P.fecho.t0, tipo: 'impacto' }, { t: P.fecho.teste, tipo: 'check' }, { t: P.fecho.configura, tipo: 'pop' }, { t: P.fecho.arroba, tipo: 'sino' },
+      ...(P.fecho.chamada != null ? [{ t: P.fecho.chamada + 0.35, tipo: 'pop' }] : []));
     return ev.sort((a, b) => a.t - b.t);
   }
   window.CURTO = {

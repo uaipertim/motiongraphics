@@ -1,0 +1,102 @@
+{
+ "id": "canais1",
+ "texto": "Pelo link de calendário, o Airbnb e o Booking se conectam ao Hospeda.",
+ "enviado": "Pelo link de calendário, o Airbnb e o Booking se conectam ao Hospéda.",
+ "contexto": {
+  "antes": "O Fázlo Hospéda coloca tudo isso num lugar só.",
+  "depois": "O Hospéda manda suas datas para o Airbnb e o Booking, e traz de lá as datas ocupadas."
+ },
+ "voz": {
+  "nome": "Alexa - Soft, Clear and Friendly",
+  "voice_id": "sXSV9RZ095VZyL64w3ap",
+  "modelo": "eleven_v4",
+  "stability": 0.5,
+  "similarity_boost": 0.75
+ },
+ "seed": 7100,
+ "formato": "mp3_44100_192",
+ "ritmo_letras_s": 11.2,
+ "fim_da_fala_s": 4.89,
+ "duracao_audio": 5.04,
+ "palavras": [
+  {
+   "w": "Pelo",
+   "falado": "Pelo",
+   "t0": 0.0,
+   "t1": 0.24
+  },
+  {
+   "w": "link",
+   "falado": "link",
+   "t0": 0.36,
+   "t1": 0.48
+  },
+  {
+   "w": "de",
+   "falado": "de",
+   "t0": 0.56,
+   "t1": 0.64
+  },
+  {
+   "w": "calendário,",
+   "falado": "calendário,",
+   "t0": 0.72,
+   "t1": 1.36
+  },
+  {
+   "w": "o",
+   "falado": "o",
+   "t0": 1.68,
+   "t1": 1.76
+  },
+  {
+   "w": "Airbnb",
+   "falado": "Airbnb",
+   "t0": 1.88,
+   "t1": 2.48
+  },
+  {
+   "w": "e",
+   "falado": "e",
+   "t0": 2.56,
+   "t1": 2.64
+  },
+  {
+   "w": "o",
+   "falado": "o",
+   "t0": 2.68,
+   "t1": 2.72
+  },
+  {
+   "w": "Booking",
+   "falado": "Booking",
+   "t0": 2.8,
+   "t1": 3.28
+  },
+  {
+   "w": "se",
+   "falado": "se",
+   "t0": 3.36,
+   "t1": 3.44
+  },
+  {
+   "w": "conectam",
+   "falado": "conectam",
+   "t0": 3.6,
+   "t1": 4.08
+  },
+  {
+   "w": "ao",
+   "falado": "ao",
+   "t0": 4.16,
+   "t1": 4.24
+  },
+  {
+   "w": "Hospeda.",
+   "falado": "Hospéda.",
+   "t0": 4.28,
+   "t1": 4.88
+  }
+ ],
+ "quando": "2026-11-23 20:56"
+}

@@ -1,0 +1,132 @@
+{
+ "id": "canais2",
+ "texto": "O Hospeda manda suas datas para o Airbnb e o Booking, e traz de lá as datas ocupadas.",
+ "enviado": "O Hospéda manda suas datas para o Airbnb e o Booking, e traz de lá as datas ocupadas.",
+ "contexto": {
+  "antes": "Pelo link de calendário, o Airbnb e o Booking se conectam ao Hospéda.",
+  "depois": "Se duas reservas baterem, ele avisa, no Início e no sino. E não cancela nada sozinho."
+ },
+ "voz": {
+  "nome": "Alexa - Soft, Clear and Friendly",
+  "voice_id": "sXSV9RZ095VZyL64w3ap",
+  "modelo": "eleven_v4",
+  "stability": 0.5,
+  "similarity_boost": 0.75
+ },
+ "seed": 7100,
+ "formato": "mp3_44100_192",
+ "ritmo_letras_s": 11.4,
+ "fim_da_fala_s": 5.81,
+ "duracao_audio": 6.24,
+ "palavras": [
+  {
+   "w": "O",
+   "falado": "O",
+   "t0": 0.0,
+   "t1": 0.04
+  },
+  {
+   "w": "Hospeda",
+   "falado": "Hospéda",
+   "t0": 0.08,
+   "t1": 0.64
+  },
+  {
+   "w": "manda",
+   "falado": "manda",
+   "t0": 0.72,
+   "t1": 0.96
+  },
+  {
+   "w": "suas",
+   "falado": "suas",
+   "t0": 1.04,
+   "t1": 1.28
+  },
+  {
+   "w": "datas",
+   "falado": "datas",
+   "t0": 1.48,
+   "t1": 1.68
+  },
+  {
+   "w": "para",
+   "falado": "para",
+   "t0": 1.76,
+   "t1": 1.92
+  },
+  {
+   "w": "o",
+   "falado": "o",
+   "t0": 1.947,
+   "t1": 1.973
+  },
+  {
+   "w": "Airbnb",
+   "falado": "Airbnb",
+   "t0": 2.0,
+   "t1": 2.64
+  },
+  {
+   "w": "e",
+   "falado": "e",
+   "t0": 2.72,
+   "t1": 2.8
+  },
+  {
+   "w": "o",
+   "falado": "o",
+   "t0": 2.84,
+   "t1": 2.88
+  },
+  {
+   "w": "Booking,",
+   "falado": "Booking,",
+   "t0": 2.96,
+   "t1": 3.36
+  },
+  {
+   "w": "e",
+   "falado": "e",
+   "t0": 3.72,
+   "t1": 3.76
+  },
+  {
+   "w": "traz",
+   "falado": "traz",
+   "t0": 3.84,
+   "t1": 4.08
+  },
+  {
+   "w": "de",
+   "falado": "de",
+   "t0": 4.16,
+   "t1": 4.24
+  },
+  {
+   "w": "lá",
+   "falado": "lá",
+   "t0": 4.4,
+   "t1": 4.56
+  },
+  {
+   "w": "as",
+   "falado": "as",
+   "t0": 4.64,
+   "t1": 4.72
+  },
+  {
+   "w": "datas",
+   "falado": "datas",
+   "t0": 4.8,
+   "t1": 5.04
+  },
+  {
+   "w": "ocupadas.",
+   "falado": "ocupadas.",
+   "t0": 5.12,
+   "t1": 5.81
+  }
+ ],
+ "quando": "2026-11-23 20:56"
+}

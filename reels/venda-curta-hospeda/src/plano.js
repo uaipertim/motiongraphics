@@ -4,7 +4,7 @@
  *              toques: [{t, x, y}], estados: [{t, img}] } — coordenadas em px da captura (1170×2532).
  * Retângulos medidos na Demo (scripts/medir.cjs → telas/alvos.json) e conferidos sobre as capturas.
  */
-window.montaPlano = function (LN, opt) {
+window.montaPlano = function (LN, opt) {   // opt: { capa, inicio (telas/inicio-conflito.json) }
   const ids = {}, F = {};
   LN.frases.forEach((f) => { F[f.id] = f; f.palavras.forEach((w) => { if (w.id) ids[w.id] = w; }); });
   const T = (id) => { if (!ids[id]) throw new Error('id ' + id); return ids[id].t0; };
@@ -34,23 +34,31 @@ window.montaPlano = function (LN, opt) {
   const caos = { t0: F.g2.t0 - 0.1, t1: F.g3.t0 - 0.05, whats: T('whats'), airbnb: T('airbnb0'), booking: T('booking0'), caderno: T('caderno') };
   const gaveta = { t0: F.g3.t0 - 0.05, t1: F.marca.t0 - 0.1, ninguem: T('ninguem'), entrou: T('entrou') };
   const marca = { t0: F.marca.t0 - 0.1, t1: F.canais1.t0 - 0.05, fazlo: T('fazlo'), lugar: T('lugar') };
-  const fecho = { t0: F.cta.t0 - 0.25, t1: LN.duracao + 1, teste: T('teste'), configura: T('configura'), arroba: F.cta.t1 + 0.6 };
+  const fecho = { t0: F.cta.t0 - 0.25, t1: LN.duracao + 1, teste: T('teste'), configura: T('configura'), arroba: F.cta.t1 + 0.6, chamada: F.cta.t1 + 0.05 };   // chamada só na tela, sem voz
 
   // ---- telas (cada uma de 2 a 4 s; a seguinte entra 0,25 s antes da anterior sair)
   const telas = [];
   const add = (s) => { telas.push(s); return s; };
-  add({ img: 'calendario', t0: marca.t1, t1: F.canais2.t0 - 0.1,
-    cam: [zoom(T('calendario') - 0.25, R.calBica, 1.7)], aneis: [{ t: T('airbnb'), ret: R.calAirbnb }] });
-  add({ img: 'canais-links', t0: F.canais2.t0 - 0.1, t1: T('traz') - 0.05,
-    cam: [zoom(F.canais2.t0 + 0.35, [72, 480, 1098, 1450], 1.45)], aneis: [{ t: T('manda'), ret: R.linkAtivo, ate: T('traz') - 0.6 }, { t: T('traz') - 0.55, ret: R.recebendo }] });
-  add({ img: 'calendario', t0: T('traz') - 0.05, t1: F.canais3.t0 - 0.1, de: 'baixo',
-    cam: [{ t: T('traz') - 0.05, z: 1.7, ...c(...R.calBica), d: 0.01 }, zoom(W('canais2', 'vendido'), R.calAirbnb, 2.1)],
-    aneis: [{ t: W('canais2', 'vendido') + 0.2, ret: R.calAirbnb, ate: T('bloqueado') - 0.05 }],
-    saltos: [{ t: T('bloqueado'), ate: F.canais3.t0 - 0.35, ret: R.calAirbnb, larg: 700, cy: 560 }] });
-  add({ img: 'inicio-conflito', t0: F.canais3.t0 - 0.1, t1: F.canais4.t0 - 0.05,
-    cam: [zoom(F.canais3.t0 + 0.2, R.conflito, 1.45)],
-    aneis: [{ t: T('bater'), ret: R.conflito, cor: 'ambar', ate: T('avisa') - 0.05 }, { t: T('naocancela') + 0.1, ret: R.nada, cor: 'ambar' }],
-    saltos: [{ t: T('avisa'), ate: T('naocancela') - 0.15, ret: R.conflito, cor: 'ambar', larg: 960, cy: 700 }] });
+  // integração (revisão de 23/11/2026): Canais sem nenhum link à mostra + selo; o calendário com o bloqueio do Airbnb + nota;
+  // o alerta de conflito no Início (e o sino) e "Nada foi cancelado." em destaque. O Início vem de telas/inicio-conflito.json.
+  const IC = (opt && opt.inicio) || {}, folga = (r, m) => [r[0] - m, r[1] - m, r[2] + m, r[3] + m];
+  const CONF = IC.conflito || R.conflito, NADA = IC.nada || [103, 1170, 547, 1206], SINO = IC.sino || [683, 69, 732, 122];
+  const TEXTO_CANAIS = [48, 522, 1122, 762];
+  add({ img: 'canais', t0: marca.t1, t1: F.canais2.t0 - 0.1,
+    cam: [zoom(F.canais1.t0 + 0.1, folga(TEXTO_CANAIS, 40), 1.55)],
+    aneis: [{ t: T('airbnb'), ret: TEXTO_CANAIS }],
+    selos: [{ t: T('link') - 0.05, texto: 'Link de calendário', y: 300, pulsos: [T('conectam')] }] });
+  add({ img: 'calendario', t0: F.canais2.t0 - 0.1, t1: F.canais3.t0 - 0.1, de: 'baixo',
+    cam: [zoom(F.canais2.t0 + 0.15, R.calBica, 1.7), zoom(T('traz') - 0.1, R.calAirbnb, 2.0)],
+    aneis: [{ t: T('ocupadas'), ret: R.calAirbnb }],
+    saltos: [{ t: T('ocupadas') + 0.45, ate: F.canais3.t0 - 0.5, ret: folga(R.calAirbnb, 8), larg: 620, cy: 640 }],
+    notas: [{ t: T('manda') + 0.15, texto: 'O Hospeda confere os canais\na cada 30 min', y: 320 }] });
+  add({ img: 'inicio-conflito', t0: F.canais3.t0 - 0.1, t1: F.canais4.t0 - 0.05, recapturar: !!IC.a_recapturar,
+    cam: [zoom(F.canais3.t0 + 0.15, CONF, 1.45), { t: T('sino') - 0.4, z: 1, fx: 585, fy: 1266, d: 0.4 }, zoom(T('naocancela') - 0.25, folga(NADA, 120), 1.7)],
+    aneis: [{ t: T('bater'), ret: CONF, cor: 'ambar', ate: T('avisa') - 0.05 }, { t: T('sino'), ret: folga(SINO, 22), ate: T('naocancela') - 0.35 },
+      { t: T('naocancela') + 0.05, ret: folga(NADA, 14), cor: 'ambar' }],
+    saltos: [{ t: T('avisa'), ate: T('inicio') + 0.55, ret: CONF, cor: 'ambar', larg: 960, cy: 700 },
+      { t: T('naocancela') + 0.4, ate: F.canais4.t0 - 0.5, ret: folga(NADA, 22), cor: 'ambar', larg: 820, cy: 560 }] });
   add({ img: 'calendario', t0: F.canais4.t0 - 0.05, t1: F.dupla.t0 - 0.1,
     cam: [{ t: F.canais4.t0, z: 1.25, fx: 585, fy: 1500, d: 0.01 }, longe(F.canais4.t0 + 0.4, 0.9)],
     aneis: [{ t: T('reduz') + 0.2, ret: R.calBica }] });

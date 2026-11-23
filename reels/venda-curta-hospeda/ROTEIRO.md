@@ -1,5 +1,7 @@
 # FAZLO Hospeda — vídeo curto de venda (para aprovação)
 
+**Revisão de 23/11/2026:** as frases 5, 6 e 7 foram trocadas e entrou a chamada final, só na tela. A linha do tempo nova está no fim deste arquivo. A cena do alerta está **a recapturar** quando a Demo atualizada sair.
+
 **Status:** em 19/11/2026 foram aprovados a voz (Alexa), o roteiro com dois ajustes (frases 9 e 11) e os quadros de estilo. O vídeo foi narrado e renderizado para aprovação; ver o README.
 
 **Para quem:** o primeiro contato com donos de pousada pelo WhatsApp. É um vídeo diferente da apresentação completa (3:41), que continua indo só para quem já mostrou interesse.
@@ -18,9 +20,9 @@
 2. Reserva no WhatsApp, no Airbnb, no Booking… e um caderno no meio?
 3. E no fim do dia, ninguém sabe quanto entrou?
 4. O FAZLO Hospeda coloca tudo isso num lugar só.
-5. O Airbnb e o Booking entram no mesmo calendário.
-6. O Hospeda manda pra eles as datas ocupadas e traz pra cá o que foi vendido lá, já bloqueado.
-7. Se uma data bater, ele avisa. E não cancela nada sozinho.
+5. Pelo link de calendário, o Airbnb e o Booking se conectam ao Hospeda. *(revisão de 23/11)*
+6. O Hospeda manda suas datas para o Airbnb e o Booking, e traz de lá as datas ocupadas. *(revisão de 23/11)*
+7. Se duas reservas baterem, ele avisa, no Início e no sino. E não cancela nada sozinho. *(revisão de 23/11)*
 8. Isso reduz muito o risco de reserva dupla.
 9. E dentro do Hospeda, o mesmo chalé não é vendido duas vezes nas mesmas datas.
 10. Do check-in ao check-out, cada hóspede tem a sua conta, com o saldo sempre à vista.
@@ -82,3 +84,31 @@ São capturas da Demo no celular, a 390×844 com 3x (1170×2532). A tela fica in
 - o aviso "Na demonstração, a sincronização não é feita."
 
 Esses elementos ficam invisíveis no próprio navegador, então o lugar deles mostra o fundo da tela e nada muda de posição (`scripts/capturar.cjs`).
+
+## Revisão de 23/11/2026: integração e chamada final
+
+**Narração:** só as frases 5, 6 e 7 mudaram, e as outras 12 ficam com o áudio aprovado em 19/11.
+- **Voz:** Alexa, eleven_v4, estabilidade 0,50, semelhança 0,75, seed 7100.
+- **Contexto:** a frase anterior e a seguinte vão como contexto, sem serem faladas.
+- **Pronúncia:** "Hospéda" no texto enviado.
+- **Emenda:** as frases novas entram no meio dos silêncios, com fades de 10 ms. A montagem sem as trocas reproduz o áudio aprovado (deslocamento de no máximo 2 amostras).
+
+**Duração: 71,4 s**, contra 68,1 s antes.
+- **Por que passou do alvo de ~70 s:** as frases novas são mais longas (4,8 + 5,7 + 6,9 s, contra cerca de 2,6 + 4,6 + 3,0 s), e a voz não foi acelerada.
+- **Para encurtar, sem acelerar a voz e sem cortar demonstração:**
+  - silêncio interno das frases novas: no máximo 0,22 s depois de vírgula e 0,30 s depois de ponto;
+  - pausas entre frases: g3, canais4, dupla e checkout de 0,4 para 0,3 s; marca de 0,45 para 0,35 s; relat de 0,5 para 0,35 s;
+  - fecho de 3,6 para 3,4 s depois da última palavra.
+- **Outras tomadas:** testei as seeds 7101 a 7104 da frase 7, e todas dão de 7,3 a 7,5 s de fala.
+
+| Frase | Tempo (s) | Tela | O que acontece |
+|---|---|---|---|
+| 5. canais1 | 14,8–19,6 | `canais` (o texto do topo; nenhum link à mostra) | Em "link de calendário" entra o selo limão **"Link de calendário"**, com o ícone de corrente. Contorno no texto em "Airbnb". O selo pulsa em "se conectam". |
+| 6. canais2 | 19,8–25,5 | `calendario` | Close na linha da Bica D’Água 01. Em "manda suas datas" entra a nota **"O Hospeda confere os canais / a cada 30 min"**. Em "traz de lá", close no bloqueio. Em "datas ocupadas", contorno, e o bloqueio "Airbnb" salta numa janela. |
+| 7. canais3 | 25,8–32,7 | `inicio-conflito` (**a recapturar**) | Em "baterem", contorno âmbar no alerta. Em "avisa", o alerta **"Conflito com o Airbnb"** salta. Em "sino", a tela inteira com contorno no sino. Em "não cancela nada", contorno e janela em **"Nada foi cancelado."**. |
+| 8. canais4 | 33,0–35,5 | `calendario` | Como antes. |
+| Fecho | 63,9–67,9 → 71.4 | Fecho | "30 dias para testar…", como antes. Depois da última palavra, as linhas saem, a logo desce e a **chamada, só na tela**, entra **acima da logo**: "Quer ver funcionando?" e "É só responder esta conversa." em limão. Fica cerca de 2,9 s, até o fim. |
+
+As outras cenas seguem iguais, só deslocadas pelos tempos novos.
+
+**Proibido na fala e na tela:** "na hora", "em tempo real", "sincronização instantânea", "nunca mais vende duas vezes" e "traz as reservas com os dados do hóspede". `scripts/conferir-textos.py` confere a narração e os quadros.

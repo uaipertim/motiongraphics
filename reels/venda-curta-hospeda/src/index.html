@@ -23,7 +23,7 @@
   const carrega = (src) => new Promise((ok, erro) => { const i = new Image(); i.onload = () => ok(i); i.onerror = erro; i.src = src; });
   window.ready = (async () => {
     await Promise.all(['900 40px "FL Display"', '800 40px "FL Display"', '700 40px "FL Display"', '700 40px "FL Mono"'].map((f) => document.fonts.load(f)));
-    const plano = q.has('estilo') ? window.PLANO_ESTILO : window.montaPlano(await (await fetch('../linha.json')).json(), { capa: q.get('capa') || undefined });
+    const plano = q.has('estilo') ? window.PLANO_ESTILO : window.montaPlano(await (await fetch('../linha.json')).json(), { capa: q.get('capa') || undefined, inicio: await fetch('../telas/inicio-conflito.json').then((r) => (r.ok ? r.json() : null)) });
     const nomes = new Set();
     plano.telas.forEach((s) => { nomes.add(s.img); (s.estados || []).forEach((e) => nomes.add(e.img)); (s.saltos || []).forEach((j) => j.img && nomes.add(j.img)); });
     if (plano.capa) nomes.add(plano.capa.img);

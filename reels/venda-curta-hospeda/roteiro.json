@@ -14,7 +14,7 @@
   "WhatsApp": "Uátsap",
   "30": "Trinta"
  },
- "nota": "Roteiro aprovado em 19/11/2026 (frases 9 e 11 ajustadas). 'chave': palavras em limão na legenda; 'id': o instante que dispara a animação; 'pausa': silêncio depois da frase.",
+ "nota": "Roteiro aprovado em 19/11/2026 (frases 9 e 11 ajustadas). 'chave': palavras em limão na legenda; 'id': o instante que dispara a animação; 'pausa': silêncio depois da frase. Revisão de 23/11/2026: canais1, canais2 e canais3 trocadas, com tomada própria (audio/trocas/); 'tokens_tomada_original' guarda o texto da tomada de 19/11, usado para localizar as outras frases nela.",
  "frases": [
   {
    "id": "g1",
@@ -78,7 +78,7 @@
   },
   {
    "id": "g3",
-   "pausa": 0.4,
+   "pausa": 0.3,
    "tokens": [
     {
      "fala": "E no fim do dia,"
@@ -97,7 +97,7 @@
   },
   {
    "id": "marca",
-   "pausa": 0.45,
+   "pausa": 0.35,
    "tokens": [
     {
      "fala": "O"
@@ -122,6 +122,40 @@
    "pausa": 0.25,
    "tokens": [
     {
+     "fala": "Pelo"
+    },
+    {
+     "fala": "link de calendário,",
+     "chave": true,
+     "id": "link"
+    },
+    {
+     "fala": "o"
+    },
+    {
+     "fala": "Airbnb",
+     "chave": true,
+     "id": "airbnb"
+    },
+    {
+     "fala": "e o"
+    },
+    {
+     "fala": "Booking",
+     "chave": true,
+     "id": "booking"
+    },
+    {
+     "fala": "se conectam",
+     "chave": true,
+     "id": "conectam"
+    },
+    {
+     "fala": "ao Hospeda."
+    }
+   ],
+   "tokens_tomada_original": [
+    {
      "fala": "O"
     },
     {
@@ -145,12 +179,42 @@
      "chave": true,
      "id": "calendario"
     }
-   ]
+   ],
+   "tomada": "audio/trocas/canais1"
   },
   {
    "id": "canais2",
    "pausa": 0.3,
    "tokens": [
+    {
+     "fala": "O Hospeda"
+    },
+    {
+     "fala": "manda suas datas",
+     "chave": true,
+     "id": "manda"
+    },
+    {
+     "fala": "para o Airbnb e o Booking,"
+    },
+    {
+     "fala": "e"
+    },
+    {
+     "fala": "traz de lá",
+     "chave": true,
+     "id": "traz"
+    },
+    {
+     "fala": "as"
+    },
+    {
+     "fala": "datas ocupadas.",
+     "chave": true,
+     "id": "ocupadas"
+    }
+   ],
+   "tokens_tomada_original": [
     {
      "fala": "O Hospeda"
     },
@@ -175,12 +239,58 @@
      "chave": true,
      "id": "bloqueado"
     }
-   ]
+   ],
+   "tomada": "audio/trocas/canais2"
   },
   {
    "id": "canais3",
    "pausa": 0.25,
    "tokens": [
+    {
+     "fala": "Se duas reservas"
+    },
+    {
+     "fala": "baterem,",
+     "chave": true,
+     "id": "bater"
+    },
+    {
+     "fala": "ele"
+    },
+    {
+     "fala": "avisa,",
+     "chave": true,
+     "id": "avisa"
+    },
+    {
+     "fala": "no"
+    },
+    {
+     "fala": "Início",
+     "chave": true,
+     "id": "inicio"
+    },
+    {
+     "fala": "e no"
+    },
+    {
+     "fala": "sino.",
+     "chave": true,
+     "id": "sino"
+    },
+    {
+     "fala": "E"
+    },
+    {
+     "fala": "não cancela nada",
+     "chave": true,
+     "id": "naocancela"
+    },
+    {
+     "fala": "sozinho."
+    }
+   ],
+   "tokens_tomada_original": [
     {
      "fala": "Se uma data"
     },
@@ -208,11 +318,12 @@
     {
      "fala": "sozinho."
     }
-   ]
+   ],
+   "tomada": "audio/trocas/canais3"
   },
   {
    "id": "canais4",
-   "pausa": 0.4,
+   "pausa": 0.3,
    "tokens": [
     {
      "fala": "Isso"
@@ -229,7 +340,7 @@
   },
   {
    "id": "dupla",
-   "pausa": 0.4,
+   "pausa": 0.3,
    "tokens": [
     {
      "fala": "E dentro do Hospeda, o"
@@ -317,7 +428,7 @@
   },
   {
    "id": "checkout",
-   "pausa": 0.4,
+   "pausa": 0.3,
    "tokens": [
     {
      "fala": "E o"
@@ -389,7 +500,7 @@
   },
   {
    "id": "relat",
-   "pausa": 0.5,
+   "pausa": 0.35,
    "tokens": [
     {
      "fala": "E nos"

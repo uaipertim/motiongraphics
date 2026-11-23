@@ -1,0 +1,120 @@
+{
+ "id": "canais3",
+ "texto": "Se duas reservas baterem, ele avisa, no Início e no sino. E não cancela nada sozinho.",
+ "enviado": "Se duas reservas baterem, ele avisa, no Início e no sino. E não cancela nada sozinho.",
+ "contexto": {
+  "antes": "O Hospéda manda suas datas para o Airbnb e o Booking, e traz de lá as datas ocupadas.",
+  "depois": "Isso reduz muito o risco de reserva dupla."
+ },
+ "voz": {
+  "nome": "Alexa - Soft, Clear and Friendly",
+  "voice_id": "sXSV9RZ095VZyL64w3ap",
+  "modelo": "eleven_v4",
+  "stability": 0.5,
+  "similarity_boost": 0.75
+ },
+ "seed": 7100,
+ "formato": "mp3_44100_192",
+ "ritmo_letras_s": 8.8,
+ "fim_da_fala_s": 7.46,
+ "duracao_audio": 7.92,
+ "palavras": [
+  {
+   "w": "Se",
+   "falado": "Se",
+   "t0": 0.0,
+   "t1": 0.24
+  },
+  {
+   "w": "duas",
+   "falado": "duas",
+   "t0": 0.32,
+   "t1": 0.56
+  },
+  {
+   "w": "reservas",
+   "falado": "reservas",
+   "t0": 0.64,
+   "t1": 1.12
+  },
+  {
+   "w": "baterem,",
+   "falado": "baterem,",
+   "t0": 1.16,
+   "t1": 1.76
+  },
+  {
+   "w": "ele",
+   "falado": "ele",
+   "t0": 2.12,
+   "t1": 2.24
+  },
+  {
+   "w": "avisa,",
+   "falado": "avisa,",
+   "t0": 2.36,
+   "t1": 2.8
+  },
+  {
+   "w": "no",
+   "falado": "no",
+   "t0": 3.16,
+   "t1": 3.2
+  },
+  {
+   "w": "Início",
+   "falado": "Início",
+   "t0": 3.28,
+   "t1": 3.92
+  },
+  {
+   "w": "e",
+   "falado": "e",
+   "t0": 4.0,
+   "t1": 4.04
+  },
+  {
+   "w": "no",
+   "falado": "no",
+   "t0": 4.08,
+   "t1": 4.24
+  },
+  {
+   "w": "sino.",
+   "falado": "sino.",
+   "t0": 4.32,
+   "t1": 4.72
+  },
+  {
+   "w": "E",
+   "falado": "E",
+   "t0": 5.24,
+   "t1": 5.28
+  },
+  {
+   "w": "não",
+   "falado": "não",
+   "t0": 5.44,
+   "t1": 5.6
+  },
+  {
+   "w": "cancela",
+   "falado": "cancela",
+   "t0": 5.68,
+   "t1": 6.24
+  },
+  {
+   "w": "nada",
+   "falado": "nada",
+   "t0": 6.48,
+   "t1": 6.8
+  },
+  {
+   "w": "sozinho.",
+   "falado": "sozinho.",
+   "t0": 6.88,
+   "t1": 7.44
+  }
+ ],
+ "quando": "2026-11-23 20:56"
+}
