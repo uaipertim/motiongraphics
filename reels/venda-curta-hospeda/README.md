@@ -39,6 +39,14 @@ Primeiro contato com donos de pousada. Roteiro aprovado em [`ROTEIRO.md`](ROTEIR
     - A narração passa.
 - **Quadros-chave da integração e da chamada:** [`aprovacao/revisao-integracao-quadros.jpg`](aprovacao/revisao-integracao-quadros.jpg).
 - **Não renderizar a versão final** até a Demo atualizada sair e a cena do alerta ser recapturada.
+- **Tentativa de recaptura em 23/11/2026 (noite): recusada.**
+  - Usei `scripts/capturar-integracao.cjs`, que recaptura juntas Canais, o calendário e o alerta e mede tudo em `telas/integracao.json`.
+  - A Demo (index de 23/11, 19:36 GMT, carregada sem cache) **ainda mostra os dois erros de exemplo**:
+    - "Bica D’Água 02 · Airbnb: o Airbnb não lê o calendário… Confira se o link está colado no Airbnb." (no Início e em "Ver todos");
+    - "Bica D’Água 02: o Hospeda não consegue ler o calendário do Booking. Confira o link em Canais." (em "Ver todos").
+  - O alerta "Conflito com o Airbnb" (Chalé de Pedra 05 · 27/11 a 30/11) só existe em "Ver todos", logo abaixo desses dois cartões. O painel está no fim da rolagem, então não há enquadramento sem eles. A prova está em [`aprovacao/demo-2311-ver-todos-com-erros.png`](aprovacao/demo-2311-ver-todos-com-erros.png).
+  - Canais e o calendário passaram na conferência, mas nada foi gravado: a recaptura é conjunta.
+  - No calendário, o Chalé de Pedra 05 tem de 27/11 a 30/11 a reserva do Hospeda "Roberto Silveira", que é a reserva do alerta. O bloqueio do Airbnb dessas datas não aparece na grade. O bloqueio "Airbnb" visível é o da Bica D’Água 01, de 25/11 a 27/11.
 
 ## Capa embutida no quadro 0 (miniatura do WhatsApp, 22/11/2026)
 - **Arquivos:**
