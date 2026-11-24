@@ -1,0 +1,10 @@
+Capa — FAZLO Hospeda na prática (recorte 4:5 do feed: 1080×1350, y 285–1635; folga de 60 px: x 60–1020, y 345–1575)
+
+OK     logo      x 392–688, y 365–419
+OK     celular   x 237–563, y 441–1123
+OK     janela    x 372–988, y 495–977
+OK     chip      x 274–806, y 1151–1209
+OK     titulo1   x 174–906, y 1242–1383
+OK     titulo2   x 197–883, y 1390–1502
+
+RESULTADO: dentro da regra da capa

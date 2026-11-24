@@ -1,0 +1,94 @@
+{
+ "data": "2026-11-24T21:37:32.090Z",
+ "proibidos": [
+  "/Jo[aã]o Caixa/",
+  "/Mariana Recep/",
+  "/fazlodigital/i",
+  "/\\bDemo\\b/",
+  "/Demonstra/i",
+  "/senha/i",
+  "/c[oó]digo/i",
+  "/token/i",
+  "/Quero usar/",
+  "/\\.ics\\b/i",
+  "/ical/i",
+  "/https?:\\/\\//i",
+  "/@/",
+  "/não consegue ler/i",
+  "/Confira o link/i",
+  "/não lê o calendário/i",
+  "/Confira se o link/i",
+  "/com sucesso/i"
+ ],
+ "telas": {
+  "vp-inicio": {
+   "tipo": "celular",
+   "escondidos": 10,
+   "proibidos": 0,
+   "aviso_na_tela": 0,
+   "rolagem": 0
+  },
+  "pg-inicio": {
+   "tipo": "pagina",
+   "escondidos": 5,
+   "proibidos": 0,
+   "aviso_na_tela": 0,
+   "altura": 5835
+  },
+  "vp-fim": {
+   "tipo": "celular",
+   "escondidos": 5,
+   "proibidos": 0,
+   "aviso_na_tela": 0,
+   "rolagem": 3303
+  },
+  "vp-atencao": {
+   "tipo": "celular",
+   "escondidos": 5,
+   "proibidos": 0,
+   "aviso_na_tela": 0,
+   "rolagem": 1500
+  },
+  "vp-hospedados": {
+   "tipo": "celular",
+   "escondidos": 5,
+   "proibidos": 0,
+   "aviso_na_tela": 0,
+   "rolagem": 1620
+  },
+  "pg-hospedados": {
+   "tipo": "pagina",
+   "escondidos": 5,
+   "proibidos": 0,
+   "aviso_na_tela": 0,
+   "altura": 7464
+  },
+  "vp-recebido": {
+   "tipo": "celular",
+   "escondidos": 5,
+   "proibidos": 0,
+   "aviso_na_tela": 0,
+   "rolagem": 1620
+  },
+  "pg-recebido": {
+   "tipo": "pagina",
+   "escondidos": 5,
+   "proibidos": 0,
+   "aviso_na_tela": 0,
+   "altura": 9696
+  }
+ },
+ "numeros": {
+  "R$ 1.525,00": true,
+  "A receber 0,00 · saídas quitadas": true,
+  "Hospedados 10": true,
+  "Chegadas 2 · 1 concluída": true,
+  "Saídas 2 · 1 concluída": true,
+  "Saídas de hoje": true,
+  "Chegadas de hoje": true,
+  "Precisa de atenção 4": true,
+  "Reserva vencida": true,
+  "Ver todos (4)": true
+ },
+ "montagem": {}
+}

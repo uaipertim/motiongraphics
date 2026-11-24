@@ -1,0 +1,39 @@
+{
+ "modo": "telas",
+ "quadros": 8,
+ "com_achados": {},
+ "todos": {
+  "pg-hospedados.png": {
+   "achados": [],
+   "letras_lidas": 1529
+  },
+  "pg-inicio.png": {
+   "achados": [],
+   "letras_lidas": 1107
+  },
+  "pg-recebido.png": {
+   "achados": [],
+   "letras_lidas": 1889
+  },
+  "vp-atencao.png": {
+   "achados": [],
+   "letras_lidas": 638
+  },
+  "vp-fim.png": {
+   "achados": [],
+   "letras_lidas": 402
+  },
+  "vp-hospedados.png": {
+   "achados": [],
+   "letras_lidas": 646
+  },
+  "vp-inicio.png": {
+   "achados": [],
+   "letras_lidas": 398
+  },
+  "vp-recebido.png": {
+   "achados": [],
+   "letras_lidas": 533
+  }
+ }
+}

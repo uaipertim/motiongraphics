@@ -1,0 +1,340 @@
+{
+ "id": "hospeda-na-pratica-05-pousada-num-olhar",
+ "marca": "@fazlohospeda",
+ "voz": {
+  "nome": "Alexa - Soft, Clear and Friendly",
+  "voice_id": "sXSV9RZ095VZyL64w3ap",
+  "modelo": "eleven_v4",
+  "stability": 0.5,
+  "similarity_boost": 0.75
+ },
+ "pronuncia": {
+  "Hospeda": "Hospéda",
+  "FAZLO": "Fázlo",
+  "PIX": "Pix"
+ },
+ "nota": "Roteiro aprovado em 24/11/2026 (etapa 1, commit e5b2240). Nenhum número e nenhum valor falados: ficam só nas janelas. \"PIX\" na tela e na legenda; \"Pix\" só na voz.",
+ "narracao": "Dia corrido na pousada, e as perguntas não param. No FAZLO Hospeda, tudo se responde numa tela só: o Início. Quem dorme aqui hoje? Está no cartão Hospedados. Um toque, e aparece cada hospedagem, com nome e acomodação. Quem chega hoje? Em Chegadas de hoje: quem já entrou e quem ainda falta. Quem vai embora? Em Saídas de hoje, com o horário de cada um. Quanto já entrou? Em destaque, logo no alto. Entrou em quê? PIX, dinheiro, crédito e débito. Um toque, e aparece cada pagamento. Falta receber? Logo abaixo, o que ainda está em aberto nas saídas. Tem algo para resolver? Um check-out atrasado, por exemplo, já vem separado. Uma tela, o dia inteiro. E no começo, a FAZLO configura tudo com você.",
+ "frases": [
+  {
+   "id": "g1",
+   "pausa": 0.6,
+   "tokens": [
+    {
+     "fala": "Dia corrido na pousada,"
+    },
+    {
+     "fala": "e as perguntas",
+     "id": "perguntas",
+     "chave": true
+    },
+    {
+     "fala": "não param.",
+     "id": "param",
+     "chave": true
+    }
+   ]
+  },
+  {
+   "id": "abre",
+   "pausa": 0.9,
+   "tokens": [
+    {
+     "fala": "No"
+    },
+    {
+     "fala": "FAZLO Hospeda,",
+     "id": "fazlo",
+     "chave": true
+    },
+    {
+     "fala": "tudo se responde"
+    },
+    {
+     "fala": "numa tela só:",
+     "id": "telaso",
+     "chave": true
+    },
+    {
+     "fala": "o"
+    },
+    {
+     "fala": "Início.",
+     "id": "inicio",
+     "chave": true
+    }
+   ]
+  },
+  {
+   "id": "hosp",
+   "pausa": 1.8,
+   "tokens": [
+    {
+     "fala": "Quem dorme aqui hoje?",
+     "id": "q1",
+     "pergunta": true,
+     "pausa": 0.7
+    },
+    {
+     "fala": "Está no"
+    },
+    {
+     "fala": "cartão Hospedados.",
+     "id": "hospedados",
+     "chave": true,
+     "pausa": 0.6
+    },
+    {
+     "fala": "Um toque,",
+     "id": "toque1"
+    },
+    {
+     "fala": "e aparece"
+    },
+    {
+     "fala": "cada hospedagem,",
+     "id": "cada",
+     "chave": true
+    },
+    {
+     "fala": "com"
+    },
+    {
+     "fala": "nome",
+     "id": "nome",
+     "chave": true
+    },
+    {
+     "fala": "e"
+    },
+    {
+     "fala": "acomodação.",
+     "id": "acomodacao",
+     "chave": true
+    }
+   ]
+  },
+  {
+   "id": "cheg",
+   "pausa": 1.2,
+   "tokens": [
+    {
+     "fala": "Quem chega hoje?",
+     "id": "q2",
+     "pergunta": true,
+     "pausa": 0.7
+    },
+    {
+     "fala": "Em"
+    },
+    {
+     "fala": "Chegadas de hoje:",
+     "id": "chegadas",
+     "chave": true
+    },
+    {
+     "fala": "quem"
+    },
+    {
+     "fala": "já entrou",
+     "id": "entrou",
+     "chave": true
+    },
+    {
+     "fala": "e quem"
+    },
+    {
+     "fala": "ainda falta.",
+     "id": "falta",
+     "chave": true
+    }
+   ]
+  },
+  {
+   "id": "said",
+   "pausa": 1.2,
+   "tokens": [
+    {
+     "fala": "Quem vai embora?",
+     "id": "q3",
+     "pergunta": true,
+     "pausa": 0.7
+    },
+    {
+     "fala": "Em"
+    },
+    {
+     "fala": "Saídas de hoje,",
+     "id": "saidas",
+     "chave": true
+    },
+    {
+     "fala": "com o"
+    },
+    {
+     "fala": "horário",
+     "id": "horario",
+     "chave": true
+    },
+    {
+     "fala": "de cada um.",
+     "id": "cadaum"
+    }
+   ]
+  },
+  {
+   "id": "quanto",
+   "pausa": 0.9,
+   "tokens": [
+    {
+     "fala": "Quanto já entrou?",
+     "id": "q4",
+     "pergunta": true,
+     "pausa": 0.7
+    },
+    {
+     "fala": "Em destaque,",
+     "id": "destaque",
+     "chave": true
+    },
+    {
+     "fala": "logo no alto.",
+     "id": "alto"
+    }
+   ]
+  },
+  {
+   "id": "formas",
+   "pausa": 1.8,
+   "tokens": [
+    {
+     "fala": "Entrou em quê?",
+     "id": "q5",
+     "pergunta": true,
+     "pausa": 0.7
+    },
+    {
+     "fala": "PIX,",
+     "id": "pix",
+     "chave": true
+    },
+    {
+     "fala": "dinheiro,",
+     "id": "dinheiro",
+     "chave": true
+    },
+    {
+     "fala": "crédito",
+     "id": "credito",
+     "chave": true
+    },
+    {
+     "fala": "e"
+    },
+    {
+     "fala": "débito.",
+     "id": "debito",
+     "chave": true,
+     "pausa": 0.7
+    },
+    {
+     "fala": "Um toque,",
+     "id": "toque2"
+    },
+    {
+     "fala": "e aparece"
+    },
+    {
+     "fala": "cada pagamento.",
+     "id": "pagamento",
+     "chave": true
+    }
+   ]
+  },
+  {
+   "id": "receber",
+   "pausa": 1.2,
+   "tokens": [
+    {
+     "fala": "Falta receber?",
+     "id": "q6",
+     "pergunta": true,
+     "pausa": 0.7
+    },
+    {
+     "fala": "Logo abaixo,",
+     "id": "abaixo"
+    },
+    {
+     "fala": "o que ainda está"
+    },
+    {
+     "fala": "em aberto",
+     "id": "aberto",
+     "chave": true
+    },
+    {
+     "fala": "nas saídas.",
+     "id": "nassaidas",
+     "chave": true
+    }
+   ]
+  },
+  {
+   "id": "atencao",
+   "pausa": 1.6,
+   "tokens": [
+    {
+     "fala": "Tem algo para resolver?",
+     "id": "q7",
+     "pergunta": true,
+     "pausa": 0.7
+    },
+    {
+     "fala": "Um"
+    },
+    {
+     "fala": "check-out atrasado,",
+     "id": "atrasado",
+     "chave": true
+    },
+    {
+     "fala": "por exemplo,"
+    },
+    {
+     "fala": "já vem separado.",
+     "id": "separado",
+     "chave": true
+    }
+   ]
+  },
+  {
+   "id": "cta",
+   "pausa": 0.6,
+   "tokens": [
+    {
+     "fala": "Uma tela,",
+     "id": "umatela"
+    },
+    {
+     "fala": "o dia inteiro.",
+     "id": "diainteiro"
+    }
+   ]
+  },
+  {
+   "id": "cta2",
+   "pausa": 0.0,
+   "tokens": [
+    {
+     "fala": "E no começo,",
+     "id": "comeco"
+    },
+    {
+     "fala": "a FAZLO configura tudo com você.",
+     "id": "configura"
+    }
+   ]
+  }
+ ]
+}

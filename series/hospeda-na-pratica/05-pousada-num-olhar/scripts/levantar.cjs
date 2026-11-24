@@ -3,6 +3,7 @@
  * Episódio 5 (A pousada num olhar): levantamento da tela Início da Demo, no celular, 390×844 a 3x (1170×2532).
  *   node scripts/levantar.cjs   -> aprovacao/levantamento/<nome>.png + aprovacao/levantamento/levantamento.json
  *
+ * - Os operadores do painel "Recebido hoje" levam os nomes do episódio 2 (João Caixa → João Pereira, Mariana Recepção → Mariana Costa).
  * - Somem (visibility: hidden, sem mudar posição): o selo "Demonstração", a data do cabeçalho e "Quero usar".
  * - Antes de salvar cada captura, o texto visível da página não pode ter nada proibido (o texto de sempre da série e os
  *   erros de exemplo dos canais que o vídeo curto recusa). Se tiver, o script para sem salvar.
@@ -11,9 +12,12 @@
 const fs = require('fs'), path = require('path');
 const { chromium } = require('/opt/node-tools/node_modules/playwright');
 const OUT = path.join(__dirname, '..', 'aprovacao', 'levantamento');
-const PROIBIDO = [/fazlodigital/i, /\bDemo\b/, /Demonstra/i, /senha/i, /c[oó]digo/i, /token/i, /Quero usar/, /\.ics\b/i, /ical/i, /https?:\/\//i, /@/,
+const TROCAS = [['João Caixa', 'João Pereira'], ['Mariana Recepção', 'Mariana Costa']];   // os mesmos nomes do episódio 2
+const PROIBIDO = [/Jo[aã]o Caixa/, /Mariana Recep/, /fazlodigital/i, /\bDemo\b/, /Demonstra/i, /senha/i, /c[oó]digo/i, /token/i, /Quero usar/, /\.ics\b/i, /ical/i, /https?:\/\//i, /@/,
   /não consegue ler/i, /Confira o link/i, /não lê o calendário/i, /Confira se o link/i];
-function preparar() {
+function preparar(TROCAS) {
+  const tw = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT); let n;
+  while ((n = tw.nextNode())) { let v = n.nodeValue; for (const [a, b] of TROCAS) v = v.split(a).join(b); if (v !== n.nodeValue) n.nodeValue = v; }
   const alvos = [...document.querySelectorAll('body *')].filter((e) => {
     const t = (e.innerText || '').trim();
     return (e.children.length <= 3 && /^(Demonstração(Demo)?|Quero usar|Quero usar na minha pousada)$/.test(t)) ||
@@ -32,7 +36,7 @@ const limpo = (s) => (s || '').replace(/[ \t]+/g, ' ').replace(/\n\s*\n+/g, '\n'
   const R = { data: new Date().toISOString(), proibidos: PROIBIDO.map(String), capturas: {}, blocos: {}, conferencias: {} };
   const foto = async (nome, legenda) => {
     await espera(700);
-    const esc = await pag.evaluate(preparar); await espera(150);
+    await pag.mouse.move(1, 1); const esc = await pag.evaluate(preparar, TROCAS); await espera(150);
     const texto = await pag.evaluate(() => document.body.innerText);
     const achados = PROIBIDO.filter((re) => re.test(texto)).map(String);
     if (achados.length) { console.error(`PARADO em ${nome}: ${achados.join(', ')}`); await nav.close(); process.exit(1); }

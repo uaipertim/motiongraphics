@@ -1,6 +1,6 @@
-# Episódio 5: A pousada num olhar (etapa 1, para aprovação)
+# Episódio 5: A pousada num olhar (roteiro aprovado)
 
-**Status:** levantamento, estrutura, roteiro e linha do tempo **para aprovação**. Nada de voz nem render ainda. Segue as [regras da série](../REGRAS.md). Vai ao ar na segunda, 30/11, às 19h ([programação](../PROGRAMACAO.md)). **Não publicar.**
+**Status:** etapa 1 aprovada em 24/11/2026 (commit e5b2240), com dois cuidados: em "Tem algo para resolver?", o foco fica no bloco "Precisa de atenção" inteiro e nos cartões "Check-out em atraso" e "Reserva vencida sem check-in" (o "Conflito com o Airbnb" só ao fundo); e trocar "check-out" se a Alexa pronunciasse mal (não foi preciso). **Etapa 2 pronta:** narrada, montada e renderizada (67,7 s); ver o [README](README.md) e a seção 8. Segue as [regras da série](../REGRAS.md). Vai ao ar na segunda, 30/11, às 19h ([programação](../PROGRAMACAO.md)). **Não publicar.**
 
 ## 1. Levantamento da tela Início (Demo recarregada, 24/11/2026)
 
@@ -193,3 +193,48 @@ Não aparece nenhum e-mail, senha, código de autenticador, token ou link iCal. 
 
 ## 7. Fecho
 A logo do FAZLO Hospeda estoura em limão, sem nada encostando nela, com @fazlohospeda embaixo. A trilha resolve no último tempo, como nos episódios anteriores.
+
+## 8. Etapa 2: o que ficou no vídeo (tempos reais da locução)
+
+**Voz:** Alexa, eleven_v4, estabilidade 0,50, semelhança 0,75, seed 7100, numa tomada só.
+- A fala tem 51,7 s, num ritmo de 10,3 letras por segundo.
+- A transcrição da própria locução (ElevenLabs, speech-to-text) devolve "checkout" para "check-out". A pronúncia está certa, então a palavra ficou.
+
+**Montagem:** a voz vai de 0,30 a 64,08 s, e a logo segue até **67,7 s**.
+- Só as pausas mudaram; nenhuma palavra foi cortada nem acelerada.
+- Além das pausas entre frases, há uma pausa de 0,7 s depois de cada pergunta, para a pergunta entrar e a câmera ir ao bloco.
+
+| Pausa depois de | Na gravação (s) | No vídeo (s) |
+|---|---|---|
+| cada pergunta | 0,21 a 0,31 | 0,70 |
+| frase 1 · frase 2 | 0,44 · 0,44 | 0,60 · 0,90 |
+| "cartão Hospedados." (antes do toque) | 0,32 | 0,60 |
+| frase 3 (Hospedados) | 0,39 | 1,80 |
+| frases 4 · 5 (Chegadas · Saídas) | 0,30 · 0,28 | 1,20 · 1,20 |
+| frase 6 (Quanto já entrou) | 0,27 | 0,90 |
+| "débito." (antes do toque) | 0,35 | 0,70 |
+| frase 7 (Pagamentos) | 0,29 | 1,80 |
+| frases 8 · 9 (A receber · Atenção) | 0,24 · 0,33 | 1,20 · 1,60 |
+| frase 10 | 0,32 | 0,60 |
+
+| Tempo (s) | Frase | O que acontece |
+|---|---|---|
+| 0,0–4,7 | 1 | **Gancho:** desde o quadro 0, "Dia corrido na pousada, / e as perguntas não param." em cima do celular escurecido com o Início. Três "?" pulam em volta em "perguntas" (2,3). |
+| 4,6–9,7 | 2 | A tela clareia. Entram o selo da série e "A pousada num olhar" em "FAZLO" (4,9). Em "Início" (8,4), contorno na aba Início da barra de baixo. |
+| 9,7–19,4 | 3 | "Quem dorme aqui hoje?". Close de 1,9× no cartão Hospedados, contorno (12,2) e janela "Hospedados 10 hóspedes" (12,6). Toque no cartão (14,0); o painel "Hospedados agora" abre e a tela rola até ele. Janelas: "10 hóspedes em 5 hospedagens" (15,5) e a lista dos cinco, com marcas no nome (16,9) e na acomodação (17,4). Toque no "×" (19,3). Vira "✓ Hospedados". |
+| 19,9–25,8 | 4 | "Quem chega hoje?". A tela volta ao topo: contorno no cartão Chegadas ("2 · 1 concluída"). A tela rola até o fim (21,6). Janela "Chegadas de hoje" (22,4): Thiago Oliveira com marca limão em "já entrou" (23,4) e Helena Duarte com marca âmbar em "ainda falta" (24,6). Vira "✓ Chegadas". |
+| 26,3–31,6 | 5 | "Quem vai embora?". Contorno em "Saídas de hoje" e janela (28,2), com marcas nos horários 10:15 e 12:00 em "horário" (29,8). Vira "✓ Saídas". |
+| 32,1–36,2 | 6 | "Quanto já entrou?". A tela volta ao topo, close no cartão preto, contorno no total e janela "Recebido hoje · R$ 1.525,00" em "destaque" (33,9). Vira "✓ Recebido". |
+| 36,7–45,2 | 7 | "Entrou em quê?". Janela com a fileira das formas (38,1) e marcas no ritmo da fala: PIX (38,3), Dinheiro (38,8), Crédito (39,6) e Débito (40,3). Toque no total (41,7); o painel "Recebido hoje" abre e a tela rola. Janela com os dois primeiros pagamentos (42,8) e marcas em "Forma de pagamento" (43,1 e 43,3). Toque no "×" (45,1). Vira "✓ Pagamentos". |
+| 45,7–51,0 | 8 | "Falta receber?". A tela volta ao topo. Contorno em "A receber nas saídas de hoje" em "Logo abaixo" (47,5) e janela em "em aberto" (49,0). Vira "✓ A receber". |
+| 51,5–57,5 | 9 | "Tem algo para resolver?". A tela rola até "Precisa de atenção" e o bloco inteiro ganha contorno (52,2). Janelas âmbar: "Check-out em atraso" em "check-out atrasado" (53,5) e "Reserva vencida sem check-in" (54,7). O "Conflito com o Airbnb" fica só ao fundo, embaixo das janelas: sem close, sem janela e sem fala. Vira "✓ Atenção". |
+| 57,9–60,8 | 10 | **Fecho:** a tela volta ao topo e a câmera se afasta. Os sete selinhos saem da fileira e reaparecem em volta do celular, sem passar por cima dele. Entram "Uma tela," (58,2) e "o dia inteiro." (59,1), em limão. |
+| 60,7–67,7 | 11 | O celular e os selinhos somem e a logo estoura (60,7). Entram "E no começo," e "a FAZLO configura tudo com você." (61,8). @fazlohospeda (64,6) e a trilha resolve. |
+
+**O que mudou em relação à linha do tempo estimada:**
+1. **Duração:** 67,7 s, contra 74 s estimados. A fala real ficou mais curta, e as pausas foram alongadas só até dar tempo de ler as janelas.
+2. **Rolagem de verdade:** a tela Início rola dentro do celular, sem cortes. Cada estado foi capturado como página inteira (`telas/pg-*.png`), que corre por baixo do cabeçalho e da barra de baixo do app. `scripts/conferir-montagem.py` confere que essa montagem dá a mesma imagem que a captura do celular nas cinco rolagens usadas.
+3. **Quem chega hoje:** a lista "Chegadas de hoje" responde com marcas dentro da própria janela: limão em quem já entrou e âmbar em quem ainda falta.
+4. **Tem algo para resolver:** há duas janelas âmbar, a do check-out em atraso e a da reserva vencida, e o contorno do bloco inteiro, conforme o cuidado aprovado.
+5. **Título:** o título não encolhe para a faixa de cima. Ele sai antes da primeira pergunta, porque a faixa de cima fica com os selinhos.
+6. **Operadores:** no painel "Recebido hoje", os operadores levam os nomes do episódio 2. João Caixa vira João Pereira, e Mariana Recepção vira Mariana Costa, como a série faz desde o episódio 2.

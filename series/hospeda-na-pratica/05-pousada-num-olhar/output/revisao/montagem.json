@@ -1,0 +1,37 @@
+{
+ "cabecalho_ate_px": 192,
+ "barra_desde_px": 2337,
+ "resultado": {
+  "vp-inicio": {
+   "pagina": "pg-inicio",
+   "rolagem": 0,
+   "diferenca_media": 0.04,
+   "pixels_diferentes_pct": 0.017
+  },
+  "vp-fim": {
+   "pagina": "pg-inicio",
+   "rolagem": 3303,
+   "diferenca_media": 0.002,
+   "pixels_diferentes_pct": 0.0
+  },
+  "vp-atencao": {
+   "pagina": "pg-inicio",
+   "rolagem": 1500,
+   "diferenca_media": 0.002,
+   "pixels_diferentes_pct": 0.0
+  },
+  "vp-hospedados": {
+   "pagina": "pg-hospedados",
+   "rolagem": 1620,
+   "diferenca_media": 0.04,
+   "pixels_diferentes_pct": 0.017
+  },
+  "vp-recebido": {
+   "pagina": "pg-recebido",
+   "rolagem": 1620,
+   "diferenca_media": 0.0,
+   "pixels_diferentes_pct": 0.0
+  }
+ },
+ "ok": true
+}

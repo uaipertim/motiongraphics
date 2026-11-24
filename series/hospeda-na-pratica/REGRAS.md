@@ -93,6 +93,7 @@ Os episódios 2, 3 e 4 ficaram com o mesmo esqueleto (tabela abaixo). Daqui em d
 | 2 | Sua equipe no Hospeda | Gancho com avatares e bilhete → bloco da logo com três selos → "Toque em Mais e depois em Usuários" → lista → convidar (novo) → alterar papel (editar) → desativar e reativar → fecho |
 | 3 | Chalés e quartos | Gancho com caderno e avatar → bloco da logo com três selos → "Toque em Mais e depois em Acomodações" → lista → editar → antes e depois (dois celulares) → novo → bloquear → desativar → antes e depois → fecho |
 | 4 | Produtos da comanda | Gancho com papel colado e avatares → bloco da logo com três selos → "Toque em Mais e depois em Produtos e serviços" → lista por categoria → busca → editar → antes e depois (com close nos cartões) → novo → desativar → antes e depois → fecho |
+| 5 | A pousada num olhar | Pergunta e resposta numa tela só: gancho escrito sobre o Início escurecido → título sobre o celular (sem bloco da logo) → sete perguntas grandes, uma por vez, respondidas no próprio Início (a tela rola dentro do celular; câmera no bloco, janela com marcas, toques só nos painéis do Início) → cada pergunta vira um selinho "✓" na fileira do alto → os selinhos cercam o celular: "Uma tela, o dia inteiro." → fecho. Sem "Toque em Mais", sem cadastro nem antes e depois |
 
 **Esqueleto comum dos três (não repetir):** gancho com avatares e bilhete → bloco da logo com três selos → "Toque em Mais e depois em…" → lista → editar → antes e depois → novo → desativar → fecho.
 

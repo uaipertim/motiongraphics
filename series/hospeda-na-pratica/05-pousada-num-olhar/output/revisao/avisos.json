@@ -1,0 +1,1254 @@
+{
+ "verificados": 78,
+ "problemas": [],
+ "todos": [
+  {
+   "tipo": "toque",
+   "t": 14.01,
+   "tela": "pg-inicio",
+   "rolagem": 0,
+   "ret_na_tela": [
+    214,
+    1597,
+    216,
+    1599
+   ],
+   "visivel": true,
+   "aviso": false,
+   "conflito_airbnb": false,
+   "ok": true
+  },
+  {
+   "tipo": "toque",
+   "t": 14.16,
+   "tela": "pg-inicio",
+   "rolagem": 0,
+   "ret_na_tela": [
+    214,
+    1597,
+    216,
+    1599
+   ],
+   "visivel": true,
+   "aviso": false,
+   "conflito_airbnb": false,
+   "ok": true
+  },
+  {
+   "tipo": "toque",
+   "t": 14.31,
+   "tela": "pg-inicio+pg-hospedados",
+   "rolagem": 0,
+   "ret_na_tela": [
+    214,
+    1597,
+    216,
+    1599
+   ],
+   "visivel": true,
+   "aviso": false,
+   "conflito_airbnb": false,
+   "ok": true
+  },
+  {
+   "tipo": "toque",
+   "t": 19.34,
+   "tela": "pg-inicio+pg-hospedados",
+   "rolagem": 1620,
+   "ret_na_tela": [
+    1010,
+    349,
+    1012,
+    351
+   ],
+   "visivel": true,
+   "aviso": false,
+   "conflito_airbnb": false,
+   "ok": true
+  },
+  {
+   "tipo": "toque",
+   "t": 19.48,
+   "tela": "pg-inicio+pg-hospedados",
+   "rolagem": 1620,
+   "ret_na_tela": [
+    1010,
+    349,
+    1012,
+    351
+   ],
+   "visivel": true,
+   "aviso": false,
+   "conflito_airbnb": false,
+   "ok": true
+  },
+  {
+   "tipo": "toque",
+   "t": 19.64,
+   "tela": "pg-inicio+pg-hospedados+pg-inicio",
+   "rolagem": 1620,
+   "ret_na_tela": [
+    1010,
+    349,
+    1012,
+    351
+   ],
+   "visivel": true,
+   "aviso": false,
+   "conflito_airbnb": false,
+   "ok": true
+  },
+  {
+   "tipo": "toque",
+   "t": 41.65,
+   "tela": "pg-inicio+pg-hospedados+pg-inicio",
+   "rolagem": 0,
+   "ret_na_tela": [
+    584,
+    773,
+    586,
+    775
+   ],
+   "visivel": true,
+   "aviso": false,
+   "conflito_airbnb": false,
+   "ok": true
+  },
+  {
+   "tipo": "toque",
+   "t": 41.8,
+   "tela": "pg-inicio+pg-hospedados+pg-inicio",
+   "rolagem": 0,
+   "ret_na_tela": [
+    584,
+    773,
+    586,
+    775
+   ],
+   "visivel": true,
+   "aviso": false,
+   "conflito_airbnb": false,
+   "ok": true
+  },
+  {
+   "tipo": "toque",
+   "t": 41.95,
+   "tela": "pg-inicio+pg-hospedados+pg-inicio+pg-recebido",
+   "rolagem": 0,
+   "ret_na_tela": [
+    584,
+    773,
+    586,
+    775
+   ],
+   "visivel": true,
+   "aviso": false,
+   "conflito_airbnb": false,
+   "ok": true
+  },
+  {
+   "tipo": "toque",
+   "t": 45.11,
+   "tela": "pg-inicio+pg-hospedados+pg-inicio+pg-recebido",
+   "rolagem": 1620,
+   "ret_na_tela": [
+    1010,
+    349,
+    1012,
+    351
+   ],
+   "visivel": true,
+   "aviso": false,
+   "conflito_airbnb": false,
+   "ok": true
+  },
+  {
+   "tipo": "toque",
+   "t": 45.26,
+   "tela": "pg-inicio+pg-hospedados+pg-inicio+pg-recebido",
+   "rolagem": 1620,
+   "ret_na_tela": [
+    1010,
+    349,
+    1012,
+    351
+   ],
+   "visivel": true,
+   "aviso": false,
+   "conflito_airbnb": false,
+   "ok": true
+  },
+  {
+   "tipo": "toque",
+   "t": 45.41,
+   "tela": "pg-inicio+pg-hospedados+pg-inicio+pg-recebido+pg-inicio",
+   "rolagem": 1620,
+   "ret_na_tela": [
+    1010,
+    349,
+    1012,
+    351
+   ],
+   "visivel": true,
+   "aviso": false,
+   "conflito_airbnb": false,
+   "ok": true
+  },
+  {
+   "tipo": "contorno",
+   "t": 8.41,
+   "tela": "pg-inicio",
+   "rolagem": 0,
+   "ret_na_tela": [
+    0,
+    2340,
+    234,
+    2532
+   ],
+   "visivel": true,
+   "aviso": false,
+   "conflito_airbnb": false,
+   "ok": true
+  },
+  {
+   "tipo": "contorno",
+   "t": 8.56,
+   "tela": "pg-inicio",
+   "rolagem": 0,
+   "ret_na_tela": [
+    0,
+    2340,
+    234,
+    2532
+   ],
+   "visivel": true,
+   "aviso": false,
+   "conflito_airbnb": false,
+   "ok": true
+  },
+  {
+   "tipo": "contorno",
+   "t": 8.71,
+   "tela": "pg-inicio",
+   "rolagem": 0,
+   "ret_na_tela": [
+    0,
+    2340,
+    234,
+    2532
+   ],
+   "visivel": true,
+   "aviso": false,
+   "conflito_airbnb": false,
+   "ok": true
+  },
+  {
+   "tipo": "contorno",
+   "t": 12.23,
+   "tela": "pg-inicio",
+   "rolagem": 0,
+   "ret_na_tela": [
+    48,
+    1409,
+    382,
+    1787
+   ],
+   "visivel": true,
+   "aviso": false,
+   "conflito_airbnb": false,
+   "ok": true
+  },
+  {
+   "tipo": "contorno",
+   "t": 12.38,
+   "tela": "pg-inicio",
+   "rolagem": 0,
+   "ret_na_tela": [
+    48,
+    1409,
+    382,
+    1787
+   ],
+   "visivel": true,
+   "aviso": false,
+   "conflito_airbnb": false,
+   "ok": true
+  },
+  {
+   "tipo": "contorno",
+   "t": 12.53,
+   "tela": "pg-inicio",
+   "rolagem": 0,
+   "ret_na_tela": [
+    48,
+    1409,
+    382,
+    1787
+   ],
+   "visivel": true,
+   "aviso": false,
+   "conflito_airbnb": false,
+   "ok": true
+  },
+  {
+   "tipo": "contorno",
+   "t": 20.64,
+   "tela": "pg-inicio+pg-hospedados+pg-inicio",
+   "rolagem": 0,
+   "ret_na_tela": [
+    418,
+    1409,
+    752,
+    1787
+   ],
+   "visivel": true,
+   "aviso": false,
+   "conflito_airbnb": false,
+   "ok": true
+  },
+  {
+   "tipo": "contorno",
+   "t": 20.79,
+   "tela": "pg-inicio+pg-hospedados+pg-inicio",
+   "rolagem": 0,
+   "ret_na_tela": [
+    418,
+    1409,
+    752,
+    1787
+   ],
+   "visivel": true,
+   "aviso": false,
+   "conflito_airbnb": false,
+   "ok": true
+  },
+  {
+   "tipo": "contorno",
+   "t": 20.94,
+   "tela": "pg-inicio+pg-hospedados+pg-inicio",
+   "rolagem": 0,
+   "ret_na_tela": [
+    418,
+    1409,
+    752,
+    1787
+   ],
+   "visivel": true,
+   "aviso": false,
+   "conflito_airbnb": false,
+   "ok": true
+  },
+  {
+   "tipo": "contorno",
+   "t": 27.03,
+   "tela": "pg-inicio+pg-hospedados+pg-inicio",
+   "rolagem": 3303,
+   "ret_na_tela": [
+    48,
+    464,
+    1122,
+    1175
+   ],
+   "visivel": true,
+   "aviso": false,
+   "conflito_airbnb": false,
+   "ok": true
+  },
+  {
+   "tipo": "contorno",
+   "t": 27.18,
+   "tela": "pg-inicio+pg-hospedados+pg-inicio",
+   "rolagem": 3303,
+   "ret_na_tela": [
+    48,
+    464,
+    1122,
+    1175
+   ],
+   "visivel": true,
+   "aviso": false,
+   "conflito_airbnb": false,
+   "ok": true
+  },
+  {
+   "tipo": "contorno",
+   "t": 27.33,
+   "tela": "pg-inicio+pg-hospedados+pg-inicio",
+   "rolagem": 3303,
+   "ret_na_tela": [
+    48,
+    464,
+    1122,
+    1175
+   ],
+   "visivel": true,
+   "aviso": false,
+   "conflito_airbnb": false,
+   "ok": true
+  },
+  {
+   "tipo": "contorno",
+   "t": 32.88,
+   "tela": "pg-inicio+pg-hospedados+pg-inicio",
+   "rolagem": 0,
+   "ret_na_tela": [
+    108,
+    714,
+    1062,
+    834
+   ],
+   "visivel": true,
+   "aviso": false,
+   "conflito_airbnb": false,
+   "ok": true
+  },
+  {
+   "tipo": "contorno",
+   "t": 33.03,
+   "tela": "pg-inicio+pg-hospedados+pg-inicio",
+   "rolagem": 0,
+   "ret_na_tela": [
+    108,
+    714,
+    1062,
+    834
+   ],
+   "visivel": true,
+   "aviso": false,
+   "conflito_airbnb": false,
+   "ok": true
+  },
+  {
+   "tipo": "contorno",
+   "t": 33.18,
+   "tela": "pg-inicio+pg-hospedados+pg-inicio",
+   "rolagem": 0,
+   "ret_na_tela": [
+    108,
+    714,
+    1062,
+    834
+   ],
+   "visivel": true,
+   "aviso": false,
+   "conflito_airbnb": false,
+   "ok": true
+  },
+  {
+   "tipo": "contorno",
+   "t": 47.46,
+   "tela": "pg-inicio+pg-hospedados+pg-inicio+pg-recebido+pg-inicio",
+   "rolagem": 0,
+   "ret_na_tela": [
+    108,
+    1115,
+    1062,
+    1301
+   ],
+   "visivel": true,
+   "aviso": false,
+   "conflito_airbnb": false,
+   "ok": true
+  },
+  {
+   "tipo": "contorno",
+   "t": 47.61,
+   "tela": "pg-inicio+pg-hospedados+pg-inicio+pg-recebido+pg-inicio",
+   "rolagem": 0,
+   "ret_na_tela": [
+    108,
+    1115,
+    1062,
+    1301
+   ],
+   "visivel": true,
+   "aviso": false,
+   "conflito_airbnb": false,
+   "ok": true
+  },
+  {
+   "tipo": "contorno",
+   "t": 47.76,
+   "tela": "pg-inicio+pg-hospedados+pg-inicio+pg-recebido+pg-inicio",
+   "rolagem": 0,
+   "ret_na_tela": [
+    108,
+    1115,
+    1062,
+    1301
+   ],
+   "visivel": true,
+   "aviso": false,
+   "conflito_airbnb": false,
+   "ok": true
+  },
+  {
+   "tipo": "contorno",
+   "t": 52.17,
+   "tela": "pg-inicio+pg-hospedados+pg-inicio+pg-recebido+pg-inicio",
+   "rolagem": 1500,
+   "ret_na_tela": [
+    40,
+    350,
+    1130,
+    2205
+   ],
+   "visivel": true,
+   "aviso": false,
+   "conflito_airbnb": false,
+   "ok": true
+  },
+  {
+   "tipo": "contorno",
+   "t": 52.32,
+   "tela": "pg-inicio+pg-hospedados+pg-inicio+pg-recebido+pg-inicio",
+   "rolagem": 1500,
+   "ret_na_tela": [
+    40,
+    350,
+    1130,
+    2205
+   ],
+   "visivel": true,
+   "aviso": false,
+   "conflito_airbnb": false,
+   "ok": true
+  },
+  {
+   "tipo": "contorno",
+   "t": 52.47,
+   "tela": "pg-inicio+pg-hospedados+pg-inicio+pg-recebido+pg-inicio",
+   "rolagem": 1500,
+   "ret_na_tela": [
+    40,
+    350,
+    1130,
+    2205
+   ],
+   "visivel": true,
+   "aviso": false,
+   "conflito_airbnb": false,
+   "ok": true
+  },
+  {
+   "tipo": "janela",
+   "t": 12.58,
+   "tela": "pg-inicio",
+   "rolagem": 0,
+   "ret_na_tela": [
+    42,
+    1403,
+    388,
+    1793
+   ],
+   "visivel": true,
+   "aviso": false,
+   "conflito_airbnb": false,
+   "ok": true
+  },
+  {
+   "tipo": "janela",
+   "t": 12.73,
+   "tela": "pg-inicio",
+   "rolagem": 0,
+   "ret_na_tela": [
+    42,
+    1403,
+    388,
+    1793
+   ],
+   "visivel": true,
+   "aviso": false,
+   "conflito_airbnb": false,
+   "ok": true
+  },
+  {
+   "tipo": "janela",
+   "t": 12.88,
+   "tela": "pg-inicio",
+   "rolagem": 0,
+   "ret_na_tela": [
+    42,
+    1403,
+    388,
+    1793
+   ],
+   "visivel": true,
+   "aviso": false,
+   "conflito_airbnb": false,
+   "ok": true
+  },
+  {
+   "tipo": "janela",
+   "t": 15.46,
+   "tela": "pg-hospedados",
+   "rolagem": 1620,
+   "ret_na_tela": [
+    47,
+    238,
+    1123,
+    465
+   ],
+   "visivel": true,
+   "aviso": false,
+   "conflito_airbnb": false,
+   "ok": true
+  },
+  {
+   "tipo": "janela",
+   "t": 15.61,
+   "tela": "pg-hospedados",
+   "rolagem": 1620,
+   "ret_na_tela": [
+    47,
+    238,
+    1123,
+    465
+   ],
+   "visivel": true,
+   "aviso": false,
+   "conflito_airbnb": false,
+   "ok": true
+  },
+  {
+   "tipo": "janela",
+   "t": 15.76,
+   "tela": "pg-hospedados",
+   "rolagem": 1620,
+   "ret_na_tela": [
+    47,
+    238,
+    1123,
+    465
+   ],
+   "visivel": true,
+   "aviso": false,
+   "conflito_airbnb": false,
+   "ok": true
+  },
+  {
+   "tipo": "janela",
+   "t": 16.77,
+   "tela": "pg-hospedados",
+   "rolagem": 1620,
+   "ret_na_tela": [
+    51,
+    463,
+    1119,
+    1796
+   ],
+   "visivel": true,
+   "aviso": false,
+   "conflito_airbnb": false,
+   "ok": true
+  },
+  {
+   "tipo": "janela",
+   "t": 16.92,
+   "tela": "pg-hospedados",
+   "rolagem": 1620,
+   "ret_na_tela": [
+    51,
+    463,
+    1119,
+    1796
+   ],
+   "visivel": true,
+   "aviso": false,
+   "conflito_airbnb": false,
+   "ok": true
+  },
+  {
+   "tipo": "janela",
+   "t": 17.07,
+   "tela": "pg-hospedados",
+   "rolagem": 1620,
+   "ret_na_tela": [
+    51,
+    463,
+    1119,
+    1796
+   ],
+   "visivel": true,
+   "aviso": false,
+   "conflito_airbnb": false,
+   "ok": true
+  },
+  {
+   "tipo": "janela",
+   "t": 22.43,
+   "tela": "pg-inicio+pg-hospedados+pg-inicio",
+   "rolagem": 3303,
+   "ret_na_tela": [
+    42,
+    1241,
+    1128,
+    2057
+   ],
+   "visivel": true,
+   "aviso": false,
+   "conflito_airbnb": false,
+   "ok": true
+  },
+  {
+   "tipo": "janela",
+   "t": 22.57,
+   "tela": "pg-inicio+pg-hospedados+pg-inicio",
+   "rolagem": 3303,
+   "ret_na_tela": [
+    42,
+    1241,
+    1128,
+    2057
+   ],
+   "visivel": true,
+   "aviso": false,
+   "conflito_airbnb": false,
+   "ok": true
+  },
+  {
+   "tipo": "janela",
+   "t": 22.73,
+   "tela": "pg-inicio+pg-hospedados+pg-inicio",
+   "rolagem": 3303,
+   "ret_na_tela": [
+    42,
+    1241,
+    1128,
+    2057
+   ],
+   "visivel": true,
+   "aviso": false,
+   "conflito_airbnb": false,
+   "ok": true
+  },
+  {
+   "tipo": "janela",
+   "t": 28.2,
+   "tela": "pg-inicio+pg-hospedados+pg-inicio",
+   "rolagem": 3303,
+   "ret_na_tela": [
+    42,
+    458,
+    1128,
+    1181
+   ],
+   "visivel": true,
+   "aviso": false,
+   "conflito_airbnb": false,
+   "ok": true
+  },
+  {
+   "tipo": "janela",
+   "t": 28.35,
+   "tela": "pg-inicio+pg-hospedados+pg-inicio",
+   "rolagem": 3303,
+   "ret_na_tela": [
+    42,
+    458,
+    1128,
+    1181
+   ],
+   "visivel": true,
+   "aviso": false,
+   "conflito_airbnb": false,
+   "ok": true
+  },
+  {
+   "tipo": "janela",
+   "t": 28.5,
+   "tela": "pg-inicio+pg-hospedados+pg-inicio",
+   "rolagem": 3303,
+   "ret_na_tela": [
+    42,
+    458,
+    1128,
+    1181
+   ],
+   "visivel": true,
+   "aviso": false,
+   "conflito_airbnb": false,
+   "ok": true
+  },
+  {
+   "tipo": "janela",
+   "t": 33.89,
+   "tela": "pg-inicio+pg-hospedados+pg-inicio",
+   "rolagem": 0,
+   "ret_na_tela": [
+    80,
+    560,
+    1090,
+    850
+   ],
+   "visivel": true,
+   "aviso": false,
+   "conflito_airbnb": false,
+   "ok": true
+  },
+  {
+   "tipo": "janela",
+   "t": 34.04,
+   "tela": "pg-inicio+pg-hospedados+pg-inicio",
+   "rolagem": 0,
+   "ret_na_tela": [
+    80,
+    560,
+    1090,
+    850
+   ],
+   "visivel": true,
+   "aviso": false,
+   "conflito_airbnb": false,
+   "ok": true
+  },
+  {
+   "tipo": "janela",
+   "t": 34.19,
+   "tela": "pg-inicio+pg-hospedados+pg-inicio",
+   "rolagem": 0,
+   "ret_na_tela": [
+    80,
+    560,
+    1090,
+    850
+   ],
+   "visivel": true,
+   "aviso": false,
+   "conflito_airbnb": false,
+   "ok": true
+  },
+  {
+   "tipo": "janela",
+   "t": 38.05,
+   "tela": "pg-inicio+pg-hospedados+pg-inicio",
+   "rolagem": 0,
+   "ret_na_tela": [
+    96,
+    880,
+    1074,
+    1068
+   ],
+   "visivel": true,
+   "aviso": false,
+   "conflito_airbnb": false,
+   "ok": true
+  },
+  {
+   "tipo": "janela",
+   "t": 38.2,
+   "tela": "pg-inicio+pg-hospedados+pg-inicio",
+   "rolagem": 0,
+   "ret_na_tela": [
+    96,
+    880,
+    1074,
+    1068
+   ],
+   "visivel": true,
+   "aviso": false,
+   "conflito_airbnb": false,
+   "ok": true
+  },
+  {
+   "tipo": "janela",
+   "t": 38.35,
+   "tela": "pg-inicio+pg-hospedados+pg-inicio",
+   "rolagem": 0,
+   "ret_na_tela": [
+    96,
+    880,
+    1074,
+    1068
+   ],
+   "visivel": true,
+   "aviso": false,
+   "conflito_airbnb": false,
+   "ok": true
+  },
+  {
+   "tipo": "janela",
+   "t": 42.82,
+   "tela": "pg-recebido",
+   "rolagem": 1620,
+   "ret_na_tela": [
+    51,
+    461,
+    1119,
+    1850
+   ],
+   "visivel": true,
+   "aviso": false,
+   "conflito_airbnb": false,
+   "ok": true
+  },
+  {
+   "tipo": "janela",
+   "t": 42.97,
+   "tela": "pg-recebido",
+   "rolagem": 1620,
+   "ret_na_tela": [
+    51,
+    461,
+    1119,
+    1850
+   ],
+   "visivel": true,
+   "aviso": false,
+   "conflito_airbnb": false,
+   "ok": true
+  },
+  {
+   "tipo": "janela",
+   "t": 43.12,
+   "tela": "pg-recebido",
+   "rolagem": 1620,
+   "ret_na_tela": [
+    51,
+    461,
+    1119,
+    1850
+   ],
+   "visivel": true,
+   "aviso": false,
+   "conflito_airbnb": false,
+   "ok": true
+  },
+  {
+   "tipo": "janela",
+   "t": 49.01,
+   "tela": "pg-inicio+pg-hospedados+pg-inicio+pg-recebido+pg-inicio",
+   "rolagem": 0,
+   "ret_na_tela": [
+    80,
+    1100,
+    1090,
+    1316
+   ],
+   "visivel": true,
+   "aviso": false,
+   "conflito_airbnb": false,
+   "ok": true
+  },
+  {
+   "tipo": "janela",
+   "t": 49.16,
+   "tela": "pg-inicio+pg-hospedados+pg-inicio+pg-recebido+pg-inicio",
+   "rolagem": 0,
+   "ret_na_tela": [
+    80,
+    1100,
+    1090,
+    1316
+   ],
+   "visivel": true,
+   "aviso": false,
+   "conflito_airbnb": false,
+   "ok": true
+  },
+  {
+   "tipo": "janela",
+   "t": 49.31,
+   "tela": "pg-inicio+pg-hospedados+pg-inicio+pg-recebido+pg-inicio",
+   "rolagem": 0,
+   "ret_na_tela": [
+    80,
+    1100,
+    1090,
+    1316
+   ],
+   "visivel": true,
+   "aviso": false,
+   "conflito_airbnb": false,
+   "ok": true
+  },
+  {
+   "tipo": "janela",
+   "t": 53.48,
+   "tela": "pg-inicio+pg-hospedados+pg-inicio+pg-recebido+pg-inicio",
+   "rolagem": 1500,
+   "ret_na_tela": [
+    42,
+    473,
+    1128,
+    910
+   ],
+   "visivel": true,
+   "aviso": false,
+   "conflito_airbnb": false,
+   "ok": true
+  },
+  {
+   "tipo": "janela",
+   "t": 53.63,
+   "tela": "pg-inicio+pg-hospedados+pg-inicio+pg-recebido+pg-inicio",
+   "rolagem": 1500,
+   "ret_na_tela": [
+    42,
+    473,
+    1128,
+    910
+   ],
+   "visivel": true,
+   "aviso": false,
+   "conflito_airbnb": false,
+   "ok": true
+  },
+  {
+   "tipo": "janela",
+   "t": 53.78,
+   "tela": "pg-inicio+pg-hospedados+pg-inicio+pg-recebido+pg-inicio",
+   "rolagem": 1500,
+   "ret_na_tela": [
+    42,
+    473,
+    1128,
+    910
+   ],
+   "visivel": true,
+   "aviso": false,
+   "conflito_airbnb": false,
+   "ok": true
+  },
+  {
+   "tipo": "janela",
+   "t": 54.7,
+   "tela": "pg-inicio+pg-hospedados+pg-inicio+pg-recebido+pg-inicio",
+   "rolagem": 1500,
+   "ret_na_tela": [
+    42,
+    1481,
+    1128,
+    2033
+   ],
+   "visivel": true,
+   "aviso": false,
+   "conflito_airbnb": false,
+   "ok": true
+  },
+  {
+   "tipo": "janela",
+   "t": 54.85,
+   "tela": "pg-inicio+pg-hospedados+pg-inicio+pg-recebido+pg-inicio",
+   "rolagem": 1500,
+   "ret_na_tela": [
+    42,
+    1481,
+    1128,
+    2033
+   ],
+   "visivel": true,
+   "aviso": false,
+   "conflito_airbnb": false,
+   "ok": true
+  },
+  {
+   "tipo": "janela",
+   "t": 55,
+   "tela": "pg-inicio+pg-hospedados+pg-inicio+pg-recebido+pg-inicio",
+   "rolagem": 1500,
+   "ret_na_tela": [
+    42,
+    1481,
+    1128,
+    2033
+   ],
+   "visivel": true,
+   "aviso": false,
+   "conflito_airbnb": false,
+   "ok": true
+  },
+  {
+   "tipo": "marca",
+   "t": 16.87,
+   "tela": "pg-hospedados",
+   "rolagem": 1620,
+   "ret_na_tela": [
+    92,
+    500,
+    590,
+    566
+   ],
+   "visivel": true,
+   "aviso": false,
+   "conflito_airbnb": false,
+   "ok": true
+  },
+  {
+   "tipo": "marca",
+   "t": 17.43,
+   "tela": "pg-hospedados",
+   "rolagem": 1620,
+   "ret_na_tela": [
+    92,
+    582,
+    415,
+    632
+   ],
+   "visivel": true,
+   "aviso": false,
+   "conflito_airbnb": false,
+   "ok": true
+  },
+  {
+   "tipo": "marca",
+   "t": 23.43,
+   "tela": "pg-inicio+pg-hospedados+pg-inicio",
+   "rolagem": 3303,
+   "ret_na_tela": [
+    60,
+    1387,
+    1110,
+    1627
+   ],
+   "visivel": true,
+   "aviso": false,
+   "conflito_airbnb": false,
+   "ok": true
+  },
+  {
+   "tipo": "marca",
+   "t": 24.55,
+   "tela": "pg-inicio+pg-hospedados+pg-inicio",
+   "rolagem": 3303,
+   "ret_na_tela": [
+    60,
+    1652,
+    1110,
+    2032
+   ],
+   "visivel": true,
+   "aviso": false,
+   "conflito_airbnb": false,
+   "ok": true
+  },
+  {
+   "tipo": "marca",
+   "t": 29.77,
+   "tela": "pg-inicio+pg-hospedados+pg-inicio",
+   "rolagem": 3303,
+   "ret_na_tela": [
+    313,
+    764,
+    439,
+    812
+   ],
+   "visivel": true,
+   "aviso": false,
+   "conflito_airbnb": false,
+   "ok": true
+  },
+  {
+   "tipo": "marca",
+   "t": 29.89,
+   "tela": "pg-inicio+pg-hospedados+pg-inicio",
+   "rolagem": 3303,
+   "ret_na_tela": [
+    328,
+    1034,
+    454,
+    1082
+   ],
+   "visivel": true,
+   "aviso": false,
+   "conflito_airbnb": false,
+   "ok": true
+  },
+  {
+   "tipo": "marca",
+   "t": 38.25,
+   "tela": "pg-inicio+pg-hospedados+pg-inicio",
+   "rolagem": 0,
+   "ret_na_tela": [
+    100,
+    938,
+    337,
+    1064
+   ],
+   "visivel": true,
+   "aviso": false,
+   "conflito_airbnb": false,
+   "ok": true
+  },
+  {
+   "tipo": "marca",
+   "t": 38.81,
+   "tela": "pg-inicio+pg-hospedados+pg-inicio",
+   "rolagem": 0,
+   "ret_na_tela": [
+    345,
+    938,
+    581,
+    1064
+   ],
+   "visivel": true,
+   "aviso": false,
+   "conflito_airbnb": false,
+   "ok": true
+  },
+  {
+   "tipo": "marca",
+   "t": 39.61,
+   "tela": "pg-inicio+pg-hospedados+pg-inicio",
+   "rolagem": 0,
+   "ret_na_tela": [
+    589,
+    938,
+    826,
+    1064
+   ],
+   "visivel": true,
+   "aviso": false,
+   "conflito_airbnb": false,
+   "ok": true
+  },
+  {
+   "tipo": "marca",
+   "t": 40.33,
+   "tela": "pg-inicio+pg-hospedados+pg-inicio",
+   "rolagem": 0,
+   "ret_na_tela": [
+    834,
+    938,
+    1070,
+    1064
+   ],
+   "visivel": true,
+   "aviso": false,
+   "conflito_airbnb": false,
+   "ok": true
+  },
+  {
+   "tipo": "marca",
+   "t": 43.07,
+   "tela": "pg-recebido",
+   "rolagem": 1620,
+   "ret_na_tela": [
+    95,
+    697,
+    512,
+    885
+   ],
+   "visivel": true,
+   "aviso": false,
+   "conflito_airbnb": false,
+   "ok": true
+  },
+  {
+   "tipo": "marca",
+   "t": 43.27,
+   "tela": "pg-recebido",
+   "rolagem": 1620,
+   "ret_na_tela": [
+    95,
+    1384,
+    484,
+    1512
+   ],
+   "visivel": true,
+   "aviso": false,
+   "conflito_airbnb": false,
+   "ok": true
+  }
+ ]
+}
