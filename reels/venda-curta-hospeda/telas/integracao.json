@@ -1,0 +1,150 @@
+{
+ "nota": "Medidas (px da captura 1170×2532) das três telas da integração, feitas por scripts/capturar-integracao.cjs na mesma sessão.",
+ "captura": "2026-11-24",
+ "canais": {
+  "texto": [
+   48,
+   522,
+   1122,
+   762
+  ]
+ },
+ "rolagem_grade": 102,
+ "calendario": {
+  "airbnb": [
+   417,
+   1223,
+   711,
+   1319
+  ],
+  "bica01": [
+   48,
+   1177,
+   1122,
+   1355
+  ],
+  "pedra05": [
+   48,
+   1753,
+   1122,
+   1931
+  ],
+  "reserva05": [
+   570,
+   1799,
+   864,
+   1895
+  ],
+  "reserva05_nome": "Roberto Silveira, confirmada, conflito com o airbnb",
+  "dias": {
+   "27": [
+    420,
+    1113,
+    507,
+    1173
+   ],
+   "28": [
+    522,
+    1113,
+    609,
+    1173
+   ],
+   "29": [
+    624,
+    1113,
+    711,
+    1173
+   ],
+   "30": [
+    726,
+    1113,
+    813,
+    1173
+   ],
+   "01": [
+    828,
+    1113,
+    915,
+    1173
+   ],
+   "02": [
+    930,
+    1113,
+    1017,
+    1173
+   ],
+   "03": [
+    1032,
+    1113,
+    1119,
+    1173
+   ],
+   "04": [
+    1134,
+    1113,
+    1221,
+    1173
+   ],
+   "05": [
+    1236,
+    1113,
+    1323,
+    1173
+   ],
+   "06": [
+    1338,
+    1113,
+    1425,
+    1173
+   ],
+   "07": [
+    1440,
+    1113,
+    1527,
+    1173
+   ]
+  },
+  "periodo": [
+   513,
+   1101,
+   924,
+   1185
+  ]
+ },
+ "onde": "Início",
+ "inicio": {
+  "conflito": [
+   48,
+   781,
+   1122,
+   1316
+  ],
+  "nada": [
+   621,
+   1014,
+   1017,
+   1065
+  ],
+  "sino": [
+   643,
+   29,
+   775,
+   161
+  ],
+  "periodo": {
+   "chale": "Chalé de Pedra 05",
+   "de": "28/11",
+   "ate": "01/12"
+  }
+ },
+ "confere": {
+  "alerta": {
+   "chale": "Chalé de Pedra 05",
+   "de": "28/11",
+   "ate": "01/12"
+  },
+  "calendario_reserva": "Roberto Silveira, confirmada, conflito com o airbnb",
+  "mesmo_chale": true,
+  "periodo_no_calendario": true
+ }
+}

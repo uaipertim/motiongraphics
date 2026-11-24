@@ -53,6 +53,17 @@ const VISIVEL = () => [...document.querySelectorAll('body *')].filter((e) => e.c
   // 2) Calendário (frases 6 e 8): o bloqueio "Airbnb" e a linha do chalé do alerta
   await pag.getByRole('button', { name: 'Calendário', exact: true }).filter({ visible: true }).first().click().catch(() => pag.getByText('Calendário', { exact: true }).last().click());
   await pag.waitForTimeout(1600); await pag.evaluate(() => window.scrollTo(0, 0));
+  // rola a grade de 14 dias para o lado: a reserva do Roberto (Chalé de Pedra 05) começa na 2ª coluna visível,
+  // assim o período inteiro do alerta e o bloqueio "Airbnb" (Bica D'Água 01) cabem na tela
+  M.rolagem_grade = await pag.evaluate(() => {
+    const g = [...document.querySelectorAll('.overflow-x-auto')].find((x) => x.scrollWidth > x.clientWidth + 4); if (!g) return null;
+    const btn = [...g.querySelectorAll('button[aria-label]')].find((b) => /Roberto/.test(b.getAttribute('aria-label'))); if (!btn) return null;
+    const hoje = [...g.querySelectorAll('*')].find((x) => x.children.length === 0 && (x.textContent || '').trim() === 'Hoje').getBoundingClientRect();
+    // passo entre colunas, medido pelos números dos dias no cabeçalho; rola um número inteiro de colunas
+    const nums = [...g.querySelectorAll('*')].filter((x) => x.children.length === 0 && /^\d\d$/.test((x.textContent || '').trim()) && x.getBoundingClientRect().top < 420).map((x) => x.getBoundingClientRect().left).sort((a, b) => a - b);
+    const passo = nums[1] - nums[0], cols = Math.round((btn.getBoundingClientRect().left - hoje.left) / passo) - 1;
+    g.scrollLeft = Math.max(0, Math.round(cols * passo)); return g.scrollLeft; });
+  await pag.waitForTimeout(500);
   await foto('calendario');
   M.calendario = await pag.evaluate(() => {
     const r3 = (r) => [r.left, r.top, r.right, r.bottom].map((v) => Math.round(v * 3)), vis = (e) => e.getClientRects().length;
@@ -61,12 +72,13 @@ const VISIVEL = () => [...document.querySelectorAll('body *')].filter((e) => e.c
     const linha = (n) => { const e = [...document.querySelectorAll('body *')].filter((x) => vis(x) && x.children.length === 0 && (x.textContent || '').trim() === n); return e; };
     const rotulo = (num) => { const nums = linha(num).filter((x) => x.getBoundingClientRect().left < 140); return nums.length ? nums[0].getBoundingClientRect() : null; };
     const dia = (d) => { const e = linha(d).filter((x) => x.getBoundingClientRect().top < 420 && x.getBoundingClientRect().left > 130)[0]; return e ? e.getBoundingClientRect() : null; };
-    const b01 = rotulo('01'), p05 = rotulo('05'), d27 = dia('27'), d30 = dia('30');
+    const b01 = rotulo('01'), p05 = rotulo('05');
+    const dias = {}; for (const e of [...document.querySelectorAll('body *')].filter((x) => vis(x) && x.children.length === 0 && /^\d\d$/.test((x.textContent || '').trim()))) { const r = e.getBoundingClientRect(); if (r.top < 420 && r.left > 130) dias[e.textContent.trim()] = r3(r); }
     const bloqR = bloq.getBoundingClientRect(), grade = [...document.querySelectorAll('body *')].find((x) => vis(x) && (x.innerText || '').startsWith('Hoje'));
     const btn = [...document.querySelectorAll('button[aria-label]')].filter((b) => vis(b) && /Roberto/.test(b.getAttribute('aria-label')))[0];
     return { airbnb: r3(bloqR), bica01: [48, Math.round((b01.top - 30) * 3), 1122, Math.round((b01.bottom + 12) * 3)], pedra05: [48, Math.round((p05.top - 30) * 3), 1122, Math.round((p05.bottom + 12) * 3)],
       reserva05: btn ? r3(btn.getBoundingClientRect()) : null, reserva05_nome: btn ? btn.getAttribute('aria-label') : null,
-      dias27a30: d27 && d30 ? [Math.round(d27.left * 3) - 9, Math.round(d27.top * 3) - 12, Math.round(d30.right * 3) + 9, Math.round(d30.bottom * 3) + 12] : null };
+      dias };
   });
 
   // 3) Início: o alerta "Conflito com o Airbnb" (no Início ou em "Ver todos"), com "Nada foi cancelado." e o sino
@@ -92,7 +104,11 @@ const VISIVEL = () => [...document.querySelectorAll('body *')].filter((e) => e.c
   if (!M.inicio.nada || !M.inicio.sino) await sai('não achei "Nada foi cancelado." ou o sino');
   // o chalé e as datas do alerta batem com o calendário?
   const p = M.inicio.periodo || {}, nomeRes = M.calendario.reserva05_nome || '';
-  M.confere = { alerta: p, calendario_reserva: nomeRes, mesmo_chale: /Pedra 05/.test(p.chale || ''), periodo_no_calendario: !!M.calendario.dias27a30 && p.de === '27/11' && p.ate === '30/11' };
+  // a faixa de dias do alerta no cabeçalho do calendário
+  const d0 = (p.de || '').slice(0, 2), d1 = (p.ate || '').slice(0, 2), D = M.calendario.dias;
+  M.calendario.periodo = D[d0] && D[d1] ? [D[d0][0] - 9, D[d0][1] - 12, D[d1][2] + 9, D[d1][3] + 12] : null;
+  M.confere = { alerta: p, calendario_reserva: nomeRes, mesmo_chale: /Pedra 05/.test(p.chale || '') && /Roberto/.test(nomeRes), periodo_no_calendario: !!M.calendario.periodo };
+  if (!M.confere.mesmo_chale || !M.confere.periodo_no_calendario) await sai('o chalé ou as datas do alerta não aparecem no calendário: ' + JSON.stringify(M.confere));
   fs.mkdirSync(OUT, { recursive: true });
   for (const [n, b] of Object.entries(fotos)) fs.writeFileSync(path.join(OUT, n + '.png'), b);
   fs.writeFileSync(path.join(OUT, 'integracao.json'), JSON.stringify(M, null, 1));

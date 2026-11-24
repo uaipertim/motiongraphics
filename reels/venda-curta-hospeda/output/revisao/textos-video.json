@@ -1,0 +1,17 @@
+{
+ "modo": "video",
+ "quadros": 286,
+ "narracao_promessas_proibidas": [],
+ "quadros_com_achados": {},
+ "recaptura": "2026-11-24",
+ "alerta_e_calendario_conferem": {
+  "alerta": {
+   "chale": "Chalé de Pedra 05",
+   "de": "28/11",
+   "ate": "01/12"
+  },
+  "calendario_reserva": "Roberto Silveira, confirmada, conflito com o airbnb",
+  "mesmo_chale": true,
+  "periodo_no_calendario": true
+ }
+}

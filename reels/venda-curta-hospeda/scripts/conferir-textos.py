@@ -36,9 +36,9 @@ with tempfile.TemporaryDirectory() as d:
     for t, f in quadros:
         a = achados(ocr(f))
         if a: res[f'{t:.2f}'] = a
-plano = json.load(open(os.path.join(ROOT, 'telas', 'inicio-conflito.json')))
+integ = json.load(open(os.path.join(ROOT, 'telas', 'integracao.json')))
 out = {'modo': modo, 'quadros': len(quadros), 'narracao_promessas_proibidas': fala, 'quadros_com_achados': res,
-       'inicio_conflito_a_recapturar': plano.get('a_recapturar', False)}
+       'recaptura': integ.get('captura'), 'alerta_e_calendario_conferem': integ.get('confere', {})}
 os.makedirs(os.path.join(ROOT, 'output', 'revisao'), exist_ok=True)
 json.dump(out, open(os.path.join(ROOT, 'output', 'revisao', f'textos-{modo}.json'), 'w'), ensure_ascii=False, indent=1)
 print(json.dumps({k: v for k, v in out.items() if k != 'quadros_com_achados'}, ensure_ascii=False))

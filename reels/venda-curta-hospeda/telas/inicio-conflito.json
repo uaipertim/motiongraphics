@@ -1,8 +1,0 @@
-{
- "nota": "Medidas (px da captura 1170×2532) do Início com o alerta de conflito. Medidas na captura de 19/11/2026; scripts/capturar-inicio.cjs refaz a captura e este arquivo quando a Demo atualizada sair.",
- "captura": "2026-11-19",
- "conflito": [48, 728, 1122, 1454],
- "nada": [103, 1170, 547, 1206],
- "sino": [683, 69, 732, 122],
- "a_recapturar": true
-}

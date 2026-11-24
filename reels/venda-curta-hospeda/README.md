@@ -7,7 +7,50 @@ Primeiro contato com donos de pousada. Roteiro aprovado em [`ROTEIRO.md`](ROTEIR
 - **Quadros da cena da marca:** [`aprovacao/quadros/marca-meio.jpg`](aprovacao/quadros/marca-meio.jpg) (13,06 s) e [`aprovacao/quadros/marca-mais-perto.jpg`](aprovacao/quadros/marca-mais-perto.jpg) (14,12 s, selos mais perto do logo).
 - **Miniatura:** [`output/miniatura.jpg`](output/miniatura.jpg) (quadro 0, já com a pergunta do gancho). **Folha de contato:** [`output/folha-contato.jpg`](output/folha-contato.jpg) (1 quadro por segundo).
 
-## Revisão de 23/11/2026 (aprovada; a versão final ainda não foi renderizada)
+## Versão final da revisão (24/11/2026), para aprovação. Não publicar.
+- **Arquivos:**
+  - [`output/fazlo-hospeda-apresentacao-curta.mp4`](output/fazlo-hospeda-apresentacao-curta.mp4): mestre, 1080×1920, 60 fps, 71,40 s, 36,4 MB. A capa está no quadro 0, e o movimento começa no quadro 1.
+  - [`output/fazlo-hospeda-apresentacao-curta-whatsapp.mp4`](output/fazlo-hospeda-apresentacao-curta-whatsapp.mp4): H.264 e AAC, 1080×1920, 30 fps, 71,40 s, 10,0 MB. Sem cortes.
+- **Recaptura conjunta** (Demo publicada em 24/11, às 10:24): `node scripts/capturar-integracao.cjs`.
+  - Canais, o calendário e o Início com o alerta foram capturados na mesma sessão, sem cache.
+  - As medidas estão em `telas/integracao.json`, e o plano lê dali.
+  - Na conferência do texto visível, não sobrou nada proibido em nenhuma das três telas.
+  - O alerta "Conflito com o Airbnb" está no Início, logo abaixo de "Check-out em atraso": Chalé de Pedra 05, de 28/11 a 01/12.
+  - **Calendário:** a grade de 14 dias foi rolada 3 colunas para o lado, e a tela mostra de 27/11 a 03/12. O script recusa a captura se o chalé ou as datas do alerta não aparecerem na grade.
+    - O bloqueio "Airbnb" aparece inteiro na Bica D'Água 01.
+    - No Chalé de Pedra 05 está a reserva "Roberto Silveira", de 28/11 a 01/12, com o contorno âmbar e o ícone de alerta da Demo. A Demo a descreve como "Roberto Silveira, confirmada, conflito com o airbnb".
+- **Cenas novas:** ver o fim do [`ROTEIRO.md`](ROTEIRO.md).
+  - Na frase 7, o calendário fica até "baterem", com contorno âmbar na reserva do Roberto e nos dias 28/11 a 01/12. O Início entra em "avisa".
+  - A ficha da reserva ficou fora, porque não cabe na frase 7 sem alongar o vídeo.
+- **Medidas reposicionadas** (px da captura):
+
+  | O quê | Medida |
+  |---|---|
+  | alerta | [48, 781, 1122, 1316] |
+  | "Nada foi cancelado." | [621, 1014, 1017, 1065], no meio da linha |
+  | sino | [643, 29, 775, 161] |
+  | bloqueio "Airbnb" | [417, 1223, 711, 1319] |
+  | reserva do Roberto | [570, 1799, 864, 1895] |
+  | dias 28/11 a 01/12 no cabeçalho | [513, 1101, 924, 1185] |
+
+- **Conferência dos textos** (`scripts/conferir-textos.py`, OCR de um quadro a cada 0,25 s):
+  - plano: 289 quadros, nenhum marcado;
+  - vídeo final: 286 quadros, nenhum marcado;
+  - narração: nenhuma promessa proibida.
+- **Áudio:**
+
+  | Medida | Mestre (AAC) | WhatsApp (AAC 128k) | Alvo |
+  |---|---|---|---|
+  | Loudness integrado | −14,0 LUFS | −14,0 LUFS | −14 a −16 |
+  | Pico real | −2,0 dBTP | −1,6 dBTP | abaixo de −1 |
+  | Clipping | nenhum (maior amostra 79%) | nenhum (82%) | nenhum |
+  | LRA | 2,9 LU | 2,9 LU | — |
+
+  - Voz acima da trilha e dos efeitos, por frase: de 10,3 a 17,0 dB. Nas frases 5, 6 e 7, fica entre 10,6 e 11,1 dB.
+  - A medida usa mínimos quadrados da voz montada, com o mesmo passa-alta de 75 Hz do mix, contra o `audio/mix.wav`.
+- **Quadros:** [`aprovacao/final-2411-cena-26-33s.jpg`](aprovacao/final-2411-cena-26-33s.jpg) e [`aprovacao/final-2411-canais-calendario.jpg`](aprovacao/final-2411-canais-calendario.jpg), tirados do mestre.
+
+## Revisão de 23/11/2026 (aprovada)
 - **O que muda:**
   - as frases 5, 6 e 7 (canais1, canais2 e canais3), com tomada própria (`scripts/voz_trocas.py` → `audio/trocas/`);
   - as cenas da integração;
@@ -28,17 +71,16 @@ Primeiro contato com donos de pousada. Roteiro aprovado em [`ROTEIRO.md`](ROTEIR
 - **Legibilidade a 360 px:** [`aprovacao/legibilidade-360px.jpg`](aprovacao/legibilidade-360px.jpg).
   - Janelas, selos, notas, legenda e chamada final leem-se bem.
   - A nota "O Hospeda confere os canais / a cada 30 min" passou para duas linhas, com letra de 54 px, para ler a 360 px.
-- **Cena do alerta (26–33 s): a recapturar.**
+- **Cena do alerta (26–33 s): recapturada em 24/11** (ver acima). Histórico:
   - A captura atual mostra ao fundo o erro de exemplo do Booking ("…não consegue ler o calendário do Booking. Confira o link em Canais.").
   - **Quando a Demo atualizada sair:**
-    - `node scripts/capturar-inicio.cjs` refaz `telas/inicio-conflito.png` e as medidas em `telas/inicio-conflito.json` (alerta, "Nada foi cancelado." e sino). O plano reposiciona janela e destaques sozinho.
+    - a recaptura passou para `scripts/capturar-integracao.cjs`, que refaz as três telas juntas, com as medidas em `telas/integracao.json`.
     - O script **recusa** a captura se houver na tela "não consegue ler", "Confira o link", "não lê o calendário" ou "Confira se o link".
     - Em 23/11 o alerta só aparecia em "Precisa de atenção › Ver todos", com as datas "27/11 a 30/11". O script procura no Início e, se não achar, em "Ver todos".
   - `python3 scripts/conferir-textos.py plano` (ou `video <arquivo>`) faz o OCR de um quadro a cada 0,25 s e recusa os mesmos textos e as promessas proibidas.
-    - Hoje acusa só os quadros de 26,25 a 30,75 s, com o erro de exemplo ao fundo.
+    - Em 23/11, acusava os quadros de 26,25 a 30,75 s, com o erro de exemplo ao fundo.
     - A narração passa.
 - **Quadros-chave da integração e da chamada:** [`aprovacao/revisao-integracao-quadros.jpg`](aprovacao/revisao-integracao-quadros.jpg).
-- **Não renderizar a versão final** até a Demo atualizada sair e a cena do alerta ser recapturada.
 - **Tentativa de recaptura em 23/11/2026 (noite): recusada.**
   - Usei `scripts/capturar-integracao.cjs`, que recaptura juntas Canais, o calendário e o alerta e mede tudo em `telas/integracao.json`.
   - A Demo (index de 23/11, 19:36 GMT, carregada sem cache) **ainda mostra os dois erros de exemplo**:

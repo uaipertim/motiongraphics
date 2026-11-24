@@ -4,7 +4,7 @@
  *              toques: [{t, x, y}], estados: [{t, img}] } — coordenadas em px da captura (1170×2532).
  * Retângulos medidos na Demo (scripts/medir.cjs → telas/alvos.json) e conferidos sobre as capturas.
  */
-window.montaPlano = function (LN, opt) {   // opt: { capa, inicio (telas/inicio-conflito.json) }
+window.montaPlano = function (LN, opt) {   // opt: { capa, integracao (telas/integracao.json) }
   const ids = {}, F = {};
   LN.frases.forEach((f) => { F[f.id] = f; f.palavras.forEach((w) => { if (w.id) ids[w.id] = w; }); });
   const T = (id) => { if (!ids[id]) throw new Error('id ' + id); return ids[id].t0; };
@@ -40,28 +40,36 @@ window.montaPlano = function (LN, opt) {   // opt: { capa, inicio (telas/inicio-
   const telas = [];
   const add = (s) => { telas.push(s); return s; };
   // integração (revisão de 23/11/2026): Canais sem nenhum link à mostra + selo; o calendário com o bloqueio do Airbnb + nota;
-  // o alerta de conflito no Início (e o sino) e "Nada foi cancelado." em destaque. O Início vem de telas/inicio-conflito.json.
-  const IC = (opt && opt.inicio) || {}, folga = (r, m) => [r[0] - m, r[1] - m, r[2] + m, r[3] + m];
-  const CONF = IC.conflito || R.conflito, NADA = IC.nada || [103, 1170, 547, 1206], SINO = IC.sino || [683, 69, 732, 122];
-  const TEXTO_CANAIS = [48, 522, 1122, 762];
+  // o alerta de conflito no Início (e o sino) e "Nada foi cancelado." em destaque.
+  // Medidas da recaptura conjunta de 24/11/2026 (scripts/capturar-integracao.cjs → telas/integracao.json): Canais, calendário e Início
+  // na mesma sessão da Demo. O calendário está rolado para o lado: de 27/11 a 03/12, com o bloqueio "Airbnb" (Bica D'Água 01) e a
+  // reserva do Roberto no Chalé de Pedra 05, de 28/11 a 01/12, com o contorno âmbar do conflito: o mesmo chalé e as mesmas datas do alerta.
+  const J = (opt && opt.integracao) || {}, IC = J.inicio || {}, CAL = J.calendario || {}, folga = (r, m) => [r[0] - m, r[1] - m, r[2] + m, r[3] + m];
+  const CONF = IC.conflito || R.conflito, NADA = IC.nada || R.nada, SINO = IC.sino || [643, 29, 775, 161];
+  const TEXTO_CANAIS = (J.canais && J.canais.texto) || [48, 522, 1122, 762];
+  const AIRBNB = CAL.airbnb || R.calAirbnb, BICA = CAL.bica01 || R.calBica, RES05 = CAL.reserva05, PERIODO = CAL.periodo;
+  if (!RES05 || !PERIODO) throw new Error('telas/integracao.json sem a reserva do Chalé de Pedra 05 ou sem o período do alerta');
   add({ img: 'canais', t0: marca.t1, t1: F.canais2.t0 - 0.1,
     cam: [zoom(F.canais1.t0 + 0.1, folga(TEXTO_CANAIS, 40), 1.55)],
     aneis: [{ t: T('airbnb'), ret: TEXTO_CANAIS }],
     selos: [{ t: T('link') - 0.05, texto: 'Link de calendário', y: 300, pulsos: [T('conectam')] }] });
-  add({ img: 'calendario', t0: F.canais2.t0 - 0.1, t1: F.canais3.t0 - 0.1, de: 'baixo',
-    cam: [zoom(F.canais2.t0 + 0.15, R.calBica, 1.7), zoom(T('traz') - 0.1, R.calAirbnb, 2.0)],
-    aneis: [{ t: T('ocupadas'), ret: R.calAirbnb }],
-    saltos: [{ t: T('ocupadas') + 0.45, ate: F.canais3.t0 - 0.5, ret: folga(R.calAirbnb, 8), larg: 620, cy: 640 }],
-    notas: [{ t: T('manda') + 0.15, texto: 'O Hospeda confere os canais\na cada 30 min', y: 320 }] });
-  add({ img: 'inicio-conflito', t0: F.canais3.t0 - 0.1, t1: F.canais4.t0 - 0.05, recapturar: !!IC.a_recapturar,
-    cam: [zoom(F.canais3.t0 + 0.15, CONF, 1.45), { t: T('sino') - 0.4, z: 1, fx: 585, fy: 1266, d: 0.4 }, zoom(T('naocancela') - 0.25, folga(NADA, 120), 1.7)],
-    aneis: [{ t: T('bater'), ret: CONF, cor: 'ambar', ate: T('avisa') - 0.05 }, { t: T('sino'), ret: folga(SINO, 22), ate: T('naocancela') - 0.35 },
+  // frase 6 (e o começo da 7): a grade inteira do período, com o cabeçalho dos dias abaixo da nota (y ≥ 440) e o Chalé de Pedra 05 acima da legenda
+  const inicioEntra = T('avisa') - 0.35;
+  add({ img: 'calendario', t0: F.canais2.t0 - 0.1, t1: inicioEntra, de: 'baixo',
+    cam: [{ t: F.canais2.t0 + 0.15, z: 2.0, fx: 585, fy: 1440, d: 0.55 }, { t: F.canais3.t0 + 0.1, z: 2.25, fx: 585, fy: 1400, d: 0.6 }],
+    aneis: [{ t: T('ocupadas'), ret: folga(AIRBNB, 6), ate: F.canais3.t0 - 0.05 },
+      { t: T('bater'), ret: folga(RES05, 8), cor: 'ambar' }, { t: T('bater') + 0.15, ret: PERIODO, cor: 'ambar' }],
+    notas: [{ t: T('manda') + 0.15, ate: F.canais3.t0 - 0.1, texto: 'O Hospeda confere os canais\na cada 30 min', y: 320 }] });
+  // frase 7: o alerta no Início ("ele avisa"), o sino e "Nada foi cancelado."
+  add({ img: 'inicio-conflito', t0: inicioEntra, t1: F.canais4.t0 - 0.05,
+    cam: [{ t: inicioEntra, z: 1.45, ...c(...CONF), d: 0.01 }, { t: T('sino') - 0.4, z: 1, fx: 585, fy: 1266, d: 0.4 }, zoom(T('naocancela') - 0.25, folga(NADA, 120), 1.7)],
+    aneis: [{ t: T('avisa'), ret: CONF, cor: 'ambar', ate: T('sino') - 0.45 }, { t: T('sino'), ret: folga(SINO, 22), ate: T('naocancela') - 0.35 },
       { t: T('naocancela') + 0.05, ret: folga(NADA, 14), cor: 'ambar' }],
-    saltos: [{ t: T('avisa'), ate: T('inicio') + 0.55, ret: CONF, cor: 'ambar', larg: 960, cy: 700 },
-      { t: T('naocancela') + 0.4, ate: F.canais4.t0 - 0.5, ret: folga(NADA, 22), cor: 'ambar', larg: 820, cy: 560 }] });
+    saltos: [{ t: T('avisa') + 0.15, ate: T('inicio') + 0.55, ret: CONF, cor: 'ambar', larg: 960, cy: 700 },
+      { t: T('naocancela') + 0.4, ate: F.canais4.t0 - 0.5, ret: [NADA[0] - 10, NADA[1] - 6, NADA[2] + 20, NADA[3] + 14], cor: 'ambar', larg: 820, cy: 560 }] });   // sem pegar a linha de cima nem o "bloqueio."
   add({ img: 'calendario', t0: F.canais4.t0 - 0.05, t1: F.dupla.t0 - 0.1,
     cam: [{ t: F.canais4.t0, z: 1.25, fx: 585, fy: 1500, d: 0.01 }, longe(F.canais4.t0 + 0.4, 0.9)],
-    aneis: [{ t: T('reduz') + 0.2, ret: R.calBica }] });
+    aneis: [{ t: T('reduz') + 0.2, ret: BICA }] });
   add({ img: 'nova-datas', t0: F.dupla.t0 - 0.1, t1: T('naovendido') - 0.45, estados: [], de: 'baixo',
     cam: [zoom(F.dupla.t0 + 0.15, [48, 1700, 1122, 2484], 1.5)],
     toques: [{ t: F.dupla.t0 + 0.55, ...pt(R.dia20) }, { t: F.dupla.t0 + 1.05, ...pt(R.dia22) }, { t: T('mesmochale') - 0.1, ...pt(R.confirmar) }],

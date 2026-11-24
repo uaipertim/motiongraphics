@@ -1,6 +1,6 @@
 # FAZLO Hospeda — vídeo curto de venda (para aprovação)
 
-**Revisão de 23/11/2026:** as frases 5, 6 e 7 foram trocadas e entrou a chamada final, só na tela. A linha do tempo nova está no fim deste arquivo. A cena do alerta está **a recapturar** quando a Demo atualizada sair.
+**Revisão de 23/11/2026:** as frases 5, 6 e 7 foram trocadas e entrou a chamada final, só na tela. A linha do tempo nova está no fim deste arquivo. Canais, o calendário e o Início com o alerta foram recapturados juntos na Demo atualizada, em 24/11/2026.
 
 **Status:** em 19/11/2026 foram aprovados a voz (Alexa), o roteiro com dois ajustes (frases 9 e 11) e os quadros de estilo. O vídeo foi narrado e renderizado para aprovação; ver o README.
 
@@ -104,11 +104,14 @@ Esses elementos ficam invisíveis no próprio navegador, então o lugar deles mo
 | Frase | Tempo (s) | Tela | O que acontece |
 |---|---|---|---|
 | 5. canais1 | 14,8–19,6 | `canais` (o texto do topo; nenhum link à mostra) | Em "link de calendário" entra o selo limão **"Link de calendário"**, com o ícone de corrente. Contorno no texto em "Airbnb". O selo pulsa em "se conectam". |
-| 6. canais2 | 19,8–25,5 | `calendario` | Close na linha da Bica D’Água 01. Em "manda suas datas" entra a nota **"O Hospeda confere os canais / a cada 30 min"**. Em "traz de lá", close no bloqueio. Em "datas ocupadas", contorno, e o bloqueio "Airbnb" salta numa janela. |
-| 7. canais3 | 25,8–32,7 | `inicio-conflito` (**a recapturar**) | Em "baterem", contorno âmbar no alerta. Em "avisa", o alerta **"Conflito com o Airbnb"** salta. Em "sino", a tela inteira com contorno no sino. Em "não cancela nada", contorno e janela em **"Nada foi cancelado."**. |
-| 8. canais4 | 33,0–35,5 | `calendario` | Como antes. |
+| 6. canais2 | 19,8–25,5 | `calendario` (rolado para o lado: 27/11 a 03/12) | Close na grade, do cabeçalho dos dias até o Chalé de Pedra 05: o bloqueio "Airbnb" (Bica D’Água 01) e a reserva do Roberto (Chalé de Pedra 05, 28/11 a 01/12, com o contorno âmbar e o ícone de alerta da Demo). Em "manda suas datas" entra a nota **"O Hospeda confere os canais / a cada 30 min"**, que sai no fim da frase. Em "datas ocupadas", contorno no bloqueio "Airbnb". |
+| 7. canais3 | 25,8–27,6 | `calendario` | A câmera aproxima um pouco. Em "baterem", contorno âmbar na reserva do Roberto e nos dias 28/11 a 01/12 do cabeçalho: o mesmo chalé e as mesmas datas do alerta. |
+| 7. canais3 | 27,6–32,7 | `inicio-conflito` | Em "avisa", o Início entra com o alerta **"Conflito com o Airbnb"** (Chalé de Pedra 05 · 28/11 a 01/12, logo abaixo de "Check-out em atraso"), com contorno âmbar, e o alerta salta numa janela. Em "sino", a tela inteira com contorno no sino. Em "não cancela nada", contorno e janela em **"Nada foi cancelado."**. |
+| 8. canais4 | 33,0–35,5 | `calendario` | Como antes: a tela inteira, com contorno na linha da Bica D’Água 01 em "reduz". |
 | Fecho | 63,9–67,9 → 71.4 | Fecho | "30 dias para testar…", como antes. Depois da última palavra, as linhas saem, a logo desce e a **chamada, só na tela**, entra **acima da logo**: "Quer ver funcionando?" e "É só responder esta conversa." em limão. Fica cerca de 2,9 s, até o fim. |
 
 As outras cenas seguem iguais, só deslocadas pelos tempos novos.
+
+**A ficha da reserva** (o quadro "O Airbnb também tem estas datas ocupadas: 28/11 a 01/12. Nada foi cancelado. Confira e resolva.") **ficou fora.** Na frase 7, cada trecho já tem a sua tela: o calendário em "baterem", o Início em "avisa, no Início" e o sino em "no sino". Para a ficha entrar, uma dessas telas teria de sair ou o vídeo teria de crescer.
 
 **Proibido na fala e na tela:** "na hora", "em tempo real", "sincronização instantânea", "nunca mais vende duas vezes" e "traz as reservas com os dados do hóspede". `scripts/conferir-textos.py` confere a narração e os quadros.

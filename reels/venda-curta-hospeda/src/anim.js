@@ -148,7 +148,7 @@
     for (const j of s.saltos || []) salto(c, s, t, q, j);
     const saiT = E.in(p(t, s.t1 - 0.3, s.t1));
     for (const e of s.selos || []) seloLink(c, t, e, saiT);
-    for (const e of s.notas || []) nota(c, t, e, saiT);
+    for (const e of s.notas || []) nota(c, t, e, e.ate ? Math.max(saiT, E.in(p(t, e.ate, e.ate + 0.3))) : saiT);   // ate: a nota sai antes da cena
   }
 
   // ------------------------------------------------------------------ cenas sem tela
