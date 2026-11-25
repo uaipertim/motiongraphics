@@ -11,7 +11,7 @@
 | 25/11/2026 | qua | 3 | Chalés e quartos | pronto (commit 1596402: vídeo e capa) |
 | 27/11/2026 | sex | 4 | Produtos da comanda | pronto (commit d580aa3: vídeo e capa) |
 | 30/11/2026 | seg | 5 | A pousada num olhar | pronto (commit 966330c: vídeo e capa) |
-| 02/12/2026 | qua | 6 | Nova reserva em segundos | em produção (etapa 1: roteiro para aprovação) |
+| 02/12/2026 | qua | 6 | Nova reserva em segundos | pronto (commit 11e76fd: vídeo e capa) |
 | 04/12/2026 | sex | 7 | Sinal e cancelamento | pendente |
 | 07/12/2026 | seg | 8 | Airbnb e Booking no mesmo calendário | pendente |
 | 09/12/2026 | qua | 9 | O hóspede chegou | pendente |
