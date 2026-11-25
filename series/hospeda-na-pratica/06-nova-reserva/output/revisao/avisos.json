@@ -1,0 +1,1238 @@
+{
+ "verificados": 88,
+ "problemas": [],
+ "todos": [
+  {
+   "tipo": "toque",
+   "t": 10.55,
+   "tela": "inicio",
+   "rolagem": 0,
+   "ret_na_tela": [
+    584,
+    2423,
+    586,
+    2425
+   ],
+   "visivel": true,
+   "ok": true
+  },
+  {
+   "tipo": "toque",
+   "t": 10.7,
+   "tela": "inicio+passo1",
+   "rolagem": 0,
+   "ret_na_tela": [
+    584,
+    2423,
+    586,
+    2425
+   ],
+   "visivel": true,
+   "ok": true
+  },
+  {
+   "tipo": "toque",
+   "t": 10.85,
+   "tela": "passo1",
+   "rolagem": 0,
+   "ret_na_tela": [
+    584,
+    2423,
+    586,
+    2425
+   ],
+   "visivel": true,
+   "ok": true
+  },
+  {
+   "tipo": "toque",
+   "t": 11.3,
+   "tela": "passo1",
+   "rolagem": 0,
+   "ret_na_tela": [
+    338,
+    1010,
+    340,
+    1012
+   ],
+   "visivel": true,
+   "ok": true
+  },
+  {
+   "tipo": "toque",
+   "t": 11.45,
+   "tela": "passo1+cal-nov",
+   "rolagem": 0,
+   "ret_na_tela": [
+    338,
+    1010,
+    340,
+    1012
+   ],
+   "visivel": true,
+   "ok": true
+  },
+  {
+   "tipo": "toque",
+   "t": 11.6,
+   "tela": "cal-nov",
+   "rolagem": 0,
+   "ret_na_tela": [
+    338,
+    1010,
+    340,
+    1012
+   ],
+   "visivel": true,
+   "ok": true
+  },
+  {
+   "tipo": "toque",
+   "t": 12.06,
+   "tela": "cal-nov",
+   "rolagem": 0,
+   "ret_na_tela": [
+    890,
+    1463,
+    892,
+    1465
+   ],
+   "visivel": true,
+   "ok": true
+  },
+  {
+   "tipo": "toque",
+   "t": 12.21,
+   "tela": "cal-nov",
+   "rolagem": 0,
+   "ret_na_tela": [
+    890,
+    1463,
+    892,
+    1465
+   ],
+   "visivel": true,
+   "ok": true
+  },
+  {
+   "tipo": "toque",
+   "t": 12.36,
+   "tela": "cal-nov",
+   "rolagem": 0,
+   "ret_na_tela": [
+    890,
+    1463,
+    892,
+    1465
+   ],
+   "visivel": true,
+   "ok": true
+  },
+  {
+   "tipo": "toque",
+   "t": 13.1,
+   "tela": "cal-dez",
+   "rolagem": 0,
+   "ret_na_tela": [
+    1045,
+    1793,
+    1047,
+    1795
+   ],
+   "visivel": true,
+   "ok": true
+  },
+  {
+   "tipo": "toque",
+   "t": 13.25,
+   "tela": "cal-dez",
+   "rolagem": 0,
+   "ret_na_tela": [
+    1045,
+    1793,
+    1047,
+    1795
+   ],
+   "visivel": true,
+   "ok": true
+  },
+  {
+   "tipo": "toque",
+   "t": 13.4,
+   "tela": "cal-12",
+   "rolagem": 0,
+   "ret_na_tela": [
+    1045,
+    1793,
+    1047,
+    1795
+   ],
+   "visivel": true,
+   "ok": true
+  },
+  {
+   "tipo": "toque",
+   "t": 14,
+   "tela": "cal-12",
+   "rolagem": 0,
+   "ret_na_tela": [
+    277,
+    1910,
+    279,
+    1912
+   ],
+   "visivel": true,
+   "ok": true
+  },
+  {
+   "tipo": "toque",
+   "t": 14.15,
+   "tela": "cal-12",
+   "rolagem": 0,
+   "ret_na_tela": [
+    277,
+    1910,
+    279,
+    1912
+   ],
+   "visivel": true,
+   "ok": true
+  },
+  {
+   "tipo": "toque",
+   "t": 14.3,
+   "tela": "cal-12+cal-12-14",
+   "rolagem": 0,
+   "ret_na_tela": [
+    277,
+    1910,
+    279,
+    1912
+   ],
+   "visivel": true,
+   "ok": true
+  },
+  {
+   "tipo": "toque",
+   "t": 14.95,
+   "tela": "cal-12-14",
+   "rolagem": 0,
+   "ret_na_tela": [
+    584,
+    2411,
+    586,
+    2413
+   ],
+   "visivel": true,
+   "ok": true
+  },
+  {
+   "tipo": "toque",
+   "t": 15.1,
+   "tela": "cal-12-14+livres",
+   "rolagem": 0,
+   "ret_na_tela": [
+    584,
+    2411,
+    586,
+    2413
+   ],
+   "visivel": true,
+   "ok": true
+  },
+  {
+   "tipo": "toque",
+   "t": 15.25,
+   "tela": "livres",
+   "rolagem": 0,
+   "ret_na_tela": [
+    584,
+    2411,
+    586,
+    2413
+   ],
+   "visivel": true,
+   "ok": true
+  },
+  {
+   "tipo": "toque",
+   "t": 16.91,
+   "tela": "livres",
+   "rolagem": 0,
+   "ret_na_tela": [
+    469,
+    2282,
+    471,
+    2284
+   ],
+   "visivel": true,
+   "ok": true
+  },
+  {
+   "tipo": "toque",
+   "t": 17.06,
+   "tela": "livres",
+   "rolagem": 0,
+   "ret_na_tela": [
+    469,
+    2282,
+    471,
+    2284
+   ],
+   "visivel": true,
+   "ok": true
+  },
+  {
+   "tipo": "toque",
+   "t": 17.21,
+   "tela": "pg-escolhida",
+   "rolagem": 0,
+   "ret_na_tela": [
+    469,
+    2282,
+    471,
+    2284
+   ],
+   "visivel": true,
+   "ok": true
+  },
+  {
+   "tipo": "toque",
+   "t": 18.52,
+   "tela": "pg-escolhida",
+   "rolagem": 3720,
+   "ret_na_tela": [
+    769,
+    1904,
+    771,
+    1906
+   ],
+   "visivel": true,
+   "ok": true
+  },
+  {
+   "tipo": "toque",
+   "t": 18.67,
+   "tela": "pg-escolhida+passo2-novo",
+   "rolagem": 3720,
+   "ret_na_tela": [
+    769,
+    1904,
+    771,
+    1906
+   ],
+   "visivel": true,
+   "ok": true
+  },
+  {
+   "tipo": "toque",
+   "t": 18.82,
+   "tela": "passo2-novo",
+   "rolagem": 3720,
+   "ret_na_tela": [
+    769,
+    1904,
+    771,
+    1906
+   ],
+   "visivel": true,
+   "ok": true
+  },
+  {
+   "tipo": "toque",
+   "t": 20.01,
+   "tela": "passo2-novo",
+   "rolagem": 3720,
+   "ret_na_tela": [
+    584,
+    950,
+    586,
+    952
+   ],
+   "visivel": true,
+   "ok": true
+  },
+  {
+   "tipo": "toque",
+   "t": 20.16,
+   "tela": "passo2-novo",
+   "rolagem": 3720,
+   "ret_na_tela": [
+    584,
+    950,
+    586,
+    952
+   ],
+   "visivel": true,
+   "ok": true
+  },
+  {
+   "tipo": "toque",
+   "t": 20.31,
+   "tela": "passo2-novo",
+   "rolagem": 3720,
+   "ret_na_tela": [
+    584,
+    950,
+    586,
+    952
+   ],
+   "visivel": true,
+   "ok": true
+  },
+  {
+   "tipo": "toque",
+   "t": 22.65,
+   "tela": "passo2-novo",
+   "rolagem": 3720,
+   "ret_na_tela": [
+    584,
+    1208,
+    586,
+    1210
+   ],
+   "visivel": true,
+   "ok": true
+  },
+  {
+   "tipo": "toque",
+   "t": 22.8,
+   "tela": "passo2-novo",
+   "rolagem": 3720,
+   "ret_na_tela": [
+    584,
+    1208,
+    586,
+    1210
+   ],
+   "visivel": true,
+   "ok": true
+  },
+  {
+   "tipo": "toque",
+   "t": 22.95,
+   "tela": "passo2-novo",
+   "rolagem": 3720,
+   "ret_na_tela": [
+    584,
+    1208,
+    586,
+    1210
+   ],
+   "visivel": true,
+   "ok": true
+  },
+  {
+   "tipo": "toque",
+   "t": 24.83,
+   "tela": "passo2-preenchido",
+   "rolagem": 3720,
+   "ret_na_tela": [
+    734,
+    1952,
+    736,
+    1954
+   ],
+   "visivel": true,
+   "ok": true
+  },
+  {
+   "tipo": "toque",
+   "t": 24.98,
+   "tela": "passo2-preenchido+passo3",
+   "rolagem": 3720,
+   "ret_na_tela": [
+    734,
+    1952,
+    736,
+    1954
+   ],
+   "visivel": true,
+   "ok": true
+  },
+  {
+   "tipo": "toque",
+   "t": 25.13,
+   "tela": "passo3",
+   "rolagem": 3720,
+   "ret_na_tela": [
+    734,
+    1952,
+    736,
+    1954
+   ],
+   "visivel": true,
+   "ok": true
+  },
+  {
+   "tipo": "toque",
+   "t": 26.81,
+   "tela": "passo3",
+   "rolagem": 3720,
+   "ret_na_tela": [
+    734,
+    1904,
+    736,
+    1906
+   ],
+   "visivel": true,
+   "ok": true
+  },
+  {
+   "tipo": "toque",
+   "t": 26.96,
+   "tela": "passo3+passo4",
+   "rolagem": 3720,
+   "ret_na_tela": [
+    734,
+    1904,
+    736,
+    1906
+   ],
+   "visivel": true,
+   "ok": true
+  },
+  {
+   "tipo": "toque",
+   "t": 27.11,
+   "tela": "passo4",
+   "rolagem": 3720,
+   "ret_na_tela": [
+    734,
+    1904,
+    736,
+    1906
+   ],
+   "visivel": true,
+   "ok": true
+  },
+  {
+   "tipo": "toque",
+   "t": 27.54,
+   "tela": "passo4",
+   "rolagem": 3720,
+   "ret_na_tela": [
+    480,
+    803,
+    482,
+    805
+   ],
+   "visivel": true,
+   "ok": true
+  },
+  {
+   "tipo": "toque",
+   "t": 27.69,
+   "tela": "passo4",
+   "rolagem": 3720,
+   "ret_na_tela": [
+    480,
+    803,
+    482,
+    805
+   ],
+   "visivel": true,
+   "ok": true
+  },
+  {
+   "tipo": "toque",
+   "t": 27.84,
+   "tela": "passo4",
+   "rolagem": 3720,
+   "ret_na_tela": [
+    480,
+    803,
+    482,
+    805
+   ],
+   "visivel": true,
+   "ok": true
+  },
+  {
+   "tipo": "toque",
+   "t": 28.7,
+   "tela": "passo4",
+   "rolagem": 3720,
+   "ret_na_tela": [
+    341,
+    1097,
+    343,
+    1099
+   ],
+   "visivel": true,
+   "ok": true
+  },
+  {
+   "tipo": "toque",
+   "t": 28.85,
+   "tela": "passo4",
+   "rolagem": 3720,
+   "ret_na_tela": [
+    341,
+    1097,
+    343,
+    1099
+   ],
+   "visivel": true,
+   "ok": true
+  },
+  {
+   "tipo": "toque",
+   "t": 29,
+   "tela": "passo4",
+   "rolagem": 3720,
+   "ret_na_tela": [
+    341,
+    1097,
+    343,
+    1099
+   ],
+   "visivel": true,
+   "ok": true
+  },
+  {
+   "tipo": "toque",
+   "t": 29.69,
+   "tela": "passo4-sinal",
+   "rolagem": 3720,
+   "ret_na_tela": [
+    734,
+    2012,
+    736,
+    2014
+   ],
+   "visivel": true,
+   "ok": true
+  },
+  {
+   "tipo": "toque",
+   "t": 29.84,
+   "tela": "passo4-sinal+passo5",
+   "rolagem": 3720,
+   "ret_na_tela": [
+    734,
+    2012,
+    736,
+    2014
+   ],
+   "visivel": true,
+   "ok": true
+  },
+  {
+   "tipo": "toque",
+   "t": 29.99,
+   "tela": "passo5",
+   "rolagem": 3720,
+   "ret_na_tela": [
+    734,
+    2012,
+    736,
+    2014
+   ],
+   "visivel": true,
+   "ok": true
+  },
+  {
+   "tipo": "toque",
+   "t": 31.62,
+   "tela": "passo5",
+   "rolagem": 3720,
+   "ret_na_tela": [
+    734,
+    1904,
+    736,
+    1906
+   ],
+   "visivel": true,
+   "ok": true
+  },
+  {
+   "tipo": "toque",
+   "t": 31.77,
+   "tela": "passo5",
+   "rolagem": 3720,
+   "ret_na_tela": [
+    734,
+    1904,
+    736,
+    1906
+   ],
+   "visivel": true,
+   "ok": true
+  },
+  {
+   "tipo": "toque",
+   "t": 31.92,
+   "tela": "pg-criada",
+   "rolagem": 0,
+   "ret_na_tela": [
+    734,
+    1904,
+    736,
+    1906
+   ],
+   "visivel": true,
+   "ok": true
+  },
+  {
+   "tipo": "toque",
+   "t": 33,
+   "tela": "pg-criada",
+   "rolagem": 723,
+   "ret_na_tela": [
+    298,
+    1928,
+    300,
+    1930
+   ],
+   "visivel": true,
+   "ok": true
+  },
+  {
+   "tipo": "toque",
+   "t": 33.15,
+   "tela": "pg-criada",
+   "rolagem": 723,
+   "ret_na_tela": [
+    298,
+    1928,
+    300,
+    1930
+   ],
+   "visivel": true,
+   "ok": true
+  },
+  {
+   "tipo": "toque",
+   "t": 33.3,
+   "tela": "pg-criada",
+   "rolagem": 723,
+   "ret_na_tela": [
+    298,
+    1928,
+    300,
+    1930
+   ],
+   "visivel": true,
+   "ok": true
+  },
+  {
+   "tipo": "toque",
+   "t": 44.04,
+   "tela": "criada",
+   "rolagem": 0,
+   "ret_na_tela": [
+    584,
+    2423,
+    586,
+    2425
+   ],
+   "visivel": true,
+   "ok": true
+  },
+  {
+   "tipo": "toque",
+   "t": 44.19,
+   "tela": "criada",
+   "rolagem": 0,
+   "ret_na_tela": [
+    584,
+    2423,
+    586,
+    2425
+   ],
+   "visivel": true,
+   "ok": true
+  },
+  {
+   "tipo": "toque",
+   "t": 44.34,
+   "tela": "criada",
+   "rolagem": 0,
+   "ret_na_tela": [
+    584,
+    2423,
+    586,
+    2425
+   ],
+   "visivel": true,
+   "ok": true
+  },
+  {
+   "tipo": "contorno",
+   "t": 14.29,
+   "tela": "cal-12+cal-12-14",
+   "rolagem": 0,
+   "ret_na_tela": [
+    48,
+    2241,
+    364,
+    2304
+   ],
+   "visivel": true,
+   "ok": true
+  },
+  {
+   "tipo": "contorno",
+   "t": 14.44,
+   "tela": "cal-12-14",
+   "rolagem": 0,
+   "ret_na_tela": [
+    48,
+    2241,
+    364,
+    2304
+   ],
+   "visivel": true,
+   "ok": true
+  },
+  {
+   "tipo": "contorno",
+   "t": 14.59,
+   "tela": "cal-12-14",
+   "rolagem": 0,
+   "ret_na_tela": [
+    48,
+    2241,
+    364,
+    2304
+   ],
+   "visivel": true,
+   "ok": true
+  },
+  {
+   "tipo": "contorno",
+   "t": 25.09,
+   "tela": "passo3",
+   "rolagem": 3720,
+   "ret_na_tela": [
+    114,
+    1062,
+    1056,
+    1218
+   ],
+   "visivel": true,
+   "ok": true
+  },
+  {
+   "tipo": "contorno",
+   "t": 25.24,
+   "tela": "passo3",
+   "rolagem": 3720,
+   "ret_na_tela": [
+    114,
+    1062,
+    1056,
+    1218
+   ],
+   "visivel": true,
+   "ok": true
+  },
+  {
+   "tipo": "contorno",
+   "t": 25.39,
+   "tela": "passo3",
+   "rolagem": 3720,
+   "ret_na_tela": [
+    114,
+    1062,
+    1056,
+    1218
+   ],
+   "visivel": true,
+   "ok": true
+  },
+  {
+   "tipo": "contorno",
+   "t": 25.89,
+   "tela": "passo3",
+   "rolagem": 3720,
+   "ret_na_tela": [
+    111,
+    1605,
+    567,
+    1749
+   ],
+   "visivel": true,
+   "ok": true
+  },
+  {
+   "tipo": "contorno",
+   "t": 26.04,
+   "tela": "passo3",
+   "rolagem": 3720,
+   "ret_na_tela": [
+    111,
+    1605,
+    567,
+    1749
+   ],
+   "visivel": true,
+   "ok": true
+  },
+  {
+   "tipo": "contorno",
+   "t": 26.19,
+   "tela": "passo3",
+   "rolagem": 3720,
+   "ret_na_tela": [
+    111,
+    1605,
+    567,
+    1749
+   ],
+   "visivel": true,
+   "ok": true
+  },
+  {
+   "tipo": "contorno",
+   "t": 29.02,
+   "tela": "passo4",
+   "rolagem": 3720,
+   "ret_na_tela": [
+    111,
+    1554,
+    1059,
+    1614
+   ],
+   "visivel": true,
+   "ok": true
+  },
+  {
+   "tipo": "contorno",
+   "t": 29.17,
+   "tela": "passo4-sinal",
+   "rolagem": 3720,
+   "ret_na_tela": [
+    111,
+    1554,
+    1059,
+    1614
+   ],
+   "visivel": true,
+   "ok": true
+  },
+  {
+   "tipo": "contorno",
+   "t": 29.32,
+   "tela": "passo4-sinal",
+   "rolagem": 3720,
+   "ret_na_tela": [
+    111,
+    1554,
+    1059,
+    1614
+   ],
+   "visivel": true,
+   "ok": true
+  },
+  {
+   "tipo": "contorno",
+   "t": 34.15,
+   "tela": "cal-reserva",
+   "rolagem": 723,
+   "ret_na_tela": [
+    876,
+    1367,
+    1068,
+    1463
+   ],
+   "visivel": true,
+   "ok": true
+  },
+  {
+   "tipo": "contorno",
+   "t": 34.3,
+   "tela": "cal-reserva",
+   "rolagem": 723,
+   "ret_na_tela": [
+    876,
+    1367,
+    1068,
+    1463
+   ],
+   "visivel": true,
+   "ok": true
+  },
+  {
+   "tipo": "contorno",
+   "t": 34.45,
+   "tela": "cal-reserva",
+   "rolagem": 723,
+   "ret_na_tela": [
+    876,
+    1367,
+    1068,
+    1463
+   ],
+   "visivel": true,
+   "ok": true
+  },
+  {
+   "tipo": "contorno",
+   "t": 41.74,
+   "tela": "criada",
+   "rolagem": 0,
+   "ret_na_tela": [
+    147,
+    2139,
+    1023,
+    2253
+   ],
+   "visivel": true,
+   "ok": true
+  },
+  {
+   "tipo": "contorno",
+   "t": 41.89,
+   "tela": "criada",
+   "rolagem": 0,
+   "ret_na_tela": [
+    147,
+    2139,
+    1023,
+    2253
+   ],
+   "visivel": true,
+   "ok": true
+  },
+  {
+   "tipo": "contorno",
+   "t": 42.04,
+   "tela": "criada",
+   "rolagem": 0,
+   "ret_na_tela": [
+    147,
+    2139,
+    1023,
+    2253
+   ],
+   "visivel": true,
+   "ok": true
+  },
+  {
+   "tipo": "janela",
+   "t": 15.15,
+   "tela": "livres",
+   "rolagem": 0,
+   "ret_na_tela": [
+    100,
+    1800,
+    1070,
+    2330
+   ],
+   "visivel": true,
+   "ok": true
+  },
+  {
+   "tipo": "janela",
+   "t": 15.3,
+   "tela": "livres",
+   "rolagem": 0,
+   "ret_na_tela": [
+    100,
+    1800,
+    1070,
+    2330
+   ],
+   "visivel": true,
+   "ok": true
+  },
+  {
+   "tipo": "janela",
+   "t": 15.45,
+   "tela": "livres",
+   "rolagem": 0,
+   "ret_na_tela": [
+    100,
+    1800,
+    1070,
+    2330
+   ],
+   "visivel": true,
+   "ok": true
+  },
+  {
+   "tipo": "janela",
+   "t": 29.91,
+   "tela": "passo5",
+   "rolagem": 3720,
+   "ret_na_tela": [
+    105,
+    759,
+    1065,
+    1509
+   ],
+   "visivel": true,
+   "ok": true
+  },
+  {
+   "tipo": "janela",
+   "t": 30.06,
+   "tela": "passo5",
+   "rolagem": 3720,
+   "ret_na_tela": [
+    105,
+    759,
+    1065,
+    1509
+   ],
+   "visivel": true,
+   "ok": true
+  },
+  {
+   "tipo": "janela",
+   "t": 30.21,
+   "tela": "passo5",
+   "rolagem": 3720,
+   "ret_na_tela": [
+    105,
+    759,
+    1065,
+    1509
+   ],
+   "visivel": true,
+   "ok": true
+  },
+  {
+   "tipo": "janela",
+   "t": 39.72,
+   "tela": "criada",
+   "rolagem": 0,
+   "ret_na_tela": [
+    140,
+    1290,
+    1030,
+    1885
+   ],
+   "visivel": true,
+   "ok": true
+  },
+  {
+   "tipo": "janela",
+   "t": 39.87,
+   "tela": "criada",
+   "rolagem": 0,
+   "ret_na_tela": [
+    140,
+    1290,
+    1030,
+    1885
+   ],
+   "visivel": true,
+   "ok": true
+  },
+  {
+   "tipo": "janela",
+   "t": 40.02,
+   "tela": "criada",
+   "rolagem": 0,
+   "ret_na_tela": [
+    140,
+    1290,
+    1030,
+    1885
+   ],
+   "visivel": true,
+   "ok": true
+  },
+  {
+   "tipo": "janela",
+   "t": 45.3,
+   "tela": "ocupada",
+   "rolagem": 0,
+   "ret_na_tela": [
+    100,
+    675,
+    1070,
+    1400
+   ],
+   "visivel": true,
+   "ok": true
+  },
+  {
+   "tipo": "janela",
+   "t": 45.45,
+   "tela": "ocupada",
+   "rolagem": 0,
+   "ret_na_tela": [
+    100,
+    675,
+    1070,
+    1400
+   ],
+   "visivel": true,
+   "ok": true
+  },
+  {
+   "tipo": "janela",
+   "t": 45.6,
+   "tela": "ocupada",
+   "rolagem": 0,
+   "ret_na_tela": [
+    100,
+    675,
+    1070,
+    1400
+   ],
+   "visivel": true,
+   "ok": true
+  },
+  {
+   "tipo": "marca",
+   "t": 15.5,
+   "tela": "livres",
+   "rolagem": 0,
+   "ret_na_tela": [
+    114,
+    2211,
+    1056,
+    2322
+   ],
+   "visivel": true,
+   "ok": true
+  },
+  {
+   "tipo": "marca",
+   "t": 39.82,
+   "tela": "criada",
+   "rolagem": 0,
+   "ret_na_tela": [
+    609,
+    1608,
+    960,
+    1806
+   ],
+   "visivel": true,
+   "ok": true
+  },
+  {
+   "tipo": "marca",
+   "t": 48.12,
+   "tela": "ocupada",
+   "rolagem": 0,
+   "ret_na_tela": [
+    111,
+    690,
+    1059,
+    753
+   ],
+   "visivel": true,
+   "ok": true
+  },
+  {
+   "tipo": "marca",
+   "t": 48.42,
+   "tela": "ocupada",
+   "rolagem": 0,
+   "ret_na_tela": [
+    114,
+    1072,
+    1056,
+    1100
+   ],
+   "visivel": true,
+   "ok": true
+  }
+ ]
+}

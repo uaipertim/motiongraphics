@@ -5,13 +5,15 @@
 Proibido: fazlodigital, Demo/Demonstração, Quero usar, código, token, senha, "João Caixa", "Mariana Recepção", nome de pousada em
 caixa alta, link (http, .ics, iCal), e-mail (@ seguido de domínio) e os erros de exemplo dos canais ("não consegue ler",
 "Confira o link", "não lê o calendário", "Confira se o link").
-Episódio 6: "Código da reserva" (o número da reserva criada) pode; qualquer outro "código" não.
+Episódio 6: "Código da reserva" (o número da reserva criada) pode; qualquer outro "código" não. E nenhum bloqueio de canal
+nem conflito à vista ("Airbnb", "Booking", "Bloqueada", "Conflito"), nem aviso do app ("com sucesso").
     python3 scripts/ocr.py levantamento    -> confere aprovacao/levantamento/*.png
 Resultado em output/revisao/ocr-<modo>.json."""
 import json, os, re, subprocess, sys, tempfile
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PROIBIDO = [r'fazlo\s*digital', r'\bdemo\b', r'demonstra', r'quero\s+usar', r'c[oó]digo(?!\s+da\s+reserva)', r'token', r'senha', r'https?://', r'\.ics\b', r'\bical\b', r'POUSADA',
-            r'jo[aã]o\s+caixa', r'mariana\s+recep', r'\w@\w+\.\w', r'n[aã]o\s+consegue\s+ler', r'confira\s+o\s+link', r'n[aã]o\s+l[eê]\s+o\s+calend', r'confira\s+se\s+o\s+link']
+            r'jo[aã]o\s+caixa', r'mariana\s+recep', r'\w@\w+\.\w', r'n[aã]o\s+consegue\s+ler', r'confira\s+o\s+link', r'n[aã]o\s+l[eê]\s+o\s+calend', r'confira\s+se\s+o\s+link',
+            r'airbnb', r'booking', r'bloquead', r'conflito', r'com\s+sucesso']
 def ocr(png):
     return subprocess.run(['tesseract', png, '-', '-l', 'por', '--psm', '11'], capture_output=True, text=True).stdout
 def achados(texto, com_senha=True):

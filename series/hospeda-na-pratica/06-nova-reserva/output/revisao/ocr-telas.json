@@ -1,0 +1,87 @@
+{
+ "modo": "telas",
+ "quadros": 20,
+ "com_achados": {},
+ "todos": {
+  "cal-12-14.png": {
+   "achados": [],
+   "letras_lidas": 178
+  },
+  "cal-12.png": {
+   "achados": [],
+   "letras_lidas": 191
+  },
+  "cal-dez.png": {
+   "achados": [],
+   "letras_lidas": 194
+  },
+  "cal-nov.png": {
+   "achados": [],
+   "letras_lidas": 113
+  },
+  "cal-reserva.png": {
+   "achados": [],
+   "letras_lidas": 380
+  },
+  "criada.png": {
+   "achados": [],
+   "letras_lidas": 328
+  },
+  "escolhida-continuar.png": {
+   "achados": [],
+   "letras_lidas": 549
+  },
+  "escolhida.png": {
+   "achados": [],
+   "letras_lidas": 469
+  },
+  "inicio.png": {
+   "achados": [],
+   "letras_lidas": 398
+  },
+  "livres.png": {
+   "achados": [],
+   "letras_lidas": 466
+  },
+  "ocupada.png": {
+   "achados": [],
+   "letras_lidas": 658
+  },
+  "passo1.png": {
+   "achados": [],
+   "letras_lidas": 321
+  },
+  "passo2-novo.png": {
+   "achados": [],
+   "letras_lidas": 234
+  },
+  "passo2-preenchido.png": {
+   "achados": [],
+   "letras_lidas": 250
+  },
+  "passo3.png": {
+   "achados": [],
+   "letras_lidas": 405
+  },
+  "passo4-sinal.png": {
+   "achados": [],
+   "letras_lidas": 367
+  },
+  "passo4.png": {
+   "achados": [],
+   "letras_lidas": 327
+  },
+  "passo5.png": {
+   "achados": [],
+   "letras_lidas": 426
+  },
+  "pg-criada.png": {
+   "achados": [],
+   "letras_lidas": 353
+  },
+  "pg-escolhida.png": {
+   "achados": [],
+   "letras_lidas": 1394
+  }
+ }
+}

@@ -1,0 +1,332 @@
+{
+ "id": "hospeda-na-pratica-06-nova-reserva",
+ "marca": "@fazlohospeda",
+ "voz": {
+  "nome": "Alexa - Soft, Clear and Friendly",
+  "voice_id": "sXSV9RZ095VZyL64w3ap",
+  "modelo": "eleven_v4",
+  "stability": 0.5,
+  "similarity_boost": 0.75
+ },
+ "pronuncia": {
+  "Hospeda": "Hospéda",
+  "FAZLO": "Fázlo",
+  "PIX": "Pix",
+  "WhatsApp": "Uátsap",
+  "12 a 14": "doze a catorze",
+  "2": "dois"
+ },
+ "nota": "Roteiro aprovado em 25/11/2026 (etapa 1, commit 0c62029), com a troca aprovada: \"vinte e três segundos\" → \"em menos de meio minuto\" (o número exato fica só no cronômetro). Nenhum valor em dinheiro falado.",
+ "narracao": "Chegou pelo WhatsApp: tem vaga de 12 a 14 de dezembro, para 2? Desafio: lançar essa reserva no FAZLO Hospeda. Valendo! Toque no mais e escolha as datas. Escolha a acomodação, já com o total. Hóspede novo: só nome e WhatsApp. Valores conferidos. Sinal no PIX. Criar. E já está no calendário! Em menos de meio minuto. O sinal já entra no caixa, e o voucher fica pronto. Pediram a mesma suíte, nas mesmas datas? Ela nem aparece mais na lista. Reserva nova, em segundos. E no começo, a FAZLO configura tudo com você.",
+ "frases": [
+  {
+   "id": "g1",
+   "tokens": [
+    {
+     "fala": "Chegou pelo WhatsApp:",
+     "id": "whats",
+     "chave": true
+    },
+    {
+     "fala": "tem vaga de"
+    },
+    {
+     "fala": "12 a 14 de dezembro,",
+     "id": "datas",
+     "chave": true
+    },
+    {
+     "fala": "para 2?",
+     "id": "para2",
+     "chave": true
+    }
+   ],
+   "pausa": 0.7
+  },
+  {
+   "id": "desafio",
+   "tokens": [
+    {
+     "fala": "Desafio:",
+     "id": "desafio",
+     "chave": true
+    },
+    {
+     "fala": "lançar essa reserva no"
+    },
+    {
+     "fala": "FAZLO Hospeda.",
+     "id": "fazlo",
+     "chave": true
+    },
+    {
+     "fala": "Valendo!",
+     "id": "valendo",
+     "chave": true
+    }
+   ],
+   "pausa": 0.25
+  },
+  {
+   "id": "p3",
+   "tokens": [
+    {
+     "fala": "Toque no"
+    },
+    {
+     "fala": "mais",
+     "id": "mais",
+     "chave": true
+    },
+    {
+     "fala": "e escolha"
+    },
+    {
+     "fala": "as datas.",
+     "id": "datas2",
+     "chave": true
+    }
+   ],
+   "alvo": [
+    "inicio",
+    0.0
+   ]
+  },
+  {
+   "id": "p4",
+   "tokens": [
+    {
+     "fala": "Escolha a"
+    },
+    {
+     "fala": "acomodação,",
+     "id": "acomodacao",
+     "chave": true
+    },
+    {
+     "fala": "já com o"
+    },
+    {
+     "fala": "total.",
+     "id": "total",
+     "chave": true
+    }
+   ],
+   "alvo": [
+    "periodo",
+    0.05
+   ]
+  },
+  {
+   "id": "p5",
+   "tokens": [
+    {
+     "fala": "Hóspede novo:",
+     "id": "hospede",
+     "chave": true
+    },
+    {
+     "fala": "só"
+    },
+    {
+     "fala": "nome",
+     "id": "nome",
+     "chave": true
+    },
+    {
+     "fala": "e"
+    },
+    {
+     "fala": "WhatsApp.",
+     "id": "whats2",
+     "chave": true
+    }
+   ],
+   "alvo": [
+    "cadastrar_novo",
+    -0.3
+   ]
+  },
+  {
+   "id": "p6",
+   "tokens": [
+    {
+     "fala": "Valores",
+     "id": "valores",
+     "chave": true
+    },
+    {
+     "fala": "conferidos.",
+     "id": "conferidos"
+    }
+   ],
+   "alvo": [
+    "hospede",
+    0.1
+   ]
+  },
+  {
+   "id": "p7",
+   "tokens": [
+    {
+     "fala": "Sinal",
+     "id": "sinal",
+     "chave": true
+    },
+    {
+     "fala": "no"
+    },
+    {
+     "fala": "PIX.",
+     "id": "pix",
+     "chave": true
+    }
+   ],
+   "alvo": [
+    "valores",
+    0.5
+   ]
+  },
+  {
+   "id": "p8",
+   "tokens": [
+    {
+     "fala": "Criar.",
+     "id": "criar",
+     "chave": true
+    }
+   ],
+   "alvo": [
+    "criar",
+    -0.3
+   ]
+  },
+  {
+   "id": "p9",
+   "tokens": [
+    {
+     "fala": "E já está no"
+    },
+    {
+     "fala": "calendário!",
+     "id": "calendario",
+     "chave": true
+    }
+   ],
+   "alvo": [
+    "calendario",
+    -0.4
+   ],
+   "pausa": 1.0
+  },
+  {
+   "id": "p10",
+   "tokens": [
+    {
+     "fala": "Em",
+     "id": "emmenos"
+    },
+    {
+     "fala": "menos de meio minuto.",
+     "id": "meio",
+     "chave": true
+    }
+   ],
+   "pausa": 1.4
+  },
+  {
+   "id": "p11",
+   "tokens": [
+    {
+     "fala": "O"
+    },
+    {
+     "fala": "sinal",
+     "id": "sinal2",
+     "chave": true
+    },
+    {
+     "fala": "já entra no"
+    },
+    {
+     "fala": "caixa,",
+     "id": "caixa",
+     "chave": true
+    },
+    {
+     "fala": "e o"
+    },
+    {
+     "fala": "voucher",
+     "id": "voucher",
+     "chave": true
+    },
+    {
+     "fala": "fica pronto.",
+     "id": "pronto"
+    }
+   ],
+   "pausa": 1.8
+  },
+  {
+   "id": "p12",
+   "tokens": [
+    {
+     "fala": "Pediram a",
+     "id": "pediram"
+    },
+    {
+     "fala": "mesma suíte,",
+     "id": "mesma",
+     "chave": true
+    },
+    {
+     "fala": "nas mesmas datas?",
+     "id": "mesmas"
+    },
+    {
+     "fala": "Ela",
+     "id": "ela"
+    },
+    {
+     "fala": "nem aparece mais",
+     "id": "nem",
+     "chave": true
+    },
+    {
+     "fala": "na lista.",
+     "id": "lista"
+    }
+   ],
+   "pausa": 2.0
+  },
+  {
+   "id": "cta",
+   "tokens": [
+    {
+     "fala": "Reserva nova,",
+     "id": "nova"
+    },
+    {
+     "fala": "em segundos.",
+     "id": "segundos"
+    }
+   ],
+   "pausa": 0.6
+  },
+  {
+   "id": "cta2",
+   "tokens": [
+    {
+     "fala": "E no começo,",
+     "id": "comeco"
+    },
+    {
+     "fala": "a FAZLO configura tudo com você.",
+     "id": "configura"
+    }
+   ],
+   "pausa": 0.0
+  }
+ ]
+}

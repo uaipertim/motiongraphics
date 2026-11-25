@@ -1,6 +1,6 @@
-# Episódio 6: Nova reserva em segundos (etapa 1, para aprovação)
+# Episódio 6: Nova reserva em segundos (roteiro aprovado)
 
-**Status:** levantamento, estrutura, roteiro e linha do tempo **para aprovação**. Sem voz e sem render. Segue as [regras da série](../REGRAS.md). Vai ao ar na quarta, 02/12, às 19h ([programação](../PROGRAMACAO.md)). **Não publicar.**
+**Status:** etapa 1 aprovada em 25/11/2026 (commit 0c62029), com três ajustes: na voz, "em menos de meio minuto" no lugar de "vinte e três segundos"; nenhum quadro com o bloqueio do Airbnb ou o conflito (a cena chega direto à quinzena da reserva); e o passo 2 já na aba "Cadastrar novo". **Etapa 2 pronta:** narrada, montada e renderizada (61,6 s); ver o [README](README.md) e a seção 8. Segue as [regras da série](../REGRAS.md). Vai ao ar na quarta, 02/12, às 19h ([programação](../PROGRAMACAO.md)). **Não publicar.**
 
 ## 1. Levantamento do fluxo Nova reserva (Demo recarregada, 25/11/2026)
 
@@ -240,3 +240,47 @@ Não aparece nenhum e-mail, senha, código de autenticador, token ou link iCal. 
 
 ## 7. Fecho
 A logo do FAZLO Hospeda estoura em limão, sem nada encostando nela, com @fazlohospeda embaixo. A trilha resolve no último tempo, como nos episódios anteriores.
+
+## 8. Etapa 2: o que ficou no vídeo
+
+### A captura final, cronometrada (`scripts/capturar.cjs`, 25/11/2026)
+O ritmo é o aprovado: 0,7 s antes de cada toque, 8 letras por segundo, 1,2 s de leitura e 0,6 s de rolagem. O relógio conta só o tempo do fluxo.
+
+**Total:** **23,55 s**, dentro da faixa de 23,0 a 23,9 s.
+- A captura final é 0,4 s mais lenta que o levantamento.
+- O motivo são as medições dos toques e duas esperas curtas que o script de captura faz dentro do fluxo.
+
+| Parcial | Período | Acomodação | Hóspede | Valores | Sinal | Criada | Calendário |
+|---|---|---|---|---|---|---|---|
+| s | 4,45 | 8,01 | 14,34 | 16,28 | 19,16 | 21,12 | **23,55** |
+
+**O cronômetro na tela:**
+- mostra o relógio com um decimal: o total aparece como **23,5 s**, e cada trecho da barra, com o parcial medido;
+- no vídeo, o desafio vai de **10,55 s a 34,10 s**: 1 s de vídeo é 1 s de relógio, e as telas trocam nos instantes medidos;
+- `scripts/conferir.cjs` confere, quadro a quadro, que o relógio é exatamente o tempo do vídeo menos o início do desafio, e que ele para no total.
+
+**Ajustes aprovados, como ficaram:**
+1. **Voz:** "Em menos de meio minuto." O número exato fica só no cronômetro.
+2. **Calendário:**
+   - Depois do toque em "Ver no calendário", a tela da reserva criada fica parada até o instante em que a quinzena da reserva (08/12 – 21/12) entra de lado.
+   - Ela fica inteira no instante em que o relógio para: 23,55 s, o momento em que a reserva apareceu na quinzena certa.
+   - A quinzena de hoje, com o bloqueio do Airbnb e o conflito, **não foi capturada**. O relógio conta o trecho real, que inclui o toque em "Próximo".
+3. **Hóspede:** a cena entra direto em "Cadastrar novo", e a lista "Buscar existente" não foi capturada. O relógio conta o toque real na aba (0,75 s).
+
+### Voz e montagem
+- **Voz:** Alexa, eleven_v4, estabilidade 0,50, semelhança 0,75, seed 7100, numa tomada só, com 40,0 s de fala.
+  - Pela transcrição (ElevenLabs, speech-to-text), "WhatsApp", "Pix", "voucher" e os números saem certos.
+- **Montagem** (`scripts/linha.py`): a voz é cortada no meio do silêncio entre as frases, e nenhuma palavra é cortada nem acelerada.
+  - No desafio, cada frase começa no passo medido. "Toque no mais" começa 0,08 s depois do alvo, e as outras exatamente no alvo.
+  - Depois do desafio, as pausas foram alongadas para dar tempo de ler o tempo final, a volta calma e a lista sem a suíte.
+  - **Resultado:** 61,6 s.
+
+| Tempo (s) | O que acontece |
+|---|---|
+| 0,0–5,9 | O balão do pedido ("pelo WhatsApp"); "12 a 14" acende em limão (2,1). |
+| 5,9–10,5 | Selo da série e "Nova reserva em segundos"; o cronômetro entra em "00,0" e pisca em "Valendo!". |
+| 10,55–34,10 | **O desafio, em tempo real**, como na tabela acima. Janelas rápidas na lista de livres e no resumo; contornos no período, no total, no canal (WhatsApp) e em "Entra no caixa aberto"; digitação letra a letra do nome, do telefone e do sinal. |
+| 34,1–37,0 | O relógio para em **23,5 s**, os dígitos ficam limão e crescem até o meio; contorno no cartão "Lari…" da Bica D'Água 02. |
+| 39,1–43,7 | Volta calma, na tela da reserva criada: o cartão com o "Financeiro" (Sinal R$ 580,00 via PIX) e o contorno em "Ver voucher". |
+| 44,0–51,4 | Toque no "+" e o mesmo período: janela âmbar com "Livres no período · 9 de 10" e a Bica D'Água 01 seguida da 03. |
+| 51,4–61,6 | "Reserva nova, em segundos." A logo estoura, com "E no começo, a FAZLO configura tudo com você." e @fazlohospeda. |

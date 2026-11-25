@@ -1,0 +1,202 @@
+{
+ "data": "2026-11-25T01:46:47.004Z",
+ "proibidos": [
+  "/fazlodigital/i",
+  "/\\bDemo\\b/",
+  "/Demonstra/i",
+  "/senha/i",
+  "/c[oó]digo(?! da reserva)/i",
+  "/token/i",
+  "/Quero usar/",
+  "/\\.ics\\b/i",
+  "/\\bical\\b/i",
+  "/https?:\\/\\//i",
+  "/@/",
+  "/não consegue ler/i",
+  "/Confira o link/i",
+  "/não lê o calendário/i",
+  "/Confira se o link/i",
+  "/Jo[aã]o Caixa/",
+  "/Mariana Recep/"
+ ],
+ "canal_proibido_a_vista": [
+  "/Airbnb/i",
+  "/Booking/i",
+  "/Bloquead/i",
+  "/Conflito/i"
+ ],
+ "ritmo": {
+  "olhar_antes_do_toque_ms": 700,
+  "digitar_ms_por_letra": 125,
+  "ler_lista_ms": 1200,
+  "rolar_ms": 600
+ },
+ "telas": {
+  "inicio": {
+   "pagina_inteira": false,
+   "escondidos": 10,
+   "proibidos": 0,
+   "canal_a_vista": 0,
+   "texto_visivel": "44 pedaços"
+  },
+  "passo1": {
+   "pagina_inteira": false,
+   "escondidos": 5,
+   "proibidos": 0,
+   "canal_a_vista": 0,
+   "texto_visivel": "26 pedaços"
+  },
+  "cal-nov": {
+   "pagina_inteira": false,
+   "escondidos": 5,
+   "proibidos": 0,
+   "canal_a_vista": 0,
+   "texto_visivel": "67 pedaços"
+  },
+  "cal-dez": {
+   "pagina_inteira": false,
+   "escondidos": 5,
+   "proibidos": 0,
+   "canal_a_vista": 0,
+   "texto_visivel": "68 pedaços"
+  },
+  "cal-12": {
+   "pagina_inteira": false,
+   "escondidos": 5,
+   "proibidos": 0,
+   "canal_a_vista": 0,
+   "texto_visivel": "69 pedaços"
+  },
+  "cal-12-14": {
+   "pagina_inteira": false,
+   "escondidos": 5,
+   "proibidos": 0,
+   "canal_a_vista": 0,
+   "texto_visivel": "89 pedaços"
+  },
+  "livres": {
+   "pagina_inteira": false,
+   "escondidos": 5,
+   "proibidos": 0,
+   "canal_a_vista": 0,
+   "texto_visivel": "46 pedaços"
+  },
+  "escolhida": {
+   "pagina_inteira": false,
+   "escondidos": 5,
+   "proibidos": 0,
+   "canal_a_vista": 0,
+   "texto_visivel": "46 pedaços"
+  },
+  "pg-escolhida": {
+   "pagina_inteira": true,
+   "escondidos": 5,
+   "proibidos": 0,
+   "canal_a_vista": 0,
+   "texto_visivel": "140 pedaços"
+  },
+  "escolhida-continuar": {
+   "pagina_inteira": false,
+   "escondidos": 5,
+   "proibidos": 0,
+   "canal_a_vista": 0,
+   "texto_visivel": "61 pedaços"
+  },
+  "passo2-novo": {
+   "pagina_inteira": false,
+   "escondidos": 5,
+   "proibidos": 0,
+   "canal_a_vista": 0,
+   "texto_visivel": "20 pedaços"
+  },
+  "passo2-preenchido": {
+   "pagina_inteira": false,
+   "escondidos": 5,
+   "proibidos": 0,
+   "canal_a_vista": 0,
+   "texto_visivel": "20 pedaços"
+  },
+  "passo3": {
+   "pagina_inteira": false,
+   "escondidos": 5,
+   "proibidos": 0,
+   "canal_a_vista": 0,
+   "texto_visivel": "37 pedaços"
+  },
+  "passo4": {
+   "pagina_inteira": false,
+   "escondidos": 5,
+   "proibidos": 0,
+   "canal_a_vista": 0,
+   "texto_visivel": "29 pedaços"
+  },
+  "passo4-sinal": {
+   "pagina_inteira": false,
+   "escondidos": 5,
+   "proibidos": 0,
+   "canal_a_vista": 0,
+   "texto_visivel": "31 pedaços"
+  },
+  "passo5": {
+   "pagina_inteira": false,
+   "escondidos": 5,
+   "proibidos": 0,
+   "canal_a_vista": 0,
+   "texto_visivel": "41 pedaços"
+  },
+  "criada": {
+   "pagina_inteira": false,
+   "escondidos": 5,
+   "proibidos": 0,
+   "canal_a_vista": 0,
+   "texto_visivel": "31 pedaços"
+  },
+  "pg-criada": {
+   "pagina_inteira": true,
+   "escondidos": 5,
+   "proibidos": 0,
+   "canal_a_vista": 0,
+   "texto_visivel": "34 pedaços"
+  },
+  "cal-reserva": {
+   "pagina_inteira": false,
+   "escondidos": 5,
+   "proibidos": 0,
+   "canal_a_vista": 0,
+   "texto_visivel": "56 pedaços"
+  },
+  "ocupada": {
+   "pagina_inteira": false,
+   "escondidos": 5,
+   "proibidos": 0,
+   "canal_a_vista": 0,
+   "texto_visivel": "70 pedaços"
+  }
+ },
+ "canal": {
+  "faixa": "08/12 – 21/12",
+  "itens_na_quinzena_antes": [],
+  "itens_de_12_a_14_antes": [],
+  "itens_na_quinzena_depois": [
+   "Larissa Campos, confirmada"
+  ]
+ },
+ "total_s": 23.55,
+ "mesmo_periodo": {
+  "lista": [
+   "Bica D’Água 01",
+   "Bica D’Água 03",
+   "Bica D’Água 04",
+   "Chalé de Pedra 05",
+   "Chalé · até 6 pessoas",
+   "Chalé de Pedra 06",
+   "Chalé · até 6 pessoas",
+   "Chalé de Pedra 07",
+   "Chalé · até 6 pessoas",
+   "Ipê 08",
+   "Ipê 09",
+   "Chalé Serra 01",
+   "Chalé · até 3 pessoas"
+  ]
+ }
+}

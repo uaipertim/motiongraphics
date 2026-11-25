@@ -1,0 +1,436 @@
+{
+ "total_s": 23.55,
+ "eventos": [
+  {
+   "tipo": "toque",
+   "t": 0,
+   "nome": "mais",
+   "x": 585,
+   "y": 2424,
+   "rolagem": 0,
+   "ret": [
+    501,
+    2340,
+    669,
+    2508
+   ]
+  },
+  {
+   "tipo": "tela",
+   "t": 0.037,
+   "nome": "passo1"
+  },
+  {
+   "tipo": "toque",
+   "t": 0.749,
+   "nome": "entrada",
+   "x": 339,
+   "y": 1011,
+   "rolagem": 0,
+   "ret": [
+    111,
+    939,
+    567,
+    1083
+   ]
+  },
+  {
+   "tipo": "tela",
+   "t": 0.798,
+   "nome": "cal-nov"
+  },
+  {
+   "tipo": "toque",
+   "t": 1.508,
+   "nome": "proximo_mes",
+   "x": 891,
+   "y": 1464,
+   "rolagem": 0,
+   "ret": [
+    831,
+    1404,
+    951,
+    1524
+   ]
+  },
+  {
+   "tipo": "tela",
+   "t": 1.839,
+   "nome": "cal-dez"
+  },
+  {
+   "tipo": "toque",
+   "t": 2.548,
+   "nome": "dia12",
+   "x": 1046,
+   "y": 1794,
+   "rolagem": 0,
+   "ret": [
+    969,
+    1740,
+    1122,
+    1848
+   ]
+  },
+  {
+   "tipo": "tela",
+   "t": 2.734,
+   "nome": "cal-12"
+  },
+  {
+   "tipo": "toque",
+   "t": 3.445,
+   "nome": "dia14",
+   "x": 278,
+   "y": 1911,
+   "rolagem": 0,
+   "ret": [
+    201,
+    1857,
+    355,
+    1965
+   ]
+  },
+  {
+   "tipo": "tela",
+   "t": 3.691,
+   "nome": "cal-12-14"
+  },
+  {
+   "tipo": "toque",
+   "t": 4.404,
+   "nome": "confirmar",
+   "x": 585,
+   "y": 2412,
+   "rolagem": 0,
+   "ret": [
+    48,
+    2340,
+    1122,
+    2484
+   ]
+  },
+  {
+   "tipo": "tela",
+   "t": 4.446,
+   "nome": "livres"
+  },
+  {
+   "tipo": "parcial",
+   "t": 4.446,
+   "nome": "periodo"
+  },
+  {
+   "tipo": "toque",
+   "t": 6.361,
+   "nome": "acomodacao",
+   "x": 470,
+   "y": 2283,
+   "rolagem": 0,
+   "ret": [
+    258,
+    2247,
+    681,
+    2319
+   ]
+  },
+  {
+   "tipo": "tela",
+   "t": 6.639,
+   "nome": "escolhida"
+  },
+  {
+   "tipo": "rola",
+   "t": 6.642,
+   "nome": "ate_continuar",
+   "de": 0,
+   "fim": 7.253,
+   "para": 3237
+  },
+  {
+   "tipo": "toque",
+   "t": 7.968,
+   "nome": "continuar1",
+   "x": 770,
+   "y": 5625,
+   "rolagem": 3720,
+   "ret": [
+    481,
+    5541,
+    1059,
+    5709
+   ]
+  },
+  {
+   "tipo": "parcial",
+   "t": 8.005,
+   "nome": "acomodacao"
+  },
+  {
+   "tipo": "toque",
+   "t": 8.72,
+   "nome": "cadastrar_novo",
+   "x": 816,
+   "y": 933,
+   "rolagem": 252,
+   "ret": [
+    585,
+    873,
+    1047,
+    993
+   ]
+  },
+  {
+   "tipo": "tela",
+   "t": 8.752,
+   "nome": "passo2-novo"
+  },
+  {
+   "tipo": "toque",
+   "t": 9.464,
+   "nome": "nome",
+   "x": 585,
+   "y": 1203,
+   "rolagem": 252,
+   "ret": [
+    111,
+    1131,
+    1059,
+    1275
+   ]
+  },
+  {
+   "tipo": "digita",
+   "t": 9.498,
+   "nome": "nome",
+   "ret": [
+    111,
+    1131,
+    1059,
+    1275
+   ],
+   "letras": 14,
+   "fim": 11.386
+  },
+  {
+   "tipo": "toque",
+   "t": 12.099,
+   "nome": "fone",
+   "x": 585,
+   "y": 1461,
+   "rolagem": 252,
+   "ret": [
+    111,
+    1389,
+    1059,
+    1533
+   ]
+  },
+  {
+   "tipo": "digita",
+   "t": 12.129,
+   "nome": "fone",
+   "ret": [
+    111,
+    1389,
+    1059,
+    1533
+   ],
+   "letras": 11,
+   "fim": 13.567
+  },
+  {
+   "tipo": "tela",
+   "t": 13.567,
+   "nome": "passo2-preenchido"
+  },
+  {
+   "tipo": "toque",
+   "t": 14.28,
+   "nome": "continuar2",
+   "x": 735,
+   "y": 2205,
+   "rolagem": 252,
+   "ret": [
+    411,
+    2121,
+    1059,
+    2289
+   ]
+  },
+  {
+   "tipo": "tela",
+   "t": 14.339,
+   "nome": "passo3"
+  },
+  {
+   "tipo": "parcial",
+   "t": 14.339,
+   "nome": "hospede"
+  },
+  {
+   "tipo": "toque",
+   "t": 16.256,
+   "nome": "continuar3",
+   "x": 735,
+   "y": 2088,
+   "rolagem": 183,
+   "ret": [
+    411,
+    2004,
+    1059,
+    2172
+   ]
+  },
+  {
+   "tipo": "tela",
+   "t": 16.283,
+   "nome": "passo4"
+  },
+  {
+   "tipo": "parcial",
+   "t": 16.283,
+   "nome": "valores"
+  },
+  {
+   "tipo": "toque",
+   "t": 16.994,
+   "nome": "sinal",
+   "x": 481,
+   "y": 1035,
+   "rolagem": 231,
+   "ret": [
+    247,
+    969,
+    714,
+    1101
+   ]
+  },
+  {
+   "tipo": "digita",
+   "t": 17.041,
+   "nome": "sinal",
+   "ret": [
+    247,
+    969,
+    714,
+    1101
+   ],
+   "letras": 3,
+   "fim": 17.435
+  },
+  {
+   "tipo": "toque",
+   "t": 18.147,
+   "nome": "pix",
+   "x": 342,
+   "y": 1329,
+   "rolagem": 231,
+   "ret": [
+    111,
+    1257,
+    573,
+    1401
+   ]
+  },
+  {
+   "tipo": "tela",
+   "t": 18.424,
+   "nome": "passo4-sinal"
+  },
+  {
+   "tipo": "toque",
+   "t": 19.135,
+   "nome": "continuar4",
+   "x": 735,
+   "y": 2244,
+   "rolagem": 231,
+   "ret": [
+    411,
+    2160,
+    1059,
+    2328
+   ]
+  },
+  {
+   "tipo": "tela",
+   "t": 19.16,
+   "nome": "passo5"
+  },
+  {
+   "tipo": "parcial",
+   "t": 19.16,
+   "nome": "sinal"
+  },
+  {
+   "tipo": "toque",
+   "t": 21.072,
+   "nome": "criar",
+   "x": 735,
+   "y": 2001,
+   "rolagem": 96,
+   "ret": [
+    411,
+    1917,
+    1059,
+    2085
+   ]
+  },
+  {
+   "tipo": "tela",
+   "t": 21.124,
+   "nome": "criada"
+  },
+  {
+   "tipo": "parcial",
+   "t": 21.124,
+   "nome": "criada"
+  },
+  {
+   "tipo": "rola",
+   "t": 21.127,
+   "nome": "ate_ver_no_calendario",
+   "de": 0,
+   "fim": 21.738,
+   "para": 723
+  },
+  {
+   "tipo": "toque",
+   "t": 22.45,
+   "nome": "ver_no_calendario",
+   "x": 299,
+   "y": 2652,
+   "rolagem": 723,
+   "ret": [
+    147,
+    2628,
+    450,
+    2676
+   ]
+  },
+  {
+   "tipo": "toque",
+   "t": 23.507,
+   "nome": "proximo",
+   "x": 1056,
+   "y": 606,
+   "rolagem": 0,
+   "ret": [
+    990,
+    540,
+    1122,
+    672
+   ]
+  },
+  {
+   "tipo": "tela",
+   "t": 23.548,
+   "nome": "cal-reserva"
+  },
+  {
+   "tipo": "parcial",
+   "t": 23.548,
+   "nome": "calendario"
+  }
+ ]
+}

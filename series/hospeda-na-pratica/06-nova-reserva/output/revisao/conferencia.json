@@ -1,0 +1,15 @@
+{
+ "quadros": 3694,
+ "comLegenda": 2154,
+ "quadrosComLogoECronometro": 0,
+ "desafio_s": [
+  10.55,
+  34.1
+ ],
+ "cronometro_total_s": 23.55,
+ "relogio_desvio_max_s": 0,
+ "menorDistanciaLegendaJanela": 276,
+ "menorDistanciaLegendaPalco": 35,
+ "menorDistanciaLegendaToque": 35,
+ "erros": []
+}
