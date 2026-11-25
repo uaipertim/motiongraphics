@@ -67,7 +67,7 @@ Segue as [regras da série](../REGRAS.md). O roteiro aprovado (etapa 1, commit 0
 - **Texto da página:** o texto proibido de sempre foi conferido antes de salvar cada uma das 20 capturas, sem nenhum achado. A única exceção é "Código da reserva".
 - **OCR (Tesseract 5.3.4, português, instalado e conferido):**
   - capturas: 20, sem achados (`ocr-telas.json`);
-  - vídeo: 221 quadros, um a cada 0,25 s, sem achados, com 28 a 578 letras lidas por quadro (`ocr-video.json`);
+  - vídeo: 223 quadros, um a cada 0,25 s, sem achados, com 10 a 570 letras lidas por quadro (`ocr-video.json`);
   - capa: sem achados.
   - Além do texto proibido, o OCR procura bloqueio de canal, conflito e "com sucesso".
 - **Toques e destaques** (`avisos.json`): 88 instantes de toque, contorno, janela e marca, sem nenhum problema. Todos ficam na parte visível do celular.

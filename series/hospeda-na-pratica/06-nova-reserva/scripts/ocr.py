@@ -14,8 +14,8 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PROIBIDO = [r'fazlo\s*digital', r'\bdemo\b', r'demonstra', r'quero\s+usar', r'c[oó]digo(?!\s+da\s+reserva)', r'token', r'senha', r'https?://', r'\.ics\b', r'\bical\b', r'POUSADA',
             r'jo[aã]o\s+caixa', r'mariana\s+recep', r'\w@\w+\.\w', r'n[aã]o\s+consegue\s+ler', r'confira\s+o\s+link', r'n[aã]o\s+l[eê]\s+o\s+calend', r'confira\s+se\s+o\s+link',
             r'airbnb', r'booking', r'bloquead', r'conflito', r'com\s+sucesso']
-def ocr(png):
-    return subprocess.run(['tesseract', png, '-', '-l', 'por', '--psm', '11'], capture_output=True, text=True).stdout
+def ocr(png):   # um thread por tesseract: dois OCRs ao mesmo tempo, com vários threads cada, ficam centenas de vezes mais lentos
+    return subprocess.run(['tesseract', png, '-', '-l', 'por', '--psm', '11'], capture_output=True, text=True, env={**os.environ, 'OMP_THREAD_LIMIT': '1'}).stdout
 def achados(texto, com_senha=True):
     out = []
     for p in PROIBIDO:
