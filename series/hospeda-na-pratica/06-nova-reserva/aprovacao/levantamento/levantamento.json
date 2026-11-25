@@ -1,0 +1,186 @@
+{
+ "data": "2026-11-25T01:37:10.905Z",
+ "ritmo": {
+  "olhar_antes_do_toque_ms": 700,
+  "digitar_ms_por_letra": 125,
+  "ler_lista_ms": 1200,
+  "rolar_ms": 600
+ },
+ "dados": {
+  "entrada": "sábado, 12 de dezembro de 2026",
+  "saida": "segunda-feira, 14 de dezembro de 2026",
+  "acomodacao": "Bica D’Água 02",
+  "nome": "Larissa Campos",
+  "whatsapp": "(11) 90000-0021",
+  "sinal": "580",
+  "forma": "PIX"
+ },
+ "proibidos": [
+  "/fazlodigital/i",
+  "/\\bDemo\\b/",
+  "/Demonstra/i",
+  "/senha/i",
+  "/c[oó]digo(?! da reserva)/i",
+  "/token/i",
+  "/Quero usar/",
+  "/\\.ics\\b/i",
+  "/\\bical\\b/i",
+  "/https?:\\/\\//i",
+  "/@/",
+  "/não consegue ler/i",
+  "/Confira o link/i",
+  "/não lê o calendário/i",
+  "/Confira se o link/i",
+  "/Jo[aã]o Caixa/",
+  "/Mariana Recep/"
+ ],
+ "capturas": {
+  "00-calendario-dez-antes": {
+   "legenda": "Calendário, 08/12 a 21/12, antes: nenhum bloqueio de canal e nenhuma reserva",
+   "escondidos": 10,
+   "proibidos": 0,
+   "pagina_inteira": false
+  },
+  "01-inicio": {
+   "legenda": "Início: o \"+\" da barra de baixo (Nova reserva)",
+   "escondidos": 10,
+   "proibidos": 0,
+   "pagina_inteira": false
+  },
+  "02-passo1": {
+   "legenda": "Passo 1 de 5 · Período e acomodação (vazio)",
+   "escondidos": 5,
+   "proibidos": 0,
+   "pagina_inteira": false
+  },
+  "03-calendario-nov": {
+   "legenda": "Toque em Entrada: o calendário sobe (novembro, hoje 24)",
+   "escondidos": 5,
+   "proibidos": 0,
+   "pagina_inteira": false
+  },
+  "04-calendario-12-14": {
+   "legenda": "Dezembro: 12/12 → 14/12 escolhidos",
+   "escondidos": 5,
+   "proibidos": 0,
+   "pagina_inteira": false
+  },
+  "05-livres": {
+   "legenda": "Livres no período · 10 de 10, com o total de cada uma",
+   "escondidos": 5,
+   "proibidos": 0,
+   "pagina_inteira": true
+  },
+  "06-escolhida": {
+   "legenda": "Bica D’Água 02 escolhida: o Continuar fica preto",
+   "escondidos": 5,
+   "proibidos": 0,
+   "pagina_inteira": false
+  },
+  "06b-escolhida-continuar": {
+   "legenda": "Rolando até o Continuar (fim da lista)",
+   "escondidos": 5,
+   "proibidos": 0,
+   "pagina_inteira": false
+  },
+  "08-passo2-novo": {
+   "legenda": "Passo 2 de 5 · Hóspede: Cadastrar novo (Nome *, WhatsApp / Telefone *, CPF e Cidade opcionais)",
+   "escondidos": 5,
+   "proibidos": 0,
+   "pagina_inteira": false
+  },
+  "09-passo2-preenchido": {
+   "legenda": "Hóspede novo: Larissa Campos, (11) 90000-0021 (DIGITADO)",
+   "escondidos": 5,
+   "proibidos": 0,
+   "pagina_inteira": false
+  },
+  "10-passo3": {
+   "legenda": "Passo 3 de 5 · Valores: diárias, desconto, acréscimo, canal de origem e status",
+   "escondidos": 5,
+   "proibidos": 0,
+   "pagina_inteira": true
+  },
+  "11-passo4": {
+   "legenda": "Passo 4 de 5 · Sinal (opcional) e forma de pagamento",
+   "escondidos": 5,
+   "proibidos": 0,
+   "pagina_inteira": false
+  },
+  "12-passo4-sinal": {
+   "legenda": "Sinal R$ 580,00 (DIGITADO) via PIX: entra no caixa aberto",
+   "escondidos": 5,
+   "proibidos": 0,
+   "pagina_inteira": false
+  },
+  "13-passo5": {
+   "legenda": "Passo 5 de 5 · Resumo, com o botão \"Criar com sinal R$ 580,00\"",
+   "escondidos": 5,
+   "proibidos": 0,
+   "pagina_inteira": false
+  },
+  "14-criada": {
+   "legenda": "Reserva Criada!: código, hóspede, acomodação, período, financeiro e atalhos",
+   "escondidos": 5,
+   "proibidos": 0,
+   "pagina_inteira": true
+  },
+  "15-calendario-hoje": {
+   "legenda": "\"Ver no calendário\" abre o calendário em 24/11–07/12 (a reserva ainda não aparece)",
+   "escondidos": 5,
+   "proibidos": 0,
+   "pagina_inteira": false
+  },
+  "16-calendario-dez": {
+   "legenda": "Próximo: 08/12–21/12, a reserva da Larissa na Bica D’Água 02 (12 → 14)",
+   "escondidos": 5,
+   "proibidos": 0,
+   "pagina_inteira": false
+  },
+  "17-ocupada": {
+   "legenda": "O mesmo período de novo: Livres no período · 9 de 10, sem a Bica D’Água 02",
+   "escondidos": 5,
+   "proibidos": 0,
+   "pagina_inteira": true
+  }
+ },
+ "textos": {
+  "00-calendario-dez-antes": "Início\nCalendário\nComandas\nMais\nHospeda\n9+\nReservas\nLista\nCalendário\n08/12 – 21/12\nDia\nSemana\n14 dias\nVoltar para hoje\nFiltros\nTer\n08\nQua\n09\nQui\n10\nSex\n11\nSáb\n12\nDom\n13\nSeg\n14\nTer\n15\nQua\n16\nQui\n17\nSex\n18\nSáb\n19\nDom\n20\nSeg\n21\nSuíte\nBica D’Água\n 01\nSuíte\nBica D’Água\n 02\nSuíte\nBica D’Água\n 03\nSuíte\nBica D’Água\n 04\nChalé\nChalé de Pedra\n 05\nChalé\nChalé de Pedra\n 06\nChalé\nChalé de Pedra\n 07\nQuarto\nIpê\n 08\nQuarto\nIpê\n 09\nChalé\nChalé Serra\n 01\nInativa\nPedra\n 06\nDeslize a grade para o lado para ver até 21/12.\nHospedada\nConfirmada\nPré-reserva\nFinalizada\nSaída em atraso\nBloqueada\nSaldo em aberto",
+  "01-inicio": "Início\nCalendário\nComandas\nMais\nHospeda\n9+\nHoje na pousada\nRecebido hoje\nCaixa aberto desde\n08:00\nVer o que foi recebido hoje\nR$ 1.525,00\nPIX\nR$ 900,00\nDinheiro\nR$ 125,00\nCrédito\nR$ 380,00\nDébito\nR$ 120,00\nA receber nas saídas de hoje\nR$ 0,00\n· saídas quitadas\nHospedados\n10\nhóspedes\nChegadas\n2\n1 concluída\nSaídas\n2\n1 concluída\nSaídas de hoje\n1 de 2 concluídas\nC\nCarlos\nBica D’Água 02 · saída às 10:15\nConcluído\nB\nBeatriz\nBica D’Água 03 · saída até 12:00\nsaldo quitado\nCheck-out\nChegadas de hoje\n2\nThiago Oliveira\nBica D’Água 04 · entrada às 14:30\nConcluído\nHelena Duarte\nIpê 08 · entrada a partir de 14:00 · 2 hóspedes\na receber R$ 900,00\nFazer check-in\nPrecisa de atenção\n4\nCheck-out em atraso\nLucas Martins · Chalé de Pedra 06\nSaída prevista ontem, 23/11\nFazer check-out\nConflito com o Airbnb\nChalé de Pedra 05 · 28/11 a 01/12: o Airbnb tem estas datas ocupadas, mas o Hospeda já tem outra reserva ou bloqueio. Nada foi cancelado. Confira e resolva.\nAbrir a reserva do Hospeda\nReserva vencida sem check-in\nRafael Teixeira · Chalé de Pedra 05\n19/11 a 22/11: o período já passou e não houve check-in. Se o hóspede veio, regularize; senão, cancele.\nRegularizar estadia\nAbrir a reserva\nVer todos (4)",
+  "02-passo1": "Início\nCalendário\nComandas\nMais\nHospeda\n9+\nReservas\nNova reserva\nPasso 1 de 5 · Período e acomodação\nEntrada\nSaída\nEscolha a entrada e a saída · entrada a partir das 14:00 · saída até às 12:00\nAdultos\n2\nCrianças\n0\nViaja com Pet\nCancelar\nContinuar",
+  "03-calendario-nov": "Início\nCalendário\nComandas\nMais\nHospeda\n9+\nReservas\nNova reserva\nPasso 1 de 5 · Período e acomodação\nEntrada\nSaída\nEscolha a entrada e a saída · entrada a partir das 14:00 · saída até às 12:00\nAdultos\n2\nCrianças\n0\nViaja com Pet\nCancelar\nContinuar\nNovembro de 2026\nHoje\nDom\nSeg\nTer\nQua\nQui\nSex\nSáb\n1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n14\n15\n16\n17\n18\n19\n20\n21\n22\n23\n24\n25\n26\n27\n28\n29\n30\nEscolha a entrada →\nConfirmar período",
+  "04-calendario-12-14": "Início\nCalendário\nComandas\nMais\nHospeda\n9+\nReservas\nNova reserva\nPasso 1 de 5 · Período e acomodação\nEntrada\nSaída\n2 diárias · entrada a partir das 14:00 · saída até às 12:00\nAdultos\n2\nCrianças\n0\nViaja com Pet\nLivres no período · 10 de 10\nBica D’Água 01\nSuíte · até 2 pessoas\nTotal do período R$ 1.160,00 · 2 noites\nR$ 480,00\ndiária de semana\nBica D’Água 02\nSuíte · até 2 pessoas\nTotal do período R$ 1.160,00 · 2 noites\nR$ 480,00\ndiária de semana\nBica D’Água 03\nSuíte · até 3 pessoas\nTotal do período R$ 1.160,00 · 2 noites\nR$ 480,00\ndiária de semana\nBica D’Água 04\nSuíte · até 2 pessoas\nTotal do período R$ 1.160,00 · 2 noites\nR$ 480,00\ndiária de semana\nChalé de Pedra 05\nChalé · até 6 pessoas\nTotal do período R$ 1.440,00 · 2 noites\nR$ 620,00\ndiária de semana\nChalé de Pedra 06\nChalé · até 6 pessoas\nTotal do período R$ 1.440,00 · 2 noites\nR$ 620,00\ndiária de semana\nChalé de Pedra 07\nChalé · até 6 pessoas\nTotal do período R$ 1.440,00 · 2 noites\nR$ 620,00\ndiária de semana\nIpê 08\nQuarto · até 2 pessoas\nTotal do período R$ 1.040,00 · 2 noites\nR$ 450,00\ndiária de semana\nIpê 09\nQuarto · até 2 pessoas\nTotal do período R$ 1.040,00 · 2 noites\nR$ 450,00\ndiária de semana\nChalé Serra 01\nChalé · até 3 pessoas\nTotal do período R$ 900,00 · 2 noites\nR$ 350,00\ndiária de semana\nCancelar\nContinuar\nDezembro de 2026\nHoje\nDom\nSeg\nTer\nQua\nQui\nSex\nSáb\n1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n14\n15\n16\n17\n18\n19\n20\n21\n22\n23\n24\n25\n26\n27\n28\n29\n30\n31\n12/12 → 14/12\nConfirmar período",
+  "05-livres": "Início\nCalendário\nComandas\nMais\nHospeda\n9+\nReservas\nNova reserva\nPasso 1 de 5 · Período e acomodação\nEntrada\nSaída\n2 diárias · entrada a partir das 14:00 · saída até às 12:00\nAdultos\n2\nCrianças\n0\nViaja com Pet\nLivres no período · 10 de 10\nBica D’Água 01\nSuíte · até 2 pessoas\nTotal do período R$ 1.160,00 · 2 noites\nR$ 480,00\ndiária de semana\nBica D’Água 02\nSuíte · até 2 pessoas\nTotal do período R$ 1.160,00 · 2 noites\nR$ 480,00\ndiária de semana\nBica D’Água 03\nSuíte · até 3 pessoas\nTotal do período R$ 1.160,00 · 2 noites\nR$ 480,00\ndiária de semana\nBica D’Água 04\nSuíte · até 2 pessoas\nTotal do período R$ 1.160,00 · 2 noites\nR$ 480,00\ndiária de semana\nChalé de Pedra 05\nChalé · até 6 pessoas\nTotal do período R$ 1.440,00 · 2 noites\nR$ 620,00\ndiária de semana\nChalé de Pedra 06\nChalé · até 6 pessoas\nTotal do período R$ 1.440,00 · 2 noites\nR$ 620,00\ndiária de semana\nChalé de Pedra 07\nChalé · até 6 pessoas\nTotal do período R$ 1.440,00 · 2 noites\nR$ 620,00\ndiária de semana\nIpê 08\nQuarto · até 2 pessoas\nTotal do período R$ 1.040,00 · 2 noites\nR$ 450,00\ndiária de semana\nIpê 09\nQuarto · até 2 pessoas\nTotal do período R$ 1.040,00 · 2 noites\nR$ 450,00\ndiária de semana\nChalé Serra 01\nChalé · até 3 pessoas\nTotal do período R$ 900,00 · 2 noites\nR$ 350,00\ndiária de semana\nCancelar\nContinuar",
+  "06-escolhida": "Início\nCalendário\nComandas\nMais\nHospeda\n9+\nReservas\nNova reserva\nPasso 1 de 5 · Período e acomodação\nEntrada\nSaída\n2 diárias · entrada a partir das 14:00 · saída até às 12:00\nAdultos\n2\nCrianças\n0\nViaja com Pet\nLivres no período · 10 de 10\nBica D’Água 01\nSuíte · até 2 pessoas\nTotal do período R$ 1.160,00 · 2 noites\nR$ 480,00\ndiária de semana\nBica D’Água 02\nSuíte · até 2 pessoas\nTotal do período R$ 1.160,00 · 2 noites\nR$ 480,00\ndiária de semana\nBica D’Água 03\nSuíte · até 3 pessoas\nTotal do período R$ 1.160,00 · 2 noites\nR$ 480,00\ndiária de semana\nBica D’Água 04\nSuíte · até 2 pessoas\nTotal do período R$ 1.160,00 · 2 noites\nR$ 480,00\ndiária de semana\nChalé de Pedra 05\nChalé · até 6 pessoas\nTotal do período R$ 1.440,00 · 2 noites\nR$ 620,00\ndiária de semana\nChalé de Pedra 06\nChalé · até 6 pessoas\nTotal do período R$ 1.440,00 · 2 noites\nR$ 620,00\ndiária de semana\nChalé de Pedra 07\nChalé · até 6 pessoas\nTotal do período R$ 1.440,00 · 2 noites\nR$ 620,00\ndiária de semana\nIpê 08\nQuarto · até 2 pessoas\nTotal do período R$ 1.040,00 · 2 noites\nR$ 450,00\ndiária de semana\nIpê 09\nQuarto · até 2 pessoas\nTotal do período R$ 1.040,00 · 2 noites\nR$ 450,00\ndiária de semana\nChalé Serra 01\nChalé · até 3 pessoas\nTotal do período R$ 900,00 · 2 noites\nR$ 350,00\ndiária de semana\nCancelar\nContinuar",
+  "06b-escolhida-continuar": "Início\nCalendário\nComandas\nMais\nHospeda\n9+\nReservas\nNova reserva\nPasso 1 de 5 · Período e acomodação\nEntrada\nSaída\n2 diárias · entrada a partir das 14:00 · saída até às 12:00\nAdultos\n2\nCrianças\n0\nViaja com Pet\nLivres no período · 10 de 10\nBica D’Água 01\nSuíte · até 2 pessoas\nTotal do período R$ 1.160,00 · 2 noites\nR$ 480,00\ndiária de semana\nBica D’Água 02\nSuíte · até 2 pessoas\nTotal do período R$ 1.160,00 · 2 noites\nR$ 480,00\ndiária de semana\nBica D’Água 03\nSuíte · até 3 pessoas\nTotal do período R$ 1.160,00 · 2 noites\nR$ 480,00\ndiária de semana\nBica D’Água 04\nSuíte · até 2 pessoas\nTotal do período R$ 1.160,00 · 2 noites\nR$ 480,00\ndiária de semana\nChalé de Pedra 05\nChalé · até 6 pessoas\nTotal do período R$ 1.440,00 · 2 noites\nR$ 620,00\ndiária de semana\nChalé de Pedra 06\nChalé · até 6 pessoas\nTotal do período R$ 1.440,00 · 2 noites\nR$ 620,00\ndiária de semana\nChalé de Pedra 07\nChalé · até 6 pessoas\nTotal do período R$ 1.440,00 · 2 noites\nR$ 620,00\ndiária de semana\nIpê 08\nQuarto · até 2 pessoas\nTotal do período R$ 1.040,00 · 2 noites\nR$ 450,00\ndiária de semana\nIpê 09\nQuarto · até 2 pessoas\nTotal do período R$ 1.040,00 · 2 noites\nR$ 450,00\ndiária de semana\nChalé Serra 01\nChalé · até 3 pessoas\nTotal do período R$ 900,00 · 2 noites\nR$ 350,00\ndiária de semana\nCancelar\nContinuar",
+  "07-passo2-lista": "Início\nCalendário\nComandas\nMais\nHospeda\n9+\nReservas\nNova reserva\nPasso 2 de 5 · Hóspede\nBuscar existente\nCadastrar novo\nBuscar hóspede\nCarlos Henrique Silva\n(telefone) · São Paulo - SP\nFernanda Alves\n(telefone) · Rio de Janeiro - RJ\nMariana Souza\n(telefone) · Belo Horizonte - MG\nThiago Oliveira\n(telefone) · Campinas - SP\nAna Julia Costa\n(telefone) · Recife - PE\nRoberto Silveira\n(telefone) · Curitiba - PR\nJoão Ferreira\n(telefone) · São Paulo - SP\nCamila Guimarães\n(telefone) · Ouro Preto - MG\nMarcelo Peixoto\n(telefone) · Joinville - SC\nBeatriz Nogueira\n(telefone) · São Paulo - SP\nLucas Martins\n(telefone) · São Paulo - SP\nPatrícia Ribeiro\n(telefone) · São Paulo - SP\nHelena Duarte\n(telefone) · Campinas - SP\nRafael Monteiro\n(telefone) · Santos - SP\nSofia Andrade\n(telefone) · Sorocaba - SP\nRafael Teixeira\n(telefone) · Itu - SP\nVoltar\nContinuar",
+  "08-passo2-novo": "Início\nCalendário\nComandas\nMais\nHospeda\n9+\nReservas\nNova reserva\nPasso 2 de 5 · Hóspede\nBuscar existente\nCadastrar novo\nNome *\nWhatsApp / Telefone *\nCPF (Opcional)\nCidade (Opcional)\nVoltar\nContinuar",
+  "09-passo2-preenchido": "Início\nCalendário\nComandas\nMais\nHospeda\n9+\nReservas\nNova reserva\nPasso 2 de 5 · Hóspede\nBuscar existente\nCadastrar novo\nNome *\nWhatsApp / Telefone *\nCPF (Opcional)\nCidade (Opcional)\nVoltar\nContinuar",
+  "10-passo3": "Início\nCalendário\nComandas\nMais\nHospeda\n9+\nReservas\nNova reserva\nPasso 3 de 5 · Valores\nBica D’Água 02 · 12/12 → 14/12 · 2 diárias\nSáb · 12/12\nfim de semana\nR$ 580,00\nDom · 13/12\nfim de semana\nR$ 580,00\nTotal das diárias\nR$ 1.160,00\nDesconto (R$)\nAcréscimo (R$)\nCanal de Origem\nWhatsApp\nBalcão\nSite\nStatus da reserva\nConfirmada\nPré-reserva (pendente)\nVoltar\nContinuar",
+  "11-passo4": "Início\nCalendário\nComandas\nMais\nHospeda\n9+\nReservas\nNova reserva\nPasso 4 de 5 · Sinal\nSinal (opcional)\nR$\nSem sinal\nForma de pagamento\nPIX\nDinheiro\nCartão de débito\nCartão de crédito\nTransferência\nOutro\nA reserva nasce confirmada · saldo R$ 1.160,00\nVoltar\nContinuar",
+  "12-passo4-sinal": "Início\nCalendário\nComandas\nMais\nHospeda\n9+\nReservas\nNova reserva\nPasso 4 de 5 · Sinal\nSinal (opcional)\nR$\nSem sinal\nForma de pagamento\nPIX\nDinheiro\nCartão de débito\nCartão de crédito\nTransferência\nOutro\nEntra no caixa aberto · hoje,\n24/11\nA reserva nasce confirmada · saldo R$ 580,00\nVoltar\nContinuar",
+  "13-passo5": "Início\nCalendário\nComandas\nMais\nHospeda\n9+\nReservas\nNova reserva\nPasso 5 de 5 · Resumo\nHóspede\nLarissa Campos · novo\nAcomodação\nBica D’Água 02\nPeríodo\n12/12 → 14/12 · 2 adultos\nDiárias · 2 diárias\nR$ 1.160,00\nTotal da reserva\nR$ 1.160,00\nSinal · PIX\n- R$ 580,00\nSaldo\nR$ 580,00\nNasce como\nConfirmada\nSinal entra no caixa aberto · hoje,\n24/11\nVoltar\nCriar com sinal R$ 580,00",
+  "14-criada": "Início\nCalendário\nComandas\nMais\nHospeda\n9+\nReservas\nReserva Criada!\nCódigo da reserva: FHZ-YG0PE3\nHóspede\nLarissa Campos\n(11) 90000-0021\nAcomodação\nBica D’Água 02\nSuíte\nPeríodo\n12/12/2026 → 14/12/2026\n2 diárias\nFinanceiro\nTotal: R$ 1.160,00\nSinal: R$ 580,00 via PIX\nVer reserva\nVer voucher\nBaixar PDF\nEnviar por e-mail\nVer no calendário\nCriar outra reserva",
+  "15-calendario-hoje": "Início\nCalendário\nComandas\nMais\nHospeda\n9+\nReservas\nLista\nCalendário\n24/11 – 07/12\nDia\nSemana\n14 dias\nFiltros\nHoje\n24\nQua\n25\nQui\n26\nSex\n27\nSáb\n28\nDom\n29\nSeg\n30\nTer\n01\nQua\n02\nQui\n03\nSex\n04\nSáb\n05\nDom\n06\nSeg\n07\nSuíte\nBica D’Água\n 01\nAna\nAirbnb\nOcupado pelo Airbnb\nSuíte\nBica D’Água\n 02\nCarlos\nSofia\nSuíte\nBica D’Água\n 03\nCamila\nBeatriz\nSuíte\nBica D’Água\n 04\nThiago\nChalé\nChalé de Pedra\n 05\nRoberto\nConflito com o Airbnb\nChalé\nChalé de Pedra\n 06\nFernanda\nLucas\nChalé\nChalé de Pedra\n 07\nRafael\nManutenção preventiva\nQuarto\nIpê\n 08\nHelena\nQuarto\nIpê\n 09\nPatrícia\nChalé\nChalé Serra\n 01\nJoão\nInativa\nPedra\n 06\nDeslize a grade para o lado para ver até 07/12.\nHospedada\nConfirmada\nPré-reserva\nFinalizada\nSaída em atraso\nBloqueada\nSaldo em aberto",
+  "16-calendario-dez": "Início\nCalendário\nComandas\nMais\nHospeda\n9+\nReservas\nLista\nCalendário\n08/12 – 21/12\nDia\nSemana\n14 dias\nVoltar para hoje\nFiltros\nTer\n08\nQua\n09\nQui\n10\nSex\n11\nSáb\n12\nDom\n13\nSeg\n14\nTer\n15\nQua\n16\nQui\n17\nSex\n18\nSáb\n19\nDom\n20\nSeg\n21\nSuíte\nBica D’Água\n 01\nSuíte\nBica D’Água\n 02\nLarissa\nSuíte\nBica D’Água\n 03\nSuíte\nBica D’Água\n 04\nChalé\nChalé de Pedra\n 05\nChalé\nChalé de Pedra\n 06\nChalé\nChalé de Pedra\n 07\nQuarto\nIpê\n 08\nQuarto\nIpê\n 09\nChalé\nChalé Serra\n 01\nInativa\nPedra\n 06\nDeslize a grade para o lado para ver até 21/12.\nHospedada\nConfirmada\nPré-reserva\nFinalizada\nSaída em atraso\nBloqueada\nSaldo em aberto",
+  "17-ocupada": "Início\nCalendário\nComandas\nMais\nHospeda\n9+\nReservas\nNova reserva\nPasso 1 de 5 · Período e acomodação\nEntrada\nSaída\n2 diárias · entrada a partir das 14:00 · saída até às 12:00\nAdultos\n2\nCrianças\n0\nViaja com Pet\nLivres no período · 9 de 10\nBica D’Água 01\nSuíte · até 2 pessoas\nTotal do período R$ 1.160,00 · 2 noites\nR$ 480,00\ndiária de semana\nBica D’Água 03\nSuíte · até 3 pessoas\nTotal do período R$ 1.160,00 · 2 noites\nR$ 480,00\ndiária de semana\nBica D’Água 04\nSuíte · até 2 pessoas\nTotal do período R$ 1.160,00 · 2 noites\nR$ 480,00\ndiária de semana\nChalé de Pedra 05\nChalé · até 6 pessoas\nTotal do período R$ 1.440,00 · 2 noites\nR$ 620,00\ndiária de semana\nChalé de Pedra 06\nChalé · até 6 pessoas\nTotal do período R$ 1.440,00 · 2 noites\nR$ 620,00\ndiária de semana\nChalé de Pedra 07\nChalé · até 6 pessoas\nTotal do período R$ 1.440,00 · 2 noites\nR$ 620,00\ndiária de semana\nIpê 08\nQuarto · até 2 pessoas\nTotal do período R$ 1.040,00 · 2 noites\nR$ 450,00\ndiária de semana\nIpê 09\nQuarto · até 2 pessoas\nTotal do período R$ 1.040,00 · 2 noites\nR$ 450,00\ndiária de semana\nChalé Serra 01\nChalé · até 3 pessoas\nTotal do período R$ 900,00 · 2 noites\nR$ 350,00\ndiária de semana\nCancelar\nContinuar"
+ },
+ "canal": {
+  "faixa": "08/12 – 21/12",
+  "itens_na_quinzena": [],
+  "itens_de_12_a_14": [],
+  "bloqueios_na_quinzena": [],
+  "depois": [
+   "Larissa Campos, confirmada"
+  ]
+ },
+ "cronometro": {
+  "periodo": 4.23,
+  "acomodacao": 7.78,
+  "hospede": 14,
+  "valores": 15.93,
+  "sinal": 18.78,
+  "criada": 20.73,
+  "calendario": 23.14
+ }
+}
