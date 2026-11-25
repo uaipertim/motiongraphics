@@ -87,7 +87,7 @@ def ruido(d, f0, f1, pico=0.5):
 F = {f['id']: f for f in LN['frases']}
 w_fazlo = LN['desafio_inicio']                                   # o groove entra na largada do cronômetro
 t_drop = w_fazlo                                                  # o groove entra no logo
-t_fim = F['cta2']['t0'] - 0.1                                     # o groove para na logo ("E no começo…")
+t_fim = F['cta']['t1'] + 0.35                                     # o groove para na logo (o fecho é só a logo)
 PROG = [(48, [60, 64, 67]), (43, [59, 62, 67]), (45, [60, 64, 69]), (41, [60, 65, 69])]  # C G Am F (baixo, acorde)
 mus = np.zeros((2, N))
 # alinha a grade ao drop: o tempo 0 da batida cai em t_drop

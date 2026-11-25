@@ -26,7 +26,7 @@ window.montaPlano = function (LN, AL, EV, TX) {
 
   const balao = { t1: F.desafio.t0 - 0.1, datas: T('datas') };
   const titulo = { t0: T('desafio') - 0.1, t1: T('valendo') - 0.1 };
-  const fecho = { t0: F.cta.t0 - 0.35, nova: T('nova'), segundos: T('segundos'), logo: F.cta2.t0 - 0.1, comeco: T('comeco'), configura: T('configura'), arroba: F.cta2.t1 + 0.6 };
+  const fecho = { t0: F.cta.t0 - 0.35, nova: T('nova'), segundos: T('segundos'), logo: F.cta.t1 + 0.45, arroba: F.cta.t1 + 1.3 };   // fecho só com a logo
   const PARC = [['periodo', 'Período'], ['acomodacao', 'Acomodação'], ['hospede', 'Hóspede'], ['valores', 'Valores'], ['sinal', 'Sinal'], ['criada', 'Criada'], ['calendario', 'Calendário']];
   const PARA = V(TOTAL);
   const crono = { entra: T('valendo') - 0.15, D: Dd, total: TOTAL, parciais: PARC.map(([n, r]) => ({ nome: n, rotulo: r, t: parcial(n) })),
@@ -136,7 +136,7 @@ window.montaPlano = function (LN, AL, EV, TX) {
     }
     return melhor < 0 ? [ws] : [...parte(ws.slice(0, melhor)), ...parte(ws.slice(melhor))];
   };
-  const comLegenda = LN.frases.filter((f) => !['g1', 'cta', 'cta2'].includes(f.id));
+  const comLegenda = LN.frases.filter((f) => !['g1', 'cta'].includes(f.id));
   comLegenda.forEach((f, i, arr) => {
     const pgs = parte(f.palavras), nx = arr[i + 1], fim = f.palavras[f.palavras.length - 1].t1, prox = nx ? nx.palavras[0].t0 : 1e9;
     pgs.forEach((pg, k) => legenda.push({ t0: pg[0].t0 - 0.06, t1: k < pgs.length - 1 ? pgs[k + 1][0].t0 - 0.06 : Math.min(prox - 0.06, fim + 1.0, F.cta.t0 - 0.4),

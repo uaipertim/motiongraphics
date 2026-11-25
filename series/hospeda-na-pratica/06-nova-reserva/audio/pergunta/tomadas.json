@@ -1,0 +1,211 @@
+{
+ "texto_tela": "Oi! Tem vaga de 12 a 14 de Dezembro? Pra 2?",
+ "texto_voz": "Oi! Tem vaga de doze a catorze de Dezembro? Pra dois?",
+ "medida": "f0 da metade final da última palavra × f0 da palavra anterior, em semitons",
+ "tomadas": [
+  {
+   "tomada": 1,
+   "nome": "tomada-1",
+   "texto": "Oi! Tem vaga de doze a catorze de Dezembro? Pra dois?",
+   "seed": 7101,
+   "duracao_s": 4.24,
+   "palavras": [
+    {
+     "w": "Oi!",
+     "t0": 0.0,
+     "t1": 0.32
+    },
+    {
+     "w": "Tem",
+     "t0": 0.72,
+     "t1": 0.88
+    },
+    {
+     "w": "vaga",
+     "t0": 0.96,
+     "t1": 1.2
+    },
+    {
+     "w": "de",
+     "t0": 1.28,
+     "t1": 1.36
+    },
+    {
+     "w": "doze",
+     "t0": 1.44,
+     "t1": 1.68
+    },
+    {
+     "w": "a",
+     "t0": 1.76,
+     "t1": 1.84
+    },
+    {
+     "w": "catorze",
+     "t0": 1.88,
+     "t1": 2.24
+    },
+    {
+     "w": "de",
+     "t0": 2.32,
+     "t1": 2.4
+    },
+    {
+     "w": "Dezembro?",
+     "t0": 2.48,
+     "t1": 3.04
+    },
+    {
+     "w": "Pra",
+     "t0": 3.413,
+     "t1": 3.52
+    },
+    {
+     "w": "dois?",
+     "t0": 3.6,
+     "t1": 4.0
+    }
+   ],
+   "f0_fim_hz": 400.9,
+   "f0_antes_hz": 211.0,
+   "subida_semitons": 11.11,
+   "f0_fim_max_hz": 400.9
+  },
+  {
+   "tomada": 2,
+   "nome": "tomada-2",
+   "texto": "Oi! Tem vaga de doze a catorze de Dezembro? Pra dois?",
+   "seed": 7102,
+   "duracao_s": 4.32,
+   "palavras": [
+    {
+     "w": "Oi!",
+     "t0": 0.0,
+     "t1": 0.32
+    },
+    {
+     "w": "Tem",
+     "t0": 0.64,
+     "t1": 0.88
+    },
+    {
+     "w": "vaga",
+     "t0": 0.96,
+     "t1": 1.2
+    },
+    {
+     "w": "de",
+     "t0": 1.28,
+     "t1": 1.44
+    },
+    {
+     "w": "doze",
+     "t0": 1.56,
+     "t1": 1.76
+    },
+    {
+     "w": "a",
+     "t0": 1.84,
+     "t1": 1.92
+    },
+    {
+     "w": "catorze",
+     "t0": 1.96,
+     "t1": 2.32
+    },
+    {
+     "w": "de",
+     "t0": 2.4,
+     "t1": 2.48
+    },
+    {
+     "w": "Dezembro?",
+     "t0": 2.56,
+     "t1": 3.12
+    },
+    {
+     "w": "Pra",
+     "t0": 3.467,
+     "t1": 3.52
+    },
+    {
+     "w": "dois?",
+     "t0": 3.68,
+     "t1": 4.08
+    }
+   ],
+   "f0_fim_hz": 341.2,
+   "f0_antes_hz": 236.5,
+   "subida_semitons": 6.35,
+   "f0_fim_max_hz": 373.7
+  },
+  {
+   "tomada": 3,
+   "nome": "tomada-3",
+   "texto": "Oi! Tem vaga de doze a catorze de Dezembro? Pra dois?",
+   "seed": 7103,
+   "duracao_s": 4.32,
+   "palavras": [
+    {
+     "w": "Oi!",
+     "t0": 0.0,
+     "t1": 0.32
+    },
+    {
+     "w": "Tem",
+     "t0": 0.72,
+     "t1": 0.88
+    },
+    {
+     "w": "vaga",
+     "t0": 0.96,
+     "t1": 1.28
+    },
+    {
+     "w": "de",
+     "t0": 1.36,
+     "t1": 1.44
+    },
+    {
+     "w": "doze",
+     "t0": 1.52,
+     "t1": 1.76
+    },
+    {
+     "w": "a",
+     "t0": 1.84,
+     "t1": 1.92
+    },
+    {
+     "w": "catorze",
+     "t0": 1.96,
+     "t1": 2.32
+    },
+    {
+     "w": "de",
+     "t0": 2.4,
+     "t1": 2.48
+    },
+    {
+     "w": "Dezembro?",
+     "t0": 2.56,
+     "t1": 3.12
+    },
+    {
+     "w": "Pra",
+     "t0": 3.493,
+     "t1": 3.6
+    },
+    {
+     "w": "dois?",
+     "t0": 3.68,
+     "t1": 4.08
+    }
+   ],
+   "f0_fim_hz": 361.6,
+   "f0_antes_hz": 210.0,
+   "subida_semitons": 9.41,
+   "f0_fim_max_hz": 376.9
+  }
+ ]
+}

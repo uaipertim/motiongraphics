@@ -284,3 +284,11 @@ O ritmo é o aprovado: 0,7 s antes de cada toque, 8 letras por segundo, 1,2 s de
 | 39,1–43,7 | Volta calma, na tela da reserva criada: o cartão com o "Financeiro" (Sinal R$ 580,00 via PIX) e o contorno em "Ver voucher". |
 | 44,0–51,4 | Toque no "+" e o mesmo período: janela âmbar com "Livres no período · 9 de 10" e a Bica D'Água 01 seguida da 03. |
 | 51,4–61,6 | "Reserva nova, em segundos." A logo estoura, com "E no começo, a FAZLO configura tudo com você." e @fazlohospeda. |
+
+## 9. Correções de 25/11/2026 (pedidas pelo Willian)
+- **Pergunta do começo:** na voz, agora é "Chegou pelo WhatsApp: Oi! Tem vaga de doze a catorze de Dezembro? Pra dois?".
+  - A pergunta é uma tomada à parte (seed 7101), escolhida entre 3 por subir mais no fim (+11,1 semitons). As 3 estão em `audio/pergunta/`.
+  - O resto da locução não mudou.
+- **Mês:** "Dezembro", com inicial maiúscula, no balão (regra nova da série).
+- **Fecho:** sem "E no começo, a FAZLO configura tudo com você." Fica só a logo e @fazlohospeda (regra nova da série).
+- **Tempos novos:** o desafio vai de 11,51 a 35,06 s, e a duração é de 58,5 s. A tabela da seção 8 vale com +0,96 s até o fim do desafio. Depois dele, o vídeo termina em "Reserva nova, em segundos." (52,7–54,9 s), seguido da logo.

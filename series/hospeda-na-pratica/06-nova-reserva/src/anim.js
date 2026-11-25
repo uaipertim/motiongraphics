@@ -224,17 +224,15 @@
     rr(c, x0, y0, w, h, 40); c.fillStyle = '#FFFFFF'; c.fill(); c.shadowColor = 'transparent';
     c.beginPath(); c.moveTo(x0 + 40, y0 + h - 2); c.lineTo(x0 + 10, y0 + h + 42); c.lineTo(x0 + 110, y0 + h - 2); c.fillStyle = '#FFFFFF'; c.fill();
     const pulso = 1 + 0.06 * Math.exp(-Math.pow((t - b.datas - 0.15) / 0.18, 2));
-    const L1 = [['Tem vaga de ', C.ink], ['12 a 14', C.ink]], L2 = [['de dezembro ', C.ink], ['para 2?', C.ink]];
-    font(c, D, 64, 900, -1.5);
+        font(c, D, 64, 900, -1.5);
     const w1 = c.measureText('Tem vaga de ').width; let xx = x0 + 52;
     txt(c, 'Tem vaga de ', xx, y0 + 95, { size: 64, weight: 900, color: C.ink, ls: -1.5 });
     const w12 = (font(c, D, 64, 900, -1.5), c.measureText('12 a 14').width);
     c.save(); c.translate(xx + w1 + w12 / 2, y0 + 75); c.scale(pulso, pulso);
     if (t >= b.datas) { rr(c, -w12 / 2 - 12, -44, w12 + 24, 72, 16); c.fillStyle = rgba(C.lime, clamp((t - b.datas) / 0.25)); c.fill(); }
     txt(c, '12 a 14', -w12 / 2, 20, { size: 64, weight: 900, color: C.ink, ls: -1.5 }); c.restore();
-    txt(c, 'de dezembro para 2?', xx, y0 + 180, { size: 64, weight: 900, color: C.ink, ls: -1.5 });
+    txt(c, 'de Dezembro para 2?', xx, y0 + 180, { size: 64, weight: 900, color: C.ink, ls: -1.5 });   // mês com inicial maiúscula (regra da série)
     c.restore();
-    void L1; void L2;
   }
   function seloSerie(c, x, y, a) {
     font(c, MONO, 30, 700, 2); const w = c.measureText('FAZLO Hospeda na prática').width + 80;
@@ -328,15 +326,9 @@
     const ua2 = (bt % 2) / 2;
     if (bt > 0.6) { c.beginPath(); c.arc(540, 420, 150 + 28 * E.out(ua2), 0, TAU); c.strokeStyle = rgba(C.lime, 0.4 * (1 - ua2)); c.lineWidth = 5; c.stroke(); }
     c.save(); c.translate(540, 545); c.scale(clamp(u, 0, 1.2) * pulso, clamp(u, 0, 1.2) * pulso); logo(c, 0, -125, 260); nome(c, 0, 140, 0.9); c.restore();
-    const linha = (s, y, t0, cor, size0) => {
-      const v = E.back(p(t, t0, t0 + 0.4), 2); if (v <= 0) return;
-      let size = size0; font(c, D, size, 900, -1.5); const w = c.measureText(s).width; if (w > 960) size = size0 * 960 / w;
-      c.save(); c.translate(540, y); c.scale(v, v); txt(c, s, 0, 0, { size, weight: 900, align: 'center', color: cor, ls: -1.5 }); c.restore();
-    };
-    linha('E no começo,', 930, f.comeco, C.white, 72);
-    linha('a FAZLO configura tudo com você.', 1020, f.configura, C.lime, 72);
+    // fecho só com a logo e @fazlohospeda (regra da série: os episódios não repetem que a FAZLO configura o sistema)
     const ua = E.out(p(t, f.arroba, f.arroba + 0.5));
-    if (ua > 0) txt(c, '@fazlohospeda', 540, 1170, { fam: MONO, size: 46, weight: 700, align: 'center', color: C.gray, alpha: ua });
+    if (ua > 0) txt(c, '@fazlohospeda', 540, 1000, { fam: MONO, size: 46, weight: 700, align: 'center', color: C.gray, alpha: ua });
   }
 
   // ------------------------------------------------------------------ legenda (palavra por palavra)
@@ -391,7 +383,7 @@
       (s.rolagem || []).forEach((k) => { if ((k.d || 0) > 0.1) ev.push({ t: k.t, tipo: 'desliza' }); });
       (s.digita || []).forEach((e) => { for (let i = 0; i < e.n; i += 2) ev.push({ t: e.t + (i / e.n) * (e.fim - e.t), tipo: 'tecla' }); });
     }
-    ev.push({ t: f.nova, tipo: 'pop' }, { t: f.segundos, tipo: 'pop' }, { t: f.logo, tipo: 'impacto' }, { t: f.comeco, tipo: 'pop' }, { t: f.configura, tipo: 'check' }, { t: f.arroba, tipo: 'sino' });
+    ev.push({ t: f.nova, tipo: 'pop' }, { t: f.segundos, tipo: 'pop' }, { t: f.logo, tipo: 'impacto' }, { t: f.arroba, tipo: 'sino' });
     return ev.sort((a, b2) => a.t - b2.t);
   }
   window.CURTO = {

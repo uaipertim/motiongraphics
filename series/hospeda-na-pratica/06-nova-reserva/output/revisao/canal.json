@@ -1,24 +1,24 @@
 {
  "capturas_que_aparecem": {
-  "inicio": 648,
-  "passo1": 57,
+  "inicio": 705,
+  "passo1": 58,
   "cal-nov": 70,
   "cal-dez": 60,
-  "cal-12": 63,
+  "cal-12": 64,
   "cal-12-14": 57,
-  "livres": 133,
+  "livres": 132,
   "escolhida": 92,
   "pg-escolhida": 91,
-  "passo2-novo": 337,
+  "passo2-novo": 336,
   "passo2-preenchido": 55,
-  "passo3": 125,
+  "passo3": 126,
   "passo4": 136,
   "passo4-sinal": 53,
   "passo5": 130,
   "criada": 489,
-  "pg-criada": 132,
+  "pg-criada": 133,
   "cal-reserva": 343,
-  "ocupada": 608
+  "ocupada": 595
  },
  "todas_conferidas_sem_canal_a_vista": true,
  "telas_de_calendario": [

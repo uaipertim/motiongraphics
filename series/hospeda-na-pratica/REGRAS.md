@@ -20,9 +20,11 @@ O vídeo curto de venda do Hospeda ([`reels/venda-curta-hospeda`](../../reels/ve
 
 ## Legenda
 Palavra por palavra, no padrão dos vídeos narrados, com a grafia oficial na tela e as palavras-chave em verde-limão.
+- **Meses com inicial maiúscula** (regra de 25/11/2026): em tudo o que aparece escrito (legenda, balões, textos na tela e capa), o nome do mês vai com inicial maiúscula: "Dezembro", "Janeiro" etc. Os textos do próprio app aparecem como o app mostra.
 
 ## Fecho
 Todo vídeo termina com a logo do FAZLO Hospeda.
+- **Sem repetir que a FAZLO configura o sistema** (regra de 25/11/2026): os episódios não dizem mais "E no começo, a FAZLO configura tudo com você" nem nada parecido, na voz, na legenda ou na tela. Isso já foi dito nos episódios anteriores. O fecho fica com a logo do FAZLO Hospeda e @fazlohospeda.
 
 ## Identidade
 Fundo preto com verde-limão, tipografia forte, minimalista e moderno. Nunca com cara de hotel de luxo.

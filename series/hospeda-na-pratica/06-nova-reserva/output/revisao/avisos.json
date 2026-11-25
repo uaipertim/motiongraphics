@@ -4,7 +4,7 @@
  "todos": [
   {
    "tipo": "toque",
-   "t": 10.55,
+   "t": 11.51,
    "tela": "inicio",
    "rolagem": 0,
    "ret_na_tela": [
@@ -18,7 +18,7 @@
   },
   {
    "tipo": "toque",
-   "t": 10.7,
+   "t": 11.66,
    "tela": "inicio+passo1",
    "rolagem": 0,
    "ret_na_tela": [
@@ -32,7 +32,7 @@
   },
   {
    "tipo": "toque",
-   "t": 10.85,
+   "t": 11.81,
    "tela": "passo1",
    "rolagem": 0,
    "ret_na_tela": [
@@ -46,7 +46,7 @@
   },
   {
    "tipo": "toque",
-   "t": 11.3,
+   "t": 12.26,
    "tela": "passo1",
    "rolagem": 0,
    "ret_na_tela": [
@@ -60,7 +60,7 @@
   },
   {
    "tipo": "toque",
-   "t": 11.45,
+   "t": 12.41,
    "tela": "passo1+cal-nov",
    "rolagem": 0,
    "ret_na_tela": [
@@ -74,7 +74,7 @@
   },
   {
    "tipo": "toque",
-   "t": 11.6,
+   "t": 12.56,
    "tela": "cal-nov",
    "rolagem": 0,
    "ret_na_tela": [
@@ -88,7 +88,7 @@
   },
   {
    "tipo": "toque",
-   "t": 12.06,
+   "t": 13.02,
    "tela": "cal-nov",
    "rolagem": 0,
    "ret_na_tela": [
@@ -102,7 +102,7 @@
   },
   {
    "tipo": "toque",
-   "t": 12.21,
+   "t": 13.17,
    "tela": "cal-nov",
    "rolagem": 0,
    "ret_na_tela": [
@@ -116,7 +116,7 @@
   },
   {
    "tipo": "toque",
-   "t": 12.36,
+   "t": 13.32,
    "tela": "cal-nov",
    "rolagem": 0,
    "ret_na_tela": [
@@ -130,7 +130,7 @@
   },
   {
    "tipo": "toque",
-   "t": 13.1,
+   "t": 14.06,
    "tela": "cal-dez",
    "rolagem": 0,
    "ret_na_tela": [
@@ -144,7 +144,7 @@
   },
   {
    "tipo": "toque",
-   "t": 13.25,
+   "t": 14.21,
    "tela": "cal-dez",
    "rolagem": 0,
    "ret_na_tela": [
@@ -158,7 +158,7 @@
   },
   {
    "tipo": "toque",
-   "t": 13.4,
+   "t": 14.36,
    "tela": "cal-12",
    "rolagem": 0,
    "ret_na_tela": [
@@ -172,7 +172,7 @@
   },
   {
    "tipo": "toque",
-   "t": 14,
+   "t": 14.96,
    "tela": "cal-12",
    "rolagem": 0,
    "ret_na_tela": [
@@ -186,7 +186,7 @@
   },
   {
    "tipo": "toque",
-   "t": 14.15,
+   "t": 15.11,
    "tela": "cal-12",
    "rolagem": 0,
    "ret_na_tela": [
@@ -200,7 +200,7 @@
   },
   {
    "tipo": "toque",
-   "t": 14.3,
+   "t": 15.26,
    "tela": "cal-12+cal-12-14",
    "rolagem": 0,
    "ret_na_tela": [
@@ -214,7 +214,7 @@
   },
   {
    "tipo": "toque",
-   "t": 14.95,
+   "t": 15.91,
    "tela": "cal-12-14",
    "rolagem": 0,
    "ret_na_tela": [
@@ -228,7 +228,7 @@
   },
   {
    "tipo": "toque",
-   "t": 15.1,
+   "t": 16.06,
    "tela": "cal-12-14+livres",
    "rolagem": 0,
    "ret_na_tela": [
@@ -242,7 +242,7 @@
   },
   {
    "tipo": "toque",
-   "t": 15.25,
+   "t": 16.21,
    "tela": "livres",
    "rolagem": 0,
    "ret_na_tela": [
@@ -256,7 +256,7 @@
   },
   {
    "tipo": "toque",
-   "t": 16.91,
+   "t": 17.87,
    "tela": "livres",
    "rolagem": 0,
    "ret_na_tela": [
@@ -270,7 +270,7 @@
   },
   {
    "tipo": "toque",
-   "t": 17.06,
+   "t": 18.02,
    "tela": "livres",
    "rolagem": 0,
    "ret_na_tela": [
@@ -284,7 +284,7 @@
   },
   {
    "tipo": "toque",
-   "t": 17.21,
+   "t": 18.17,
    "tela": "pg-escolhida",
    "rolagem": 0,
    "ret_na_tela": [
@@ -298,7 +298,7 @@
   },
   {
    "tipo": "toque",
-   "t": 18.52,
+   "t": 19.48,
    "tela": "pg-escolhida",
    "rolagem": 3720,
    "ret_na_tela": [
@@ -312,7 +312,7 @@
   },
   {
    "tipo": "toque",
-   "t": 18.67,
+   "t": 19.63,
    "tela": "pg-escolhida+passo2-novo",
    "rolagem": 3720,
    "ret_na_tela": [
@@ -326,7 +326,7 @@
   },
   {
    "tipo": "toque",
-   "t": 18.82,
+   "t": 19.78,
    "tela": "passo2-novo",
    "rolagem": 3720,
    "ret_na_tela": [
@@ -340,7 +340,7 @@
   },
   {
    "tipo": "toque",
-   "t": 20.01,
+   "t": 20.97,
    "tela": "passo2-novo",
    "rolagem": 3720,
    "ret_na_tela": [
@@ -354,7 +354,7 @@
   },
   {
    "tipo": "toque",
-   "t": 20.16,
+   "t": 21.12,
    "tela": "passo2-novo",
    "rolagem": 3720,
    "ret_na_tela": [
@@ -368,7 +368,7 @@
   },
   {
    "tipo": "toque",
-   "t": 20.31,
+   "t": 21.27,
    "tela": "passo2-novo",
    "rolagem": 3720,
    "ret_na_tela": [
@@ -382,7 +382,7 @@
   },
   {
    "tipo": "toque",
-   "t": 22.65,
+   "t": 23.61,
    "tela": "passo2-novo",
    "rolagem": 3720,
    "ret_na_tela": [
@@ -396,7 +396,7 @@
   },
   {
    "tipo": "toque",
-   "t": 22.8,
+   "t": 23.76,
    "tela": "passo2-novo",
    "rolagem": 3720,
    "ret_na_tela": [
@@ -410,7 +410,7 @@
   },
   {
    "tipo": "toque",
-   "t": 22.95,
+   "t": 23.91,
    "tela": "passo2-novo",
    "rolagem": 3720,
    "ret_na_tela": [
@@ -424,7 +424,7 @@
   },
   {
    "tipo": "toque",
-   "t": 24.83,
+   "t": 25.79,
    "tela": "passo2-preenchido",
    "rolagem": 3720,
    "ret_na_tela": [
@@ -438,7 +438,7 @@
   },
   {
    "tipo": "toque",
-   "t": 24.98,
+   "t": 25.94,
    "tela": "passo2-preenchido+passo3",
    "rolagem": 3720,
    "ret_na_tela": [
@@ -452,7 +452,7 @@
   },
   {
    "tipo": "toque",
-   "t": 25.13,
+   "t": 26.09,
    "tela": "passo3",
    "rolagem": 3720,
    "ret_na_tela": [
@@ -466,7 +466,7 @@
   },
   {
    "tipo": "toque",
-   "t": 26.81,
+   "t": 27.77,
    "tela": "passo3",
    "rolagem": 3720,
    "ret_na_tela": [
@@ -480,7 +480,7 @@
   },
   {
    "tipo": "toque",
-   "t": 26.96,
+   "t": 27.92,
    "tela": "passo3+passo4",
    "rolagem": 3720,
    "ret_na_tela": [
@@ -494,7 +494,7 @@
   },
   {
    "tipo": "toque",
-   "t": 27.11,
+   "t": 28.07,
    "tela": "passo4",
    "rolagem": 3720,
    "ret_na_tela": [
@@ -508,7 +508,7 @@
   },
   {
    "tipo": "toque",
-   "t": 27.54,
+   "t": 28.5,
    "tela": "passo4",
    "rolagem": 3720,
    "ret_na_tela": [
@@ -522,7 +522,7 @@
   },
   {
    "tipo": "toque",
-   "t": 27.69,
+   "t": 28.65,
    "tela": "passo4",
    "rolagem": 3720,
    "ret_na_tela": [
@@ -536,7 +536,7 @@
   },
   {
    "tipo": "toque",
-   "t": 27.84,
+   "t": 28.8,
    "tela": "passo4",
    "rolagem": 3720,
    "ret_na_tela": [
@@ -550,7 +550,7 @@
   },
   {
    "tipo": "toque",
-   "t": 28.7,
+   "t": 29.66,
    "tela": "passo4",
    "rolagem": 3720,
    "ret_na_tela": [
@@ -564,7 +564,7 @@
   },
   {
    "tipo": "toque",
-   "t": 28.85,
+   "t": 29.81,
    "tela": "passo4",
    "rolagem": 3720,
    "ret_na_tela": [
@@ -578,7 +578,7 @@
   },
   {
    "tipo": "toque",
-   "t": 29,
+   "t": 29.96,
    "tela": "passo4",
    "rolagem": 3720,
    "ret_na_tela": [
@@ -592,7 +592,7 @@
   },
   {
    "tipo": "toque",
-   "t": 29.69,
+   "t": 30.65,
    "tela": "passo4-sinal",
    "rolagem": 3720,
    "ret_na_tela": [
@@ -606,7 +606,7 @@
   },
   {
    "tipo": "toque",
-   "t": 29.84,
+   "t": 30.8,
    "tela": "passo4-sinal+passo5",
    "rolagem": 3720,
    "ret_na_tela": [
@@ -620,7 +620,7 @@
   },
   {
    "tipo": "toque",
-   "t": 29.99,
+   "t": 30.95,
    "tela": "passo5",
    "rolagem": 3720,
    "ret_na_tela": [
@@ -634,7 +634,7 @@
   },
   {
    "tipo": "toque",
-   "t": 31.62,
+   "t": 32.58,
    "tela": "passo5",
    "rolagem": 3720,
    "ret_na_tela": [
@@ -648,7 +648,7 @@
   },
   {
    "tipo": "toque",
-   "t": 31.77,
+   "t": 32.73,
    "tela": "passo5",
    "rolagem": 3720,
    "ret_na_tela": [
@@ -662,7 +662,7 @@
   },
   {
    "tipo": "toque",
-   "t": 31.92,
+   "t": 32.88,
    "tela": "pg-criada",
    "rolagem": 0,
    "ret_na_tela": [
@@ -676,7 +676,7 @@
   },
   {
    "tipo": "toque",
-   "t": 33,
+   "t": 33.96,
    "tela": "pg-criada",
    "rolagem": 723,
    "ret_na_tela": [
@@ -690,7 +690,7 @@
   },
   {
    "tipo": "toque",
-   "t": 33.15,
+   "t": 34.11,
    "tela": "pg-criada",
    "rolagem": 723,
    "ret_na_tela": [
@@ -704,7 +704,7 @@
   },
   {
    "tipo": "toque",
-   "t": 33.3,
+   "t": 34.26,
    "tela": "pg-criada",
    "rolagem": 723,
    "ret_na_tela": [
@@ -718,7 +718,7 @@
   },
   {
    "tipo": "toque",
-   "t": 44.04,
+   "t": 45,
    "tela": "criada",
    "rolagem": 0,
    "ret_na_tela": [
@@ -732,7 +732,7 @@
   },
   {
    "tipo": "toque",
-   "t": 44.19,
+   "t": 45.15,
    "tela": "criada",
    "rolagem": 0,
    "ret_na_tela": [
@@ -746,7 +746,7 @@
   },
   {
    "tipo": "toque",
-   "t": 44.34,
+   "t": 45.3,
    "tela": "criada",
    "rolagem": 0,
    "ret_na_tela": [
@@ -760,7 +760,7 @@
   },
   {
    "tipo": "contorno",
-   "t": 14.29,
+   "t": 15.25,
    "tela": "cal-12+cal-12-14",
    "rolagem": 0,
    "ret_na_tela": [
@@ -774,7 +774,7 @@
   },
   {
    "tipo": "contorno",
-   "t": 14.44,
+   "t": 15.4,
    "tela": "cal-12-14",
    "rolagem": 0,
    "ret_na_tela": [
@@ -788,7 +788,7 @@
   },
   {
    "tipo": "contorno",
-   "t": 14.59,
+   "t": 15.55,
    "tela": "cal-12-14",
    "rolagem": 0,
    "ret_na_tela": [
@@ -802,7 +802,7 @@
   },
   {
    "tipo": "contorno",
-   "t": 25.09,
+   "t": 26.05,
    "tela": "passo3",
    "rolagem": 3720,
    "ret_na_tela": [
@@ -816,7 +816,7 @@
   },
   {
    "tipo": "contorno",
-   "t": 25.24,
+   "t": 26.2,
    "tela": "passo3",
    "rolagem": 3720,
    "ret_na_tela": [
@@ -830,7 +830,7 @@
   },
   {
    "tipo": "contorno",
-   "t": 25.39,
+   "t": 26.35,
    "tela": "passo3",
    "rolagem": 3720,
    "ret_na_tela": [
@@ -844,7 +844,7 @@
   },
   {
    "tipo": "contorno",
-   "t": 25.89,
+   "t": 26.85,
    "tela": "passo3",
    "rolagem": 3720,
    "ret_na_tela": [
@@ -858,7 +858,7 @@
   },
   {
    "tipo": "contorno",
-   "t": 26.04,
+   "t": 27,
    "tela": "passo3",
    "rolagem": 3720,
    "ret_na_tela": [
@@ -872,7 +872,7 @@
   },
   {
    "tipo": "contorno",
-   "t": 26.19,
+   "t": 27.15,
    "tela": "passo3",
    "rolagem": 3720,
    "ret_na_tela": [
@@ -886,7 +886,7 @@
   },
   {
    "tipo": "contorno",
-   "t": 29.02,
+   "t": 29.98,
    "tela": "passo4",
    "rolagem": 3720,
    "ret_na_tela": [
@@ -900,7 +900,7 @@
   },
   {
    "tipo": "contorno",
-   "t": 29.17,
+   "t": 30.13,
    "tela": "passo4-sinal",
    "rolagem": 3720,
    "ret_na_tela": [
@@ -914,7 +914,7 @@
   },
   {
    "tipo": "contorno",
-   "t": 29.32,
+   "t": 30.28,
    "tela": "passo4-sinal",
    "rolagem": 3720,
    "ret_na_tela": [
@@ -928,7 +928,7 @@
   },
   {
    "tipo": "contorno",
-   "t": 34.15,
+   "t": 35.11,
    "tela": "cal-reserva",
    "rolagem": 723,
    "ret_na_tela": [
@@ -942,7 +942,7 @@
   },
   {
    "tipo": "contorno",
-   "t": 34.3,
+   "t": 35.26,
    "tela": "cal-reserva",
    "rolagem": 723,
    "ret_na_tela": [
@@ -956,7 +956,7 @@
   },
   {
    "tipo": "contorno",
-   "t": 34.45,
+   "t": 35.41,
    "tela": "cal-reserva",
    "rolagem": 723,
    "ret_na_tela": [
@@ -970,7 +970,7 @@
   },
   {
    "tipo": "contorno",
-   "t": 41.74,
+   "t": 42.7,
    "tela": "criada",
    "rolagem": 0,
    "ret_na_tela": [
@@ -984,7 +984,7 @@
   },
   {
    "tipo": "contorno",
-   "t": 41.89,
+   "t": 42.85,
    "tela": "criada",
    "rolagem": 0,
    "ret_na_tela": [
@@ -998,7 +998,7 @@
   },
   {
    "tipo": "contorno",
-   "t": 42.04,
+   "t": 43,
    "tela": "criada",
    "rolagem": 0,
    "ret_na_tela": [
@@ -1012,7 +1012,7 @@
   },
   {
    "tipo": "janela",
-   "t": 15.15,
+   "t": 16.11,
    "tela": "livres",
    "rolagem": 0,
    "ret_na_tela": [
@@ -1026,7 +1026,7 @@
   },
   {
    "tipo": "janela",
-   "t": 15.3,
+   "t": 16.26,
    "tela": "livres",
    "rolagem": 0,
    "ret_na_tela": [
@@ -1040,7 +1040,7 @@
   },
   {
    "tipo": "janela",
-   "t": 15.45,
+   "t": 16.41,
    "tela": "livres",
    "rolagem": 0,
    "ret_na_tela": [
@@ -1054,7 +1054,7 @@
   },
   {
    "tipo": "janela",
-   "t": 29.91,
+   "t": 30.87,
    "tela": "passo5",
    "rolagem": 3720,
    "ret_na_tela": [
@@ -1068,7 +1068,7 @@
   },
   {
    "tipo": "janela",
-   "t": 30.06,
+   "t": 31.02,
    "tela": "passo5",
    "rolagem": 3720,
    "ret_na_tela": [
@@ -1082,7 +1082,7 @@
   },
   {
    "tipo": "janela",
-   "t": 30.21,
+   "t": 31.17,
    "tela": "passo5",
    "rolagem": 3720,
    "ret_na_tela": [
@@ -1096,7 +1096,7 @@
   },
   {
    "tipo": "janela",
-   "t": 39.72,
+   "t": 40.68,
    "tela": "criada",
    "rolagem": 0,
    "ret_na_tela": [
@@ -1110,7 +1110,7 @@
   },
   {
    "tipo": "janela",
-   "t": 39.87,
+   "t": 40.83,
    "tela": "criada",
    "rolagem": 0,
    "ret_na_tela": [
@@ -1124,7 +1124,7 @@
   },
   {
    "tipo": "janela",
-   "t": 40.02,
+   "t": 40.98,
    "tela": "criada",
    "rolagem": 0,
    "ret_na_tela": [
@@ -1138,7 +1138,7 @@
   },
   {
    "tipo": "janela",
-   "t": 45.3,
+   "t": 46.26,
    "tela": "ocupada",
    "rolagem": 0,
    "ret_na_tela": [
@@ -1152,7 +1152,7 @@
   },
   {
    "tipo": "janela",
-   "t": 45.45,
+   "t": 46.41,
    "tela": "ocupada",
    "rolagem": 0,
    "ret_na_tela": [
@@ -1166,7 +1166,7 @@
   },
   {
    "tipo": "janela",
-   "t": 45.6,
+   "t": 46.56,
    "tela": "ocupada",
    "rolagem": 0,
    "ret_na_tela": [
@@ -1180,7 +1180,7 @@
   },
   {
    "tipo": "marca",
-   "t": 15.5,
+   "t": 16.46,
    "tela": "livres",
    "rolagem": 0,
    "ret_na_tela": [
@@ -1194,7 +1194,7 @@
   },
   {
    "tipo": "marca",
-   "t": 39.82,
+   "t": 40.78,
    "tela": "criada",
    "rolagem": 0,
    "ret_na_tela": [
@@ -1208,7 +1208,7 @@
   },
   {
    "tipo": "marca",
-   "t": 48.12,
+   "t": 49.08,
    "tela": "ocupada",
    "rolagem": 0,
    "ret_na_tela": [
@@ -1222,7 +1222,7 @@
   },
   {
    "tipo": "marca",
-   "t": 48.42,
+   "t": 49.38,
    "tela": "ocupada",
    "rolagem": 0,
    "ret_na_tela": [

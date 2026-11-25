@@ -1,0 +1,1172 @@
+[
+ {
+  "nome": "A-7101",
+  "texto": "Oi! Tem vaga de doze a catorze de Dezembro, pra duas pessoas?",
+  "seed": 7101,
+  "ultima": "pessoas?",
+  "f0_ultima_4": [
+   219,
+   273,
+   196,
+   186
+  ],
+  "f0_anterior": 347,
+  "subida_fim_vs_anterior": -10.33,
+  "subida_dentro_ultima": -4.38,
+  "palavras": [
+   {
+    "w": "Oi!",
+    "t0": 0.0,
+    "t1": 0.4
+   },
+   {
+    "w": "Tem",
+    "t0": 0.8,
+    "t1": 0.96
+   },
+   {
+    "w": "vaga",
+    "t0": 1.04,
+    "t1": 1.28
+   },
+   {
+    "w": "de",
+    "t0": 1.36,
+    "t1": 1.52
+   },
+   {
+    "w": "doze",
+    "t0": 1.64,
+    "t1": 1.92
+   },
+   {
+    "w": "a",
+    "t0": 2.08,
+    "t1": 2.16
+   },
+   {
+    "w": "catorze",
+    "t0": 2.2,
+    "t1": 2.64
+   },
+   {
+    "w": "de",
+    "t0": 2.72,
+    "t1": 2.8
+   },
+   {
+    "w": "Dezembro,",
+    "t0": 2.88,
+    "t1": 3.44
+   },
+   {
+    "w": "pra",
+    "t0": 3.68,
+    "t1": 3.76
+   },
+   {
+    "w": "duas",
+    "t0": 3.84,
+    "t1": 4.0
+   },
+   {
+    "w": "pessoas?",
+    "t0": 4.08,
+    "t1": 4.72
+   }
+  ]
+ },
+ {
+  "nome": "A-7102",
+  "texto": "Oi! Tem vaga de doze a catorze de Dezembro, pra duas pessoas?",
+  "seed": 7102,
+  "ultima": "pessoas?",
+  "f0_ultima_4": [
+   222,
+   278,
+   197,
+   188
+  ],
+  "f0_anterior": 312,
+  "subida_fim_vs_anterior": -8.36,
+  "subida_dentro_ultima": -4.54,
+  "palavras": [
+   {
+    "w": "Oi!",
+    "t0": 0.0,
+    "t1": 0.32
+   },
+   {
+    "w": "Tem",
+    "t0": 0.72,
+    "t1": 0.88
+   },
+   {
+    "w": "vaga",
+    "t0": 0.96,
+    "t1": 1.2
+   },
+   {
+    "w": "de",
+    "t0": 1.28,
+    "t1": 1.44
+   },
+   {
+    "w": "doze",
+    "t0": 1.56,
+    "t1": 1.84
+   },
+   {
+    "w": "a",
+    "t0": 2.0,
+    "t1": 2.08
+   },
+   {
+    "w": "catorze",
+    "t0": 2.12,
+    "t1": 2.64
+   },
+   {
+    "w": "de",
+    "t0": 2.72,
+    "t1": 2.8
+   },
+   {
+    "w": "Dezembro,",
+    "t0": 2.88,
+    "t1": 3.44
+   },
+   {
+    "w": "pra",
+    "t0": 3.68,
+    "t1": 3.76
+   },
+   {
+    "w": "duas",
+    "t0": 3.92,
+    "t1": 4.08
+   },
+   {
+    "w": "pessoas?",
+    "t0": 4.16,
+    "t1": 4.8
+   }
+  ]
+ },
+ {
+  "nome": "A-7103",
+  "texto": "Oi! Tem vaga de doze a catorze de Dezembro, pra duas pessoas?",
+  "seed": 7103,
+  "ultima": "pessoas?",
+  "f0_ultima_4": [
+   204,
+   276,
+   199,
+   185
+  ],
+  "f0_anterior": 264,
+  "subida_fim_vs_anterior": -5.55,
+  "subida_dentro_ultima": -3.89,
+  "palavras": [
+   {
+    "w": "Oi!",
+    "t0": 0.0,
+    "t1": 0.32
+   },
+   {
+    "w": "Tem",
+    "t0": 0.84,
+    "t1": 0.96
+   },
+   {
+    "w": "vaga",
+    "t0": 1.0,
+    "t1": 1.28
+   },
+   {
+    "w": "de",
+    "t0": 1.4,
+    "t1": 1.52
+   },
+   {
+    "w": "doze",
+    "t0": 1.64,
+    "t1": 1.92
+   },
+   {
+    "w": "a",
+    "t0": 2.08,
+    "t1": 2.16
+   },
+   {
+    "w": "catorze",
+    "t0": 2.2,
+    "t1": 2.64
+   },
+   {
+    "w": "de",
+    "t0": 2.8,
+    "t1": 2.88
+   },
+   {
+    "w": "Dezembro,",
+    "t0": 3.0,
+    "t1": 3.52
+   },
+   {
+    "w": "pra",
+    "t0": 3.76,
+    "t1": 3.84
+   },
+   {
+    "w": "duas",
+    "t0": 4.0,
+    "t1": 4.16
+   },
+   {
+    "w": "pessoas?",
+    "t0": 4.24,
+    "t1": 4.88
+   }
+  ]
+ },
+ {
+  "nome": "C-7101",
+  "texto": "Oi, tudo bem? Tem vaga de doze a catorze de Dezembro, pra duas pessoas?",
+  "seed": 7101,
+  "ultima": "pessoas?",
+  "f0_ultima_4": [
+   207,
+   277,
+   200,
+   188
+  ],
+  "f0_anterior": 311,
+  "subida_fim_vs_anterior": -8.18,
+  "subida_dentro_ultima": -3.86,
+  "palavras": [
+   {
+    "w": "Oi,",
+    "t0": 0.0,
+    "t1": 0.32
+   },
+   {
+    "w": "tudo",
+    "t0": 0.52,
+    "t1": 0.72
+   },
+   {
+    "w": "bem?",
+    "t0": 0.8,
+    "t1": 1.04
+   },
+   {
+    "w": "Tem",
+    "t0": 1.6,
+    "t1": 1.76
+   },
+   {
+    "w": "vaga",
+    "t0": 1.8,
+    "t1": 2.08
+   },
+   {
+    "w": "de",
+    "t0": 2.2,
+    "t1": 2.32
+   },
+   {
+    "w": "doze",
+    "t0": 2.44,
+    "t1": 2.72
+   },
+   {
+    "w": "a",
+    "t0": 2.8,
+    "t1": 2.88
+   },
+   {
+    "w": "catorze",
+    "t0": 2.92,
+    "t1": 3.36
+   },
+   {
+    "w": "de",
+    "t0": 3.44,
+    "t1": 3.52
+   },
+   {
+    "w": "Dezembro,",
+    "t0": 3.6,
+    "t1": 4.16
+   },
+   {
+    "w": "pra",
+    "t0": 4.4,
+    "t1": 4.48
+   },
+   {
+    "w": "duas",
+    "t0": 4.64,
+    "t1": 4.8
+   },
+   {
+    "w": "pessoas?",
+    "t0": 4.88,
+    "t1": 5.52
+   }
+  ]
+ },
+ {
+  "nome": "C-7102",
+  "texto": "Oi, tudo bem? Tem vaga de doze a catorze de Dezembro, pra duas pessoas?",
+  "seed": 7102,
+  "ultima": "pessoas?",
+  "f0_ultima_4": [
+   217,
+   272,
+   193,
+   185
+  ],
+  "f0_anterior": 337,
+  "subida_fim_vs_anterior": -10.0,
+  "subida_dentro_ultima": -4.48,
+  "palavras": [
+   {
+    "w": "Oi,",
+    "t0": 0.0,
+    "t1": 0.32
+   },
+   {
+    "w": "tudo",
+    "t0": 0.56,
+    "t1": 0.72
+   },
+   {
+    "w": "bem?",
+    "t0": 0.8,
+    "t1": 1.04
+   },
+   {
+    "w": "Tem",
+    "t0": 1.6,
+    "t1": 1.76
+   },
+   {
+    "w": "vaga",
+    "t0": 1.84,
+    "t1": 2.08
+   },
+   {
+    "w": "de",
+    "t0": 2.16,
+    "t1": 2.32
+   },
+   {
+    "w": "doze",
+    "t0": 2.44,
+    "t1": 2.64
+   },
+   {
+    "w": "a",
+    "t0": 2.72,
+    "t1": 2.8
+   },
+   {
+    "w": "catorze",
+    "t0": 2.84,
+    "t1": 3.28
+   },
+   {
+    "w": "de",
+    "t0": 3.36,
+    "t1": 3.44
+   },
+   {
+    "w": "Dezembro,",
+    "t0": 3.52,
+    "t1": 4.08
+   },
+   {
+    "w": "pra",
+    "t0": 4.32,
+    "t1": 4.4
+   },
+   {
+    "w": "duas",
+    "t0": 4.56,
+    "t1": 4.72
+   },
+   {
+    "w": "pessoas?",
+    "t0": 4.8,
+    "t1": 5.44
+   }
+  ]
+ },
+ {
+  "nome": "C-7103",
+  "texto": "Oi, tudo bem? Tem vaga de doze a catorze de Dezembro, pra duas pessoas?",
+  "seed": 7103,
+  "ultima": "pessoas?",
+  "f0_ultima_4": [
+   207,
+   262,
+   191,
+   181
+  ],
+  "f0_anterior": 272,
+  "subida_fim_vs_anterior": -6.59,
+  "subida_dentro_ultima": -4.03,
+  "palavras": [
+   {
+    "w": "Oi,",
+    "t0": 0.0,
+    "t1": 0.32
+   },
+   {
+    "w": "tudo",
+    "t0": 0.52,
+    "t1": 0.72
+   },
+   {
+    "w": "bem?",
+    "t0": 0.8,
+    "t1": 1.04
+   },
+   {
+    "w": "Tem",
+    "t0": 1.6,
+    "t1": 1.76
+   },
+   {
+    "w": "vaga",
+    "t0": 1.84,
+    "t1": 2.08
+   },
+   {
+    "w": "de",
+    "t0": 2.2,
+    "t1": 2.32
+   },
+   {
+    "w": "doze",
+    "t0": 2.44,
+    "t1": 2.72
+   },
+   {
+    "w": "a",
+    "t0": 2.8,
+    "t1": 2.88
+   },
+   {
+    "w": "catorze",
+    "t0": 2.92,
+    "t1": 3.36
+   },
+   {
+    "w": "de",
+    "t0": 3.44,
+    "t1": 3.52
+   },
+   {
+    "w": "Dezembro,",
+    "t0": 3.6,
+    "t1": 4.16
+   },
+   {
+    "w": "pra",
+    "t0": 4.4,
+    "t1": 4.48
+   },
+   {
+    "w": "duas",
+    "t0": 4.64,
+    "t1": 4.8
+   },
+   {
+    "w": "pessoas?",
+    "t0": 4.88,
+    "t1": 5.52
+   }
+  ]
+ },
+ {
+  "nome": "E-7101",
+  "texto": "Oi! Tem vaga de doze a catorze de Dezembro? Pra dois?",
+  "seed": 7101,
+  "ultima": "dois?",
+  "f0_ultima_4": [
+   255,
+   343,
+   396,
+   null
+  ],
+  "f0_anterior": 210,
+  "subida_fim_vs_anterior": 10.96,
+  "subida_dentro_ultima": 4.84,
+  "palavras": [
+   {
+    "w": "Oi!",
+    "t0": 0.0,
+    "t1": 0.32
+   },
+   {
+    "w": "Tem",
+    "t0": 0.72,
+    "t1": 0.88
+   },
+   {
+    "w": "vaga",
+    "t0": 0.96,
+    "t1": 1.2
+   },
+   {
+    "w": "de",
+    "t0": 1.28,
+    "t1": 1.36
+   },
+   {
+    "w": "doze",
+    "t0": 1.44,
+    "t1": 1.68
+   },
+   {
+    "w": "a",
+    "t0": 1.76,
+    "t1": 1.84
+   },
+   {
+    "w": "catorze",
+    "t0": 1.88,
+    "t1": 2.24
+   },
+   {
+    "w": "de",
+    "t0": 2.32,
+    "t1": 2.4
+   },
+   {
+    "w": "Dezembro?",
+    "t0": 2.48,
+    "t1": 3.04
+   },
+   {
+    "w": "Pra",
+    "t0": 3.413,
+    "t1": 3.52
+   },
+   {
+    "w": "dois?",
+    "t0": 3.6,
+    "t1": 4.0
+   }
+  ]
+ },
+ {
+  "nome": "E-7102",
+  "texto": "Oi! Tem vaga de doze a catorze de Dezembro? Pra dois?",
+  "seed": 7102,
+  "ultima": "dois?",
+  "f0_ultima_4": [
+   246,
+   377,
+   332,
+   null
+  ],
+  "f0_anterior": 236,
+  "subida_fim_vs_anterior": 5.85,
+  "subida_dentro_ultima": 1.07,
+  "palavras": [
+   {
+    "w": "Oi!",
+    "t0": 0.0,
+    "t1": 0.32
+   },
+   {
+    "w": "Tem",
+    "t0": 0.64,
+    "t1": 0.88
+   },
+   {
+    "w": "vaga",
+    "t0": 0.96,
+    "t1": 1.2
+   },
+   {
+    "w": "de",
+    "t0": 1.28,
+    "t1": 1.44
+   },
+   {
+    "w": "doze",
+    "t0": 1.56,
+    "t1": 1.76
+   },
+   {
+    "w": "a",
+    "t0": 1.84,
+    "t1": 1.92
+   },
+   {
+    "w": "catorze",
+    "t0": 1.96,
+    "t1": 2.32
+   },
+   {
+    "w": "de",
+    "t0": 2.4,
+    "t1": 2.48
+   },
+   {
+    "w": "Dezembro?",
+    "t0": 2.56,
+    "t1": 3.12
+   },
+   {
+    "w": "Pra",
+    "t0": 3.467,
+    "t1": 3.52
+   },
+   {
+    "w": "dois?",
+    "t0": 3.68,
+    "t1": 4.08
+   }
+  ]
+ },
+ {
+  "nome": "E-7103",
+  "texto": "Oi! Tem vaga de doze a catorze de Dezembro? Pra dois?",
+  "seed": 7103,
+  "ultima": "dois?",
+  "f0_ultima_4": [
+   251,
+   374,
+   369,
+   null
+  ],
+  "f0_anterior": 212,
+  "subida_fim_vs_anterior": 9.6,
+  "subida_dentro_ultima": 2.89,
+  "palavras": [
+   {
+    "w": "Oi!",
+    "t0": 0.0,
+    "t1": 0.32
+   },
+   {
+    "w": "Tem",
+    "t0": 0.72,
+    "t1": 0.88
+   },
+   {
+    "w": "vaga",
+    "t0": 0.96,
+    "t1": 1.28
+   },
+   {
+    "w": "de",
+    "t0": 1.36,
+    "t1": 1.44
+   },
+   {
+    "w": "doze",
+    "t0": 1.52,
+    "t1": 1.76
+   },
+   {
+    "w": "a",
+    "t0": 1.84,
+    "t1": 1.92
+   },
+   {
+    "w": "catorze",
+    "t0": 1.96,
+    "t1": 2.32
+   },
+   {
+    "w": "de",
+    "t0": 2.4,
+    "t1": 2.48
+   },
+   {
+    "w": "Dezembro?",
+    "t0": 2.56,
+    "t1": 3.12
+   },
+   {
+    "w": "Pra",
+    "t0": 3.493,
+    "t1": 3.6
+   },
+   {
+    "w": "dois?",
+    "t0": 3.68,
+    "t1": 4.08
+   }
+  ]
+ },
+ {
+  "nome": "G-7101",
+  "texto": "Oi! Será que tem vaga de doze a catorze de Dezembro, pra dois?",
+  "seed": 7101,
+  "ultima": "dois?",
+  "f0_ultima_4": [
+   261,
+   211,
+   197,
+   null
+  ],
+  "f0_anterior": 200,
+  "subida_fim_vs_anterior": -0.34,
+  "subida_dentro_ultima": -3.17,
+  "palavras": [
+   {
+    "w": "Oi!",
+    "t0": 0.0,
+    "t1": 0.32
+   },
+   {
+    "w": "Será",
+    "t0": 0.72,
+    "t1": 0.92
+   },
+   {
+    "w": "que",
+    "t0": 0.96,
+    "t1": 1.04
+   },
+   {
+    "w": "tem",
+    "t0": 1.12,
+    "t1": 1.28
+   },
+   {
+    "w": "vaga",
+    "t0": 1.36,
+    "t1": 1.68
+   },
+   {
+    "w": "de",
+    "t0": 1.8,
+    "t1": 1.92
+   },
+   {
+    "w": "doze",
+    "t0": 2.04,
+    "t1": 2.32
+   },
+   {
+    "w": "a",
+    "t0": 2.4,
+    "t1": 2.48
+   },
+   {
+    "w": "catorze",
+    "t0": 2.52,
+    "t1": 2.96
+   },
+   {
+    "w": "de",
+    "t0": 3.04,
+    "t1": 3.2
+   },
+   {
+    "w": "Dezembro,",
+    "t0": 3.28,
+    "t1": 3.84
+   },
+   {
+    "w": "pra",
+    "t0": 4.08,
+    "t1": 4.16
+   },
+   {
+    "w": "dois?",
+    "t0": 4.24,
+    "t1": 4.64
+   }
+  ]
+ },
+ {
+  "nome": "G-7102",
+  "texto": "Oi! Será que tem vaga de doze a catorze de Dezembro, pra dois?",
+  "seed": 7102,
+  "ultima": "dois?",
+  "f0_ultima_4": [
+   256,
+   203,
+   194,
+   null
+  ],
+  "f0_anterior": 195,
+  "subida_fim_vs_anterior": -0.08,
+  "subida_dentro_ultima": -2.91,
+  "palavras": [
+   {
+    "w": "Oi!",
+    "t0": 0.0,
+    "t1": 0.32
+   },
+   {
+    "w": "Será",
+    "t0": 0.72,
+    "t1": 0.96
+   },
+   {
+    "w": "que",
+    "t0": 1.0,
+    "t1": 1.04
+   },
+   {
+    "w": "tem",
+    "t0": 1.12,
+    "t1": 1.28
+   },
+   {
+    "w": "vaga",
+    "t0": 1.36,
+    "t1": 1.6
+   },
+   {
+    "w": "de",
+    "t0": 1.68,
+    "t1": 1.84
+   },
+   {
+    "w": "doze",
+    "t0": 1.92,
+    "t1": 2.16
+   },
+   {
+    "w": "a",
+    "t0": 2.2,
+    "t1": 2.24
+   },
+   {
+    "w": "catorze",
+    "t0": 2.32,
+    "t1": 2.72
+   },
+   {
+    "w": "de",
+    "t0": 2.8,
+    "t1": 2.88
+   },
+   {
+    "w": "Dezembro,",
+    "t0": 2.96,
+    "t1": 3.52
+   },
+   {
+    "w": "pra",
+    "t0": 3.76,
+    "t1": 3.84
+   },
+   {
+    "w": "dois?",
+    "t0": 3.92,
+    "t1": 4.32
+   }
+  ]
+ },
+ {
+  "nome": "G-7103",
+  "texto": "Oi! Será que tem vaga de doze a catorze de Dezembro, pra dois?",
+  "seed": 7103,
+  "ultima": "dois?",
+  "f0_ultima_4": [
+   259,
+   202,
+   196,
+   null
+  ],
+  "f0_anterior": 194,
+  "subida_fim_vs_anterior": 0.19,
+  "subida_dentro_ultima": -2.78,
+  "palavras": [
+   {
+    "w": "Oi!",
+    "t0": 0.0,
+    "t1": 0.32
+   },
+   {
+    "w": "Será",
+    "t0": 0.72,
+    "t1": 0.96
+   },
+   {
+    "w": "que",
+    "t0": 1.0,
+    "t1": 1.04
+   },
+   {
+    "w": "tem",
+    "t0": 1.12,
+    "t1": 1.28
+   },
+   {
+    "w": "vaga",
+    "t0": 1.36,
+    "t1": 1.68
+   },
+   {
+    "w": "de",
+    "t0": 1.8,
+    "t1": 1.92
+   },
+   {
+    "w": "doze",
+    "t0": 2.04,
+    "t1": 2.32
+   },
+   {
+    "w": "a",
+    "t0": 2.4,
+    "t1": 2.48
+   },
+   {
+    "w": "catorze",
+    "t0": 2.52,
+    "t1": 2.96
+   },
+   {
+    "w": "de",
+    "t0": 3.04,
+    "t1": 3.12
+   },
+   {
+    "w": "Dezembro,",
+    "t0": 3.2,
+    "t1": 3.76
+   },
+   {
+    "w": "pra",
+    "t0": 4.0,
+    "t1": 4.08
+   },
+   {
+    "w": "dois?",
+    "t0": 4.16,
+    "t1": 4.56
+   }
+  ]
+ },
+ {
+  "nome": "H-7101",
+  "texto": "Oi! Tem vaga de doze a catorze de Dezembro, pra dois?",
+  "seed": 7101,
+  "ultima": "dois?",
+  "f0_ultima_4": [
+   298,
+   227,
+   209,
+   null
+  ],
+  "f0_anterior": 214,
+  "subida_fim_vs_anterior": -0.41,
+  "subida_dentro_ultima": -4.0,
+  "palavras": [
+   {
+    "w": "Oi!",
+    "t0": 0.0,
+    "t1": 0.4
+   },
+   {
+    "w": "Tem",
+    "t0": 0.72,
+    "t1": 0.88
+   },
+   {
+    "w": "vaga",
+    "t0": 0.96,
+    "t1": 1.28
+   },
+   {
+    "w": "de",
+    "t0": 1.4,
+    "t1": 1.52
+   },
+   {
+    "w": "doze",
+    "t0": 1.64,
+    "t1": 1.92
+   },
+   {
+    "w": "a",
+    "t0": 2.0,
+    "t1": 2.08
+   },
+   {
+    "w": "catorze",
+    "t0": 2.12,
+    "t1": 2.56
+   },
+   {
+    "w": "de",
+    "t0": 2.64,
+    "t1": 2.72
+   },
+   {
+    "w": "Dezembro,",
+    "t0": 2.8,
+    "t1": 3.36
+   },
+   {
+    "w": "pra",
+    "t0": 3.68,
+    "t1": 3.76
+   },
+   {
+    "w": "dois?",
+    "t0": 3.84,
+    "t1": 4.24
+   }
+  ]
+ },
+ {
+  "nome": "H-7102",
+  "texto": "Oi! Tem vaga de doze a catorze de Dezembro, pra dois?",
+  "seed": 7102,
+  "ultima": "dois?",
+  "f0_ultima_4": [
+   296,
+   229,
+   205,
+   null
+  ],
+  "f0_anterior": 204,
+  "subida_fim_vs_anterior": 0.08,
+  "subida_dentro_ultima": -4.26,
+  "palavras": [
+   {
+    "w": "Oi!",
+    "t0": 0.0,
+    "t1": 0.32
+   },
+   {
+    "w": "Tem",
+    "t0": 0.72,
+    "t1": 0.88
+   },
+   {
+    "w": "vaga",
+    "t0": 0.96,
+    "t1": 1.2
+   },
+   {
+    "w": "de",
+    "t0": 1.28,
+    "t1": 1.44
+   },
+   {
+    "w": "doze",
+    "t0": 1.52,
+    "t1": 1.76
+   },
+   {
+    "w": "a",
+    "t0": 1.84,
+    "t1": 1.92
+   },
+   {
+    "w": "catorze",
+    "t0": 1.96,
+    "t1": 2.4
+   },
+   {
+    "w": "de",
+    "t0": 2.48,
+    "t1": 2.56
+   },
+   {
+    "w": "Dezembro,",
+    "t0": 2.64,
+    "t1": 3.2
+   },
+   {
+    "w": "pra",
+    "t0": 3.44,
+    "t1": 3.52
+   },
+   {
+    "w": "dois?",
+    "t0": 3.6,
+    "t1": 4.0
+   }
+  ]
+ },
+ {
+  "nome": "H-7103",
+  "texto": "Oi! Tem vaga de doze a catorze de Dezembro, pra dois?",
+  "seed": 7103,
+  "ultima": "dois?",
+  "f0_ultima_4": [
+   295,
+   240,
+   207,
+   null
+  ],
+  "f0_anterior": 232,
+  "subida_fim_vs_anterior": -1.97,
+  "subida_dentro_ultima": -4.42,
+  "palavras": [
+   {
+    "w": "Oi!",
+    "t0": 0.0,
+    "t1": 0.4
+   },
+   {
+    "w": "Tem",
+    "t0": 0.8,
+    "t1": 0.96
+   },
+   {
+    "w": "vaga",
+    "t0": 1.04,
+    "t1": 1.28
+   },
+   {
+    "w": "de",
+    "t0": 1.36,
+    "t1": 1.52
+   },
+   {
+    "w": "doze",
+    "t0": 1.64,
+    "t1": 1.92
+   },
+   {
+    "w": "a",
+    "t0": 2.08,
+    "t1": 2.16
+   },
+   {
+    "w": "catorze",
+    "t0": 2.2,
+    "t1": 2.72
+   },
+   {
+    "w": "de",
+    "t0": 2.8,
+    "t1": 2.88
+   },
+   {
+    "w": "Dezembro,",
+    "t0": 2.96,
+    "t1": 3.52
+   },
+   {
+    "w": "pra",
+    "t0": 3.76,
+    "t1": 3.84
+   },
+   {
+    "w": "dois?",
+    "t0": 3.92,
+    "t1": 4.4
+   }
+  ]
+ }
+]
